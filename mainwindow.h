@@ -1,0 +1,176 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include <QMenu>
+#include <QMouseEvent>
+#include <QEvent>
+#include <QPainter>
+#include "jos.h"
+#include <QDialog>
+#include <QPainter>
+#include <QEvent>
+#include <QMutex>
+#include <QDebug>
+#include <QWidget>
+#include <QScrollArea>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QComboBox>
+#include <QStackedLayout>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QGroupBox>
+#include <QtSerialPort/QSerialPortInfo>
+#include <QtSerialPort/QSerialPort>
+#include <QStringList>
+#include <QDialogButtonBox>
+#include <QFileDialog>
+#include <QLabel>
+#include <QCheckBox>
+
+
+#define POS_MIN 0
+#define POS_MAX 65535
+#define POS_CENTER 32767
+#define POINTX 350 //圆左上角坐标x
+#define POINTY 150 //圆左上角坐标Y
+#define CENTER 160//圆的半径
+#define RATIO 10 //矩形框缩小比例
+
+#define BUFFER_FULL          1
+#define BUFFER_DATA          2
+#define BUFFER_EMPTY         3
+
+
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+
+    /*绘制事件*/
+    void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent (QMouseEvent * e);
+    void mouseMoveEvent(QMouseEvent *event);
+
+    /*初始化的配置*/
+    void init_menu();
+    void init_sysCfg();
+
+
+public slots:
+    /*界面显示*/
+    void showJos();
+    void showSysCfg();
+    void showPlat();
+    void showCamera();
+    void showAlg();
+    void showOther();
+
+    /*系统配置槽函数*/
+    void btnSerialSlot();
+    void btnNetSlot();
+    void toNetSlot(int i);
+    void btnLoadSlot();
+    void btnSaveSlot();
+    void btnUpdate();
+
+    /*相机配置槽函数*/
+    void btnSensor1SwitchSlot();
+    void btnSensor2ContinueSlot();
+    void toSensor_switch(int i);
+
+    /*槽函数*/
+    void resetAction();
+
+
+private:
+    Ui::MainWindow *ui;
+    Jos j;
+
+    QMenu* menu[10];
+    /*界面手柄*/
+    int a, b, m_dragging;
+    int mousePress = 0;
+    QMutex send_mutex;
+    unsigned char send_arr[64];
+    unsigned short sectrk_x = 0;
+    unsigned short sectrk_y = 0;
+
+    /*系统配置*/
+    QWidget w_config,w_config_serial,w_config_net;
+    QStackedLayout *s;
+    QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
+    QGroupBox *groupBox_trackboard;
+
+    /*平台配置*/
+    QWidget w_plat;
+    QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
+    QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,
+              *josOutputG_x,*josOutputG_y;
+    QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
+    QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
+    QString jos_s[6]={"手柄死区","手柄拐点","手柄x轴输入增益","手柄y轴输入增益","摇杆平台x输出增益","摇杆平台y轴输出增益"};
+    QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数"};
+    QString plat_s[7]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a"};
+
+
+    /*相机配置*/
+
+    /*通道1*/
+    QWidget w_sersor1,w_seitchField,w_ContinueField;
+    QStackedLayout *sta;
+    //固定视场参数
+    QLineEdit *lineEdit_fieldRadio,*lineEdit_fieldResolution,*lineEdit_FOV_x,*lineEdit_FOV_y;
+    QString sensor_s1[7]={"视场模式","配置视场","视场比例","分辨率","FOV","FOV的靶心X","FOV的靶心Y"};
+    //可切换视场参数
+    QLineEdit *lineEdit_s1_Fov0,*lineEdit_s1_Fov1,*lineEdit_s1_Fov2,*lineEdit_s1_Fov3,*lineEdit_s1_Fov4,
+              *lineEdit_s1_Fov5,*lineEdit_s1_Fov6,*lineEdit_s1_Fov7,*lineEdit_s1_Fov8,*lineEdit_s1_Fov9,
+              *lineEdit_s1_Fov10,*lineEdit_s1_Fov11,*lineEdit_s1_Fov12,*lineEdit_s1_Fov13,*lineEdit_s1_Fov14;
+    QString sensor_switch_s1[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    //连续视场参数
+    QLineEdit *lineEdit_c0,*lineEdit_c1,*lineEdit_c2,*lineEdit_c3,*lineEdit_c4,*lineEdit_c5,
+              *lineEdit_c6,*lineEdit_c7,*lineEdit_c8,*lineEdit_c9,*lineEdit_c10,*lineEdit_c11,
+              *lineEdit_c12,*lineEdit_c13,*lineEdit_c14,*lineEdit_c15,*lineEdit_c16,*lineEdit_c17,
+              *lineEdit_c18,*lineEdit_c19,*lineEdit_c20,*lineEdit_c21,*lineEdit_c22,*lineEdit_c23,
+              *lineEdit_c24,*lineEdit_c25,*lineEdit_c26;
+    QString sensor_Continue_s1[26]={"第1个采样点靶心x","第1个采样点靶心y","第2个采样点靶心x","第2个采样点靶心y","第3个采样点靶心x","第3个采样点靶心y","第4个采样点靶心x","第4个采样点靶心y","第5个采样点靶心x","第5个采样点靶心y","第6个采样点靶心x","第6个采样点靶心y",
+                                   "第7个采样点靶心x","第7个采样点靶心y","第8个采样点靶心x","第8个采样点靶心y","第9个采样点靶心x","第9个采样点靶心y","第10个采样点靶心x","第10个采样点靶心y","第11个采样点靶心x","第11个采样点靶心y","第12个采样点靶心x","第12个采样点靶心y",
+                                   "第13个采样点靶心x","第13个采样点靶心y"};
+
+
+    /*UTC*/
+    QPushButton *btn_utc1_default,*btn_utc1_update;
+    QWidget utc1,utc2,utc3;
+    QGroupBox *gbox_utc1,*gbox_utc2,*gbox_utc3;
+    QLineEdit *utc1_l0,*utc1_l1,*utc1_l2,*utc1_l3,*utc1_l4,*utc1_l5,
+              *utc1_l6,*utc1_l7,*utc1_l8,*utc1_l9,*utc1_l10,*utc1_l11,
+              *utc1_l12,*utc1_l13,*utc1_l14,*utc1_l15;
+    QLineEdit *utc2_l0,*utc2_l1,*utc2_l2,*utc2_l3,*utc2_l4,*utc2_l5,
+              *utc2_l6,*utc2_l7,*utc2_l8,*utc2_l9,*utc2_l10,*utc2_l11,
+              *utc2_l12,*utc2_l13,*utc2_l14,*utc2_l15;
+    QLineEdit *utc3_l0,*utc3_l1,*utc3_l2,*utc3_l3,*utc3_l4,*utc3_l5,
+              *utc3_l6,*utc3_l7,*utc3_l8,*utc3_l9,*utc3_l10,*utc3_l11,
+              *utc3_l12,*utc3_l13,*utc3_l14,*utc3_l15;
+    QString utc_s1[16]={"occlusion_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","algOsdRect Enable"};
+    QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
+    QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
+
+    /*OSD*/
+    QPushButton *btn_osd1_default,*btn_osd1_update;
+    QWidget w_osd1;
+    QCheckBox *checkBox;
+    QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
+    QString osd_s[8]={"使能","x位置","y位置","标签","动态内容","字体","颜色","透明度"};
+};
+
+#endif // MAINWINDOW_H
