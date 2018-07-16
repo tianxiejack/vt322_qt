@@ -27,11 +27,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     init.cpp \
-    jos.cpp
+    jos.cpp \
+    comchoose.cpp \
+    protocol.cpp \
+    recserial.cpp \
+    recvsocket.cpp
 
 HEADERS += \
         mainwindow.h \
-    jos.h
+    jos.h \
+    comchoose.h \
+    recserial.h \
+    recvsocket.h
 
 FORMS += \
         mainwindow.ui \

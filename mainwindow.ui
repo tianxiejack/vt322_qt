@@ -6,28 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>580</width>
-    <height>450</height>
+    <width>625</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnTrack">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>72</y>
+      <y>70</y>
       <width>75</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>跟踪/捕获</string>
+     <string>跟踪</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnSersorSwitch">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -40,7 +40,7 @@
      <string>传感器切换</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnViewPlus">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -53,7 +53,7 @@
      <string>视场+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btnViewMinus">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -66,7 +66,7 @@
      <string>视场-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="btnForcePlus">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -79,7 +79,7 @@
      <string>调焦+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="btnForceMinus">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -92,7 +92,7 @@
      <string>调焦-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="btnAperturePlus">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -105,7 +105,7 @@
      <string>光圈+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="btnApertureMinus">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -118,52 +118,77 @@
      <string>光圈-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="btnCapture">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>270</y>
+      <y>70</y>
       <width>75</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>自动检测</string>
+     <string>捕获</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>320</y>
-      <width>161</width>
-      <height>41</height>
+      <y>280</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>菜单键</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>270</y>
-      <width>71</width>
-      <height>41</height>
+      <x>280</x>
+      <y>290</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>增强</string>
+     <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>290</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>btnCapture</zorder>
+   <zorder>btnTrack</zorder>
+   <zorder>btnSersorSwitch</zorder>
+   <zorder>btnViewPlus</zorder>
+   <zorder>btnViewMinus</zorder>
+   <zorder>btnForcePlus</zorder>
+   <zorder>btnForceMinus</zorder>
+   <zorder>btnAperturePlus</zorder>
+   <zorder>btnApertureMinus</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>580</width>
+     <width>625</width>
      <height>23</height>
     </rect>
    </property>

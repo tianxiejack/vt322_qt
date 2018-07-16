@@ -2,11 +2,11 @@
 #include "ui_jos.h"
 #include <QDebug>
 
-int mousePress = 0;
-QMutex send_mutex;
-unsigned char send_arr[64];
-unsigned short sectrk_x = 0;
-unsigned short sectrk_y = 0;
+//int mousePress = 0;
+//QMutex send_mutex;
+//unsigned char send_arr[64];
+//unsigned short sectrk_x = 0;
+//unsigned short sectrk_y = 0;
 Jos::Jos(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Jos)
@@ -47,7 +47,7 @@ void Jos::mousePressEvent(QMouseEvent *event)
 {
     int x=event->pos().x();
     int y=event->pos().y();
-    mousePress = 1;
+   // mousePress = 1;
    if((abs(event->pos().x()-a)<=10)&&((event->pos().y()-b)<=10)){
        m_dragging = 1;
       qDebug()<<"x"<<x<<endl<<"y"<<y<<endl;
@@ -58,42 +58,42 @@ void Jos::mousePressEvent(QMouseEvent *event)
 
 void Jos::mouseReleaseEvent(QMouseEvent *e)
 {
-    if(mousePress==1){
-        mousePress = 0;
-        a=POINTX+CENTER/2;
-        b=POINTY+CENTER/2;
-        update();
-    }
+//    if(mousePress==1){
+//        mousePress = 0;
+//        a=POINTX+CENTER/2;
+//        b=POINTY+CENTER/2;
+//        update();
+//    }
 
 }
 
 void Jos::mouseMoveEvent(QMouseEvent *event)
 {
-    if (mousePress&&m_dragging)
-    {
-        int x=event->pos().x();
-        int y=event->pos().y();
-        if(x>POINTX && x<(POINTX+CENTER) && y>POINTY && y<(POINTY+CENTER) && ((x-POINTX-CENTER/2)*(x-POINTX-CENTER/2)+(y-POINTY-CENTER/2)*(y-POINTY-CENTER/2))<CENTER*CENTER/4)
-        {
-            sectrk_x = (event->pos().x()-POINTX)*RATIO+CENTER/2;
-            sectrk_y = (event->pos().y()-POINTY)*RATIO+CENTER/2;
-             //ui->label_xy->setText(tr("(")+QString::number(sectrk_x)+","+QString::number(sectrk_y)+")");
-            a=event->pos().x();
-            b=event->pos().y();
-            if(0)
-            {
-                send_mutex.lock();
-                send_arr[3] = 0x0b;
-                send_arr[4] = 0x01;
-                send_arr[5] = sectrk_x&0xff;
-                send_arr[6] = (sectrk_x>>8)&0xff;
-                send_arr[7] = sectrk_y&0xff;
-                send_arr[8] = (sectrk_y>>8)&0xff;
-                //send_oneframe(10);
-                send_mutex.unlock();
-            }
-            update();
-            //repaint();
-        }
-    }
+//    if (mousePress&&m_dragging)
+//    {
+//        int x=event->pos().x();
+//        int y=event->pos().y();
+//        if(x>POINTX && x<(POINTX+CENTER) && y>POINTY && y<(POINTY+CENTER) && ((x-POINTX-CENTER/2)*(x-POINTX-CENTER/2)+(y-POINTY-CENTER/2)*(y-POINTY-CENTER/2))<CENTER*CENTER/4)
+//        {
+//            //sectrk_x = (event->pos().x()-POINTX)*RATIO+CENTER/2;
+//            //sectrk_y = (event->pos().y()-POINTY)*RATIO+CENTER/2;
+//             //ui->label_xy->setText(tr("(")+QString::number(sectrk_x)+","+QString::number(sectrk_y)+")");
+//            a=event->pos().x();
+//            b=event->pos().y();
+//            if(0)
+//            {
+////                send_mutex.lock();
+////                send_arr[3] = 0x0b;
+////                send_arr[4] = 0x01;
+////                send_arr[5] = sectrk_x&0xff;
+////                send_arr[6] = (sectrk_x>>8)&0xff;
+////                send_arr[7] = sectrk_y&0xff;
+////                send_arr[8] = (sectrk_y>>8)&0xff;
+////                //send_oneframe(10);
+////                send_mutex.unlock();
+//            }
+//            update();
+//            //repaint();
+//        }
+//    }
 }

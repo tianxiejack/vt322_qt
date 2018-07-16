@@ -29,25 +29,46 @@
 #include <QFileDialog>
 #include <QLabel>
 #include <QCheckBox>
-
+#include <QSpinBox>
+#include "comchoose.h"
+#include <QTcpSocket>
+#include<QVariant>
+#include <QMessageBox>
+#include<QDataStream>
+#include "recserial.h"
+#include "recvsocket.h"
+#include <QtCore/qmath.h>
 
 #define POS_MIN 0
 #define POS_MAX 65535
 #define POS_CENTER 32767
 #define POINTX 350 //圆左上角坐标x
 #define POINTY 150 //圆左上角坐标Y
-#define CENTER 160//圆的半径
+#define CENTER 128//圆的半径
 #define RATIO 10 //矩形框缩小比例
 
 #define BUFFER_FULL          1
 #define BUFFER_DATA          2
 #define BUFFER_EMPTY         3
 
-
 namespace Ui {
 class MainWindow;
 }
+//struct serial_command{
+//    QString port;
+//    qint32 baud;
+//    int check;
+//    int data;
+//    int stop;
+//};
 
+//Q_DECLARE_METATYPE(serial_command)
+
+typedef struct {
+    unsigned char my_send[11];//帧头
+    QString msg;
+
+}DownFrame;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -66,8 +87,38 @@ public:
     void init_menu();
     void init_sysCfg();
 
+    /*协议传输*/
+    QByteArray string2hex(QString str,bool &flag);
+    char convertHex2Char(char ch);
+    void send_oneframe(int length);
+    volatile qint32 sendNum =0;
+
+    /*线程*/
+    void output_to_label(int i);
+    void socket_parse_bytearray();
+    void socket_Read_Data();
+
+    /*计算圆边界值*/
+    void calculationCircle(int center_a, int center_b, int x, int y);
+
+    DownFrame downFrame;
+signals:
+    void toNet(int port ,QString ip);
+    void toSerial(QString port,qint32 baud,int check,int data,int stop);
+    void copy_Done();
+    void socket_copy_Done();
+
 
 public slots:
+
+    /**/
+    void btnToNet();
+    void btnToSerial();
+    void btnToClose();
+
+    /**/
+    void netReceiveMainSlot(int port, QString ip);
+    void serialReceiveMainSlot(QString port, qint32 baud, int check, int data, int stop);
     /*界面显示*/
     void showJos();
     void showSysCfg();
@@ -80,26 +131,215 @@ public slots:
     void btnSerialSlot();
     void btnNetSlot();
     void toNetSlot(int i);
-    void btnLoadSlot();
+    void btnDownSlot();
     void btnSaveSlot();
     void btnUpdate();
 
     /*相机配置槽函数*/
     void btnSensor1SwitchSlot();
     void btnSensor2ContinueSlot();
+    void tosersor_fix(int i);
     void toSensor_switch(int i);
+    void tosersor_continue(int i);
 
     /*槽函数*/
     void resetAction();
+
+    void toCBox(int i);
+    void toOSD1Slot();
+    void toOSD2Slot();
+    void toOSD3Slot();
+    void toOSD4Slot();
+    void toMainTest();//测试跳转
+
+    /**/
+
+
+    /*线程*/
+    void stop_thread_now();
+    void parse_bytearray();
+    void RcvData_SerialPort();
+
+
+private slots:
+    void on_btnTrack_clicked();
+
+    void on_btnCapture_clicked();
+
+    void on_btnSersorSwitch_clicked();
+
+    void on_btnViewPlus_clicked();
+
+    void on_btnViewMinus_clicked();
+
+    void on_btnForcePlus_clicked();
+
+    void on_btnForceMinus_clicked();
+
+    void on_btnAperturePlus_clicked();
+
+    void on_btnApertureMinus_clicked();
+
+    /*系统配置槽函数*/
+    void lEdt_sysCfg_Slot();
+    void CBox_sysCfg_Slot(int i);
+
+    /*平台控制*/
+    void btn_Jos_Default_Slot();
+    void btn_Jos_Update_Slot();
+    void lEdt_Jos1_Slot();
+    void lEdt_Jos2_Slot();
+    void lEdt_Jos3_Slot();
+    void lEdt_Jos4_Slot();
+    void lEdt_Jos5_Slot();
+    void lEdt_Jos6_Slot();
+
+    void lEdt_PID1_Slot();
+    void lEdt_PID2_Slot();
+    void lEdt_PID3_Slot();
+    void lEdt_PID4_Slot();
+    void lEdt_PID5_Slot();
+    void lEdt_PID6_Slot();
+    void lEdt_PID7_Slot();
+    void lEdt_PID8_Slot();
+
+    void lEdt_plat1_Slot();
+    void lEdt_plat2_Slot();
+    void lEdt_plat3_Slot();
+    void lEdt_plat4_Slot();
+    void lEdt_plat5_Slot();
+    void lEdt_plat6_Slot();
+    void lEdt_plat7_Slot();
+
+    /*通道1固定视场*/
+    void lEdt_fix_Radio_Slot();
+    void lEdt_Resolution_Slot();
+    void lEdt_Resolution2_Slot();
+    void btn_fix_Slot();
+
+    /*通道1可切换视场*/
+    void lEdt_switch_Radio_Slot();
+    void lEdt_switch_Resolution_Slot();
+    void btn_switch1_Slot();
+    void btn_switch2_Slot();
+    void btn_switch3_Slot();
+    void btn_switch4_Slot();
+    void btn_switch5_Slot();
+
+    /*通道1连续视场*/
+    void lEdt_continue_Radio_Slot();
+    void lEdt_continue_Resolution_Slot();
+    void btn_continue1_Slot();
+    void btn_continue2_Slot();
+    void btn_continue3_Slot();
+    void btn_continue4_Slot();
+    void btn_continue5_Slot();
+    void btn_continue6_Slot();
+    void btn_continue7_Slot();
+    void btn_continue8_Slot();
+    void btn_continue9_Slot();
+    void btn_continue10_Slot();
+    void btn_continue11_Slot();
+    void btn_continue12_Slot();
+    void btn_continue13_Slot();
+
+    /*UTC1参数配置*/
+    void btn_utc1_default_Slot();
+    void btn_utc1_update_Slot();
+    void lEdt_utc1_l0_Slot();
+    void lEdt_utc1_l1_Slot();
+    void lEdt_utc1_l2_Slot();
+    void lEdt_utc1_l3_Slot();
+    void lEdt_utc1_l4_Slot();
+    void lEdt_utc1_l5_Slot();
+    void lEdt_utc1_l6_Slot();
+    void lEdt_utc1_l7_Slot();
+    void lEdt_utc1_l8_Slot();
+    void lEdt_utc1_l9_Slot();
+    void lEdt_utc1_l10_Slot();
+    void lEdt_utc1_l11_Slot();
+    void lEdt_utc1_l12_Slot();
+    void lEdt_utc1_l13_Slot();
+    void lEdt_utc1_l14_Slot();
+    void lEdt_utc1_l15_Slot();
+
+    /*UTC2参数配置*/
+    void btn_utc2_default_Slot();
+    void btn_utc2_update_Slot();
+    void lEdt_utc2_l0_Slot();
+    void lEdt_utc2_l1_Slot();
+    void lEdt_utc2_l2_Slot();
+    void lEdt_utc2_l3_Slot();
+    void lEdt_utc2_l4_Slot();
+    void lEdt_utc2_l5_Slot();
+    void lEdt_utc2_l6_Slot();
+    void lEdt_utc2_l7_Slot();
+    void lEdt_utc2_l8_Slot();
+    void lEdt_utc2_l9_Slot();
+    void lEdt_utc2_l10_Slot();
+    void lEdt_utc2_l11_Slot();
+    void lEdt_utc2_l12_Slot();
+    void lEdt_utc2_l13_Slot();
+    void lEdt_utc2_l14_Slot();
+    void lEdt_utc2_l15_Slot();
+
+    /*UTC3参数配置*/
+    void btn_utc3_default_Slot();
+    void btn_utc3_update_Slot();
+    void lEdt_utc3_l0_Slot();
+    void lEdt_utc3_l1_Slot();
+    void lEdt_utc3_l2_Slot();
+    void lEdt_utc3_l3_Slot();
+    void lEdt_utc3_l4_Slot();
+    void lEdt_utc3_l5_Slot();
+    void lEdt_utc3_l6_Slot();
+    void lEdt_utc3_l7_Slot();
+    void lEdt_utc3_l8_Slot();
+    void lEdt_utc3_l9_Slot();
+    void lEdt_utc3_l10_Slot();
+    void lEdt_utc3_l11_Slot();
+    void lEdt_utc3_l12_Slot();
+    void lEdt_utc3_l13_Slot();
+    void lEdt_utc3_l14_Slot();
+    void lEdt_utc3_l15_Slot();
+
+    /*OSD参数设置*/
+    void btn_osd_default_Slot();
+    void btn_osd_update_Slot();
+    void CBox_osd_choose_Slot(int i);
+    void checkBox_Slot(int i);
+    void lEdt_osd_x_Slot();
+    void lEdt_osd_y_Slot();
+    void lEdt_osd_context_Slot();
+    void CBox_osd_font_Slot(int i);
+    void CBox_osd_font_size_Slot(int i);
+    void CBox_osd_color_Slot(int i);
+    void lEdt_transparency_Slot();
+
 
 
 private:
     Ui::MainWindow *ui;
     Jos j;
+//    QPushButton *blank;
+//    QPushButton *btn_sensor_fix;
+//    QPushButton *btn_sensor_switch;
+//    QPushButton *btn_sersor_continue;
+
+        QLineEdit *lineEdit;
+    /**/
+    QTcpSocket *socket;
+    QSerialPort * serialPort_command;
+    QStackedLayout *btnStack;
+    QByteArray sndData_02;
+    int connect_flag = 0;
+    recSerial *thread_01;
+    RcvSocketdata  *thread_socket;
+    QByteArray  socketRcvData,RcvData;
 
     QMenu* menu[10];
     /*界面手柄*/
-    int a, b, m_dragging;
+    int a, b, m_dragging,b_center,a_center,old_x,old_y;
     int mousePress = 0;
     QMutex send_mutex;
     unsigned char send_arr[64];
@@ -111,6 +351,8 @@ private:
     QStackedLayout *s;
     QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
     QGroupBox *groupBox_trackboard;
+    QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
+    QLineEdit *lineEdit_port,*lineEdit_ip;
 
     /*平台配置*/
     QWidget w_plat;
@@ -129,23 +371,35 @@ private:
     /*通道1*/
     QWidget w_sersor1,w_seitchField,w_ContinueField;
     QStackedLayout *sta;
+    QComboBox *change3,*change2,*change1,*change;
+
     //固定视场参数
-    QLineEdit *lineEdit_fieldRadio,*lineEdit_fieldResolution,*lineEdit_FOV_x,*lineEdit_FOV_y;
-    QString sensor_s1[7]={"视场模式","配置视场","视场比例","分辨率","FOV","FOV的靶心X","FOV的靶心Y"};
+    //QPushButton *ok;
+    QSpinBox *sp,*sp2;
+    QLineEdit *lineEdit_fieldRadio,*lineEdit_fieldResolution,*lineEdit_FOV_x,*lineEdit_FOV_y,*lineEdit_fieldResolution2;
+    QString sensor_s1[7]={"视场模式选择","视场平均比例（y轴/x轴）","分辨率（水平*垂直）","FOV","FOV的靶心X","FOV的靶心Y"};
     //可切换视场参数
+    QLineEdit *lineEdit_switchRadio,*lineEdit_switchResolution,*lineEdit_switchResolution2;
+    QSpinBox *spby_switch1,*spby_switch2,*spby_switch3,*spby_switch4,*spby_switch5;
+    QSpinBox *spbx_switch1,*spbx_switch2,*spbx_switch3,*spbx_switch4,*spbx_switch5;
+    //QPushButton *btnSwitch1,*btnSwitch2,*btnSwitch3,*btnSwitch4,*btnSwitch5;
     QLineEdit *lineEdit_s1_Fov0,*lineEdit_s1_Fov1,*lineEdit_s1_Fov2,*lineEdit_s1_Fov3,*lineEdit_s1_Fov4,
               *lineEdit_s1_Fov5,*lineEdit_s1_Fov6,*lineEdit_s1_Fov7,*lineEdit_s1_Fov8,*lineEdit_s1_Fov9,
               *lineEdit_s1_Fov10,*lineEdit_s1_Fov11,*lineEdit_s1_Fov12,*lineEdit_s1_Fov13,*lineEdit_s1_Fov14;
     QString sensor_switch_s1[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
     //连续视场参数
-    QLineEdit *lineEdit_c0,*lineEdit_c1,*lineEdit_c2,*lineEdit_c3,*lineEdit_c4,*lineEdit_c5,
-              *lineEdit_c6,*lineEdit_c7,*lineEdit_c8,*lineEdit_c9,*lineEdit_c10,*lineEdit_c11,
-              *lineEdit_c12,*lineEdit_c13,*lineEdit_c14,*lineEdit_c15,*lineEdit_c16,*lineEdit_c17,
-              *lineEdit_c18,*lineEdit_c19,*lineEdit_c20,*lineEdit_c21,*lineEdit_c22,*lineEdit_c23,
-              *lineEdit_c24,*lineEdit_c25,*lineEdit_c26;
-    QString sensor_Continue_s1[26]={"第1个采样点靶心x","第1个采样点靶心y","第2个采样点靶心x","第2个采样点靶心y","第3个采样点靶心x","第3个采样点靶心y","第4个采样点靶心x","第4个采样点靶心y","第5个采样点靶心x","第5个采样点靶心y","第6个采样点靶心x","第6个采样点靶心y",
-                                   "第7个采样点靶心x","第7个采样点靶心y","第8个采样点靶心x","第8个采样点靶心y","第9个采样点靶心x","第9个采样点靶心y","第10个采样点靶心x","第10个采样点靶心y","第11个采样点靶心x","第11个采样点靶心y","第12个采样点靶心x","第12个采样点靶心y",
-                                   "第13个采样点靶心x","第13个采样点靶心y"};
+    QLineEdit *lineEdit_continueRadio,*lineEdit_continueResolution,*lineEdit_continueResolution2;
+    QSpinBox *spby1,*spby2,*spby3,*spby4,*spby5,*spby6,*spby7, *spby8,*spby9, *spby10,*spby11, *spby12,*spby13;
+    QSpinBox *spbx1,*spbx2,*spbx3,*spbx4,*spbx5,*spbx6,*spbx7,*spbx8,*spbx9,*spbx10,*spbx11,*spbx12,*spbx13;
+    QLineEdit *lEdt1,*lEdt2,*lEdt3,*lEdt4,*lEdt5,*lEdt6,*lEdt7,*lEdt8,*lEdt9,*lEdt10,*lEdt11,*lEdt12,*lEdt13;
+    //    QLineEdit *lineEdit_c0,*lineEdit_c1,*lineEdit_c2,*lineEdit_c3,*lineEdit_c4,*lineEdit_c5,
+//              *lineEdit_c6,*lineEdit_c7,*lineEdit_c8,*lineEdit_c9,*lineEdit_c10,*lineEdit_c11,
+//              *lineEdit_c12,*lineEdit_c13,*lineEdit_c14,*lineEdit_c15,*lineEdit_c16,*lineEdit_c17,
+//              *lineEdit_c18,*lineEdit_c19,*lineEdit_c20,*lineEdit_c21,*lineEdit_c22,*lineEdit_c23,
+//              *lineEdit_c24,*lineEdit_c25,*lineEdit_c26;
+//    QString sensor_Continue_s1[26]={"第1个采样点靶心x","第1个采样点靶心y","第2个采样点靶心x","第2个采样点靶心y","第3个采样点靶心x","第3个采样点靶心y","第4个采样点靶心x","第4个采样点靶心y","第5个采样点靶心x","第5个采样点靶心y","第6个采样点靶心x","第6个采样点靶心y",
+//                                   "第7个采样点靶心x","第7个采样点靶心y","第8个采样点靶心x","第8个采样点靶心y","第9个采样点靶心x","第9个采样点靶心y","第10个采样点靶心x","第10个采样点靶心y","第11个采样点靶心x","第11个采样点靶心y","第12个采样点靶心x","第12个采样点靶心y",
+//                                   "第13个采样点靶心x","第13个采样点靶心y"};
 
 
     /*UTC*/
@@ -166,11 +420,12 @@ private:
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 
     /*OSD*/
+    QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size;
     QPushButton *btn_osd1_default,*btn_osd1_update;
     QWidget w_osd1;
     QCheckBox *checkBox;
     QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
-    QString osd_s[8]={"使能","x位置","y位置","标签","动态内容","字体","颜色","透明度"};
+    QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
 };
 
 #endif // MAINWINDOW_H
