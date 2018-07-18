@@ -68,6 +68,16 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_run_socket = true;
     thread_socket->start();
 
+    usocket = new QTcpSocket(this);
+    connect(usocket, &QTcpSocket::readyRead,
+            [=]()
+                {
+
+                   QByteArray buf = usocket->readAll();
+                   upgrade_show->append(buf);
+                }
+        );
+
 
 }
 
@@ -1526,7 +1536,56 @@ void MainWindow::btnSaveSlot()
 
 void MainWindow::btnUpdate()
 {
-    QString path=QFileDialog::getExistingDirectory(NULL, tr("选择文件夹"),"E:\\",QFileDialog::ShowDirsOnly);
+    QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+     if( false == filePath.isEmpty())
+     {
+        qDebug()<<"filepath="<<filePath;
+        // 获取文件信息
+        fileName.clear();
+        filesize =0;
+        QFileInfo info(filePath);
+        fileName = info.fileName();
+        filesize = info.size();
+        sendsize = 0;
+        file.setFileName(filePath);
+        bool isok = file.open(QFile::ReadOnly);
+        if(false == isok)
+        {
+            upgrade_show->append("打开文件失败");
+            return;
+        }
+
+        int port = upgrade_port->text().toInt();
+        QString ip = upgrade_ip->text();
+        usocket->connectToHost(ip,port);
+        if(!usocket->waitForConnected(300))
+        {
+            upgrade_show->append("连接服务器失败");
+            return;
+        }
+        qint64 len =0;
+        do
+        {  //每次发送数据大小
+           char buf[1024] = {0};
+          len = 0;
+          len = file.read(buf,sizeof(buf));
+          usocket->write(buf,len);
+          sendsize += len;
+        }while(len >0);
+        if(sendsize == filesize)
+        {
+            file.close();
+            upgrade_show->append("文件发送完毕");
+        }
+        else
+        {
+            upgrade_show->append("文件发送失败");
+        }
+        usocket->disconnectFromHost();
+        usocket->close();
+    }
+    else
+        upgrade_show->append("选择文件无效");
 }
 
 void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮时，会自动触发MyWidget的destroyed信号，
