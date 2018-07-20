@@ -46,6 +46,8 @@ void MainWindow::init_menu()
     connect(act_platCfg,SIGNAL(triggered(bool)),this,SLOT(showPlat()));
     connect(act_cmrCfg,SIGNAL(triggered(bool)),this,SLOT(showCamera()));
     connect(act_algCfg1,SIGNAL(triggered(bool)),this,SLOT(showAlg()));
+    connect(act_algCfg2,SIGNAL(triggered(bool)),this,SLOT(showAlg2()));
+    connect(act_algCfg3,SIGNAL(triggered(bool)),this,SLOT(showAlg3()));
     connect(act_othCfg,SIGNAL(triggered(bool)),this,SLOT(showOther()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
 
@@ -53,15 +55,16 @@ void MainWindow::init_menu()
 
 void MainWindow::init_sysCfg()
 {
-    w_config.setWindowTitle(tr("系统配置"));
+    w_config=new QWidget;
+    w_config->setWindowTitle(tr("系统配置"));
     lineEdit=new QLineEdit;
     QComboBox *box1=new QComboBox;
+    box1->addItem("0");
     box1->addItem("1");
     box1->addItem("2");
     box1->addItem("3");
     box1->addItem("4");
     box1->addItem("5");
-    box1->addItem("6");
     QComboBox *box2=new QComboBox;
     box2->addItem("串口");
     box2->addItem("网络");
@@ -74,9 +77,9 @@ void MainWindow::init_sysCfg()
     s->addWidget(btnNet);
 
     QPushButton *btnDown=new QPushButton;
-    btnDown->setText("写入配置");
+    btnDown->setText("写入");
     QPushButton *btnUp=new QPushButton;
-    btnUp->setText("读出配置");
+    btnUp->setText("读出");
     CBox_font=new QComboBox;
     CBox_font->addItem("宋体");
     CBox_font->addItem("黑体");
@@ -85,21 +88,8 @@ void MainWindow::init_sysCfg()
     CBox_font_size->addItem("六号");
     QPushButton *btnSave=new QPushButton;
     btnSave->setText("保存");
-    QGroupBox *groupBox_upgrade = new QGroupBox();
-    groupBox_upgrade->setTitle("软件升级");
-    upgrade_ip = new QLineEdit(groupBox_upgrade);
-    upgrade_ip->setInputMask("000.000.000.000");
-    upgrade_port = new QLineEdit(groupBox_upgrade);
-    QPushButton *btnUpdate=new QPushButton(groupBox_upgrade);
+    QPushButton *btnUpdate=new QPushButton;
     btnUpdate->setText("升级");
-    upgrade_show = new QTextEdit(groupBox_upgrade);
-
-    QFormLayout *vlayout = new QFormLayout;
-    vlayout->addRow("IP：",upgrade_ip);
-    vlayout->addRow("端口：",upgrade_port);
-    vlayout->addRow(btnUpdate);
-    vlayout->addRow(upgrade_show);
-    groupBox_upgrade->setLayout(vlayout);
 
     QFormLayout *pLayout = new QFormLayout;
 
@@ -107,13 +97,12 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
-    pLayout->addRow("导入配置", btnDown);
-    pLayout->addRow("导出配置", btnUp);
+    pLayout->addRow("写入配置", btnDown);
+    pLayout->addRow("读出配置", btnUp);
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字体颜色配置", CBox_font_size);
     pLayout->addRow("保存配置", btnSave);
-    //pLayout->addRow("软件升级", btnUpdate);
-    pLayout->addRow(groupBox_upgrade);
+    pLayout->addRow("软件升级", btnUpdate);
 
     connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
     connect(box1,SIGNAL(activated(int)),SLOT(CBox_sysCfg_Slot(int)));
@@ -126,7 +115,7 @@ void MainWindow::init_sysCfg()
     connect(CBox_font,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
 
-    w_config.setLayout(pLayout);
+    w_config->setLayout(pLayout);
 }
 
 
@@ -640,7 +629,7 @@ void MainWindow::showJos()
 
 void MainWindow::showSysCfg()
 {
-    w_config.show();
+    w_config->show();
     //子界面嵌套。
 //    QScrollArea *scroll = new QScrollArea(this);
 //    scroll->setBackgroundRole(QPalette::Dark);
@@ -656,7 +645,8 @@ void MainWindow::showSysCfg()
 
 void MainWindow::showPlat()
 {
-    w_plat.setWindowTitle("平台配置");
+    w_plat=new QWidget;
+    w_plat->setWindowTitle("平台配置");
 
     QPushButton* btn_jos_default=new QPushButton;
     QPushButton* btn_jos_update=new QPushButton;
@@ -740,7 +730,7 @@ void MainWindow::showPlat()
     v->addWidget(gbox_PID);
     v->addWidget(gbox_plat);
 
-    w_plat.setLayout(v);
+    w_plat->setLayout(v);
 
     connect(btn_jos_default,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Default_Slot()));
     connect(btn_jos_update,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Update_Slot()));
@@ -767,16 +757,15 @@ void MainWindow::showPlat()
     connect(deadx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat5_Slot()));
     connect(deady_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat6_Slot()));
     connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
-    w_plat.show();
+    w_plat->show();
 }
 
 void MainWindow::showCamera()
 {
-    w_sersor1.setWindowTitle("通道1");
+    w_sersor1=new QWidget;
+    w_sersor1->setWindowTitle("通道1");
 
     change1=new QComboBox;
-
-    change1->addItem("  ");
     change1->addItem("固定视场");
     change1->addItem("可切换视场");
     change1->addItem("连续视场");
@@ -787,8 +776,8 @@ void MainWindow::showCamera()
     l->setText("*");
     lineEdit_fieldResolution=new QLineEdit;
     lineEdit_fieldResolution2=new QLineEdit;
-    lineEdit_fieldResolution->setValidator(new QIntValidator(100,10000,this));
-    lineEdit_fieldResolution2->setValidator(new QIntValidator(100,10000,this));
+//    lineEdit_fieldResolution->setValidator(new QIntValidator(100,10000,this));
+//    lineEdit_fieldResolution2->setValidator(new QIntValidator(100,10000,this));
 
     QHBoxLayout *sensor_Resolution=new QHBoxLayout;
     sensor_Resolution->addWidget(lineEdit_fieldResolution);
@@ -812,9 +801,9 @@ void MainWindow::showCamera()
     QLabel* l4=new QLabel;
     l4->setText(" ");
 
-     QLineEdit *lEdt=new QLineEdit;
-    QSpinBox *sp=new QSpinBox;
-    QSpinBox *sp2=new QSpinBox;
+    lEdt=new QLineEdit;
+    sp=new QSpinBox;
+    sp2=new QSpinBox;
     sp->setRange(0,9999);
     sp2->setRange(0,9999);
 
@@ -836,18 +825,22 @@ void MainWindow::showCamera()
 
     connect(change1,SIGNAL(activated(int)),this,SLOT(tosersor_fix(int)));
     connect(lineEdit_fieldRadio,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot()));
-    //connect(lineEdit_fieldResolution,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot()));
+    connect(lineEdit_fieldResolution,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot()));
     connect(lineEdit_fieldResolution2,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot()));
+    connect(lEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot()));
+    connect(sp,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot(int)));
+    connect(sp2,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot(int)));
    // connect(ok,SIGNAL(clicked(bool)),this,SLOT(btn_fix_Slot()));
-    w_sersor1.setLayout(v);
-    w_sersor1.resize(300,200);
-    w_sersor1.show();
+    w_sersor1->setLayout(v);
+    w_sersor1->resize(300,200);
+    w_sersor1->show();
 
 }
 
 void MainWindow::showAlg()
 {
-    utc1.setWindowTitle("UTC1参数配置");
+    utc1=new QWidget;
+    utc1->setWindowTitle("UTC1参数配置");
 
     btn_utc1_default=new QPushButton;
     btn_utc1_update=new QPushButton;
@@ -919,13 +912,171 @@ void MainWindow::showAlg()
     connect(utc1_l14,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l14_Slot()));
     connect(utc1_l15,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l15_Slot()));
 
-    utc1.setLayout(v);
-    utc1.show();
+    utc1->setLayout(v);
+    utc1->show();
+}
+
+void MainWindow::showAlg2()
+{
+    utc2=new QWidget;
+    utc2->setWindowTitle("UTC2参数配置");
+
+    btn_utc2_default=new QPushButton;
+    btn_utc2_update=new QPushButton;
+    btn_utc2_default->setText("默认");
+    btn_utc2_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_utc2_default);
+    v1->addWidget(btn_utc2_update);
+    QLabel *label=new QLabel;
+    label->setText("UTC1参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    utc2_l0=new QLineEdit;
+    utc2_l1=new QLineEdit;
+    utc2_l2=new QLineEdit;
+    utc2_l3=new QLineEdit;
+    utc2_l4=new QLineEdit;
+    utc2_l5=new QLineEdit;
+    utc2_l6=new QLineEdit;
+    utc2_l7=new QLineEdit;
+    utc2_l8=new QLineEdit;
+    utc2_l9=new QLineEdit;
+    utc2_l10=new QLineEdit;
+    utc2_l11=new QLineEdit;
+    utc2_l12=new QLineEdit;
+    utc2_l13=new QLineEdit;
+    utc2_l14=new QLineEdit;
+    utc2_l15=new QLineEdit;
+    QFormLayout *f=new QFormLayout();
+    f->addRow(utc_s2[0],utc2_l0);
+    f->addRow(utc_s2[1],utc2_l1);
+    f->addRow(utc_s2[2],utc2_l2);
+    f->addRow(utc_s2[3],utc2_l3);
+    f->addRow(utc_s2[4],utc2_l4);
+    f->addRow(utc_s2[5],utc2_l5);
+    f->addRow(utc_s2[6],utc2_l6);
+    f->addRow(utc_s2[7],utc2_l7);
+    f->addRow(utc_s2[8],utc2_l8);
+    f->addRow(utc_s2[9],utc2_l9);
+    f->addRow(utc_s2[10],utc2_l10);
+    f->addRow(utc_s2[11],utc2_l11);
+    f->addRow(utc_s2[12],utc2_l12);
+    f->addRow(utc_s2[13],utc2_l13);
+    f->addRow(utc_s2[14],utc2_l14);
+    f->addRow(utc_s2[15],utc2_l15);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(f);
+
+    connect(btn_utc2_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc2_default_Slot()));
+    connect(btn_utc2_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc2_update_Slot()));
+    connect(utc2_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l0_Slot()));
+    connect(utc2_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l1_Slot()));
+    connect(utc2_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l2_Slot()));
+    connect(utc2_l3,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l3_Slot()));
+    connect(utc2_l4,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l4_Slot()));
+    connect(utc2_l5,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l5_Slot()));
+    connect(utc2_l6,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l6_Slot()));
+    connect(utc2_l7,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l7_Slot()));
+    connect(utc2_l8,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l8_Slot()));
+    connect(utc2_l9,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l9_Slot()));
+    connect(utc2_l10,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l10_Slot()));
+    connect(utc2_l11,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l11_Slot()));
+    connect(utc2_l12,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l12_Slot()));
+    connect(utc2_l13,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l13_Slot()));
+    connect(utc2_l14,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l14_Slot()));
+    connect(utc2_l15,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l15_Slot()));
+
+    utc2->setLayout(v);
+    utc2->show();
+}
+void MainWindow::showAlg3()
+{
+    utc3=new QWidget;
+    utc3->setWindowTitle("UTC3参数配置");
+
+    btn_utc3_default=new QPushButton;
+    btn_utc3_update=new QPushButton;
+    btn_utc3_default->setText("默认");
+    btn_utc3_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_utc3_default);
+    v1->addWidget(btn_utc3_update);
+    QLabel *label=new QLabel;
+    label->setText("UTC1参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    utc3_l0=new QLineEdit;
+    utc3_l1=new QLineEdit;
+    utc3_l2=new QLineEdit;
+    utc3_l3=new QLineEdit;
+    utc3_l4=new QLineEdit;
+    utc3_l5=new QLineEdit;
+    utc3_l6=new QLineEdit;
+    utc3_l7=new QLineEdit;
+    utc3_l8=new QLineEdit;
+    utc3_l9=new QLineEdit;
+    utc3_l10=new QLineEdit;
+    utc3_l11=new QLineEdit;
+    utc3_l12=new QLineEdit;
+    utc3_l13=new QLineEdit;
+    utc3_l14=new QLineEdit;
+    utc3_l15=new QLineEdit;
+    QFormLayout *f=new QFormLayout();
+    f->addRow(utc_s3[0],utc3_l0);
+    f->addRow(utc_s3[1],utc3_l1);
+    f->addRow(utc_s3[2],utc3_l2);
+    f->addRow(utc_s3[3],utc3_l3);
+    f->addRow(utc_s3[4],utc3_l4);
+    f->addRow(utc_s3[5],utc3_l5);
+    f->addRow(utc_s3[6],utc3_l6);
+    f->addRow(utc_s3[7],utc3_l7);
+    f->addRow(utc_s3[8],utc3_l8);
+    f->addRow(utc_s3[9],utc3_l9);
+    f->addRow(utc_s3[10],utc3_l10);
+    f->addRow(utc_s3[11],utc3_l11);
+    f->addRow(utc_s3[12],utc3_l12);
+    f->addRow(utc_s3[13],utc3_l13);
+    f->addRow(utc_s3[14],utc3_l14);
+    f->addRow(utc_s3[15],utc3_l15);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(f);
+
+    connect(btn_utc3_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc3_default_Slot()));
+    connect(btn_utc3_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc3_update_Slot()));
+    connect(utc3_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l0_Slot()));
+    connect(utc3_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l1_Slot()));
+    connect(utc3_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l2_Slot()));
+    connect(utc3_l3,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l3_Slot()));
+    connect(utc3_l4,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l4_Slot()));
+    connect(utc3_l5,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l5_Slot()));
+    connect(utc3_l6,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l6_Slot()));
+    connect(utc3_l7,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l7_Slot()));
+    connect(utc3_l8,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l8_Slot()));
+    connect(utc3_l9,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l9_Slot()));
+    connect(utc3_l10,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l10_Slot()));
+    connect(utc3_l11,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l11_Slot()));
+    connect(utc3_l12,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l12_Slot()));
+    connect(utc3_l13,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l13_Slot()));
+    connect(utc3_l14,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l14_Slot()));
+    connect(utc3_l15,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l15_Slot()));
+
+    utc3->setLayout(v);
+    utc3->show();
 }
 
 void MainWindow::showOther()
 {
-    w_osd1.setWindowTitle("OSD1参数配置");
+    w_osd1=new QWidget;
+    w_osd1->setWindowTitle("OSD参数配置");
 
     btn_osd1_default=new QPushButton;
     btn_osd1_update=new QPushButton;
@@ -946,6 +1097,39 @@ void MainWindow::showOther()
     c->addItem("OSD2");
     c->addItem("OSD3");
     c->addItem("OSD4");
+    c->addItem("OSD5");
+    c->addItem("OSD6");
+    c->addItem("OSD7");
+    c->addItem("OSD8");
+    c->addItem("OSD9");
+    c->addItem("OSD10");
+    c->addItem("OSD11");
+    c->addItem("OSD12");
+    c->addItem("OSD13");
+    c->addItem("OSD14");
+    c->addItem("OSD15");
+    c->addItem("OSD16");
+    c->addItem("OSD17");
+    c->addItem("OSD18");
+    c->addItem("OSD19");
+    c->addItem("OSD20");
+    c->addItem("OSD21");
+    c->addItem("OSD22");
+    c->addItem("OSD23");
+    c->addItem("OSD24");
+    c->addItem("OSD25");
+    c->addItem("OSD26");
+    c->addItem("OSD27");
+    c->addItem("OSD28");
+    c->addItem("OSD29");
+    c->addItem("OSD30");
+    c->addItem("OSD31");
+    c->addItem("OSD32");
+    c->addItem("OSD33");
+    c->addItem("OSD34");
+    c->addItem("OSD35");
+    c->addItem("OSD36");
+
 
     checkBox=new QCheckBox;
     osd1_pos_x=new QLineEdit;
@@ -996,33 +1180,32 @@ void MainWindow::showOther()
 
     connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osd_color_Slot(int)));
     //connect(osd1_lineEdit_transparency,SIGNAL(returnPressed()),this,SLOT(lEdt_)))
-    w_osd1.setLayout(v);
-    w_osd1.show();
+    w_osd1->setLayout(v);
+    w_osd1->show();
 }
 void MainWindow::btnSensor1SwitchSlot()
 {
-    w_seitchField.setWindowTitle("可切换视场");
 
-//    QPushButton* btn_s1Switch_default=new QPushButton;
-//    QPushButton* btn_s1Switch_update=new QPushButton;
-//    btn_s1Switch_default->setText("默认");
-//    btn_s1Switch_update->setText("刷新");
-//    QVBoxLayout *v1=new QVBoxLayout;
-//    v1->addWidget(btn_s1Switch_default);
-//    v1->addWidget(btn_s1Switch_update);
-//    QLabel *label=new QLabel;
-//    label->setText("可切换视场参数设置");
-//    QHBoxLayout *h1=new QHBoxLayout;
-//    h1->addLayout(v1);
-//    h1->addWidget(label);
+    w_seitchField=new QWidget;
+    w_seitchField->setWindowTitle("可切换视场");
+
+    QPushButton* btn_s1Switch_default=new QPushButton;
+    QPushButton* btn_s1Switch_update=new QPushButton;
+    btn_s1Switch_default->setText("默认");
+    btn_s1Switch_update->setText("刷新");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_s1Switch_default);
+    v1->addWidget(btn_s1Switch_update);
+    QLabel *label=new QLabel;
+    label->setText("可切换视场参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
 
     change2=new QComboBox;
-
-    change2->addItem("  ");
-    change2->addItem("固定视场");
     change2->addItem("可切换视场");
+    change2->addItem("固定视场");
     change2->addItem("连续视场");
-    //qDebug()<<change2->currentIndex();
     lineEdit_switchRadio=new QLineEdit;
 
     lineEdit_switchResolution=new QLineEdit;
@@ -1134,14 +1317,15 @@ void MainWindow::btnSensor1SwitchSlot()
 //    connect(btn4,SIGNAL(clicked(bool)),this,SLOT(btn_switch4_Slot()));
 //    connect(btn5,SIGNAL(clicked(bool)),this,SLOT(btn_switch5_Slot()));
 
-    w_seitchField.setLayout(v);
-    w_seitchField.resize(300,200);
-    w_seitchField.show();
+    w_seitchField->setLayout(v);
+    w_seitchField->resize(300,200);
+    w_seitchField->show();
 }
 
 void MainWindow::btnSensor2ContinueSlot()
 {
-    w_ContinueField.setWindowTitle("连续视场");
+    w_ContinueField=new QWidget;
+    w_ContinueField->setWindowTitle("连续视场");
 
 //    QPushButton* btn_continue_default=new QPushButton;
 //    QPushButton* btn_continue_update=new QPushButton;
@@ -1157,11 +1341,9 @@ void MainWindow::btnSensor2ContinueSlot()
 //    h1->addWidget(label);
 
     change3=new QComboBox;
-    change3->addItem(" ");
+    change3->addItem("连续视场");
     change3->addItem("固定视场");
     change3->addItem("可切换视场");
-    change3->addItem("连续视场");
-//    qDebug()<<change3->currentIndex();
 
     lineEdit_continueRadio=new QLineEdit;
     lineEdit_continueResolution=new QLineEdit;
@@ -1369,24 +1551,43 @@ void MainWindow::btnSensor2ContinueSlot()
 //    connect(btn12,SIGNAL(clicked(bool)),this,SLOT(btn_continue12_Slot()));
 //    connect(btn13,SIGNAL(clicked(bool)),this,SLOT(btn_continue13_Slot()));
 
-    w_ContinueField.setLayout(v);
-    w_ContinueField.resize(300,500);
-    w_ContinueField.show();
+    w_ContinueField->setLayout(v);
+    w_ContinueField->resize(300,500);
+    w_ContinueField->show();
 }
 
 void MainWindow::tosersor_fix(int i)
 {
-    if(i==2){
+    if(i==0){
+        send_mutex.lock();
+        send_arr[3] = 0x30;
+        send_arr[4] = 0x07;
+        send_arr[5] = 0x00;
+        memcpy(send_arr+6,&i,4);
+        send_oneframe(11);
+        send_mutex.unlock();
+    }else if(i==1){
 
+        send_mutex.lock();
+        send_arr[3] = 0x30;
+        send_arr[4] = 0x07;
+        send_arr[5] = 0x00;
+        memcpy(send_arr+6,&i,4);
+        send_oneframe(11);
+        send_mutex.unlock();
+        w_sersor1->close();
+        btnSensor1SwitchSlot();
 
-           w_sersor1.close();
-           w_ContinueField.close();
-           btnSensor1SwitchSlot();
-
-       }else if(i==3){
-           w_sersor1.close();
-           w_seitchField.close();;
-           btnSensor2ContinueSlot();
+       }else if(i==2){
+        send_mutex.lock();
+        send_arr[3] = 0x30;
+        send_arr[4] = 0x07;
+        send_arr[5] = 0x00;
+        memcpy(send_arr+6,&i,4);
+        send_oneframe(11);
+        send_mutex.unlock();
+        w_sersor1->close();
+        btnSensor2ContinueSlot();
        }
 
 }
@@ -1394,32 +1595,23 @@ void MainWindow::tosersor_fix(int i)
 
 void MainWindow::toSensor_switch(int i)
 {
-
    if(i==1){
-
-       w_seitchField.close();
-
-       w_ContinueField.close();
+       w_seitchField->close();
        showCamera();
 
-   }else if(i==3){
-
-       w_sersor1.close();
-       w_seitchField.close();;
+   }else if(i==2){
+       w_seitchField->close();;
        btnSensor2ContinueSlot();
    }
 }
 
 void MainWindow::tosersor_continue(int i)
 {
-
     if(i==1){
-        w_seitchField.close();
-        w_ContinueField.close();
+        w_ContinueField->close();
         showCamera();
     }else if(i==2){
-        w_sersor1.close();
-        w_ContinueField.close();
+        w_ContinueField->close();
         btnSensor1SwitchSlot();
     }
 }
@@ -1481,15 +1673,12 @@ void MainWindow::btnSerialSlot()
     mainlayout4->addLayout(mainlayout3);
     mainlayout4->addLayout(hLayoutBtn);
 
-
     connect(btn_serial_OK,SIGNAL(clicked(bool)),this,SLOT(btnToSerial()));
     connect(btn_serial_NO,SIGNAL(clicked(bool)),this,SLOT(btnToClose()));
 
     w_config_serial.setLayout(mainlayout4);
 
-   w_config_serial.show();
-
-
+    w_config_serial.show();
 }
 
 void MainWindow::btnNetSlot()
