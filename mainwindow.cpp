@@ -6,7 +6,6 @@ volatile unsigned char rcv_buf[5000];
 volatile unsigned int BufWrite = 0;
 volatile unsigned int BufRead = 0;
 volatile unsigned char BufRcvStatus=BUFFER_EMPTY;
-volatile qint32 recvNum =0;
 
 QByteArray socket_copy_bytearray;
 volatile qint32 socket_recvNum =0;
@@ -52,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     serialPort_command = new QSerialPort(this);
+    connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
     connect(this,&MainWindow::copy_Done, this ,&MainWindow::parse_bytearray);
 
 
@@ -69,12 +69,30 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_run_socket = true;
     thread_socket->start();
 
+    usocket = new QTcpSocket(this);
+    connect(usocket, &QTcpSocket::readyRead,
+            [=]()
+                {
+
+                   QByteArray buf = usocket->readAll();
+                   upgrade_show->append(buf);
+                }
+        );
+
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::RcvData_SerialPort()
+{
+    RcvData = serialPort_command->readAll();
+    copy_bytearray = RcvData;
+    emit copy_Done();
+    RcvData.clear();
 }
 
 qint32 mySetSerialBaud( QSerialPort *com, int n)
@@ -1855,7 +1873,121 @@ void MainWindow::btnSaveSlot()
 
 void MainWindow::btnUpdate()
 {
-    QString path=QFileDialog::getExistingDirectory(NULL, tr("选择文件夹"),"E:\\",QFileDialog::ShowDirsOnly);
+    QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    unsigned char usocket_send_buf[1024+256] = {0};
+    qint64 len = 0;
+    char buf[1024+256] = {0};
+    unsigned char checksum = 0;
+
+     if( false == filePath.isEmpty())
+     {
+        qDebug()<<"filepath="<<filePath;
+        // 获取文件信息
+        fileName.clear();
+        filesize =0;
+        QFileInfo info(filePath);
+        fileName = info.fileName();
+        filesize = info.size();
+        sendsize = 0;
+        int packet_flag;
+
+        if(filesize>4294967295)
+        {
+            upgrade_show->append("文件大小不能超过4294967295字节！");
+            return;
+        }
+
+        file.setFileName(filePath);
+        bool isok = file.open(QFile::ReadOnly);
+        if(false == isok)
+        {
+            upgrade_show->append("打开文件失败");
+            return;
+        }
+        if(1 == connect_flag)//串口
+        {
+            usocket_send_buf[0] = 0xEB;
+            usocket_send_buf[1] = 0x53;
+            usocket_send_buf[4] = 0x35;
+            usocket_send_buf[5] = filesize&0xff;
+            usocket_send_buf[6] = (filesize>>8)&0xff;
+            usocket_send_buf[7] = (filesize>>16)&0xff;
+            usocket_send_buf[8] = (filesize>>24)&0xff;
+            packet_flag = 0;
+            while(len = file.read(buf,1024))
+            {  //每次发送数据大小
+              checksum = 0;
+              if(len<0)
+              {
+                  upgrade_show->append("文件读取失败");
+                  break;
+              }
+              sendsize += len;
+              if(packet_flag == 0)
+              {
+                  usocket_send_buf[9] = 0;
+                  packet_flag = 1;
+              }
+              else if(sendsize == filesize)
+              {
+                  usocket_send_buf[9] = 2;
+              }
+              else
+              {
+                usocket_send_buf[9] = 1;
+              }
+              usocket_send_buf[2] = (len+8)&0xff;
+              usocket_send_buf[3] = ((len+8)>>8)&0xff;
+              usocket_send_buf[10] = len&0xff;
+              usocket_send_buf[11] = (len>>8)&0xff;
+              memcpy(usocket_send_buf+12,buf, len);
+              for(int m = 1; m<12+len;m++)
+                  checksum ^= usocket_send_buf[m];
+              usocket_send_buf[12+len] = checksum;
+              serialPort_command->write((char *)usocket_send_buf,len+13);
+            }
+            if(sendsize == filesize)
+            {
+                file.close();
+                upgrade_show->append("文件发送中...");
+            }
+            else
+            {
+                upgrade_show->append("文件发送失败");
+            }
+        }
+        else if(2 == connect_flag)//网口
+        {
+            int port = upgrade_port->text().toInt();
+            QString ip = upgrade_ip->text();
+            usocket->connectToHost(ip,port);
+            if(!usocket->waitForConnected(300))
+            {
+                upgrade_show->append("连接服务器失败");
+                return;
+            }
+            do
+            {  //每次发送数据大小
+              len = 0;
+              len = file.read(buf,1024);
+              usocket->write(buf,len);
+              sendsize += len;
+            }while(len >0);
+            if(sendsize == filesize)
+            {
+                file.close();
+                upgrade_show->append("文件发送完毕");
+            }
+            else
+            {
+                upgrade_show->append("文件发送失败");
+            }
+            usocket->disconnectFromHost();
+            usocket->close();
+        }
+    }
+    else
+        upgrade_show->append("选择文件无效");
 }
 
 void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮时，会自动触发MyWidget的destroyed信号，
@@ -1873,90 +2005,19 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
-
 //    int flag = 0;
 //    float value1 = 0;
 //    float value2 = 0;
 //    short trkerrx = 0;
 //    short trkerry = 0;
-//    switch(i)
-//    {
-//        case 0x01:
-
-//            break;
-//        case 0x02:
-
-//            break;
-//        case 0x03:
-
-//            break;
-//        case 0x04:
-
-//            break;
-//        case 0x05:
-
-//            break;
-//        case 0x06:
-
-//            break;
-//        case 0x07:
-
-//            break;
-//        case 0x08:
-
-
-//            break;
-//        case 0x09:
-
-//            break;
-//        case 0x0a:
-
-//            break;
-//        case 0x0b:
-
-//            break;
-//        case 0x0c:
-
-//            break;
-//        case 0x0d:
-
-//            break;
-//        case 0x0e:
-
-//            break;
-//        case 0x0f:
-
-//            break;
-//        case 0x10:
-
-//            break;
-//        case 0x11:
-
-//            break;
-//        case 0x20:
-
-//            break;
-//        case 0x21:
-
-//            break;
-//        case 0x22:
-
-//            break;
-//        case 0x30:
-
-//            break;
-//        case 0x31:
-
-//            break;
-//        case 0x32:
-
-//            break;
-//        case 0x34:
-
-//            break;
-//        default:
-//            break;
-//    }
+    switch(i)
+    {
+        case 0x35:
+            upgrade_show->append("升级成功");
+            break;
+        default:
+            break;
+    }
 }
 void MainWindow::socket_Read_Data()
 {
@@ -2014,13 +2075,4 @@ void MainWindow::parse_bytearray()
             BufRcvStatus = BUFFER_DATA;
          }
     }
-}
-
-void MainWindow::RcvData_SerialPort()
-{
-    RcvData = serialPort_command->readAll();
-    copy_bytearray = RcvData;
-    emit copy_Done();
-
-    RcvData.clear();
 }

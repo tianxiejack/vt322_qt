@@ -21,6 +21,7 @@
 #include <QStackedLayout>
 #include <QFormLayout>
 #include <QLineEdit>
+#include <QTextEdit>
 #include <QGroupBox>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QtSerialPort/QSerialPort>
@@ -103,6 +104,7 @@ public:
     void btnSensor1SwitchSlot();
     void btnSensor2ContinueSlot();
     DownFrame downFrame;
+
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -343,6 +345,7 @@ private:
     recSerial *thread_01;
     RcvSocketdata  *thread_socket;
     QByteArray  socketRcvData,RcvData;
+    QByteArray copy_bytearray;
 
     QMenu* menu[10];
     /*界面手柄*/
@@ -434,6 +437,15 @@ private:
     QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
     QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
 
+    /*软件升级*/
+    QTcpSocket *usocket;
+    QLineEdit *upgrade_ip;
+    QLineEdit *upgrade_port;
+    QTextEdit *upgrade_show;
+    QFile  file;  // 文件对象
+    QString fileName; //文件名字
+    qint64 filesize; // 文件大小
+    qint64 sendsize;  // 已经发送的数据大小
 };
 
 #endif // MAINWINDOW_H

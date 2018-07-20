@@ -73,6 +73,7 @@ void recSerial::run()  //线程运行函数，调用前需要在主线程中声�
                     if(pRxByte == 0x53){
                         frame_flag = 2;
                         output_cnt = 0;
+                        crc_sum ^= pRxByte;
                     }
                     else
                     {
@@ -83,11 +84,17 @@ void recSerial::run()  //线程运行函数，调用前需要在主线程中声�
                     break;
                 case 2:
                     pkg_length = pRxByte;
+                    crc_sum ^= pRxByte;
                     frame_flag = 3;
                     break;
                 case 3:
+                    pkg_length = (pkg_length|(pRxByte<<8));
+                    frame_flag = 4;
+                    crc_sum ^= pRxByte;
+                    break;
+                case 4:
                     output_array[output_cnt++] = pRxByte;
-                    if(output_cnt >= pkg_length-3){
+                    if(output_cnt >= pkg_length+1){
                         if(crc_sum == pRxByte ){
                             if(0x06 == output_array[0])
                             {

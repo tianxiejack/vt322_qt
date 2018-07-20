@@ -88,8 +88,21 @@ void MainWindow::init_sysCfg()
     CBox_font_size->addItem("六号");
     QPushButton *btnSave=new QPushButton;
     btnSave->setText("保存");
-    QPushButton *btnUpdate=new QPushButton;
+    QGroupBox *groupBox_upgrade = new QGroupBox();
+    groupBox_upgrade->setTitle("软件升级");
+    upgrade_ip = new QLineEdit(groupBox_upgrade);
+    upgrade_ip->setInputMask("000.000.000.000");
+    upgrade_port = new QLineEdit(groupBox_upgrade);
+    QPushButton *btnUpdate=new QPushButton(groupBox_upgrade);
     btnUpdate->setText("升级");
+    upgrade_show = new QTextEdit(groupBox_upgrade);
+
+    QFormLayout *vlayout = new QFormLayout;
+    vlayout->addRow("IP：",upgrade_ip);
+    vlayout->addRow("端口：",upgrade_port);
+    vlayout->addRow(btnUpdate);
+    vlayout->addRow(upgrade_show);
+    groupBox_upgrade->setLayout(vlayout);
 
     QFormLayout *pLayout = new QFormLayout;
 
@@ -102,7 +115,7 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字体颜色配置", CBox_font_size);
     pLayout->addRow("保存配置", btnSave);
-    pLayout->addRow("软件升级", btnUpdate);
+    pLayout->addRow(groupBox_upgrade);
 
     connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
     connect(box1,SIGNAL(activated(int)),SLOT(CBox_sysCfg_Slot(int)));

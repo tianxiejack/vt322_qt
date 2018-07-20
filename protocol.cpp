@@ -72,7 +72,7 @@ char MainWindow::convertHex2Char(char ch)
 {
     if((ch>='0')&& (ch<='9')){
         return ch-0x30;
-    }else if((ch>='A') && (ch<<='F')){
+    }else if((ch>='A') && (ch<='F')){
         return ch-'A'+10;
     }else if((ch>='a') && (ch<='f')){
         return ch-'a'+10;
