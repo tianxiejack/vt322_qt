@@ -21,7 +21,10 @@
 #include <QStackedLayout>
 #include <QFormLayout>
 #include <QLineEdit>
+<<<<<<< HEAD
+=======
 #include <QTextEdit>
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 #include <QGroupBox>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QtSerialPort/QSerialPort>
@@ -39,6 +42,12 @@
 #include "recserial.h"
 #include "recvsocket.h"
 #include <QtCore/qmath.h>
+<<<<<<< HEAD
+#include<QTime>
+#include <QTimer>
+#include<QTextEdit>
+=======
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
 #define POS_MIN 0
 #define POS_MAX 65535
@@ -51,7 +60,11 @@
 #define BUFFER_FULL          1
 #define BUFFER_DATA          2
 #define BUFFER_EMPTY         3
+<<<<<<< HEAD
+extern QMutex send_mutex;
+=======
 
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 namespace Ui {
 class MainWindow;
 }
@@ -66,7 +79,11 @@ class MainWindow;
 //Q_DECLARE_METATYPE(serial_command)
 
 typedef struct {
+<<<<<<< HEAD
+    unsigned char my_send[15];//帧头
+=======
     unsigned char my_send[11];//帧头
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     QString msg;
 
 }DownFrame;
@@ -81,7 +98,11 @@ public:
     /*绘制事件*/
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
+<<<<<<< HEAD
+    void mouseReleaseEvent (QMouseEvent * event);
+=======
     void mouseReleaseEvent (QMouseEvent * e);
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     void mouseMoveEvent(QMouseEvent *event);
 
     /*初始化的配置*/
@@ -104,7 +125,10 @@ public:
     void btnSensor1SwitchSlot();
     void btnSensor2ContinueSlot();
     DownFrame downFrame;
+<<<<<<< HEAD
+=======
 
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -114,6 +138,12 @@ signals:
 
 public slots:
 
+<<<<<<< HEAD
+    /*定时器函数*/
+    void timeoutSlot();
+
+=======
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     /**/
     void btnToNet();
     void btnToSerial();
@@ -172,6 +202,8 @@ private slots:
 
     void on_btnSersorSwitch_clicked();
 
+<<<<<<< HEAD
+=======
     void on_btnViewPlus_clicked();
 
     void on_btnViewMinus_clicked();
@@ -183,6 +215,7 @@ private slots:
     void on_btnAperturePlus_clicked();
 
     void on_btnApertureMinus_clicked();
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     /*系统配置槽函数*/
     void lEdt_sysCfg_Slot();
@@ -326,9 +359,58 @@ private slots:
 
 
 
+<<<<<<< HEAD
+    void on_btn_right_clicked();
+
+    void on_btn_ok_clicked();
+
+    void on_btn_up_clicked();
+
+    void on_btn_left_clicked();
+
+    void on_btn_down_clicked();
+
+    void on_btnAutoCheck_clicked();
+
+    void on_btnTrack_pressed();
+
+    void on_btnViewPlus_released();
+
+    void on_btnViewMinus_pressed();
+
+    void on_btnViewMinus_released();
+
+    void on_btnForcePlus_pressed();
+
+    void on_btnForceMinus_released();
+
+    void on_btnForcePlus_released();
+
+    void on_btnForceMinus_pressed();
+
+    void on_btnAperturePlus_pressed();
+
+    void on_btnAperturePlus_released();
+
+    void on_btnApertureMinus_pressed();
+
+    void on_btnApertureMinus_released();
+
 private:
     Ui::MainWindow *ui;
     Jos j;
+    int value_x=0;
+    int value_y=0;
+    int value_check=0;
+
+    /*定时器*/
+    QTimer *time;
+
+=======
+private:
+    Ui::MainWindow *ui;
+    Jos j;
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 //    QPushButton *blank;
 //    QPushButton *btn_sensor_fix;
 //    QPushButton *btn_sensor_switch;
@@ -345,13 +427,24 @@ private:
     recSerial *thread_01;
     RcvSocketdata  *thread_socket;
     QByteArray  socketRcvData,RcvData;
+<<<<<<< HEAD
+
+    /**/
+    int judgment;//用于判断是否进入跟踪微调，0不进入，1进入
+    int jud_area=0;
+=======
     QByteArray copy_bytearray;
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     QMenu* menu[10];
     /*界面手柄*/
     int a, b, m_dragging,b_center,a_center,old_x,old_y;
     int mousePress = 0;
+<<<<<<< HEAD
+   // QMutex send_mutex;
+=======
     QMutex send_mutex;
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     unsigned char send_arr[64];
     unsigned short sectrk_x = 0;
     unsigned short sectrk_y = 0;
@@ -372,7 +465,11 @@ private:
     QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
     QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
     QString jos_s[6]={"手柄死区","手柄拐点","手柄x轴输入增益","手柄y轴输入增益","摇杆平台x输出增益","摇杆平台y轴输出增益"};
+<<<<<<< HEAD
+    QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+=======
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数"};
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     QString plat_s[7]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a"};
 
 
@@ -437,6 +534,11 @@ private:
     QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
     QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     /*软件升级*/
     QTcpSocket *usocket;
     QLineEdit *upgrade_ip;
@@ -446,6 +548,10 @@ private:
     QString fileName; //文件名字
     qint64 filesize; // 文件大小
     qint64 sendsize;  // 已经发送的数据大小
+<<<<<<< HEAD
+
+=======
+>>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 };
 
 #endif // MAINWINDOW_H
