@@ -86,11 +86,6 @@ void recSerial::run()  //线程运行函数，调用前需要在主线程中声�
                     frame_flag = 3;
                     break;
                 case 3:
-                    pkg_length = (pkg_length|(pRxByte<<8));
-                    frame_flag = 4;
-                    crc_sum ^= pRxByte;
-                    break;
-                case 4:
                     output_array[output_cnt++] = pRxByte;
                     if(output_cnt >= pkg_length-3){
                         if(crc_sum == pRxByte ){
