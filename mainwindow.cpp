@@ -1878,6 +1878,7 @@ void MainWindow::btnUpdate()
             upgrade_show->append("打开文件失败");
             return;
         }
+#if 0
         if(1 == connect_flag)//串口
         {
             usocket_send_buf[0] = 0xEB;
@@ -1932,33 +1933,69 @@ void MainWindow::btnUpdate()
         }
         else if(2 == connect_flag)//网口
         {
-            int port = upgrade_port->text().toInt();
-            QString ip = upgrade_ip->text();
-            usocket->connectToHost(ip,port);
-            if(!usocket->waitForConnected(300))
-            {
-                upgrade_show->append("连接服务器失败");
-                return;
-            }
-            do
-            {  //每次发送数据大小
-              len = 0;
-              len = file.read(buf,1024);
-              usocket->write(buf,len);
-              sendsize += len;
-            }while(len >0);
-            if(sendsize == filesize)
-            {
-                file.close();
-                upgrade_show->append("文件发送完毕");
-            }
-            else
-            {
-                upgrade_show->append("文件发送失败");
-            }
-            usocket->disconnectFromHost();
-            usocket->close();
-        }
+#endif
+		usocket_send_buf[0] = 0xEB;
+		usocket_send_buf[1] = 0x53;
+		usocket_send_buf[4] = 0x35;
+		usocket_send_buf[5] = filesize&0xff;
+		usocket_send_buf[6] = (filesize>>8)&0xff;
+		usocket_send_buf[7] = (filesize>>16)&0xff;
+		usocket_send_buf[8] = (filesize>>24)&0xff;
+		packet_flag = 0;
+
+		QString ip = upgrade_ip->text();
+		int port = upgrade_port->text().toInt();
+		usocket->connectToHost(ip,port);
+		if(!usocket->waitForConnected(300))
+		{
+		    upgrade_show->append("连接服务器失败");
+		    return;
+		}
+		while(len = file.read(buf,1024))
+		{  //每次发送数据大小
+		  checksum = 0;
+		  if(len<0)
+		  {
+		      upgrade_show->append("文件读取失败");
+		      break;
+		  }
+		  sendsize += len;
+		  if(packet_flag == 0)
+		  {
+		      usocket_send_buf[9] = 0;
+		      packet_flag = 1;
+		  }
+		  else if(sendsize == filesize)
+		  {
+		      usocket_send_buf[9] = 2;
+		  }
+		  else
+		  {
+		    usocket_send_buf[9] = 1;
+		  }
+		  usocket_send_buf[2] = (len+8)&0xff;
+		  usocket_send_buf[3] = ((len+8)>>8)&0xff;
+		  usocket_send_buf[10] = len&0xff;
+		  usocket_send_buf[11] = (len>>8)&0xff;
+		  memcpy(usocket_send_buf+12,buf, len);
+		  for(int m = 1; m<12+len;m++)
+		      checksum ^= usocket_send_buf[m];
+		  usocket_send_buf[12+len] = checksum;
+
+		  usocket->write((char *)usocket_send_buf,len+13);
+		}
+		if(sendsize == filesize)
+		{
+		    file.close();
+		    upgrade_show->append("文件发送中...");
+		    usocket->disconnectFromHost();
+		    usocket->close();
+		}
+		else
+		{
+		    upgrade_show->append("文件发送失败");
+		}
+		//}
     }
     else
         upgrade_show->append("选择文件无效");
@@ -1980,15 +2017,16 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
     switch(i)
-       {
-           case 0x35:
-               upgrade_show->append("ok");
-               break;
-           default:
-               break;
-       }
-
-
+    {
+        case 0x35:
+            if(output_array[5]==0x01)
+                upgrade_show->append("升级成功");
+            else if(output_array[5]==0x02)
+                upgrade_show->append("升级失败");
+            break;
+        default:
+            break;
+    }
 }
 void MainWindow::socket_Read_Data()
 {

@@ -331,8 +331,6 @@ private slots:
 
     void on_btnAutoCheck_clicked();
 
-    void on_btnTrack_pressed();
-
     void on_btnViewPlus_released();
 
     void on_btnViewMinus_pressed();
@@ -354,6 +352,7 @@ private slots:
     void on_btnApertureMinus_pressed();
 
     void on_btnApertureMinus_released();
+    void on_btnViewPlus_pressed();
 
 private:
     Ui::MainWindow *ui;

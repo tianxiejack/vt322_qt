@@ -74,6 +74,7 @@ void RcvSocketdata::run()  //线程运行函数，调用前需要在主线程中
                     if(pRxByte == 0x53){
                         frame_flag = 2;
                         socket_output_cnt = 0;
+                        crc_sum ^= pRxByte;
                     }
                     else
                     {
@@ -84,11 +85,17 @@ void RcvSocketdata::run()  //线程运行函数，调用前需要在主线程中
                     break;
                 case 2:
                     pkg_length = pRxByte;
+                    crc_sum ^= pRxByte;
                     frame_flag = 3;
                     break;
                 case 3:
+                    pkg_length = (pkg_length|(pRxByte<<8));
+                    crc_sum ^= pRxByte;
+                    frame_flag = 4;
+                    break;
+                case 4:
                     output_array[socket_output_cnt++] = pRxByte;
-                    if(socket_output_cnt >= pkg_length-3){
+                    if(socket_output_cnt >= pkg_length+1){
                         if(crc_sum == pRxByte ){
                             if(0x06 == output_array[0])
                             {
