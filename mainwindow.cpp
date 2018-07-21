@@ -6,10 +6,7 @@ volatile unsigned char rcv_buf[5000];
 volatile unsigned int BufWrite = 0;
 volatile unsigned int BufRead = 0;
 volatile unsigned char BufRcvStatus=BUFFER_EMPTY;
-<<<<<<< HEAD
 volatile qint32 recvNum =0;
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
 QByteArray socket_copy_bytearray;
 volatile qint32 socket_recvNum =0;
@@ -55,10 +52,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     serialPort_command = new QSerialPort(this);
-<<<<<<< HEAD
-=======
-    connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     connect(this,&MainWindow::copy_Done, this ,&MainWindow::parse_bytearray);
 
 
@@ -76,12 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_run_socket = true;
     thread_socket->start();
 
-<<<<<<< HEAD
     time=new QTimer(this);
     connect(time,SIGNAL(timeout()),this,SLOT(timeoutSlot()));
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     usocket = new QTcpSocket(this);
     connect(usocket, &QTcpSocket::readyRead,
             [=]()
@@ -92,28 +82,14 @@ MainWindow::MainWindow(QWidget *parent) :
                 }
         );
 
-<<<<<<< HEAD
     judgment=0;
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-<<<<<<< HEAD
 
-=======
-}
-
-void MainWindow::RcvData_SerialPort()
-{
-    RcvData = serialPort_command->readAll();
-    copy_bytearray = RcvData;
-    emit copy_Done();
-    RcvData.clear();
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 }
 
 qint32 mySetSerialBaud( QSerialPort *com, int n)
@@ -333,36 +309,22 @@ void MainWindow::btnToClose()
 void MainWindow::on_btnTrack_clicked()
 {
     btnStack->setCurrentIndex(0);
-<<<<<<< HEAD
     judgment=0;
     send_mutex.lock();
     send_arr[4] = 0x04;
     send_arr[5] = 0x00;
     send_oneframe(2);
-=======
-    send_mutex.lock();
-    send_arr[3] = 0x04;
-    send_arr[4] = 0x00;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::on_btnCapture_clicked()
 {
     btnStack->setCurrentIndex(1);
-<<<<<<< HEAD
     judgment=1;
     send_mutex.lock();
     send_arr[4] = 0x04;
     send_arr[5] = 0x01;
     send_oneframe(2);
-=======
-    send_mutex.lock();
-    send_arr[3] = 0x04;
-    send_arr[4] = 0x01;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -374,80 +336,44 @@ void MainWindow::on_btnSersorSwitch_clicked()
     switch (sersor_count) {
     case 0:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x00;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x00;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     case 1:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x01;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x01;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     case 2:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x02;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x02;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     case 3:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x03;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x03;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     case 4:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x04;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x04;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     case 5:
         send_mutex.lock();
-<<<<<<< HEAD
         send_arr[4] =0x02;
         send_arr[5] =0x05;
         send_oneframe(2);
-=======
-        send_arr[3] =0x02;
-        send_arr[4] =0x05;
-        send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         send_mutex.unlock();
         break;
     default:
@@ -458,63 +384,7 @@ void MainWindow::on_btnSersorSwitch_clicked()
 
 }
 
-<<<<<<< HEAD
 
-=======
-void MainWindow::on_btnViewPlus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] = 0x12;
-    send_arr[4] = 0x02;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
-
-void MainWindow::on_btnViewMinus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] =0x12;
-    send_arr[4] = 0x01;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
-
-void MainWindow::on_btnForcePlus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] = 0x14;
-    send_arr[4] = 0x01;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
-
-void MainWindow::on_btnForceMinus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] = 0x14;
-    send_arr[4] = 0x02;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
-
-void MainWindow::on_btnAperturePlus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] = 0x13;
-    send_arr[4] = 0x02;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
-
-void MainWindow::on_btnApertureMinus_clicked()
-{
-    send_mutex.lock();
-    send_arr[3] = 0x13;
-    send_arr[4] = 0x01;
-    send_oneframe(6);
-    send_mutex.unlock();
-}
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
 void MainWindow::lEdt_sysCfg_Slot()
 {
@@ -524,7 +394,6 @@ void MainWindow::lEdt_sysCfg_Slot()
 void MainWindow::CBox_sysCfg_Slot(int i)
 {
     switch (i){
-<<<<<<< HEAD
         case 0:
             send_mutex.lock();
             send_arr[4] = 02;
@@ -537,72 +406,34 @@ void MainWindow::CBox_sysCfg_Slot(int i)
             send_arr[4] = 02;
             send_arr[5] = 01;
             send_oneframe(2);
-=======
-        case 1:
-            send_mutex.lock();
-            send_arr[3] = 02;
-            send_arr[4] = 00;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
             break;
         case 2:
             send_mutex.lock();
-<<<<<<< HEAD
             send_arr[4] = 02;
             send_arr[5] = 02;
             send_oneframe(2);
-=======
-            send_arr[3] = 02;
-            send_arr[4] = 01;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
             break;
         case 3:
             send_mutex.lock();
-<<<<<<< HEAD
             send_arr[4] = 02;
             send_arr[5] = 03;
             send_oneframe(2);
-=======
-            send_arr[3] = 02;
-            send_arr[4] = 02;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
             break;
         case 4:
             send_mutex.lock();
-<<<<<<< HEAD
             send_arr[4] = 02;
             send_arr[5] = 04;
             send_oneframe(2);
-=======
-            send_arr[3] = 02;
-            send_arr[4] = 03;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
             break;
         case 5:
             send_mutex.lock();
-<<<<<<< HEAD
             send_arr[4] = 02;
             send_arr[5] = 05;
             send_oneframe(2);
-=======
-            send_arr[3] = 02;
-            send_arr[4] = 04;
-            send_oneframe(6);
-            send_mutex.unlock();
-            break;
-        case 6:
-            send_mutex.lock();
-            send_arr[3] = 02;
-            send_arr[4] = 05;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
             break;
         default:
@@ -613,19 +444,11 @@ void MainWindow::CBox_sysCfg_Slot(int i)
 void MainWindow::lEdt_fix_Radio_Slot()
 {   float value=lineEdit_fieldRadio->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x07;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x07;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -633,7 +456,6 @@ void MainWindow::lEdt_fix_Radio_Slot()
 void MainWindow::lEdt_Resolution_Slot()
 {
     float value=lineEdit_fieldResolution->text().toInt();
-<<<<<<< HEAD
 //    qDebug()<<value;
     send_mutex.lock();
     send_arr[4] = 0x30;
@@ -641,15 +463,6 @@ void MainWindow::lEdt_Resolution_Slot()
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    qDebug()<<value;
-    send_mutex.lock();
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x07;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -657,34 +470,20 @@ void MainWindow::lEdt_Resolution2_Slot()
 {
     float value=lineEdit_fieldResolution2->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x07;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x07;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_fix_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -692,25 +491,16 @@ void MainWindow::lEdt_fix_view_Slot()
 {
     float value=lEdt->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x07;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x07;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::sp_fix_x_Slot(int i)
 {
-<<<<<<< HEAD
     float value=sp->text().toInt();
      qDebug()<<"i"<<i;
     send_mutex.lock();
@@ -720,21 +510,10 @@ void MainWindow::sp_fix_x_Slot(int i)
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-=======
-    qDebug()<<"sp:"<<sp->text().toInt();
-//    send_mutex.lock();
-//    send_arr[3] = 0x30;
-//    send_arr[4] = 0x07;
-//    send_arr[5] = 0x05;
-//    memcpy(send_arr+6,&i,4);
-//    send_oneframe(11);
-//    send_mutex.unlock();
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 }
 
 void MainWindow::sp_fix_y_Slot(int i)
 {
-<<<<<<< HEAD
     float value=sp2->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x30;
@@ -742,14 +521,6 @@ void MainWindow::sp_fix_y_Slot(int i)
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_mutex.lock();
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x07;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&i,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -761,360 +532,216 @@ void MainWindow::sp_test_Slot()
 void MainWindow::lEdt_switch_Radio_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::lEdt_switch_Resolution_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_switch1_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_switch2_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_switch3_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_switch4_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_switch5_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::lEdt_continue_Radio_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::lEdt_continue_Resolution_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue1_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue2_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue3_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue4_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue5_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue6_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue7_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue8_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue9_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue10_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue11_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue12_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(5);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_continue13_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_utc1_default_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
 void MainWindow::btn_utc1_update_Slot()
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1122,19 +749,11 @@ void MainWindow::lEdt_utc1_l0_Slot()
 {
     float value=utc1_l0->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x00;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x00;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1142,19 +761,11 @@ void MainWindow::lEdt_utc1_l1_Slot()
 {
     float value=utc1_l1->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1163,19 +774,11 @@ void MainWindow::lEdt_utc1_l2_Slot()
 {
     float value=utc1_l2->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1183,19 +786,11 @@ void MainWindow::lEdt_utc1_l3_Slot()
 {
     float value=utc1_l3->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1204,19 +799,11 @@ void MainWindow::lEdt_utc1_l4_Slot()
 
     float value=utc1_l4->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1224,19 +811,11 @@ void MainWindow::lEdt_utc1_l5_Slot()
 {
     float value=utc1_l5->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x05;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1244,19 +823,11 @@ void MainWindow::lEdt_utc1_l6_Slot()
 {
     float value=utc1_l6->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1264,19 +835,11 @@ void MainWindow::lEdt_utc1_l7_Slot()
 {
     float value=utc1_l7->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x07;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x07;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1284,19 +847,11 @@ void MainWindow::lEdt_utc1_l8_Slot()
 {
     float value=utc1_l8->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x08;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x08;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1304,19 +859,11 @@ void MainWindow::lEdt_utc1_l9_Slot()
 {
     float value=utc1_l9->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x09;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x09;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1325,19 +872,11 @@ void MainWindow::lEdt_utc1_l10_Slot()
 {
     float value=utc1_l10->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0a;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0a;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1345,19 +884,11 @@ void MainWindow::lEdt_utc1_l11_Slot()
 {
     float value=utc1_l11->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0b;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0b;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1365,19 +896,11 @@ void MainWindow::lEdt_utc1_l12_Slot()
 {
     float value=utc1_l12->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0c;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0c;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1385,19 +908,11 @@ void MainWindow::lEdt_utc1_l13_Slot()
 {
     float value=utc1_l13->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0d;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0d;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1405,19 +920,11 @@ void MainWindow::lEdt_utc1_l14_Slot()
 {
     float value=utc1_l14->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0e;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0e;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1425,19 +932,11 @@ void MainWindow::lEdt_utc1_l15_Slot()
 {
     float value=utc1_l15->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x04;
     send_arr[6] = 0x0f;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x0f;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1455,19 +954,11 @@ void MainWindow::lEdt_utc2_l0_Slot()
 {
     float value=utc2_l0->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x00;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x00;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1475,19 +966,11 @@ void MainWindow::lEdt_utc2_l1_Slot()
 {
     float value=utc2_l1->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1495,19 +978,11 @@ void MainWindow::lEdt_utc2_l2_Slot()
 {
     float value=utc2_l2->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1515,19 +990,11 @@ void MainWindow::lEdt_utc2_l3_Slot()
 {
     float value=utc2_l3->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1535,19 +1002,11 @@ void MainWindow::lEdt_utc2_l4_Slot()
 {
     float value=utc2_l4->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1555,19 +1014,11 @@ void MainWindow::lEdt_utc2_l5_Slot()
 {
     float value=utc2_l5->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x05;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1575,19 +1026,11 @@ void MainWindow::lEdt_utc2_l6_Slot()
 {
     float value=utc2_l6->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1596,19 +1039,11 @@ void MainWindow::lEdt_utc2_l7_Slot()
 {
     float value=utc2_l7->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x07;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x07;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1616,19 +1051,11 @@ void MainWindow::lEdt_utc2_l8_Slot()
 {
     float value=utc2_l8->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x08;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x08;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1637,19 +1064,11 @@ void MainWindow::lEdt_utc2_l9_Slot()
 {
     float value=utc2_l9->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x09;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x09;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1657,19 +1076,11 @@ void MainWindow::lEdt_utc2_l10_Slot()
 {
     float value=utc2_l10->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0a;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0a;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1677,19 +1088,11 @@ void MainWindow::lEdt_utc2_l11_Slot()
 {
     float value=utc2_l11->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0b;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0b;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1697,19 +1100,11 @@ void MainWindow::lEdt_utc2_l12_Slot()
 {
     float value=utc2_l12->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0c;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0c;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1717,19 +1112,11 @@ void MainWindow::lEdt_utc2_l13_Slot()
 {
     float value=utc2_l13->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0d;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0d;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1737,19 +1124,11 @@ void MainWindow::lEdt_utc2_l14_Slot()
 {
     float value=utc2_l14->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0e;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0e;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1757,19 +1136,11 @@ void MainWindow::lEdt_utc2_l15_Slot()
 {
     float value=utc2_l15->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x05;
     send_arr[6] = 0x0f;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x05;
-    send_arr[5] = 0x0f;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1787,19 +1158,11 @@ void MainWindow::lEdt_utc3_l0_Slot()
 {
     float value=utc3_l0->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x00;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x00;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1807,19 +1170,11 @@ void MainWindow::lEdt_utc3_l1_Slot()
 {
     float value=utc3_l1->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1827,19 +1182,11 @@ void MainWindow::lEdt_utc3_l2_Slot()
 {
     float value=utc3_l2->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1847,19 +1194,11 @@ void MainWindow::lEdt_utc3_l3_Slot()
 {
     float value=utc3_l3->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1867,19 +1206,11 @@ void MainWindow::lEdt_utc3_l4_Slot()
 {
     float value=utc3_l4->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1887,19 +1218,11 @@ void MainWindow::lEdt_utc3_l5_Slot()
 {
     float value=utc3_l5->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x05;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1908,19 +1231,11 @@ void MainWindow::lEdt_utc3_l6_Slot()
 {
     float value=utc3_l6->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1928,19 +1243,11 @@ void MainWindow::lEdt_utc3_l7_Slot()
 {
     float value=utc3_l7->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x07;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x07;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 
 }
@@ -1949,19 +1256,11 @@ void MainWindow::lEdt_utc3_l8_Slot()
 {
     float value=utc3_l8->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x08;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x08;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1969,19 +1268,11 @@ void MainWindow::lEdt_utc3_l9_Slot()
 {
     float value=utc3_l9->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x09;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x09;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -1989,19 +1280,11 @@ void MainWindow::lEdt_utc3_l10_Slot()
 {
     float value=utc3_l10->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0a;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0a;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2009,19 +1292,11 @@ void MainWindow::lEdt_utc3_l11_Slot()
 {
     float value=utc3_l11->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0b;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0b;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2029,19 +1304,11 @@ void MainWindow::lEdt_utc3_l12_Slot()
 {
     float value=utc3_l12->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0c;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0c;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2049,19 +1316,11 @@ void MainWindow::lEdt_utc3_l13_Slot()
 {
     float value=utc3_l13->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0d;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0d;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2069,19 +1328,11 @@ void MainWindow::lEdt_utc3_l14_Slot()
 {
     float value=utc3_l14->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0e;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0e;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2089,19 +1340,11 @@ void MainWindow::lEdt_utc3_l15_Slot()
 {
     float value=utc3_l15->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x06;
     send_arr[6] = 0x0f;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x06;
-    send_arr[5] = 0x0f;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2112,7 +1355,6 @@ void MainWindow::btn_osd_default_Slot()
 
 void MainWindow::btn_osd_update_Slot()
 {
-<<<<<<< HEAD
 
         if(checkBox->isChecked()){
             value_check=0;
@@ -2131,15 +1373,10 @@ void MainWindow::btn_osd_update_Slot()
             }
             qDebug()<<length;
 
-=======
-            QString msg=osd1_lineEdit_context->text();
-            int length=msg.size()*2+12;
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.lock();
             downFrame.my_send[0] = 0xEB;
             downFrame.my_send[1] = 0x53;
             downFrame.my_send[2] = length;
-<<<<<<< HEAD
             downFrame.my_send[3] = 0x00;
             downFrame.my_send[4] = 0x20;
             downFrame.my_send[5]=c->currentIndex();
@@ -2177,38 +1414,6 @@ void MainWindow::btn_osd_update_Slot()
             sndData_02 = string2hex(str1,checkf);
             data.append(sndData_02);
             data.append(dd);
-=======
-            downFrame.my_send[3] = 0x20;
-//            send_arr[5] = sectrk_x&0xff;
-//            send_arr[6] = (sectrk_x>>8)&0xff;
-//            send_arr[7] = sectrk_y&0xff;
-//            send_arr[8] = (sectrk_y>>8)&0xff;
-            downFrame.my_send[4] =osd1_pos_x->text().toInt()&0xff;
-            downFrame.my_send[5]= (osd1_pos_x->text().toInt()>>8)&0xff;
-            downFrame.my_send[6] =osd1_pos_y->text().toInt()&0xff;
-            downFrame.my_send[7] = (osd1_pos_y->text().toInt()>>8)&0xff;
-            downFrame.my_send[8] =CBox_color->currentIndex()+1;
-            downFrame.my_send[9]=osd1_lineEdit_transparency->text().toInt();
-            downFrame.my_send[10]=0x01;
-            downFrame.my_send[11]=0x01;
-
-            unsigned char sum=0;
-            for(int n = 3; n<11; n++) {
-                sum ^= downFrame.my_send[n];
-             }
-            downFrame.my_send[11] = sum;
-
-            QString str1;
-            for(int m = 0; m< 10; m++){
-                str1 += QString("%1").arg(downFrame.my_send[m]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
-            }
-            QString str2=str1 += QString("%1").arg(downFrame.my_send[11]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
-            bool checkf = true;
-            sndData_02 = string2hex(str1,checkf);
-            QByteArray data;
-            data.append(sndData_02);
-            data.append(msg.toUtf8());
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             data.append(string2hex(str2,checkf));
             if(checkf == true){
                 if(1 == connect_flag)
@@ -2221,12 +1426,8 @@ void MainWindow::btn_osd_update_Slot()
                     socket->flush();
                 }
             }
-<<<<<<< HEAD
             ui->label->setText(str1);
             //ui->label->setText(str2);
-=======
-           // ui->label->setText(str1);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
 }
 
@@ -2237,7 +1438,6 @@ void MainWindow::CBox_osd_choose_Slot(int i)
 
 void MainWindow::checkBox_Slot(int i)
 {
-<<<<<<< HEAD
 //    if(i == Qt::Checked)
 //    {
 //        qDebug()<<"Checked";
@@ -2256,26 +1456,6 @@ void MainWindow::checkBox_Slot(int i)
 //       send_oneframe(2);
 //        send_mutex.unlock();
 //    }
-=======
-    if(i == Qt::Checked)
-    {
-        qDebug()<<"Checked";
-//        send_mutex.lock();
-//        send_arr[3] = 0x01;
-//        send_arr[4] = 0x01;
-//        send_oneframe(6);
-//        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked)
-    {
-          qDebug()<<"UnChecked";
-//        send_mutex.lock();
-//        send_arr[3] = 0x01;
-//        send_arr[4] = 0x02;
-       send_oneframe(6);
-//        send_mutex.unlock();
-    }
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 }
 
 void MainWindow::lEdt_osd_x_Slot()
@@ -2291,32 +1471,19 @@ void MainWindow::lEdt_osd_y_Slot()
 void MainWindow::lEdt_osd_context_Slot()
 {
             send_mutex.lock();
-<<<<<<< HEAD
             send_arr[4] = 0x20;
             send_arr[5] = 0x02;
             send_oneframe(2);
-=======
-            send_arr[3] = 0x20;
-            send_arr[4] = 0x02;
-            send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             send_mutex.unlock();
 }
 
 void MainWindow::CBox_osd_font_Slot(int i)
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
     send_arr[6] =CBox_font_size->currentIndex()+1;
     send_oneframe(3);
-=======
-    send_arr[3] = 0x21;
-    send_arr[4] =CBox_font->currentIndex()+1;
-    send_arr[5] =CBox_font_size->currentIndex()+1;
-    send_oneframe(7);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
     qDebug()<<"ok";
@@ -2325,17 +1492,10 @@ void MainWindow::CBox_osd_font_Slot(int i)
 void MainWindow::CBox_osd_font_size_Slot(int i)
 {
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
     send_arr[6] =CBox_font_size->currentIndex()+1;
     send_oneframe(3);
-=======
-    send_arr[3] = 0x21;
-    send_arr[4] =CBox_font->currentIndex()+1;
-    send_arr[5] =CBox_font_size->currentIndex()+1;
-    send_oneframe(7);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
     qDebug()<<"ok";
@@ -2357,15 +1517,9 @@ void MainWindow::resetAction()
 {
     QMessageBox::information(this,"提示","是否恢复出厂设置",QMessageBox::Ok,QMessageBox::Cancel);
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 1;
     send_arr[5] = 1;
     send_oneframe(2);
-=======
-    send_arr[3] = 1;
-    send_arr[4] = 1;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2394,15 +1548,9 @@ void MainWindow::toCBox(int i)
 void MainWindow::toOSD1Slot()
 {
 
-<<<<<<< HEAD
     send_arr[4] = 0x01;
     send_arr[5] = 0x01;
     send_oneframe(2);
-=======
-    send_arr[3] = 0x01;
-    send_arr[4] = 0x01;
-    send_oneframe(6);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     qDebug()<<"这是osd1";
 }
 void MainWindow::toOSD2Slot()
@@ -2438,19 +1586,11 @@ void MainWindow::lEdt_Jos1_Slot()
 {
     float value=josDead_lineEdt->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x01;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x01;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2458,19 +1598,11 @@ void MainWindow::lEdt_Jos2_Slot()
 {
     float value=josPoint_lineEdt->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x01;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x01;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2478,19 +1610,11 @@ void MainWindow::lEdt_Jos3_Slot()
 {
     float value=josInputG_x->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x01;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x01;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2498,19 +1622,11 @@ void MainWindow::lEdt_Jos4_Slot()
 {
     float value=josInputG_y->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x01;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x01;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2529,19 +1645,11 @@ void MainWindow::lEdt_PID1_Slot()
 
     float value=kp1_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2549,19 +1657,11 @@ void MainWindow::lEdt_PID2_Slot()
 {
     float value=ki1_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2569,19 +1669,11 @@ void MainWindow::lEdt_PID3_Slot()
 {
     float value=kd1_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2589,19 +1681,11 @@ void MainWindow::lEdt_PID4_Slot()
 {
     float value=k1->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2609,19 +1693,11 @@ void MainWindow::lEdt_PID5_Slot()
 {
     float value=kp2_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x05;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2629,19 +1705,11 @@ void MainWindow::lEdt_PID6_Slot()
 {
     float value=ki2_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2649,19 +1717,11 @@ void MainWindow::lEdt_PID7_Slot()
 {
     float value=kd2_pid->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x07;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x07;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2669,19 +1729,11 @@ void MainWindow::lEdt_PID8_Slot()
 {
     float value=k2->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x02;
     send_arr[6] = 0x08;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x02;
-    send_arr[5] = 0x08;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2689,19 +1741,11 @@ void MainWindow::lEdt_plat1_Slot()
 {
     float value=bleedx_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x01;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2709,19 +1753,11 @@ void MainWindow::lEdt_plat2_Slot()
 {
     float value=bleedy_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x02;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2729,19 +1765,11 @@ void MainWindow::lEdt_plat3_Slot()
 {
     float value=mx_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x03;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2749,19 +1777,11 @@ void MainWindow::lEdt_plat4_Slot()
 {
     float value=my_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x04;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2769,19 +1789,11 @@ void MainWindow::lEdt_plat5_Slot()
 {
     float value=deadx_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x05;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2789,19 +1801,11 @@ void MainWindow::lEdt_plat6_Slot()
 {
     float value=deady_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x06;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2809,19 +1813,11 @@ void MainWindow::lEdt_plat7_Slot()
 {
     float value=a_plat->text().toFloat();
     send_mutex.lock();
-<<<<<<< HEAD
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
     send_arr[6] = 0x07;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
-=======
-    send_arr[3] = 0x30;
-    send_arr[4] = 0x03;
-    send_arr[5] = 0x07;
-    memcpy(send_arr+6,&value,4);
-    send_oneframe(11);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     send_mutex.unlock();
 }
 
@@ -2982,16 +1978,12 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 //    int flag = 0;
 //    float value1 = 0;
 //    float value2 = 0;
 //    short trkerrx = 0;
 //    short trkerry = 0;
-<<<<<<< HEAD
 //    switch(i)
 //    {
 //        case 0x01:
@@ -3070,16 +2062,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 //        default:
 //            break;
 //    }
-=======
-    switch(i)
-    {
-        case 0x35:
-            upgrade_show->append("升级成功");
-            break;
-        default:
-            break;
-    }
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 }
 void MainWindow::socket_Read_Data()
 {
@@ -3138,7 +2120,6 @@ void MainWindow::parse_bytearray()
          }
     }
 }
-<<<<<<< HEAD
 
 void MainWindow::RcvData_SerialPort()
 {
@@ -3339,5 +2320,3 @@ void MainWindow::on_btnApertureMinus_released()
     send_oneframe(2);
     send_mutex.unlock();
 }
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304

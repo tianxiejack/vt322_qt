@@ -17,13 +17,8 @@
    <widget class="QPushButton" name="btnTrack">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>140</x>
       <y>60</y>
-=======
-      <x>90</x>
-      <y>70</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>75</width>
       <height>41</height>
      </rect>
@@ -35,13 +30,8 @@
    <widget class="QPushButton" name="btnSersorSwitch">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>230</x>
       <y>60</y>
-=======
-      <x>180</x>
-      <y>70</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>71</width>
       <height>41</height>
      </rect>
@@ -53,13 +43,8 @@
    <widget class="QPushButton" name="btnViewPlus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>140</x>
       <y>110</y>
-=======
-      <x>90</x>
-      <y>120</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>75</width>
       <height>41</height>
      </rect>
@@ -71,13 +56,8 @@
    <widget class="QPushButton" name="btnViewMinus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>230</x>
       <y>110</y>
-=======
-      <x>180</x>
-      <y>120</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>71</width>
       <height>41</height>
      </rect>
@@ -89,13 +69,8 @@
    <widget class="QPushButton" name="btnForcePlus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>140</x>
       <y>160</y>
-=======
-      <x>90</x>
-      <y>170</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>75</width>
       <height>41</height>
      </rect>
@@ -107,13 +82,8 @@
    <widget class="QPushButton" name="btnForceMinus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>230</x>
       <y>160</y>
-=======
-      <x>180</x>
-      <y>170</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>71</width>
       <height>41</height>
      </rect>
@@ -125,13 +95,8 @@
    <widget class="QPushButton" name="btnAperturePlus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>140</x>
       <y>210</y>
-=======
-      <x>90</x>
-      <y>220</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>75</width>
       <height>41</height>
      </rect>
@@ -143,13 +108,8 @@
    <widget class="QPushButton" name="btnApertureMinus">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>230</x>
       <y>210</y>
-=======
-      <x>180</x>
-      <y>220</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>71</width>
       <height>41</height>
      </rect>
@@ -161,13 +121,8 @@
    <widget class="QPushButton" name="btnCapture">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>140</x>
       <y>60</y>
-=======
-      <x>90</x>
-      <y>70</y>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <width>75</width>
       <height>41</height>
      </rect>
@@ -179,15 +134,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
       <x>0</x>
       <y>280</y>
       <width>621</width>
-=======
-      <x>90</x>
-      <y>280</y>
-      <width>171</width>
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
       <height>51</height>
      </rect>
     </property>
@@ -221,7 +170,6 @@
      <string/>
     </property>
    </widget>
-<<<<<<< HEAD
    <widget class="QPushButton" name="btn_up">
     <property name="geometry">
      <rect>
@@ -300,8 +248,6 @@
      <string>启动自检</string>
     </property>
    </widget>
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
    <zorder>btnCapture</zorder>
    <zorder>btnTrack</zorder>
    <zorder>btnSersorSwitch</zorder>
@@ -314,15 +260,12 @@
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
-<<<<<<< HEAD
    <zorder>btn_up</zorder>
    <zorder>btn_down</zorder>
    <zorder>btn_right</zorder>
    <zorder>btn_left</zorder>
    <zorder>btn_ok</zorder>
    <zorder>btnAutoCheck</zorder>
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

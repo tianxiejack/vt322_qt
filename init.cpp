@@ -1,10 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 void MainWindow::init_menu()
 {
     menu[0]=new QMenu("配置");
@@ -81,15 +78,9 @@ void MainWindow::init_sysCfg()
     s->addWidget(btnNet);
 
     QPushButton *btnDown=new QPushButton;
-<<<<<<< HEAD
     btnDown->setText("导入");
     QPushButton *btnUp=new QPushButton;
     btnUp->setText("导出");
-=======
-    btnDown->setText("写入");
-    QPushButton *btnUp=new QPushButton;
-    btnUp->setText("读出");
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     CBox_font=new QComboBox;
     CBox_font->addItem("宋体");
     CBox_font->addItem("黑体");
@@ -98,10 +89,7 @@ void MainWindow::init_sysCfg()
     CBox_font_size->addItem("六号");
     QPushButton *btnSave=new QPushButton;
     btnSave->setText("保存");
-<<<<<<< HEAD
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     QGroupBox *groupBox_upgrade = new QGroupBox();
     groupBox_upgrade->setTitle("软件升级");
     upgrade_ip = new QLineEdit(groupBox_upgrade);
@@ -118,23 +106,15 @@ void MainWindow::init_sysCfg()
     vlayout->addRow(upgrade_show);
     groupBox_upgrade->setLayout(vlayout);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     QFormLayout *pLayout = new QFormLayout;
 
     pLayout->addRow(QStringLiteral("相机通道总数"), lineEdit);
     pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
-<<<<<<< HEAD
     pLayout->addRow("导入配置", btnDown);
     pLayout->addRow("导出配置", btnUp);
-=======
-    pLayout->addRow("写入配置", btnDown);
-    pLayout->addRow("读出配置", btnUp);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字体颜色配置", CBox_font_size);
     pLayout->addRow("保存配置", btnSave);
@@ -148,13 +128,8 @@ void MainWindow::init_sysCfg()
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
     connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot()));
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
-<<<<<<< HEAD
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
-=======
-    connect(CBox_font,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_Slot(int)));
-    connect(CBox_font_size,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     w_config->setLayout(pLayout);
 }
@@ -200,7 +175,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
         mousePress = 0;
         a=POINTX+CENTER/2;
         b=POINTY+CENTER/2;
-<<<<<<< HEAD
         if(judgment == 0){
         send_mutex.lock();
         send_arr[4] = 0x15;
@@ -216,9 +190,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
         }
         update();
 
-=======
-        update();
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     }
 }
 void MainWindow::calculationCircle(int center_a, int center_b, int x, int y)
@@ -232,7 +203,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     {
         int x=event->pos().x();
         int y=event->pos().y();
-<<<<<<< HEAD
         int l1=0.414*x+42.604;
         int l2=(-0.414)*x+385.396;
         int l3=(y+785.396)/2.414;
@@ -242,8 +212,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         int l5=2.414*x-785.396;
        // qDebug()<<"l5"<<l5<<"y"<<y;
         int l6=(-2.414)*x+1213.396;
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
         int m=qAbs(x-a_center);
         int n=qAbs(y-b_center);
@@ -273,7 +241,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         }
 //        qDebug()<<"qAbs(a-a_center)/3"<<qAbs(a-a_center);
 //        qDebug()<<"qAbs(b-b_center)/3"<<qAbs(b-b_center);
-<<<<<<< HEAD
         if(judgment==1){//跟踪微调
 
             if(l>CENTER/4){
@@ -521,234 +488,19 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
             break;
         default:
             send_arr[6]=0x63;
-=======
-        send_mutex.lock();
-        send_arr[3] = 0x15;
-        if(x-old_x>0){//判断方位
-            send_arr[4]=0x02;
-        }else if(x-old_x<0){
-            send_arr[4]=0x01;
-        }else{
-            send_arr[4]=0x00;
-        }
-        switch (qAbs(a-a_center)) {
-        case 0:
-            send_arr[5]=0x00;
-            break;
-        case 1:
-            send_arr[5]=0x01;
-            break;
-        case 2:
-            send_arr[5]=0x02;
-            break;
-        case 3:
-            send_arr[5]=0x03;
-            break;
-        case 4:
-            send_arr[5]=0x04;
-            break;
-        case 5:
-            send_arr[5]=0x05;
-            break;
-        case 6:
-            send_arr[5]=0x06;
-            break;
-        case 7:
-            send_arr[5]=0x07;
-            break;
-        case 8:
-            send_arr[5]=0x08;
-            break;
-        case 9:
-            send_arr[5]=0x09;
-            break;
-        case 10:
-            send_arr[5]=0x10;
-            break;
-        case 11:
-            send_arr[5]=0x11;
-            break;
-        case 12:
-            send_arr[5]=0x12;
-            break;
-        case 13:
-            send_arr[5]=0x13;
-            break;
-        case 14:
-            send_arr[5]=0x14;
-            break;
-        case 15:
-            send_arr[5]=0x15;
-            break;
-        case 16:
-            send_arr[5]=0x16;
-            break;
-        case 17:
-            send_arr[5]=0x17;
-            break;
-        case 18:
-            send_arr[5]=0x18;
-            break;
-        case 19:
-            send_arr[5]=0x19;
-            break;
-        case 20:
-            send_arr[5]=0x20;
-            break;
-        case 21:
-            send_arr[5]=0x21;
-            break;
-        case 22:
-            send_arr[5]=0x22;
-            break;
-        case 23:
-            send_arr[5]=0x23;
-            break;
-        case 24:
-            send_arr[5]=0x24;
-            break;
-        case 25:
-            send_arr[5]=0x25;
-            break;
-        case 26:
-            send_arr[5]=0x26;
-            break;
-        case 27:
-            send_arr[5]=0x27;
-            break;
-        case 28:
-            send_arr[5]=0x28;
-            break;
-        case 29:
-            send_arr[5]=0x29;
-            break;
-        case 30:
-            send_arr[5]=0x30;
-            break;
-        case 31:
-            send_arr[5]=0x31;
-            break;
-        case 32:
-            send_arr[5]=0x32;
-            break;
-        case 33:
-            send_arr[5]=0x33;
-            break;
-        case 34:
-            send_arr[5]=0x34;
-            break;
-        case 35:
-            send_arr[5]=0x35;
-            break;
-        case 36:
-            send_arr[5]=0x36;
-            break;
-        case 37:
-            send_arr[5]=0x37;
-            break;
-        case 38:
-            send_arr[5]=0x38;
-            break;
-        case 39:
-            send_arr[5]=0x39;
-            break;
-        case 40:
-            send_arr[5]=0x40;
-            break;
-        case 41:
-            send_arr[5]=0x41;
-            break;
-        case 42:
-            send_arr[5]=0x42;
-            break;
-        case 43:
-            send_arr[5]=0x43;
-            break;
-        case 44:
-            send_arr[5]=0x44;
-            break;
-        case 45:
-            send_arr[5]=0x45;
-            break;
-        case 46:
-            send_arr[5]=0x46;
-            break;
-        case 47:
-            send_arr[5]=0x47;
-            break;
-        case 48:
-            send_arr[5]=0x48;
-            break;
-        case 49:
-            send_arr[5]=0x49;
-            break;
-        case 50:
-            send_arr[5]=0x50;
-            break;
-        case 51:
-            send_arr[5]=0x51;
-            break;
-        case 52:
-            send_arr[5]=0x52;
-            break;
-        case 53:
-            send_arr[5]=0x53;
-            break;
-        case 54:
-            send_arr[5]=0x54;
-            break;
-        case 55:
-            send_arr[5]=0x55;
-            break;
-        case 56:
-            send_arr[5]=0x56;
-            break;
-        case 57:
-            send_arr[5]=0x57;
-            break;
-        case 58:
-            send_arr[5]=0x58;
-            break;
-        case 59:
-            send_arr[5]=0x59;
-            break;
-        case 60:
-            send_arr[5]=0x60;
-            break;
-        case 61:
-            send_arr[5]=0x61;
-            break;
-        case 62:
-            send_arr[5]=0x62;
-            break;
-        case 63:
-            send_arr[5]=0x63;
-            break;
-        default:
-            send_arr[5]=0x63;
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             break;
         }
 
         if(y-old_y>0){//判断俯仰
-<<<<<<< HEAD
             send_arr[7]=0x02;
         }else if(y-old_y<0){
             send_arr[7]=0x01;
         }else{
             send_arr[7]=0x00;
-=======
-            send_arr[6]=0x02;
-        }else if(y-old_y<0){
-            send_arr[6]=0x01;
-        }else{
-            send_arr[6]=0x00;
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         }
 
         switch (qAbs(b-b_center)) {
         case 0:
-<<<<<<< HEAD
             send_arr[8]=0x00;
             break;
         case 1:
@@ -943,207 +695,11 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         default:
 
            send_arr[8]=0x63;
-=======
-            send_arr[7]=0x00;
-            break;
-        case 1:
-            send_arr[7]=0x01;
-            break;
-        case 2:
-            send_arr[7]=0x02;
-            break;
-        case 3:
-            send_arr[7]=0x03;
-            break;
-        case 4:
-            send_arr[7]=0x04;
-            break;
-        case 5:
-            send_arr[7]=0x05;
-            break;
-        case 6:
-            send_arr[7]=0x06;
-            break;
-        case 7:
-            send_arr[7]=0x07;
-            break;
-        case 8:
-            send_arr[7]=0x08;
-            break;
-        case 9:
-            send_arr[7]=0x09;
-            break;
-        case 10:
-            send_arr[7]=0x10;
-            break;
-        case 11:
-            send_arr[7]=0x11;
-            break;
-        case 12:
-            send_arr[7]=0x12;
-            break;
-        case 13:
-            send_arr[7]=0x13;
-            break;
-        case 14:
-            send_arr[7]=0x14;
-            break;
-        case 15:
-            send_arr[7]=0x15;
-            break;
-        case 16:
-            send_arr[7]=0x16;
-            break;
-        case 17:
-            send_arr[7]=0x17;
-            break;
-        case 18:
-            send_arr[7]=0x18;
-            break;
-        case 19:
-            send_arr[7]=0x19;
-            break;
-        case 20:
-            send_arr[7]=0x20;
-            break;
-        case 21:
-            send_arr[7]=0x21;
-            break;
-        case 22:
-            send_arr[7]=0x22;
-            break;
-        case 23:
-            send_arr[7]=0x23;
-            break;
-        case 24:
-            send_arr[7]=0x24;
-            break;
-        case 25:
-            send_arr[7]=0x25;
-            break;
-        case 26:
-            send_arr[7]=0x26;
-            break;
-        case 27:
-            send_arr[7]=0x27;
-            break;
-        case 28:
-            send_arr[7]=0x28;
-            break;
-        case 29:
-            send_arr[7]=0x29;
-            break;
-        case 30:
-            send_arr[7]=0x30;
-            break;
-        case 31:
-            send_arr[7]=0x31;
-            break;
-        case 32:
-            send_arr[7]=0x32;
-            break;
-        case 33:
-            send_arr[7]=0x33;
-            break;
-        case 34:
-            send_arr[7]=0x34;
-            break;
-        case 35:
-            send_arr[7]=0x35;
-            break;
-        case 36:
-            send_arr[7]=0x36;
-            break;
-        case 37:
-            send_arr[7]=0x37;
-            break;
-        case 38:
-            send_arr[7]=0x38;
-            break;
-        case 39:
-            send_arr[7]=0x39;
-            break;
-        case 40:
-            send_arr[7]=0x40;
-            break;
-        case 41:
-            send_arr[7]=0x41;
-            break;
-        case 42:
-            send_arr[7]=0x42;
-            break;
-        case 43:
-            send_arr[7]=0x43;
-            break;
-        case 44:
-            send_arr[7]=0x44;
-            break;
-        case 45:
-            send_arr[7]=0x45;
-            break;
-        case 46:
-            send_arr[7]=0x46;
-            break;
-        case 47:
-            send_arr[7]=0x47;
-            break;
-        case 48:
-            send_arr[7]=0x48;
-            break;
-        case 49:
-            send_arr[7]=0x49;
-            break;
-        case 50:
-            send_arr[7]=0x50;
-            break;
-        case 51:
-            send_arr[7]=0x51;
-            break;
-        case 52:
-            send_arr[7]=0x52;
-            break;
-        case 53:
-            send_arr[7]=0x53;
-            break;
-        case 54:
-            send_arr[7]=0x54;
-            break;
-        case 55:
-            send_arr[7]=0x55;
-            break;
-        case 56:
-            send_arr[7]=0x56;
-            break;
-        case 57:
-            send_arr[7]=0x57;
-            break;
-        case 58:
-            send_arr[7]=0x58;
-            break;
-        case 59:
-            send_arr[7]=0x59;
-            break;
-        case 60:
-            send_arr[7]=0x60;
-            break;
-        case 61:
-            send_arr[7]=0x61;
-            break;
-        case 62:
-            send_arr[7]=0x62;
-            break;
-        case 63:
-            send_arr[7]=0x63;
-            break;
-        default:
-            //send_arr[7]=0x63;
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
             break;
         }
         //保留上一次x，y的值。
         old_x=a;
         old_y=b;
-<<<<<<< HEAD
         send_oneframe(5);
         send_mutex.unlock();
         }
@@ -1224,10 +780,6 @@ void MainWindow::timeoutSlot()
             send_oneframe(3);
             send_mutex.unlock();
             break;
-=======
-        send_oneframe(9);
-        send_mutex.unlock();
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     }
 }
 
@@ -1277,26 +829,16 @@ void MainWindow::showPlat()
     josPoint_lineEdt=new QLineEdit;
     josInputG_x=new QLineEdit;
     josInputG_y=new QLineEdit;
-<<<<<<< HEAD
 //    josOutputG_x=new QLineEdit;
 //    josOutputG_y=new QLineEdit;
-=======
-    josOutputG_x=new QLineEdit;
-    josOutputG_y=new QLineEdit;
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     QFormLayout *f1=new QFormLayout();
     f1->addRow(jos_s[0],josDead_lineEdt);
     f1->addRow(jos_s[1],josPoint_lineEdt);
     f1->addRow(jos_s[2],josInputG_x);
     f1->addRow(jos_s[3],josInputG_y);
-<<<<<<< HEAD
 //    f1->addRow(jos_s[4],josOutputG_x);
 //    f1->addRow(jos_s[5],josOutputG_y);
-=======
-    f1->addRow(jos_s[4],josOutputG_x);
-    f1->addRow(jos_s[5],josOutputG_y);
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     gbox_Jos->setLayout(f1);
 
     gbox_PID=new QGroupBox();
@@ -1357,13 +899,8 @@ void MainWindow::showPlat()
     connect(josPoint_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos2_Slot()));
     connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos3_Slot()));
     connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos4_Slot()));
-<<<<<<< HEAD
 //    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
 //    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
-=======
-    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
-    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     connect(kp1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot()));
     connect(ki1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot()));
@@ -1749,14 +1286,6 @@ void MainWindow::showOther()
     c->addItem("OSD30");
     c->addItem("OSD31");
     c->addItem("OSD32");
-<<<<<<< HEAD
-=======
-    c->addItem("OSD33");
-    c->addItem("OSD34");
-    c->addItem("OSD35");
-    c->addItem("OSD36");
-
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
     checkBox=new QCheckBox;
     osd1_pos_x=new QLineEdit;
@@ -1765,23 +1294,14 @@ void MainWindow::showOther()
     osd1_lineEdit_context=new QLineEdit;
 
     CBox_color=new QComboBox;
-<<<<<<< HEAD
     CBox_color->addItem("黑色");
     CBox_color->addItem("白色");
-=======
-    CBox_color->addItem("白色");
-    CBox_color->addItem("黑色");
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     CBox_color->addItem("红色");
     CBox_color->addItem("黄色");
     CBox_color->addItem("蓝色");
     CBox_color->addItem("绿色");
     CBox_color->addItem("保存");
-<<<<<<< HEAD
     CBox_color->setCurrentIndex(1);
-=======
-
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 
 
 //    osd1_lineEdit_font=new QLineEdit;
@@ -1809,11 +1329,7 @@ void MainWindow::showOther()
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
     connect(btn_osd1_update,SIGNAL(clicked(bool)),this,SLOT(btn_osd_update_Slot()));
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
-<<<<<<< HEAD
    // connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
-=======
-    connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
     connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
     connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
@@ -2196,11 +1712,8 @@ void MainWindow::btnSensor2ContinueSlot()
     w_ContinueField->show();
 }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
 void MainWindow::tosersor_fix(int i)
 {
     if(i==0){

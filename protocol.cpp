@@ -83,7 +83,6 @@ char MainWindow::convertHex2Char(char ch)
 
 void MainWindow::send_oneframe(int length)
 {
-<<<<<<< HEAD
     int len=length+5;
     send_arr[0] = 0xEB;
     send_arr[1] = 0x53;
@@ -97,30 +96,13 @@ void MainWindow::send_oneframe(int length)
 
     QString str1;
     for(int m = 0; m< len; m++){
-=======
-    send_arr[0] = 0xEB;
-    send_arr[1] = 0x53;
-    send_arr[2] = length;
-    unsigned char sum=0;
-    for(int n = 3; n<length-1; n++) {
-        sum ^= send_arr[n];
-     }
-    send_arr[length-1] = sum;
-
-    QString str1;
-    for(int m = 0; m< length; m++){
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
         str1 += QString("%1").arg(send_arr[m]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
     }
     bool checkf = true;
     sndData_02 = string2hex(str1,checkf);
-<<<<<<< HEAD
     //qDebug()<<sndData_02;
     sendNum += sndData_02.length();
     memset(&respstat, 0, sizeof(respstat));
-=======
-    sendNum += sndData_02.length();
->>>>>>> dd380fdf507711ec1ec2eca5972d636e6ee83304
     if(checkf == true){
         if(1 == connect_flag)
         {
