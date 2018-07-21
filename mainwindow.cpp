@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     serialPort_command = new QSerialPort(this);
+    connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
     connect(this,&MainWindow::copy_Done, this ,&MainWindow::parse_bytearray);
 
 
@@ -1978,90 +1979,16 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
-
-//    int flag = 0;
-//    float value1 = 0;
-//    float value2 = 0;
-//    short trkerrx = 0;
-//    short trkerry = 0;
-//    switch(i)
-//    {
-//        case 0x01:
-
-//            break;
-//        case 0x02:
-
-//            break;
-//        case 0x03:
-
-//            break;
-//        case 0x04:
-
-//            break;
-//        case 0x05:
-
-//            break;
-//        case 0x06:
-
-//            break;
-//        case 0x07:
-
-//            break;
-//        case 0x08:
+    switch(i)
+       {
+           case 0x35:
+               upgrade_show->append("ok");
+               break;
+           default:
+               break;
+       }
 
 
-//            break;
-//        case 0x09:
-
-//            break;
-//        case 0x0a:
-
-//            break;
-//        case 0x0b:
-
-//            break;
-//        case 0x0c:
-
-//            break;
-//        case 0x0d:
-
-//            break;
-//        case 0x0e:
-
-//            break;
-//        case 0x0f:
-
-//            break;
-//        case 0x10:
-
-//            break;
-//        case 0x11:
-
-//            break;
-//        case 0x20:
-
-//            break;
-//        case 0x21:
-
-//            break;
-//        case 0x22:
-
-//            break;
-//        case 0x30:
-
-//            break;
-//        case 0x31:
-
-//            break;
-//        case 0x32:
-
-//            break;
-//        case 0x34:
-
-//            break;
-//        default:
-//            break;
-//    }
 }
 void MainWindow::socket_Read_Data()
 {
