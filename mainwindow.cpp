@@ -2140,14 +2140,7 @@ void MainWindow::on_btnAutoCheck_clicked()
     send_mutex.unlock();
 }
 
-void MainWindow::on_btnTrack_pressed()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x12;
-    send_arr[5] = 0x02;
-    send_oneframe(2);
-    send_mutex.unlock();
-}
+
 
 void MainWindow::on_btnViewPlus_released()
 {
