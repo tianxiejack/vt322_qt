@@ -1826,8 +1826,102 @@ void MainWindow::lEdt_plat7_Slot()
 
 void MainWindow::btnDownSlot()
 {
-     QString path=QFileDialog::getExistingDirectory(NULL, tr("选择文件夹"),"E:\\",QFileDialog::ShowDirsOnly);
-     QFile file(path);
+    QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    unsigned char usocket_send_buf[1024+256] = {0};
+    qint64 len = 0;
+    char buf[1024+256] = {0};
+    unsigned char checksum = 0;
+
+     if( false == filePath.isEmpty())
+     {
+        qDebug()<<"filepath="<<filePath;
+        // 获取文件信息
+        fileName.clear();
+        filesize =0;
+        QFileInfo info(filePath);
+        fileName = info.fileName();
+        filesize = info.size();
+        sendsize = 0;
+        int packet_flag;
+
+        if(filesize>4294967295)
+        {
+            upgrade_show->append("文件大小不能超过4294967295字节！");
+            return;
+        }
+
+        file.setFileName(filePath);
+        bool isok = file.open(QFile::ReadOnly);
+        if(false == isok)
+        {
+            upgrade_show->append("打开文件失败");
+            return;
+        }
+
+        usocket_send_buf[0] = 0xEB;
+        usocket_send_buf[1] = 0x53;
+        usocket_send_buf[4] = 0x32;
+        usocket_send_buf[5] = filesize&0xff;
+        usocket_send_buf[6] = (filesize>>8)&0xff;
+        usocket_send_buf[7] = (filesize>>16)&0xff;
+        usocket_send_buf[8] = (filesize>>24)&0xff;
+        packet_flag = 0;
+
+        QString ip = upgrade_ip->text();
+        int port = upgrade_port->text().toInt();
+        usocket->connectToHost(ip,port);
+        if(!usocket->waitForConnected(300))
+        {
+            upgrade_show->append("连接服务器失败");
+            return;
+        }
+        while(len = file.read(buf,1024))
+        {  //每次发送数据大小
+          checksum = 0;
+          if(len<0)
+          {
+              upgrade_show->append("文件读取失败");
+              break;
+          }
+          sendsize += len;
+          if(packet_flag == 0)
+          {
+              usocket_send_buf[9] = 0;
+              packet_flag = 1;
+          }
+          else if(sendsize == filesize)
+          {
+              usocket_send_buf[9] = 2;
+          }
+          else
+          {
+            usocket_send_buf[9] = 1;
+          }
+          usocket_send_buf[2] = (len+8)&0xff;
+          usocket_send_buf[3] = ((len+8)>>8)&0xff;
+          usocket_send_buf[10] = len&0xff;
+          usocket_send_buf[11] = (len>>8)&0xff;
+          memcpy(usocket_send_buf+12,buf, len);
+          for(int m = 1; m<12+len;m++)
+              checksum ^= usocket_send_buf[m];
+          usocket_send_buf[12+len] = checksum;
+
+          usocket->write((char *)usocket_send_buf,len+13);
+        }
+        if(sendsize == filesize)
+        {
+            file.close();
+            upgrade_show->append("文件发送中...");
+            usocket->disconnectFromHost();
+            usocket->close();
+        }
+        else
+        {
+            upgrade_show->append("文件发送失败");
+        }
+    }
+    else
+        upgrade_show->append("选择文件无效");
 
 }
 
