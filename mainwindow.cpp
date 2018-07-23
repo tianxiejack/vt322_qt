@@ -15,10 +15,18 @@ volatile unsigned int socket_BufWrite = 0;
 volatile unsigned int socket_BufRead = 0;
 volatile unsigned char socket_BufRcvStatus=BUFFER_EMPTY;
 
+QByteArray usocket_copy_bytearray;
+volatile unsigned char usocket_rcv_buf[5000];
+volatile unsigned int usocket_BufWrite = 0;
+volatile unsigned int usocket_BufRead = 0;
+volatile unsigned char usocket_BufRcvStatus=BUFFER_EMPTY;
+
 extern volatile bool thread_run;
 extern volatile bool thread_run_socket;
+extern volatile bool thread_run_usocket;
 
 QMutex send_mutex;
+QMutex usocket_mutex;
 unsigned char send_arr[64];
 unsigned short sectrk_x = 0;
 unsigned short sectrk_y = 0;
@@ -26,8 +34,13 @@ unsigned char output_array[64];
 unsigned char output_array_6[64];
 unsigned char output_array_7[64];
 unsigned char output_array_8[64];
+unsigned char uoutput_array[5000] = {0};
 extern int connect_flag;
 extern int current_povstat;
+QTcpSocket *usocket;
+QFile expfile;
+QTextEdit *upgrade_show;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -74,14 +87,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(time,SIGNAL(timeout()),this,SLOT(timeoutSlot()));
 
     usocket = new QTcpSocket(this);
-    connect(usocket, &QTcpSocket::readyRead,
-            [=]()
-                {
-
-                   QByteArray buf = usocket->readAll();
-                   upgrade_show->append(buf);
-                }
-        );
+    thread_usocket = new RcvUSocketdata(this);
+    connect(usocket, &QTcpSocket::readyRead, this, &MainWindow::usocket_Read_Data);
+    connect(this,&MainWindow::usocket_copy_Done, this ,&MainWindow::usocket_parse_bytearray);
+    connect(thread_usocket,&RcvUSocketdata::usocket2main_signal, this, &MainWindow::output_to_label);
+    thread_run_usocket = true;
+    thread_usocket->start();
 
     judgment=0;
 
@@ -1372,7 +1383,6 @@ void MainWindow::btn_osd_update_Slot()
 
                 length=msg.size()*2+9;
             }
-            qDebug()<<length;
 
             send_mutex.lock();
             downFrame.my_send[0] = 0xEB;
@@ -1394,13 +1404,11 @@ void MainWindow::btn_osd_update_Slot()
             for(int n = 1; n<13; n++) {
                 sum ^= downFrame.my_send[n];
              }
-            //qDebug()<<sum;
             QByteArray data;
             char* mm=msg.toUtf8().data();
             for(int j=0;j<strlen(mm);j++){
               sum ^=mm[j];
             }
-            qDebug()<<msg.toUtf8();
             downFrame.my_send[13] = sum;
             QString str1,str3;
             for(int m = 0; m< 13; m++){
@@ -1834,7 +1842,6 @@ void MainWindow::btnDownSlot()
 
      if( false == filePath.isEmpty())
      {
-        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -1924,19 +1931,43 @@ void MainWindow::btnDownSlot()
         upgrade_show->append("选择文件无效");
 
 }
+void MainWindow::btnUpSlot()
+{
+    QString filePath= QFileDialog::getSaveFileName(this, tr("Save File"),"",tr("YML files (*.yml)"));
+    unsigned char usocket_send_buf[256] = {0};
+    unsigned char sum = 0;
+    if( false == filePath.isEmpty())
+    {
+        usocket_send_buf[0] = 0xEB;
+        usocket_send_buf[1] = 0x53;
+        usocket_send_buf[2] = 0x01;
+        usocket_send_buf[3] = 0x00;
+        usocket_send_buf[4] = 0x33;
+        expfile.setFileName(filePath);
+        for(int i = 1; i < 5; i++)
+            sum ^= usocket_send_buf[i];
+        usocket_send_buf[5] = sum;
+        QString ip = upgrade_ip->text();
+        int port = upgrade_port->text().toInt();
+        usocket->connectToHost(ip,port);
+        if(!usocket->waitForConnected(300))
+        {
+            upgrade_show->append("连接服务器失败");
+            return;
+        }
+        usocket->write((char *)usocket_send_buf,6);
+    }
+    else
+    {
+        upgrade_show->append("选择文件无效");
+    }
+
+
+}
 
 void MainWindow::btnSaveSlot()
 {
     QString path= QFileDialog::getSaveFileName(this, tr("Save File"),"",tr("Text files (*.txt)"));
-//      QFile file(path);
-//      //file.setFileName();
-//      if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
-//          qDebug()<<"open the file fail!!!!";
-//          return;
-//      }
-//      QByteArray da="hello kitty!";
-//      file.write(da);
-//      file.close();
 }
 
 void MainWindow::btnUpdate()
@@ -1949,7 +1980,6 @@ void MainWindow::btnUpdate()
 
      if( false == filePath.isEmpty())
      {
-        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -2039,12 +2069,12 @@ void MainWindow::btnUpdate()
 
 		QString ip = upgrade_ip->text();
 		int port = upgrade_port->text().toInt();
-		usocket->connectToHost(ip,port);
-		if(!usocket->waitForConnected(300))
-		{
-		    upgrade_show->append("连接服务器失败");
-		    return;
-		}
+        usocket->connectToHost(ip,port);
+        if(!usocket->waitForConnected(300))
+        {
+            upgrade_show->append("连接服务器失败");
+            return;
+        }
 		while(len = file.read(buf,1024))
 		{  //每次发送数据大小
 		  checksum = 0;
@@ -2082,8 +2112,8 @@ void MainWindow::btnUpdate()
 		{
 		    file.close();
 		    upgrade_show->append("文件发送中...");
-		    usocket->disconnectFromHost();
-		    usocket->close();
+            usocket->disconnectFromHost();
+            usocket->close();
 		}
 		else
 		{
@@ -2107,9 +2137,20 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
         thread_socket->quit();
         thread_socket->wait();
     }
+    if(thread_usocket->isRunning()){
+        thread_run_usocket = false;
+        thread_usocket->quit();
+        thread_usocket->wait();
+    }
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
+    int filelen =0;
+    int currentlen =0;
+    int writelen = 0;
+    static int writetotal = 0;
+    static int openflag = 0;
+
     switch(i)
     {
         case 0x35:
@@ -2124,10 +2165,19 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 }
 void MainWindow::socket_Read_Data()
 {
+
     socketRcvData = socket->readAll();//读网口
     socket_copy_bytearray = socketRcvData;
     emit socket_copy_Done();
     socketRcvData.clear();
+}
+
+void MainWindow::usocket_Read_Data()
+{
+    usocketRcvData = usocket->readAll();//读网口
+    usocket_copy_bytearray = usocketRcvData;
+    emit usocket_copy_Done();
+    usocketRcvData.clear();
 }
 
 
@@ -2153,6 +2203,34 @@ void MainWindow::socket_parse_bytearray()
         else {
             socket_BufRcvStatus = BUFFER_DATA;
          }
+    }
+
+}
+void MainWindow::usocket_parse_bytearray()
+{
+    QDataStream out(usocket_copy_bytearray);
+    int add_cnt = 0;
+    unsigned char tmp_buf[5000];
+    while(!out.atEnd()) {
+        quint8 outChar = 0;
+        out >> outChar;
+         tmp_buf[add_cnt++] = outChar;
+    }
+    for(int i = 0; i<add_cnt; i++)
+    {
+        usocket_mutex.lock();
+        usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
+
+        usocket_BufWrite %= sizeof(usocket_rcv_buf);
+
+        if (usocket_BufWrite == usocket_BufRead) {
+            usocket_BufRcvStatus = BUFFER_FULL;
+        }
+        else
+        {
+            usocket_BufRcvStatus = BUFFER_DATA;
+        }
+        usocket_mutex.unlock();
     }
 }
 void MainWindow::parse_bytearray()

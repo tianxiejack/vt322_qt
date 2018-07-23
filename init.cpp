@@ -91,7 +91,7 @@ void MainWindow::init_sysCfg()
     btnSave->setText("保存");
 
     QGroupBox *groupBox_upgrade = new QGroupBox();
-    groupBox_upgrade->setTitle("软件升级");
+    groupBox_upgrade->setTitle("文件传输");
     upgrade_ip = new QLineEdit(groupBox_upgrade);
     upgrade_ip->setInputMask("000.000.000.000");
     upgrade_port = new QLineEdit(groupBox_upgrade);
@@ -102,7 +102,9 @@ void MainWindow::init_sysCfg()
     QFormLayout *vlayout = new QFormLayout;
     vlayout->addRow("IP：",upgrade_ip);
     vlayout->addRow("端口：",upgrade_port);
-    vlayout->addRow(btnUpdate);
+    vlayout->addRow("软件升级",btnUpdate);
+    vlayout->addRow("导入配置",btnDown);
+    vlayout->addRow("导出配置",btnUp);
     vlayout->addRow(upgrade_show);
     groupBox_upgrade->setLayout(vlayout);
 
@@ -113,8 +115,6 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
-    pLayout->addRow("导入配置", btnDown);
-    pLayout->addRow("导出配置", btnUp);
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字体颜色配置", CBox_font_size);
     pLayout->addRow("保存配置", btnSave);
@@ -126,6 +126,7 @@ void MainWindow::init_sysCfg()
     connect(btnSerial,SIGNAL(clicked(bool)),this,SLOT(btnSerialSlot()));
     connect(btnNet,SIGNAL(clicked(bool)),this,SLOT(btnNetSlot()));
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
+    connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
     connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot()));
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));

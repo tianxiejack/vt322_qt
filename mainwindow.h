@@ -37,6 +37,7 @@
 #include<QDataStream>
 #include "recserial.h"
 #include "recvsocket.h"
+#include "recvusocket.h"
 #include <QtCore/qmath.h>
 #include<QTime>
 #include <QTimer>
@@ -54,6 +55,10 @@
 #define BUFFER_DATA          2
 #define BUFFER_EMPTY         3
 extern QMutex send_mutex;
+extern QTcpSocket *usocket;
+extern QTextEdit *upgrade_show;
+extern QFile expfile;
+
 namespace Ui {
 class MainWindow;
 }
@@ -99,7 +104,9 @@ public:
     /*线程*/
     void output_to_label(int i);
     void socket_parse_bytearray();
+    void usocket_parse_bytearray();
     void socket_Read_Data();
+    void usocket_Read_Data();
 
     /*计算圆边界值*/
     void calculationCircle(int center_a, int center_b, int x, int y);
@@ -111,6 +118,7 @@ signals:
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
     void copy_Done();
     void socket_copy_Done();
+    void usocket_copy_Done();
 
 
 public slots:
@@ -141,6 +149,7 @@ public slots:
     void btnNetSlot();
     void toNetSlot(int i);
     void btnDownSlot();
+    void btnUpSlot();
     void btnSaveSlot();
     void btnUpdate();
 
@@ -478,14 +487,17 @@ private:
 
 
     /*软件升级*/
-    QTcpSocket *usocket;
+
     QLineEdit *upgrade_ip;
     QLineEdit *upgrade_port;
-    QTextEdit *upgrade_show;
+    //QTextEdit *upgrade_show;
     QFile  file;  // 文件对象
     QString fileName; //文件名字
     qint64 filesize; // 文件大小
     qint64 sendsize;  // 已经发送的数据大小
+    RcvUSocketdata  *thread_usocket;
+    QByteArray usocketRcvData;
+
 
 };
 

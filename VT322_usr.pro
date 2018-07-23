@@ -31,14 +31,16 @@ SOURCES += \
     comchoose.cpp \
     protocol.cpp \
     recserial.cpp \
-    recvsocket.cpp
+    recvsocket.cpp \
+    recvusocket.cpp
 
 HEADERS += \
         mainwindow.h \
     jos.h \
     comchoose.h \
     recserial.h \
-    recvsocket.h
+    recvsocket.h \
+    recvusocket.h
 
 FORMS += \
         mainwindow.ui \
