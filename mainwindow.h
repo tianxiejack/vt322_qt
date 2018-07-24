@@ -37,11 +37,11 @@
 #include<QDataStream>
 #include "recserial.h"
 #include "recvsocket.h"
-#include "recvusocket.h"
 #include <QtCore/qmath.h>
 #include<QTime>
 #include <QTimer>
 #include<QTextEdit>
+#include "recvusocket.h"
 
 #define POS_MIN 0
 #define POS_MAX 65535
@@ -216,6 +216,7 @@ private slots:
     void lEdt_plat5_Slot();
     void lEdt_plat6_Slot();
     void lEdt_plat7_Slot();
+    void outMode_Slot(int i);
 
     /*通道1固定视场*/
     void lEdt_fix_Radio_Slot();
@@ -366,8 +367,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Jos j;
-    int value_x=0;
-    int value_y=0;
+    int value_x=960;
+    int value_y=540;
     int value_check=0;
 
     /*定时器*/
@@ -416,12 +417,13 @@ private:
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
     QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,
               *josOutputG_x,*josOutputG_y;
+    QComboBox *outMode;
     QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
     QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
+     QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
     QString jos_s[6]={"手柄死区","手柄拐点","手柄x轴输入增益","手柄y轴输入增益","摇杆平台x输出增益","摇杆平台y轴输出增益"};
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
-    QString plat_s[7]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a"};
-
+    QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a","平台输出模式"};
 
     /*相机配置*/
 
@@ -484,20 +486,17 @@ private:
     QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
     QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
 
-
-
     /*软件升级*/
-
+    QTcpSocket *usocket;
+    RcvUSocketdata  *thread_usocket;
     QLineEdit *upgrade_ip;
     QLineEdit *upgrade_port;
-    //QTextEdit *upgrade_show;
+    QTextEdit *upgrade_show;
     QFile  file;  // 文件对象
     QString fileName; //文件名字
     qint64 filesize; // 文件大小
     qint64 sendsize;  // 已经发送的数据大小
-    RcvUSocketdata  *thread_usocket;
     QByteArray usocketRcvData;
-
 
 };
 

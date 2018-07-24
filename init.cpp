@@ -26,7 +26,6 @@ void MainWindow::init_menu()
     utc->addAction(act_algCfg3);
     menu[0]->addMenu(utc);
 
-
     QAction* act_othCfg=new QAction("OSD配置");
     menu[0]->addAction(act_othCfg);
 //    QMenu *osd=new QMenu("OSD配置");
@@ -103,11 +102,10 @@ void MainWindow::init_sysCfg()
     vlayout->addRow("IP：",upgrade_ip);
     vlayout->addRow("端口：",upgrade_port);
     vlayout->addRow("软件升级",btnUpdate);
-    vlayout->addRow("导入配置",btnDown);
-    vlayout->addRow("导出配置",btnUp);
+    vlayout->addRow("导入配置", btnDown);
+    vlayout->addRow("导出配置", btnUp);
     vlayout->addRow(upgrade_show);
     groupBox_upgrade->setLayout(vlayout);
-
 
     QFormLayout *pLayout = new QFormLayout;
 
@@ -127,7 +125,7 @@ void MainWindow::init_sysCfg()
     connect(btnNet,SIGNAL(clicked(bool)),this,SLOT(btnNetSlot()));
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
     connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
-    connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot()));
+    connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot())); 
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
@@ -173,24 +171,33 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     if(mousePress==1){
-        mousePress = 0;
-        a=POINTX+CENTER/2;
-        b=POINTY+CENTER/2;
-        if(judgment == 0){
-        send_mutex.lock();
-        send_arr[4] = 0x15;
-        send_arr[5]=0x00;
-        send_arr[6]=0x00;
-        send_arr[7]=0x00;
-        send_arr[8]=0x00;
-        old_x=a;
-        old_y=b;
-        send_oneframe(5);
-        send_mutex.unlock();
+        if(a!=(POINTX+CENTER/2)||b!=(POINTY+CENTER/2)){
+            mousePress = 0;
+            a=POINTX+CENTER/2;
+            b=POINTY+CENTER/2;
+            if(judgment == 0){
+            send_mutex.lock();
+            send_arr[4] = 0x15;
+            send_arr[5]=0x00;
+            send_arr[6]=0x00;
+            send_arr[7]=0x00;
+            send_arr[8]=0x00;
+            old_x=a;
+            old_y=b;
+            send_oneframe(5);
+            send_mutex.unlock();
 
+            }else{
+                time->stop();
+                send_mutex.lock();
+                send_arr[4] = 0x08;
+                send_arr[5] = 0x00;
+                send_arr[6] = 0x00;
+                send_oneframe(3);
+                send_mutex.unlock();
+            }
+            update();
         }
-        update();
-
     }
 }
 void MainWindow::calculationCircle(int center_a, int center_b, int x, int y)
@@ -247,39 +254,45 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
             if(l>CENTER/4){
                if(y>l2 && y<l1 && x>0){//右
                    jud_area=1;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(y<l2 && y>l1){//左
                    jud_area=5;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(x<l4 && x>l3 ){//上
                    jud_area=7;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(x>l4 && x<l3 ){//下
                    jud_area=3;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(y>l1 && l<l5){//右上
                    jud_area=2;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(y<l1 && l>l5){//左下
                    jud_area=6;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(y>l2 && y<l6){//左上
                    jud_area=4;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }else if(y<l2 && y>l6){//右下
                    jud_area=8;
-                   time->start(1000);
+                   time->start(500);
                    qDebug()<<jud_area;
                }}else{
                 jud_area=0;
-                time->start(1000);
+
+                send_mutex.lock();
+                send_arr[4] = 0x08;
+                send_arr[5] = 0x00;
+                send_arr[6] = 0x00;
+                send_oneframe(3);
+                send_mutex.unlock();
                 qDebug()<<jud_area;
             }
 
@@ -774,12 +787,6 @@ void MainWindow::timeoutSlot()
             send_mutex.unlock();
             break;
        default:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x00;
-            send_arr[6] = 0x00;
-            send_oneframe(3);
-            send_mutex.unlock();
             break;
     }
 }
@@ -875,6 +882,15 @@ void MainWindow::showPlat()
     deadx_plat=new QLineEdit;
     deady_plat=new QLineEdit;
     a_plat=new QLineEdit;
+//    outMode=new QComboBox;
+//    outMode->addItem(string_outMode[0]);
+//    outMode->addItem(string_outMode[1]);
+//    outMode->addItem(string_outMode[2]);
+//    outMode->addItem(string_outMode[3]);
+//    outMode->addItem(string_outMode[4]);
+//    outMode->addItem(string_outMode[5]);
+//    outMode->addItem(string_outMode[6]);
+//    outMode->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
     f3->addRow(plat_s[0],bleedx_plat);
@@ -884,6 +900,7 @@ void MainWindow::showPlat()
     f3->addRow(plat_s[4],deadx_plat);
     f3->addRow(plat_s[5],deady_plat);
     f3->addRow(plat_s[6],a_plat);
+   // f3->addRow(plat_s[7],outMode);
     gbox_plat->setLayout(f3);
 
     QVBoxLayout *v=new QVBoxLayout;
@@ -919,6 +936,7 @@ void MainWindow::showPlat()
     connect(deadx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat5_Slot()));
     connect(deady_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat6_Slot()));
     connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
+   // connect(outMode,SIGNAL(activated(int)),this,SLOT(outMode_Slot(int)));
     w_plat->show();
 }
 
@@ -1308,6 +1326,11 @@ void MainWindow::showOther()
 //    osd1_lineEdit_font=new QLineEdit;
 //    osd1_lineEdit_color=new QLineEdit;
     osd1_lineEdit_transparency=new QLineEdit;
+    osd1_pos_x->setText("30");
+    osd1_pos_y->setText("5");
+    osd1_lineEdit_context->setText("云顶");
+    osd1_lineEdit_transparency->setText("1");
+
 
     QFormLayout *f=new QFormLayout();
     f->addRow(osd_s[0],checkBox);

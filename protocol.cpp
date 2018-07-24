@@ -100,6 +100,7 @@ void MainWindow::send_oneframe(int length)
     }
     bool checkf = true;
     sndData_02 = string2hex(str1,checkf);
+    //qDebug()<<sndData_02;
     sendNum += sndData_02.length();
     memset(&respstat, 0, sizeof(respstat));
     if(checkf == true){

@@ -41,7 +41,6 @@ QTcpSocket *usocket;
 QFile expfile;
 QTextEdit *upgrade_show;
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -49,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     init_menu();
-    //init_btn();
     init_sysCfg();
     this->setWindowTitle("控制界面");
     old_x=a_center=a=POINTX+CENTER/2;
@@ -320,6 +318,7 @@ void MainWindow::btnToClose()
 
 void MainWindow::on_btnTrack_clicked()
 {
+    time->stop();
     btnStack->setCurrentIndex(0);
     judgment=0;
     send_mutex.lock();
@@ -741,19 +740,14 @@ void MainWindow::btn_continue13_Slot()
 
 void MainWindow::btn_utc1_default_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+
 }
 
 void MainWindow::btn_utc1_update_Slot()
 {
     send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
+    send_arr[4] = 0x34;
+    send_oneframe(1);
     send_mutex.unlock();
 }
 
@@ -959,7 +953,10 @@ void MainWindow::btn_utc2_default_Slot()
 
 void MainWindow::btn_utc2_update_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
 }
 
 void MainWindow::lEdt_utc2_l0_Slot()
@@ -1163,7 +1160,10 @@ void MainWindow::btn_utc3_default_Slot()
 
 void MainWindow::btn_utc3_update_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
 }
 
 void MainWindow::lEdt_utc3_l0_Slot()
@@ -1367,82 +1367,70 @@ void MainWindow::btn_osd_default_Slot()
 
 void MainWindow::btn_osd_update_Slot()
 {
-
-        if(checkBox->isChecked()){
-            value_check=0;
+    if(checkBox->isChecked()){
+        value_check=0;
+    }else{
+        value_check=1;
+    }
+    int length=0;
+        QString msg=osd1_lineEdit_context->text();
+        QByteArray dd=msg.toUtf8();
+        if(dd.size()%3==0){
+            length=msg.size()*3+9;
         }else{
-            value_check=1;
+
+            length=msg.size()*2+9;
         }
-        int length=0;
-            QString msg=osd1_lineEdit_context->text();
-            QByteArray dd=msg.toUtf8();
-            if(dd.size()%3==0){
-                length=msg.size()*3+9;
 
-            }else{
 
-                length=msg.size()*2+9;
-            }
-
+        if(c->currentIndex()==0){
             send_mutex.lock();
-            downFrame.my_send[0] = 0xEB;
-            downFrame.my_send[1] = 0x53;
-            downFrame.my_send[2] = length;
-            downFrame.my_send[3] = 0x00;
-            downFrame.my_send[4] = 0x20;
-            downFrame.my_send[5]=c->currentIndex();
-            downFrame.my_send[6]=value_check;
-            downFrame.my_send[7] =osd1_pos_x->text().toInt()&0xff;
-            downFrame.my_send[8]= (osd1_pos_x->text().toInt()>>8)&0xff;
-            downFrame.my_send[9] =osd1_pos_y->text().toInt()&0xff;
-            downFrame.my_send[10] = (osd1_pos_y->text().toInt()>>8)&0xff;
-            downFrame.my_send[11] =CBox_color->currentIndex()+1;
-            downFrame.my_send[12]=osd1_lineEdit_transparency->text().toInt();
-            downFrame.my_send[13]=0x00;
+           send_arr[4] = 0x20;
+           send_arr[5]=c->currentIndex();
+           send_arr[6]=value_check;
+           send_arr[7] =osd1_pos_x->text().toInt()&0xff;
+           send_arr[8]= (osd1_pos_x->text().toInt()>>8)&0xff;
+           send_arr[9] =osd1_pos_y->text().toInt()&0xff;
+           send_arr[10] = (osd1_pos_y->text().toInt()>>8)&0xff;
+           send_arr[11] =CBox_color->currentIndex()+1;
+           send_arr[12]=osd1_lineEdit_transparency->text().toInt();
+           for(int i=0;i<msg.size()*3;i++){
+              int addr1=dd[i] & 0x000000FF;
+              send_arr[13+i]=addr1;
+           }
+           send_oneframe(length);
+           send_mutex.unlock();
 
-            unsigned char sum=0;
-            for(int n = 1; n<13; n++) {
-                sum ^= downFrame.my_send[n];
-             }
-            QByteArray data;
-            char* mm=msg.toUtf8().data();
-            for(int j=0;j<strlen(mm);j++){
-              sum ^=mm[j];
-            }
-            downFrame.my_send[13] = sum;
-            QString str1,str3;
-            for(int m = 0; m< 13; m++){
-                str1 += QString("%1").arg(downFrame.my_send[m]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
-            }
+        }else if(osd1_pos_x->text().toInt()>1870 || osd1_pos_x->text().toInt()<50 || osd1_pos_y->text().toInt()>1030 || osd1_pos_y->text().toInt()<50){
 
-            for(int m = 0; m< strlen(mm); m++){
-                str3 += QString("%1").arg(mm[m]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
-            }
-            QString str2= QString("%1").arg(downFrame.my_send[13]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
-            bool checkf = true;
-            sndData_02 = string2hex(str1,checkf);
-            data.append(sndData_02);
-            data.append(dd);
-            data.append(string2hex(str2,checkf));
-            if(checkf == true){
-                if(1 == connect_flag)
-                {
-                    serialPort_command->write(data);
-                }
-                else if(2 == connect_flag)
-                {
-                    socket->write(data);//通过网口发送数据
-                    socket->flush();
-                }
-            }
-            ui->label->setText(str1);
-            //ui->label->setText(str2);
-            send_mutex.unlock();
+            QMessageBox::warning(this,"输入错误","x的值请输入50-1870，y的值请输入50-1030！",QMessageBox::Ok);
+        }else{
+            send_mutex.lock();
+           send_arr[4] = 0x20;
+           send_arr[5]=c->currentIndex();
+           send_arr[6]=value_check;
+           send_arr[7] =osd1_pos_x->text().toInt()&0xff;
+           send_arr[8]= (osd1_pos_x->text().toInt()>>8)&0xff;
+           send_arr[9] =osd1_pos_y->text().toInt()&0xff;
+           send_arr[10] = (osd1_pos_y->text().toInt()>>8)&0xff;
+           send_arr[11] =CBox_color->currentIndex()+1;
+           send_arr[12]=osd1_lineEdit_transparency->text().toInt();
+           for(int i=0;i<msg.size()*3;i++){
+              int addr1=dd[i] & 0x000000FF;
+              send_arr[13+i]=addr1;
+           }
+           send_oneframe(length);
+           send_mutex.unlock();
+
+        }
 }
 
 void MainWindow::CBox_osd_choose_Slot(int i)
 {
-
+    osd1_lineEdit_context->clear();
+    osd1_pos_y->clear();
+    osd1_pos_x->clear();
+    osd1_lineEdit_transparency->clear();
 }
 
 void MainWindow::checkBox_Slot(int i)
@@ -1588,7 +1576,10 @@ void MainWindow::btn_Jos_Default_Slot()
 
 void MainWindow::btn_Jos_Update_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
 }
 
 void MainWindow::lEdt_Jos1_Slot()
@@ -1830,6 +1821,17 @@ void MainWindow::lEdt_plat7_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::outMode_Slot(int i)
+{
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x03;
+    send_arr[6] = 0x09;
+    send_arr[7] = i;
+    send_oneframe(4);
+    send_mutex.unlock();
+}
+
 
 
 void MainWindow::btnDownSlot()
@@ -1842,6 +1844,7 @@ void MainWindow::btnDownSlot()
 
      if( false == filePath.isEmpty())
      {
+        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -1931,6 +1934,7 @@ void MainWindow::btnDownSlot()
         upgrade_show->append("选择文件无效");
 
 }
+
 void MainWindow::btnUpSlot()
 {
     QString filePath= QFileDialog::getSaveFileName(this, tr("Save File"),"",tr("YML files (*.yml)"));
@@ -1962,12 +1966,14 @@ void MainWindow::btnUpSlot()
         upgrade_show->append("选择文件无效");
     }
 
-
 }
 
 void MainWindow::btnSaveSlot()
 {
-    QString path= QFileDialog::getSaveFileName(this, tr("Save File"),"",tr("Text files (*.txt)"));
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
 }
 
 void MainWindow::btnUpdate()
@@ -1980,6 +1986,7 @@ void MainWindow::btnUpdate()
 
      if( false == filePath.isEmpty())
      {
+        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -2069,12 +2076,12 @@ void MainWindow::btnUpdate()
 
 		QString ip = upgrade_ip->text();
 		int port = upgrade_port->text().toInt();
-        usocket->connectToHost(ip,port);
-        if(!usocket->waitForConnected(300))
-        {
-            upgrade_show->append("连接服务器失败");
-            return;
-        }
+		usocket->connectToHost(ip,port);
+		if(!usocket->waitForConnected(300))
+		{
+		    upgrade_show->append("连接服务器失败");
+		    return;
+		}
 		while(len = file.read(buf,1024))
 		{  //每次发送数据大小
 		  checksum = 0;
@@ -2112,8 +2119,8 @@ void MainWindow::btnUpdate()
 		{
 		    file.close();
 		    upgrade_show->append("文件发送中...");
-            usocket->disconnectFromHost();
-            usocket->close();
+		    usocket->disconnectFromHost();
+		    usocket->close();
 		}
 		else
 		{
@@ -2138,19 +2145,14 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
         thread_socket->wait();
     }
     if(thread_usocket->isRunning()){
-        thread_run_usocket = false;
-        thread_usocket->quit();
-        thread_usocket->wait();
-    }
+            thread_run_usocket = false;
+            thread_usocket->quit();
+            thread_usocket->wait();
+        }
+
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
-    int filelen =0;
-    int currentlen =0;
-    int writelen = 0;
-    static int writetotal = 0;
-    static int openflag = 0;
-
     switch(i)
     {
         case 0x35:
@@ -2165,7 +2167,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 }
 void MainWindow::socket_Read_Data()
 {
-
     socketRcvData = socket->readAll();//读网口
     socket_copy_bytearray = socketRcvData;
     emit socket_copy_Done();
@@ -2204,8 +2205,8 @@ void MainWindow::socket_parse_bytearray()
             socket_BufRcvStatus = BUFFER_DATA;
          }
     }
-
 }
+
 void MainWindow::usocket_parse_bytearray()
 {
     QDataStream out(usocket_copy_bytearray);
@@ -2214,13 +2215,12 @@ void MainWindow::usocket_parse_bytearray()
     while(!out.atEnd()) {
         quint8 outChar = 0;
         out >> outChar;
-         tmp_buf[add_cnt++] = outChar;
+        tmp_buf[add_cnt++] = outChar;
     }
     for(int i = 0; i<add_cnt; i++)
     {
         usocket_mutex.lock();
         usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
-
         usocket_BufWrite %= sizeof(usocket_rcv_buf);
 
         if (usocket_BufWrite == usocket_BufRead) {
@@ -2274,10 +2274,10 @@ void MainWindow::on_btn_right_clicked()
     send_mutex.lock();
     send_arr[4] = 0x0b;
     send_arr[5] = 0x01;
-    send_arr[6] = 0x00;
-    send_arr[7] = 0x00;
-    send_arr[8] = value&0xff;
-    send_arr[9] = (value>>8)&0xff;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
     send_oneframe(6);
     send_mutex.unlock();
 }
@@ -2303,10 +2303,10 @@ void MainWindow::on_btn_up_clicked()
         send_mutex.lock();
         send_arr[4] = 0x0b;
         send_arr[5] = 0x01;
-        send_arr[6] = value&0xff;
-        send_arr[7] = (value>>8)&0xff;
-        send_arr[8] = 0x00;
-        send_arr[9] = 0x00;
+        send_arr[6] = value_x&0xff;
+        send_arr[7] =(value_x>>8)&0xff;
+        send_arr[8] = value_y&0xff;
+        send_arr[9] = (value_y>>8)&0xff;
         send_oneframe(6);
         send_mutex.unlock();
 }
@@ -2318,10 +2318,10 @@ void MainWindow::on_btn_left_clicked()
         send_mutex.lock();
         send_arr[4] = 0x0b;
         send_arr[5] = 0x01;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x00;
-        send_arr[8] = value&0xff;
-        send_arr[9] = (value>>8)&0xff;
+        send_arr[6] = value_x&0xff;
+        send_arr[7] =(value_x>>8)&0xff;
+        send_arr[8] = value_y&0xff;
+        send_arr[9] = (value_y>>8)&0xff;
         send_oneframe(6);
         send_mutex.unlock();
 }
@@ -2333,10 +2333,10 @@ void MainWindow::on_btn_down_clicked()
        send_mutex.lock();
        send_arr[4] = 0x0b;
        send_arr[5] = 0x01;
-       send_arr[6] = value&0xff;
-       send_arr[7] = (value>>8)&0xff;
-       send_arr[8] = 0x00;
-       send_arr[9] = 0x00;
+       send_arr[6] = value_x&0xff;
+       send_arr[7] =(value_x>>8)&0xff;
+       send_arr[8] = value_y&0xff;
+       send_arr[9] = (value_y>>8)&0xff;
        send_oneframe(6);
        send_mutex.unlock();
 }
