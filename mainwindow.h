@@ -487,11 +487,9 @@ private:
     QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
 
     /*软件升级*/
-    QTcpSocket *usocket;
     RcvUSocketdata  *thread_usocket;
     QLineEdit *upgrade_ip;
     QLineEdit *upgrade_port;
-    QTextEdit *upgrade_show;
     QFile  file;  // 文件对象
     QString fileName; //文件名字
     qint64 filesize; // 文件大小

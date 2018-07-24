@@ -7,6 +7,8 @@ class RcvUSocketdata : public QThread
 public:
     explicit RcvUSocketdata(QObject *parent = nullptr);
     void exportfile(unsigned char *uoutput_array);
+    void importfileresp(unsigned char *uoutput_array);
+    void upgraderesp(unsigned char *uoutput_array);
 
 protected:
     void run();

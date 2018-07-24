@@ -97,6 +97,10 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
                         {
                             if(uoutput_array[0]==0x33)
                                 exportfile(uoutput_array);
+                            else if(uoutput_array[0]==0x32)
+                                importfileresp(uoutput_array);
+                            else if(uoutput_array[0]==0x35)
+                                upgraderesp(uoutput_array);
                             frame_flag = 0;
                             crc_sum = 0;
                             usocket_output_cnt = 0;
@@ -120,7 +124,7 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
         }
     }
 }
-void RcvUSocketdata::exportfile(unsigned char *uoutput_array)  //线程运行函数，调用前需要在主线程中声明并定义一个该线程的类的对象，然后通过该对象的 start() 方法来调用这个线程运行函数；
+void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
 {
     int filelen =0;
     int currentlen =0;
@@ -157,6 +161,19 @@ void RcvUSocketdata::exportfile(unsigned char *uoutput_array)  //线程运行函
         openflag = 0;
     }
 }
-
+void RcvUSocketdata::importfileresp(unsigned char *uoutput_array)
+{
+    if(uoutput_array[1] == 0x01)
+        upgrade_show->append("导入成功");
+    else if(uoutput_array[1] == 0x02)
+        upgrade_show->append("导入失败");
+}
+void RcvUSocketdata::upgraderesp(unsigned char *uoutput_array)
+{
+    if(uoutput_array[1] == 0x01)
+        upgrade_show->append("升级成功");
+    else if(uoutput_array[1] == 0x02)
+        upgrade_show->append("升级失败");
+}
 
 

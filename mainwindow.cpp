@@ -1844,7 +1844,6 @@ void MainWindow::btnDownSlot()
 
      if( false == filePath.isEmpty())
      {
-        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -1922,8 +1921,8 @@ void MainWindow::btnDownSlot()
         {
             file.close();
             upgrade_show->append("文件发送中...");
-            usocket->disconnectFromHost();
-            usocket->close();
+            //usocket->disconnectFromHost();
+            //usocket->close();
         }
         else
         {
@@ -1986,7 +1985,6 @@ void MainWindow::btnUpdate()
 
      if( false == filePath.isEmpty())
      {
-        qDebug()<<"filepath="<<filePath;
         // 获取文件信息
         fileName.clear();
         filesize =0;
@@ -2119,8 +2117,8 @@ void MainWindow::btnUpdate()
 		{
 		    file.close();
 		    upgrade_show->append("文件发送中...");
-		    usocket->disconnectFromHost();
-		    usocket->close();
+            //usocket->disconnectFromHost();
+            //usocket->close();
 		}
 		else
 		{
@@ -2153,17 +2151,7 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
-    switch(i)
-    {
-        case 0x35:
-            if(output_array[5]==0x01)
-                upgrade_show->append("升级成功");
-            else if(output_array[5]==0x02)
-                upgrade_show->append("升级失败");
-            break;
-        default:
-            break;
-    }
+
 }
 void MainWindow::socket_Read_Data()
 {
