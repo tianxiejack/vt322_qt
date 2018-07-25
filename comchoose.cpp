@@ -15,10 +15,25 @@ comChoose::comChoose(QWidget *parent) : QWidget(parent)
     s->addWidget(btnSerial);
     s->addWidget(btnNet);
 
+    box3=new QComboBox;
+    box3->addItem("配置模式");
+    box3->addItem("手柄模式");
+
+    QDialogButtonBox* btn = new QDialogButtonBox();
+    btn->addButton( "OK", QDialogButtonBox::YesRole);
+    btn->addButton( "Cancel", QDialogButtonBox::NoRole);
+
     QFormLayout *pLayout = new QFormLayout;
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
-    this->setLayout(pLayout);
+    pLayout->addRow("模式选择", box3);
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(pLayout);
+    v->addWidget(btn);
+
+    this->setLayout(v);
 
      serial_port=" ";
      serial_baud=0;
@@ -28,18 +43,21 @@ comChoose::comChoose(QWidget *parent) : QWidget(parent)
      net_port=0;
      net_ip=" ";
 
-     //通过QVarient传送结构体
+     mutex=0;//默认是串口
 
 
     connect(box2,SIGNAL(currentIndexChanged(int)),this,SLOT(toNetSlot(int)));
     connect(btnSerial,SIGNAL(clicked(bool)),this,SLOT(btnSerialSlot()));
     connect(btnNet,SIGNAL(clicked(bool)),this,SLOT(btnNetSlot()));
+    connect(btn,SIGNAL(accepted()),this,SLOT(toOtherSlot()));
+    connect(btn,SIGNAL(rejected()),this,SLOT(toCloseSlot()));
 }
 
 
 
 void comChoose::btnSerialSlot()
 {
+    mutex=0;
     w_config_serial.setWindowTitle("串口配置");
     w_config_serial.setWindowModality(Qt::ApplicationModal); //阻塞除当前窗体之外的所有的窗体
 
@@ -98,7 +116,7 @@ void comChoose::btnSerialSlot()
 
     w_config_serial.setLayout(mainlayout4);
 
-    connect(button,SIGNAL(accepted()),this,SLOT(serialToMainSlot()));
+    connect(button,SIGNAL(accepted()),this,SLOT(serialSlot()));
     connect(button,SIGNAL(rejected()),this,SLOT(toCloseSlot()));
     w_config_serial.show();
 
@@ -107,6 +125,7 @@ void comChoose::btnSerialSlot()
 
 void comChoose::btnNetSlot()
 {
+    mutex=1;
     w_config_net.setWindowTitle(tr("网络配置"));
 
     w_config_net.setWindowModality(Qt::ApplicationModal);
@@ -127,20 +146,29 @@ void comChoose::btnNetSlot()
     socket_layout2->addWidget(button_socket);
     w_config_net.setLayout(socket_layout2);
 
-    connect(button_socket,SIGNAL(accepted()),this,SLOT(toMainSlot()));
+     connect(button_socket,SIGNAL(accepted()),this,SLOT(netSlot()));
     connect(button_socket,SIGNAL(rejected()),this,SLOT(toCloseSlot()));
     w_config_net.show();
 }
 
-void comChoose::toMainSlot()
+void comChoose::serialSlot()
 {
+    mutex=0;
+    //qDebug()<<box_stop->currentIndex();
+    serial_port=box_serial->currentText();
+    serial_baud=box_baud->currentText().toInt();
+    serial_check=box_check->currentIndex();
+    serial_data=box_data->currentText().toInt();
+    serial_stop=box_stop->currentIndex();
+
+    w_config_serial.close();
+}
+void comChoose::netSlot()
+{
+    mutex=1;
     net_port=lineEdit_port->text().toInt();
     net_ip=lineEdit_ip->text();
-    emit netToMain(net_port,net_ip);
-    this->close();
-   w_config_net.close();
-   // toMain();
-
+    w_config_serial.close();
 }
 
 void comChoose::toCloseSlot()
@@ -148,23 +176,24 @@ void comChoose::toCloseSlot()
     w_config_net.close();
     w_config_serial.close();
 }
-
-void comChoose::serialToMainSlot()
+void comChoose::toOtherSlot()
 {
-    //qDebug()<<box_stop->currentIndex();
-    serial_port=box_serial->currentText();
-    serial_baud=box_baud->currentText().toInt();
-    serial_check=box_check->currentIndex();
-    serial_data=box_data->currentText().toInt();
-    serial_stop=box_stop->currentIndex();
-    emit serialToMain(serial_port,serial_baud,serial_check,serial_data,serial_stop);
-
-
+    if(box3->currentIndex()==0){//到主界面
+        if(mutex==0){//串口
+            emit serialToMain(serial_port,serial_baud,serial_check,serial_data,serial_stop);
+        }else{//网络
+            emit netToMain(net_port,net_ip);
+        }
+    }else{//到手柄界面
+        if(mutex==0){//串口
+            emit serialToJos(serial_port,serial_baud,serial_check,serial_data,serial_stop);
+        }else{//网络
+            emit netToJos(net_port,net_ip);
+        }
+    }
     this->close();
-    w_config_serial.close();
-
-   // toMain();
 }
+
 void comChoose::toNetSlot(int i)
 {
      s->setCurrentIndex(i);

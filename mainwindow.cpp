@@ -162,21 +162,21 @@ QSerialPort::DataBits mySetSerialDataBits( QSerialPort *com,int n)
     return num;
 }
 
-QSerialPort::Parity mySetSerialParity(QSerialPort *com,int n)
+QSerialPort::Parity mySetSerialParity(QSerialPort *com1,int n1)
 {
-    QSerialPort::Parity num =(QSerialPort::Parity)n;
+    QSerialPort::Parity num =(QSerialPort::Parity)n1;
 
 
     switch(num)
     {   // 此处的 0,1,2代表的是下拉框的索引值；
         case 0:
-        com->setParity(QSerialPort::EvenParity);
+        com1->setParity(QSerialPort::EvenParity);
         break;
         case 1:
-        com->setParity(QSerialPort::NoParity);
+        com1->setParity(QSerialPort::NoParity);
         break;
         case 2:
-        com->setParity(QSerialPort::OddParity);
+        com1->setParity(QSerialPort::OddParity);
         break;
 
         default:
@@ -318,6 +318,8 @@ void MainWindow::btnToClose()
 
 void MainWindow::on_btnTrack_clicked()
 {
+    value_x=960;
+    value_y=540;
     time->stop();
     btnStack->setCurrentIndex(0);
     judgment=0;
@@ -1381,27 +1383,7 @@ void MainWindow::btn_osd_update_Slot()
 
             length=msg.size()*2+9;
         }
-
-
-        if(c->currentIndex()==0){
-            send_mutex.lock();
-           send_arr[4] = 0x20;
-           send_arr[5]=c->currentIndex();
-           send_arr[6]=value_check;
-           send_arr[7] =osd1_pos_x->text().toInt()&0xff;
-           send_arr[8]= (osd1_pos_x->text().toInt()>>8)&0xff;
-           send_arr[9] =osd1_pos_y->text().toInt()&0xff;
-           send_arr[10] = (osd1_pos_y->text().toInt()>>8)&0xff;
-           send_arr[11] =CBox_color->currentIndex()+1;
-           send_arr[12]=osd1_lineEdit_transparency->text().toInt();
-           for(int i=0;i<msg.size()*3;i++){
-              int addr1=dd[i] & 0x000000FF;
-              send_arr[13+i]=addr1;
-           }
-           send_oneframe(length);
-           send_mutex.unlock();
-
-        }else if(osd1_pos_x->text().toInt()>1870 || osd1_pos_x->text().toInt()<50 || osd1_pos_y->text().toInt()>1030 || osd1_pos_y->text().toInt()<50){
+       if(osd1_pos_x->text().toInt()>1870 || osd1_pos_x->text().toInt()<50 || osd1_pos_y->text().toInt()>1030 || osd1_pos_y->text().toInt()<50){
 
             QMessageBox::warning(this,"输入错误","x的值请输入50-1870，y的值请输入50-1030！",QMessageBox::Ok);
         }else{
@@ -1421,7 +1403,6 @@ void MainWindow::btn_osd_update_Slot()
            }
            send_oneframe(length);
            send_mutex.unlock();
-
         }
 }
 

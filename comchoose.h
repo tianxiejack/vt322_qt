@@ -48,25 +48,28 @@ public:
 
 signals:
     void toMain();
-    void netToMain(int port ,QString ip);
-   // void serialToMain(serial_command);
-   // void serialToMain(QVariant dataVar);
-    void serialToMain(QString port,qint32 baud,int check,int data,int stop);
+   void netToMain(int port ,QString ip);
+   void netToJos(int port ,QString ip);
+   void serialToMain(QString port,qint32 baud,int check,int data,int stop);
+   void serialToJos(QString port,qint32 baud,int check,int data,int stop);
+
 
 public slots:
-    void toNetSlot(int i);
-    void btnSerialSlot();
-    void btnNetSlot();
-    void toMainSlot();
-    void toCloseSlot();
-    void serialToMainSlot();
+    void toNetSlot(int i);//QComboBox选择
+    void btnSerialSlot();//打开串口子界面
+    void btnNetSlot();//打开网络子界面
+    void serialSlot();//配置串口
+    void netSlot();//配置网口
+    void toCloseSlot();//取消按钮关闭界面
+    //void modeToMainSlot(int i);
+    void toOtherSlot();//ok按钮发送信号
 
 
 public:
    // serial_command ser;
     QWidget w_config_serial,w_config_net;
     QStackedLayout *s;
-    QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
+    QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop,*box3;
     QGroupBox *groupBox_trackboard;
     QString serial_port;
     qint32 serial_baud;
@@ -75,6 +78,7 @@ public:
     QString net_ip;
 
     QLineEdit *lineEdit_port,*lineEdit_ip;
+    int mutex;//用于串口和网络的判断
 
 };
 
