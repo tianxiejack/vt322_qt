@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>392</height>
+    <width>683</width>
+    <height>434</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -134,23 +134,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>280</y>
+      <x>20</x>
+      <y>320</y>
       <width>621</width>
       <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>290</y>
-      <width>81</width>
-      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -173,8 +160,8 @@
    <widget class="QPushButton" name="btn_up">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>99</y>
+      <x>50</x>
+      <y>59</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -186,8 +173,8 @@
    <widget class="QPushButton" name="btn_down">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>160</y>
+      <x>50</x>
+      <y>120</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -199,8 +186,8 @@
    <widget class="QPushButton" name="btn_right">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>130</y>
+      <x>80</x>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -212,8 +199,8 @@
    <widget class="QPushButton" name="btn_left">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>130</y>
+      <x>20</x>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -225,8 +212,8 @@
    <widget class="QPushButton" name="btn_ok">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>130</y>
+      <x>50</x>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -235,17 +222,82 @@
      <string>OK</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnAutoCheck">
+   <widget class="QPushButton" name="btn_right_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>75</width>
-      <height>23</height>
+      <x>80</x>
+      <y>210</y>
+      <width>31</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>启动自检</string>
+     <string>右</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_up_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>179</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>上</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_left_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>210</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>左</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_down_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>240</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>54</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>跟踪搜索</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>54</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>跟踪微调</string>
     </property>
    </widget>
    <zorder>btnCapture</zorder>
@@ -258,21 +310,25 @@
    <zorder>btnAperturePlus</zorder>
    <zorder>btnApertureMinus</zorder>
    <zorder>label</zorder>
-   <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>btn_up</zorder>
    <zorder>btn_down</zorder>
    <zorder>btn_right</zorder>
    <zorder>btn_left</zorder>
    <zorder>btn_ok</zorder>
-   <zorder>btnAutoCheck</zorder>
+   <zorder>btn_right_2</zorder>
+   <zorder>btn_up_2</zorder>
+   <zorder>btn_left_2</zorder>
+   <zorder>btn_down_2</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
+     <width>683</width>
      <height>23</height>
     </rect>
    </property>

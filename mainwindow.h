@@ -47,8 +47,8 @@
 #define POS_MAX 65535
 #define POS_CENTER 32767
 #define POINTX 350 //圆左上角坐标x
-#define POINTY 150 //圆左上角坐标Y
-#define CENTER 128//圆的半径
+#define POINTY 100 //圆左上角坐标Y
+#define CENTER 200//圆的半径
 #define RATIO 10 //矩形框缩小比例
 
 #define BUFFER_FULL          1
@@ -62,21 +62,7 @@ extern QFile expfile;
 namespace Ui {
 class MainWindow;
 }
-//struct serial_command{
-//    QString port;
-//    qint32 baud;
-//    int check;
-//    int data;
-//    int stop;
-//};
 
-//Q_DECLARE_METATYPE(serial_command)
-
-typedef struct {
-    unsigned char my_send[15];//帧头
-    QString msg;
-
-}DownFrame;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -112,7 +98,6 @@ public:
     void calculationCircle(int center_a, int center_b, int x, int y);
     void btnSensor1SwitchSlot();
     void btnSensor2ContinueSlot();
-    DownFrame downFrame;
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -142,6 +127,9 @@ public slots:
     void showAlg();
     void showAlg2();
     void showAlg3();
+    void showCapture1();
+    void showCapture2();
+    void showCapture3();
     void showOther();
 
     /*系统配置槽函数*/
@@ -154,7 +142,7 @@ public slots:
     void btnUpdate();
 
     /*相机配置槽函数*/
-
+    void btn_default_Slot();
     void tosersor_fix(int i);
     void toSensor_switch(int i);
     void tosersor_continue(int i);
@@ -324,20 +312,54 @@ private slots:
     void lEdt_osd_context_Slot();
     void CBox_osd_font_Slot(int i);
     void CBox_osd_font_size_Slot(int i);
+    void CBox_View_Slot(int i);
     void CBox_osd_color_Slot(int i);
     void lEdt_transparency_Slot();
 
+    /*捕获框设置*/
+    void lEdt_capture_0();
+    void lEdt_capture_1();
+    void lEdt_capture_2();
+    void lEdt_capture_3();
+    void lEdt_capture_4();
+    void lEdt_capture_5();
+    void lEdt_capture_6();
+    void lEdt_capture_7();
+    void lEdt_capture_8();
+    void lEdt_capture_9();
+    void lEdt_capture_10();
+    void lEdt_capture_11();
 
+    void lEdt_bomen_0();
+    void lEdt_bomen_1();
+    void lEdt_bomen_2();
+    void lEdt_bomen_3();
+    void lEdt_bomen_4();
+    void lEdt_bomen_5();
+    void lEdt_bomen_6();
+    void lEdt_bomen_7();
+    void lEdt_bomen_8();
+    void lEdt_bomen_9();
+    void lEdt_bomen_10();
+    void lEdt_bomen_11();
 
-    void on_btn_right_clicked();
+    void lEdt_drawLine_0();
+    void lEdt_drawLine_1();
+    void lEdt_drawLine_2();
+    void lEdt_drawLine_3();
+    void lEdt_drawLine_4();
+    void lEdt_drawLine_5();
+
+    void btn_capture_default_Slot();
+    void btn_capture_update_Slot();
+    void btn_capture2_default_SLot();
+    void btn_capture2_update_Slot();
+    void btn_capture3_default_Slot();
+    void btn_capture3_update_Slot();
+
+    //
 
     void on_btn_ok_clicked();
-
-    void on_btn_up_clicked();
-
-    void on_btn_left_clicked();
-
-    void on_btn_down_clicked();
 
     void on_btnAutoCheck_clicked();
 
@@ -364,12 +386,37 @@ private slots:
     void on_btnApertureMinus_released();
     void on_btnViewPlus_pressed();
 
+    void on_btn_up_2_clicked();
+
+    void on_btn_down_2_clicked();
+
+    void on_btn_left_2_clicked();
+
+    void on_btn_right_2_clicked();
+
+    void on_btn_up_pressed();
+
+    void on_btn_up_released();
+
+    void on_btn_right_pressed();
+
+    void on_btn_right_released();
+
+    void on_btn_left_pressed();
+
+    void on_btn_left_released();
+
+    void on_btn_down_pressed();
+
+    void on_btn_down_released();
+
 private:
     Ui::MainWindow *ui;
     Jos j;
     int value_x=960;
     int value_y=540;
     int value_check=0;
+    int value_search=0;
 
     /*定时器*/
     QTimer *time;
@@ -392,7 +439,7 @@ private:
     QByteArray  socketRcvData,RcvData;
 
     /**/
-    int judgment;//用于判断是否进入跟踪微调，0不进入，1进入
+    //int judgment;//用于判断是否进入跟踪微调，0不进入，1进入
     int jud_area=0;
 
     QMenu* menu[10];
@@ -478,6 +525,15 @@ private:
     QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 
+    /*捕获框配置*/
+    QWidget *w_capture1,*w_capture2,*w_capture3;
+    QPushButton *btn_capture_default,*btn_capture_update,*btn_capture2_default,*btn_capture2_update,*btn_capture3_default,*btn_capture3_update;
+    QLineEdit *cap_0_w,*cap_1_w,*cap_2_w,*cap_3_w,*cap_4_w,*cap_5_w,*cap_0_h,*cap_1_h,*cap_2_h,*cap_3_h,*cap_4_h,*cap_5_h;
+    QLineEdit *bomen_0_w,*bomen_1_w,*bomen_2_w,*bomen_3_w,*bomen_4_w,*bomen_5_w,*bomen_0_h,*bomen_1_h,*bomen_2_h,*bomen_3_h,*bomen_4_h,*bomen_5_h;
+    QLineEdit *drawLine_0,*drawLine_1,*drawLine_2,*drawLine_3,*drawLine_4,*drawLine_5;
+    QString string_cap[12]={"通道0捕获框宽","通道1捕获框宽","通道2捕获框宽","通道3捕获框宽","通道4捕获框宽","通道5捕获框宽","通道0捕获框高","通道1捕获框高","通道2捕获框高","通道3捕获框高","通道4捕获框高","通道5捕获框高"};
+    QString string_bomen[12]={"通道0波门宽","通道1波门宽","通道2波门宽","通道3波门宽","通道4波门宽","通道5波门宽","通道0波门高","通道1波门高","通道2波门高","通道3波门高","通道4波门高","通道5波门高"};
+    QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     /*OSD*/
     QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size;
     QPushButton *btn_osd1_default,*btn_osd1_update;

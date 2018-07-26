@@ -37,6 +37,15 @@ void MainWindow::init_menu()
 //    osd->addAction(act_othCfg3);
 //    menu[0]->addMenu(osd);
 
+    QMenu* capture=new QMenu("捕获框配置");
+    QAction* act_cap1=new QAction("捕获框");
+    capture->addAction(act_cap1);
+    QAction* act_cap2=new QAction("波门");
+    capture->addAction(act_cap2);
+    QAction* act_cap3=new QAction("画线");
+    capture->addAction(act_cap3);
+    menu[0]->addMenu(capture);
+
     QAction* act_rstCfg=new QAction("恢复默认");
     menu[0]->addAction(act_rstCfg);
 
@@ -49,6 +58,9 @@ void MainWindow::init_menu()
     connect(act_algCfg2,SIGNAL(triggered(bool)),this,SLOT(showAlg2()));
     connect(act_algCfg3,SIGNAL(triggered(bool)),this,SLOT(showAlg3()));
     connect(act_othCfg,SIGNAL(triggered(bool)),this,SLOT(showOther()));
+    connect(act_cap1,SIGNAL(triggered(bool)),this,SLOT(showCapture1()));
+    connect(act_cap2,SIGNAL(triggered(bool)),this,SLOT(showCapture2()));
+    connect(act_cap3,SIGNAL(triggered(bool)),this,SLOT(showCapture3()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
 
 }
@@ -93,10 +105,19 @@ void MainWindow::init_sysCfg()
     groupBox_upgrade->setTitle("文件传输");
     upgrade_ip = new QLineEdit(groupBox_upgrade);
     upgrade_ip->setInputMask("000.000.000.000");
+    upgrade_ip->setText("192.168.1.202");
     upgrade_port = new QLineEdit(groupBox_upgrade);
+    upgrade_port->setText("10000");
     QPushButton *btnUpdate=new QPushButton(groupBox_upgrade);
     btnUpdate->setText("升级");
     upgrade_show = new QTextEdit(groupBox_upgrade);
+
+    QComboBox *CBox=new QComboBox;
+    CBox->addItem("最慢");
+    CBox->addItem("低中");
+    CBox->addItem("高中");
+    CBox->addItem("最高");
+    CBox->setCurrentIndex(1);
 
     QFormLayout *vlayout = new QFormLayout;
     vlayout->addRow("IP：",upgrade_ip);
@@ -114,7 +135,8 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
     pLayout->addRow("OSD字体配置", CBox_font);
-    pLayout->addRow("OSD字体颜色配置", CBox_font_size);
+    pLayout->addRow("OSD字号配置", CBox_font_size);
+    pLayout->addRow("变焦速度等级", CBox);
     pLayout->addRow("保存配置", btnSave);
     pLayout->addRow(groupBox_upgrade);
 
@@ -129,6 +151,7 @@ void MainWindow::init_sysCfg()
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
+    connect(CBox,SIGNAL(activated(int)),this,SLOT(CBox_View_Slot(int)));
 
     w_config->setLayout(pLayout);
 }
@@ -149,10 +172,14 @@ void MainWindow::paintEvent(QPaintEvent *event)
     paint.drawEllipse(POINTX,POINTY,CENTER,CENTER);
    // paint.drawRect(POINTX-WIDTH/RATIO/2, POINTY-HEIGHT/RATIO/2, WIDTH/RATIO, HEIGHT/RATIO);
     paint.setPen(QPen(QColor(0, 0, 0), 1));
-//    paint.drawLine(QPointF(350, 230), QPointF(510, 230));
-//    paint.drawLine(QPointF(430, 150), QPointF(430, 310));
     paint.drawEllipse(a-10,b-10,20,20);
-   // paint.drawPoint(a,b);
+    paint.drawPoint(a,b);
+
+    QPainter painter(this);
+    QPen pen(Qt::green,5,Qt::DotLine,Qt::RoundCap,Qt::RoundJoin);
+    painter.setPen(pen);
+    paint.drawLine(QPointF(POINTX, POINTY+CENTER/2), QPointF(POINTX+CENTER, POINTY+CENTER/2));
+    paint.drawLine(QPointF(POINTX+CENTER/2, POINTY), QPointF(POINTX+CENTER/2, POINTY+CENTER));
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
@@ -175,7 +202,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
             mousePress = 0;
             a=POINTX+CENTER/2;
             b=POINTY+CENTER/2;
-            if(judgment == 0){
             send_mutex.lock();
             send_arr[4] = 0x15;
             send_arr[5]=0x00;
@@ -186,16 +212,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
             old_y=b;
             send_oneframe(5);
             send_mutex.unlock();
-
-            }else{
-                time->stop();
-                send_mutex.lock();
-                send_arr[4] = 0x08;
-                send_arr[5] = 0x00;
-                send_arr[6] = 0x00;
-                send_oneframe(3);
-                send_mutex.unlock();
-            }
             update();
         }
     }
@@ -211,15 +227,12 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     {
         int x=event->pos().x();
         int y=event->pos().y();
-        int l1=0.414*x+42.604;
-        int l2=(-0.414)*x+385.396;
-        int l3=(y+785.396)/2.414;
-  //      qDebug()<<"l3"<<l3<<" "<<"x"<<x<<endl;
-        int l4=(y-1213.396)/(-2.414);
-       // qDebug()<<"l4"<<l4<<" "<<"x"<<x<<endl;
-        int l5=2.414*x-785.396;
-       // qDebug()<<"l5"<<l5<<"y"<<y;
-        int l6=(-2.414)*x+1213.396;
+//        int l1=0.414*x+42.604;
+//        int l2=(-0.414)*x+385.396;
+//        int l3=(y+785.396)/2.414;
+//        int l4=(y-1213.396)/(-2.414);
+//        int l5=2.414*x-785.396;
+//        int l6=(-2.414)*x+1213.396;
 
         int m=qAbs(x-a_center);
         int n=qAbs(y-b_center);
@@ -229,7 +242,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         {
             sectrk_x = (event->pos().x()-POINTX)*RATIO+CENTER/2;
             sectrk_y = (event->pos().y()-POINTY)*RATIO+CENTER/2;
-             //ui->label_xy->setText(tr("(")+QString::number(sectrk_x)+","+QString::number(sectrk_y)+")");
            if((y-b_center)<0)
               b=b_center-n*CENTER/(2*l);
            else
@@ -247,57 +259,55 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
            update();
 
         }
-//        qDebug()<<"qAbs(a-a_center)/3"<<qAbs(a-a_center);
-//        qDebug()<<"qAbs(b-b_center)/3"<<qAbs(b-b_center);
-        if(judgment==1){//跟踪微调
+//        if(judgment==1){//跟踪微调
 
-            if(l>CENTER/4){
-               if(y>l2 && y<l1 && x>0){//右
-                   jud_area=1;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(y<l2 && y>l1){//左
-                   jud_area=5;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(x<l4 && x>l3 ){//上
-                   jud_area=7;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(x>l4 && x<l3 ){//下
-                   jud_area=3;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(y>l1 && l<l5){//右上
-                   jud_area=2;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(y<l1 && l>l5){//左下
-                   jud_area=6;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(y>l2 && y<l6){//左上
-                   jud_area=4;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }else if(y<l2 && y>l6){//右下
-                   jud_area=8;
-                   time->start(500);
-                   qDebug()<<jud_area;
-               }}else{
-                jud_area=0;
+//            if(l>CENTER/4){
+//               if(y>l2 && y<l1 && x>0){//右
+//                   jud_area=1;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(y<l2 && y>l1){//左
+//                   jud_area=5;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(x<l4 && x>l3 ){//上
+//                   jud_area=7;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(x>l4 && x<l3 ){//下
+//                   jud_area=3;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(y>l1 && l<l5){//右上
+//                   jud_area=2;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(y<l1 && l>l5){//左下
+//                   jud_area=6;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(y>l2 && y<l6){//左上
+//                   jud_area=4;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }else if(y<l2 && y>l6){//右下
+//                   jud_area=8;
+//                   time->start(500);
+//                   qDebug()<<jud_area;
+//               }}else{
+//                jud_area=0;
 
-                send_mutex.lock();
-                send_arr[4] = 0x08;
-                send_arr[5] = 0x00;
-                send_arr[6] = 0x00;
-                send_oneframe(3);
-                send_mutex.unlock();
-                qDebug()<<jud_area;
-            }
+//                send_mutex.lock();
+//                send_arr[4] = 0x08;
+//                send_arr[5] = 0x00;
+//                send_arr[6] = 0x00;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//                qDebug()<<jud_area;
+         //   }
 
 
-        }else{//手柄传输控制
+       // }else{//手柄传输控制
         send_mutex.lock();
         send_arr[4] = 0x15;
         if(x-old_x>0){//判断方位
@@ -717,78 +727,35 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         send_oneframe(5);
         send_mutex.unlock();
         }
-    }
+   // }
 }
 void MainWindow::timeoutSlot()
 {
-    switch(jud_area){
+    switch( value_search){
+        case 0:
+            value_y+=2;
+          break;
         case 1:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x02;
-            send_arr[6] = 0x00;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
+            value_x+=2;
+          break;
         case 2:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x02;
-            send_arr[6] = 0x02;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
+            value_x-=2;
+          break;
         case 3:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x00;
-            send_arr[6] = 0x02;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-        case 4:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x01;
-            send_arr[6] = 0x02;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-        case 5:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x01;
-            send_arr[6] = 0x00;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-        case 6:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x01;
-            send_arr[6] = 0x01;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-        case 7:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x00;
-            send_arr[6] = 0x01;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-        case 8:
-            send_mutex.lock();
-            send_arr[4] = 0x08;
-            send_arr[5] = 0x02;
-            send_arr[6] = 0x01;
-            send_oneframe(3);
-            send_mutex.unlock();
-            break;
-       default:
-            break;
+            value_y-=2;
+          break;
+    default:
+        break;
     }
+    send_mutex.lock();
+    send_arr[4] = 0x0b;
+    send_arr[5] = 0x01;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
+    send_oneframe(6);
+    send_mutex.unlock();
 }
 
 void MainWindow::showJos()
@@ -799,17 +766,6 @@ void MainWindow::showJos()
 void MainWindow::showSysCfg()
 {
     w_config->show();
-    //子界面嵌套。
-//    QScrollArea *scroll = new QScrollArea(this);
-//    scroll->setBackgroundRole(QPalette::Dark);
-//    this->setCentralWidget(scroll);//将滚动条添加到“mainWindow”中间区域
-//    //
-//    w = new QWidget(scroll);
-//    scroll->setWidget(w);//在滚动条上添加widget
-//    w->setGeometry(0,0,1460,500);
-
-//    QPushButton *addBtn = new QPushButton("+",w);
-    //    addBtn->setText("nm");
 }
 
 void MainWindow::showPlat()
@@ -944,6 +900,19 @@ void MainWindow::showCamera()
 {
     w_sersor1=new QWidget;
     w_sersor1->setWindowTitle("通道1");
+
+    QPushButton *btn_default=new QPushButton;
+    QPushButton *btn_update=new QPushButton;
+    btn_default->setText("默认");
+    btn_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_default);
+    v1->addWidget(btn_update);
+    QLabel *label=new QLabel;
+    label->setText("通道1参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
 
     change1=new QComboBox;
     change1->addItem("固定视场");
@@ -1251,6 +1220,204 @@ void MainWindow::showAlg3()
 
     utc3->setLayout(v);
     utc3->show();
+}
+
+
+
+void MainWindow::showCapture1()
+{
+    w_capture1=new QWidget;
+    w_capture1->setWindowTitle("捕获框参数设置");
+
+    btn_capture_default=new QPushButton;
+    btn_capture_update=new QPushButton;
+    btn_capture_default->setText("默认");
+    btn_capture_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_capture_default);
+    v1->addWidget(btn_capture_update);
+    QLabel *label=new QLabel;
+    label->setText("捕获框参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    cap_0_w=new QLineEdit;
+    cap_1_w=new QLineEdit;
+    cap_2_w=new QLineEdit;
+    cap_3_w=new QLineEdit;
+    cap_4_w=new QLineEdit;
+    cap_5_w=new QLineEdit;
+    cap_0_h=new QLineEdit;
+    cap_1_h=new QLineEdit;
+    cap_2_h=new QLineEdit;
+    cap_3_h=new QLineEdit;
+    cap_4_h=new QLineEdit;
+    cap_5_h=new QLineEdit;
+
+    QGroupBox *cap=new QGroupBox;
+    cap->setTitle("捕获框");
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(string_cap[0],cap_0_w);
+    f1->addRow(string_cap[1],cap_1_w);
+    f1->addRow(string_cap[2],cap_2_w);
+    f1->addRow(string_cap[3],cap_3_w);
+    f1->addRow(string_cap[4],cap_4_w);
+    f1->addRow(string_cap[5],cap_5_w);
+    f1->addRow(string_cap[6],cap_0_h);
+    f1->addRow(string_cap[7],cap_1_h);
+    f1->addRow(string_cap[8],cap_2_h);
+    f1->addRow(string_cap[9],cap_3_h);
+    f1->addRow(string_cap[10],cap_4_h);
+    f1->addRow(string_cap[11],cap_5_h);
+    cap->setLayout(f1);
+
+    QVBoxLayout *h=new QVBoxLayout;
+    h->addLayout(h1);
+    h->addWidget(cap);
+
+    connect(btn_capture_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture_default_Slot()));
+    connect(btn_capture_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture_update_Slot()));
+    connect(cap_0_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_0()));
+    connect(cap_1_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_1()));
+    connect(cap_2_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_2()));
+    connect(cap_3_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_3()));
+    connect(cap_4_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_4()));
+    connect(cap_5_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_5()));
+    connect(cap_0_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_6()));
+    connect(cap_1_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_7()));
+    connect(cap_2_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_8()));
+    connect(cap_3_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_9()));
+    connect(cap_4_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_10()));
+    connect(cap_5_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_11()));
+
+    w_capture1->setLayout(h);
+    w_capture1->show();
+
+}
+
+void MainWindow::showCapture2()
+{
+    w_capture2=new QWidget;
+    w_capture2->setWindowTitle("波门参数设置");
+
+    btn_capture2_default=new QPushButton;
+    btn_capture2_update=new QPushButton;
+    btn_capture2_default->setText("默认");
+    btn_capture2_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_capture2_default);
+    v1->addWidget(btn_capture2_update);
+    QLabel *label=new QLabel;
+    label->setText("波门参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    bomen_0_w=new QLineEdit;
+    bomen_1_w=new QLineEdit;
+    bomen_2_w=new QLineEdit;
+    bomen_3_w=new QLineEdit;
+    bomen_4_w=new QLineEdit;
+    bomen_5_w=new QLineEdit;
+    bomen_0_h=new QLineEdit;
+    bomen_1_h=new QLineEdit;
+    bomen_2_h=new QLineEdit;
+    bomen_3_h=new QLineEdit;
+    bomen_4_h=new QLineEdit;
+    bomen_5_h=new QLineEdit;
+
+    QGroupBox *bomen=new QGroupBox;
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(string_bomen[0],bomen_0_w);
+    f2->addRow(string_bomen[1],bomen_1_w);
+    f2->addRow(string_bomen[2],bomen_2_w);
+    f2->addRow(string_bomen[3],bomen_3_w);
+    f2->addRow(string_bomen[4],bomen_4_w);
+    f2->addRow(string_bomen[5],bomen_5_w);
+    f2->addRow(string_bomen[6],bomen_0_h);
+    f2->addRow(string_bomen[7],bomen_1_h);
+    f2->addRow(string_bomen[8],bomen_2_h);
+    f2->addRow(string_bomen[9],bomen_3_h);
+    f2->addRow(string_bomen[10],bomen_4_h);
+    f2->addRow(string_bomen[11],bomen_5_h);
+    bomen->setTitle("波门");
+    bomen->setLayout(f2);
+
+    QVBoxLayout *h=new QVBoxLayout;
+    h->addLayout(h1);
+    h->addWidget(bomen);
+
+    connect(btn_capture2_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_default_SLot()));
+    connect(btn_capture2_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+
+    connect(bomen_0_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_0()));
+    connect(bomen_1_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_1()));
+    connect(bomen_2_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_2()));
+    connect(bomen_3_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_3()));
+    connect(bomen_4_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_4()));
+    connect(bomen_5_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_5()));
+    connect(bomen_0_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_6()));
+    connect(bomen_1_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_7()));
+    connect(bomen_2_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_8()));
+    connect(bomen_3_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_9()));
+    connect(bomen_4_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_10()));
+    connect(bomen_5_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_11()));
+
+    w_capture2->setLayout(h);
+    w_capture2->show();
+}
+
+void MainWindow::showCapture3()
+{
+    w_capture3=new QWidget;
+    w_capture3->setWindowTitle("画线参数设置");
+
+    btn_capture3_default=new QPushButton;
+    btn_capture3_update=new QPushButton;
+    btn_capture3_default->setText("默认");
+    btn_capture3_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_capture3_default);
+    v1->addWidget(btn_capture3_update);
+    QLabel *label=new QLabel;
+    label->setText("画线参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+    QGroupBox *drawLine=new QGroupBox;
+    drawLine->setTitle("画线");
+    drawLine_0=new QLineEdit;
+    drawLine_1=new QLineEdit;
+    drawLine_2=new QLineEdit;
+    drawLine_3=new QLineEdit;
+    drawLine_4=new QLineEdit;
+    drawLine_5=new QLineEdit;
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(string_drawLine[0],drawLine_0);
+    f3->addRow(string_drawLine[1],drawLine_1);
+    f3->addRow(string_drawLine[2],drawLine_2);
+    f3->addRow(string_drawLine[3],drawLine_3);
+    f3->addRow(string_drawLine[4],drawLine_4);
+    f3->addRow(string_drawLine[5],drawLine_5);
+    drawLine->setLayout(f3);
+
+    QVBoxLayout *h=new QVBoxLayout;
+    h->addLayout(h1);
+    h->addWidget(drawLine);
+
+    connect(btn_capture3_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_default_Slot()));
+    connect(btn_capture3_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_update_Slot()));
+
+    connect(drawLine_0,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_0()));
+    connect(drawLine_1,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_1()));
+    connect(drawLine_2,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_2()));
+    connect(drawLine_3,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_3()));
+    connect(drawLine_4,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_4()));
+    connect(drawLine_5,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_5()));
+
+    w_capture3->setLayout(h);
+    w_capture3->show();
 }
 
 void MainWindow::showOther()
