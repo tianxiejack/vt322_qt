@@ -30,13 +30,14 @@ QMutex usocket_mutex;
 unsigned char send_arr[64];
 unsigned short sectrk_x = 0;
 unsigned short sectrk_y = 0;
-unsigned char output_array[64];
-unsigned char output_array_6[64];
-unsigned char output_array_7[64];
-unsigned char output_array_8[64];
+unsigned char output_array[1024];
+unsigned char output_array_6[1024];
+unsigned char output_array_7[1024];
+unsigned char output_array_8[1024];
 unsigned char uoutput_array[5000] = {0};
 extern int connect_flag;
 extern int current_povstat;
+int data_length=0;
 QTcpSocket *usocket;
 QFile expfile;
 QTextEdit *upgrade_show;
@@ -55,15 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->resize(580,450);
 
-    btnStack=new QStackedLayout;
-    btnStack->addWidget(ui->btnCapture);
-    btnStack->addWidget(ui->btnTrack);
-
-
-
-
     serialPort_command = new QSerialPort(this);
-    connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
     connect(this,&MainWindow::copy_Done, this ,&MainWindow::parse_bytearray);
 
 
@@ -91,8 +84,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(thread_usocket,&RcvUSocketdata::usocket2main_signal, this, &MainWindow::output_to_label);
     thread_run_usocket = true;
     thread_usocket->start();
-
-    judgment=0;
 
 }
 
@@ -258,6 +249,7 @@ void MainWindow::serialReceiveMainSlot(QString port,qint32 baud,int check,int da
         mySetSerialDataBits(serialPort_command,data);
         mySetSerialParity(serialPort_command,check);
         smySetSerialStopBit(serialPort_command,stop);
+        connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
     }else{// 串口打开失败时，弹出提示窗口
         QMessageBox::warning(NULL, tr("警告"), tr("串口被占用"), QMessageBox::Close);
     }
@@ -321,8 +313,6 @@ void MainWindow::on_btnTrack_clicked()
     value_x=960;
     value_y=540;
     time->stop();
-    btnStack->setCurrentIndex(0);
-    judgment=0;
     send_mutex.lock();
     send_arr[4] = 0x04;
     send_arr[5] = 0x00;
@@ -332,13 +322,13 @@ void MainWindow::on_btnTrack_clicked()
 
 void MainWindow::on_btnCapture_clicked()
 {
-    btnStack->setCurrentIndex(1);
-    judgment=1;
-    send_mutex.lock();
-    send_arr[4] = 0x04;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
-    send_mutex.unlock();
+//    btnStack->setCurrentIndex(1);
+//    judgment=1;
+//    send_mutex.lock();
+//    send_arr[4] = 0x04;
+//    send_arr[5] = 0x01;
+//    send_oneframe(2);
+//    send_mutex.unlock();
 }
 
 void MainWindow::on_btnSersorSwitch_clicked()
@@ -742,7 +732,11 @@ void MainWindow::btn_continue13_Slot()
 
 void MainWindow::btn_utc1_default_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] =0x09;
+    send_arr[5] = 0x04;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_utc1_update_Slot()
@@ -950,7 +944,11 @@ void MainWindow::lEdt_utc1_l15_Slot()
 
 void MainWindow::btn_utc2_default_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x05;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_utc2_update_Slot()
@@ -1157,7 +1155,11 @@ void MainWindow::lEdt_utc2_l15_Slot()
 
 void MainWindow::btn_utc3_default_Slot()
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x06;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_utc3_update_Slot()
@@ -1364,7 +1366,12 @@ void MainWindow::lEdt_utc3_l15_Slot()
 
 void MainWindow::btn_osd_default_Slot()
 {
-
+    int count=c->currentIndex()+7;
+        send_mutex.lock();
+        send_arr[4] =0x09;
+        send_arr[5] =count;
+        send_oneframe(2);
+        send_mutex.unlock();
 }
 
 void MainWindow::btn_osd_update_Slot()
@@ -1377,33 +1384,23 @@ void MainWindow::btn_osd_update_Slot()
     int length=0;
         QString msg=osd1_lineEdit_context->text();
         QByteArray dd=msg.toUtf8();
-        if(dd.size()%3==0){
-            length=msg.size()*3+9;
-        }else{
-
-            length=msg.size()*2+9;
+        length=dd.size()+9;
+        send_mutex.lock();
+        send_arr[4]=0x20;
+        send_arr[5]=c->currentIndex();
+        send_arr[6]=value_check;
+        send_arr[7]=osd1_pos_x->text().toInt()&0xff;
+        send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
+        send_arr[9]=osd1_pos_y->text().toInt()&0xff;
+        send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
+        send_arr[11]=CBox_color->currentIndex()+1;
+        send_arr[12]=osd1_lineEdit_transparency->text().toInt();
+        for(int i=0;i<dd.size();i++){
+           int addr1=dd[i] & 0x000000FF;
+           send_arr[13+i]=addr1;
         }
-       if(osd1_pos_x->text().toInt()>1870 || osd1_pos_x->text().toInt()<50 || osd1_pos_y->text().toInt()>1030 || osd1_pos_y->text().toInt()<50){
-
-            QMessageBox::warning(this,"输入错误","x的值请输入50-1870，y的值请输入50-1030！",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-           send_arr[4] = 0x20;
-           send_arr[5]=c->currentIndex();
-           send_arr[6]=value_check;
-           send_arr[7] =osd1_pos_x->text().toInt()&0xff;
-           send_arr[8]= (osd1_pos_x->text().toInt()>>8)&0xff;
-           send_arr[9] =osd1_pos_y->text().toInt()&0xff;
-           send_arr[10] = (osd1_pos_y->text().toInt()>>8)&0xff;
-           send_arr[11] =CBox_color->currentIndex()+1;
-           send_arr[12]=osd1_lineEdit_transparency->text().toInt();
-           for(int i=0;i<msg.size()*3;i++){
-              int addr1=dd[i] & 0x000000FF;
-              send_arr[13+i]=addr1;
-           }
-           send_oneframe(length);
-           send_mutex.unlock();
-        }
+        send_oneframe(length);
+        send_mutex.unlock();
 }
 
 void MainWindow::CBox_osd_choose_Slot(int i)
@@ -1416,24 +1413,6 @@ void MainWindow::CBox_osd_choose_Slot(int i)
 
 void MainWindow::checkBox_Slot(int i)
 {
-//    if(i == Qt::Checked)
-//    {
-//        qDebug()<<"Checked";
-//        send_mutex.lock();
-//        send_arr[4] = 0x01;
-//        send_arr[5] = 0x01;
-//        send_oneframe(2);
-//        send_mutex.unlock();
-//    }
-//    else if(i == Qt::Unchecked)
-//    {
-//          qDebug()<<"UnChecked";
-//        send_mutex.lock();
-//        send_arr[4] = 0x01;
-//        send_arr[5] = 0x02;
-//       send_oneframe(2);
-//        send_mutex.unlock();
-//    }
 }
 
 void MainWindow::lEdt_osd_x_Slot()
@@ -1460,7 +1439,7 @@ void MainWindow::CBox_osd_font_Slot(int i)
     send_mutex.lock();
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+1;
+    send_arr[6] =CBox_font_size->currentIndex()+5;
     send_oneframe(3);
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
@@ -1472,33 +1451,459 @@ void MainWindow::CBox_osd_font_size_Slot(int i)
     send_mutex.lock();
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+1;
+    send_arr[6] =CBox_font_size->currentIndex()+5;
     send_oneframe(3);
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
-    qDebug()<<"ok";
+}
+
+void MainWindow::CBox_View_Slot(int i)
+{
+    send_mutex.lock();
+    send_arr[4]=0x11;
+    send_arr[5]=i;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::CBox_osd_color_Slot(int i)
 {
-
+    send_mutex.lock();
+    send_arr[4] = 0x21;
+    send_arr[5] =CBox_font->currentIndex()+1;
+    send_arr[6] =CBox_font_size->currentIndex()+5;
+    send_oneframe(3);
+    send_mutex.unlock();
+    QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
 }
-
-
 
 void MainWindow::lEdt_transparency_Slot()
 {
 
 }
 
-void MainWindow::resetAction()
+void MainWindow::lEdt_capture_0()
 {
-    QMessageBox::information(this,"提示","是否恢复出厂设置",QMessageBox::Ok,QMessageBox::Cancel);
+    float value=cap_0_w->text().toFloat();
     send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x00;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_1()
+{
+    float value=cap_1_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x01;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_2()
+{
+    float value=cap_2_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x02;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_3()
+{
+    float value=cap_3_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x03;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_4()
+{
+    float value=cap_4_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x04;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_5()
+{
+    float value=cap_5_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x05;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_6()
+{
+    float value=cap_0_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x06;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_7()
+{
+    float value=cap_1_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x07;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_8()
+{
+    float value=cap_2_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x08;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_9()
+{
+    float value=cap_3_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x09;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_10()
+{
+    float value=cap_4_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x0a;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_capture_11()
+{
+    float value=cap_5_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2D;
+    send_arr[6] = 0x0b;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_0()
+{
+    float value=bomen_0_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x00;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_1()
+{
+    float value=bomen_1_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x01;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_2()
+{
+    float value=bomen_2_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x02;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_3()
+{
+    float value=bomen_3_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x03;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_4()
+{
+    float value=bomen_4_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x04;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_5()
+{
+    float value=bomen_5_w->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x05;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_6()
+{
+    float value=bomen_0_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x06;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_7()
+{
+    float value=bomen_1_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x07;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_8()
+{
+    float value=bomen_2_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x08;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_9()
+{
+    float value=bomen_3_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x09;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_10()
+{
+    float value=bomen_4_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x0a;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_bomen_11()
+{
+    float value=bomen_5_h->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2E;
+    send_arr[6] = 0x0b;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_0()
+{
+    float value=drawLine_0->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x00;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_1()
+{
+    float value=drawLine_1->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x01;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_2()
+{
+    float value=drawLine_2->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x02;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_3()
+{
+    float value=drawLine_3->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x03;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_4()
+{
+    float value=drawLine_4->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x04;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::lEdt_drawLine_5()
+{
+    float value=drawLine_5->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x05;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_capture_default_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x2D;
     send_oneframe(2);
     send_mutex.unlock();
+}
+
+void MainWindow::btn_capture_update_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_capture2_default_SLot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x2E;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_capture2_update_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_capture3_default_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x2F;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_capture3_update_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
+
+void MainWindow::resetAction()
+{
+    QMessageBox::StandardButton reply;
+    reply=QMessageBox::information(this,"提示","是否恢复出厂设置",QMessageBox::Ok,QMessageBox::Cancel);
+    if(reply==QMessageBox::Ok){
+        send_mutex.lock();
+        send_arr[4] = 0x09;
+        send_arr[5] = 0x00;
+        send_oneframe(2);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::toCBox(int i)
@@ -1512,14 +1917,13 @@ void MainWindow::toCBox(int i)
         connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD2Slot()));
     }else if(i==2){
         qDebug()<<"当前为3";
-
-         connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD3Slot()));
+        connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD3Slot()));
     }else if(i==3){
         qDebug()<<"当前为4";
-         connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD4Slot()));
+        connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD4Slot()));
     }else{
         qDebug()<<"当前为1";
-         connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD1Slot()));
+        connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(toOSD1Slot()));
     }
 }
 
@@ -1552,7 +1956,23 @@ void MainWindow::toMainTest()
 
 void MainWindow::btn_Jos_Default_Slot()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x01;
+    send_oneframe(2);
+    send_mutex.unlock();
 
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x02;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 0x03;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Jos_Update_Slot()
@@ -2108,8 +2528,13 @@ void MainWindow::btnUpdate()
 		//}
     }
     else
-        upgrade_show->append("选择文件无效");
-}
+            upgrade_show->append("选择文件无效");
+     }
+
+ void MainWindow::btn_default_Slot()
+ {
+
+ }
 
 void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮时，会自动触发MyWidget的destroyed信号，
 {                              // 使用connect与其绑定此函数：在关闭窗口时若有线程正在运行则先退出线程再关闭窗口；
@@ -2130,10 +2555,7 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
         }
 
 }
-void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
-{
 
-}
 void MainWindow::socket_Read_Data()
 {
     socketRcvData = socket->readAll();//读网口
@@ -2226,29 +2648,13 @@ void MainWindow::parse_bytearray()
          }
     }
 }
-
 void MainWindow::RcvData_SerialPort()
 {
+
     RcvData = serialPort_command->readAll();
     copy_bytearray = RcvData;
     emit copy_Done();
     RcvData.clear();
-}
-
-void MainWindow::on_btn_right_clicked()
-{
-
-    int value=2;
-    value_x+=value;
-    send_mutex.lock();
-    send_arr[4] = 0x0b;
-    send_arr[5] = 0x01;
-    send_arr[6] = value_x&0xff;
-    send_arr[7] =(value_x>>8)&0xff;
-    send_arr[8] = value_y&0xff;
-    send_arr[9] = (value_y>>8)&0xff;
-    send_oneframe(6);
-    send_mutex.unlock();
 }
 
 void MainWindow::on_btn_ok_clicked()
@@ -2265,50 +2671,9 @@ void MainWindow::on_btn_ok_clicked()
        send_mutex.unlock();
 }
 
-void MainWindow::on_btn_up_clicked()
-{
-        int value=-2;
-        value_y+=value;
-        send_mutex.lock();
-        send_arr[4] = 0x0b;
-        send_arr[5] = 0x01;
-        send_arr[6] = value_x&0xff;
-        send_arr[7] =(value_x>>8)&0xff;
-        send_arr[8] = value_y&0xff;
-        send_arr[9] = (value_y>>8)&0xff;
-        send_oneframe(6);
-        send_mutex.unlock();
-}
 
-void MainWindow::on_btn_left_clicked()
-{
-    int value=-2;
-    value_x+=value;
-        send_mutex.lock();
-        send_arr[4] = 0x0b;
-        send_arr[5] = 0x01;
-        send_arr[6] = value_x&0xff;
-        send_arr[7] =(value_x>>8)&0xff;
-        send_arr[8] = value_y&0xff;
-        send_arr[9] = (value_y>>8)&0xff;
-        send_oneframe(6);
-        send_mutex.unlock();
-}
 
-void MainWindow::on_btn_down_clicked()
-{
-    int value=2;
-    value_y+=value;
-       send_mutex.lock();
-       send_arr[4] = 0x0b;
-       send_arr[5] = 0x01;
-       send_arr[6] = value_x&0xff;
-       send_arr[7] =(value_x>>8)&0xff;
-       send_arr[8] = value_y&0xff;
-       send_arr[9] = (value_y>>8)&0xff;
-       send_oneframe(6);
-       send_mutex.unlock();
-}
+
 
 void MainWindow::on_btnAutoCheck_clicked()
 {
@@ -2428,4 +2793,89 @@ void MainWindow::on_btnViewPlus_pressed()
     send_arr[5] = 0x02;
     send_oneframe(2);
     send_mutex.unlock();
+}
+
+void MainWindow::on_btn_up_2_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x08;
+    send_arr[5] = 0x00;
+    send_arr[6] = 0x01;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::on_btn_down_2_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x08;
+    send_arr[5] = 0x00;
+    send_arr[6] = 0x02;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::on_btn_left_2_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x08;
+    send_arr[5] = 0x01;
+    send_arr[6] = 0x00;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::on_btn_right_2_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x08;
+    send_arr[5] = 0x0;
+    send_arr[6] = 0x00;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::on_btn_up_pressed()
+{
+    value_search=0;
+    time->start(500);
+}
+
+void MainWindow::on_btn_up_released()
+{
+    time->stop();
+}
+
+void MainWindow::on_btn_right_pressed()
+{
+    value_search=1;
+    time->start(500);
+}
+
+void MainWindow::on_btn_right_released()
+{
+
+    time->stop();
+}
+
+void MainWindow::on_btn_left_pressed()
+{
+    value_search=2;
+    time->start(500);
+}
+
+void MainWindow::on_btn_left_released()
+{
+    time->stop();
+}
+
+void MainWindow::on_btn_down_pressed()
+{
+    value_search=3;
+    time->start(500);
+}
+
+void MainWindow::on_btn_down_released()
+{
+    time->stop();
 }

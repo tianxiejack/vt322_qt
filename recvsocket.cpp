@@ -6,11 +6,12 @@ extern volatile unsigned int socket_BufWrite ;
 extern volatile unsigned int socket_BufRead ;
 extern volatile unsigned char socket_BufRcvStatus;
 volatile unsigned int socket_output_cnt =0;
-extern  unsigned char output_array[64];
-extern  unsigned char output_array_6[64];
-extern  unsigned char output_array_7[64];
-extern  unsigned char output_array_8[64];
+extern  unsigned char output_array[1024];
+extern  unsigned char output_array_6[1024];
+extern  unsigned char output_array_7[1024];
+extern  unsigned char output_array_8[1024];
 volatile bool thread_run_socket = true;
+extern int data_length;
 
 
 RcvSocketdata::RcvSocketdata(QObject *parent) : QThread(parent)
@@ -90,6 +91,7 @@ void RcvSocketdata::run()  //线程运行函数，调用前需要在主线程中
                     break;
                 case 3:
                     pkg_length = (pkg_length|(pRxByte<<8));
+                    data_length=pkg_length;
                     crc_sum ^= pRxByte;
                     frame_flag = 4;
                     break;

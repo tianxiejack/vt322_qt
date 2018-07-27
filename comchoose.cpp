@@ -130,8 +130,10 @@ void comChoose::btnNetSlot()
 
     w_config_net.setWindowModality(Qt::ApplicationModal);
     lineEdit_port = new QLineEdit();
+    lineEdit_port->setText("10000");
     lineEdit_ip = new QLineEdit();
     lineEdit_ip->setInputMask("000.000.000.000");
+    lineEdit_ip->setText("192.168.1.202");
 
     QDialogButtonBox* button_socket = new QDialogButtonBox();
     button_socket->addButton( "OK", QDialogButtonBox::YesRole);
@@ -168,7 +170,7 @@ void comChoose::netSlot()
     mutex=1;
     net_port=lineEdit_port->text().toInt();
     net_ip=lineEdit_ip->text();
-    w_config_serial.close();
+    w_config_net.close();
 }
 
 void comChoose::toCloseSlot()

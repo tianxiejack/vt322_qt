@@ -3,10 +3,10 @@
 #include <QDebug>
 
 volatile bool thread_run = true;
-extern  unsigned char output_array[64];
-extern  unsigned char output_array_6[64];
-extern  unsigned char output_array_7[64];
-extern  unsigned char output_array_8[64];
+extern  unsigned char output_array[1024];
+extern  unsigned char output_array_6[1024];
+extern  unsigned char output_array_7[1024];
+extern  unsigned char output_array_8[1024];
 volatile unsigned int output_cnt =0;
 
 extern volatile unsigned char rcv_buf[5000];
