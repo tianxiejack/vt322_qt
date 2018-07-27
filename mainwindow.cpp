@@ -312,7 +312,6 @@ void MainWindow::on_btnTrack_clicked()
 {
     value_x=960;
     value_y=540;
-    time->stop();
     send_mutex.lock();
     send_arr[4] = 0x04;
     send_arr[5] = 0x00;
@@ -1382,25 +1381,25 @@ void MainWindow::btn_osd_update_Slot()
         value_check=1;
     }
     int length=0;
-        QString msg=osd1_lineEdit_context->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        send_mutex.lock();
-        send_arr[4]=0x20;
-        send_arr[5]=c->currentIndex();
-        send_arr[6]=value_check;
-        send_arr[7]=osd1_pos_x->text().toInt()&0xff;
-        send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
-        send_arr[9]=osd1_pos_y->text().toInt()&0xff;
-        send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
-        send_arr[11]=CBox_color->currentIndex()+1;
-        send_arr[12]=osd1_lineEdit_transparency->text().toInt();
-        for(int i=0;i<dd.size();i++){
-           int addr1=dd[i] & 0x000000FF;
-           send_arr[13+i]=addr1;
-        }
-        send_oneframe(length);
-        send_mutex.unlock();
+    QString msg=osd1_lineEdit_context->text();
+    QByteArray dd=msg.toUtf8();
+    length=dd.size()+9;
+    send_mutex.lock();
+    send_arr[4]=0x20;
+    send_arr[5]=c->currentIndex();
+    send_arr[6]=value_check;
+    send_arr[7]=osd1_pos_x->text().toInt()&0xff;
+    send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
+    send_arr[9]=osd1_pos_y->text().toInt()&0xff;
+    send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
+    send_arr[11]=CBox_color->currentIndex()+1;
+    send_arr[12]=osd1_lineEdit_transparency->text().toInt();
+    for(int i=0;i<dd.size();i++){
+       int addr1=dd[i] & 0x000000FF;
+       send_arr[13+i]=addr1;
+    }
+    send_oneframe(length);
+    send_mutex.unlock();
 }
 
 void MainWindow::CBox_osd_choose_Slot(int i)
@@ -2633,6 +2632,7 @@ void MainWindow::parse_bytearray()
         quint8 outChar = 0;
         out >> outChar;
          tmp_buf[add_cnt++] = outChar;
+
     }
     for(int i = 0; i<add_cnt; i++)
     {
@@ -2646,6 +2646,7 @@ void MainWindow::parse_bytearray()
         else {
             BufRcvStatus = BUFFER_DATA;
          }
+
     }
 }
 void MainWindow::RcvData_SerialPort()
@@ -2838,6 +2839,16 @@ void MainWindow::on_btn_right_2_clicked()
 void MainWindow::on_btn_up_pressed()
 {
     value_search=0;
+    value_y-=2;
+    send_mutex.lock();
+    send_arr[4] = 0x0b;
+    send_arr[5] = 0x01;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
+    send_oneframe(6);
+    send_mutex.unlock();
     time->start(500);
 }
 
@@ -2849,6 +2860,16 @@ void MainWindow::on_btn_up_released()
 void MainWindow::on_btn_right_pressed()
 {
     value_search=1;
+    value_x+=2;
+    send_mutex.lock();
+    send_arr[4] = 0x0b;
+    send_arr[5] = 0x01;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
+    send_oneframe(6);
+    send_mutex.unlock();
     time->start(500);
 }
 
@@ -2861,6 +2882,16 @@ void MainWindow::on_btn_right_released()
 void MainWindow::on_btn_left_pressed()
 {
     value_search=2;
+    value_x-=2;
+    send_mutex.lock();
+    send_arr[4] = 0x0b;
+    send_arr[5] = 0x01;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
+    send_oneframe(6);
+    send_mutex.unlock();
     time->start(500);
 }
 
@@ -2872,6 +2903,16 @@ void MainWindow::on_btn_left_released()
 void MainWindow::on_btn_down_pressed()
 {
     value_search=3;
+    value_y+=2;
+    send_mutex.lock();
+    send_arr[4] = 0x0b;
+    send_arr[5] = 0x01;
+    send_arr[6] = value_x&0xff;
+    send_arr[7] =(value_x>>8)&0xff;
+    send_arr[8] = value_y&0xff;
+    send_arr[9] = (value_y>>8)&0xff;
+    send_oneframe(6);
+    send_mutex.unlock();
     time->start(500);
 }
 
@@ -2879,3 +2920,5 @@ void MainWindow::on_btn_down_released()
 {
     time->stop();
 }
+
+

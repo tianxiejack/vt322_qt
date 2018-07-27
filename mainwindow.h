@@ -475,6 +475,7 @@ private:
     QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a","平台输出模式"};
 
     /*相机配置*/
+    void on_btn_right_clicked();
 
     /*通道1*/
     QWidget *w_sersor1,*w_seitchField,*w_ContinueField;

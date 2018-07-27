@@ -733,7 +733,7 @@ void MainWindow::timeoutSlot()
 {
     switch( value_search){
         case 0:
-            value_y+=2;
+            value_y-=2;
           break;
         case 1:
             value_x+=2;
@@ -742,7 +742,7 @@ void MainWindow::timeoutSlot()
             value_x-=2;
           break;
         case 3:
-            value_y-=2;
+            value_y+=2;
           break;
     default:
         break;

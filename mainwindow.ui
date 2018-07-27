@@ -300,6 +300,19 @@
      <string>跟踪微调</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>280</y>
+      <width>541</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>btnCapture</zorder>
    <zorder>btnTrack</zorder>
    <zorder>btnSersorSwitch</zorder>
@@ -322,6 +335,7 @@
    <zorder>btn_down_2</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
