@@ -2830,7 +2830,7 @@ void MainWindow::on_btn_right_2_clicked()
 {
     send_mutex.lock();
     send_arr[4] = 0x08;
-    send_arr[5] = 0x0;
+    send_arr[5] = 0x02;
     send_arr[6] = 0x00;
     send_oneframe(3);
     send_mutex.unlock();
