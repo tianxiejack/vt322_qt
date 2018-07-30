@@ -317,202 +317,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         }else{
             send_arr[5]=0x00;
         }
-        switch (qAbs(a-a_center)) {
-        case 0:
-            send_arr[6]=0x00;
-            break;
-        case 1:
-            send_arr[6]=0x01;
-            break;
-        case 2:
-            send_arr[6]=0x02;
-            break;
-        case 3:
-            send_arr[6]=0x03;
-            break;
-        case 4:
-            send_arr[6]=0x04;
-            break;
-        case 5:
-            send_arr[6]=0x05;
-            break;
-        case 6:
-            send_arr[6]=0x06;
-            break;
-        case 7:
-            send_arr[6]=0x07;
-            break;
-        case 8:
-            send_arr[6]=0x08;
-            break;
-        case 9:
-            send_arr[6]=0x09;
-            break;
-        case 10:
-            send_arr[6]=0x10;
-            break;
-        case 11:
-            send_arr[6]=0x11;
-            break;
-        case 12:
-            send_arr[6]=0x12;
-            break;
-        case 13:
-            send_arr[6]=0x13;
-            break;
-        case 14:
-            send_arr[6]=0x14;
-            break;
-        case 15:
-            send_arr[6]=0x15;
-            break;
-        case 16:
-            send_arr[6]=0x16;
-            break;
-        case 17:
-            send_arr[6]=0x17;
-            break;
-        case 18:
-            send_arr[6]=0x18;
-            break;
-        case 19:
-            send_arr[6]=0x19;
-            break;
-        case 20:
-            send_arr[6]=0x20;
-            break;
-        case 21:
-            send_arr[6]=0x21;
-            break;
-        case 22:
-            send_arr[6]=0x22;
-            break;
-        case 23:
-            send_arr[6]=0x23;
-            break;
-        case 24:
-            send_arr[6]=0x24;
-            break;
-        case 25:
-            send_arr[6]=0x25;
-            break;
-        case 26:
-            send_arr[6]=0x26;
-            break;
-        case 27:
-            send_arr[6]=0x27;
-            break;
-        case 28:
-            send_arr[6]=0x28;
-            break;
-        case 29:
-            send_arr[6]=0x29;
-            break;
-        case 30:
-            send_arr[6]=0x30;
-            break;
-        case 31:
-            send_arr[6]=0x31;
-            break;
-        case 32:
-            send_arr[6]=0x32;
-            break;
-        case 33:
-            send_arr[6]=0x33;
-            break;
-        case 34:
-            send_arr[6]=0x34;
-            break;
-        case 35:
-            send_arr[6]=0x35;
-            break;
-        case 36:
-            send_arr[6]=0x36;
-            break;
-        case 37:
-            send_arr[6]=0x37;
-            break;
-        case 38:
-            send_arr[6]=0x38;
-            break;
-        case 39:
-            send_arr[6]=0x39;
-            break;
-        case 40:
-            send_arr[6]=0x40;
-            break;
-        case 41:
-            send_arr[6]=0x41;
-            break;
-        case 42:
-            send_arr[6]=0x42;
-            break;
-        case 43:
-            send_arr[6]=0x43;
-            break;
-        case 44:
-            send_arr[6]=0x44;
-            break;
-        case 45:
-            send_arr[6]=0x45;
-            break;
-        case 46:
-            send_arr[6]=0x46;
-            break;
-        case 47:
-            send_arr[6]=0x47;
-            break;
-        case 48:
-            send_arr[6]=0x48;
-            break;
-        case 49:
-            send_arr[6]=0x49;
-            break;
-        case 50:
-            send_arr[6]=0x50;
-            break;
-        case 51:
-            send_arr[6]=0x51;
-            break;
-        case 52:
-            send_arr[6]=0x52;
-            break;
-        case 53:
-            send_arr[6]=0x53;
-            break;
-        case 54:
-            send_arr[6]=0x54;
-            break;
-        case 55:
-            send_arr[6]=0x55;
-            break;
-        case 56:
-            send_arr[6]=0x56;
-            break;
-        case 57:
-            send_arr[6]=0x57;
-            break;
-        case 58:
-            send_arr[6]=0x58;
-            break;
-        case 59:
-            send_arr[6]=0x59;
-            break;
-        case 60:
-            send_arr[6]=0x60;
-            break;
-        case 61:
-            send_arr[6]=0x61;
-            break;
-        case 62:
-            send_arr[6]=0x62;
-            break;
-        case 63:
-            send_arr[6]=0x63;
-            break;
-        default:
-            send_arr[6]=0x63;
-            break;
+        if(qAbs(a-a_center)*2/3==64){
+            send_arr[6]=0x3F;
+        }else{
+            send_arr[6]=qAbs(a-a_center)*2/3;
         }
 
         if(y-b_center>0){//判断俯仰
@@ -522,205 +330,12 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         }else{
             send_arr[7]=0x00;
         }
-
-        switch (qAbs(b-b_center)) {
-        case 0:
-            send_arr[8]=0x00;
-            break;
-        case 1:
-            send_arr[8]=0x01;
-            break;
-        case 2:
-            send_arr[8]=0x02;
-            break;
-        case 3:
-            send_arr[8]=0x03;
-            break;
-        case 4:
-            send_arr[8]=0x04;
-            break;
-        case 5:
-            send_arr[8]=0x05;
-            break;
-        case 6:
-            send_arr[8]=0x06;
-            break;
-        case 7:
-            send_arr[8]=0x07;
-            break;
-        case 8:
-            send_arr[8]=0x08;
-            break;
-        case 9:
-            send_arr[8]=0x09;
-            break;
-        case 10:
-            send_arr[8]=0x10;
-            break;
-        case 11:
-            send_arr[8]=0x11;
-            break;
-        case 12:
-            send_arr[8]=0x12;
-            break;
-        case 13:
-            send_arr[8]=0x13;
-            break;
-        case 14:
-            send_arr[8]=0x14;
-            break;
-        case 15:
-            send_arr[8]=0x15;
-            break;
-        case 16:
-            send_arr[8]=0x16;
-            break;
-        case 17:
-            send_arr[8]=0x17;
-            break;
-        case 18:
-            send_arr[8]=0x18;
-            break;
-        case 19:
-            send_arr[8]=0x19;
-            break;
-        case 20:
-            send_arr[8]=0x20;
-            break;
-        case 21:
-            send_arr[8]=0x21;
-            break;
-        case 22:
-            send_arr[8]=0x22;
-            break;
-        case 23:
-            send_arr[8]=0x23;
-            break;
-        case 24:
-            send_arr[8]=0x24;
-            break;
-        case 25:
-            send_arr[8]=0x25;
-            break;
-        case 26:
-            send_arr[8]=0x26;
-            break;
-        case 27:
-            send_arr[8]=0x27;
-            break;
-        case 28:
-            send_arr[8]=0x28;
-            break;
-        case 29:
-            send_arr[8]=0x29;
-            break;
-        case 30:
-            send_arr[8]=0x30;
-            break;
-        case 31:
-            send_arr[8]=0x31;
-            break;
-        case 32:
-            send_arr[8]=0x32;
-            break;
-        case 33:
-            send_arr[8]=0x33;
-            break;
-        case 34:
-            send_arr[8]=0x34;
-            break;
-        case 35:
-            send_arr[8]=0x35;
-            break;
-        case 36:
-            send_arr[8]=0x36;
-            break;
-        case 37:
-            send_arr[8]=0x37;
-            break;
-        case 38:
-            send_arr[8]=0x38;
-            break;
-        case 39:
-            send_arr[8]=0x39;
-            break;
-        case 40:
-            send_arr[8]=0x40;
-            break;
-        case 41:
-            send_arr[8]=0x41;
-            break;
-        case 42:
-            send_arr[8]=0x42;
-            break;
-        case 43:
-            send_arr[8]=0x43;
-            break;
-        case 44:
-            send_arr[8]=0x44;
-            break;
-        case 45:
-            send_arr[8]=0x45;
-            break;
-        case 46:
-            send_arr[8]=0x46;
-            break;
-        case 47:
-            send_arr[8]=0x47;
-            break;
-        case 48:
-            send_arr[8]=0x48;
-            break;
-        case 49:
-            send_arr[8]=0x49;
-            break;
-        case 50:
-            send_arr[8]=0x50;
-            break;
-        case 51:
-            send_arr[8]=0x51;
-            break;
-        case 52:
-            send_arr[8]=0x52;
-            break;
-        case 53:
-            send_arr[8]=0x53;
-            break;
-        case 54:
-            send_arr[8]=0x54;
-            break;
-        case 55:
-            send_arr[8]=0x55;
-            break;
-        case 56:
-            send_arr[8]=0x56;
-            break;
-        case 57:
-            send_arr[8]=0x57;
-            break;
-        case 58:
-            send_arr[8]=0x58;
-            break;
-        case 59:
-            send_arr[8]=0x59;
-            break;
-        case 60:
-            send_arr[8]=0x60;
-            break;
-        case 61:
-            send_arr[8]=0x61;
-            break;
-        case 62:
-            send_arr[8]=0x62;
-            break;
-        case 63:
-            send_arr[8]=0x63;
-            break;
-        default:
-
-           send_arr[8]=0x63;
-            break;
+        if(qAbs(b-b_center)*2/3==64){
+            send_arr[8]=0x3F;
+        }else{
+            send_arr[8]=qAbs(b-b_center)*2/3;
         }
+
         //保留上一次x，y的值。
         old_x=a;
         old_y=b;
@@ -733,16 +348,16 @@ void MainWindow::timeoutSlot()
 {
     switch( value_search){
         case 0:
-            value_y+=2;
+            value_y-=5;
           break;
         case 1:
-            value_x+=2;
+            value_x+=5;
           break;
         case 2:
-            value_x-=2;
+            value_x-=5;
           break;
         case 3:
-            value_y-=2;
+            value_y+=5;
           break;
     default:
         break;
@@ -773,30 +388,30 @@ void MainWindow::showPlat()
     w_plat=new QWidget;
     w_plat->setWindowTitle("平台配置");
 
-    for(int i=1;i<5;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x01;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-    for(int i=1;i<9;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x02;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-    for(int i=1;i<8;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x03;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=1;i<5;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x01;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
+//    for(int i=1;i<9;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x02;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
+//    for(int i=1;i<8;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x03;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     QPushButton* btn_jos_default=new QPushButton;
     QPushButton* btn_jos_update=new QPushButton;
@@ -940,14 +555,14 @@ void MainWindow::showCamera()
     h1->addWidget(label);
 
 
-    for(int i=0;i<7;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x17;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<7;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x17;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     change1=new QComboBox;
     change1->addItem("固定视场");
@@ -1028,14 +643,14 @@ void MainWindow::showAlg()
 {
     utc1=new QWidget;
     utc1->setWindowTitle("UTC1参数配置");
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x04;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<16;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x04;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_utc1_default=new QPushButton;
     btn_utc1_update=new QPushButton;
@@ -1202,14 +817,14 @@ void MainWindow::showAlg3()
     utc3=new QWidget;
     utc3->setWindowTitle("UTC3参数配置");
 
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x06;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<16;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x06;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_utc3_default=new QPushButton;
     btn_utc3_update=new QPushButton;
@@ -1292,14 +907,14 @@ void MainWindow::showCapture1()
     w_capture1=new QWidget;
     w_capture1->setWindowTitle("捕获框参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2D;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2D;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture_default=new QPushButton;
     btn_capture_update=new QPushButton;
@@ -1373,14 +988,14 @@ void MainWindow::showCapture2()
     w_capture2=new QWidget;
     w_capture2->setWindowTitle("波门参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2E;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2E;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture2_default=new QPushButton;
     btn_capture2_update=new QPushButton;
@@ -1454,14 +1069,14 @@ void MainWindow::showCapture3()
     w_capture3=new QWidget;
     w_capture3->setWindowTitle("画线参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2F;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2F;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture3_default=new QPushButton;
     btn_capture3_update=new QPushButton;
@@ -1514,47 +1129,47 @@ void MainWindow::showOther()
 {
     w_osd1=new QWidget;
     w_osd1->setWindowTitle("OSD参数配置");
-    for(int j=7;j<23;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
-    for(int j=7;j<23;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
-    for(int j=29;j<45;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+//    for(int j=7;j<23;j++){
+//        for(int i=0;i<4;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
+//    for(int j=7;j<23;j++){
+//        for(int i=5;i<7;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
+//    for(int j=29;j<45;j++){
+//        for(int i=0;i<4;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
 
-    for(int j=29;j<45;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+//    for(int j=29;j<45;j++){
+//        for(int i=5;i<7;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
     btn_osd1_default=new QPushButton;
     btn_osd1_update=new QPushButton;
     btn_osd1_default->setText("默认");
@@ -1666,14 +1281,14 @@ void MainWindow::btnSensor1SwitchSlot()
     w_seitchField=new QWidget;
     w_seitchField->setWindowTitle("可切换视场");
 
-    for(int i=0;i<15;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x18;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<15;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x18;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     QPushButton* btn_s1Switch_default=new QPushButton;
     QPushButton* btn_s1Switch_update=new QPushButton;
@@ -1813,25 +1428,25 @@ void MainWindow::btnSensor2ContinueSlot()
     w_ContinueField=new QWidget;
     w_ContinueField->setWindowTitle("连续视场");
 
-    for(int j=25;j<27;j++){
-        for(int i=0;i<16;i++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=j;
-            send_arr[6]=i;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
-    }
+//    for(int j=25;j<27;j++){
+//        for(int i=0;i<16;i++){
+//            send_mutex.lock();
+//            send_arr[4]=0x31;
+//            send_arr[5]=j;
+//            send_arr[6]=i;
+//            send_oneframe(3);
+//            send_mutex.unlock();
+//        }
+//    }
 
-    for(int m=0;m<7;m++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x21;
-        send_arr[6]=m;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int m=0;m<7;m++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x21;
+//        send_arr[6]=m;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
 //    QPushButton* btn_continue_default=new QPushButton;
 //    QPushButton* btn_continue_update=new QPushButton;

@@ -1442,7 +1442,7 @@ void MainWindow::CBox_osd_font_Slot(int i)
     send_oneframe(3);
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
-    qDebug()<<"ok";
+
 }
 
 void MainWindow::CBox_osd_font_size_Slot(int i)
@@ -1467,13 +1467,7 @@ void MainWindow::CBox_View_Slot(int i)
 
 void MainWindow::CBox_osd_color_Slot(int i)
 {
-    send_mutex.lock();
-    send_arr[4] = 0x21;
-    send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+5;
-    send_oneframe(3);
-    send_mutex.unlock();
-    QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
+
 }
 
 void MainWindow::lEdt_transparency_Slot()
@@ -2670,6 +2664,8 @@ void MainWindow::on_btn_ok_clicked()
        send_arr[9] = (value_y>>8)&0xff;
        send_oneframe(6);
        send_mutex.unlock();
+       value_x=960;
+       value_y=540;
 }
 
 
@@ -2839,7 +2835,7 @@ void MainWindow::on_btn_right_2_clicked()
 void MainWindow::on_btn_up_pressed()
 {
     value_search=0;
-    value_y-=2;
+    value_y-=5;
     send_mutex.lock();
     send_arr[4] = 0x0b;
     send_arr[5] = 0x01;
@@ -2849,7 +2845,7 @@ void MainWindow::on_btn_up_pressed()
     send_arr[9] = (value_y>>8)&0xff;
     send_oneframe(6);
     send_mutex.unlock();
-    time->start(500);
+    time->start(50);
 }
 
 void MainWindow::on_btn_up_released()
@@ -2860,7 +2856,7 @@ void MainWindow::on_btn_up_released()
 void MainWindow::on_btn_right_pressed()
 {
     value_search=1;
-    value_x+=2;
+    value_x+=5;
     send_mutex.lock();
     send_arr[4] = 0x0b;
     send_arr[5] = 0x01;
@@ -2870,19 +2866,18 @@ void MainWindow::on_btn_right_pressed()
     send_arr[9] = (value_y>>8)&0xff;
     send_oneframe(6);
     send_mutex.unlock();
-    time->start(500);
+    time->start(50);
 }
 
 void MainWindow::on_btn_right_released()
 {
-
     time->stop();
 }
 
 void MainWindow::on_btn_left_pressed()
 {
     value_search=2;
-    value_x-=2;
+    value_x-=5;
     send_mutex.lock();
     send_arr[4] = 0x0b;
     send_arr[5] = 0x01;
@@ -2892,7 +2887,7 @@ void MainWindow::on_btn_left_pressed()
     send_arr[9] = (value_y>>8)&0xff;
     send_oneframe(6);
     send_mutex.unlock();
-    time->start(500);
+    time->start(50);
 }
 
 void MainWindow::on_btn_left_released()
@@ -2903,7 +2898,7 @@ void MainWindow::on_btn_left_released()
 void MainWindow::on_btn_down_pressed()
 {
     value_search=3;
-    value_y+=2;
+    value_y+=5;
     send_mutex.lock();
     send_arr[4] = 0x0b;
     send_arr[5] = 0x01;
@@ -2913,7 +2908,7 @@ void MainWindow::on_btn_down_pressed()
     send_arr[9] = (value_y>>8)&0xff;
     send_oneframe(6);
     send_mutex.unlock();
-    time->start(500);
+    time->start(50);
 }
 
 void MainWindow::on_btn_down_released()

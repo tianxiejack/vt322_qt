@@ -48,7 +48,7 @@
 #define POS_CENTER 32767
 #define POINTX 350 //圆左上角坐标x
 #define POINTY 100 //圆左上角坐标Y
-#define CENTER 200//圆的半径
+#define CENTER 192//圆的半径
 #define RATIO 10 //矩形框缩小比例
 
 #define BUFFER_FULL          1
