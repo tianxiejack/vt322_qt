@@ -1729,6 +1729,7 @@ void MainWindow::btnSerialSlot()
     box_serial= new QComboBox(groupBox_trackboard);
     box_serial->addItems(portNameList);
     box_baud = new QComboBox(groupBox_trackboard); 
+    box_baud->addItem("115200");
     box_baud->addItem("1200");
     box_baud->addItem("2400");
     box_baud->addItem("4800");
@@ -1736,10 +1737,9 @@ void MainWindow::btnSerialSlot()
     box_baud->addItem("19200");
     box_baud->addItem("38400");
     box_baud->addItem("57600");
-    box_baud->addItem("115200");
     box_check = new QComboBox(groupBox_trackboard);
-    box_check->addItem("Even");
     box_check->addItem("None");
+    box_check->addItem("Even");
     box_check->addItem("Odd");
     box_data = new QComboBox(groupBox_trackboard);
     box_data->addItem("8");

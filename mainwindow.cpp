@@ -96,7 +96,6 @@ MainWindow::~MainWindow()
 qint32 mySetSerialBaud( QSerialPort *com, int n)
 {
 //    qint32 num = combobox->currentText().toInt();
-
     qint32 num=n;
     switch(num)
     {   // 此处的Baud1200--Baud115200，是QSerialPort类中的枚举量
@@ -157,14 +156,13 @@ QSerialPort::Parity mySetSerialParity(QSerialPort *com1,int n1)
 {
     QSerialPort::Parity num =(QSerialPort::Parity)n1;
 
-
     switch(num)
     {   // 此处的 0,1,2代表的是下拉框的索引值；
         case 0:
-        com1->setParity(QSerialPort::EvenParity);
+        com1->setParity(QSerialPort::NoParity);
         break;
         case 1:
-        com1->setParity(QSerialPort::NoParity);
+        com1->setParity(QSerialPort::EvenParity);
         break;
         case 2:
         com1->setParity(QSerialPort::OddParity);

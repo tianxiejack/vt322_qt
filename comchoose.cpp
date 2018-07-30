@@ -81,8 +81,8 @@ void comChoose::btnSerialSlot()
     box_baud->addItem("38400");
     box_baud->addItem("57600");
     box_check = new QComboBox(groupBox_trackboard);
-    box_check->addItem("Even");
     box_check->addItem("None");
+    box_check->addItem("Even");
     box_check->addItem("Odd");
     box_data = new QComboBox(groupBox_trackboard);
     box_data->addItem("8");
