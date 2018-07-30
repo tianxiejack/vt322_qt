@@ -449,7 +449,7 @@ private:
     int a, b, m_dragging,b_center,a_center,old_x,old_y;
     int mousePress = 0;
    // QMutex send_mutex;
-    unsigned char send_arr[64];
+    unsigned char send_arr[1080];
     unsigned short sectrk_x = 0;
     unsigned short sectrk_y = 0;
 

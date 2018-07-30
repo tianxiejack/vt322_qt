@@ -1266,11 +1266,11 @@ void MainWindow::showOther()
     connect(btn_osd1_update,SIGNAL(clicked(bool)),this,SLOT(btn_osd_update_Slot()));
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
    // connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
-    connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
-    connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
-    connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
+   // connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
+    //connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
+   // connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
 
-    connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osd_color_Slot(int)));
+   // connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osd_color_Slot(int)));
     //connect(osd1_lineEdit_transparency,SIGNAL(returnPressed()),this,SLOT(lEdt_)))
     w_osd1->setLayout(v);
     w_osd1->show();
@@ -1682,33 +1682,11 @@ void MainWindow::btnSensor2ContinueSlot()
 void MainWindow::tosersor_fix(int i)
 {
     if(i==0){
-        send_mutex.lock();
-        send_arr[3] = 0x30;
-        send_arr[4] = 0x07;
-        send_arr[5] = 0x00;
-        memcpy(send_arr+6,&i,4);
-        send_oneframe(11);
-        send_mutex.unlock();
     }else if(i==1){
-
-        send_mutex.lock();
-        send_arr[3] = 0x30;
-        send_arr[4] = 0x07;
-        send_arr[5] = 0x00;
-        memcpy(send_arr+6,&i,4);
-        send_oneframe(11);
-        send_mutex.unlock();
         w_sersor1->close();
         btnSensor1SwitchSlot();
 
        }else if(i==2){
-        send_mutex.lock();
-        send_arr[3] = 0x30;
-        send_arr[4] = 0x07;
-        send_arr[5] = 0x00;
-        memcpy(send_arr+6,&i,4);
-        send_oneframe(11);
-        send_mutex.unlock();
         w_sersor1->close();
         btnSensor2ContinueSlot();
        }

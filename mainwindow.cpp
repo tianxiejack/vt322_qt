@@ -321,13 +321,6 @@ void MainWindow::on_btnTrack_clicked()
 
 void MainWindow::on_btnCapture_clicked()
 {
-//    btnStack->setCurrentIndex(1);
-//    judgment=1;
-//    send_mutex.lock();
-//    send_arr[4] = 0x04;
-//    send_arr[5] = 0x01;
-//    send_oneframe(2);
-//    send_mutex.unlock();
 }
 
 void MainWindow::on_btnSersorSwitch_clicked()
@@ -1384,22 +1377,26 @@ void MainWindow::btn_osd_update_Slot()
     QString msg=osd1_lineEdit_context->text();
     QByteArray dd=msg.toUtf8();
     length=dd.size()+9;
-    send_mutex.lock();
-    send_arr[4]=0x20;
-    send_arr[5]=c->currentIndex();
-    send_arr[6]=value_check;
-    send_arr[7]=osd1_pos_x->text().toInt()&0xff;
-    send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
-    send_arr[9]=osd1_pos_y->text().toInt()&0xff;
-    send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
-    send_arr[11]=CBox_color->currentIndex()+1;
-    send_arr[12]=osd1_lineEdit_transparency->text().toInt();
-    for(int i=0;i<dd.size();i++){
-       int addr1=dd[i] & 0x000000FF;
-       send_arr[13+i]=addr1;
+    if(dd.size()>128){
+        QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
+    }else{
+        send_mutex.lock();
+        send_arr[4]=0x20;
+        send_arr[5]=c->currentIndex();
+        send_arr[6]=value_check;
+        send_arr[7]=osd1_pos_x->text().toInt()&0xff;
+        send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
+        send_arr[9]=osd1_pos_y->text().toInt()&0xff;
+        send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
+        send_arr[11]=CBox_color->currentIndex()+1;
+        send_arr[12]=osd1_lineEdit_transparency->text().toInt();
+        for(int i=0;i<dd.size();i++){
+           int addr1=dd[i] & 0x000000FF;
+           send_arr[13+i]=addr1;
+        }
+        send_oneframe(length);
+        send_mutex.unlock();
     }
-    send_oneframe(length);
-    send_mutex.unlock();
 }
 
 void MainWindow::CBox_osd_choose_Slot(int i)
@@ -1426,11 +1423,7 @@ void MainWindow::lEdt_osd_y_Slot()
 
 void MainWindow::lEdt_osd_context_Slot()
 {
-            send_mutex.lock();
-            send_arr[4] = 0x20;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
+
 }
 
 void MainWindow::CBox_osd_font_Slot(int i)
