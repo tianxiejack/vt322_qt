@@ -556,5 +556,5 @@ private:
     QByteArray usocketRcvData;
 
 };
-
+extern MainWindow *pthis;
 #endif // MAINWINDOW_H

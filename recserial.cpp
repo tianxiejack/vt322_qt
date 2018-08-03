@@ -106,21 +106,21 @@ void recSerial::run()  //线程运行函数，调用前需要在主线程中声�
                             if(0x06 == output_array[0])
                             {
                                 memcpy(output_array_6, output_array, sizeof(output_array));
-                                emit send2main_signal(output_array_6[0]);
+                                pthis->output_to_label(output_array_6[0]);
                             }
                             else if(0x07 == output_array[0])
                             {
                                 memcpy(output_array_7, output_array, sizeof(output_array));
-                                emit send2main_signal(output_array_7[0]);
+                                pthis->output_to_label(output_array_7[0]);
                             }
                             else if(0x08 == output_array[0])
                             {
                                 memcpy(output_array_8, output_array, sizeof(output_array));
-                                emit send2main_signal(output_array_8[0]);
+                                pthis->output_to_label(output_array_8[0]);
                             }
                             else
                             {
-                                emit send2main_signal(output_array[0]);
+                                pthis->output_to_label(output_array[0]);
                             }
                             frame_flag = 0;
                             crc_sum = 0;

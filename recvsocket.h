@@ -12,10 +12,5 @@ public:
 
 protected:
     void run();
-
-signals:
-    void socket2main_signal(int i);
-
-public slots:
 };
 #endif // RECVSOCKET_H

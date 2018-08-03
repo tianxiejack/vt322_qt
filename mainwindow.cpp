@@ -41,13 +41,14 @@ int data_length=0;
 QTcpSocket *usocket;
 QFile expfile;
 QTextEdit *upgrade_show;
+MainWindow *pthis = NULL;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    pthis = this;
     init_menu();
     init_sysCfg();
     this->setWindowTitle("控制界面");
@@ -61,7 +62,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     thread_01 = new recSerial(this);//定义一个线程对象（接收）
-    connect(thread_01,&recSerial::send2main_signal, this, &MainWindow::output_to_label);
     connect(this,&MainWindow::destroyed, this,&MainWindow::stop_thread_now);
     thread_run = true;
     thread_01->start();
@@ -70,7 +70,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_Read_Data);
     connect(this,&MainWindow::socket_copy_Done, this ,&MainWindow::socket_parse_bytearray);
     thread_socket = new RcvSocketdata(this);
-    connect(thread_socket,&RcvSocketdata::socket2main_signal, this, &MainWindow::output_to_label);
     thread_run_socket = true;
     thread_socket->start();
 
@@ -81,7 +80,6 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_usocket = new RcvUSocketdata(this);
     connect(usocket, &QTcpSocket::readyRead, this, &MainWindow::usocket_Read_Data);
     connect(this,&MainWindow::usocket_copy_Done, this ,&MainWindow::usocket_parse_bytearray);
-    connect(thread_usocket,&RcvUSocketdata::usocket2main_signal, this, &MainWindow::output_to_label);
     thread_run_usocket = true;
     thread_usocket->start();
 

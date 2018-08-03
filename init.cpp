@@ -388,30 +388,30 @@ void MainWindow::showPlat()
     w_plat=new QWidget;
     w_plat->setWindowTitle("平台配置");
 
-//    for(int i=1;i<5;i++){
-//        send_mutex.lock();
-//        send_arr[4]=0x31;
-//        send_arr[5]=0x01;
-//        send_arr[6]=i;
-//        send_oneframe(3);
-//        send_mutex.unlock();
-//    }
-//    for(int i=1;i<9;i++){
-//        send_mutex.lock();
-//        send_arr[4]=0x31;
-//        send_arr[5]=0x02;
-//        send_arr[6]=i;
-//        send_oneframe(3);
-//        send_mutex.unlock();
-//    }
-//    for(int i=1;i<8;i++){
-//        send_mutex.lock();
-//        send_arr[4]=0x31;
-//        send_arr[5]=0x03;
-//        send_arr[6]=i;
-//        send_oneframe(3);
-//        send_mutex.unlock();
-//    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x01;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=1;i<9;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x02;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=1;i<8;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x03;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
     QPushButton* btn_jos_default=new QPushButton;
     QPushButton* btn_jos_update=new QPushButton;

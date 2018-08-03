@@ -12,9 +12,5 @@ public:
 
 protected:
     void run();
-
-signals:
-    void usocket2main_signal(int i);
-public slots:
 };
 #endif // RECVUSOCKET_H
