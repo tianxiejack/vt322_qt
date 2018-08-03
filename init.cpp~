@@ -555,14 +555,14 @@ void MainWindow::showCamera()
     h1->addWidget(label);
 
 
-    for(int i=0;i<7;i++){
-        send_mutex.lock();
-       send_arr[4]=0x31;
-        send_arr[5]=0x17;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<7;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x17;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     change1=new QComboBox;
     change1->addItem("固定视场");
@@ -643,14 +643,14 @@ void MainWindow::showAlg()
 {
     utc1=new QWidget;
     utc1->setWindowTitle("UTC1参数配置");
-    for(int i=0;i<16;i++){
-       send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x04;
-        send_arr[6]=i;
-        send_oneframe(3);
-       send_mutex.unlock();
-    }
+//    for(int i=0;i<16;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x04;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_utc1_default=new QPushButton;
     btn_utc1_update=new QPushButton;
@@ -817,14 +817,14 @@ void MainWindow::showAlg3()
     utc3=new QWidget;
     utc3->setWindowTitle("UTC3参数配置");
 
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x06;
-        send_arr[6]=i;
-       send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<16;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x06;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_utc3_default=new QPushButton;
     btn_utc3_update=new QPushButton;
@@ -907,14 +907,14 @@ void MainWindow::showCapture1()
     w_capture1=new QWidget;
     w_capture1->setWindowTitle("捕获框参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2D;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2D;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture_default=new QPushButton;
     btn_capture_update=new QPushButton;
@@ -988,14 +988,14 @@ void MainWindow::showCapture2()
     w_capture2=new QWidget;
     w_capture2->setWindowTitle("波门参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2E;
-        send_arr[6]=i;
-       send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2E;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture2_default=new QPushButton;
     btn_capture2_update=new QPushButton;
@@ -1069,14 +1069,14 @@ void MainWindow::showCapture3()
     w_capture3=new QWidget;
     w_capture3->setWindowTitle("画线参数设置");
 
-    for(int i=0;i<12;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x2F;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+//    for(int i=0;i<12;i++){
+//        send_mutex.lock();
+//        send_arr[4]=0x31;
+//        send_arr[5]=0x2F;
+//        send_arr[6]=i;
+//        send_oneframe(3);
+//        send_mutex.unlock();
+//    }
 
     btn_capture3_default=new QPushButton;
     btn_capture3_update=new QPushButton;
@@ -1129,47 +1129,47 @@ void MainWindow::showOther()
 {
     w_osd1=new QWidget;
     w_osd1->setWindowTitle("OSD参数配置");
-    for(int j=7;j<23;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-               send_arr[4]=0x31;
-               send_arr[5]=j;
-               send_arr[6]=i;
-               send_oneframe(3);
-               send_mutex.unlock();
-       }
-    }
-    for(int j=7;j<23;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
-    for(int j=29;j<45;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+//    for(int j=7;j<23;j++){
+//        for(int i=0;i<4;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
+//    for(int j=7;j<23;j++){
+//        for(int i=5;i<7;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
+//    for(int j=29;j<45;j++){
+//        for(int i=0;i<4;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
 
-    for(int j=29;j<45;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-               send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+//    for(int j=29;j<45;j++){
+//        for(int i=5;i<7;i++){
+//                send_mutex.lock();
+//                send_arr[4]=0x31;
+//                send_arr[5]=j;
+//                send_arr[6]=i;
+//                send_oneframe(3);
+//                send_mutex.unlock();
+//        }
+//    }
     btn_osd1_default=new QPushButton;
     btn_osd1_update=new QPushButton;
     btn_osd1_default->setText("默认");
