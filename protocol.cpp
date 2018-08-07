@@ -34,6 +34,7 @@ extern  unsigned char output_array[1024];
 extern  unsigned char output_array_6[1024];
 extern  unsigned char output_array_7[1024];
 extern  unsigned char output_array_8[1024];
+extern int data_length;
 
 QByteArray MainWindow::string2hex(QString str, bool &flag)
 {
@@ -117,13 +118,29 @@ void MainWindow::send_oneframe(int length)
             socket->flush();
         }
     }
-    ui->label->setText(str1);
+    ui->textEdit_2->append(str1);
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
     float value_i;
+ QString msg;
+     QByteArray ba;
+    bool osd_judgment=(output_array[1] == 0x07) || (output_array[1] == 0x08)|| (output_array[1] == 0x09)||(output_array[1] == 0x0a)\
+                      ||(output_array[1] == 0x0b) || (output_array[1] == 0x0c)|| (output_array[1] == 0x0d)||(output_array[1] == 0x0e)\
+                      ||(output_array[1] == 0x0f) || (output_array[1] == 0x10)|| (output_array[1] == 0x11)||(output_array[1] == 0x12)\
+                      ||(output_array[1] == 0x13) || (output_array[1] == 0x14)|| (output_array[1] == 0x15)||(output_array[1] == 0x16)\
+                      ||(output_array[1] == 0x1D) || (output_array[1] == 0x1e)|| (output_array[1] == 0x1f)||(output_array[1] == 0x20)\
+                      ||(output_array[1] == 0x21) || (output_array[1] == 0x22)|| (output_array[1] == 0x23)||(output_array[1] == 0x24)\
+                      ||(output_array[1] == 0x25) || (output_array[1] == 0x26)|| (output_array[1] == 0x27)||(output_array[1] == 0x28)\
+                      ||(output_array[1] == 0x29) || (output_array[1] == 0x2a)|| (output_array[1] == 0x2b)||(output_array[1] == 0x2c);
+    if(osd_judgment && (output_array[2]==0x03)){
+      QByteArray dd((char*)output_array+3, data_length-3);
+      ba=dd;
 
-     memcpy(&value_i,output_array+3,4);
+    }else{
+        memcpy(&value_i,output_array+3,4);
+    }
+
 
     if(i==0x31){
         switch (output_array[1]) {
@@ -364,6 +381,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                     case 0x02:
                          osd1_pos_y->setText(QString::number(value_i));
+                        break;
+					case 0x03:
+                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                         break;
                     case 0x05:
                         CBox_color->setCurrentIndex(value_i);
@@ -1439,5 +1459,5 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         }
     }
 
-       memset(output_array,0,1024);
+      memset(output_array,0,sizeof(output_array));
 }

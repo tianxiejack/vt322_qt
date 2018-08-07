@@ -131,32 +131,6 @@
      <string>捕获</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>320</y>
-      <width>621</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>290</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_up">
     <property name="geometry">
      <rect>
@@ -300,17 +274,24 @@
      <string>跟踪微调</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>280</y>
-      <width>541</width>
+      <x>100</x>
+      <y>260</y>
+      <width>311</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>310</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
     </property>
    </widget>
    <zorder>btnCapture</zorder>
@@ -322,8 +303,6 @@
    <zorder>btnForceMinus</zorder>
    <zorder>btnAperturePlus</zorder>
    <zorder>btnApertureMinus</zorder>
-   <zorder>label</zorder>
-   <zorder>label_3</zorder>
    <zorder>btn_up</zorder>
    <zorder>btn_down</zorder>
    <zorder>btn_right</zorder>
@@ -335,7 +314,8 @@
    <zorder>btn_down_2</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
+   <zorder>textEdit</zorder>
+   <zorder>textEdit_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

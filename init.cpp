@@ -747,7 +747,7 @@ void MainWindow::showAlg2()
     v1->addWidget(btn_utc2_default);
     v1->addWidget(btn_utc2_update);
     QLabel *label=new QLabel;
-    label->setText("UTC1参数设置");
+    label->setText("UTC2参数设置");
     QHBoxLayout *h1=new QHBoxLayout;
     h1->addLayout(v1);
     h1->addWidget(label);
@@ -1129,47 +1129,48 @@ void MainWindow::showOther()
 {
     w_osd1=new QWidget;
     w_osd1->setWindowTitle("OSD参数配置");
-    for(int j=7;j<23;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-               send_arr[4]=0x31;
-               send_arr[5]=j;
-               send_arr[6]=i;
-               send_oneframe(3);
-               send_mutex.unlock();
-       }
-    }
-    for(int j=7;j<23;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
-    for(int j=29;j<45;j++){
-        for(int i=0;i<4;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-                send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+   
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x00;
+    send_oneframe(3);
+    send_mutex.unlock();
 
-    for(int j=29;j<45;j++){
-        for(int i=5;i<7;i++){
-                send_mutex.lock();
-                send_arr[4]=0x31;
-                send_arr[5]=j;
-                send_arr[6]=i;
-               send_oneframe(3);
-                send_mutex.unlock();
-        }
-    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x01;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x02;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x03;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x05;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x07;
+    send_arr[6]=0x06;
+    send_oneframe(3);
+    send_mutex.unlock();
     btn_osd1_default=new QPushButton;
     btn_osd1_update=new QPushButton;
     btn_osd1_default->setText("默认");
@@ -1238,10 +1239,6 @@ void MainWindow::showOther()
 //    osd1_lineEdit_font=new QLineEdit;
 //    osd1_lineEdit_color=new QLineEdit;
     osd1_lineEdit_transparency=new QLineEdit;
-    osd1_pos_x->setText("30");
-    osd1_pos_y->setText("5");
-    osd1_lineEdit_context->setText("云顶");
-    osd1_lineEdit_transparency->setText("1");
 
 
     QFormLayout *f=new QFormLayout();
@@ -1250,8 +1247,7 @@ void MainWindow::showOther()
     f->addRow(osd_s[2],osd1_pos_y);
     //f->addRow(osd_s[3],osd1_lineEdit_label);
     f->addRow(osd_s[4],osd1_lineEdit_context);
-//    f->addRow(osd_s[5],CBox_font);
-//    f->addRow(osd_s[6],CBox_font_size);
+
     f->addRow(osd_s[7],CBox_color);
     f->addRow(osd_s[8],osd1_lineEdit_transparency);
 

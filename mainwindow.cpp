@@ -259,7 +259,8 @@ void MainWindow::btnToNet()
        socket->close();
     if(serialPort_command->isOpen())
        serialPort_command->close();
-    socket->connectToHost(net_ip,net_port);
+    socket->abort();
+     socket->connectToHost(net_ip,net_port);
     if(!socket->waitForConnected(300))
     {
         qDebug() << "Connection failed!";
@@ -522,200 +523,112 @@ void MainWindow::sp_test_Slot()
 
 void MainWindow::lEdt_switch_Radio_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+ 
 }
 
 void MainWindow::lEdt_switch_Resolution_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_switch1_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+  
 }
 
 void MainWindow::btn_switch2_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_switch3_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_switch4_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+ 
 }
 
 void MainWindow::btn_switch5_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::lEdt_continue_Radio_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::lEdt_continue_Resolution_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+ 
 }
 
 void MainWindow::btn_continue1_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue2_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_continue3_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_continue4_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue5_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+  
 }
 
 void MainWindow::btn_continue6_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue7_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+  
 }
 
 void MainWindow::btn_continue8_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue9_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue10_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+  
 }
 
 void MainWindow::btn_continue11_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_continue12_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(5);
-    send_mutex.unlock();
+   
 }
 
 void MainWindow::btn_continue13_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 1;
-    send_arr[5] = 1;
-    send_oneframe(2);
-    send_mutex.unlock();
+    
 }
 
 void MainWindow::btn_utc1_default_Slot()
@@ -1401,6 +1314,41 @@ void MainWindow::CBox_osd_choose_Slot(int i)
     osd1_pos_y->clear();
     osd1_pos_x->clear();
     osd1_lineEdit_transparency->clear();
+ if(i<16){
+        for(int j=0;j<4;j++){
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=i+7;
+            send_arr[6]=j;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
+        for(int j=5;j<7;j++){
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=i+7;
+            send_arr[6]=j;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
+    }else{
+        for(int j=0;j<4;j++){
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=i+13;
+            send_arr[6]=j;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
+        for(int j=5;j<7;j++){
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=i+13;
+            send_arr[6]=j;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
+    }
 }
 
 void MainWindow::checkBox_Slot(int i)
@@ -2537,12 +2485,30 @@ void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮�
         }
 
 }
+QString ShowHex(QByteArray str)
+{
+    QDataStream out(&str,QIODevice::ReadWrite);   //将字节数组与数据流关联，操作数据流等同于操作字节数组；
+    QString buf;
+
+    while(!out.atEnd())  // 判断是否已经到数据末端
+    {
+        quint8 outChar = 0;
+        out >> outChar;             //每次一个字节的拷贝至 outchar
+        QString str = QString("%1").arg(outChar&0xFF,2,16,QLatin1Char('0')).trimmed().toUpper() + QString(" ");   //2 字符宽度
+        buf += str;
+    }
+    return buf;
+}
 
 void MainWindow::socket_Read_Data()
 {
     socketRcvData = socket->readAll();//读网口
     socket_copy_bytearray = socketRcvData;
     emit socket_copy_Done();
+ QString rcvBuf;
+    rcvBuf = ShowHex(socketRcvData);
+    ui->textEdit->setTextColor(QColor(Qt::blue));
+    ui->textEdit->append(rcvBuf);
     socketRcvData.clear();
 }
 
