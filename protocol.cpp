@@ -757,24 +757,36 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 0x17:
                     switch(output_array[2]){
                         case 0x00:
-                            change1->setCurrentIndex(value_i);
-                            change2->setCurrentIndex(value_i);
-                            change3->setCurrentIndex(value_i);
+                            if(0 == current_shichang)
+                                change1->setCurrentIndex(value_i);
+                            else if(1 == current_shichang)
+                                change2->setCurrentIndex(value_i);
+                            else if(2 == current_shichang)
+                                change3->setCurrentIndex(value_i);
                             break;
                         case 0x01:
-                            lineEdit_fieldRadio->setText(QString::number(value_i));
-                            lineEdit_switchRadio->setText(QString::number(value_i));
-                            lineEdit_continueRadio->setText(QString::number(value_i));
+                            if(0 == current_shichang)
+                                lineEdit_fieldRadio->setText(QString::number(value_i));
+                            else if(1 == current_shichang)
+                                lineEdit_switchRadio->setText(QString::number(value_i));
+                            else if(2 == current_shichang)
+                                lineEdit_continueRadio->setText(QString::number(value_i));
                             break;
                         case 0x02:
-                            lineEdit_fieldResolution->setText(QString::number(value_i));
-                            lineEdit_switchResolution->setText(QString::number(value_i));
-                            lineEdit_continueResolution->setText(QString::number(value_i));
+                            if(0 == current_shichang)
+                                lineEdit_fieldResolution->setText(QString::number(value_i));
+                            else if(1 == current_shichang)
+                                lineEdit_switchResolution->setText(QString::number(value_i));
+                            else if(2 == current_shichang)
+                                lineEdit_continueResolution->setText(QString::number(value_i));
                             break;
                         case 0x03:
-                            lineEdit_fieldResolution2->setText(QString::number(value_i));
-                            lineEdit_switchResolution2->setText(QString::number(value_i));
-                            lineEdit_continueResolution2->setText(QString::number(value_i));
+                            if(0 == current_shichang)
+                                lineEdit_fieldResolution2->setText(QString::number(value_i));
+                            else if(1 == current_shichang)
+                                lineEdit_switchResolution2->setText(QString::number(value_i));
+                            else if(2 == current_shichang)
+                                lineEdit_continueResolution2->setText(QString::number(value_i));
                             break;
                         case 0x04:
                             lEdt->setText(QString::number(value_i));

@@ -54,9 +54,9 @@ void recSerial::run()  //线程运行函数，调用前需要在主线程中声�
         if(thread_run == false) {
             break;
         }
-        if( 1 == Get_One_Char((unsigned char*)&pRxByte)  )//从网口读一个字节存到pRxByte
+        if( 1 == Get_One_Char((unsigned char*)&pRxByte)  )//从串口读一个字节存到pRxByte
         {
-            switch(frame_flag)//从网口读取一帧数据，并检查校验和。
+            switch(frame_flag)//从串口读取一帧数据，并检查校验和。
             {
                 case 0:
                     if(pRxByte == 0xEB) {

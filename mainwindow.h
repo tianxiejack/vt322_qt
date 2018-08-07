@@ -481,6 +481,7 @@ private:
     QWidget *w_sersor1,*w_seitchField,*w_ContinueField;
     QStackedLayout *sta;
     QComboBox *change3,*change2,*change1,*change;
+    int current_shichang;
 
     //固定视场参数
     //QPushButton *ok;

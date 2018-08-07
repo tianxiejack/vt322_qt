@@ -538,6 +538,7 @@ void MainWindow::showPlat()
 
 void MainWindow::showCamera()
 {
+    current_shichang = 0;
     w_sersor1=new QWidget;
     w_sersor1->setWindowTitle("通道1");
 
@@ -557,7 +558,7 @@ void MainWindow::showCamera()
 
     for(int i=0;i<7;i++){
         send_mutex.lock();
-       send_arr[4]=0x31;
+        send_arr[4]=0x31;
         send_arr[5]=0x17;
         send_arr[6]=i;
         send_oneframe(3);
@@ -1273,10 +1274,19 @@ void MainWindow::showOther()
 }
 void MainWindow::btnSensor1SwitchSlot()
 {
-
+    current_shichang = 1;
     w_seitchField=new QWidget;
     w_seitchField->setWindowTitle("可切换视场");
 
+
+    for(int i=0;i<4;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x17;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 //    for(int i=0;i<15;i++){
 //        send_mutex.lock();
 //        send_arr[4]=0x31;
@@ -1421,9 +1431,18 @@ void MainWindow::btnSensor1SwitchSlot()
 
 void MainWindow::btnSensor2ContinueSlot()
 {
+    current_shichang = 2;
     w_ContinueField=new QWidget;
     w_ContinueField->setWindowTitle("连续视场");
 
+    for(int i=0;i<4;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x17;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 //    for(int j=25;j<27;j++){
 //        for(int i=0;i<16;i++){
 //            send_mutex.lock();

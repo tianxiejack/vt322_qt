@@ -2505,7 +2505,7 @@ void MainWindow::socket_Read_Data()
     socketRcvData = socket->readAll();//读网口
     socket_copy_bytearray = socketRcvData;
     emit socket_copy_Done();
- QString rcvBuf;
+    QString rcvBuf;
     rcvBuf = ShowHex(socketRcvData);
     ui->textEdit->setTextColor(QColor(Qt::blue));
     ui->textEdit->append(rcvBuf);
@@ -2600,10 +2600,13 @@ void MainWindow::parse_bytearray()
 }
 void MainWindow::RcvData_SerialPort()
 {
-
     RcvData = serialPort_command->readAll();
     copy_bytearray = RcvData;
     emit copy_Done();
+    QString rcvBuf;
+    rcvBuf = ShowHex(RcvData);
+    ui->textEdit->setTextColor(QColor(Qt::blue));
+    ui->textEdit->append(rcvBuf);
     RcvData.clear();
 }
 
