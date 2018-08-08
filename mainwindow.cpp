@@ -437,7 +437,7 @@ void MainWindow::lEdt_fix_Radio_Slot()
 {   float value=lineEdit_fieldRadio->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x01;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -451,7 +451,7 @@ void MainWindow::lEdt_Resolution_Slot()
 //    qDebug()<<value;
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x02;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -463,7 +463,7 @@ void MainWindow::lEdt_Resolution2_Slot()
     float value=lineEdit_fieldResolution2->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x03;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -484,7 +484,7 @@ void MainWindow::lEdt_fix_view_Slot()
     float value=lEdt->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x04;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -497,7 +497,7 @@ void MainWindow::sp_fix_x_Slot(int i)
      qDebug()<<"i"<<i;
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x05;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -509,7 +509,7 @@ void MainWindow::sp_fix_y_Slot(int i)
     float value=sp2->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x07;
+    send_arr[5] = 0x17;
     send_arr[6] = 0x06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);

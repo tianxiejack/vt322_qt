@@ -1299,7 +1299,7 @@ void MainWindow::btnSensor1SwitchSlot()
     QPushButton* btn_s1Switch_default=new QPushButton;
     QPushButton* btn_s1Switch_update=new QPushButton;
     btn_s1Switch_default->setText("默认");
-    btn_s1Switch_update->setText("刷新");
+    btn_s1Switch_update->setText("保存");
     QVBoxLayout *v1=new QVBoxLayout;
     v1->addWidget(btn_s1Switch_default);
     v1->addWidget(btn_s1Switch_update);
@@ -1412,6 +1412,7 @@ void MainWindow::btnSensor1SwitchSlot()
    g->setLayout(gl);
 
     QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
     v->addLayout(f1);
     v->addWidget(g);
 
@@ -1463,18 +1464,18 @@ void MainWindow::btnSensor2ContinueSlot()
         send_mutex.unlock();
     }
 
-//    QPushButton* btn_continue_default=new QPushButton;
-//    QPushButton* btn_continue_update=new QPushButton;
-//    btn_continue_default->setText("默认");
-//    btn_continue_update->setText("刷新");
-//    QVBoxLayout *v1=new QVBoxLayout;
-//    v1->addWidget(btn_continue_default);
-//    v1->addWidget(btn_continue_update);
-//    QLabel *label=new QLabel;
-//    label->setText("连续视场参数设置");
-//    QHBoxLayout *h1=new QHBoxLayout;
-//    h1->addLayout(v1);
-//    h1->addWidget(label);
+    QPushButton* btn_continue_default=new QPushButton;
+    QPushButton* btn_continue_update=new QPushButton;
+    btn_continue_default->setText("默认");
+    btn_continue_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_continue_default);
+    v1->addWidget(btn_continue_update);
+    QLabel *label=new QLabel;
+    label->setText("连续视场参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
 
     change3=new QComboBox;
     change3->addItem("连续视场");
@@ -1666,7 +1667,7 @@ void MainWindow::btnSensor2ContinueSlot()
     g->setLayout(gl);
 
     QVBoxLayout *v=new QVBoxLayout;
-    //v->addLayout(h1);
+    v->addLayout(h1);
     v->addLayout(f1);
     v->addWidget(g);
 
