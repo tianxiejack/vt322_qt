@@ -1287,14 +1287,14 @@ void MainWindow::btnSensor1SwitchSlot()
         send_oneframe(3);
         send_mutex.unlock();
     }
-//    for(int i=0;i<15;i++){
-//        send_mutex.lock();
-//        send_arr[4]=0x31;
-//        send_arr[5]=0x18;
-//        send_arr[6]=i;
-//        send_oneframe(3);
-//        send_mutex.unlock();
-//    }
+    for(int i=0;i<15;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x18;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
     QPushButton* btn_s1Switch_default=new QPushButton;
     QPushButton* btn_s1Switch_update=new QPushButton;
@@ -1443,25 +1443,25 @@ void MainWindow::btnSensor2ContinueSlot()
         send_oneframe(3);
         send_mutex.unlock();
     }
-//    for(int j=25;j<27;j++){
-//        for(int i=0;i<16;i++){
-//            send_mutex.lock();
-//            send_arr[4]=0x31;
-//            send_arr[5]=j;
-//            send_arr[6]=i;
-//            send_oneframe(3);
-//            send_mutex.unlock();
-//        }
-//    }
+    for(int j=25;j<27;j++){
+        for(int i=0;i<16;i++){
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=j;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
+    }
 
-//    for(int m=0;m<7;m++){
-//        send_mutex.lock();
-//        send_arr[4]=0x31;
-//        send_arr[5]=0x21;
-//        send_arr[6]=m;
-//        send_oneframe(3);
-//        send_mutex.unlock();
-//    }
+    for(int m=0;m<7;m++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=27;
+        send_arr[6]=m;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
 //    QPushButton* btn_continue_default=new QPushButton;
 //    QPushButton* btn_continue_update=new QPushButton;
