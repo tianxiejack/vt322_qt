@@ -386,7 +386,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                          osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                         break;
                     case 0x05:
-                        CBox_color->setCurrentIndex(value_i);
+                        CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
                        osd1_lineEdit_transparency->setText(QString::number(value_i));
