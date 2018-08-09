@@ -409,6 +409,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -432,6 +435,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -457,6 +463,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     case 0x02:
                          osd1_pos_y->setText(QString::number(value_i));
                         break;
+                    case 0x03:
+                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                        break;
                     case 0x05:
                         CBox_color->setCurrentIndex(value_i);
                         break;
@@ -480,6 +489,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -505,6 +517,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -528,6 +543,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -553,6 +571,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -577,6 +598,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -600,6 +624,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -626,6 +653,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -649,6 +679,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -674,6 +707,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -697,6 +733,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -722,6 +761,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -745,6 +787,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -996,6 +1041,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1019,6 +1067,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1044,6 +1095,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1067,6 +1121,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1092,6 +1149,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1115,6 +1175,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1140,6 +1203,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1163,6 +1229,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1188,6 +1257,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1211,6 +1283,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1236,6 +1311,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1259,6 +1337,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1284,6 +1365,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 0x02:
                  osd1_pos_y->setText(QString::number(value_i));
                 break;
+            case 0x03:
+                osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                break;
             case 0x05:
                 CBox_color->setCurrentIndex(value_i);
                 break;
@@ -1307,6 +1391,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
@@ -1332,6 +1419,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
                     break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
+                    break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
                     break;
@@ -1355,6 +1445,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     break;
                 case 0x02:
                      osd1_pos_y->setText(QString::number(value_i));
+                    break;
+                case 0x03:
+                     osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                     break;
                 case 0x05:
                     CBox_color->setCurrentIndex(value_i);
