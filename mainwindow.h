@@ -98,6 +98,10 @@ public:
     void calculationCircle(int center_a, int center_b, int x, int y);
     void btnSensor1SwitchSlot();
     void btnSensor2ContinueSlot();
+
+    /*发送0x31命令*/
+    void read_config(int block);
+    void send_read_config(int block,int start_field, int end_field);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);

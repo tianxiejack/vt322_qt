@@ -1563,6 +1563,106 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 break;
         }
     }
+    else if(0x0d == i)
+    {
+       if(output_array[1] != 0xff)
+           read_config(output_array[1]);
+    }
 
       memset(output_array,0,sizeof(output_array));
+}
+void MainWindow::read_config(int block)
+{
+    int i = 0;
+    switch(block)
+    {
+        case 1:
+            send_read_config(block,1,4);
+            break;
+        case 2:
+            send_read_config(block,1,8);
+            break;
+        case 3:
+            send_read_config(block,1,7);
+            break;
+        case 4:
+            send_read_config(block,0,15);
+            break;
+        case 5:
+            send_read_config(block,0,15);
+            break;
+        case 6:
+            send_read_config(block,0,15);
+            break;
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+        case 22:
+        case 29:
+        case 30:
+        case 31:
+        case 32:
+        case 33:
+        case 34:
+        case 35:
+        case 36:
+        case 37:
+        case 38:
+        case 39:
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+            send_read_config(block,0,3);
+            send_read_config(block,5,6);
+            break;
+        case 23:
+            send_read_config(block,0,6);
+            break;
+        case 24:
+            send_read_config(23,0,3);
+            send_read_config(block,0,14);
+            break;
+        case 25:
+            send_read_config(23,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 26:
+            send_read_config(23,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 27:
+            send_read_config(23,0,3);
+            send_read_config(block,0,6);
+            break;
+        case 28:
+            send_read_config(block,0,5);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::send_read_config(int block,int start_field, int end_field)
+{
+    for(int i=start_field;i<=end_field;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=block;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
