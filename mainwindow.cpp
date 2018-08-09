@@ -2463,7 +2463,39 @@ void MainWindow::btnUpdate()
 
  void MainWindow::btn_default_Slot()
  {
+     send_mutex.lock();
+     send_arr[4] =0x09;
+     send_arr[5] = 23;
+     send_oneframe(2);
+     send_mutex.unlock();
+ }
+ void MainWindow::btn_default_Slot2()
+ {
+     send_mutex.lock();
+     send_arr[4] =0x09;
+     send_arr[5] = 24;
+     send_oneframe(2);
+     send_mutex.unlock();
+ }
+ void MainWindow::btn_default_Slot3()
+ {
+     send_mutex.lock();
+     send_arr[4] =0x09;
+     send_arr[5] = 25;
+     send_oneframe(2);
+     send_mutex.unlock();
 
+     send_mutex.lock();
+     send_arr[4] =0x09;
+     send_arr[5] = 26;
+     send_oneframe(2);
+     send_mutex.unlock();
+
+     send_mutex.lock();
+     send_arr[4] =0x09;
+     send_arr[5] = 27;
+     send_oneframe(2);
+     send_mutex.unlock();
  }
 
 void MainWindow::stop_thread_now()  // 当点击窗口右上角的关闭按钮时，会自动触发MyWidget的destroyed信号，

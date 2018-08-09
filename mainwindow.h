@@ -147,6 +147,8 @@ public slots:
 
     /*相机配置槽函数*/
     void btn_default_Slot();
+    void btn_default_Slot2();
+    void btn_default_Slot3();
     void tosersor_fix(int i);
     void toSensor_switch(int i);
     void tosersor_continue(int i);

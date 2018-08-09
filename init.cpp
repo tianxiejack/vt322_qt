@@ -39,7 +39,7 @@ void MainWindow::init_menu()
 
     QMenu* capture=new QMenu("捕获框配置");
     QAction* act_cap1=new QAction("捕获框");
-    capture->addAction(act_cap1);
+    //capture->addAction(act_cap1);
     QAction* act_cap2=new QAction("波门");
     capture->addAction(act_cap2);
     QAction* act_cap3=new QAction("画线");
@@ -1416,6 +1416,8 @@ void MainWindow::btnSensor1SwitchSlot()
     v->addLayout(f1);
     v->addWidget(g);
 
+    connect(btn_s1Switch_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot2()));
+    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
     connect(change2,SIGNAL(activated(int)),this,SLOT(toSensor_switch(int)));
     connect(lineEdit_switchRadio,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot()));
     connect(lineEdit_switchResolution2,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot()));
@@ -1671,6 +1673,8 @@ void MainWindow::btnSensor2ContinueSlot()
     v->addLayout(f1);
     v->addWidget(g);
 
+    connect(btn_continue_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot3()));
+    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
     connect(change3,SIGNAL(activated(int)),this,SLOT(tosersor_continue(int)));
     connect(lineEdit_continueRadio,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot()));
     connect(lineEdit_continueResolution2,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot()));
