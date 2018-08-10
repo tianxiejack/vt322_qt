@@ -37,7 +37,7 @@ void MainWindow::init_menu()
 //    osd->addAction(act_othCfg3);
 //    menu[0]->addMenu(osd);
 
-    QMenu* capture=new QMenu("捕获框配置");
+    QMenu* capture=new QMenu("波门配置");
     QAction* act_cap1=new QAction("捕获框");
     //capture->addAction(act_cap1);
     QAction* act_cap2=new QAction("波门");
@@ -966,18 +966,18 @@ void MainWindow::showCapture1()
 
     connect(btn_capture_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture_default_Slot()));
     connect(btn_capture_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture_update_Slot()));
-    connect(cap_0_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_0()));
-    connect(cap_1_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_1()));
-    connect(cap_2_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_2()));
-    connect(cap_3_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_3()));
-    connect(cap_4_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_4()));
-    connect(cap_5_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_5()));
-    connect(cap_0_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_6()));
-    connect(cap_1_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_7()));
-    connect(cap_2_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_8()));
-    connect(cap_3_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_9()));
-    connect(cap_4_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_10()));
-    connect(cap_5_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_capture_11()));
+    connect(cap_0_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_0()));
+    connect(cap_1_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_1()));
+    connect(cap_2_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_2()));
+    connect(cap_3_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_3()));
+    connect(cap_4_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_4()));
+    connect(cap_5_w,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_5()));
+    connect(cap_0_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_6()));
+    connect(cap_1_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_7()));
+    connect(cap_2_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_8()));
+    connect(cap_3_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_9()));
+    connect(cap_4_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_10()));
+    connect(cap_5_h,SIGNAL(returnPressed()),this,SLOT(lEdt_capture_11()));
 
     w_capture1->setLayout(h);
     w_capture1->show();
@@ -1048,18 +1048,18 @@ void MainWindow::showCapture2()
     connect(btn_capture2_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_default_SLot()));
     connect(btn_capture2_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
 
-    connect(bomen_0_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_0()));
-    connect(bomen_1_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_1()));
-    connect(bomen_2_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_2()));
-    connect(bomen_3_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_3()));
-    connect(bomen_4_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_4()));
-    connect(bomen_5_w,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_5()));
-    connect(bomen_0_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_6()));
-    connect(bomen_1_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_7()));
-    connect(bomen_2_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_8()));
-    connect(bomen_3_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_9()));
-    connect(bomen_4_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_10()));
-    connect(bomen_5_h,SIGNAL(textChanged(QString)),this,SLOT(lEdt_bomen_11()));
+    connect(bomen_0_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_0()));
+    connect(bomen_1_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_1()));
+    connect(bomen_2_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_2()));
+    connect(bomen_3_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_3()));
+    connect(bomen_4_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_4()));
+    connect(bomen_5_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_5()));
+    connect(bomen_0_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_6()));
+    connect(bomen_1_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_7()));
+    connect(bomen_2_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_8()));
+    connect(bomen_3_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_9()));
+    connect(bomen_4_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_10()));
+    connect(bomen_5_h,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_11()));
 
     w_capture2->setLayout(h);
     w_capture2->show();
@@ -1115,12 +1115,12 @@ void MainWindow::showCapture3()
     connect(btn_capture3_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_default_Slot()));
     connect(btn_capture3_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_update_Slot()));
 
-    connect(drawLine_0,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_0()));
-    connect(drawLine_1,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_1()));
-    connect(drawLine_2,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_2()));
-    connect(drawLine_3,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_3()));
-    connect(drawLine_4,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_4()));
-    connect(drawLine_5,SIGNAL(textChanged(QString)),this,SLOT(lEdt_drawLine_5()));
+    connect(drawLine_0,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_0()));
+    connect(drawLine_1,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_1()));
+    connect(drawLine_2,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_2()));
+    connect(drawLine_3,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_3()));
+    connect(drawLine_4,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_4()));
+    connect(drawLine_5,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_5()));
 
     w_capture3->setLayout(h);
     w_capture3->show();
