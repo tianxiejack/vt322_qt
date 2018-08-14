@@ -1070,7 +1070,7 @@ void MainWindow::showCapture3()
     w_capture3=new QWidget;
     w_capture3->setWindowTitle("画线参数设置");
 
-    for(int i=0;i<12;i++){
+    for(int i=0;i<1;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=0x2F;
@@ -1101,11 +1101,11 @@ void MainWindow::showCapture3()
     drawLine_5=new QLineEdit;
     QFormLayout *f3=new QFormLayout();
     f3->addRow(string_drawLine[0],drawLine_0);
-    f3->addRow(string_drawLine[1],drawLine_1);
-    f3->addRow(string_drawLine[2],drawLine_2);
-    f3->addRow(string_drawLine[3],drawLine_3);
-    f3->addRow(string_drawLine[4],drawLine_4);
-    f3->addRow(string_drawLine[5],drawLine_5);
+    //f3->addRow(string_drawLine[1],drawLine_1);
+    //f3->addRow(string_drawLine[2],drawLine_2);
+    //f3->addRow(string_drawLine[3],drawLine_3);
+    //f3->addRow(string_drawLine[4],drawLine_4);
+    //f3->addRow(string_drawLine[5],drawLine_5);
     drawLine->setLayout(f3);
 
     QVBoxLayout *h=new QVBoxLayout;

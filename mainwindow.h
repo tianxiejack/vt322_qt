@@ -416,6 +416,9 @@ private slots:
 
     void on_btn_down_released();
 
+    void on_checkBox_acqmode_stateChanged(int arg1);
+    void on_checkBox_autobomen_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     Jos j;

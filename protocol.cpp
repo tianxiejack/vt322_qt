@@ -1655,7 +1655,7 @@ void MainWindow::read_config(int block)
             send_read_config(block,0,11);
             break;
         case 47:
-            send_read_config(block,0,5);
+            send_read_config(block,0,0);
             break;
         default:
             break;

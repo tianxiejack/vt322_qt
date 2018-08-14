@@ -2907,3 +2907,43 @@ void MainWindow::on_btn_down_released()
 }
 
 
+
+void MainWindow::on_checkBox_acqmode_stateChanged(int arg1)
+{
+    if(arg1 == Qt::Checked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0c;
+        send_arr[5] = 0x01;
+        send_oneframe(2);
+        send_mutex.unlock();
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0c;
+        send_arr[5] = 0x00;
+        send_oneframe(2);
+        send_mutex.unlock();
+    }
+}
+
+void MainWindow::on_checkBox_autobomen_stateChanged(int arg1)
+{
+    if(arg1 == Qt::Checked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0d;
+        send_arr[5] = 0x01;
+        send_oneframe(2);
+        send_mutex.unlock();
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0d;
+        send_arr[5] = 0x00;
+        send_oneframe(2);
+        send_mutex.unlock();
+    }
+}
