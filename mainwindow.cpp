@@ -380,7 +380,14 @@ void MainWindow::on_btnSersorSwitch_clicked()
 
 void MainWindow::lEdt_sysCfg_Slot()
 {
-
+    float value=lineEdit->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x01;
+    send_arr[6] = 0x15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::CBox_sysCfg_Slot(int i)

@@ -133,7 +133,7 @@ void comChoose::btnNetSlot()
     lineEdit_port->setText("10000");
     lineEdit_ip = new QLineEdit();
     lineEdit_ip->setInputMask("000.000.000.000");
-    lineEdit_ip->setText("192.168.1.202");
+    lineEdit_ip->setText("192.168.0.188");
 
     QDialogButtonBox* button_socket = new QDialogButtonBox();
     button_socket->addButton( "OK", QDialogButtonBox::YesRole);

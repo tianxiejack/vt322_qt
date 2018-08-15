@@ -105,7 +105,7 @@ void MainWindow::init_sysCfg()
     groupBox_upgrade->setTitle("文件传输");
     upgrade_ip = new QLineEdit(groupBox_upgrade);
     upgrade_ip->setInputMask("000.000.000.000");
-    upgrade_ip->setText("192.168.1.202");
+    upgrade_ip->setText("192.168.0.188");
     upgrade_port = new QLineEdit(groupBox_upgrade);
     upgrade_port->setText("8999");
     QPushButton *btnUpdate=new QPushButton(groupBox_upgrade);
@@ -130,7 +130,7 @@ void MainWindow::init_sysCfg()
 
     QFormLayout *pLayout = new QFormLayout;
 
-    pLayout->addRow(QStringLiteral("相机通道总数"), lineEdit);
+    pLayout->addRow(QStringLiteral("水平速度"), lineEdit);
     pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
