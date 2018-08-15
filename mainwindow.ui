@@ -306,6 +306,9 @@
     <property name="text">
      <string>捕获模式</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QCheckBox" name="checkBox_autobomen">
     <property name="geometry">
