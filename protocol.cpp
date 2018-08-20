@@ -152,8 +152,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     josPoint_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x03){
                     josInputG_x->setText(QString::number(value_i));
-                }else{
+                }else if(output_array[2]==0x04){
                     josInputG_y->setText(QString::number(value_i));
+                } else if(output_array[2]==0x05){
+                    josPoint_lineEdt2->setText(QString::number(value_i));
+                }else if(output_array[2]==0x06){
+                    josInputG_x2->setText(QString::number(value_i));
+                }else if(output_array[2]==0x07){
+                    josInputG_y2->setText(QString::number(value_i));
                 }
                 break;
             case 0x02:
@@ -1577,7 +1583,7 @@ void MainWindow::read_config(int block)
     switch(block)
     {
         case 1:
-            send_read_config(block,1,4);
+            send_read_config(block,1,7);
             break;
         case 2:
             send_read_config(block,1,8);

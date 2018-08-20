@@ -193,6 +193,7 @@ private slots:
     void lEdt_Jos4_Slot();
     void lEdt_Jos5_Slot();
     void lEdt_Jos6_Slot();
+    void lEdt_Jos7_Slot();
 
     void lEdt_PID1_Slot();
     void lEdt_PID2_Slot();
@@ -473,13 +474,13 @@ private:
     /*平台配置*/
     QWidget *w_plat;
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
-    QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,
+    QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,*josPoint_lineEdt2,*josInputG_x2,*josInputG_y2,
               *josOutputG_x,*josOutputG_y;
     QComboBox *outMode;
     QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
     QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
      QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
-    QString jos_s[6]={"手柄死区","手柄拐点","手柄x轴输入增益","手柄y轴输入增益","摇杆平台x输出增益","摇杆平台y轴输出增益"};
+    QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
     QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a","平台输出模式"};
 

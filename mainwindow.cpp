@@ -1970,14 +1970,38 @@ void MainWindow::lEdt_Jos4_Slot()
 
 void MainWindow::lEdt_Jos5_Slot()
 {
-
+    float value=josPoint_lineEdt2->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x01;
+    send_arr[6] = 0x05;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::lEdt_Jos6_Slot()
 {
-
+    float value=josInputG_x2->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x01;
+    send_arr[6] = 0x06;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
-
+void MainWindow::lEdt_Jos7_Slot()
+{
+    float value=josInputG_y2->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x01;
+    send_arr[6] = 0x07;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 void MainWindow::lEdt_PID1_Slot()
 {
 

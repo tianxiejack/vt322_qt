@@ -388,7 +388,7 @@ void MainWindow::showPlat()
     w_plat=new QWidget;
     w_plat->setWindowTitle("平台配置");
 
-    for(int i=1;i<5;i++){
+    for(int i=1;i<8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=0x01;
@@ -433,6 +433,9 @@ void MainWindow::showPlat()
     josPoint_lineEdt=new QLineEdit;
     josInputG_x=new QLineEdit;
     josInputG_y=new QLineEdit;
+    josPoint_lineEdt2=new QLineEdit;
+    josInputG_x2=new QLineEdit;
+    josInputG_y2=new QLineEdit;
 //    josOutputG_x=new QLineEdit;
 //    josOutputG_y=new QLineEdit;
 
@@ -441,6 +444,9 @@ void MainWindow::showPlat()
     f1->addRow(jos_s[1],josPoint_lineEdt);
     f1->addRow(jos_s[2],josInputG_x);
     f1->addRow(jos_s[3],josInputG_y);
+    f1->addRow(jos_s[4],josPoint_lineEdt2);
+    f1->addRow(jos_s[5],josInputG_x2);
+    f1->addRow(jos_s[6],josInputG_y2);
 //    f1->addRow(jos_s[4],josOutputG_x);
 //    f1->addRow(jos_s[5],josOutputG_y);
     gbox_Jos->setLayout(f1);
@@ -513,6 +519,9 @@ void MainWindow::showPlat()
     connect(josPoint_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos2_Slot()));
     connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos3_Slot()));
     connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos4_Slot()));
+    connect(josPoint_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
+    connect(josInputG_x2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
+    connect(josInputG_y2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos7_Slot()));
 //    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
 //    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
 
