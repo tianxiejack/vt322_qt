@@ -1565,6 +1565,41 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                 }
                 break;
+        case 0x30:
+                if(output_array[2]==0x00){
+                    kx_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x01){
+                    ky_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x02){
+                    errx_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x03){
+                    erry_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x04){
+                    time_lineEdt->setText(QString::number(value_i));
+                } else if(output_array[2]==0x05){
+                    dbg5_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x06){
+                    dbg6_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x07){
+                    dbg7_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x08){
+                    dbg8_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x09){
+                    dbg9_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==10){
+                    dbg10_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==11){
+                    dbg11_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==12){
+                    dbg12_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==13){
+                    dbg13_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==14){
+                    dbg14_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==15){
+                    dbg15_lineEdt->setText(QString::number(value_i));
+                }
+                break;
             default:
                 break;
         }

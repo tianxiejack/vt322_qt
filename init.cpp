@@ -46,6 +46,9 @@ void MainWindow::init_menu()
     capture->addAction(act_cap3);
     menu[0]->addMenu(capture);
 
+     QAction* dbg_sysCfg=new QAction("调试配置");
+     menu[0]->addAction(dbg_sysCfg);
+
     QAction* act_rstCfg=new QAction("恢复默认");
     menu[0]->addAction(act_rstCfg);
 
@@ -62,6 +65,7 @@ void MainWindow::init_menu()
     connect(act_cap2,SIGNAL(triggered(bool)),this,SLOT(showCapture2()));
     connect(act_cap3,SIGNAL(triggered(bool)),this,SLOT(showCapture3()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
+    connect(dbg_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showdbgcfg()));
 
 }
 
@@ -543,6 +547,75 @@ void MainWindow::showPlat()
     connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
    // connect(outMode,SIGNAL(activated(int)),this,SLOT(outMode_Slot(int)));
     w_plat->show();
+}
+
+void MainWindow::showdbgcfg()
+{
+    w_dbg=new QWidget;
+    w_dbg->setWindowTitle("调试配置");
+
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=48;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    kx_lineEdt=new QLineEdit;
+    ky_lineEdt=new QLineEdit;
+    errx_lineEdt=new QLineEdit;
+    erry_lineEdt=new QLineEdit;
+    time_lineEdt=new QLineEdit;
+    dbg5_lineEdt=new QLineEdit;
+    dbg6_lineEdt=new QLineEdit;
+    dbg7_lineEdt=new QLineEdit;
+    dbg8_lineEdt=new QLineEdit;
+    dbg9_lineEdt=new QLineEdit;
+    dbg10_lineEdt=new QLineEdit;
+    dbg11_lineEdt=new QLineEdit;
+    dbg12_lineEdt=new QLineEdit;
+    dbg13_lineEdt=new QLineEdit;
+    dbg14_lineEdt=new QLineEdit;
+    dbg15_lineEdt=new QLineEdit;
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(dbg_s[0],kx_lineEdt);
+    f3->addRow(dbg_s[1],ky_lineEdt);
+    f3->addRow(dbg_s[2],errx_lineEdt);
+    f3->addRow(dbg_s[3],erry_lineEdt);
+    f3->addRow(dbg_s[4],time_lineEdt);
+    f3->addRow(dbg_s[5],dbg5_lineEdt);
+    f3->addRow(dbg_s[6],dbg6_lineEdt);
+    f3->addRow(dbg_s[7],dbg7_lineEdt);
+    f3->addRow(dbg_s[8],dbg8_lineEdt);
+    f3->addRow(dbg_s[9],dbg9_lineEdt);
+    f3->addRow(dbg_s[10],dbg10_lineEdt);
+    f3->addRow(dbg_s[11],dbg11_lineEdt);
+    f3->addRow(dbg_s[12],dbg12_lineEdt);
+    f3->addRow(dbg_s[13],dbg13_lineEdt);
+    f3->addRow(dbg_s[14],dbg14_lineEdt);
+    f3->addRow(dbg_s[15],dbg15_lineEdt);
+    w_dbg->setLayout(f3);
+    connect(kx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot()));
+    connect(ky_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot()));
+    connect(errx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot()));
+    connect(erry_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot()));
+    connect(time_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot()));
+    connect(dbg5_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg5_Slot()));
+    connect(dbg6_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg6_Slot()));
+    connect(dbg7_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg7_Slot()));
+    connect(dbg8_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg8_Slot()));
+    connect(dbg9_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg9_Slot()));
+    connect(dbg10_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg10_Slot()));
+    connect(dbg11_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg11_Slot()));
+    connect(dbg12_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg12_Slot()));
+    connect(dbg13_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg13_Slot()));
+    connect(dbg14_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg14_Slot()));
+    connect(dbg15_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg15_Slot()));
+
+    w_dbg->show();
+
 }
 
 void MainWindow::showCamera()

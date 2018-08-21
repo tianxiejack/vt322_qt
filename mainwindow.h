@@ -135,6 +135,7 @@ public slots:
     void showCapture2();
     void showCapture3();
     void showOther();
+    void showdbgcfg();
 
     /*系统配置槽函数*/
     void btnSerialSlot();
@@ -212,6 +213,24 @@ private slots:
     void lEdt_plat6_Slot();
     void lEdt_plat7_Slot();
     void outMode_Slot(int i);
+
+    /*调试配置*/
+    void lEdt_kx_Slot();
+    void lEdt_ky_Slot();
+    void lEdt_errx_Slot();
+    void lEdt_erry_Slot();
+    void lEdt_time_Slot();
+    void lEdt_dbg5_Slot();
+    void lEdt_dbg6_Slot();
+    void lEdt_dbg7_Slot();
+    void lEdt_dbg8_Slot();
+    void lEdt_dbg9_Slot();
+    void lEdt_dbg10_Slot();
+    void lEdt_dbg11_Slot();
+    void lEdt_dbg12_Slot();
+    void lEdt_dbg13_Slot();
+    void lEdt_dbg14_Slot();
+    void lEdt_dbg15_Slot();
 
     /*通道1固定视场*/
     void lEdt_fix_Radio_Slot();
@@ -483,6 +502,12 @@ private:
     QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
     QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a","平台输出模式"};
+
+    /*调试配置*/
+    QWidget *w_dbg;
+    QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
+    *dbg11_lineEdt,*dbg12_lineEdt,*dbg13_lineEdt,*dbg14_lineEdt,*dbg15_lineEdt;
+    QString dbg_s[16]={"kx","ky","error_x","error_y","time","debug5","debug6","debug7","debug8","debug9","debug10","debug11","debug12","debug13","debug14","debug15"};
 
     /*相机配置*/
     void on_btn_right_clicked();
