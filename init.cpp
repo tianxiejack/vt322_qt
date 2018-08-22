@@ -46,7 +46,7 @@ void MainWindow::init_menu()
     capture->addAction(act_cap3);
     menu[0]->addMenu(capture);
 
-     QAction* dbg_sysCfg=new QAction("调试配置");
+     QAction* dbg_sysCfg=new QAction("捕获配置");
      menu[0]->addAction(dbg_sysCfg);
 
     QAction* act_rstCfg=new QAction("恢复默认");
@@ -73,7 +73,28 @@ void MainWindow::init_sysCfg()
 {
     w_config=new QWidget;
     w_config->setWindowTitle(tr("系统配置"));
-    lineEdit=new QLineEdit;
+    checkBox_channel1=new QCheckBox;
+    checkBox_channel2=new QCheckBox;
+    checkBox_channel3=new QCheckBox;
+    checkBox_channel4=new QCheckBox;
+    checkBox_channel5=new QCheckBox;
+    checkBox_channel1->setText("1");
+    checkBox_channel2->setText("2");
+    checkBox_channel3->setText("3");
+    checkBox_channel4->setText("4");
+    checkBox_channel5->setText("5");
+    checkBox_channel1->setCheckState(Qt::Checked);
+    checkBox_channel2->setCheckState(Qt::Checked);
+    checkBox_channel3->setCheckState(Qt::Checked);
+    checkBox_channel4->setCheckState(Qt::Checked);
+    checkBox_channel5->setCheckState(Qt::Checked);
+    QHBoxLayout *hsensor=new QHBoxLayout;
+    hsensor->addWidget(checkBox_channel1);
+    hsensor->addWidget(checkBox_channel2);
+    hsensor->addWidget(checkBox_channel3);
+    hsensor->addWidget(checkBox_channel4);
+    hsensor->addWidget(checkBox_channel5);
+    //lineEdit=new QLineEdit;
     QComboBox *box1=new QComboBox;
     box1->addItem("0");
     box1->addItem("1");
@@ -100,8 +121,9 @@ void MainWindow::init_sysCfg()
     CBox_font->addItem("宋体");
     CBox_font->addItem("黑体");
     CBox_font_size=new QComboBox;
-    CBox_font_size->addItem("五号");
-    CBox_font_size->addItem("六号");
+    CBox_font_size->addItem("小");
+    CBox_font_size->addItem("中");
+    CBox_font_size->addItem("大");
     QPushButton *btnSave=new QPushButton;
     btnSave->setText("保存");
 
@@ -127,24 +149,25 @@ void MainWindow::init_sysCfg()
     vlayout->addRow("IP：",upgrade_ip);
     vlayout->addRow("端口：",upgrade_port);
     vlayout->addRow("软件升级",btnUpdate);
-    vlayout->addRow("导入配置", btnDown);
-    vlayout->addRow("导出配置", btnUp);
+    vlayout->addRow("导入配置文件", btnDown);
+    vlayout->addRow("导出配置文件", btnUp);
     vlayout->addRow(upgrade_show);
     groupBox_upgrade->setLayout(vlayout);
 
     QFormLayout *pLayout = new QFormLayout;
 
-    pLayout->addRow(QStringLiteral("水平速度"), lineEdit);
+    //pLayout->addRow(QStringLiteral("水平速度"), lineEdit);
+    pLayout->addRow("选择通道：", hsensor);
     pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("串口/网口选择", box2);
     pLayout->addRow("串口/网络配置", s);
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字号配置", CBox_font_size);
     pLayout->addRow("变焦速度等级", CBox);
-    pLayout->addRow("保存配置", btnSave);
+    pLayout->addRow("保存当前配置", btnSave);
     pLayout->addRow(groupBox_upgrade);
 
-    connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
+    //connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
     connect(box1,SIGNAL(activated(int)),SLOT(CBox_sysCfg_Slot(int)));
     connect(box2,SIGNAL(currentIndexChanged(int)),this,SLOT(toNetSlot(int)));
     connect(btnSerial,SIGNAL(clicked(bool)),this,SLOT(btnSerialSlot()));
@@ -156,6 +179,11 @@ void MainWindow::init_sysCfg()
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
     connect(CBox,SIGNAL(activated(int)),this,SLOT(CBox_View_Slot(int)));
+    connect(checkBox_channel1,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
+    connect(checkBox_channel2,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
+    connect(checkBox_channel3,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
+    connect(checkBox_channel4,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
+    connect(checkBox_channel5,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
 
     w_config->setLayout(pLayout);
 }
@@ -1109,17 +1137,18 @@ void MainWindow::showCapture2()
     QGroupBox *bomen=new QGroupBox;
     QFormLayout *f2=new QFormLayout();
     f2->addRow(string_bomen[0],bomen_0_w);
-    f2->addRow(string_bomen[1],bomen_1_w);
-    f2->addRow(string_bomen[2],bomen_2_w);
-    f2->addRow(string_bomen[3],bomen_3_w);
-    f2->addRow(string_bomen[4],bomen_4_w);
-    f2->addRow(string_bomen[5],bomen_5_w);
     f2->addRow(string_bomen[6],bomen_0_h);
+    f2->addRow(string_bomen[1],bomen_1_w);
     f2->addRow(string_bomen[7],bomen_1_h);
+    f2->addRow(string_bomen[2],bomen_2_w);
     f2->addRow(string_bomen[8],bomen_2_h);
+    f2->addRow(string_bomen[3],bomen_3_w);
     f2->addRow(string_bomen[9],bomen_3_h);
+    f2->addRow(string_bomen[4],bomen_4_w);
     f2->addRow(string_bomen[10],bomen_4_h);
+    f2->addRow(string_bomen[5],bomen_5_w);
     f2->addRow(string_bomen[11],bomen_5_h);
+
     bomen->setTitle("波门");
     bomen->setLayout(f2);
 
@@ -1175,14 +1204,15 @@ void MainWindow::showCapture3()
     h1->addWidget(label);
     QGroupBox *drawLine=new QGroupBox;
     drawLine->setTitle("画线");
-    drawLine_0=new QLineEdit;
     drawLine_1=new QLineEdit;
     drawLine_2=new QLineEdit;
     drawLine_3=new QLineEdit;
     drawLine_4=new QLineEdit;
     drawLine_5=new QLineEdit;
+    checkBox_cross=new QCheckBox;
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(string_drawLine[0],drawLine_0);
+    f3->addRow("显示",checkBox_cross);
+    //f3->addRow(string_drawLine[0],drawLine_0);
     //f3->addRow(string_drawLine[1],drawLine_1);
     //f3->addRow(string_drawLine[2],drawLine_2);
     //f3->addRow(string_drawLine[3],drawLine_3);
@@ -1196,13 +1226,12 @@ void MainWindow::showCapture3()
 
     connect(btn_capture3_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_default_Slot()));
     connect(btn_capture3_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture3_update_Slot()));
-
-    connect(drawLine_0,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_0()));
     connect(drawLine_1,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_1()));
     connect(drawLine_2,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_2()));
     connect(drawLine_3,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_3()));
     connect(drawLine_4,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_4()));
     connect(drawLine_5,SIGNAL(returnPressed()),this,SLOT(lEdt_drawLine_5()));
+    connect(checkBox_cross,SIGNAL(stateChanged(int)),this,SLOT(checkBox_cross_Slot(int)));
 
     w_capture3->setLayout(h);
     w_capture3->show();

@@ -118,7 +118,7 @@ void MainWindow::send_oneframe(int length)
             socket->flush();
         }
     }
-    ui->textEdit_2->append(str1);
+    //ui->textEdit_2->append(str1);
 }
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
@@ -1546,7 +1546,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 0x2f:
                 switch(output_array[2]){
                     case 0x00:
-                        drawLine_0->setText(QString::number(value_i));
+                        if(value_i==0x00)
+                        {
+                          checkBox_cross->setChecked(false);
+                        }
+                        else
+                        {
+                          checkBox_cross->setChecked(true);
+                        }
                         break;
                     case 0x01:
                         drawLine_1->setText(QString::number(value_i));

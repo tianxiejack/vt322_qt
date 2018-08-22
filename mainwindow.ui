@@ -274,26 +274,6 @@
      <string>跟踪微调</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>310</y>
-      <width>311</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>350</y>
-      <width>441</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="checkBox_acqmode">
     <property name="geometry">
      <rect>
@@ -343,8 +323,6 @@
    <zorder>btn_down_2</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
-   <zorder>textEdit</zorder>
-   <zorder>textEdit_2</zorder>
    <zorder>checkBox_acqmode</zorder>
    <zorder>checkBox_autobomen</zorder>
   </widget>

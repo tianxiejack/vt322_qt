@@ -322,61 +322,11 @@ void MainWindow::on_btnCapture_clicked()
 
 void MainWindow::on_btnSersorSwitch_clicked()
 {
-    if(sersor_count==6){
-        sersor_count=0;
-    }
-    switch (sersor_count) {
-    case 0:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    case 1:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    case 2:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x02;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    case 3:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x03;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    case 4:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x04;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    case 5:
-        send_mutex.lock();
-        send_arr[4] =0x02;
-        send_arr[5] =0x05;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-    default:
-        sersor_count=0;
-        break;
-    }
-    sersor_count++;
-
+    send_mutex.lock();
+    send_arr[4] =0x05;
+    send_oneframe(1);
+    send_mutex.unlock();
 }
-
-
 
 void MainWindow::lEdt_sysCfg_Slot()
 {
@@ -1361,7 +1311,58 @@ void MainWindow::CBox_osd_choose_Slot(int i)
 void MainWindow::checkBox_Slot(int i)
 {
 }
+void MainWindow::checkBox_cross_Slot(int i)
+{
+    float value = 0;
+    if(checkBox_cross->isChecked()){
+        value=1;
+    }else{
+        value=0;
+    }
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 0x2F;
+    send_arr[6] = 0x00;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
+void MainWindow::checkBox_channel_Slot(int i)
+{
+    int value = 0xFF;
+    if(checkBox_channel1->isChecked())
+        value |= 1;
+    else
+        value &= ~(1);
+
+    if(checkBox_channel2->isChecked())
+        value |= (1<<1);
+    else
+        value &= ~(1<<1);
+
+    if(checkBox_channel3->isChecked())
+        value |= (1<<2);
+    else
+        value &= ~(1<<2);
+
+    if(checkBox_channel4->isChecked())
+        value |= (1<<3);
+    else
+        value &= ~(1<<3);
+
+    if(checkBox_channel5->isChecked())
+        value |= (1<<4);
+    else
+        value &= ~(1<<4);
+
+    send_mutex.lock();
+    send_arr[4] = 0x03;
+    send_arr[5] =value;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+}
 void MainWindow::lEdt_osd_x_Slot()
 {
 
@@ -1394,7 +1395,7 @@ void MainWindow::CBox_osd_font_size_Slot(int i)
     send_mutex.lock();
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+5;
+    send_arr[6] =CBox_font_size->currentIndex()+1;
     send_oneframe(3);
     send_mutex.unlock();
     QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
@@ -1702,18 +1703,6 @@ void MainWindow::lEdt_bomen_11()
     send_arr[4] = 0x30;
     send_arr[5] = 0x2E;
     send_arr[6] = 0x0b;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::lEdt_drawLine_0()
-{
-    float value=drawLine_0->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 0x2F;
-    send_arr[6] = 0x00;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -2528,6 +2517,7 @@ void MainWindow::btnUpdate()
         QFileInfo info(filePath);
         fileName = info.fileName();
         filesize = info.size();
+        qDebug()<<"文件大小："<<filesize;
         sendsize = 0;
         int packet_flag;
 
@@ -2612,6 +2602,7 @@ void MainWindow::btnUpdate()
 		QString ip = upgrade_ip->text();
 		int port = upgrade_port->text().toInt();
 		usocket->connectToHost(ip,port);
+        int trans_percent = 0;
 		if(!usocket->waitForConnected(300))
 		{
 		    upgrade_show->append("连接服务器失败");
@@ -2649,11 +2640,15 @@ void MainWindow::btnUpdate()
 		  usocket_send_buf[12+len] = checksum;
 
 		  usocket->write((char *)usocket_send_buf,len+13);
+          usocket->flush();
+          trans_percent = sendsize*100/filesize;
+          upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
 		}
 		if(sendsize == filesize)
 		{
 		    file.close();
-		    upgrade_show->append("文件发送中...");
+            //qDebug()<<"文件大小："<<filesize<<"发送大小："<<sendsize;
+            //upgrade_show->append(tr("文件字节数")+QString("%1").arg(filesize,10,10));
             //usocket->disconnectFromHost();
             //usocket->close();
 		}
@@ -2745,8 +2740,8 @@ void MainWindow::socket_Read_Data()
     emit socket_copy_Done();
     QString rcvBuf;
     rcvBuf = ShowHex(socketRcvData);
-    ui->textEdit->setTextColor(QColor(Qt::blue));
-    ui->textEdit->append(rcvBuf);
+    //ui->textEdit->setTextColor(QColor(Qt::blue));
+    //ui->textEdit->append(rcvBuf);
     socketRcvData.clear();
 }
 
@@ -2843,8 +2838,8 @@ void MainWindow::RcvData_SerialPort()
     emit copy_Done();
     QString rcvBuf;
     rcvBuf = ShowHex(RcvData);
-    ui->textEdit->setTextColor(QColor(Qt::blue));
-    ui->textEdit->append(rcvBuf);
+    //ui->textEdit->setTextColor(QColor(Qt::blue));
+    //ui->textEdit->append(rcvBuf);
     RcvData.clear();
 }
 
