@@ -1360,10 +1360,10 @@ void MainWindow::CBox_osd_font_Slot(int i)
     send_mutex.lock();
     send_arr[4] = 0x21;
     send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+5;
+    send_arr[6] =CBox_font_size->currentIndex()+1;
     send_oneframe(3);
     send_mutex.unlock();
-    QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
+    //QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
 
 }
 
@@ -1375,7 +1375,7 @@ void MainWindow::CBox_osd_font_size_Slot(int i)
     send_arr[6] =CBox_font_size->currentIndex()+1;
     send_oneframe(3);
     send_mutex.unlock();
-    QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
+    //QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
 }
 
 void MainWindow::CBox_View_Slot(int i)
