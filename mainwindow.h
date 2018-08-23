@@ -604,7 +604,7 @@ private:
     QLineEdit *bomen_0_w,*bomen_1_w,*bomen_2_w,*bomen_3_w,*bomen_4_w,*bomen_5_w,*bomen_0_h,*bomen_1_h,*bomen_2_h,*bomen_3_h,*bomen_4_h,*bomen_5_h;
     QLineEdit *drawLine_1,*drawLine_2,*drawLine_3,*drawLine_4,*drawLine_5;
     QString string_cap[12]={"通道0捕获框宽","通道1捕获框宽","通道2捕获框宽","通道3捕获框宽","通道4捕获框宽","通道5捕获框宽","通道0捕获框高","通道1捕获框高","通道2捕获框高","通道3捕获框高","通道4捕获框高","通道5捕获框高"};
-    QString string_bomen[12]={"通道0波门宽","通道1波门宽","通道2波门宽","通道3波门宽","通道4波门宽","通道5波门宽","通道0波门高","通道1波门高","通道2波门高","通道3波门高","通道4波门高","通道5波门高"};
+    QString string_bomen[10]={"通道1波门宽","通道2波门宽","通道3波门宽","通道4波门宽","通道5波门宽","通道1波门高","通道2波门高","通道3波门高","通道4波门高","通道5波门高"};
     QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     QCheckBox *checkBox_cross;
     /*OSD*/

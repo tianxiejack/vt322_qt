@@ -1520,9 +1520,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     case 0x04:
                         bomen_4_w->setText(QString::number(value_i));
                         break;
-                    case 0x05:
-                        bomen_5_w->setText(QString::number(value_i));
-                        break;
                     case 0x06:
                         bomen_0_h->setText(QString::number(value_i));
                         break;
@@ -1537,9 +1534,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                     case 0x0a:
                         bomen_4_h->setText(QString::number(value_i));
-                        break;
-                    case 0x0b:
-                        bomen_5_h->setText(QString::number(value_i));
                         break;
                 }
                 break;
@@ -1742,7 +1736,8 @@ void MainWindow::read_config(int block)
             send_read_config(block,0,5);
             break;
         case 46:
-            send_read_config(block,0,11);
+            send_read_config(block,0,4);
+            send_read_config(block,6,11);
             break;
         case 47:
             send_read_config(block,0,0);

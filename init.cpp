@@ -1215,7 +1215,15 @@ void MainWindow::showCapture2()
     w_capture2=new QWidget;
     w_capture2->setWindowTitle("波门参数设置");
 
-    for(int i=0;i<12;i++){
+    for(int i=0;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x2E;
+        send_arr[6]=i;
+       send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=6;i<12;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=0x2E;
@@ -1253,17 +1261,15 @@ void MainWindow::showCapture2()
     QGroupBox *bomen=new QGroupBox;
     QFormLayout *f2=new QFormLayout();
     f2->addRow(string_bomen[0],bomen_0_w);
-    f2->addRow(string_bomen[6],bomen_0_h);
+    f2->addRow(string_bomen[5],bomen_0_h);
     f2->addRow(string_bomen[1],bomen_1_w);
-    f2->addRow(string_bomen[7],bomen_1_h);
+    f2->addRow(string_bomen[6],bomen_1_h);
     f2->addRow(string_bomen[2],bomen_2_w);
-    f2->addRow(string_bomen[8],bomen_2_h);
+    f2->addRow(string_bomen[7],bomen_2_h);
     f2->addRow(string_bomen[3],bomen_3_w);
-    f2->addRow(string_bomen[9],bomen_3_h);
+    f2->addRow(string_bomen[8],bomen_3_h);
     f2->addRow(string_bomen[4],bomen_4_w);
-    f2->addRow(string_bomen[10],bomen_4_h);
-    f2->addRow(string_bomen[5],bomen_5_w);
-    f2->addRow(string_bomen[11],bomen_5_h);
+    f2->addRow(string_bomen[9],bomen_4_h);
 
     bomen->setTitle("波门");
     bomen->setLayout(f2);
