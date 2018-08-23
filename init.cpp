@@ -95,8 +95,8 @@ void MainWindow::init_sysCfg()
     hsensor->addWidget(checkBox_channel4);
     hsensor->addWidget(checkBox_channel5);
     //lineEdit=new QLineEdit;
-    QComboBox *box1=new QComboBox;
-    box1->addItem("0");
+    box1=new QComboBox;
+    //box1->addItem("0");
     box1->addItem("1");
     box1->addItem("2");
     box1->addItem("3");

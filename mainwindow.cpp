@@ -342,6 +342,14 @@ void MainWindow::lEdt_sysCfg_Slot()
 
 void MainWindow::CBox_sysCfg_Slot(int i)
 {
+    int c_channel = box1->currentText().toInt();
+    qDebug()<<"c_channel="<<c_channel;
+    send_mutex.lock();
+    send_arr[4] = 02;
+    send_arr[5] = c_channel-1;
+    send_oneframe(2);
+    send_mutex.unlock();
+    /*
     switch (i){
         case 0:
             send_mutex.lock();
@@ -388,6 +396,7 @@ void MainWindow::CBox_sysCfg_Slot(int i)
         default:
             break;
     }
+    */
 }
 
 void MainWindow::lEdt_fix_Radio_Slot()
@@ -1331,28 +1340,44 @@ void MainWindow::checkBox_cross_Slot(int i)
 void MainWindow::checkBox_channel_Slot(int i)
 {
     int value = 0xFF;
+    box1->clear();
     if(checkBox_channel1->isChecked())
+    {
         value |= 1;
+        box1->addItem("1");
+    }
     else
         value &= ~(1);
 
     if(checkBox_channel2->isChecked())
+    {
         value |= (1<<1);
+        box1->addItem("2");
+    }
     else
         value &= ~(1<<1);
 
     if(checkBox_channel3->isChecked())
+    {
         value |= (1<<2);
+        box1->addItem("3");
+    }
     else
         value &= ~(1<<2);
 
     if(checkBox_channel4->isChecked())
+    {
         value |= (1<<3);
+        box1->addItem("4");
+    }
     else
         value &= ~(1<<3);
 
     if(checkBox_channel5->isChecked())
+    {
         value |= (1<<4);
+        box1->addItem("5");
+    }
     else
         value &= ~(1<<4);
 

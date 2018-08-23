@@ -491,7 +491,7 @@ private:
     QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
-
+    QComboBox *box1;
     /*平台配置*/
     QWidget *w_plat;
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
