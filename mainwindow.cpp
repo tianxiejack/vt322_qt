@@ -80,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_usocket = new RcvUSocketdata(this);
     connect(usocket, &QTcpSocket::readyRead, this, &MainWindow::usocket_Read_Data);
     connect(this,&MainWindow::usocket_copy_Done, this ,&MainWindow::usocket_parse_bytearray);
+    connect(thread_usocket,&RcvUSocketdata::socket2main_signal, this, &MainWindow::upgrade_showtext);
     thread_run_usocket = true;
     thread_usocket->start();
 
@@ -343,60 +344,11 @@ void MainWindow::lEdt_sysCfg_Slot()
 void MainWindow::CBox_sysCfg_Slot(int i)
 {
     int c_channel = box1->currentText().toInt();
-    qDebug()<<"c_channel="<<c_channel;
     send_mutex.lock();
     send_arr[4] = 02;
     send_arr[5] = c_channel-1;
     send_oneframe(2);
     send_mutex.unlock();
-    /*
-    switch (i){
-        case 0:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 00;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 1:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 01;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 2:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 3:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 03;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 4:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 04;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 5:
-            send_mutex.lock();
-            send_arr[4] = 02;
-            send_arr[5] = 05;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-    }
-    */
 }
 
 void MainWindow::lEdt_fix_Radio_Slot()
@@ -2542,7 +2494,6 @@ void MainWindow::btnUpdate()
         QFileInfo info(filePath);
         fileName = info.fileName();
         filesize = info.size();
-        qDebug()<<"文件大小："<<filesize;
         sendsize = 0;
         int packet_flag;
 
@@ -2667,7 +2618,7 @@ void MainWindow::btnUpdate()
 		  usocket->write((char *)usocket_send_buf,len+13);
           usocket->flush();
           trans_percent = sendsize*100/filesize;
-          upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
+          //upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
 		}
 		if(sendsize == filesize)
 		{

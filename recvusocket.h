@@ -12,5 +12,7 @@ public:
 
 protected:
     void run();
+signals:
+    void socket2main_signal(int i,int percent);
 };
 #endif // RECVUSOCKET_H

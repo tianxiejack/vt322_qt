@@ -1720,3 +1720,21 @@ void MainWindow::send_read_config(int block,int start_field, int end_field)
         send_mutex.unlock();
     }
 }
+void MainWindow::upgrade_showtext(int i, int percent)
+{
+    switch(i)
+    {
+        case 0:
+            upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(percent&0xFF,2,10));
+            break;
+        case 1:
+            upgrade_show->setText("文件发送中...%100");
+            upgrade_show->append("升级成功");
+            break;
+        case 2:
+            upgrade_show->append("升级失败");
+            break;
+        default:
+            break;
+    }
+}

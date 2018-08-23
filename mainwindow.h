@@ -93,6 +93,7 @@ public:
     void usocket_parse_bytearray();
     void socket_Read_Data();
     void usocket_Read_Data();
+    void upgrade_showtext(int i,int percent);
 
     /*计算圆边界值*/
     void calculationCircle(int center_a, int center_b, int x, int y);
