@@ -1886,6 +1886,29 @@ void MainWindow::btn_Jos_Update_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::btn_Speed_Default_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 49;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 50;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_Speed_Update_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
+
 void MainWindow::lEdt_Jos1_Slot()
 {
     float value=josDead_lineEdt->text().toFloat();
@@ -2320,6 +2343,204 @@ void MainWindow::lEdt_dbg15_Slot()
     send_arr[4] = 0x30;
     send_arr[5] = 48;
     send_arr[6] = 15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx1_Slot()
+{
+    float value=speedx1_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx2_Slot()
+{
+    float value=speedx2_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx3_Slot()
+{
+    float value=speedx3_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx4_Slot()
+{
+    float value=speedx4_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx5_Slot()
+{
+    float value=speedx5_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx6_Slot()
+{
+    float value=speedx6_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx7_Slot()
+{
+    float value=speedx7_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx8_Slot()
+{
+    float value=speedx8_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedx9_Slot()
+{
+    float value=speedx9_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy1_Slot()
+{
+    float value=speedy1_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy2_Slot()
+{
+    float value=speedy2_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy3_Slot()
+{
+    float value=speedy3_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy4_Slot()
+{
+    float value=speedy4_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy5_Slot()
+{
+    float value=speedy5_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy6_Slot()
+{
+    float value=speedy6_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy7_Slot()
+{
+    float value=speedy7_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 49;
+    send_arr[6] = 15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy8_Slot()
+{
+    float value=speedy8_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 50;
+    send_arr[6] = 0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_speedy9_Slot()
+{
+    float value=speedy9_lineEdt->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 50;
+    send_arr[6] = 1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();

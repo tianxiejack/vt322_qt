@@ -49,6 +49,9 @@ void MainWindow::init_menu()
      QAction* dbg_sysCfg=new QAction("捕获配置");
      menu[0]->addAction(dbg_sysCfg);
 
+     QAction* speedconv_sysCfg=new QAction("转换表配置");
+     menu[0]->addAction(speedconv_sysCfg);
+
     QAction* act_rstCfg=new QAction("恢复默认");
     menu[0]->addAction(act_rstCfg);
 
@@ -66,6 +69,7 @@ void MainWindow::init_menu()
     connect(act_cap3,SIGNAL(triggered(bool)),this,SLOT(showCapture3()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
     connect(dbg_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showdbgcfg()));
+    connect(speedconv_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg()));
 
 }
 
@@ -644,6 +648,118 @@ void MainWindow::showdbgcfg()
 
     w_dbg->show();
 
+}
+
+void MainWindow::showspeedconvcfg()
+{
+    w_speedconv=new QWidget;
+    w_speedconv->setWindowTitle("转换表配置");
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=49;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<2;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    QPushButton* btn_speed_default=new QPushButton;
+    QPushButton* btn_speed_update=new QPushButton;
+    btn_speed_default->setText("默认");
+    btn_speed_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_speed_default);
+    v1->addWidget(btn_speed_update);
+    QLabel *label=new QLabel;
+    label->setText("转换表参数设置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    gbox_speedx=new QGroupBox();
+    gbox_speedx->setTitle("x轴");
+    speedx1_lineEdt=new QLineEdit;
+    speedx2_lineEdt=new QLineEdit;
+    speedx3_lineEdt=new QLineEdit;
+    speedx4_lineEdt=new QLineEdit;
+    speedx5_lineEdt=new QLineEdit;
+    speedx6_lineEdt=new QLineEdit;
+    speedx7_lineEdt=new QLineEdit;
+    speedx8_lineEdt=new QLineEdit;
+    speedx9_lineEdt=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(speed_s[0],speedx1_lineEdt);
+    f1->addRow(speed_s[1],speedx2_lineEdt);
+    f1->addRow(speed_s[2],speedx3_lineEdt);
+    f1->addRow(speed_s[3],speedx4_lineEdt);
+    f1->addRow(speed_s[4],speedx5_lineEdt);
+    f1->addRow(speed_s[5],speedx6_lineEdt);
+    f1->addRow(speed_s[6],speedx7_lineEdt);
+    f1->addRow(speed_s[7],speedx8_lineEdt);
+    f1->addRow(speed_s[8],speedx9_lineEdt);
+    gbox_speedx->setLayout(f1);
+
+    gbox_speedy=new QGroupBox();
+    gbox_speedy->setTitle("y轴");
+    speedy1_lineEdt=new QLineEdit;
+    speedy2_lineEdt=new QLineEdit;
+    speedy3_lineEdt=new QLineEdit;
+    speedy4_lineEdt=new QLineEdit;
+    speedy5_lineEdt=new QLineEdit;
+    speedy6_lineEdt=new QLineEdit;
+    speedy7_lineEdt=new QLineEdit;
+    speedy8_lineEdt=new QLineEdit;
+    speedy9_lineEdt=new QLineEdit;
+
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(speed_s[0],speedy1_lineEdt);
+    f2->addRow(speed_s[1],speedy2_lineEdt);
+    f2->addRow(speed_s[2],speedy3_lineEdt);
+    f2->addRow(speed_s[3],speedy4_lineEdt);
+    f2->addRow(speed_s[4],speedy5_lineEdt);
+    f2->addRow(speed_s[5],speedy6_lineEdt);
+    f2->addRow(speed_s[6],speedy7_lineEdt);
+    f2->addRow(speed_s[7],speedy8_lineEdt);
+    f2->addRow(speed_s[8],speedy9_lineEdt);
+    gbox_speedy->setLayout(f2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addWidget(gbox_speedx);
+    v->addWidget(gbox_speedy);
+    w_speedconv->setLayout(v);
+
+    connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot()));
+    connect(speedx1_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot()));
+    connect(speedx2_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot()));
+    connect(speedx3_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot()));
+    connect(speedx4_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx4_Slot()));
+    connect(speedx5_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx5_Slot()));
+    connect(speedx6_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx6_Slot()));
+    connect(speedx7_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx7_Slot()));
+    connect(speedx8_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx8_Slot()));
+    connect(speedx9_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx9_Slot()));
+    connect(speedy1_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy1_Slot()));
+    connect(speedy2_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy2_Slot()));
+    connect(speedy3_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy3_Slot()));
+    connect(speedy4_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy4_Slot()));
+    connect(speedy5_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy5_Slot()));
+    connect(speedy6_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy6_Slot()));
+    connect(speedy7_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot()));
+    connect(speedy8_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot()));
+    connect(speedy9_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot()));
+
+    w_speedconv->show();
 }
 
 void MainWindow::showCamera()

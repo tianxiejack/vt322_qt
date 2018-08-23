@@ -137,6 +137,7 @@ public slots:
     void showCapture3();
     void showOther();
     void showdbgcfg();
+    void showspeedconvcfg();
 
     /*系统配置槽函数*/
     void btnSerialSlot();
@@ -216,7 +217,7 @@ private slots:
     void lEdt_plat7_Slot();
     void outMode_Slot(int i);
 
-    /*调试配置*/
+    /*捕获配置配置*/
     void lEdt_kx_Slot();
     void lEdt_ky_Slot();
     void lEdt_errx_Slot();
@@ -233,6 +234,28 @@ private slots:
     void lEdt_dbg13_Slot();
     void lEdt_dbg14_Slot();
     void lEdt_dbg15_Slot();
+
+    /*转换表配置*/
+    void lEdt_speedx1_Slot();
+    void lEdt_speedx2_Slot();
+    void lEdt_speedx3_Slot();
+    void lEdt_speedx4_Slot();
+    void lEdt_speedx5_Slot();
+    void lEdt_speedx6_Slot();
+    void lEdt_speedx7_Slot();
+    void lEdt_speedx8_Slot();
+    void lEdt_speedx9_Slot();
+    void lEdt_speedy1_Slot();
+    void lEdt_speedy2_Slot();
+    void lEdt_speedy3_Slot();
+    void lEdt_speedy4_Slot();
+    void lEdt_speedy5_Slot();
+    void lEdt_speedy6_Slot();
+    void lEdt_speedy7_Slot();
+    void lEdt_speedy8_Slot();
+    void lEdt_speedy9_Slot();
+    void btn_Speed_Default_Slot();
+    void btn_Speed_Update_Slot();
 
     /*通道1固定视场*/
     void lEdt_fix_Radio_Slot();
@@ -506,11 +529,18 @@ private:
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
     QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","平台控制曲线化因子a","平台输出模式"};
 
-    /*调试配置*/
+    /*捕获配置*/
     QWidget *w_dbg;
     QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
     *dbg11_lineEdt,*dbg12_lineEdt,*dbg13_lineEdt,*dbg14_lineEdt,*dbg15_lineEdt;
     QString dbg_s[16]={"x轴比例调节系数","y轴比例调节系数","x轴进PID偏差","y轴进PID偏差","进PID时间","debug5","debug6","debug7","debug8","debug9","debug10","debug11","debug12","debug13","debug14","debug15"};
+
+    /*转换表配置*/
+    QWidget *w_speedconv;
+    QGroupBox *gbox_speedx,*gbox_speedy;
+    QLineEdit *speedx1_lineEdt,*speedx2_lineEdt,*speedx3_lineEdt,*speedx4_lineEdt,*speedx5_lineEdt,*speedx6_lineEdt,*speedx7_lineEdt,*speedx8_lineEdt,*speedx9_lineEdt;
+    QLineEdit *speedy1_lineEdt,*speedy2_lineEdt,*speedy3_lineEdt,*speedy4_lineEdt,*speedy5_lineEdt,*speedy6_lineEdt,*speedy7_lineEdt,*speedy8_lineEdt,*speedy9_lineEdt;
+    QString speed_s[9]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9"};
 
     /*相机配置*/
     void on_btn_right_clicked();

@@ -1607,7 +1607,49 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     dbg15_lineEdt->setText(QString::number(value_i));
                 }
                 break;
-            default:
+        case 49:
+            if(0x00 == output_array[2]){
+                speedx1_lineEdt->setText(QString::number(value_i));
+            }else if(0x01 == output_array[2]){
+                speedx2_lineEdt->setText(QString::number(value_i));
+            }else if(0x02 == output_array[2]){
+                speedx3_lineEdt->setText(QString::number(value_i));
+            }else if(0x03 == output_array[2]){
+                speedx4_lineEdt->setText(QString::number(value_i));
+            }else if(0x04 == output_array[2]){
+                speedx5_lineEdt->setText(QString::number(value_i));
+            }else if(0x05 == output_array[2]){
+                speedx6_lineEdt->setText(QString::number(value_i));
+            }else if(0x06 == output_array[2]){
+                speedx7_lineEdt->setText(QString::number(value_i));
+            }else if(0x07 == output_array[2]){
+                speedx8_lineEdt->setText(QString::number(value_i));
+            }else if(0x08 == output_array[2]){
+                speedx9_lineEdt->setText(QString::number(value_i));
+            }else if(0x09 == output_array[2]){
+                speedy1_lineEdt->setText(QString::number(value_i));
+            }else if(10 == output_array[2]){
+                speedy2_lineEdt->setText(QString::number(value_i));
+            }else if(11 == output_array[2]){
+                speedy3_lineEdt->setText(QString::number(value_i));
+            }else if(12 == output_array[2]){
+                speedy4_lineEdt->setText(QString::number(value_i));
+            }else if(13 == output_array[2]){
+                speedy5_lineEdt->setText(QString::number(value_i));
+            }else if(14 == output_array[2]){
+                speedy6_lineEdt->setText(QString::number(value_i));
+            }else if(15 == output_array[2]){
+                speedy7_lineEdt->setText(QString::number(value_i));
+            }
+            break;
+        case 50:
+            if(0x00 == output_array[2]){
+                speedy1_lineEdt->setText(QString::number(value_i));
+            }else if(0x01 == output_array[2]){
+                speedy2_lineEdt->setText(QString::number(value_i));
+            }
+            break;
+        default:
                 break;
         }
     }
@@ -1704,6 +1746,12 @@ void MainWindow::read_config(int block)
             break;
         case 47:
             send_read_config(block,0,0);
+            break;
+        case 49:
+            send_read_config(block,0,15);
+            break;
+        case 50:
+            send_read_config(block,0,1);
             break;
         default:
             break;
