@@ -828,6 +828,8 @@ void MainWindow::showCamera()
     l4->setText(" ");
 
     lEdt=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
     sp=new QSpinBox;
     sp2=new QSpinBox;
     sp->setRange(0,9999);
@@ -835,13 +837,16 @@ void MainWindow::showCamera()
 
     QGridLayout *gl=new QGridLayout;
     gl->addWidget(l1,0,0,1,1);
-    gl->addWidget(l2,0,1,1,1);
-    gl->addWidget(l3,0,2,1,1);
-    gl->addWidget(l4,0,3,1,1);
+    gl->addWidget(l4,0,1,1,1);
+    gl->addWidget(l4,0,2,1,1);
+    gl->addWidget(l2,0,3,1,1);
+    gl->addWidget(l3,0,4,1,1);
+    gl->addWidget(l4,0,5,1,1);
     gl->addWidget(lEdt,1,0,1,1);
-    gl->addWidget(sp,1,1,1,1);
-    gl->addWidget(sp2,1,2,1,1);
-   // gl->addWidget(ok,1,3,1,1);
+    gl->addWidget(l1d,1,1,1,1);
+    gl->addWidget(l4,1,2,1,1);
+    gl->addWidget(sp,1,3,1,1);
+    gl->addWidget(sp2,1,4,1,1);
 
     g->setLayout(gl);
 
