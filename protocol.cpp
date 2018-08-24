@@ -1638,9 +1638,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             break;
         case 50:
             if(0x00 == output_array[2]){
-                speedy1_lineEdt->setText(QString::number(value_i));
+                speedy8_lineEdt->setText(QString::number(value_i));
             }else if(0x01 == output_array[2]){
-                speedy2_lineEdt->setText(QString::number(value_i));
+                speedy9_lineEdt->setText(QString::number(value_i));
             }
             break;
         default:
