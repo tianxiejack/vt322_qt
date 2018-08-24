@@ -210,7 +210,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     case 0x06:
                         deady_plat->setText(QString::number(value_i));
                         break;
-                    case 0x07:
+                    case 0x08:
                         a_plat->setText(QString::number(value_i));
                          break;
                 }
@@ -1577,7 +1577,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     erry_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x04){
                     time_lineEdt->setText(QString::number(value_i));
-                } else if(output_array[2]==0x05){
+                } /*else if(output_array[2]==0x05){
                     dbg5_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x06){
                     dbg6_lineEdt->setText(QString::number(value_i));
@@ -1599,7 +1599,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     dbg14_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==15){
                     dbg15_lineEdt->setText(QString::number(value_i));
-                }
+                }*/
                 break;
         case 49:
             if(0x00 == output_array[2]){
@@ -1667,7 +1667,8 @@ void MainWindow::read_config(int block)
             send_read_config(block,1,8);
             break;
         case 3:
-            send_read_config(block,1,7);
+            send_read_config(block,1,6);
+            send_read_config(block,8,8);
             break;
         case 4:
             send_read_config(block,0,15);

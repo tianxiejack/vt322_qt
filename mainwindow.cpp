@@ -2166,7 +2166,7 @@ void MainWindow::lEdt_plat7_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 0x03;
-    send_arr[6] = 0x07;
+    send_arr[6] = 0x08;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();

@@ -440,7 +440,7 @@ void MainWindow::showPlat()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=1;i<8;i++){
+    for(int i=1;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=0x03;
@@ -448,6 +448,12 @@ void MainWindow::showPlat()
         send_oneframe(3);
         send_mutex.unlock();
     }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x03;
+    send_arr[6]=0x08;
+    send_oneframe(3);
+    send_mutex.unlock();
 
     QPushButton* btn_jos_default=new QPushButton;
     QPushButton* btn_jos_update=new QPushButton;
@@ -584,9 +590,9 @@ void MainWindow::showPlat()
 void MainWindow::showdbgcfg()
 {
     w_dbg=new QWidget;
-    w_dbg->setWindowTitle("调试配置");
+    w_dbg->setWindowTitle("捕获配置");
 
-    for(int i=0;i<16;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=48;
@@ -617,6 +623,7 @@ void MainWindow::showdbgcfg()
     f3->addRow(dbg_s[2],errx_lineEdt);
     f3->addRow(dbg_s[3],erry_lineEdt);
     f3->addRow(dbg_s[4],time_lineEdt);
+    /*
     f3->addRow(dbg_s[5],dbg5_lineEdt);
     f3->addRow(dbg_s[6],dbg6_lineEdt);
     f3->addRow(dbg_s[7],dbg7_lineEdt);
@@ -628,12 +635,14 @@ void MainWindow::showdbgcfg()
     f3->addRow(dbg_s[13],dbg13_lineEdt);
     f3->addRow(dbg_s[14],dbg14_lineEdt);
     f3->addRow(dbg_s[15],dbg15_lineEdt);
+    */
     w_dbg->setLayout(f3);
     connect(kx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot()));
     connect(ky_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot()));
     connect(errx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot()));
     connect(erry_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot()));
     connect(time_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot()));
+    /*
     connect(dbg5_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg5_Slot()));
     connect(dbg6_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg6_Slot()));
     connect(dbg7_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg7_Slot()));
@@ -645,6 +654,7 @@ void MainWindow::showdbgcfg()
     connect(dbg13_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg13_Slot()));
     connect(dbg14_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg14_Slot()));
     connect(dbg15_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg15_Slot()));
+    */
 
     w_dbg->show();
 
