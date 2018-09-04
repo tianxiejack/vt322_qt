@@ -1185,12 +1185,17 @@ void MainWindow::lEdt_utc3_l15_Slot()
 
 void MainWindow::btn_osd_default_Slot()
 {
-    int count=c->currentIndex()+7;
-        send_mutex.lock();
-        send_arr[4] =0x09;
-        send_arr[5] =count;
-        send_oneframe(2);
-        send_mutex.unlock();
+    int count = 0;
+    if(count<16)
+        count=c->currentIndex()+7;
+    else
+        count=c->currentIndex()+13;
+
+    send_mutex.lock();
+    send_arr[4] =0x09;
+    send_arr[5] =count;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_osd_update_Slot()
@@ -2582,6 +2587,11 @@ void MainWindow::btnDownSlot()
             upgrade_show->append("文件大小不能超过4294967295字节！");
             return;
         }
+        if(0 == filesize)
+        {
+            upgrade_show->append("文件大小为0字节！");
+            return;
+        }
 
         file.setFileName(filePath);
         bool isok = file.open(QFile::ReadOnly);
@@ -2946,7 +2956,53 @@ void MainWindow::usocket_Read_Data()
 {
     usocketRcvData = usocket->readAll();//读网口
     usocket_copy_bytearray = usocketRcvData;
-    emit usocket_copy_Done();
+    //emit usocket_copy_Done();
+    {
+        QDataStream out(usocket_copy_bytearray);
+        int add_cnt = 0;
+        unsigned char tmp_buf[5000];
+        while(!out.atEnd()) {
+            quint8 outChar = 0;
+            out >> outChar;
+            tmp_buf[add_cnt++] = outChar;
+            if(add_cnt>=4999)
+            {
+                for(int i = 0; i<add_cnt; i++)
+                {
+                    usocket_mutex.lock();
+                    usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
+                    usocket_BufWrite %= sizeof(usocket_rcv_buf);
+
+                    if (usocket_BufWrite == usocket_BufRead) {
+                        usocket_BufRcvStatus = BUFFER_FULL;
+                    }
+                    else
+                    {
+                        usocket_BufRcvStatus = BUFFER_DATA;
+                    }
+                    usocket_mutex.unlock();
+                }
+                outChar = 0;
+                add_cnt = 0;
+            }
+
+        }
+        for(int i = 0; i<add_cnt; i++)
+        {
+            usocket_mutex.lock();
+            usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
+            usocket_BufWrite %= sizeof(usocket_rcv_buf);
+
+            if (usocket_BufWrite == usocket_BufRead) {
+                usocket_BufRcvStatus = BUFFER_FULL;
+            }
+            else
+            {
+                usocket_BufRcvStatus = BUFFER_DATA;
+            }
+            usocket_mutex.unlock();
+        }
+    }
     usocketRcvData.clear();
 }
 

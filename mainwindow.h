@@ -624,7 +624,6 @@ private:
     qint64 filesize; // 文件大小
     qint64 sendsize;  // 已经发送的数据大小
     QByteArray usocketRcvData;
-
 };
 extern MainWindow *pthis;
 #endif // MAINWINDOW_H

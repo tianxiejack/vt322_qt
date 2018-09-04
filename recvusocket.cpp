@@ -103,7 +103,9 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
                         if(crc_sum == pRxByte )
                         {
                             if(uoutput_array[0]==0x33)
+                            {
                                 exportfile(uoutput_array);
+                            }
                             else if(uoutput_array[0]==0x32)
                                 importfileresp(uoutput_array);
                             else if(uoutput_array[0]==0x35)
@@ -136,10 +138,10 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
 }
 void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
 {
-    int filelen =0;
-    int currentlen =0;
-    int writelen = 0;
-    static int writetotal = 0;
+    unsigned int filelen =0;
+    unsigned int currentlen =0;
+    unsigned int writelen = 0;
+    static unsigned int writetotal = 0;
     static int openflag = 0;
     filelen =(uoutput_array[1]|(uoutput_array[2]<<8)|(uoutput_array[3]<<16)|(uoutput_array[4]<<24));
     currentlen =(uoutput_array[6]|(uoutput_array[7]<<8));
@@ -152,7 +154,9 @@ void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
             return;
         }
         else
+        {
             openflag = 1;
+        }
     }
     writelen = expfile.write((char*)(uoutput_array+8),currentlen);
     writetotal += writelen;
@@ -182,15 +186,15 @@ void RcvUSocketdata::upgraderesp(unsigned char *uoutput_array)
 {
     if(uoutput_array[1] == 0x00)
     {
-        emit socket2main_signal(uoutput_array[1],uoutput_array[2]);
+        emit socket2main_signal(0,uoutput_array[2]);
     }
     else if(uoutput_array[1] == 0x01)
     {
-        emit socket2main_signal(uoutput_array[1],uoutput_array[2]);
+        emit socket2main_signal(1,uoutput_array[2]);
     }
     else if(uoutput_array[1] == 0x02)
     {
-        emit socket2main_signal(uoutput_array[1],uoutput_array[2]);
+        emit socket2main_signal(2,uoutput_array[2]);
     }
 }
 
