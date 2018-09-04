@@ -62,6 +62,8 @@ extern QFile expfile;
 namespace Ui {
 class MainWindow;
 }
+static int net_port=0;
+static QString net_ip=" ";
 
 class MainWindow : public QMainWindow
 {
@@ -115,7 +117,8 @@ public slots:
 
     /*定时器函数*/
     void timeoutSlot();
-
+   	void socketTimeoutSlot();
+    void clientDisconnected();
     /**/
     void btnToNet();
     void btnToSerial();
@@ -476,6 +479,7 @@ private:
 
     /*定时器*/
     QTimer *time;
+	QTimer *socket_time;
 
 //    QPushButton *blank;
 //    QPushButton *btn_sensor_fix;
@@ -624,6 +628,7 @@ private:
     qint64 filesize; // 文件大小
     qint64 sendsize;  // 已经发送的数据大小
     QByteArray usocketRcvData;
+	bool socketIsconnect=false;
 };
 extern MainWindow *pthis;
 #endif // MAINWINDOW_H

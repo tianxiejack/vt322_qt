@@ -1,5 +1,5 @@
 #include "comchoose.h"
-
+#include <QSettings>
 comChoose::comChoose(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Choose");
@@ -130,10 +130,15 @@ void comChoose::btnNetSlot()
 
     w_config_net.setWindowModality(Qt::ApplicationModal);
     lineEdit_port = new QLineEdit();
-    lineEdit_port->setText("10000");
     lineEdit_ip = new QLineEdit();
+ 	QSettings *configIniRead = new QSettings("socket.ini", QSettings::IniFormat);
+    QString ipResult = configIniRead->value("/ip").toString();
+    QString portResult = configIniRead->value("/port").toString();
+    lineEdit_ip->setText(ipResult);
+    lineEdit_port->setText(portResult);
+    delete configIniRead;
     lineEdit_ip->setInputMask("000.000.000.000");
-    lineEdit_ip->setText("192.168.0.188");
+
 
     QDialogButtonBox* button_socket = new QDialogButtonBox();
     button_socket->addButton( "OK", QDialogButtonBox::YesRole);
@@ -168,6 +173,10 @@ void comChoose::serialSlot()
 void comChoose::netSlot()
 {
     mutex=1;
+QSettings *configIniWrite = new QSettings("socket.ini", QSettings::IniFormat);
+     configIniWrite->setValue("ip", lineEdit_ip->text());
+     configIniWrite->setValue("port", lineEdit_port->text());
+     delete configIniWrite;
     net_port=lineEdit_port->text().toInt();
     net_ip=lineEdit_ip->text();
     w_config_net.close();

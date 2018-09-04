@@ -69,12 +69,15 @@ MainWindow::MainWindow(QWidget *parent) :
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_Read_Data);
     connect(this,&MainWindow::socket_copy_Done, this ,&MainWindow::socket_parse_bytearray);
+	connect(socket, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
     thread_socket = new RcvSocketdata(this);
     thread_run_socket = true;
     thread_socket->start();
 
     time=new QTimer(this);
     connect(time,SIGNAL(timeout()),this,SLOT(timeoutSlot()));
+	socket_time=new QTimer(this);
+    connect(socket_time,SIGNAL(timeout()),this,SLOT(socketTimeoutSlot()));
 
     usocket = new QTcpSocket(this);
     thread_usocket = new RcvUSocketdata(this);
@@ -91,7 +94,24 @@ MainWindow::~MainWindow()
     delete ui;
 
 }
+void MainWindow::socketTimeoutSlot()
+{
+    if(!socketIsconnect){
+        socket->abort();
+        socket->connectToHost(net_ip,net_port);
+       if(!socket->waitForConnected(300))
+       {
 
+       }
+        socketIsconnect=true;
+    }
+
+}
+void MainWindow::clientDisconnected()
+{
+    socketIsconnect=false;
+    socket_time->start(1000);
+}
 qint32 mySetSerialBaud( QSerialPort *com, int n)
 {
 //    qint32 num = combobox->currentText().toInt();
@@ -197,18 +217,10 @@ QSerialPort::StopBits smySetSerialStopBit(QSerialPort *com,int n)
 void MainWindow::netReceiveMainSlot(int port ,QString ip)
 {
 
-
+	net_ip=ip;
+    net_port=port;
     socket->connectToHost(ip,port);
-//    if(socket->isOpen()){
-//        qDebug()<<"连接成功！";
-//     this->show();
-//   }
-//    else{
-//        qDebug()<<"连接失败！";
 
-//   }
-
-    //等待连接成功
     if(!socket->waitForConnected(300))
     {
         qDebug() << "Connection failed!";
@@ -223,20 +235,7 @@ void MainWindow::netReceiveMainSlot(int port ,QString ip)
 
 void MainWindow::serialReceiveMainSlot(QString port,qint32 baud,int check,int data,int stop)
 {
-//    QString port=s.port;
-//    quint32 baud=s.baud;
-//    int check=s.check;
-//    int data=s.data;
-//    int stop=s.stop;
-//    serial_command askData;
-//        askData = s.value<serial_command_main>();
-//    qDebug()<<askData.port;
 
-//    qDebug()<<"port"<< port<<endl;
-//    qDebug()<<"baud"<< baud<<endl;
-//    qDebug()<<"check"<<check<<endl;
-//    qDebug()<<"data"<< data<<endl;
-//    qDebug()<<"stop"<< stop<<endl;
     serialPort_command->close();
     serialPort_command->setPortName(port);
     bool openflag = serialPort_command->open(QIODevice::ReadWrite);
@@ -254,8 +253,8 @@ void MainWindow::serialReceiveMainSlot(QString port,qint32 baud,int check,int da
 }
 void MainWindow::btnToNet()
 {
-    int net_port=lineEdit_port->text().toInt();
-    QString net_ip=lineEdit_ip->text();
+    net_port=lineEdit_port->text().toInt();
+    net_ip=lineEdit_ip->text();
     if(socket->isOpen())
        socket->close();
     if(serialPort_command->isOpen())
@@ -269,7 +268,7 @@ void MainWindow::btnToNet()
         return;
     }
     w_config_net.close();
-
+	socketIsconnect=true;
     qDebug() << "Connect successfully!";
     connect_flag = 2;
 }
