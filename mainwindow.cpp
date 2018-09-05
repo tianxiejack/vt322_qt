@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QRadioButton>
+#include <QButtonGroup>
 
 QByteArray copy_bytearray;
 volatile unsigned char rcv_buf[5000];
@@ -1343,6 +1345,117 @@ void MainWindow::checkBox_channel_Slot(int i)
     send_oneframe(2);
     send_mutex.unlock();
 
+}
+void MainWindow::btn_aisle1_Slot()
+{
+    switch (BG1->checkedId()) {
+    case 1:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x00;
+        send_arr[6] = 0x00;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    case 2:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x00;
+        send_arr[6] = 0x01;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::btn_aisle2_Slot()
+{
+    switch (BG2->checkedId()) {
+    case 1:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x01;
+        send_arr[6] = 0x00;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    case 2:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x01;
+        send_arr[6] = 0x01;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::btn_aisle3_Slot()
+{
+    switch (BG3->checkedId()) {
+    case 1:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x02;
+        send_arr[6] = 0x00;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    case 2:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x02;
+        send_arr[6] = 0x01;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::btn_aisle4_Slot()
+{
+    switch (BG4->checkedId()) {
+    case 1:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x03;
+        send_arr[6] = 0x00;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    case 2:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x03;
+        send_arr[6] = 0x01;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::btn_aisle5_Slot()
+{
+    switch (BG5->checkedId()) {
+    case 1:
+        send_mutex.lock();
+        send_arr[4] = 0x06;
+        send_arr[5] = 0x04;
+        send_arr[6] = 0x00;
+        send_oneframe(3);
+        send_mutex.unlock();
+        break;
+    default:
+        break;
+    }
 }
 void MainWindow::lEdt_osd_x_Slot()
 {

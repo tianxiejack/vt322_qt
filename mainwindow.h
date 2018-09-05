@@ -42,6 +42,7 @@
 #include <QTimer>
 #include<QTextEdit>
 #include "recvusocket.h"
+#include <QRadioButton>
 
 #define POS_MIN 0
 #define POS_MAX 65535
@@ -188,9 +189,16 @@ private slots:
 
     /*系统配置槽函数*/
     void lEdt_sysCfg_Slot();
+	void btn_choose_Slot();
     void CBox_sysCfg_Slot(int i);
     void checkBox_channel_Slot(int i);
 
+	/*通道分辨率*/
+    void btn_aisle1_Slot();
+    void btn_aisle2_Slot();
+    void btn_aisle3_Slot();
+    void btn_aisle4_Slot();
+    void btn_aisle5_Slot();
     /*平台控制*/
     void btn_Jos_Default_Slot();
     void btn_Jos_Update_Slot();
@@ -512,7 +520,7 @@ private:
     unsigned short sectrk_y = 0;
 
     /*系统配置*/
-    QWidget *w_config,w_config_serial,w_config_net;
+    QWidget *w_config,w_config_serial,w_config_net,*w_choose;
     QStackedLayout *s;
     QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
     QGroupBox *groupBox_trackboard;
@@ -520,6 +528,10 @@ private:
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
     QComboBox *box1;
+	QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
+    QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
+    QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle5_1;
+    QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
     /*平台配置*/
     QWidget *w_plat;
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
