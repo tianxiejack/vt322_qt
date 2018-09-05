@@ -32,7 +32,8 @@ SOURCES += \
     protocol.cpp \
     recserial.cpp \
     recvsocket.cpp \
-    recvusocket.cpp
+    recvusocket.cpp \
+    mywidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     comchoose.h \
     recserial.h \
     recvsocket.h \
-    recvusocket.h
+    recvusocket.h \
+    mywidget.h
 
 FORMS += \
         mainwindow.ui \

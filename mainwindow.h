@@ -43,6 +43,7 @@
 #include<QTextEdit>
 #include "recvusocket.h"
 #include <QRadioButton>
+#include "mywidget.h"
 
 #define POS_MIN 0
 #define POS_MAX 65535
@@ -83,6 +84,13 @@ public:
     /*初始化的配置*/
     void init_menu();
     void init_sysCfg();
+    void init_platCfg();
+    void init_dbCfg();
+    void init_speedconvCfg();
+    void init_utcCfg();
+    void init_captureCfg();
+    void init_OSDCfg();
+    void init_cameraCfg();
 
     /*协议传输*/
     QByteArray string2hex(QString str,bool &flag);
@@ -520,7 +528,7 @@ private:
     unsigned short sectrk_y = 0;
 
     /*系统配置*/
-    QWidget *w_config,w_config_serial,w_config_net,*w_choose;
+    QWidget *w_config,*w_config_serial,*w_config_net,*w_choose;
     QStackedLayout *s;
     QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
     QGroupBox *groupBox_trackboard;
@@ -533,7 +541,7 @@ private:
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
     /*平台配置*/
-    QWidget *w_plat;
+    MyWidget *w_plat;
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
     QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,*josPoint_lineEdt2,*josInputG_x2,*josInputG_y2,
               *josOutputG_x,*josOutputG_y;
@@ -546,13 +554,13 @@ private:
     QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","记忆跟踪时间","平台输出模式"};
 
     /*捕获配置*/
-    QWidget *w_dbg;
+    MyWidget *w_dbg;
     QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
     *dbg11_lineEdt,*dbg12_lineEdt,*dbg13_lineEdt,*dbg14_lineEdt,*dbg15_lineEdt;
     QString dbg_s[16]={"x轴比例调节系数","y轴比例调节系数","x轴进PID偏差","y轴进PID偏差","进PID时间","debug5","debug6","debug7","debug8","debug9","debug10","debug11","debug12","debug13","debug14","debug15"};
 
     /*转换表配置*/
-    QWidget *w_speedconv;
+    MyWidget *w_speedconv;
     QGroupBox *gbox_speedx,*gbox_speedy;
     QLineEdit *speedx1_lineEdt,*speedx2_lineEdt,*speedx3_lineEdt,*speedx4_lineEdt,*speedx5_lineEdt,*speedx6_lineEdt,*speedx7_lineEdt,*speedx8_lineEdt,*speedx9_lineEdt;
     QLineEdit *speedy1_lineEdt,*speedy2_lineEdt,*speedy3_lineEdt,*speedy4_lineEdt,*speedy5_lineEdt,*speedy6_lineEdt,*speedy7_lineEdt,*speedy8_lineEdt,*speedy9_lineEdt;
@@ -562,7 +570,7 @@ private:
     void on_btn_right_clicked();
 
     /*通道1*/
-    QWidget *w_sersor1,*w_seitchField,*w_ContinueField;
+    MyWidget *w_sersor1,*w_seitchField,*w_ContinueField;
     QStackedLayout *sta;
     QComboBox *change3,*change2,*change1,*change;
     int current_shichang;
@@ -598,7 +606,7 @@ private:
 
     /*UTC*/
     QPushButton *btn_utc1_default,*btn_utc1_update,*btn_utc2_default,*btn_utc2_update,*btn_utc3_default,*btn_utc3_update;
-    QWidget *utc1,*utc2,*utc3;
+    MyWidget *utc1,*utc2,*utc3;
     QGroupBox *gbox_utc1,*gbox_utc2,*gbox_utc3;
     QLineEdit *utc1_l0,*utc1_l1,*utc1_l2,*utc1_l3,*utc1_l4,*utc1_l5,
               *utc1_l6,*utc1_l7,*utc1_l8,*utc1_l9,*utc1_l10,*utc1_l11,
@@ -614,7 +622,7 @@ private:
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 
     /*捕获框配置*/
-    QWidget *w_capture1,*w_capture2,*w_capture3;
+    MyWidget *w_capture1,*w_capture2,*w_capture3;
     QPushButton *btn_capture_default,*btn_capture_update,*btn_capture2_default,*btn_capture2_update,*btn_capture3_default,*btn_capture3_update;
     QLineEdit *cap_0_w,*cap_1_w,*cap_2_w,*cap_3_w,*cap_4_w,*cap_5_w,*cap_0_h,*cap_1_h,*cap_2_h,*cap_3_h,*cap_4_h,*cap_5_h;
     QLineEdit *bomen_0_w,*bomen_1_w,*bomen_2_w,*bomen_3_w,*bomen_4_w,*bomen_5_w,*bomen_0_h,*bomen_1_h,*bomen_2_h,*bomen_3_h,*bomen_4_h,*bomen_5_h;
@@ -626,7 +634,7 @@ private:
     /*OSD*/
     QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size;
     QPushButton *btn_osd1_default,*btn_osd1_update;
-    QWidget *w_osd1;
+    MyWidget *w_osd1;
     QCheckBox *checkBox;
     QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
     QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};

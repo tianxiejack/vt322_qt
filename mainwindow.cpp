@@ -53,6 +53,15 @@ MainWindow::MainWindow(QWidget *parent) :
     pthis = this;
     init_menu();
     init_sysCfg();
+    init_platCfg();
+    init_dbCfg();
+    init_speedconvCfg();
+    init_utcCfg();
+    init_captureCfg();
+    init_OSDCfg();
+    init_cameraCfg();
+
+
     this->setWindowTitle("控制界面");
     old_x=a_center=a=POINTX+CENTER/2;
     old_y=b_center=b=POINTY+CENTER/2;
@@ -269,7 +278,7 @@ void MainWindow::btnToNet()
         QMessageBox::warning(NULL, tr("警告"), tr("连接失败"), QMessageBox::Close);
         return;
     }
-    w_config_net.close();
+    w_config_net->close();
 	socketIsconnect=true;
     qDebug() << "Connect successfully!";
     connect_flag = 2;
@@ -294,7 +303,7 @@ void MainWindow::btnToSerial()
         mySetSerialDataBits(serialPort_command,serial_data);
         mySetSerialParity(serialPort_command,serial_check);
         smySetSerialStopBit(serialPort_command,serial_stop);
-         w_config_serial.close();
+         w_config_serial->close();
     }else{// 串口打开失败时，弹出提示窗口
         QMessageBox::warning(NULL, tr("警告"), tr("串口被占用"), QMessageBox::Close);
     }
@@ -302,8 +311,8 @@ void MainWindow::btnToSerial()
 
 void MainWindow::btnToClose()
 {
-    w_config_net.close();
-    w_config_serial.close();
+    w_config_net->close();
+    w_config_serial->close();
 }
 
 
@@ -1186,11 +1195,12 @@ void MainWindow::lEdt_utc3_l15_Slot()
 
 void MainWindow::btn_osd_default_Slot()
 {
-    int count = 0;
+    int count = c->currentIndex();
+
     if(count<16)
-        count=c->currentIndex()+7;
+        count=count+7;
     else
-        count=c->currentIndex()+13;
+        count=count+13;
 
     send_mutex.lock();
     send_arr[4] =0x09;
