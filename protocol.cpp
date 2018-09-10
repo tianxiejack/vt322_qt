@@ -1790,71 +1790,98 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }
             break;
 		case 51:
-            if(0x00 == output_array[2]){
-                rdBtn_aisle1_1->setChecked(true);
-            }else if(0x01 == output_array[2]){
-                rdBtn_aisle1_2->setChecked(true);
+            if(0x00 == output_array[2])
+            {
+                switch((int)value_i)
+                {
+                    case 0:
+                        rdBtn_aisle1_1->setChecked(true);
+                        break;
+                    case 1:
+                        rdBtn_aisle1_2->setChecked(true);
+                        break;
+                    case 2:
+                        rdBtn_aisle1_3->setChecked(true);
+                        break;
+                    case 3:
+                        rdBtn_aisle1_4->setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(0x01 == output_array[2])
+            {
+                switch((int)value_i)
+                {
+                    case 0:
+                        rdBtn_aisle2_1->setChecked(true);
+                        break;
+                    case 1:
+                        rdBtn_aisle2_2->setChecked(true);
+                        break;
+                    case 2:
+                        rdBtn_aisle2_3->setChecked(true);
+                        break;
+                    case 3:
+                        rdBtn_aisle2_4->setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(0x02 == output_array[2])
+            {
+                switch((int)value_i)
+                {
+                    case 0:
+                        rdBtn_aisle3_1->setChecked(true);
+                        break;
+                    case 1:
+                        rdBtn_aisle3_2->setChecked(true);
+                        break;
+                    case 2:
+                        rdBtn_aisle3_3->setChecked(true);
+                        break;
+                    case 3:
+                        rdBtn_aisle3_4->setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(0x03 == output_array[2])
+            {
+                switch((int)value_i)
+                {
+                    case 0:
+                        rdBtn_aisle4_1->setChecked(true);
+                        break;
+                    case 1:
+                        rdBtn_aisle4_2->setChecked(true);
+                        break;
+                    case 2:
+                        rdBtn_aisle4_3->setChecked(true);
+                        break;
+                    case 3:
+                        rdBtn_aisle4_4->setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(0x04 == output_array[2])
+            {
+                switch((int)value_i)
+                {
+                    case 0:
+                        rdBtn_aisle5_1->setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
             }
             break;
-        case 52:
-            if(0x00 == output_array[2]){
-               rdBtn_aisle2_1->setChecked(true);
-            }else if(0x01 == output_array[2]){
-               rdBtn_aisle2_2->setChecked(true);
-            }
-            break;
-        case 53:
-            if(0x00 == output_array[2]){
-                rdBtn_aisle3_1->setChecked(true);
-            }else if(0x01 == output_array[2]){
-                rdBtn_aisle3_2->setChecked(true);
-            }
-            break;
-        case 54:
-            if(0x00 == output_array[2]){
-                rdBtn_aisle4_1->setChecked(true);
-            }else if(0x01 == output_array[2]){
-                rdBtn_aisle4_2->setChecked(true);
-            }
-            break;
-        case 55:
-            if(0x00 == output_array[2]){
-                rdBtn_aisle5_1->setChecked(true);
-            }
-            break;
-//        case 56:
-//            if(0x00 == output_array[2]){
-//                rdBtn_out1_1->setChecked(true);
-//            }else if(0x01 == output_array[2]){
-//                rdBtn_out1_2->setChecked(true);
-//            }
-//            break;
-//        case 57:
-//            if(0x00 == output_array[2]){
-//                rdBtn_out2_1->setChecked(true);
-//            }else if(0x01 == output_array[2]){
-//                rdBtn_out2_2->setChecked(true);
-//            }
-//            break;
-//        case 58:
-//            if(0x00 == output_array[2]){
-//                rdBtn_out3_1->setChecked(true);
-//            }else if(0x01 == output_array[2]){
-//                rdBtn_out3_2->setChecked(true);
-//            }
-//            break;
-//        case 59:
-//            if(0x00 == output_array[2]){
-//                rdBtn_out4_1->setChecked(true);
-//            }else if(0x01 == output_array[2]){
-//                rdBtn_out4_2->setChecked(true);
-//            }
-//            break;
-//        case 60:
-//            if(0x00 == output_array[2]){
-//                rdBtn_out5_1->setChecked(true);
-//            }
-//            break;
         default:
                 break;
         }

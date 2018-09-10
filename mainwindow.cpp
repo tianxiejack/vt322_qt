@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     init_captureCfg();
     init_OSDCfg();
     init_cameraCfg();
+    init_resl();
 
 
     this->setWindowTitle("控制界面");
@@ -1358,21 +1359,46 @@ void MainWindow::checkBox_channel_Slot(int i)
 }
 void MainWindow::btn_aisle1_Slot()
 {
+    float value = 0;
     switch (BG1->checkedId()) {
     case 1:
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x00;
-        send_arr[6] = 0x00;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 0;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     case 2:
+        value = 1;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x00;
-        send_arr[6] = 0x01;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 0;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 3:
+        value = 2;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 0;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 4:
+        value = 3;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 0;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     default:
@@ -1382,21 +1408,46 @@ void MainWindow::btn_aisle1_Slot()
 
 void MainWindow::btn_aisle2_Slot()
 {
+    float value = 0;
     switch (BG2->checkedId()) {
     case 1:
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x01;
-        send_arr[6] = 0x00;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 1;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     case 2:
+        value = 1;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x01;
-        send_arr[6] = 0x01;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 1;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 3:
+        value = 2;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 1;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 4:
+        value = 3;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 1;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     default:
@@ -1406,21 +1457,46 @@ void MainWindow::btn_aisle2_Slot()
 
 void MainWindow::btn_aisle3_Slot()
 {
+    float value = 0;
     switch (BG3->checkedId()) {
     case 1:
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x02;
-        send_arr[6] = 0x00;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 2;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     case 2:
+        value = 1;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x02;
-        send_arr[6] = 0x01;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 2;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 3:
+        value = 2;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 2;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 4:
+        value = 3;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 2;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     default:
@@ -1430,21 +1506,46 @@ void MainWindow::btn_aisle3_Slot()
 
 void MainWindow::btn_aisle4_Slot()
 {
+    float value = 0;
     switch (BG4->checkedId()) {
     case 1:
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x03;
-        send_arr[6] = 0x00;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 3;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     case 2:
+        value = 1;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x03;
-        send_arr[6] = 0x01;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 3;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 3:
+        value = 2;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 3;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+        break;
+    case 4:
+        value = 3;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 3;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     default:
@@ -1454,13 +1555,16 @@ void MainWindow::btn_aisle4_Slot()
 
 void MainWindow::btn_aisle5_Slot()
 {
+    float value = 0;
     switch (BG5->checkedId()) {
     case 1:
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x04;
-        send_arr[6] = 0x00;
-        send_oneframe(3);
+        send_arr[4] = 0x30;
+        send_arr[5] = 51;
+        send_arr[6] = 4;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
         break;
     default:

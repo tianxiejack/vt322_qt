@@ -91,6 +91,7 @@ public:
     void init_captureCfg();
     void init_OSDCfg();
     void init_cameraCfg();
+    void init_resl();
 
     /*协议传输*/
     QByteArray string2hex(QString str,bool &flag);
@@ -528,7 +529,8 @@ private:
     unsigned short sectrk_y = 0;
 
     /*系统配置*/
-    QWidget *w_config,*w_config_serial,*w_config_net,*w_choose;
+    QWidget *w_config,*w_config_serial,*w_config_net;
+    MyWidget *w_choose;
     QStackedLayout *s;
     QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop;
     QGroupBox *groupBox_trackboard;
@@ -536,9 +538,9 @@ private:
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
     QComboBox *box1;
-	QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
+    QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
-    QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle5_1;
+    QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
     /*平台配置*/
     MyWidget *w_plat;

@@ -1445,11 +1445,232 @@ void MainWindow::init_cameraCfg()
 
     w_ContinueField->setLayout(v3b);
     w_ContinueField->resize(300,500);
-
-
     w_ContinueField->setWindowTitle("连续视场");
 }
 
+void MainWindow::init_resl()
+{
+    w_choose=new MyWidget;
+    w_choose->setWindowTitle(tr("分辨率选择"));
+
+    //通道1
+    rdBtn_aisle1_1=new QRadioButton;
+    rdBtn_aisle1_2=new QRadioButton;
+    rdBtn_aisle1_3=new QRadioButton;
+    rdBtn_aisle1_4=new QRadioButton;
+
+    BG1=new QButtonGroup;
+    BG1->addButton(rdBtn_aisle1_1,1);
+    BG1->addButton(rdBtn_aisle1_2,2);
+    BG1->addButton(rdBtn_aisle1_3,3);
+    BG1->addButton(rdBtn_aisle1_4,4);
+
+    QFormLayout *F1=new QFormLayout;
+    F1->addRow("1080P@25fps",rdBtn_aisle1_1);
+    F1->addRow("1080P@30fps",rdBtn_aisle1_2);
+    F1->addRow("720P@50fps",rdBtn_aisle1_3);
+    F1->addRow("720P@60fps",rdBtn_aisle1_4);
+
+    //通道2
+    rdBtn_aisle2_1=new QRadioButton;
+    rdBtn_aisle2_2=new QRadioButton;
+    rdBtn_aisle2_3=new QRadioButton;
+    rdBtn_aisle2_4=new QRadioButton;
+
+
+    BG2=new QButtonGroup;
+    BG2->addButton(rdBtn_aisle2_1,1);
+    BG2->addButton(rdBtn_aisle2_2,2);
+    BG2->addButton(rdBtn_aisle2_3,3);
+    BG2->addButton(rdBtn_aisle2_4,4);
+
+    QFormLayout *F2=new QFormLayout;
+    F2->addRow("1080P@25fps",rdBtn_aisle2_1);
+    F2->addRow("1080P@30fps",rdBtn_aisle2_2);
+    F2->addRow("720P@50fps",rdBtn_aisle2_3);
+    F2->addRow("720P@60fps",rdBtn_aisle2_4);
+
+    //通道3
+    rdBtn_aisle3_1=new QRadioButton;
+    rdBtn_aisle3_2=new QRadioButton;
+    rdBtn_aisle3_3=new QRadioButton;
+    rdBtn_aisle3_4=new QRadioButton;
+
+    BG3=new QButtonGroup;
+    BG3->addButton(rdBtn_aisle3_1,1);
+    BG3->addButton(rdBtn_aisle3_2,2);
+    BG3->addButton(rdBtn_aisle3_3,3);
+    BG3->addButton(rdBtn_aisle3_4,4);
+
+    QFormLayout *F3=new QFormLayout;
+    F3->addRow("1080P@25fps",rdBtn_aisle3_1);
+    F3->addRow("1080P@30fps",rdBtn_aisle3_2);
+    F3->addRow("720P@50fps",rdBtn_aisle3_3);
+    F3->addRow("720P@60fps",rdBtn_aisle3_4);
+
+    //通道4
+    rdBtn_aisle4_1=new QRadioButton;
+    rdBtn_aisle4_2=new QRadioButton;
+    rdBtn_aisle4_3=new QRadioButton;
+    rdBtn_aisle4_4=new QRadioButton;
+
+    BG4=new QButtonGroup;
+    BG4->addButton(rdBtn_aisle4_1,1);
+    BG4->addButton(rdBtn_aisle4_2,2);
+    BG4->addButton(rdBtn_aisle4_3,3);
+    BG4->addButton(rdBtn_aisle4_4,4);
+
+
+    QFormLayout *F4=new QFormLayout;
+    F4->addRow("1080P@25fps",rdBtn_aisle4_1);
+    F4->addRow("1080P@30fps",rdBtn_aisle4_2);
+    F4->addRow("720P@50fps",rdBtn_aisle4_3);
+    F4->addRow("720P@60fps",rdBtn_aisle4_4);
+    //通道5
+    rdBtn_aisle5_1=new QRadioButton;
+    BG5=new QButtonGroup;
+    BG5->addButton(rdBtn_aisle5_1,1);
+
+    QFormLayout *F5=new QFormLayout;
+    F5->addRow("720*576i/50Hz",rdBtn_aisle5_1);
+
+
+    QGroupBox *G1=new QGroupBox;
+    G1->setTitle("通道1");
+    G1->setLayout(F1);
+    QGroupBox *G2=new QGroupBox;
+    G2->setTitle("通道2");
+    G2->setLayout(F2);
+    QGroupBox *G3=new QGroupBox;
+    G3->setTitle("通道3");
+    G3->setLayout(F3);
+    QGroupBox *G4=new QGroupBox;
+    G4->setTitle("通道4");
+    G4->setLayout(F4);
+    QGroupBox *G5=new QGroupBox;
+    G5->setTitle("通道5");
+    G5->setLayout(F5);
+
+
+    //通道输出1
+    rdBtn_out1_1=new QRadioButton;
+    rdBtn_out1_2=new QRadioButton;
+
+    BO1=new QButtonGroup;
+    BO1->addButton(rdBtn_out1_1,1);
+    BO1->addButton(rdBtn_out1_2,2);
+
+    QFormLayout *FO1=new QFormLayout;
+    FO1->addRow("1080P@25fps/30fps",rdBtn_out1_1);
+    FO1->addRow("720P@50fps/60fps",rdBtn_out1_2);
+
+    //通道输出2
+    rdBtn_out2_1=new QRadioButton;
+    rdBtn_out2_2=new QRadioButton;
+
+    BO2=new QButtonGroup;
+    BO2->addButton(rdBtn_out2_1,1);
+    BO2->addButton(rdBtn_out2_2,2);
+
+    QFormLayout *FO2=new QFormLayout;
+    FO2->addRow("1080P@25fps/30fps",rdBtn_out2_1);
+    FO2->addRow("720P@50fps/60fps",rdBtn_out2_2);
+
+    //通道输出3
+    rdBtn_out3_1=new QRadioButton;
+    rdBtn_out3_2=new QRadioButton;
+
+    BO3=new QButtonGroup;
+    BO3->addButton(rdBtn_out3_1,1);
+    BO3->addButton(rdBtn_out3_2,2);
+
+    QFormLayout *FO3=new QFormLayout;
+    FO3->addRow("1080P@25fps/30fps",rdBtn_out3_1);
+    FO3->addRow("720P@50fps/60fps",rdBtn_out3_2);
+
+    //通道输出4
+    rdBtn_out4_1=new QRadioButton;
+    rdBtn_out4_2=new QRadioButton;
+    BO4=new QButtonGroup;
+    BO4->addButton(rdBtn_out4_1,1);
+    BO4->addButton(rdBtn_out4_2,2);
+
+    QFormLayout *FO4=new QFormLayout;
+    FO4->addRow("1080P@25fps/30fps",rdBtn_out4_1);
+    FO4->addRow("720P@50fps/60fps",rdBtn_out4_2);
+
+    //通道5
+    rdBtn_out5_1=new QRadioButton;
+    BO5=new QButtonGroup;
+    BO5->addButton(rdBtn_out5_1,1);
+
+    QFormLayout *FO5=new QFormLayout;
+    FO5->addRow("720*576i/50Hz",rdBtn_out5_1);
+
+    QGroupBox *O1=new QGroupBox;
+    O1->setTitle("通道1");
+    O1->setLayout(FO1);
+    QGroupBox *O2=new QGroupBox;
+    O2->setTitle("通道2");
+    O2->setLayout(FO2);
+    QGroupBox *O3=new QGroupBox;
+    O3->setTitle("通道3");
+    O3->setLayout(FO3);
+    QGroupBox *O4=new QGroupBox;
+    O4->setTitle("通道4");
+    O4->setLayout(FO4);
+    QGroupBox *O5=new QGroupBox;
+    O5->setTitle("通道5");
+    O5->setLayout(FO5);
+
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addWidget(G1);
+    h1->addWidget(G2);
+    h1->addWidget(G3);
+    h1->addWidget(G4);
+    h1->addWidget(G5);
+    QHBoxLayout *h2=new QHBoxLayout;
+    h2->addWidget(O1);
+    h2->addWidget(O2);
+    h2->addWidget(O3);
+    h2->addWidget(O4);
+    h2->addWidget(O5);
+
+    QGroupBox *G=new QGroupBox;
+    G->setTitle("采集分辨率");
+    G->setLayout(h1);
+//    QGroupBox *O=new QGroupBox;
+//    O->setTitle("输出分辨率");
+//    O->setLayout(h2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addWidget(G);
+    //=v->addWidget(O);
+
+    w_choose->setLayout(v);
+
+    connect(rdBtn_aisle1_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
+    connect(rdBtn_aisle1_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
+    connect(rdBtn_aisle1_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
+    connect(rdBtn_aisle1_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
+
+    connect(rdBtn_aisle2_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
+    connect(rdBtn_aisle2_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
+    connect(rdBtn_aisle2_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
+    connect(rdBtn_aisle2_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
+
+    connect(rdBtn_aisle3_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
+    connect(rdBtn_aisle3_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
+    connect(rdBtn_aisle3_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
+    connect(rdBtn_aisle3_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
+
+    connect(rdBtn_aisle4_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
+    connect(rdBtn_aisle4_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
+    connect(rdBtn_aisle4_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
+    connect(rdBtn_aisle4_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
+
+    connect(rdBtn_aisle5_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle5_Slot()));
+}
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
@@ -2113,230 +2334,17 @@ void MainWindow::btnNetSlot()
 }
 void MainWindow::btn_choose_Slot()
 {
-    w_choose=new QWidget;
-    w_choose->setWindowTitle(tr("分辨率选择"));
-    for(int j=0;j<4;j++){
-        for(int i=0;i<2;i++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=0x33+j;
-            send_arr[6]=i;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
+    for(int i=0;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=51;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
     }
 
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x37;
-    send_arr[6]=0x00;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-//    for(int j=0;j<4;j++){
-//        for(int i=0;i<2;i++){
-//            send_mutex.lock();
-//            send_arr[4]=0x31;
-//            send_arr[5]=0x38+j;
-//            send_arr[6]=i;
-//            send_oneframe(3);
-//            send_mutex.unlock();
-//        }
-//    }
-
-//    send_mutex.lock();
-//    send_arr[4]=0x31;
-//    send_arr[5]=0x3C;
-//    send_arr[6]=0x00;
-//    send_oneframe(3);
-//    send_mutex.unlock();
-    //通道1
-    rdBtn_aisle1_1=new QRadioButton;
-    rdBtn_aisle1_2=new QRadioButton;
-
-    BG1=new QButtonGroup;
-    BG1->addButton(rdBtn_aisle1_1,1);
-    BG1->addButton(rdBtn_aisle1_2,2);
-
-    QFormLayout *F1=new QFormLayout;
-    F1->addRow("1080P@25fps/30fps",rdBtn_aisle1_1);
-    F1->addRow("720P@50fps/60fps",rdBtn_aisle1_2);
-
-    //通道2
-    rdBtn_aisle2_1=new QRadioButton;
-    rdBtn_aisle2_2=new QRadioButton;
-
-
-    BG2=new QButtonGroup;
-    BG2->addButton(rdBtn_aisle2_1,1);
-    BG2->addButton(rdBtn_aisle2_2,2);
-
-    QFormLayout *F2=new QFormLayout;
-    F2->addRow("1080P@25fps/30fps",rdBtn_aisle2_1);
-    F2->addRow("720P@50fps/60fps",rdBtn_aisle2_2);
-
-    //通道3
-    rdBtn_aisle3_1=new QRadioButton;
-    rdBtn_aisle3_2=new QRadioButton;
-
-    BG3=new QButtonGroup;
-    BG3->addButton(rdBtn_aisle3_1,1);
-    BG3->addButton(rdBtn_aisle3_2,2);
-
-    QFormLayout *F3=new QFormLayout;
-    F3->addRow("1080P@25fps/30fps",rdBtn_aisle3_1);
-    F3->addRow("720P@50fps/60fps",rdBtn_aisle3_2);
-
-    //通道4
-    rdBtn_aisle4_1=new QRadioButton;
-    rdBtn_aisle4_2=new QRadioButton;
-
-    BG4=new QButtonGroup;
-    BG4->addButton(rdBtn_aisle4_1,1);
-    BG4->addButton(rdBtn_aisle4_2,2);
-
-
-    QFormLayout *F4=new QFormLayout;
-    F4->addRow("1080P@25fps/30fps",rdBtn_aisle4_1);
-    F4->addRow("720P@50fps/60fps",rdBtn_aisle4_2);
-    //通道5
-    rdBtn_aisle5_1=new QRadioButton;
-    BG5=new QButtonGroup;
-    BG5->addButton(rdBtn_aisle5_1,1);
-
-    QFormLayout *F5=new QFormLayout;
-    F5->addRow("720*576i/50Hz",rdBtn_aisle5_1);
-
-
-    QGroupBox *G1=new QGroupBox;
-    G1->setTitle("通道1");
-    G1->setLayout(F1);
-    QGroupBox *G2=new QGroupBox;
-    G2->setTitle("通道2");
-    G2->setLayout(F2);
-    QGroupBox *G3=new QGroupBox;
-    G3->setTitle("通道3");
-    G3->setLayout(F3);
-    QGroupBox *G4=new QGroupBox;
-    G4->setTitle("通道4");
-    G4->setLayout(F4);
-    QGroupBox *G5=new QGroupBox;
-    G5->setTitle("通道5");
-    G5->setLayout(F5);
-
-
-    //通道输出1
-    rdBtn_out1_1=new QRadioButton;
-    rdBtn_out1_2=new QRadioButton;
-
-    BO1=new QButtonGroup;
-    BO1->addButton(rdBtn_out1_1,1);
-    BO1->addButton(rdBtn_out1_2,2);
-
-    QFormLayout *FO1=new QFormLayout;
-    FO1->addRow("1080P@25fps/30fps",rdBtn_out1_1);
-    FO1->addRow("720P@50fps/60fps",rdBtn_out1_2);
-
-    //通道输出2
-    rdBtn_out2_1=new QRadioButton;
-    rdBtn_out2_2=new QRadioButton;
-
-    BO2=new QButtonGroup;
-    BO2->addButton(rdBtn_out2_1,1);
-    BO2->addButton(rdBtn_out2_2,2);
-
-    QFormLayout *FO2=new QFormLayout;
-    FO2->addRow("1080P@25fps/30fps",rdBtn_out2_1);
-    FO2->addRow("720P@50fps/60fps",rdBtn_out2_2);
-
-    //通道输出3
-    rdBtn_out3_1=new QRadioButton;
-    rdBtn_out3_2=new QRadioButton;
-
-    BO3=new QButtonGroup;
-    BO3->addButton(rdBtn_out3_1,1);
-    BO3->addButton(rdBtn_out3_2,2);
-
-    QFormLayout *FO3=new QFormLayout;
-    FO3->addRow("1080P@25fps/30fps",rdBtn_out3_1);
-    FO3->addRow("720P@50fps/60fps",rdBtn_out3_2);
-
-    //通道输出4
-    rdBtn_out4_1=new QRadioButton;
-    rdBtn_out4_2=new QRadioButton;
-    BO4=new QButtonGroup;
-    BO4->addButton(rdBtn_out4_1,1);
-    BO4->addButton(rdBtn_out4_2,2);
-
-    QFormLayout *FO4=new QFormLayout;
-    FO4->addRow("1080P@25fps/30fps",rdBtn_out4_1);
-    FO4->addRow("720P@50fps/60fps",rdBtn_out4_2);
-
-    //通道5
-    rdBtn_out5_1=new QRadioButton;
-    BO5=new QButtonGroup;
-    BO5->addButton(rdBtn_out5_1,1);
-
-    QFormLayout *FO5=new QFormLayout;
-    FO5->addRow("720*576i/50Hz",rdBtn_out5_1);
-
-    QGroupBox *O1=new QGroupBox;
-    O1->setTitle("通道1");
-    O1->setLayout(FO1);
-    QGroupBox *O2=new QGroupBox;
-    O2->setTitle("通道2");
-    O2->setLayout(FO2);
-    QGroupBox *O3=new QGroupBox;
-    O3->setTitle("通道3");
-    O3->setLayout(FO3);
-    QGroupBox *O4=new QGroupBox;
-    O4->setTitle("通道4");
-    O4->setLayout(FO4);
-    QGroupBox *O5=new QGroupBox;
-    O5->setTitle("通道5");
-    O5->setLayout(FO5);
-
-    QHBoxLayout *h1=new QHBoxLayout;
-    h1->addWidget(G1);
-    h1->addWidget(G2);
-    h1->addWidget(G3);
-    h1->addWidget(G4);
-    h1->addWidget(G5);
-    QHBoxLayout *h2=new QHBoxLayout;
-    h2->addWidget(O1);
-    h2->addWidget(O2);
-    h2->addWidget(O3);
-    h2->addWidget(O4);
-    h2->addWidget(O5);
-
-    QGroupBox *G=new QGroupBox;
-    G->setTitle("采集分辨率");
-    G->setLayout(h1);
-//    QGroupBox *O=new QGroupBox;
-//    O->setTitle("输出分辨率");
-//    O->setLayout(h2);
-
-    QVBoxLayout *v=new QVBoxLayout;
-    v->addWidget(G);
-    //=v->addWidget(O);
-
-    w_choose->setLayout(v);
     w_choose->show();
-
-    connect(rdBtn_aisle1_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
-    connect(rdBtn_aisle1_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
-
-    connect(rdBtn_aisle2_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
-    connect(rdBtn_aisle2_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle2_Slot()));
-
-    connect(rdBtn_aisle3_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
-    connect(rdBtn_aisle3_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle3_Slot()));
-
-    connect(rdBtn_aisle4_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
-    connect(rdBtn_aisle4_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
-
-    connect(rdBtn_aisle5_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle5_Slot()));
-
+    w_choose->show_stat = 1;
 }
 
 void MainWindow::toNetSlot(int i)
