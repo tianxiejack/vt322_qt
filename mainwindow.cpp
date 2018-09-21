@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QRadioButton>
 #include <QButtonGroup>
+#include <iostream>
 
 QByteArray copy_bytearray;
 volatile unsigned char rcv_buf[5000];
@@ -1570,6 +1571,19 @@ void MainWindow::btn_aisle5_Slot()
     default:
         break;
     }
+}
+
+void MainWindow::btn_resolution_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x06;
+    send_arr[5] = BG1->checkedId()-1;
+    send_arr[6] = BG2->checkedId()-1;
+    send_arr[7] = BG3->checkedId()-1;
+    send_arr[8] = BG4->checkedId()-1;
+    send_arr[9] = BG5->checkedId()-1;
+    send_oneframe(6);
+    send_mutex.unlock();
 }
 void MainWindow::lEdt_osd_x_Slot()
 {

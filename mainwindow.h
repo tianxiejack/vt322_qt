@@ -208,6 +208,7 @@ private slots:
     void btn_aisle3_Slot();
     void btn_aisle4_Slot();
     void btn_aisle5_Slot();
+    void btn_resolution_clicked();
     /*平台控制*/
     void btn_Jos_Default_Slot();
     void btn_Jos_Update_Slot();

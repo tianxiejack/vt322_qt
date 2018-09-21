@@ -1453,6 +1453,16 @@ void MainWindow::init_resl()
     w_choose=new MyWidget;
     w_choose->setWindowTitle(tr("分辨率选择"));
 
+    QPushButton* btn_resolu_confirm=new QPushButton;
+    btn_resolu_confirm->setText("确认");
+
+    QLabel *labelspace = new QLabel;
+    labelspace->setText("");
+
+    QGridLayout *pLayout = new QGridLayout();
+    pLayout->addWidget(labelspace, 0, 0, 1, 8);
+    pLayout->addWidget(btn_resolu_confirm, 0, 9, 1, 1);
+
     //通道1
     rdBtn_aisle1_1=new QRadioButton;
     rdBtn_aisle1_2=new QRadioButton;
@@ -1637,18 +1647,19 @@ void MainWindow::init_resl()
     h2->addWidget(O5);
 
     QGroupBox *G=new QGroupBox;
-    G->setTitle("采集分辨率");
+    G->setTitle("采集/输出分辨率");
     G->setLayout(h1);
 //    QGroupBox *O=new QGroupBox;
 //    O->setTitle("输出分辨率");
 //    O->setLayout(h2);
 
     QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(pLayout);
     v->addWidget(G);
     //=v->addWidget(O);
 
     w_choose->setLayout(v);
-
+/*
     connect(rdBtn_aisle1_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
     connect(rdBtn_aisle1_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
     connect(rdBtn_aisle1_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
@@ -1670,6 +1681,8 @@ void MainWindow::init_resl()
     connect(rdBtn_aisle4_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
 
     connect(rdBtn_aisle5_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle5_Slot()));
+*/
+    connect(btn_resolu_confirm,SIGNAL(clicked(bool)),this,SLOT(btn_resolution_clicked()));
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
