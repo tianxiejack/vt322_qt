@@ -9,6 +9,7 @@ public:
     void exportfile(unsigned char *uoutput_array);
     void importfileresp(unsigned char *uoutput_array);
     void upgraderesp(unsigned char *uoutput_array);
+    void upgradefpgaresp(unsigned char *uoutput_array);
 
 protected:
     void run();

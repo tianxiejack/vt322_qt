@@ -3107,7 +3107,112 @@ void MainWindow::btnUpdate()
     }
     else
             upgrade_show->append("选择文件无效");
-     }
+}
+
+void MainWindow::btnFPGA_clicked()
+{
+    QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    unsigned char usocket_send_buf[1024+256] = {0};
+    qint64 len = 0;
+    char buf[1024+256] = {0};
+    unsigned char checksum = 0;
+
+     if( false == filePath.isEmpty())
+     {
+        // 获取文件信息
+        fpgafileName.clear();
+        fpgafilesize =0;
+        QFileInfo info(filePath);
+        fpgafileName = info.fileName();
+        fpgafilesize = info.size();
+        fpgasendsize = 0;
+        int packet_flag;
+
+        if(fpgafilesize>4294967295)
+        {
+            upgrade_show->append("文件大小不能超过4294967295字节！");
+            return;
+        }
+
+        fpgafile.setFileName(filePath);
+        bool isok = fpgafile.open(QFile::ReadOnly);
+        if(false == isok)
+        {
+            upgrade_show->append("打开文件失败");
+            return;
+        }
+
+        usocket_send_buf[0] = 0xEB;
+        usocket_send_buf[1] = 0x53;
+        usocket_send_buf[4] = 0x37;
+        usocket_send_buf[5] = fpgafilesize&0xff;
+        usocket_send_buf[6] = (fpgafilesize>>8)&0xff;
+        usocket_send_buf[7] = (fpgafilesize>>16)&0xff;
+        usocket_send_buf[8] = (fpgafilesize>>24)&0xff;
+        packet_flag = 0;
+
+        QString ip = upgrade_ip->text();
+        int port = upgrade_port->text().toInt();
+        usocket->connectToHost(ip,port);
+        int trans_percent = 0;
+        if(!usocket->waitForConnected(300))
+        {
+            upgrade_show->append("连接服务器失败");
+            return;
+        }
+        while(len = fpgafile.read(buf,1024))
+        {  //每次发送数据大小
+          checksum = 0;
+          if(len<0)
+          {
+              upgrade_show->append("文件读取失败");
+              break;
+          }
+          fpgasendsize += len;
+          if(packet_flag == 0)
+          {
+              usocket_send_buf[9] = 0;
+              packet_flag = 1;
+          }
+          else if(fpgasendsize == fpgafilesize)
+          {
+              usocket_send_buf[9] = 2;
+          }
+          else
+          {
+            usocket_send_buf[9] = 1;
+          }
+          usocket_send_buf[2] = (len+8)&0xff;
+          usocket_send_buf[3] = ((len+8)>>8)&0xff;
+          usocket_send_buf[10] = len&0xff;
+          usocket_send_buf[11] = (len>>8)&0xff;
+          memcpy(usocket_send_buf+12,buf, len);
+          for(int m = 1; m<12+len;m++)
+              checksum ^= usocket_send_buf[m];
+          usocket_send_buf[12+len] = checksum;
+
+          usocket->write((char *)usocket_send_buf,len+13);
+          usocket->flush();
+          trans_percent = fpgasendsize*100/fpgafilesize;
+          //upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
+        }
+        if(fpgasendsize == fpgafilesize)
+        {
+            fpgafile.close();
+            //qDebug()<<"文件大小："<<filesize<<"发送大小："<<sendsize;
+            //upgrade_show->append(tr("文件字节数")+QString("%1").arg(filesize,10,10));
+            //usocket->disconnectFromHost();
+            //usocket->close();
+        }
+        else
+        {
+            upgrade_show->append("文件发送失败");
+        }
+        //}
+    }
+    else
+        upgrade_show->append("选择文件无效");
+}
 
  void MainWindow::btn_default_Slot()
  {

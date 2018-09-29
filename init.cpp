@@ -144,6 +144,8 @@ void MainWindow::init_sysCfg()
     upgrade_port->setText("8999");
     QPushButton *btnUpdate=new QPushButton(groupBox_upgrade);
     btnUpdate->setText("升级");
+    QPushButton *btnFPGA=new QPushButton(groupBox_upgrade);
+    btnFPGA->setText("升级");
     upgrade_show = new QTextEdit(groupBox_upgrade);
 
     QComboBox *CBox=new QComboBox;
@@ -157,6 +159,7 @@ void MainWindow::init_sysCfg()
     vlayout->addRow("IP：",upgrade_ip);
     vlayout->addRow("端口：",upgrade_port);
     vlayout->addRow("软件升级",btnUpdate);
+    vlayout->addRow("FPGA升级", btnFPGA);
     vlayout->addRow("导入配置文件", btnDown);
     vlayout->addRow("导出配置文件", btnUp);
     vlayout->addRow(upgrade_show);
@@ -186,6 +189,7 @@ void MainWindow::init_sysCfg()
     connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
     connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot())); 
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
+    connect(btnFPGA,SIGNAL(clicked(bool)),this,SLOT(btnFPGA_clicked()));
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
     connect(CBox,SIGNAL(activated(int)),this,SLOT(CBox_View_Slot(int)));

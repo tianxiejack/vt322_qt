@@ -110,8 +110,13 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
                                 importfileresp(uoutput_array);
                             else if(uoutput_array[0]==0x35)
                             {
-                                //qDebug("it is upgradede response");
+                                //qDebug("it is upgradefw response");
                                 upgraderesp(uoutput_array);
+                            }
+                            else if(uoutput_array[0]==0x37)
+                            {
+                                //qDebug("it is upgradefpga response");
+                                upgradefpgaresp(uoutput_array);
                             }
                             frame_flag = 0;
                             crc_sum = 0;
@@ -197,5 +202,18 @@ void RcvUSocketdata::upgraderesp(unsigned char *uoutput_array)
         emit socket2main_signal(2,uoutput_array[2]);
     }
 }
-
-
+void RcvUSocketdata::upgradefpgaresp(unsigned char *uoutput_array)
+{
+    if(uoutput_array[1] == 0x00)
+    {
+        emit socket2main_signal(0,uoutput_array[2]);
+    }
+    else if(uoutput_array[1] == 0x01)
+    {
+        emit socket2main_signal(1,uoutput_array[2]);
+    }
+    else if(uoutput_array[1] == 0x02)
+    {
+        emit socket2main_signal(2,uoutput_array[2]);
+    }
+}

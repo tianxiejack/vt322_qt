@@ -160,6 +160,7 @@ public slots:
     void btnUpSlot();
     void btnSaveSlot();
     void btnUpdate();
+    void btnFPGA_clicked();
 
     /*相机配置槽函数*/
     void btn_default_Slot();
@@ -646,10 +647,10 @@ private:
     RcvUSocketdata  *thread_usocket;
     QLineEdit *upgrade_ip;
     QLineEdit *upgrade_port;
-    QFile  file;  // 文件对象
-    QString fileName; //文件名字
-    qint64 filesize; // 文件大小
-    qint64 sendsize;  // 已经发送的数据大小
+    QFile  file,fpgafile;  // 文件对象
+    QString fileName,fpgafileName; //文件名字
+    qint64 filesize,fpgafilesize; // 文件大小
+    qint64 sendsize,fpgasendsize;  // 已经发送的数据大小
     QByteArray usocketRcvData;
 	bool socketIsconnect=false;
 };
