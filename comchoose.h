@@ -55,9 +55,7 @@ signals:
 
 
 public slots:
-    void toNetSlot(int i);//QComboBox选择
-    void btnSerialSlot();//打开串口子界面
-    void btnNetSlot();//打开网络子界面
+    void btnconfigSlot();
     void serialSlot();//配置串口
     void netSlot();//配置网口
     void toCloseSlot();//取消按钮关闭界面
@@ -68,8 +66,9 @@ public slots:
 public:
    // serial_command ser;
     QWidget w_config_serial,w_config_net;
-    QStackedLayout *s;
-    QComboBox *box_serial,*box_baud,*box_check,*box_data,*box_stop,*box3;
+    QComboBox *box_serial;
+    //QComboBox *box_baud,*box_check,*box_data,*box_stop,*box3;
+    QLabel *buard_label, *check_label, *data_label, *stop_label;
     QGroupBox *groupBox_trackboard;
     QString serial_port;
     qint32 serial_baud;
@@ -77,8 +76,12 @@ public:
     int net_port;
     QString net_ip;
 
-    QLineEdit *lineEdit_port,*lineEdit_ip;
+    QLineEdit *lineEdit_ip;
+    //QLineEdit *lineEdit_port;
+    QLabel *port_label;
     int mutex;//用于串口和网络的判断
+
+    QComboBox *box2;
 
 };
 

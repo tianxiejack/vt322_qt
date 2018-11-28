@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>传感器切换</string>
+     <string>摄像机切换</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnViewPlus">
@@ -264,43 +264,99 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>150</y>
-      <width>54</width>
+      <width>81</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>跟踪微调</string>
+     <string>目标中心微调</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_acqmode">
+   <widget class="QComboBox" name="comboBox_workmode">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>270</y>
-      <width>71</width>
-      <height>16</height>
+      <x>100</x>
+      <y>300</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>人工选择目标跟踪</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>自动跟踪监视</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>300</y>
+      <width>51</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>捕获模式</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
+     <string>工作模式</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_autobomen">
+   <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>270</y>
-      <width>71</width>
-      <height>16</height>
+      <x>20</x>
+      <y>330</y>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>自动波门</string>
+     <string>目标捕获方式</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_acqmode">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>330</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>移动转台</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>移动波门</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>移动目标检测</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="btnApertureMinus_2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>305</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>自动监测
+预置位设置</string>
     </property>
    </widget>
    <zorder>btnCapture</zorder>
@@ -323,8 +379,11 @@
    <zorder>btn_down_2</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
-   <zorder>checkBox_acqmode</zorder>
-   <zorder>checkBox_autobomen</zorder>
+   <zorder>comboBox_workmode</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>comboBox_acqmode</zorder>
+   <zorder>btnApertureMinus_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

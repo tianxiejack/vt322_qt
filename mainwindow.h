@@ -153,9 +153,6 @@ public slots:
     void showspeedconvcfg();
 
     /*系统配置槽函数*/
-    void btnSerialSlot();
-    void btnNetSlot();
-    void toNetSlot(int i);
     void btnDownSlot();
     void btnUpSlot();
     void btnSaveSlot();
@@ -403,7 +400,7 @@ private slots:
     void lEdt_capture_9();
     void lEdt_capture_10();
     void lEdt_capture_11();
-
+    void callback_autobomen(int arg1);
     void lEdt_bomen_0();
     void lEdt_bomen_1();
     void lEdt_bomen_2();
@@ -430,11 +427,7 @@ private slots:
     void btn_capture3_default_Slot();
     void btn_capture3_update_Slot();
 
-    //
-
     void on_btn_ok_clicked();
-
-    void on_btnAutoCheck_clicked();
 
     void on_btnViewPlus_released();
 
@@ -483,8 +476,7 @@ private slots:
 
     void on_btn_down_released();
 
-    void on_checkBox_acqmode_stateChanged(int arg1);
-    void on_checkBox_autobomen_stateChanged(int arg1);
+    void on_comboBox_acqmode_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -630,6 +622,7 @@ private:
     QPushButton *btn_capture_default,*btn_capture_update,*btn_capture2_default,*btn_capture2_update,*btn_capture3_default,*btn_capture3_update;
     QLineEdit *cap_0_w,*cap_1_w,*cap_2_w,*cap_3_w,*cap_4_w,*cap_5_w,*cap_0_h,*cap_1_h,*cap_2_h,*cap_3_h,*cap_4_h,*cap_5_h;
     QLineEdit *bomen_0_w,*bomen_1_w,*bomen_2_w,*bomen_3_w,*bomen_4_w,*bomen_5_w,*bomen_0_h,*bomen_1_h,*bomen_2_h,*bomen_3_h,*bomen_4_h,*bomen_5_h;
+    QCheckBox *autobomen_checkbox;
     QLineEdit *drawLine_1,*drawLine_2,*drawLine_3,*drawLine_4,*drawLine_5;
     QString string_cap[12]={"通道0捕获框宽","通道1捕获框宽","通道2捕获框宽","通道3捕获框宽","通道4捕获框宽","通道5捕获框宽","通道0捕获框高","通道1捕获框高","通道2捕获框高","通道3捕获框高","通道4捕获框高","通道5捕获框高"};
     QString string_bomen[10]={"通道1波门宽","通道2波门宽","通道3波门宽","通道4波门宽","通道5波门宽","通道1波门高","通道2波门高","通道3波门高","通道4波门高","通道5波门高"};

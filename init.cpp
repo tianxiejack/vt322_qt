@@ -110,16 +110,6 @@ void MainWindow::init_sysCfg()
     box1->addItem("5");
 	QPushButton *btn_choose=new QPushButton;
     btn_choose->setText("打开分辨率选择");
-    QComboBox *box2=new QComboBox;
-    box2->addItem("串口");
-    box2->addItem("网络");
-    s=new QStackedLayout;
-    QPushButton *btnSerial=new QPushButton;
-    QPushButton *btnNet=new QPushButton;
-    btnSerial->setText("串口配置");
-    btnNet->setText("网络配置");
-    s->addWidget(btnSerial);
-    s->addWidget(btnNet);
 
     QPushButton *btnDown=new QPushButton;
     btnDown->setText("导入");
@@ -171,8 +161,6 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("选择通道：", hsensor);
     pLayout->addRow("相机通道选择", box1);
 	pLayout->addRow("通道分辨率选择",btn_choose);
-    pLayout->addRow("串口/网口选择", box2);
-    pLayout->addRow("串口/网络配置", s);
     pLayout->addRow("OSD字体配置", CBox_font);
     pLayout->addRow("OSD字号配置", CBox_font_size);
     pLayout->addRow("变焦速度等级", CBox);
@@ -182,9 +170,6 @@ void MainWindow::init_sysCfg()
     //connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
     connect(box1,SIGNAL(activated(int)),SLOT(CBox_sysCfg_Slot(int)));
 	connect(btn_choose,SIGNAL(clicked(bool)),SLOT(btn_choose_Slot()));
-    connect(box2,SIGNAL(currentIndexChanged(int)),this,SLOT(toNetSlot(int)));
-    connect(btnSerial,SIGNAL(clicked(bool)),this,SLOT(btnSerialSlot()));
-    connect(btnNet,SIGNAL(clicked(bool)),this,SLOT(btnNetSlot()));
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
     connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
     connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot())); 
@@ -807,6 +792,9 @@ void MainWindow::init_captureCfg()
     bomen_4_h=new QLineEdit;
     bomen_5_h=new QLineEdit;
 
+    autobomen_checkbox = new QCheckBox;
+    autobomen_checkbox->setText("自动波门");
+
     QGroupBox *bomen=new QGroupBox;
     QFormLayout *f2=new QFormLayout();
     f2->addRow(string_bomen[0],bomen_0_w);
@@ -825,11 +813,13 @@ void MainWindow::init_captureCfg()
 
     QVBoxLayout *h22=new QVBoxLayout;
     h22->addLayout(h2);
+    h22->addWidget(autobomen_checkbox);
     h22->addWidget(bomen);
 
     connect(btn_capture2_default,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_default_SLot()));
     connect(btn_capture2_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
 
+    connect(autobomen_checkbox,SIGNAL(stateChanged(int)),this,SLOT(callback_autobomen(int)));
     connect(bomen_0_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_0()));
     connect(bomen_1_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_1()));
     connect(bomen_2_w,SIGNAL(returnPressed()),this,SLOT(lEdt_bomen_2()));
@@ -2253,102 +2243,7 @@ void MainWindow::tosersor_continue(int i)
         btnSensor1SwitchSlot();
     }
 }
-void MainWindow::btnSerialSlot()
-{
-    w_config_serial->setWindowTitle("串口配置");
 
-    QStringList portNameList;
-    foreach(const QSerialPortInfo &info,QSerialPortInfo::availablePorts()){
-        portNameList.append(info.portName());
-    }
-    groupBox_trackboard = new QGroupBox();
-    groupBox_trackboard->setTitle("串口");
-    box_serial= new QComboBox(groupBox_trackboard);
-    box_serial->addItems(portNameList);
-    box_baud = new QComboBox(groupBox_trackboard); 
-    box_baud->addItem("115200");
-    box_baud->addItem("1200");
-    box_baud->addItem("2400");
-    box_baud->addItem("4800");
-    box_baud->addItem("9600");
-    box_baud->addItem("19200");
-    box_baud->addItem("38400");
-    box_baud->addItem("57600");
-    box_check = new QComboBox(groupBox_trackboard);
-    box_check->addItem("None");
-    box_check->addItem("Even");
-    box_check->addItem("Odd");
-    box_data = new QComboBox(groupBox_trackboard);
-    box_data->addItem("8");
-    box_data->addItem("7");
-    box_data->addItem("6");
-    box_data->addItem("5");
-    box_stop = new QComboBox(groupBox_trackboard);
-    box_stop->addItem("1");
-    box_stop->addItem("1.5");
-    box_stop->addItem("2");
-
-    btn_serial_OK=new QPushButton;
-    btn_serial_OK->setText("确定");
-    btn_serial_NO=new QPushButton;
-    btn_serial_NO->setText("取消");
-    QHBoxLayout *hLayoutBtn=new QHBoxLayout;
-    hLayoutBtn->addWidget(btn_serial_OK);
-    hLayoutBtn->addWidget(btn_serial_NO);
-
-    QFormLayout *playout_s1 = new QFormLayout();
-    playout_s1->addRow(QStringLiteral("命令端口"), box_serial);
-    playout_s1->addRow(QStringLiteral("波特率"), box_baud);
-    playout_s1->addRow(QStringLiteral("校验"), box_check);
-    playout_s1->addRow(QStringLiteral("数据位"), box_data);
-    playout_s1->addRow(QStringLiteral("停止位"), box_stop);
-    groupBox_trackboard->setLayout(playout_s1);
-
-    QHBoxLayout *mainlayout3 = new QHBoxLayout;
-    mainlayout3->addWidget(groupBox_trackboard);
-
-    QVBoxLayout *mainlayout4 = new QVBoxLayout;
-    mainlayout4->addLayout(mainlayout3);
-    mainlayout4->addLayout(hLayoutBtn);
-
-    connect(btn_serial_OK,SIGNAL(clicked(bool)),this,SLOT(btnToSerial()));
-    connect(btn_serial_NO,SIGNAL(clicked(bool)),this,SLOT(btnToClose()));
-
-    w_config_serial->setLayout(mainlayout4);
-
-    w_config_serial->show();
-}
-
-void MainWindow::btnNetSlot()
-{
-    w_config_net->setWindowTitle(tr("网络配置"));
-    lineEdit_port = new QLineEdit();
-    lineEdit_ip = new QLineEdit();
-    lineEdit_ip->setInputMask("000.000.000.000");
-
-    btn_net_OK=new QPushButton;
-    btn_net_OK->setText("确定");
-    btn_net_NO=new QPushButton;
-    btn_net_NO->setText("取消");
-    QHBoxLayout *hLayoutBtn=new QHBoxLayout;
-    hLayoutBtn->addWidget(btn_net_OK);
-    hLayoutBtn->addWidget(btn_net_NO);
-
-    QFormLayout *pLayout_socket = new QFormLayout();
-    pLayout_socket->addRow(QStringLiteral("IP："), lineEdit_ip);
-    pLayout_socket->addRow(QStringLiteral("端口："), lineEdit_port);
-
-    QVBoxLayout *socket_layout2 = new QVBoxLayout;
-    socket_layout2->addLayout(pLayout_socket);
-    socket_layout2->addLayout(hLayoutBtn);
-
-    connect(btn_net_OK,SIGNAL(clicked(bool)),this,SLOT(btnToNet()));
-    connect(btn_net_NO,SIGNAL(clicked(bool)),this,SLOT(btnToClose()));
-
-
-    w_config_net->setLayout(socket_layout2);
-    w_config_net->show();
-}
 void MainWindow::btn_choose_Slot()
 {
     for(int i=0;i<5;i++){
@@ -2362,9 +2257,4 @@ void MainWindow::btn_choose_Slot()
 
     w_choose->show();
     w_choose->show_stat = 1;
-}
-
-void MainWindow::toNetSlot(int i)
-{
-     s->setCurrentIndex(i);
 }

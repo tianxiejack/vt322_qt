@@ -127,7 +127,6 @@ void MainWindow::clientDisconnected()
 }
 qint32 mySetSerialBaud( QSerialPort *com, int n)
 {
-//    qint32 num = combobox->currentText().toInt();
     qint32 num=n;
     switch(num)
     {   // 此处的Baud1200--Baud115200，是QSerialPort类中的枚举量
@@ -1784,6 +1783,28 @@ void MainWindow::lEdt_capture_11()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
+}
+
+void MainWindow::callback_autobomen(int arg1)
+{
+    if(arg1 == Qt::Checked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0d;
+        send_arr[5] = 0x01;
+        send_oneframe(2);
+        send_mutex.unlock();
+        qDebug("send!\n");
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x0d;
+        send_arr[5] = 0x00;
+        send_oneframe(2);
+        send_mutex.unlock();
+        qDebug("unsend!\n");
+    }
 }
 
 void MainWindow::lEdt_bomen_0()
@@ -3457,21 +3478,6 @@ void MainWindow::on_btn_ok_clicked()
        value_y=540;
 }
 
-
-
-
-
-void MainWindow::on_btnAutoCheck_clicked()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x01;
-    send_arr[5] = 0x00;
-    send_oneframe(2);
-    send_mutex.unlock();
-}
-
-
-
 void MainWindow::on_btnViewPlus_released()
 {
     send_mutex.lock();
@@ -3705,44 +3711,27 @@ void MainWindow::on_btn_down_released()
     time->stop();
 }
 
-
-
-void MainWindow::on_checkBox_acqmode_stateChanged(int arg1)
+void MainWindow::on_comboBox_acqmode_currentIndexChanged(int index)
 {
-    if(arg1 == Qt::Checked)
+    switch(index)
     {
-        send_mutex.lock();
-        send_arr[4] = 0x18;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(arg1 == Qt::Unchecked)
-    {
-        send_mutex.lock();
-        send_arr[4] = 0x18;
-        send_arr[5] = 0x02;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-}
-
-void MainWindow::on_checkBox_autobomen_stateChanged(int arg1)
-{
-    if(arg1 == Qt::Checked)
-    {
-        send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(arg1 == Qt::Unchecked)
-    {
-        send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x18;
+            send_arr[5] = 0x02;
+            send_oneframe(2);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x18;
+            send_arr[5] = 0x01;
+            send_oneframe(2);
+            send_mutex.unlock();
+            break;
+        case 2:
+            break;
+        default:
+            break;
     }
 }
