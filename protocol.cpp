@@ -873,6 +873,11 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 0x17: 
                     switch(output_array[2]){
                         case 0x00:
+                        /*
+                            change1->setCurrentIndex(value_i);
+                            change2->setCurrentIndex(value_i);
+                            change3->setCurrentIndex(value_i);
+                        */
                             if(0 == current_shichang)
                                 change1->setCurrentIndex(value_i);
                             else if(1 == current_shichang)

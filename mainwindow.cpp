@@ -57,10 +57,15 @@ MainWindow::MainWindow(QWidget *parent) :
     init_platCfg();
     init_dbCfg();
     init_speedconvCfg();
+    init_mtdCfg();
     init_utcCfg();
     init_captureCfg();
     init_OSDCfg();
     init_cameraCfg();
+    init_cameraCfg_sec();
+    init_cameraCfg_thi();
+    init_cameraCfg_fou();
+    init_cameraCfg_fif();
     init_resl();
 
 
@@ -354,12 +359,14 @@ void MainWindow::lEdt_sysCfg_Slot()
 
 void MainWindow::CBox_sysCfg_Slot(int i)
 {
+/*
     int c_channel = box1->currentText().toInt();
     send_mutex.lock();
     send_arr[4] = 02;
     send_arr[5] = c_channel-1;
     send_oneframe(2);
     send_mutex.unlock();
+*/
 }
 
 void MainWindow::lEdt_fix_Radio_Slot()
@@ -1309,11 +1316,11 @@ void MainWindow::checkBox_cross_Slot(int i)
 void MainWindow::checkBox_channel_Slot(int i)
 {
     int value = 0xFF;
-    box1->clear();
+    //box1->clear();
     if(checkBox_channel1->isChecked())
     {
         value |= 1;
-        box1->addItem("1");
+        //box1->addItem("1");
     }
     else
         value &= ~(1);
@@ -1321,7 +1328,7 @@ void MainWindow::checkBox_channel_Slot(int i)
     if(checkBox_channel2->isChecked())
     {
         value |= (1<<1);
-        box1->addItem("2");
+        //box1->addItem("2");
     }
     else
         value &= ~(1<<1);
@@ -1329,7 +1336,7 @@ void MainWindow::checkBox_channel_Slot(int i)
     if(checkBox_channel3->isChecked())
     {
         value |= (1<<2);
-        box1->addItem("3");
+        //box1->addItem("3");
     }
     else
         value &= ~(1<<2);
@@ -1337,7 +1344,7 @@ void MainWindow::checkBox_channel_Slot(int i)
     if(checkBox_channel4->isChecked())
     {
         value |= (1<<3);
-        box1->addItem("4");
+        //box1->addItem("4");
     }
     else
         value &= ~(1<<3);
@@ -1345,7 +1352,7 @@ void MainWindow::checkBox_channel_Slot(int i)
     if(checkBox_channel5->isChecked())
     {
         value |= (1<<4);
-        box1->addItem("5");
+        //box1->addItem("5");
     }
     else
         value &= ~(1<<4);
@@ -1621,7 +1628,7 @@ void MainWindow::CBox_osd_font_size_Slot(int i)
     send_mutex.unlock();
     //QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
 }
-
+/*
 void MainWindow::CBox_View_Slot(int i)
 {
     send_mutex.lock();
@@ -1630,7 +1637,7 @@ void MainWindow::CBox_View_Slot(int i)
     send_oneframe(2);
     send_mutex.unlock();
 }
-
+*/
 void MainWindow::CBox_osd_color_Slot(int i)
 {
 
@@ -1794,7 +1801,6 @@ void MainWindow::callback_autobomen(int arg1)
         send_arr[5] = 0x01;
         send_oneframe(2);
         send_mutex.unlock();
-        qDebug("send!\n");
     }
     else if(arg1 == Qt::Unchecked)
     {
@@ -1803,7 +1809,6 @@ void MainWindow::callback_autobomen(int arg1)
         send_arr[5] = 0x00;
         send_oneframe(2);
         send_mutex.unlock();
-        qDebug("unsend!\n");
     }
 }
 

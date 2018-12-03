@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -87,10 +87,15 @@ public:
     void init_platCfg();
     void init_dbCfg();
     void init_speedconvCfg();
+    void init_mtdCfg();
     void init_utcCfg();
     void init_captureCfg();
     void init_OSDCfg();
     void init_cameraCfg();
+    void init_cameraCfg_sec();
+    void init_cameraCfg_thi();
+    void init_cameraCfg_fou();
+    void init_cameraCfg_fif();
     void init_resl();
 
     /*协议传输*/
@@ -109,8 +114,17 @@ public:
 
     /*计算圆边界值*/
     void calculationCircle(int center_a, int center_b, int x, int y);
+
     void btnSensor1SwitchSlot();
+    void btnSensor1SwitchSlot_sec();
+    void btnSensor1SwitchSlot_thi();
+    void btnSensor1SwitchSlot_fou();
+    void btnSensor1SwitchSlot_fif();
     void btnSensor2ContinueSlot();
+    void btnSensor2ContinueSlot_sec();
+    void btnSensor2ContinueSlot_thi();
+    void btnSensor2ContinueSlot_fou();
+    void btnSensor2ContinueSlot_fif();
 
     /*发送0x31命令*/
     void read_config(int block);
@@ -142,6 +156,10 @@ public slots:
     void showSysCfg();
     void showPlat();
     void showCamera();
+    void showCamera_sec();
+    void showCamera_thi();
+    void showCamera_fou();
+    void showCamera_fif();
     void showAlg();
     void showAlg2();
     void showAlg3();
@@ -151,6 +169,7 @@ public slots:
     void showOther();
     void showdbgcfg();
     void showspeedconvcfg();
+    void showmtdcfg();
 
     /*系统配置槽函数*/
     void btnDownSlot();
@@ -164,8 +183,20 @@ public slots:
     void btn_default_Slot2();
     void btn_default_Slot3();
     void tosersor_fix(int i);
+    void tosersor_fix_sec(int i);
+    void tosersor_fix_thi(int i);
+    void tosersor_fix_fou(int i);
+    void tosersor_fix_fif(int i);
     void toSensor_switch(int i);
+    void toSensor_switch_sec(int i);
+    void toSensor_switch_thi(int i);
+    void toSensor_switch_fou(int i);
+    void toSensor_switch_fif(int i);
     void tosersor_continue(int i);
+    void tosersor_continue_sec(int i);
+    void tosersor_continue_thi(int i);
+    void tosersor_continue_fou(int i);
+    void tosersor_continue_fif(int i);
 
     /*槽函数*/
     void resetAction();
@@ -382,7 +413,7 @@ private slots:
     void lEdt_osd_context_Slot();
     void CBox_osd_font_Slot(int i);
     void CBox_osd_font_size_Slot(int i);
-    void CBox_View_Slot(int i);
+    //void CBox_View_Slot(int i);
     void CBox_osd_color_Slot(int i);
     void lEdt_transparency_Slot();
 
@@ -531,7 +562,7 @@ private:
     QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
-    QComboBox *box1;
+    //QComboBox *box1;
     QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
@@ -547,7 +578,7 @@ private:
      QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
     QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
     QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
-    QString plat_s[8]={"平台x轴Bleed率","平台y轴Bleed率","x轴最大速度","y轴最大速度","x方向死区","y方向死区","记忆跟踪时间","平台输出模式"};
+    QString plat_s[8]={"x轴最大速度","y轴最大速度","x轴最大速度","y轴最大速度","x轴死区","y轴死区","惯性跟踪时间","平台输出模式"};
 
     /*捕获配置*/
     MyWidget *w_dbg;
@@ -565,10 +596,17 @@ private:
     /*相机配置*/
     void on_btn_right_clicked();
 
+    /*移动检测配置*/
+    MyWidget *w_mtd;
+    QPushButton *btn_mtd_default,*btn_mtd_update;
+    QLineEdit *rigion,*maxnum,*uspeed,*maxpix,*minpix,*sensitive,*dspeed,*trktime,*polar;
+    QComboBox *output;
+    QString mtd_s[10]={"检测区域","最多检测个数","模板更新速度","目标像素最大值","目标像素最小值","灵敏度阈值","检测速度","最大跟踪时间","开关量输出","开关量输出极性"};
+
     /*通道1*/
     MyWidget *w_sersor1,*w_seitchField,*w_ContinueField;
     QStackedLayout *sta;
-    QComboBox *change3,*change2,*change1,*change;
+    QComboBox *change3,*change2,*change1;
     int current_shichang;
 
     //固定视场参数
@@ -585,20 +623,114 @@ private:
               *lineEdit_s1_Fov5,*lineEdit_s1_Fov6,*lineEdit_s1_Fov7,*lineEdit_s1_Fov8,*lineEdit_s1_Fov9,
               *lineEdit_s1_Fov10,*lineEdit_s1_Fov11,*lineEdit_s1_Fov12,*lineEdit_s1_Fov13,*lineEdit_s1_Fov14;
     QString sensor_switch_s1[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    QComboBox *fovclass;
     //连续视场参数
     QLineEdit *lineEdit_continueRadio,*lineEdit_continueResolution,*lineEdit_continueResolution2;
     QSpinBox *spby1,*spby2,*spby3,*spby4,*spby5,*spby6,*spby7, *spby8,*spby9, *spby10,*spby11, *spby12,*spby13;
     QSpinBox *spbx1,*spbx2,*spbx3,*spbx4,*spbx5,*spbx6,*spbx7,*spbx8,*spbx9,*spbx10,*spbx11,*spbx12,*spbx13;
     QLineEdit *lEdt1,*lEdt2,*lEdt3,*lEdt4,*lEdt5,*lEdt6,*lEdt7,*lEdt8,*lEdt9,*lEdt10,*lEdt11,*lEdt12,*lEdt13;
-    //    QLineEdit *lineEdit_c0,*lineEdit_c1,*lineEdit_c2,*lineEdit_c3,*lineEdit_c4,*lineEdit_c5,
-//              *lineEdit_c6,*lineEdit_c7,*lineEdit_c8,*lineEdit_c9,*lineEdit_c10,*lineEdit_c11,
-//              *lineEdit_c12,*lineEdit_c13,*lineEdit_c14,*lineEdit_c15,*lineEdit_c16,*lineEdit_c17,
-//              *lineEdit_c18,*lineEdit_c19,*lineEdit_c20,*lineEdit_c21,*lineEdit_c22,*lineEdit_c23,
-//              *lineEdit_c24,*lineEdit_c25,*lineEdit_c26;
-//    QString sensor_Continue_s1[26]={"第1个采样点靶心x","第1个采样点靶心y","第2个采样点靶心x","第2个采样点靶心y","第3个采样点靶心x","第3个采样点靶心y","第4个采样点靶心x","第4个采样点靶心y","第5个采样点靶心x","第5个采样点靶心y","第6个采样点靶心x","第6个采样点靶心y",
-//                                   "第7个采样点靶心x","第7个采样点靶心y","第8个采样点靶心x","第8个采样点靶心y","第9个采样点靶心x","第9个采样点靶心y","第10个采样点靶心x","第10个采样点靶心y","第11个采样点靶心x","第11个采样点靶心y","第12个采样点靶心x","第12个采样点靶心y",
-//                                   "第13个采样点靶心x","第13个采样点靶心y"};
+    QLineEdit *testfov;
+    QLineEdit *fEdt1,*fEdt2,*fEdt3,*fEdt4,*fEdt5,*fEdt6,*fEdt7,*fEdt8,*fEdt9,*fEdt10,*fEdt11,*fEdt12,*fEdt13;
 
+    /*通道2*/
+    MyWidget *w_sersor1_sec,*w_seitchField_sec,*w_ContinueField_sec;
+    QComboBox *change3_sec,*change2_sec,*change1_sec;
+    int current_shichang_sec;
+    //固定视场参数
+    QSpinBox *sp_sec,*sp2_sec;
+    QLineEdit *lineEdit_fieldRadio_sec,*lineEdit_fieldResolution_sec,*lineEdit_FOV_x_sec,*lineEdit_FOV_y_sec,*lineEdit_fieldResolution2_sec,*lEdt_sec;
+    QString sensor_s1_sec[7]={"视场模式选择","视场平均比例（y轴/x轴）","分辨率（水平*垂直）","FOV","FOV的靶心X","FOV的靶心Y"};
+    //可切换视场参数
+    QLineEdit *lineEdit_switchRadio_sec,*lineEdit_switchResolution_sec,*lineEdit_switchResolution2_sec;
+    QSpinBox *spby_switch1_sec,*spby_switch2_sec,*spby_switch3_sec,*spby_switch4_sec,*spby_switch5_sec;
+    QSpinBox *spbx_switch1_sec,*spbx_switch2_sec,*spbx_switch3_sec,*spbx_switch4_sec,*spbx_switch5_sec;
+    QLineEdit *lineEdit_s1_Fov0_sec,*lineEdit_s1_Fov1_sec,*lineEdit_s1_Fov2_sec,*lineEdit_s1_Fov3_sec,*lineEdit_s1_Fov4_sec,
+              *lineEdit_s1_Fov5_sec,*lineEdit_s1_Fov6_sec,*lineEdit_s1_Fov7_sec,*lineEdit_s1_Fov8_sec,*lineEdit_s1_Fov9_sec,
+              *lineEdit_s1_Fov10_sec,*lineEdit_s1_Fov11_sec,*lineEdit_s1_Fov12_sec,*lineEdit_s1_Fov13_sec,*lineEdit_s1_Fov14_sec;
+    QString sensor_switch_s1_sec[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    QComboBox *fovclass_sec;
+    //连续视场参数
+    QLineEdit *lineEdit_continueRadio_sec,*lineEdit_continueResolution_sec,*lineEdit_continueResolution2_sec;
+    QSpinBox *spby1_sec,*spby2_sec,*spby3_sec,*spby4_sec,*spby5_sec,*spby6_sec,*spby7_sec, *spby8_sec,*spby9_sec, *spby10_sec,*spby11_sec, *spby12_sec,*spby13_sec;
+    QSpinBox *spbx1_sec,*spbx2_sec,*spbx3_sec,*spbx4_sec,*spbx5_sec,*spbx6_sec,*spbx7_sec,*spbx8_sec,*spbx9_sec,*spbx10_sec,*spbx11_sec,*spbx12_sec,*spbx13_sec;
+    QLineEdit *lEdt1_sec,*lEdt2_sec,*lEdt3_sec,*lEdt4_sec,*lEdt5_sec,*lEdt6_sec,*lEdt7_sec,*lEdt8_sec,*lEdt9_sec,*lEdt10_sec,*lEdt11_sec,*lEdt12_sec,*lEdt13_sec;
+    QLineEdit *testfov_sec;
+    QLineEdit *fEdt1_sec,*fEdt2_sec,*fEdt3_sec,*fEdt4_sec,*fEdt5_sec,*fEdt6_sec,*fEdt7_sec,*fEdt8_sec,*fEdt9_sec,*fEdt10_sec,*fEdt11_sec,*fEdt12_sec,*fEdt13_sec;
+
+    /*通道3*/
+    MyWidget *w_sersor1_thi,*w_seitchField_thi,*w_ContinueField_thi;
+    QComboBox *change3_thi,*change2_thi,*change1_thi;
+    int current_shichang_thi;
+    //固定视场参数
+    QSpinBox *sp_thi,*sp2_thi;
+    QLineEdit *lineEdit_fieldRadio_thi,*lineEdit_fieldResolution_thi,*lineEdit_FOV_x_thi,*lineEdit_FOV_y_thi,*lineEdit_fieldResolution2_thi,*lEdt_thi;
+    QString sensor_s1_thi[7]={"视场模式选择","视场平均比例（y轴/x轴）","分辨率（水平*垂直）","FOV","FOV的靶心X","FOV的靶心Y"};
+    //可切换视场参数
+    QLineEdit *lineEdit_switchRadio_thi,*lineEdit_switchResolution_thi,*lineEdit_switchResolution2_thi;
+    QSpinBox *spby_switch1_thi,*spby_switch2_thi,*spby_switch3_thi,*spby_switch4_thi,*spby_switch5_thi;
+    QSpinBox *spbx_switch1_thi,*spbx_switch2_thi,*spbx_switch3_thi,*spbx_switch4_thi,*spbx_switch5_thi;
+    QLineEdit *lineEdit_s1_Fov0_thi,*lineEdit_s1_Fov1_thi,*lineEdit_s1_Fov2_thi,*lineEdit_s1_Fov3_thi,*lineEdit_s1_Fov4_thi,
+              *lineEdit_s1_Fov5_thi,*lineEdit_s1_Fov6_thi,*lineEdit_s1_Fov7_thi,*lineEdit_s1_Fov8_thi,*lineEdit_s1_Fov9_thi,
+              *lineEdit_s1_Fov10_thi,*lineEdit_s1_Fov11_thi,*lineEdit_s1_Fov12_thi,*lineEdit_s1_Fov13_thi,*lineEdit_s1_Fov14_thi;
+    QString sensor_switch_s1_thi[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    QComboBox *fovclass_thi;
+    //连续视场参数
+    QLineEdit *lineEdit_continueRadio_thi,*lineEdit_continueResolution_thi,*lineEdit_continueResolution2_thi;
+    QSpinBox *spby1_thi,*spby2_thi,*spby3_thi,*spby4_thi,*spby5_thi,*spby6_thi,*spby7_thi, *spby8_thi,*spby9_thi, *spby10_thi,*spby11_thi, *spby12_thi,*spby13_thi;
+    QSpinBox *spbx1_thi,*spbx2_thi,*spbx3_thi,*spbx4_thi,*spbx5_thi,*spbx6_thi,*spbx7_thi,*spbx8_thi,*spbx9_thi,*spbx10_thi,*spbx11_thi,*spbx12_thi,*spbx13_thi;
+    QLineEdit *lEdt1_thi,*lEdt2_thi,*lEdt3_thi,*lEdt4_thi,*lEdt5_thi,*lEdt6_thi,*lEdt7_thi,*lEdt8_thi,*lEdt9_thi,*lEdt10_thi,*lEdt11_thi,*lEdt12_thi,*lEdt13_thi;
+    QLineEdit *testfov_thi;
+    QLineEdit *fEdt1_thi,*fEdt2_thi,*fEdt3_thi,*fEdt4_thi,*fEdt5_thi,*fEdt6_thi,*fEdt7_thi,*fEdt8_thi,*fEdt9_thi,*fEdt10_thi,*fEdt11_thi,*fEdt12_thi,*fEdt13_thi;
+
+    /*通道4*/
+    MyWidget *w_sersor1_fou,*w_seitchField_fou,*w_ContinueField_fou;
+    QComboBox *change3_fou,*change2_fou,*change1_fou;
+    int current_shichang_fou;
+    //固定视场参数
+    QSpinBox *sp_fou,*sp2_fou;
+    QLineEdit *lineEdit_fieldRadio_fou,*lineEdit_fieldResolution_fou,*lineEdit_FOV_x_fou,*lineEdit_FOV_y_fou,*lineEdit_fieldResolution2_fou,*lEdt_fou;
+    QString sensor_s1_fou[7]={"视场模式选择","视场平均比例（y轴/x轴）","分辨率（水平*垂直）","FOV","FOV的靶心X","FOV的靶心Y"};
+    //可切换视场参数
+    QLineEdit *lineEdit_switchRadio_fou,*lineEdit_switchResolution_fou,*lineEdit_switchResolution2_fou;
+    QSpinBox *spby_switch1_fou,*spby_switch2_fou,*spby_switch3_fou,*spby_switch4_fou,*spby_switch5_fou;
+    QSpinBox *spbx_switch1_fou,*spbx_switch2_fou,*spbx_switch3_fou,*spbx_switch4_fou,*spbx_switch5_fou;
+    QLineEdit *lineEdit_s1_Fov0_fou,*lineEdit_s1_Fov1_fou,*lineEdit_s1_Fov2_fou,*lineEdit_s1_Fov3_fou,*lineEdit_s1_Fov4_fou,
+              *lineEdit_s1_Fov5_fou,*lineEdit_s1_Fov6_fou,*lineEdit_s1_Fov7_fou,*lineEdit_s1_Fov8_fou,*lineEdit_s1_Fov9_fou,
+              *lineEdit_s1_Fov10_fou,*lineEdit_s1_Fov11_fou,*lineEdit_s1_Fov12_fou,*lineEdit_s1_Fov13_fou,*lineEdit_s1_Fov14_fou;
+    QString sensor_switch_s1_fou[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    QComboBox *fovclass_fou;
+    //连续视场参数
+    QLineEdit *lineEdit_continueRadio_fou,*lineEdit_continueResolution_fou,*lineEdit_continueResolution2_fou;
+    QSpinBox *spby1_fou,*spby2_fou,*spby3_fou,*spby4_fou,*spby5_fou,*spby6_fou,*spby7_fou, *spby8_fou,*spby9_fou, *spby10_fou,*spby11_fou, *spby12_fou,*spby13_fou;
+    QSpinBox *spbx1_fou,*spbx2_fou,*spbx3_fou,*spbx4_fou,*spbx5_fou,*spbx6_fou,*spbx7_fou,*spbx8_fou,*spbx9_fou,*spbx10_fou,*spbx11_fou,*spbx12_fou,*spbx13_fou;
+    QLineEdit *lEdt1_fou,*lEdt2_fou,*lEdt3_fou,*lEdt4_fou,*lEdt5_fou,*lEdt6_fou,*lEdt7_fou,*lEdt8_fou,*lEdt9_fou,*lEdt10_fou,*lEdt11_fou,*lEdt12_fou,*lEdt13_fou;
+    QLineEdit *testfov_fou;
+    QLineEdit *fEdt1_fou,*fEdt2_fou,*fEdt3_fou,*fEdt4_fou,*fEdt5_fou,*fEdt6_fou,*fEdt7_fou,*fEdt8_fou,*fEdt9_fou,*fEdt10_fou,*fEdt11_fou,*fEdt12_fou,*fEdt13_fou;
+
+    /*通道5*/
+    MyWidget *w_sersor1_fif,*w_seitchField_fif,*w_ContinueField_fif;
+    QComboBox *change3_fif,*change2_fif,*change1_fif;
+    int current_shichang_fif;
+    //固定视场参数
+    QSpinBox *sp_fif,*sp2_fif;
+    QLineEdit *lineEdit_fieldRadio_fif,*lineEdit_fieldResolution_fif,*lineEdit_FOV_x_fif,*lineEdit_FOV_y_fif,*lineEdit_fieldResolution2_fif,*lEdt_fif;
+    QString sensor_s1_fif[7]={"视场模式选择","视场平均比例（y轴/x轴）","分辨率（水平*垂直）","FOV","FOV的靶心X","FOV的靶心Y"};
+    //可切换视场参数
+    QLineEdit *lineEdit_switchRadio_fif,*lineEdit_switchResolution_fif,*lineEdit_switchResolution2_fif;
+    QSpinBox *spby_switch1_fif,*spby_switch2_fif,*spby_switch3_fif,*spby_switch4_fif,*spby_switch5_fif;
+    QSpinBox *spbx_switch1_fif,*spbx_switch2_fif,*spbx_switch3_fif,*spbx_switch4_fif,*spbx_switch5_fif;
+    QLineEdit *lineEdit_s1_Fov0_fif,*lineEdit_s1_Fov1_fif,*lineEdit_s1_Fov2_fif,*lineEdit_s1_Fov3_fif,*lineEdit_s1_Fov4_fif,
+              *lineEdit_s1_Fov5_fif,*lineEdit_s1_Fov6_fif,*lineEdit_s1_Fov7_fif,*lineEdit_s1_Fov8_fif,*lineEdit_s1_Fov9_fif,
+              *lineEdit_s1_Fov10_fif,*lineEdit_s1_Fov11_fif,*lineEdit_s1_Fov12_fif,*lineEdit_s1_Fov13_fif,*lineEdit_s1_Fov14_fif;
+    QString sensor_switch_s1_fif[15]={"FOV1","FOV1的靶心x","FOV1的靶心y","FOV2","FOV2的靶心x","FOV2的靶心y","FOV3","FOV3的靶心x","FOV3的靶心y","FOV4","FOV4的靶心x","FOV4的靶心y","FOV5","FOV5的靶心x","FOV5的靶心y"};
+    QComboBox *fovclass_fif;
+    //连续视场参数
+    QLineEdit *lineEdit_continueRadio_fif,*lineEdit_continueResolution_fif,*lineEdit_continueResolution2_fif;
+    QSpinBox *spby1_fif,*spby2_fif,*spby3_fif,*spby4_fif,*spby5_fif,*spby6_fif,*spby7_fif, *spby8_fif,*spby9_fif, *spby10_fif,*spby11_fif, *spby12_fif,*spby13_fif;
+    QSpinBox *spbx1_fif,*spbx2_fif,*spbx3_fif,*spbx4_fif,*spbx5_fif,*spbx6_fif,*spbx7_fif,*spbx8_fif,*spbx9_fif,*spbx10_fif,*spbx11_fif,*spbx12_fif,*spbx13_fif;
+    QLineEdit *lEdt1_fif,*lEdt2_fif,*lEdt3_fif,*lEdt4_fif,*lEdt5_fif,*lEdt6_fif,*lEdt7_fif,*lEdt8_fif,*lEdt9_fif,*lEdt10_fif,*lEdt11_fif,*lEdt12_fif,*lEdt13_fif;
+    QLineEdit *testfov_fif;
+    QLineEdit *fEdt1_fif,*fEdt2_fif,*fEdt3_fif,*fEdt4_fif,*fEdt5_fif,*fEdt6_fif,*fEdt7_fif,*fEdt8_fif,*fEdt9_fif,*fEdt10_fif,*fEdt11_fif,*fEdt12_fif,*fEdt13_fif;
 
     /*UTC*/
     QPushButton *btn_utc1_default,*btn_utc1_update,*btn_utc2_default,*btn_utc2_update,*btn_utc3_default,*btn_utc3_update;

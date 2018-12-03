@@ -277,8 +277,8 @@
    <widget class="QComboBox" name="comboBox_workmode">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>300</y>
+      <x>140</x>
+      <y>320</y>
       <width>121</width>
       <height>22</height>
      </rect>
@@ -297,8 +297,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>300</y>
+      <x>60</x>
+      <y>320</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -310,8 +310,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>330</y>
+      <x>60</x>
+      <y>350</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -323,8 +323,8 @@
    <widget class="QComboBox" name="comboBox_acqmode">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>330</y>
+      <x>140</x>
+      <y>350</y>
       <width>121</width>
       <height>22</height>
      </rect>
@@ -348,9 +348,9 @@
    <widget class="QPushButton" name="btnApertureMinus_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>305</y>
-      <width>71</width>
+      <x>140</x>
+      <y>260</y>
+      <width>75</width>
       <height>41</height>
      </rect>
     </property>
