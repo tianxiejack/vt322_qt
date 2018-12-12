@@ -99,11 +99,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     usocket = new QTcpSocket(this);
     thread_usocket = new RcvUSocketdata(this);
-    connect(usocket, &QTcpSocket::readyRead, this, &MainWindow::usocket_Read_Data);
     connect(this,&MainWindow::usocket_copy_Done, this ,&MainWindow::usocket_parse_bytearray);
     connect(thread_usocket,&RcvUSocketdata::socket2main_signal, this, &MainWindow::upgrade_showtext);
     thread_run_usocket = true;
-    thread_usocket->start();
+    //thread_usocket->start();
 
 }
 
@@ -242,7 +241,7 @@ void MainWindow::netReceiveMainSlot(int port ,QString ip)
     {
         qDebug() << "Connection failed!";
         QMessageBox::warning(NULL, tr("警告"), tr("连接失败"), QMessageBox::Close);
-        return;
+        //return;
     }
     this->show();
     qDebug() << "Connect successfully!";
@@ -2950,8 +2949,10 @@ void MainWindow::btnUpSlot()
         for(int i = 1; i < 5; i++)
             sum ^= usocket_send_buf[i];
         usocket_send_buf[5] = sum;
-        QString ip = upgrade_ip->text();
-        int port = upgrade_port->text().toInt();
+        //QString ip = upgrade_ip->text();
+        //int port = upgrade_port->text().toInt();
+        QString ip = net_ip;
+        int port = 8999;
         usocket->connectToHost(ip,port);
         if(!usocket->waitForConnected(300))
         {
@@ -2975,9 +2976,19 @@ void MainWindow::btnSaveSlot()
     send_mutex.unlock();
 }
 
+void MainWindow::btnselectsw_clicked()
+{
+    filePath_updatesw = QFileDialog::getOpenFileName(this,"open","../");
+    if( false == filePath_updatesw.isEmpty())
+    {
+        editsw->setText(filePath_updatesw);
+    }
+}
+
 void MainWindow::btnUpdate()
 {
-    QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    //QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    QString filePath = editsw->text();
     unsigned char usocket_send_buf[1024+256] = {0};
     qint64 len = 0;
     char buf[1024+256] = {0};
@@ -3072,9 +3083,11 @@ void MainWindow::btnUpdate()
 		usocket_send_buf[8] = (filesize>>24)&0xff;
 		packet_flag = 0;
 
-		QString ip = upgrade_ip->text();
-		int port = upgrade_port->text().toInt();
-		usocket->connectToHost(ip,port);
+        //QString ip = upgrade_ip->text();
+        //int port = upgrade_port->text().toInt();
+        QString ip = net_ip;
+        int port = 8999;
+        usocket->connectToHost(ip,port);
         int trans_percent = 0;
 		if(!usocket->waitForConnected(300))
 		{
@@ -3323,59 +3336,7 @@ void MainWindow::socket_Read_Data()
     socketRcvData.clear();
 }
 
-void MainWindow::usocket_Read_Data()
-{
-    usocketRcvData = usocket->readAll();//读网口
-    usocket_copy_bytearray = usocketRcvData;
-    //emit usocket_copy_Done();
-    {
-        QDataStream out(usocket_copy_bytearray);
-        int add_cnt = 0;
-        unsigned char tmp_buf[5000];
-        while(!out.atEnd()) {
-            quint8 outChar = 0;
-            out >> outChar;
-            tmp_buf[add_cnt++] = outChar;
-            if(add_cnt>=4999)
-            {
-                for(int i = 0; i<add_cnt; i++)
-                {
-                    usocket_mutex.lock();
-                    usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
-                    usocket_BufWrite %= sizeof(usocket_rcv_buf);
 
-                    if (usocket_BufWrite == usocket_BufRead) {
-                        usocket_BufRcvStatus = BUFFER_FULL;
-                    }
-                    else
-                    {
-                        usocket_BufRcvStatus = BUFFER_DATA;
-                    }
-                    usocket_mutex.unlock();
-                }
-                outChar = 0;
-                add_cnt = 0;
-            }
-
-        }
-        for(int i = 0; i<add_cnt; i++)
-        {
-            usocket_mutex.lock();
-            usocket_rcv_buf[ usocket_BufWrite++ ] = tmp_buf[i];
-            usocket_BufWrite %= sizeof(usocket_rcv_buf);
-
-            if (usocket_BufWrite == usocket_BufRead) {
-                usocket_BufRcvStatus = BUFFER_FULL;
-            }
-            else
-            {
-                usocket_BufRcvStatus = BUFFER_DATA;
-            }
-            usocket_mutex.unlock();
-        }
-    }
-    usocketRcvData.clear();
-}
 
 
 void MainWindow::socket_parse_bytearray()

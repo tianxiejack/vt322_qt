@@ -5,14 +5,17 @@ extern volatile unsigned int usocket_BufWrite ;
 extern volatile unsigned int usocket_BufRead ;
 extern volatile unsigned char usocket_BufRcvStatus;
 extern volatile unsigned char usocket_rcv_buf[5000];
+volatile unsigned char usocket_rcv_buf2[5000];
 volatile unsigned int usocket_output_cnt =0;
 extern  unsigned char uoutput_array[5000];
 extern QMutex usocket_mutex;
+extern QTcpSocket *usocket;
+extern QByteArray usocket_copy_bytearray;
 
 
 RcvUSocketdata::RcvUSocketdata(QObject *parent) : QThread(parent)
 {
-
+    connect(usocket, &QTcpSocket::readyRead, this, &RcvUSocketdata::usocket_Read_Data);
 }
 
 unsigned char usocket_Get_One_Char(unsigned char* pRxByte)
@@ -40,6 +43,7 @@ unsigned char usocket_Get_One_Char(unsigned char* pRxByte)
 }
 void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程中声明并定义一个该线程的类的对象，然后通过该对象的 start() 方法来调用这个线程运行函数；
 {
+    /*
     unsigned char pRxByte =0;
     unsigned char frame_flag =0;
     unsigned char crc_sum =0;
@@ -140,6 +144,7 @@ void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程�
             }
         }
     }
+    */
 }
 void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
 {
@@ -215,5 +220,113 @@ void RcvUSocketdata::upgradefpgaresp(unsigned char *uoutput_array)
     else if(uoutput_array[1] == 0x02)
     {
         emit socket2main_signal(2,uoutput_array[2]);
+    }
+}
+
+
+unsigned char pRxByte =0;
+unsigned char frame_flag =0;
+unsigned char crc_sum =0;
+int pkg_length = 0;
+
+void RcvUSocketdata::usocket_Read_Data()
+{
+    while(usocket->bytesAvailable()>0)
+    {
+        QByteArray datagram;
+        int cnt = 0;
+        datagram.resize(usocket->bytesAvailable());
+        int len = usocket->read(datagram.data(),datagram.size());
+        while(cnt<len)
+        {
+            pRxByte = datagram.at(cnt++);
+            {
+                switch(frame_flag)//从网口读取一帧数据，并检查校验和。
+                {
+                    case 0:
+                        if(pRxByte == 0xEB) {
+                            frame_flag = 1;
+                        }
+                        else
+                        {
+                            frame_flag = 0;
+                            usocket_output_cnt = 0;
+                            crc_sum = 0;
+                        }
+
+                        break;
+                    case 1:
+                        if(pRxByte == 0x53){
+                            frame_flag = 2;
+                            usocket_output_cnt = 0;
+                            crc_sum ^= pRxByte;
+                        }
+                        else
+                        {
+                            frame_flag = 0;
+                            usocket_output_cnt = 0;
+                            crc_sum = 0;
+                        }
+                        break;
+                    case 2:
+                        pkg_length = pRxByte;
+                        crc_sum ^= pRxByte;
+                        frame_flag = 3;
+                        break;
+                    case 3:
+                        pkg_length = (pkg_length|(pRxByte<<8));
+                        crc_sum ^= pRxByte;
+                        frame_flag = 4;
+                        break;
+                    case 4:
+                        if(usocket_output_cnt>(sizeof(uoutput_array)/sizeof(uoutput_array[0])-1))
+                        {
+                            frame_flag = 0;
+                            crc_sum = 0;
+                            usocket_output_cnt = 0;
+                            break;
+                        }
+                        uoutput_array[usocket_output_cnt++] = pRxByte;
+                        if(usocket_output_cnt >= pkg_length+1){
+                            if(crc_sum == pRxByte )
+                            {
+                                if(uoutput_array[0]==0x33)
+                                {
+                                    exportfile(uoutput_array);
+                                }
+                                else if(uoutput_array[0]==0x32)
+                                    importfileresp(uoutput_array);
+                                else if(uoutput_array[0]==0x35)
+                                {
+                                    //qDebug("it is upgradefw response");
+                                    upgraderesp(uoutput_array);
+                                }
+                                else if(uoutput_array[0]==0x37)
+                                {
+                                    //qDebug("it is upgradefpga response");
+                                    upgradefpgaresp(uoutput_array);
+                                }
+                                frame_flag = 0;
+                                crc_sum = 0;
+                                usocket_output_cnt = 0;
+                                break;
+                            }
+                            else{
+                                frame_flag = 0;
+                                usocket_output_cnt = 0;
+                                crc_sum = 0;
+                                break;
+                            }
+                        }
+                        crc_sum ^= pRxByte;
+                        break;
+                    default:
+                        frame_flag = 0;
+                        crc_sum = 0;
+                        usocket_output_cnt = 0;
+                        break;
+                }
+            }
+        }
     }
 }

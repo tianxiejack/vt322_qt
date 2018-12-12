@@ -10,6 +10,9 @@ public:
     void importfileresp(unsigned char *uoutput_array);
     void upgraderesp(unsigned char *uoutput_array);
     void upgradefpgaresp(unsigned char *uoutput_array);
+    void usocket_Read_Data();
+
+    QByteArray usocketRcvData;
 
 protected:
     void run();

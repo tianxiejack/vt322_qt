@@ -109,7 +109,6 @@ public:
     void socket_parse_bytearray();
     void usocket_parse_bytearray();
     void socket_Read_Data();
-    void usocket_Read_Data();
     void upgrade_showtext(int i,int percent);
 
     /*计算圆边界值*/
@@ -175,6 +174,7 @@ public slots:
     void btnDownSlot();
     void btnUpSlot();
     void btnSaveSlot();
+    void btnselectsw_clicked();
     void btnUpdate();
     void btnFPGA_clicked();
 
@@ -567,6 +567,8 @@ private:
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
+    QString filePath_updatesw;
+    QLineEdit *editsw;
     /*平台配置*/
     MyWidget *w_plat;
     QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
@@ -776,7 +778,6 @@ private:
     QString fileName,fpgafileName; //文件名字
     qint64 filesize,fpgafilesize; // 文件大小
     qint64 sendsize,fpgasendsize;  // 已经发送的数据大小
-    QByteArray usocketRcvData;
 	bool socketIsconnect=false;
 };
 extern MainWindow *pthis;

@@ -155,7 +155,7 @@ void MainWindow::init_sysCfg()
     CBox->addItem("最高");
     CBox->setCurrentIndex(1);*/
 
-    QLineEdit *editsw = new QLineEdit();
+    editsw = new QLineEdit();
     QPushButton *btnselectsw=new QPushButton();
     btnselectsw->setText("选择文件");
     QLineEdit *editfpga = new QLineEdit();
@@ -192,14 +192,9 @@ void MainWindow::init_sysCfg()
     pLayout->addRow("各通道采集\n分辨率选择",btn_choose);
     //pLayout->addRow("变焦速度等级", CBox);
     pLayout->addRow("保存当前配置", btnSave);
-    //pLayout->addRow("IP：",upgrade_ip);
-    //pLayout->addRow("端口：",upgrade_port);
-    //pLayout->addRow("软件升级",btnUpdate);
-    //pLayout->addRow("FPGA升级", btnFPGA);
-    //pLayout->addRow("导入配置文件", btnDown);
     pLayout->addRow("软件升级",vlayout1);
-    pLayout->addRow("FPGA升级", vlayout2);
-    pLayout->addRow("导入配置文件", vlayout3);
+    //pLayout->addRow("FPGA升级", vlayout2);
+    //pLayout->addRow("导入配置文件", vlayout3);
     pLayout->addRow("导出配置文件", btnUp);
     pLayout->addRow(upgrade_show);
 
@@ -217,7 +212,7 @@ void MainWindow::init_sysCfg()
     connect(checkBox_channel3,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
     connect(checkBox_channel4,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
     connect(checkBox_channel5,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
-
+    connect(btnselectsw,SIGNAL(clicked(bool)),this,SLOT(btnselectsw_clicked()));
     w_config->setLayout(pLayout);
 }
 void MainWindow::init_platCfg()
