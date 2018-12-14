@@ -35,8 +35,9 @@ extern  unsigned char output_array_6[1024];
 extern  unsigned char output_array_7[1024];
 extern  unsigned char output_array_8[1024];
 extern int data_length;
+extern QSerialPort * serialPort_command;
 
-QByteArray MainWindow::string2hex(QString str, bool &flag)
+QByteArray MainWindow::string2hex(QString str, bool &flag)//把十六进制的QString字符串转化为字节数组形式
 {
     QByteArray senddata;
     int hexdata,lowHexdata;

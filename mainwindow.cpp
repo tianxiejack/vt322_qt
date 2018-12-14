@@ -42,6 +42,7 @@ extern int connect_flag;
 extern int current_povstat;
 int data_length=0;
 QTcpSocket *usocket;
+QSerialPort * serialPort_command;
 QFile expfile;
 QTextEdit *upgrade_show;
 MainWindow *pthis = NULL;
@@ -81,8 +82,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     thread_01 = new recSerial(this);//定义一个线程对象（接收）
     connect(this,&MainWindow::destroyed, this,&MainWindow::stop_thread_now);
+    connect(thread_01,&recSerial::socket2main_signal, this, &MainWindow::upgrade_showtext);
     thread_run = true;
-    thread_01->start();
+    //thread_01->start();
 
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_Read_Data);
@@ -261,7 +263,6 @@ void MainWindow::serialReceiveMainSlot(QString port,qint32 baud,int check,int da
         mySetSerialDataBits(serialPort_command,data);
         mySetSerialParity(serialPort_command,check);
         smySetSerialStopBit(serialPort_command,stop);
-        connect(serialPort_command, &QSerialPort::readyRead, this, &MainWindow::RcvData_SerialPort);//当有数据来时，触发接收槽函数；
     }else{// 串口打开失败时，弹出提示窗口
         QMessageBox::warning(NULL, tr("警告"), tr("串口被占用"), QMessageBox::Close);
     }
@@ -2940,6 +2941,7 @@ void MainWindow::btnUpSlot()
     unsigned char sum = 0;
     if( false == filePath.isEmpty())
     {
+
         usocket_send_buf[0] = 0xEB;
         usocket_send_buf[1] = 0x53;
         usocket_send_buf[2] = 0x01;
@@ -2951,15 +2953,20 @@ void MainWindow::btnUpSlot()
         usocket_send_buf[5] = sum;
         //QString ip = upgrade_ip->text();
         //int port = upgrade_port->text().toInt();
-        QString ip = net_ip;
-        int port = 8999;
-        usocket->connectToHost(ip,port);
-        if(!usocket->waitForConnected(300))
+        if(1 == connect_flag)//串口
+            serialPort_command->write((char *)usocket_send_buf,6);
+        else if(2 == connect_flag)//网口
         {
-            upgrade_show->append("连接服务器失败");
-            return;
+            QString ip = net_ip;
+            int port = 8999;
+            usocket->connectToHost(ip,port);
+            if(!usocket->waitForConnected(300))
+            {
+                upgrade_show->append("连接服务器失败");
+                return;
+            }
+            usocket->write((char *)usocket_send_buf,6);
         }
-        usocket->write((char *)usocket_send_buf,6);
     }
     else
     {
@@ -2987,7 +2994,7 @@ void MainWindow::btnselectsw_clicked()
 
 void MainWindow::btnUpdate()
 {
-    //QString filePath = QFileDialog::getOpenFileName(this,"open","../");
+    qDebug();
     QString filePath = editsw->text();
     unsigned char usocket_send_buf[1024+256] = {0};
     qint64 len = 0;
@@ -3018,7 +3025,7 @@ void MainWindow::btnUpdate()
             upgrade_show->append("打开文件失败");
             return;
         }
-#if 0
+#if 1
         if(1 == connect_flag)//串口
         {
             usocket_send_buf[0] = 0xEB;
@@ -3064,85 +3071,85 @@ void MainWindow::btnUpdate()
             if(sendsize == filesize)
             {
                 file.close();
-                upgrade_show->append("文件发送中...");
+                //upgrade_show->append("文件发送中...");
             }
             else
             {
                 upgrade_show->append("文件发送失败");
             }
         }
-        else if(2 == connect_flag)//网口
-        {
 #endif
-		usocket_send_buf[0] = 0xEB;
-		usocket_send_buf[1] = 0x53;
-		usocket_send_buf[4] = 0x35;
-		usocket_send_buf[5] = filesize&0xff;
-		usocket_send_buf[6] = (filesize>>8)&0xff;
-		usocket_send_buf[7] = (filesize>>16)&0xff;
-		usocket_send_buf[8] = (filesize>>24)&0xff;
-		packet_flag = 0;
+        if(2 == connect_flag)//网口
+        {
+            usocket_send_buf[0] = 0xEB;
+            usocket_send_buf[1] = 0x53;
+            usocket_send_buf[4] = 0x35;
+            usocket_send_buf[5] = filesize&0xff;
+            usocket_send_buf[6] = (filesize>>8)&0xff;
+            usocket_send_buf[7] = (filesize>>16)&0xff;
+            usocket_send_buf[8] = (filesize>>24)&0xff;
+            packet_flag = 0;
 
-        //QString ip = upgrade_ip->text();
-        //int port = upgrade_port->text().toInt();
-        QString ip = net_ip;
-        int port = 8999;
-        usocket->connectToHost(ip,port);
-        int trans_percent = 0;
-		if(!usocket->waitForConnected(300))
-		{
-		    upgrade_show->append("连接服务器失败");
-		    return;
-		}
-		while(len = file.read(buf,1024))
-		{  //每次发送数据大小
-		  checksum = 0;
-		  if(len<0)
-		  {
-		      upgrade_show->append("文件读取失败");
-		      break;
-		  }
-		  sendsize += len;
-		  if(packet_flag == 0)
-		  {
-		      usocket_send_buf[9] = 0;
-		      packet_flag = 1;
-		  }
-		  else if(sendsize == filesize)
-		  {
-		      usocket_send_buf[9] = 2;
-		  }
-		  else
-		  {
-		    usocket_send_buf[9] = 1;
-		  }
-		  usocket_send_buf[2] = (len+8)&0xff;
-		  usocket_send_buf[3] = ((len+8)>>8)&0xff;
-		  usocket_send_buf[10] = len&0xff;
-		  usocket_send_buf[11] = (len>>8)&0xff;
-		  memcpy(usocket_send_buf+12,buf, len);
-		  for(int m = 1; m<12+len;m++)
-		      checksum ^= usocket_send_buf[m];
-		  usocket_send_buf[12+len] = checksum;
+            //QString ip = upgrade_ip->text();
+            //int port = upgrade_port->text().toInt();
+            QString ip = net_ip;
+            int port = 8999;
+            usocket->connectToHost(ip,port);
+            int trans_percent = 0;
+            if(!usocket->waitForConnected(300))
+            {
+                upgrade_show->append("连接服务器失败");
+                return;
+            }
+            while(len = file.read(buf,1024))
+            {  //每次发送数据大小
+              checksum = 0;
+              if(len<0)
+              {
+                  upgrade_show->append("文件读取失败");
+                  break;
+              }
+              sendsize += len;
+              if(packet_flag == 0)
+              {
+                  usocket_send_buf[9] = 0;
+                  packet_flag = 1;
+              }
+              else if(sendsize == filesize)
+              {
+                  usocket_send_buf[9] = 2;
+              }
+              else
+              {
+                usocket_send_buf[9] = 1;
+              }
+              usocket_send_buf[2] = (len+8)&0xff;
+              usocket_send_buf[3] = ((len+8)>>8)&0xff;
+              usocket_send_buf[10] = len&0xff;
+              usocket_send_buf[11] = (len>>8)&0xff;
+              memcpy(usocket_send_buf+12,buf, len);
+              for(int m = 1; m<12+len;m++)
+                  checksum ^= usocket_send_buf[m];
+              usocket_send_buf[12+len] = checksum;
 
-		  usocket->write((char *)usocket_send_buf,len+13);
-          usocket->flush();
-          trans_percent = sendsize*100/filesize;
-          //upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
-		}
-		if(sendsize == filesize)
-		{
-		    file.close();
-            //qDebug()<<"文件大小："<<filesize<<"发送大小："<<sendsize;
-            //upgrade_show->append(tr("文件字节数")+QString("%1").arg(filesize,10,10));
-            //usocket->disconnectFromHost();
-            //usocket->close();
-		}
-		else
-		{
-		    upgrade_show->append("文件发送失败");
-		}
-		//}
+              usocket->write((char *)usocket_send_buf,len+13);
+              usocket->flush();
+              trans_percent = sendsize*100/filesize;
+              //upgrade_show->setText(tr("文件发送中...%")+QString("%1").arg(trans_percent&0xFF,2,10));
+            }
+            if(sendsize == filesize)
+            {
+                file.close();
+                //qDebug()<<"文件大小："<<filesize<<"发送大小："<<sendsize;
+                //upgrade_show->append(tr("文件字节数")+QString("%1").arg(filesize,10,10));
+                //usocket->disconnectFromHost();
+                //usocket->close();
+            }
+            else
+            {
+                upgrade_show->append("文件发送失败");
+            }
+        }
     }
     else
             upgrade_show->append("选择文件无效");
@@ -3419,6 +3426,7 @@ void MainWindow::parse_bytearray()
 void MainWindow::RcvData_SerialPort()
 {
     RcvData = serialPort_command->readAll();
+    qDebug()<<"uart recv "<<RcvData.length()<<"bytes";
     copy_bytearray = RcvData;
     emit copy_Done();
     QString rcvBuf;

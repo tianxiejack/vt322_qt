@@ -532,7 +532,6 @@ private:
         int sersor_count=0;
     /**/
     QTcpSocket *socket;
-    QSerialPort * serialPort_command;
     QStackedLayout *btnStack;
     QByteArray sndData_02;
     int connect_flag = 0;
