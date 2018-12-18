@@ -4196,6 +4196,14 @@ void MainWindow::showspeedconvcfg()
 
 void MainWindow::showmtdcfg()
 {
+    for(int i=0;i<10;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=54;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
     w_mtd->show();
     w_mtd->show_stat = 1;
 }
