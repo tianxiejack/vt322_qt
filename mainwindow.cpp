@@ -322,7 +322,7 @@ void MainWindow::btnToClose()
 }
 
 
-void MainWindow::on_btnTrack_clicked()
+void MainWindow::on_btnTrack_clicked() //s
 {
     value_x=960;
     value_y=540;
@@ -2816,6 +2816,156 @@ void MainWindow::lEdt_speedy9_Slot()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::lEdt_rigion_Slot()
+{
+    float value=rigion->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_maxnum_Slot()
+{
+    float value=maxnum->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_uspeed_Slot()
+{
+    float value=uspeed->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_maxpix_Slot()
+{
+    float value=maxpix->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_minpix_Slot()
+{
+    float value=minpix->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_sensitive_Slot()
+{
+    float value=sensitive->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_dspeed_Slot()
+{
+    float value=dspeed->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::lEdt_trktime_Slot()
+{
+    float value=trktime->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::combox_output_Slot(int index)
+{
+    float value;
+    printf("index = %d\n", index);
+    switch(index)
+    {
+        case 0:
+        value = 1.0;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 54;
+        send_arr[6] = 8;
+        send_arr[7] = value;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+            break;
+        case 1:
+        value = 2.0;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 54;
+        send_arr[6] = 8;
+        send_arr[7] = value;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
+            break;
+        default:
+            break;
+    }
+
+
+}
+void MainWindow::lEdt_polar_Slot()
+{
+    float value=polar->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 54;
+    send_arr[6] = 9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_mtd_Default_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 54;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_mtd_Update_Slot()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x34;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
 void MainWindow::outMode_Slot(int i)
 {
     send_mutex.lock();
@@ -2826,7 +2976,6 @@ void MainWindow::outMode_Slot(int i)
     send_oneframe(4);
     send_mutex.unlock();
 }
-
 
 
 void MainWindow::btnDownSlot()
@@ -3691,20 +3840,49 @@ void MainWindow::on_comboBox_acqmode_currentIndexChanged(int index)
     {
         case 0:
             send_mutex.lock();
-            send_arr[4] = 0x18;
-            send_arr[5] = 0x02;
+            send_arr[4] = 0x43;
+            send_arr[5] = 0x00;
             send_oneframe(2);
             send_mutex.unlock();
             break;
         case 1:
             send_mutex.lock();
-            send_arr[4] = 0x18;
+            send_arr[4] = 0x43;
             send_arr[5] = 0x01;
             send_oneframe(2);
             send_mutex.unlock();
             break;
-        case 2:
+         case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x43;
+            send_arr[5] = 0x02;
+            send_oneframe(2);
+            send_mutex.unlock();
             break;
+            default:
+            break;
+    }
+}
+
+void MainWindow::on_comboBox_workmode_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x42;
+            send_arr[5] = 0x01;
+            send_oneframe(2);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x42;
+            send_arr[5] = 0x02;
+            send_oneframe(2);
+            send_mutex.unlock();
+            break;
+
         default:
             break;
     }

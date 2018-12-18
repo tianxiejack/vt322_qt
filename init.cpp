@@ -551,6 +551,21 @@ void MainWindow::init_mtdCfg()
     v->addLayout(h1);
     v->addLayout(f1);
     w_mtd->setLayout(v);
+
+    connect(btn_mtd_default,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Default_Slot()));
+    connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Update_Slot()));
+    connect(rigion,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Slot()));
+    connect(maxnum,SIGNAL(returnPressed()),this,SLOT(lEdt_maxnum_Slot()));
+    connect(uspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_uspeed_Slot()));
+    connect(maxpix,SIGNAL(returnPressed()),this,SLOT(lEdt_maxpix_Slot()));
+    connect(minpix,SIGNAL(returnPressed()),this,SLOT(lEdt_minpix_Slot()));
+    connect(sensitive,SIGNAL(returnPressed()),this,SLOT(lEdt_sensitive_Slot()));
+    connect(dspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_dspeed_Slot()));
+    connect(trktime,SIGNAL(returnPressed()),this,SLOT(lEdt_trktime_Slot()));
+   // connect(output,SIGNAL(currentIndexChanged(int)),this,SLOT(combox_output_Slot(int index)));
+    connect(output,SIGNAL(activated(int)),this,SLOT(combox_output_Slot(int)));
+    connect(polar,SIGNAL(returnPressed()),this,SLOT(lEdt_polar_Slot()));
+
 }
 
 void MainWindow::init_utcCfg()

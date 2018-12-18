@@ -445,6 +445,21 @@ private slots:
     void lEdt_bomen_10();
     void lEdt_bomen_11();
 
+    /*移动检测参数配置*/
+    void lEdt_rigion_Slot();
+    void lEdt_maxnum_Slot();
+    void lEdt_uspeed_Slot();
+    void lEdt_maxpix_Slot();
+    void lEdt_minpix_Slot();
+    void lEdt_sensitive_Slot();
+    void lEdt_dspeed_Slot();
+    void lEdt_trktime_Slot();
+    void combox_output_Slot(int index);
+    void lEdt_polar_Slot();
+    void btn_mtd_Default_Slot();
+    void btn_mtd_Update_Slot();
+
+
     void lEdt_drawLine_1();
     void lEdt_drawLine_2();
     void lEdt_drawLine_3();
@@ -508,6 +523,8 @@ private slots:
     void on_btn_down_released();
 
     void on_comboBox_acqmode_currentIndexChanged(int index);
+
+    void on_comboBox_workmode_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
