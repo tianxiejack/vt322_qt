@@ -43,108 +43,7 @@ unsigned char usocket_Get_One_Char(unsigned char* pRxByte)
 }
 void RcvUSocketdata::run()  //线程运行函数，调用前需要在主线程中声明并定义一个该线程的类的对象，然后通过该对象的 start() 方法来调用这个线程运行函数；
 {
-    /*
-    unsigned char pRxByte =0;
-    unsigned char frame_flag =0;
-    unsigned char crc_sum =0;
-    int pkg_length = 0;
 
-    while(true == thread_run_usocket)
-    {
-        if(thread_run_usocket == false) {
-            break;
-        }
-
-        if( 1 == usocket_Get_One_Char((unsigned char*)&pRxByte)  )//从网口读一个字节存到pRxByte
-        {
-            switch(frame_flag)//从网口读取一帧数据，并检查校验和。
-            {
-                case 0:
-                    if(pRxByte == 0xEB) {
-                        frame_flag = 1;
-                    }
-                    else
-                    {
-                        frame_flag = 0;
-                        usocket_output_cnt = 0;
-                        crc_sum = 0;
-                    }
-
-                    break;
-                case 1:
-                    if(pRxByte == 0x53){
-                        frame_flag = 2;
-                        usocket_output_cnt = 0;
-                        crc_sum ^= pRxByte;
-                    }
-                    else
-                    {
-                        frame_flag = 0;
-                        usocket_output_cnt = 0;
-                        crc_sum = 0;
-                    }
-                    break;
-                case 2:
-                    pkg_length = pRxByte;
-                    crc_sum ^= pRxByte;
-                    frame_flag = 3;
-                    break;
-                case 3:
-                    pkg_length = (pkg_length|(pRxByte<<8));
-                    crc_sum ^= pRxByte;
-                    frame_flag = 4;
-                    break;
-                case 4:
-                    if(usocket_output_cnt>(sizeof(uoutput_array)/sizeof(uoutput_array[0])-1))
-                    {
-                        frame_flag = 0;
-                        crc_sum = 0;
-                        usocket_output_cnt = 0;
-                        break;
-                    }
-                    uoutput_array[usocket_output_cnt++] = pRxByte;
-                    if(usocket_output_cnt >= pkg_length+1){
-                        if(crc_sum == pRxByte )
-                        {
-                            if(uoutput_array[0]==0x33)
-                            {
-                                exportfile(uoutput_array);
-                            }
-                            else if(uoutput_array[0]==0x32)
-                                importfileresp(uoutput_array);
-                            else if(uoutput_array[0]==0x35)
-                            {
-                                //qDebug("it is upgradefw response");
-                                upgraderesp(uoutput_array);
-                            }
-                            else if(uoutput_array[0]==0x37)
-                            {
-                                //qDebug("it is upgradefpga response");
-                                upgradefpgaresp(uoutput_array);
-                            }
-                            frame_flag = 0;
-                            crc_sum = 0;
-                            usocket_output_cnt = 0;
-                            break;
-                        }
-                        else{
-                            frame_flag = 0;
-                            usocket_output_cnt = 0;
-                            crc_sum = 0;
-                            break;
-                        }
-                    }
-                    crc_sum ^= pRxByte;
-                    break;
-                default:
-                    frame_flag = 0;
-                    crc_sum = 0;
-                    usocket_output_cnt = 0;
-                    break;
-            }
-        }
-    }
-    */
 }
 void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
 {
@@ -224,13 +123,13 @@ void RcvUSocketdata::upgradefpgaresp(unsigned char *uoutput_array)
 }
 
 
-unsigned char pRxByte =0;
-unsigned char frame_flag =0;
-unsigned char crc_sum =0;
-int pkg_length = 0;
+unsigned char frame_flag_serial =0;
+unsigned char crc_sum_serial =0;
+int pkg_length_serial = 0;
 
 void RcvUSocketdata::usocket_Read_Data()
 {
+    unsigned char pRxByte =0;
     while(usocket->bytesAvailable()>0)
     {
         QByteArray datagram;
@@ -241,54 +140,54 @@ void RcvUSocketdata::usocket_Read_Data()
         {
             pRxByte = datagram.at(cnt++);
             {
-                switch(frame_flag)//从网口读取一帧数据，并检查校验和。
+                switch(frame_flag_serial)//从网口读取一帧数据，并检查校验和。
                 {
                     case 0:
                         if(pRxByte == 0xEB) {
-                            frame_flag = 1;
+                            frame_flag_serial = 1;
                         }
                         else
                         {
-                            frame_flag = 0;
+                            frame_flag_serial = 0;
                             usocket_output_cnt = 0;
-                            crc_sum = 0;
+                            crc_sum_serial = 0;
                         }
 
                         break;
                     case 1:
                         if(pRxByte == 0x53){
-                            frame_flag = 2;
+                            frame_flag_serial = 2;
                             usocket_output_cnt = 0;
-                            crc_sum ^= pRxByte;
+                            crc_sum_serial ^= pRxByte;
                         }
                         else
                         {
-                            frame_flag = 0;
+                            frame_flag_serial = 0;
                             usocket_output_cnt = 0;
-                            crc_sum = 0;
+                            crc_sum_serial = 0;
                         }
                         break;
                     case 2:
-                        pkg_length = pRxByte;
-                        crc_sum ^= pRxByte;
-                        frame_flag = 3;
+                        pkg_length_serial = pRxByte;
+                        crc_sum_serial ^= pRxByte;
+                        frame_flag_serial = 3;
                         break;
                     case 3:
-                        pkg_length = (pkg_length|(pRxByte<<8));
-                        crc_sum ^= pRxByte;
-                        frame_flag = 4;
+                        pkg_length_serial = (pkg_length_serial|(pRxByte<<8));
+                        crc_sum_serial ^= pRxByte;
+                        frame_flag_serial = 4;
                         break;
                     case 4:
                         if(usocket_output_cnt>(sizeof(uoutput_array)/sizeof(uoutput_array[0])-1))
                         {
-                            frame_flag = 0;
-                            crc_sum = 0;
+                            frame_flag_serial = 0;
+                            crc_sum_serial = 0;
                             usocket_output_cnt = 0;
                             break;
                         }
                         uoutput_array[usocket_output_cnt++] = pRxByte;
-                        if(usocket_output_cnt >= pkg_length+1){
-                            if(crc_sum == pRxByte )
+                        if(usocket_output_cnt >= pkg_length_serial+1){
+                            if(crc_sum_serial == pRxByte )
                             {
                                 if(uoutput_array[0]==0x33)
                                 {
@@ -306,23 +205,23 @@ void RcvUSocketdata::usocket_Read_Data()
                                     //qDebug("it is upgradefpga response");
                                     upgradefpgaresp(uoutput_array);
                                 }
-                                frame_flag = 0;
-                                crc_sum = 0;
+                                frame_flag_serial = 0;
+                                crc_sum_serial = 0;
                                 usocket_output_cnt = 0;
                                 break;
                             }
                             else{
-                                frame_flag = 0;
+                                frame_flag_serial = 0;
                                 usocket_output_cnt = 0;
-                                crc_sum = 0;
+                                crc_sum_serial = 0;
                                 break;
                             }
                         }
-                        crc_sum ^= pRxByte;
+                        crc_sum_serial ^= pRxByte;
                         break;
                     default:
-                        frame_flag = 0;
-                        crc_sum = 0;
+                        frame_flag_serial = 0;
+                        crc_sum_serial = 0;
                         usocket_output_cnt = 0;
                         break;
                 }
