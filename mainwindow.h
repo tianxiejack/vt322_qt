@@ -508,6 +508,7 @@ private slots:
     void on_btn_down_released();
 
     void on_comboBox_acqmode_currentIndexChanged(int index);
+    void on_btnApertureMinus_2_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -587,6 +588,7 @@ private:
     QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
     *dbg11_lineEdt,*dbg12_lineEdt,*dbg13_lineEdt,*dbg14_lineEdt,*dbg15_lineEdt;
     QString dbg_s[16]={"x轴比例调节系数","y轴比例调节系数","x轴进PID偏差","y轴进PID偏差","进PID时间","debug5","debug6","debug7","debug8","debug9","debug10","debug11","debug12","debug13","debug14","debug15"};
+
 
     /*转换表配置*/
     MyWidget *w_speedconv;
