@@ -3887,3 +3887,11 @@ void MainWindow::on_comboBox_workmode_currentIndexChanged(int index)
             break;
     }
 }
+
+void MainWindow::on_btnApertureMinus_2_clicked()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x41;
+    send_oneframe(1);
+    send_mutex.unlock();
+}
