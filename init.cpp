@@ -2,20 +2,46 @@
 #include "ui_mainwindow.h"
 
 
+
 void MainWindow::init_menu()
 {
     menu[0]=new QMenu("配置");
-    QAction* act_sysCfg=new QAction("系统配置");
+    QAction* act_sysCfg=new QAction("系统配置",this);
     menu[0]->addAction(act_sysCfg);
-    QAction* act_platCfg=new QAction("平台配置");
+    QAction* act_platCfg=new QAction("手柄配置",this);
     menu[0]->addAction(act_platCfg);
+    QMenu* pidsysCfg=new QMenu("PID配置");
+        QAction* act_pidCfg1=new QAction("通道1");
+        QAction* act_pidCfg2=new QAction("通道2");
+        QAction* act_pidCfg3=new QAction("通道3");
+        QAction* act_pidCfg4=new QAction("通道4");
+        QAction* act_pidCfg5=new QAction("通道5");
+        pidsysCfg->addAction(act_pidCfg1);
+        pidsysCfg->addAction(act_pidCfg2);
+        pidsysCfg->addAction(act_pidCfg3);
+        pidsysCfg->addAction(act_pidCfg4);
+        pidsysCfg->addAction(act_pidCfg5);
+        menu[0]->addMenu(pidsysCfg);
+
+        QMenu* videoCfg=new QMenu("摄像机配置");
+        QAction* avt_videoCfg1=new QAction("通道1");
+        QAction* avt_videoCfg2=new QAction("通道2");
+        QAction* avt_videoCfg3=new QAction("通道3");
+        QAction* avt_videoCfg4=new QAction("通道4");
+        QAction* avt_videoCfg5=new QAction("通道5");
+        videoCfg->addAction(avt_videoCfg1);
+        videoCfg->addAction(avt_videoCfg2);
+        videoCfg->addAction(avt_videoCfg3);
+        videoCfg->addAction(avt_videoCfg4);
+        videoCfg->addAction(avt_videoCfg5);
+        menu[0]->addMenu(videoCfg);
 
     QMenu* cameracfg=new QMenu("相机配置");
-    QAction* act_cmrCfg1=new QAction("通道1");
-    QAction* act_cmrCfg2=new QAction("通道2");
-    QAction* act_cmrCfg3=new QAction("通道3");
-    QAction* act_cmrCfg4=new QAction("通道4");
-    QAction* act_cmrCfg5=new QAction("通道5");
+    QAction* act_cmrCfg1=new QAction("通道1",this);
+    QAction* act_cmrCfg2=new QAction("通道2",this);
+    QAction* act_cmrCfg3=new QAction("通道3",this);
+    QAction* act_cmrCfg4=new QAction("通道4",this);
+    QAction* act_cmrCfg5=new QAction("通道5",this);
     cameracfg->addAction(act_cmrCfg1);
     cameracfg->addAction(act_cmrCfg2);
     cameracfg->addAction(act_cmrCfg3);
@@ -26,15 +52,15 @@ void MainWindow::init_menu()
 //    QAction* act_algCfg=new QAction("算法配置");
 //    menu[0]->addAction(act_algCfg);
     QMenu *utc=new QMenu("算法配置");
-    QAction* act_algCfg1=new QAction("UTC1");
+    QAction* act_algCfg1=new QAction("UTC1",this);
     utc->addAction(act_algCfg1);
-    QAction* act_algCfg2=new QAction("UTC2");
+    QAction* act_algCfg2=new QAction("UTC2",this);
     utc->addAction(act_algCfg2);
-    QAction* act_algCfg3=new QAction("UTC3");
+    QAction* act_algCfg3=new QAction("UTC3",this);
     utc->addAction(act_algCfg3);
     menu[0]->addMenu(utc);
 
-    QAction* act_othCfg=new QAction("OSD配置");
+    QAction* act_othCfg=new QAction("字符叠加",this);
     menu[0]->addAction(act_othCfg);
 //    QMenu *osd=new QMenu("OSD配置");
 //    QAction* act_othCfg1=new QAction("OSD1");
@@ -46,28 +72,45 @@ void MainWindow::init_menu()
 //    menu[0]->addMenu(osd);
 
     QMenu* capture=new QMenu("波门配置");
-    QAction* act_cap1=new QAction("捕获框");
+    QAction* act_cap1=new QAction("捕获框",this);
     //capture->addAction(act_cap1);
-    QAction* act_cap2=new QAction("波门");
+    QAction* act_cap2=new QAction("波门",this);
     capture->addAction(act_cap2);
-    QAction* act_cap3=new QAction("画线");
+    QAction* act_cap3=new QAction("画线",this);
     capture->addAction(act_cap3);
     menu[0]->addMenu(capture);
 
-     QAction* dbg_sysCfg=new QAction("捕获配置");
+     QAction* dbg_sysCfg=new QAction("捕获配置",this);
      menu[0]->addAction(dbg_sysCfg);
 
-     QAction* speedconv_sysCfg=new QAction("转换表配置");
-     menu[0]->addAction(speedconv_sysCfg);
+     QMenu* speedconv_sysCfg=new QMenu("转台配置");
+     QAction* speedconv=new QAction("通道1",this);
+     QAction* speedconv_sec=new QAction("通道2",this);
+     QAction* speedconv_thi=new QAction("通道3",this);
+     QAction* speedconv_fou=new QAction("通道4",this);
+     QAction* speedconv_fif=new QAction("通道5",this);
+     speedconv_sysCfg->addAction(speedconv);
+     speedconv_sysCfg->addAction(speedconv_sec);
+     speedconv_sysCfg->addAction(speedconv_thi);
+     speedconv_sysCfg->addAction(speedconv_fou);
+     speedconv_sysCfg->addAction(speedconv_fif);
+     menu[0]->addMenu(speedconv_sysCfg);
 
-     QAction* mtd_sysCfg=new QAction("移动检测配置");
+     QAction* mtd_sysCfg=new QAction("移动检测配置",this);
      menu[0]->addAction(mtd_sysCfg);
 
-    QAction* act_rstCfg=new QAction("恢复默认");
+
+    QAction* act_rstCfg=new QAction("恢复默认",this);
     menu[0]->addAction(act_rstCfg);
 
     ui->menuBar->addMenu(menu[0]);
 
+    connect(avt_videoCfg1,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg1()));
+    connect(act_pidCfg1,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg1()));
+    connect(act_pidCfg2,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
+    connect(act_pidCfg3,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg3()));
+    connect(act_pidCfg4,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg4()));
+    connect(act_pidCfg5,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg5()));
     connect(act_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showSysCfg()));
     connect(act_platCfg,SIGNAL(triggered(bool)),this,SLOT(showPlat()));
     connect(act_cmrCfg1,SIGNAL(triggered(bool)),this,SLOT(showCamera()));
@@ -84,7 +127,11 @@ void MainWindow::init_menu()
     connect(act_cap3,SIGNAL(triggered(bool)),this,SLOT(showCapture3()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
     connect(dbg_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showdbgcfg()));
-    connect(speedconv_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg()));
+    connect(speedconv,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg()));
+    connect(speedconv_sec,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_sec()));
+    connect(speedconv_thi,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_thi()));
+    connect(speedconv_fou,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fou()));
+    connect(speedconv_fif,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fif()));
     connect(mtd_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showmtdcfg()));
 }
 
@@ -217,49 +264,154 @@ void MainWindow::init_sysCfg()
 }
 void MainWindow::init_platCfg()
 {
-    w_plat=new MyWidget;
-    w_plat->setWindowTitle("平台配置");
-    QPushButton* btn_jos_default=new QPushButton;
-    QPushButton* btn_jos_update=new QPushButton;
-    btn_jos_default->setText("默认");
-    btn_jos_update->setText("保存");
+        w_plat=new MyWidget;
+        w_plat->setWindowTitle("手柄配置");
+        QPushButton* btn_jos_default=new QPushButton;
+        QPushButton* btn_jos_update=new QPushButton;
+        btn_jos_default->setText("默认");
+        btn_jos_update->setText("保存");
+        QVBoxLayout *v1=new QVBoxLayout;
+        v1->addWidget(btn_jos_default);
+        v1->addWidget(btn_jos_update);
+        QLabel *label=new QLabel;
+        label->setText("手柄配置");
+        QHBoxLayout *h1=new QHBoxLayout;
+        h1->addLayout(v1);
+        h1->addWidget(label);
+
+        gbox_Jos=new QGroupBox();
+        gbox_Jos->setTitle("手柄");
+
+        josDead_lineEdt=new QLineEdit;
+        josPoint_lineEdt=new QLineEdit;
+        josInputG_x=new QLineEdit;
+        josInputG_y=new QLineEdit;
+        josPoint_lineEdt2=new QLineEdit;
+        josInputG_x2=new QLineEdit;
+        josInputG_y2=new QLineEdit;
+    //    josOutputG_x=new QLineEdit;
+    //    josOutputG_y=new QLineEdit;
+
+        QFormLayout *f1=new QFormLayout();
+        f1->addRow(jos_s[0],josDead_lineEdt);
+        f1->addRow(jos_s[1],josPoint_lineEdt);
+        f1->addRow(jos_s[2],josInputG_x);
+        f1->addRow(jos_s[3],josInputG_y);
+        f1->addRow(jos_s[4],josPoint_lineEdt2);
+        f1->addRow(jos_s[5],josInputG_x2);
+        f1->addRow(jos_s[6],josInputG_y2);
+    //    f1->addRow(jos_s[4],josOutputG_x);
+    //    f1->addRow(jos_s[5],josOutputG_y);
+        gbox_Jos->setLayout(f1);
+
+        gbox_PID=new QGroupBox();
+        gbox_PID->setTitle("PID");
+
+        kp1_pid=new QLineEdit;
+        ki1_pid=new QLineEdit;
+        kd1_pid=new QLineEdit;
+        k1=new QLineEdit;
+        kp2_pid=new QLineEdit;
+        ki2_pid=new QLineEdit;
+        kd2_pid=new QLineEdit;
+        k2=new QLineEdit;
+
+        QFormLayout *f2=new QFormLayout();
+        f2->addRow(pid_s[0],kp1_pid);
+        f2->addRow(pid_s[1],ki1_pid);
+        f2->addRow(pid_s[2],kd1_pid);
+        f2->addRow(pid_s[3],k1);
+        f2->addRow(pid_s[4],kp2_pid);
+        f2->addRow(pid_s[5],ki2_pid);
+        f2->addRow(pid_s[6],kd2_pid);
+        f2->addRow(pid_s[7],k2);
+        gbox_PID->setLayout(f2);
+
+        gbox_plat=new QGroupBox();
+        gbox_plat->setTitle("平台");
+
+        mx_plat=new QLineEdit;
+        my_plat=new QLineEdit;
+        deadx_plat=new QLineEdit;
+        deady_plat=new QLineEdit;
+        a_plat=new QLineEdit;
+    //    outMode=new QComboBox;
+    //    outMode->addItem(string_outMode[0]);
+    //    outMode->addItem(string_outMode[1]);
+    //    outMode->addItem(string_outMode[2]);
+    //    outMode->addItem(string_outMode[3]);
+    //    outMode->addItem(string_outMode[4]);
+    //    outMode->addItem(string_outMode[5]);
+    //    outMode->addItem(string_outMode[6]);
+    //    outMode->setCurrentIndex(2);
+
+        QFormLayout *f3=new QFormLayout();
+        f3->addRow(plat_s[2],mx_plat);
+        f3->addRow(plat_s[3],my_plat);
+        f3->addRow(plat_s[4],deadx_plat);
+        f3->addRow(plat_s[5],deady_plat);
+        f3->addRow(plat_s[6],a_plat);
+       // f3->addRow(plat_s[7],outMode);
+        gbox_plat->setLayout(f3);
+
+
+        QVBoxLayout *v=new QVBoxLayout;
+        v->addLayout(h1);
+
+        v->addWidget(gbox_Jos);
+
+       //v->addWidget(gbox_PID);
+
+        //v->addWidget(gbox_plat);
+
+        w_plat->setLayout(v);
+
+        connect(btn_jos_default,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Default_Slot()));
+        connect(btn_jos_update,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Update_Slot()));
+        connect(josDead_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos1_Slot()));
+        connect(josPoint_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos2_Slot()));
+        connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos3_Slot()));
+        connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos4_Slot()));
+        connect(josPoint_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
+        connect(josInputG_x2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
+        connect(josInputG_y2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos7_Slot()));
+    //    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
+    //    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
+
+        connect(kp1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot()));
+        connect(ki1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot()));
+        connect(kd1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot()));
+        connect(k1,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot()));
+        connect(kp2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot()));
+        connect(ki2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot()));
+        connect(kd2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot()));
+        connect(k2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot()));
+
+        connect(mx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat3_Slot()));
+        connect(my_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat4_Slot()));
+        connect(deadx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat5_Slot()));
+        connect(deady_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat6_Slot()));
+        connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
+       // connect(outMode,SIGNAL(activated(int)),this,SLOT(outMode_Slot(int)));
+
+}
+
+void MainWindow::init_pidCfg()
+{
+    w_pid=new MyWidget;
+    w_pid->setWindowTitle("PID配置");
+    btn_pid_default=new QPushButton;
+    btn_pid_update=new QPushButton;
+    btn_pid_default->setText("默认");
+    btn_pid_update->setText("保存");
     QVBoxLayout *v1=new QVBoxLayout;
-    v1->addWidget(btn_jos_default);
-    v1->addWidget(btn_jos_update);
+    v1->addWidget(btn_pid_default);
+    v1->addWidget(btn_pid_update);
     QLabel *label=new QLabel;
-    label->setText("平台参数设置");
+    label->setText("通道1");
     QHBoxLayout *h1=new QHBoxLayout;
     h1->addLayout(v1);
     h1->addWidget(label);
-
-    gbox_Jos=new QGroupBox();
-    gbox_Jos->setTitle("手柄");
-
-    josDead_lineEdt=new QLineEdit;
-    josPoint_lineEdt=new QLineEdit;
-    josInputG_x=new QLineEdit;
-    josInputG_y=new QLineEdit;
-    josPoint_lineEdt2=new QLineEdit;
-    josInputG_x2=new QLineEdit;
-    josInputG_y2=new QLineEdit;
-//    josOutputG_x=new QLineEdit;
-//    josOutputG_y=new QLineEdit;
-
-    QFormLayout *f1=new QFormLayout();
-    f1->addRow(jos_s[0],josDead_lineEdt);
-    f1->addRow(jos_s[1],josPoint_lineEdt);
-    f1->addRow(jos_s[2],josInputG_x);
-    f1->addRow(jos_s[3],josInputG_y);
-    f1->addRow(jos_s[4],josPoint_lineEdt2);
-    f1->addRow(jos_s[5],josInputG_x2);
-    f1->addRow(jos_s[6],josInputG_y2);
-//    f1->addRow(jos_s[4],josOutputG_x);
-//    f1->addRow(jos_s[5],josOutputG_y);
-    gbox_Jos->setLayout(f1);
-
-    gbox_PID=new QGroupBox();
-    gbox_PID->setTitle("PID");
-
     kp1_pid=new QLineEdit;
     ki1_pid=new QLineEdit;
     kd1_pid=new QLineEdit;
@@ -269,6 +421,7 @@ void MainWindow::init_platCfg()
     kd2_pid=new QLineEdit;
     k2=new QLineEdit;
 
+    gbox_PID = new QGroupBox();
     QFormLayout *f2=new QFormLayout();
     f2->addRow(pid_s[0],kp1_pid);
     f2->addRow(pid_s[1],ki1_pid);
@@ -278,55 +431,33 @@ void MainWindow::init_platCfg()
     f2->addRow(pid_s[5],ki2_pid);
     f2->addRow(pid_s[6],kd2_pid);
     f2->addRow(pid_s[7],k2);
+    gbox_PID->setTitle("PID");
     gbox_PID->setLayout(f2);
 
-    gbox_plat=new QGroupBox();
-    gbox_plat->setTitle("平台");
-
-    mx_plat=new QLineEdit;
-    my_plat=new QLineEdit;
-    deadx_plat=new QLineEdit;
-    deady_plat=new QLineEdit;
-    a_plat=new QLineEdit;
-//    outMode=new QComboBox;
-//    outMode->addItem(string_outMode[0]);
-//    outMode->addItem(string_outMode[1]);
-//    outMode->addItem(string_outMode[2]);
-//    outMode->addItem(string_outMode[3]);
-//    outMode->addItem(string_outMode[4]);
-//    outMode->addItem(string_outMode[5]);
-//    outMode->addItem(string_outMode[6]);
-//    outMode->setCurrentIndex(2);
-
+    regulator_pid=new QGroupBox();
+    regulator_pid->setTitle("比例调节器");
+    kx_lineEdt=new QLineEdit;
+    ky_lineEdt=new QLineEdit;
+    errx_lineEdt=new QLineEdit;
+    erry_lineEdt=new QLineEdit;
+    time_lineEdt=new QLineEdit;
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(plat_s[2],mx_plat);
-    f3->addRow(plat_s[3],my_plat);
-    f3->addRow(plat_s[4],deadx_plat);
-    f3->addRow(plat_s[5],deady_plat);
-    f3->addRow(plat_s[6],a_plat);
-   // f3->addRow(plat_s[7],outMode);
-    gbox_plat->setLayout(f3);
+    f3->addRow(dbg_s[0],kx_lineEdt);
+    f3->addRow(dbg_s[1],ky_lineEdt);
+    f3->addRow(dbg_s[2],errx_lineEdt);
+    f3->addRow(dbg_s[3],erry_lineEdt);
+    f3->addRow(dbg_s[4],time_lineEdt);
+    regulator_pid->setLayout(f3);
+
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
-    v->addWidget(gbox_Jos);
     v->addWidget(gbox_PID);
-    v->addWidget(gbox_plat);
+    v->addWidget(regulator_pid);
+    w_pid->setLayout(v);
 
-    w_plat->setLayout(v);
-
-    connect(btn_jos_default,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Default_Slot()));
-    connect(btn_jos_update,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Update_Slot()));
-    connect(josDead_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos1_Slot()));
-    connect(josPoint_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos2_Slot()));
-    connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos3_Slot()));
-    connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos4_Slot()));
-    connect(josPoint_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
-    connect(josInputG_x2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
-    connect(josInputG_y2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos7_Slot()));
-//    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
-//    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
-
+    connect(btn_pid_default,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot()));
+    connect(btn_pid_update,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot()));
     connect(kp1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot()));
     connect(ki1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot()));
     connect(kd1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot()));
@@ -336,13 +467,770 @@ void MainWindow::init_platCfg()
     connect(kd2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot()));
     connect(k2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot()));
 
-    connect(mx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat3_Slot()));
-    connect(my_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat4_Slot()));
-    connect(deadx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat5_Slot()));
-    connect(deady_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat6_Slot()));
-    connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
-   // connect(outMode,SIGNAL(activated(int)),this,SLOT(outMode_Slot(int)));
+   // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
+   // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
+    connect(kx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot()));
+    connect(ky_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot()));
+    connect(errx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot()));
+    connect(erry_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot()));
+    connect(time_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot()));
 }
+void MainWindow::init_pidCfg2()
+{
+    w_pid2=new MyWidget;
+    w_pid2->setWindowTitle("PID配置");
+    btn_pid_default2=new QPushButton;
+    btn_pid_update2=new QPushButton;
+    btn_pid_default2->setText("默认");
+    btn_pid_update2->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_pid_default2);
+    v1->addWidget(btn_pid_update2);
+    QLabel *label=new QLabel;
+    label->setText("通道2");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+    kp1_pid2=new QLineEdit;
+    ki1_pid2=new QLineEdit;
+    kd1_pid2=new QLineEdit;
+    k12=new QLineEdit;
+    kp2_pid2=new QLineEdit;
+    ki2_pid2=new QLineEdit;
+    kd2_pid2=new QLineEdit;
+    k22=new QLineEdit;
+
+    gbox_PID2 = new QGroupBox();
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(pid_s2[0],kp1_pid2);
+    f2->addRow(pid_s2[1],ki1_pid2);
+    f2->addRow(pid_s2[2],kd1_pid2);
+    f2->addRow(pid_s2[3],k12);
+    f2->addRow(pid_s2[4],kp2_pid2);
+    f2->addRow(pid_s2[5],ki2_pid2);
+    f2->addRow(pid_s2[6],kd2_pid2);
+    f2->addRow(pid_s2[7],k22);
+    gbox_PID2->setTitle("PID");
+    gbox_PID2->setLayout(f2);
+
+    regulator_pid2=new QGroupBox();
+    regulator_pid2->setTitle("比例调节器");
+    kx_lineEdt2=new QLineEdit;
+    ky_lineEdt2=new QLineEdit;
+    errx_lineEdt2=new QLineEdit;
+    erry_lineEdt2=new QLineEdit;
+    time_lineEdt2=new QLineEdit;
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(dbg_s2[0],kx_lineEdt2);
+    f3->addRow(dbg_s2[1],ky_lineEdt2);
+    f3->addRow(dbg_s2[2],errx_lineEdt2);
+    f3->addRow(dbg_s2[3],erry_lineEdt2);
+    f3->addRow(dbg_s2[4],time_lineEdt2);
+    regulator_pid2->setLayout(f3);
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addWidget(gbox_PID2);
+    v->addWidget(regulator_pid2);
+    w_pid2->setLayout(v);
+
+    connect(btn_pid_default2,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot2()));
+    connect(btn_pid_update2,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot2()));
+    connect(kp1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot2()));
+    connect(ki1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot2()));
+    connect(kd1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot2()));
+    connect(k12,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot2()));
+    connect(kp2_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot2()));
+    connect(ki2_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot2()));
+    connect(kd2_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot2()));
+    connect(k22,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot2()));
+
+   // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
+   // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
+    connect(kx_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot2()));
+    connect(ky_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot2()));
+    connect(errx_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot2()));
+    connect(erry_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot2()));
+    connect(time_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot2()));
+}
+void MainWindow::init_pidCfg3()
+{
+    w_pid3=new MyWidget;
+    w_pid3->setWindowTitle("PID配置");
+    btn_pid_default3=new QPushButton;
+    btn_pid_update3=new QPushButton;
+    btn_pid_default3->setText("默认");
+    btn_pid_update3->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_pid_default3);
+    v1->addWidget(btn_pid_update3);
+    QLabel *label=new QLabel;
+    label->setText("通道3");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+    kp1_pid3=new QLineEdit;
+    ki1_pid3=new QLineEdit;
+    kd1_pid3=new QLineEdit;
+    k13=new QLineEdit;
+    kp2_pid3=new QLineEdit;
+    ki2_pid3=new QLineEdit;
+    kd2_pid3=new QLineEdit;
+    k23=new QLineEdit;
+
+    gbox_PID3 = new QGroupBox();
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(pid_s3[0],kp1_pid3);
+    f2->addRow(pid_s3[1],ki1_pid3);
+    f2->addRow(pid_s3[2],kd1_pid3);
+    f2->addRow(pid_s3[3],k13);
+    f2->addRow(pid_s3[4],kp2_pid3);
+    f2->addRow(pid_s3[5],ki2_pid3);
+    f2->addRow(pid_s3[6],kd2_pid3);
+    f2->addRow(pid_s3[7],k23);
+    gbox_PID3->setTitle("PID");
+    gbox_PID3->setLayout(f2);
+
+    regulator_pid3=new QGroupBox();
+    regulator_pid3->setTitle("比例调节器");
+    kx_lineEdt3=new QLineEdit;
+    ky_lineEdt3=new QLineEdit;
+    errx_lineEdt3=new QLineEdit;
+    erry_lineEdt3=new QLineEdit;
+    time_lineEdt3=new QLineEdit;
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(dbg_s3[0],kx_lineEdt3);
+    f3->addRow(dbg_s3[1],ky_lineEdt3);
+    f3->addRow(dbg_s3[2],errx_lineEdt3);
+    f3->addRow(dbg_s3[3],erry_lineEdt3);
+    f3->addRow(dbg_s3[4],time_lineEdt3);
+    regulator_pid3->setLayout(f3);
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addWidget(gbox_PID3);
+    v->addWidget(regulator_pid3);
+    w_pid3->setLayout(v);
+
+    connect(btn_pid_default3,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot3()));
+    connect(btn_pid_update3,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot3()));
+    connect(kp1_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot3()));
+    connect(ki1_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot3()));
+    connect(kd1_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot3()));
+    connect(k13,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot3()));
+    connect(kp2_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot3()));
+    connect(ki2_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot3()));
+    connect(kd2_pid3,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot3()));
+    connect(k23,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot3()));
+
+   // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
+   // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
+    connect(kx_lineEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot3()));
+    connect(ky_lineEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot3()));
+    connect(errx_lineEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot3()));
+    connect(erry_lineEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot3()));
+    connect(time_lineEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot3()));
+}
+void MainWindow::init_pidCfg4()
+{
+    w_pid4=new MyWidget;
+    w_pid4->setWindowTitle("PID配置");
+    btn_pid_default4=new QPushButton;
+    btn_pid_update4=new QPushButton;
+    btn_pid_default4->setText("默认");
+    btn_pid_update4->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_pid_default4);
+    v1->addWidget(btn_pid_update4);
+    QLabel *label=new QLabel;
+    label->setText("通道4");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+    kp1_pid4=new QLineEdit;
+    ki1_pid4=new QLineEdit;
+    kd1_pid4=new QLineEdit;
+    k14=new QLineEdit;
+    kp2_pid4=new QLineEdit;
+    ki2_pid4=new QLineEdit;
+    kd2_pid4=new QLineEdit;
+    k24=new QLineEdit;
+
+    gbox_PID4 = new QGroupBox();
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(pid_s4[0],kp1_pid4);
+    f2->addRow(pid_s4[1],ki1_pid4);
+    f2->addRow(pid_s4[2],kd1_pid4);
+    f2->addRow(pid_s4[3],k14);
+    f2->addRow(pid_s4[4],kp2_pid4);
+    f2->addRow(pid_s4[5],ki2_pid4);
+    f2->addRow(pid_s4[6],kd2_pid4);
+    f2->addRow(pid_s4[7],k24);
+    gbox_PID4->setTitle("PID");
+    gbox_PID4->setLayout(f2);
+
+    regulator_pid4=new QGroupBox();
+    regulator_pid4->setTitle("比例调节器");
+    kx_lineEdt4=new QLineEdit;
+    ky_lineEdt4=new QLineEdit;
+    errx_lineEdt4=new QLineEdit;
+    erry_lineEdt4=new QLineEdit;
+    time_lineEdt4=new QLineEdit;
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(dbg_s4[0],kx_lineEdt4);
+    f3->addRow(dbg_s4[1],ky_lineEdt4);
+    f3->addRow(dbg_s4[2],errx_lineEdt4);
+    f3->addRow(dbg_s4[3],erry_lineEdt4);
+    f3->addRow(dbg_s4[4],time_lineEdt4);
+    regulator_pid4->setLayout(f3);
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addWidget(gbox_PID4);
+    v->addWidget(regulator_pid4);
+    w_pid4->setLayout(v);
+
+    connect(btn_pid_default4,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot4()));
+    connect(btn_pid_update4,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot4()));
+    connect(kp1_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot4()));
+    connect(ki1_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot4()));
+    connect(kd1_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot4()));
+    connect(k14,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot4()));
+    connect(kp2_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot4()));
+    connect(ki2_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot4()));
+    connect(kd2_pid4,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot4()));
+    connect(k24,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot4()));
+
+   // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
+   // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
+    connect(kx_lineEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot4()));
+    connect(ky_lineEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot4()));
+    connect(errx_lineEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot4()));
+    connect(erry_lineEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot4()));
+    connect(time_lineEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot4()));
+}
+void MainWindow::init_pidCfg5()
+{
+    w_pid5=new MyWidget;
+    w_pid5->setWindowTitle("PID配置");
+    btn_pid_default5=new QPushButton;
+    btn_pid_update5=new QPushButton;
+    btn_pid_default5->setText("默认");
+    btn_pid_update5->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_pid_default5);
+    v1->addWidget(btn_pid_update5);
+    QLabel *label=new QLabel;
+    label->setText("通道5");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+    kp1_pid5=new QLineEdit;
+    ki1_pid5=new QLineEdit;
+    kd1_pid5=new QLineEdit;
+    k15=new QLineEdit;
+    kp2_pid5=new QLineEdit;
+    ki2_pid5=new QLineEdit;
+    kd2_pid5=new QLineEdit;
+    k25=new QLineEdit;
+
+    gbox_PID5 = new QGroupBox();
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(pid_s5[0],kp1_pid5);
+    f2->addRow(pid_s5[1],ki1_pid5);
+    f2->addRow(pid_s5[2],kd1_pid5);
+    f2->addRow(pid_s5[3],k15);
+    f2->addRow(pid_s5[4],kp2_pid5);
+    f2->addRow(pid_s5[5],ki2_pid5);
+    f2->addRow(pid_s5[6],kd2_pid5);
+    f2->addRow(pid_s5[7],k25);
+    gbox_PID5->setTitle("PID");
+    gbox_PID5->setLayout(f2);
+
+    regulator_pid5=new QGroupBox();
+    regulator_pid5->setTitle("比例调节器");
+    kx_lineEdt5=new QLineEdit;
+    ky_lineEdt5=new QLineEdit;
+    errx_lineEdt5=new QLineEdit;
+    erry_lineEdt5=new QLineEdit;
+    time_lineEdt5=new QLineEdit;
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(dbg_s5[0],kx_lineEdt5);
+    f3->addRow(dbg_s5[1],ky_lineEdt5);
+    f3->addRow(dbg_s5[2],errx_lineEdt5);
+    f3->addRow(dbg_s5[3],erry_lineEdt5);
+    f3->addRow(dbg_s5[4],time_lineEdt5);
+    regulator_pid5->setLayout(f3);
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addWidget(gbox_PID5);
+    v->addWidget(regulator_pid5);
+    w_pid5->setLayout(v);
+
+    connect(btn_pid_default5,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot5()));
+    connect(btn_pid_update5,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot5()));
+    connect(kp1_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot5()));
+    connect(ki1_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot5()));
+    connect(kd1_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot5()));
+    connect(k15,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot5()));
+    connect(kp2_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot5()));
+    connect(ki2_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot5()));
+    connect(kd2_pid5,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot5()));
+    connect(k25,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot5()));
+
+   // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
+   // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
+    connect(kx_lineEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot5()));
+    connect(ky_lineEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot5()));
+    connect(errx_lineEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot5()));
+    connect(erry_lineEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot5()));
+    connect(time_lineEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot5()));
+}
+
+void MainWindow::init_vedioCfg()
+{
+    /*固定视场*/
+    w_sersor_1 = new MyWidget;
+    w_seitchField_1 = new MyWidget;
+    w_ContinueField_1=new MyWidget;
+    w_sersor_1->setWindowTitle("摄像机配置");
+    btn_vediosersor_fix_default=new QPushButton;
+    btn_vediosersor_fix_update=new QPushButton;
+    btn_vediosersor_fix_default->setText("默认");
+    btn_vediosersor_fix_update->setText("保存");
+    QVBoxLayout *v11=new QVBoxLayout;
+    v11->addWidget(btn_vediosersor_fix_default);
+    v11->addWidget(btn_vediosersor_fix_update);
+    QLabel *label30=new QLabel;
+    label30->setText("通道1");
+    QHBoxLayout *h11=new QHBoxLayout;
+    h11->addLayout(v11);
+    h11->addWidget(label30);
+
+    fixChanelNum = new  QCheckBox();
+    fixChanelNum->setText("通道号");
+    fixchanelname = new QLineEdit;
+    fixenable = new  QCheckBox();
+    fixenable->setText("使能");
+    QLabel *label40=new QLabel;
+    label40->setText("通道名称");
+    QHBoxLayout *v21=new QHBoxLayout;
+    v21->addWidget(fixChanelNum);
+    v21->addWidget(label40);
+    v21->addWidget(fixchanelname);
+    v21->addWidget(fixenable);
+
+    fix_vediohaveornot = new  QCheckBox();
+    fix_vedio_dpi = new QComboBox;
+    fix_xy_ratio = new QLineEdit;
+    fix_vedio_dpi->addItem("1080P@25HZ");
+    fix_vedio_dpi->addItem("1080P@30HZ");
+    fix_vedio_dpi->addItem("1080P@60HZ");
+    fix_vedio_dpi->addItem("720P@60HZ");
+    fix_vedio_dpi->addItem("720P@50HZ");
+    vedio_change1 = new QComboBox;
+    vedio_change1->addItem("固定视场");
+    vedio_change1->addItem("可切换视场");
+    vedio_change1->addItem("连续视场");
+    fix_vediochoose = new QGroupBox();
+    QFormLayout *f4=new QFormLayout();
+    f4->addRow(vedio_s[0],fix_vediohaveornot);
+    f4->addRow(vedio_s[1],fix_vedio_dpi);
+    f4->addRow(vedio_s[2],vedio_change1);
+    f4->addRow(vedio_s[3],fix_xy_ratio);
+    fix_vediochoose->setLayout(f4);
+
+    fix_gateshow = new  QCheckBox();
+    fix_bullshow = new  QCheckBox();
+    fix_gateshow->setText("波门显示");
+    fix_bullshow->setText("靶心显示");
+    QHBoxLayout *v6=new QHBoxLayout;
+    v6->addWidget(fix_gateshow);
+    v6->addWidget(fix_bullshow);
+
+    fix_autogate = new  QCheckBox();
+    fix_autogate->setText("自动波门");
+
+    QLabel *label51=new QLabel;
+    label51->setText("波门尺寸X");
+    QLabel *label52=new QLabel;
+    label52->setText("波门尺寸Y");
+    QLabel *label53=new QLabel;
+    label53->setText("波门位置X");
+    QLabel *label54=new QLabel;
+    label54->setText("波门位置Y");
+    fix_gate_sizex=new QLineEdit;
+    fix_gate_sizey=new QLineEdit;
+    fix_gatelocationx=new QLineEdit;
+    fix_gatelocationy=new QLineEdit;
+    QGridLayout *gl1=new QGridLayout;
+    gl1->addWidget(label51,0,0);
+    gl1->addWidget(fix_gate_sizex,0,1);
+    gl1->addWidget(label52,0,3);
+    gl1->addWidget(fix_gate_sizey,0,4);
+    gl1->addWidget(label53,1,0);
+    gl1->addWidget(fix_gatelocationx,1,1);
+    gl1->addWidget(label54,1,3);
+    gl1->addWidget(fix_gatelocationy,1,4);
+
+
+    QGroupBox *g=new QGroupBox;
+    g->setTitle("固定视场");
+    QLabel* l11=new QLabel;
+    l11->setText("水平视场");
+    QLabel* l12=new QLabel;
+    l12->setText("靶心X位置");
+    QLabel* l13=new QLabel;
+    l13->setText("靶心Y位置");
+    QLabel* l14=new QLabel;
+    l14->setText(" ");
+    fix_lEdt=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
+    fix_sp=new QSpinBox;
+    fix_sp2=new QSpinBox;
+    fix_sp->setRange(0,9999);
+    fix_sp2->setRange(0,9999);
+    QGridLayout *gl3=new QGridLayout;
+    gl3->addWidget(l11,0,0,1,1);
+    gl3->addWidget(l14,0,1,1,1);
+    gl3->addWidget(l14,0,2,1,1);
+    gl3->addWidget(l12,0,3,1,1);
+    gl3->addWidget(l13,0,4,1,1);
+    gl3->addWidget(l14,0,5,1,1);
+    gl3->addWidget(fix_lEdt,1,0,1,1);
+    gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(l14,1,2,1,1);
+    gl3->addWidget(fix_sp,1,3,1,1);
+    gl3->addWidget(fix_sp2,1,4,1,1);
+    g->setLayout(gl3);
+
+
+
+    QVBoxLayout *v0=new QVBoxLayout;
+    v0->addLayout(h11);
+    v0->addLayout(v21);
+    v0->addWidget(fix_vediochoose);
+    v0->addLayout(v6);
+    v0->addWidget(fix_autogate);
+    v0->addLayout(gl1);
+    v0->addWidget(g);
+    w_sersor_1->setLayout(v0);
+    connect(vedio_change1,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix(int)));
+
+    /*可切换视场*/
+    w_seitchField_1->setWindowTitle("摄像机配置");
+    btn_vediosersor_default=new QPushButton;
+    btn_vediosersor_update=new QPushButton;
+    btn_vediosersor_default->setText("默认");
+    btn_vediosersor_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_vediosersor_default);
+    v1->addWidget(btn_vediosersor_update);
+    QLabel *label=new QLabel;
+    label->setText("通道1");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    ChanelNum = new  QCheckBox();
+    ChanelNum->setText("通道号");
+    chanelname = new QLineEdit;
+    enable = new  QCheckBox();
+    enable->setText("使能");
+    QLabel *label2=new QLabel;
+    label2->setText("通道名称");
+
+    QHBoxLayout *v2=new QHBoxLayout;
+    v2->addWidget(ChanelNum);
+    v2->addWidget(label2);
+    v2->addWidget(chanelname);
+    v2->addWidget(enable);
+
+    vediohaveornot = new  QCheckBox();
+    vedio_dpi = new QComboBox;
+    xy_ratio = new QLineEdit;
+    vedio_dpi->addItem("1080P@25HZ");
+    vedio_dpi->addItem("1080P@30HZ");
+    vedio_dpi->addItem("1080P@60HZ");
+    vedio_dpi->addItem("720P@60HZ");
+    vedio_dpi->addItem("720P@50HZ");
+    vedio_change2 = new QComboBox;
+    vedio_change2->addItem("可切换视场");
+    vedio_change2->addItem("固定视场");
+    vedio_change2->addItem("连续视场");
+
+    vediochoose = new QGroupBox();
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(vedio_s[0],vediohaveornot);
+    f3->addRow(vedio_s[1],vedio_dpi);
+    f3->addRow(vedio_s[2],vedio_change2);
+    f3->addRow(vedio_s[3],xy_ratio);
+    vediochoose->setLayout(f3);
+
+    connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    gateshow = new  QCheckBox();
+    bullshow = new  QCheckBox();
+    gateshow->setText("波门显示");
+    bullshow->setText("靶心显示");
+    QHBoxLayout *v3=new QHBoxLayout;
+    v3->addWidget(gateshow);
+    v3->addWidget(bullshow);
+
+    autogate = new  QCheckBox();
+    autogate->setText("自动波门");
+
+    QLabel *label3=new QLabel;
+    label3->setText("波门尺寸X");
+    QLabel *label4=new QLabel;
+    label4->setText("波门尺寸Y");
+    QLabel *label5=new QLabel;
+    label5->setText("波门位置X");
+    QLabel *label6=new QLabel;
+    label6->setText("波门位置Y");
+    gate_sizex=new QLineEdit;
+    gate_sizey=new QLineEdit;
+    gatelocationx=new QLineEdit;
+    gatelocationy=new QLineEdit;
+    QGridLayout *gl=new QGridLayout;
+    gl->addWidget(label3,0,0);
+    gl->addWidget(gate_sizex,0,1);
+    gl->addWidget(label4,0,3);
+    gl->addWidget(gate_sizey,0,4);
+    gl->addWidget(label5,1,0);
+    gl->addWidget(gatelocationx,1,1);
+    gl->addWidget(label6,1,3);
+    gl->addWidget(gatelocationy,1,4);
+
+    QHBoxLayout *h2=new QHBoxLayout;
+    QLabel *label7=new QLabel;
+    label7->setText("测试现场等级");
+    vedio_fovclass = new QComboBox;
+    vedio_fovclass->addItem("可切换视场1");
+    vedio_fovclass->addItem("可切换视场2");
+    vedio_fovclass->addItem("可切换视场3");
+    vedio_fovclass->addItem("可切换视场4");
+    vedio_fovclass->addItem("可切换视场5");
+    h2->addWidget(label7);
+    h2->addWidget(vedio_fovclass);
+
+    QGroupBox *g2=new QGroupBox;
+    g2->setTitle("视场靶心补偿表");
+    QGridLayout *gl2=new QGridLayout;
+    QLabel* l21=new QLabel;
+    l21->setText("水平视场");
+    QLabel* l22=new QLabel;
+    l22->setText("靶心X位置");
+    QLabel* l23=new QLabel;
+    l23->setText("靶心Y位置");
+    QLabel* l24=new QLabel;
+    l24->setText(" ");
+    gl2->addWidget(l21,0,1,1,1);
+    gl2->addWidget(l22,0,3,1,1);
+    gl2->addWidget(l23,0,4,1,1);
+    gl2->addWidget(l24,0,5,1,1);
+
+    QLabel *fovclass_label1 = new QLabel;
+    QLabel *fovclass_label2 = new QLabel;
+    QLabel *fovclass_label3 = new QLabel;
+    QLabel *fovclass_label4 = new QLabel;
+    QLabel *fovclass_label5 = new QLabel;
+    fovclass_label1->setText("可切换视场1");
+    fovclass_label2->setText("可切换视场2");
+    fovclass_label3->setText("可切换视场3");
+    fovclass_label4->setText("可切换视场4");
+    fovclass_label5->setText("可切换视场5");
+    gl2->addWidget(fovclass_label1,1,0,1,1);
+    gl2->addWidget(fovclass_label2,2,0,1,1);
+    gl2->addWidget(fovclass_label3,3,0,1,1);
+    gl2->addWidget(fovclass_label4,4,0,1,1);
+    gl2->addWidget(fovclass_label5,5,0,1,1);
+    vedio_s1_Fov0=new QLineEdit;
+    vedio_s1_Fov1=new QLineEdit;
+    vedio_s1_Fov2=new QLineEdit;
+    vedio_s1_Fov3=new QLineEdit;
+    vedio_s1_Fov4=new QLineEdit;
+    gl2->addWidget(vedio_s1_Fov0,1,1,1,1);
+    gl2->addWidget(vedio_s1_Fov1,2,1,1,1);
+    gl2->addWidget(vedio_s1_Fov2,3,1,1,1);
+    gl2->addWidget(vedio_s1_Fov3,4,1,1,1);
+    gl2->addWidget(vedio_s1_Fov4,5,1,1,1);
+
+    QLabel* l1d21=new QLabel;
+    QLabel* l1d22=new QLabel;
+    QLabel* l1d23=new QLabel;
+    QLabel* l1d24=new QLabel;
+    QLabel* l1d25=new QLabel;
+    l1d21->setText("度");
+    l1d22->setText("度");
+    l1d23->setText("度");
+    l1d24->setText("度");
+    l1d25->setText("度");
+
+    gl2->addWidget(l1d21,1,2,1,1);
+    gl2->addWidget(l1d22,2,2,1,1);
+    gl2->addWidget(l1d23,3,2,1,1);
+    gl2->addWidget(l1d24,4,2,1,1);
+    gl2->addWidget(l1d25,5,2,1,1);
+
+
+    vedio_spbx_switch1=new QSpinBox;
+    vedio_spbx_switch2=new QSpinBox;
+    vedio_spbx_switch3=new QSpinBox;
+    vedio_spbx_switch4=new QSpinBox;
+    vedio_spbx_switch5=new QSpinBox;
+    vedio_spbx_switch1->setRange(0,9999);
+    vedio_spbx_switch2->setRange(0,9999);
+    vedio_spbx_switch3->setRange(0,9999);
+    vedio_spbx_switch4->setRange(0,9999);
+    vedio_spbx_switch5->setRange(0,9999);
+    gl2->addWidget(vedio_spbx_switch1,1,3,1,1);
+    gl2->addWidget(vedio_spbx_switch2,2,3,1,1);
+    gl2->addWidget(vedio_spbx_switch3,3,3,1,1);
+    gl2->addWidget(vedio_spbx_switch4,4,3,1,1);
+    gl2->addWidget(vedio_spbx_switch5,5,3,1,1);
+
+    vedio_spby_switch1=new QSpinBox;
+    vedio_spby_switch2=new QSpinBox;
+    vedio_spby_switch3=new QSpinBox;
+    vedio_spby_switch4=new QSpinBox;
+    vedio_spby_switch5=new QSpinBox;
+    vedio_spby_switch1->setRange(0,9999);
+    vedio_spby_switch2->setRange(0,9999);
+    vedio_spby_switch3->setRange(0,9999);
+    vedio_spby_switch4->setRange(0,9999);
+    vedio_spby_switch5->setRange(0,9999);
+    gl2->addWidget(vedio_spby_switch1,1,4,1,1);
+    gl2->addWidget(vedio_spby_switch2,2,4,1,1);
+    gl2->addWidget(vedio_spby_switch3,3,4,1,1);
+    gl2->addWidget(vedio_spby_switch4,4,4,1,1);
+    gl2->addWidget(vedio_spby_switch5,5,4,1,1);
+
+    g2->setLayout(gl2);
+    QVBoxLayout *v22=new QVBoxLayout;
+    v22->addLayout(h2);
+    v22->addWidget(g2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(v2);
+    v->addWidget(vediochoose);
+    v->addLayout(v3);
+    v->addWidget(autogate);
+    v->addLayout(gl);
+  //v->addLayout(h2);
+    v->addLayout(v22);
+    w_seitchField_1->setLayout(v);
+
+    /*连续视场*/
+    w_ContinueField_1->setWindowTitle("摄像机配置");
+    btn_vediosersor_continue_default=new QPushButton;
+    btn_vediosersor_continue_update=new QPushButton;
+    btn_vediosersor_continue_default->setText("默认");
+    btn_vediosersor_continue_update->setText("保存");
+    QVBoxLayout *v8=new QVBoxLayout;
+    v8->addWidget(btn_vediosersor_continue_default);
+    v8->addWidget(btn_vediosersor_continue_update);
+    QLabel *label60=new QLabel;
+    label60->setText("通道1");
+    QHBoxLayout *h5=new QHBoxLayout;
+    h5->addLayout(v8);
+    h5->addWidget(label);
+
+    continueChanelNum = new  QCheckBox();
+    continueChanelNum->setText("通道号");
+    continuechanelname = new QLineEdit;
+    continueenable = new  QCheckBox();
+    continueenable->setText("使能");
+    QLabel *label61=new QLabel;
+    label61->setText("通道名称");
+    QHBoxLayout *v9=new QHBoxLayout;
+    v9->addWidget(continueChanelNum);
+    v9->addWidget(label2);
+    v9->addWidget(continuechanelname);
+    v9->addWidget(continueenable);
+
+    continue_vediohaveornot = new  QCheckBox();
+    continue_vedio_dpi = new QComboBox;
+    continue_xy_ratio = new QLineEdit;
+    continue_vedio_dpi->addItem("1080P@25HZ");
+    continue_vedio_dpi->addItem("1080P@30HZ");
+    continue_vedio_dpi->addItem("1080P@60HZ");
+    continue_vedio_dpi->addItem("720P@60HZ");
+    continue_vedio_dpi->addItem("720P@50HZ");
+    vedio_change3 = new QComboBox;
+    vedio_change3->addItem("连续视场");
+    vedio_change3->addItem("固定视场");
+    vedio_change3->addItem("可切换视场");
+    continue_vediochoose = new QGroupBox();
+    QFormLayout *f5=new QFormLayout();
+    f5->addRow(vedio_s[0],continue_vediohaveornot);
+    f5->addRow(vedio_s[1],continue_vedio_dpi);
+    f5->addRow(vedio_s[2],vedio_change3);
+    f5->addRow(vedio_s[3],continue_xy_ratio);
+    continue_vediochoose->setLayout(f5);
+
+    continue_gateshow = new  QCheckBox();
+    continue_bullshow = new  QCheckBox();
+    continue_gateshow->setText("波门显示");
+    continue_bullshow->setText("靶心显示");
+    QHBoxLayout *v7=new QHBoxLayout;
+    v7->addWidget(continue_gateshow);
+    v7->addWidget(continue_bullshow);
+
+    continue_autogate = new  QCheckBox();
+    continue_autogate->setText("自动波门");
+
+    QLabel *label55=new QLabel;
+    label55->setText("波门尺寸X");
+    QLabel *label56=new QLabel;
+    label56->setText("波门尺寸Y");
+    QLabel *label57=new QLabel;
+    label57->setText("波门位置X");
+    QLabel *label58=new QLabel;
+    label58->setText("波门位置Y");
+    continue_gate_sizex=new QLineEdit;
+    continue_gate_sizey=new QLineEdit;
+    continue_gatelocationx=new QLineEdit;
+    continue_gatelocationy=new QLineEdit;
+    QGridLayout *gl4=new QGridLayout;
+    gl4->addWidget(label55,0,0);
+    gl4->addWidget(continue_gate_sizex,0,1);
+    gl4->addWidget(label56,0,3);
+    gl4->addWidget(continue_gate_sizey,0,4);
+    gl4->addWidget(label57,1,0);
+    gl4->addWidget(continue_gatelocationx,1,1);
+    gl4->addWidget(label58,1,3);
+    gl4->addWidget(continue_gatelocationy,1,4);
+
+    QHBoxLayout *v31=new QHBoxLayout;
+    QLabel *label70=new QLabel;
+    label70->setText("测试现场");
+    test_1 = new QLineEdit;
+    v31->addWidget(label70);
+    v31->addWidget(test_1);
+
+    QVBoxLayout *v10=new QVBoxLayout;
+    v10->addLayout(h5);
+    v10->addLayout(v9);
+    v10->addWidget(continue_vediochoose);
+    v10->addLayout(v7);
+    v10->addWidget(continue_autogate);
+    v10->addLayout(gl4);
+    v10->addLayout(v31);
+    w_ContinueField_1->setLayout(v10);
+    connect(vedio_change3,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue(int)));
+}
+void MainWindow::init_vedioCfg_sec(){}
+void MainWindow::init_vedioCfg_thi(){}
+void MainWindow::init_vedioCfg_fou(){}
+void MainWindow::init_vedioCfg_fif(){}
+
 void MainWindow::init_dbCfg()
 {
     w_dbg=new MyWidget;
@@ -413,7 +1301,7 @@ void MainWindow::init_dbCfg()
 void MainWindow::init_speedconvCfg()
 {
     w_speedconv=new MyWidget;
-    w_speedconv->setWindowTitle("转换表配置");
+    w_speedconv->setWindowTitle("转台配置");
     QPushButton* btn_speed_default=new QPushButton;
     QPushButton* btn_speed_update=new QPushButton;
     btn_speed_default->setText("默认");
@@ -422,7 +1310,7 @@ void MainWindow::init_speedconvCfg()
     v1->addWidget(btn_speed_default);
     v1->addWidget(btn_speed_update);
     QLabel *label=new QLabel;
-    label->setText("转换表参数设置");
+    label->setText("通道1");
     QHBoxLayout *h1=new QHBoxLayout;
     h1->addLayout(v1);
     h1->addWidget(label);
@@ -475,10 +1363,95 @@ void MainWindow::init_speedconvCfg()
     f2->addRow(speed_s[8],speedy9_lineEdt);
     gbox_speedy->setLayout(f2);
 
+    QHBoxLayout *sensor_speed=new QHBoxLayout;
+    sensor_speed->addWidget(gbox_speedx);
+    sensor_speed->addWidget(gbox_speedy);
+
+
+
+    maxspeedx = new QLineEdit;
+    maxspeedy = new QLineEdit;
+    deadx     = new QLineEdit;
+    deady    = new QLineEdit;
+    output_d_type =new QComboBox;
+    output_d_type->addItem("像素偏差");
+    output_d_type->addItem("Pid控制算法结果输出");
+    output_d_type->addItem("转台命令输出");
+    out_address =new QLineEdit;
+    baud_rate =new QComboBox;
+    baud_rate->addItem("0");
+    baud_rate->addItem("110");
+    baud_rate->addItem("300");
+    baud_rate->addItem("600");
+    baud_rate->addItem("1200");
+    baud_rate->addItem("2400");
+    baud_rate->addItem("4800");
+    baud_rate->addItem("9600");
+    baud_rate->addItem("14400");
+    baud_rate->addItem("19200");
+    baud_rate->addItem("38400");
+    baud_rate->addItem("56000");
+    baud_rate->addItem("57600");
+    baud_rate->addItem("115200");
+    baud_rate->addItem("128000");
+    baud_rate->addItem("230400");
+    baud_rate->addItem("256000");
+    baud_rate->addItem("460800");
+    baud_rate->addItem("500000");
+    baud_rate->addItem("600000");
+    baud_rate->addItem("750000");
+    baud_rate->addItem("921600");
+    baud_rate->addItem("1000000");
+    baud_rate->addItem("1500000");
+    baud_rate->addItem("2000000");
+    baud_rate->setCurrentIndex(13);
+    data_bit =new QComboBox;
+    data_bit->addItem("5");
+    data_bit->addItem("6");
+    data_bit->addItem("7");
+    data_bit->addItem("8");
+    data_bit->setCurrentIndex(3);
+    stop_bit =new QComboBox;
+    stop_bit->addItem("1.5");
+    stop_bit->addItem("2");
+    stop_bit->setCurrentIndex(1);
+
+    parity_bit =new QComboBox;
+    parity_bit->addItem("None");
+    parity_bit->addItem("Odd");
+    parity_bit->addItem("Even");
+    parity_bit->addItem("Mark");
+    parity_bit->addItem("Space");
+
+    flow_control=new QComboBox;
+    flow_control->addItem("Hardware");
+    flow_control->addItem("Software");
+    flow_control->addItem("None");
+    flow_control->addItem("Custom");
+    flow_control->setCurrentIndex(2);
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(speed_q[0],maxspeedx);
+    f3->addRow(speed_q[1],maxspeedy);
+    f3->addRow(speed_q[2],deadx);
+    f3->addRow(speed_q[3],deady);
+    f3->addRow(speed_q[4],output_d_type);
+    f3->addRow(speed_q[5],out_address);
+    f3->addRow(speed_q[6],baud_rate);
+    f3->addRow(speed_q[7],data_bit);
+    f3->addRow(speed_q[8],stop_bit);
+    f3->addRow(speed_q[9],parity_bit);
+    f3->addRow(speed_q[10],flow_control);
+
+
+
+
+
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
-    v->addWidget(gbox_speedx);
-    v->addWidget(gbox_speedy);
+    v->addLayout(sensor_speed);
+    v->addLayout(f3);
+    //v->addWidget(gbox_speedy);
     w_speedconv->setLayout(v);
 
     connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot()));
@@ -501,7 +1474,777 @@ void MainWindow::init_speedconvCfg()
     connect(speedy7_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot()));
     connect(speedy8_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot()));
     connect(speedy9_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot()));
+    connect(maxspeedx,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot()));
+    connect(maxspeedy,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot()));
+    connect(deadx,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot()));
+    connect(deady,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot()));
+    connect(output_d_type,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
+    connect(out_address,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
+    connect(baud_rate,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
+    connect(data_bit,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
+    connect(stop_bit,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
+    connect(flow_control,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
+    connect(parity_bit,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
 
+
+}
+
+void MainWindow::init_speedconvCfg_sec()
+{
+    w_speedconv_sec=new MyWidget;
+    w_speedconv_sec->setWindowTitle("转台配置");
+    QPushButton* btn_speed_default=new QPushButton;
+    QPushButton* btn_speed_update=new QPushButton;
+    btn_speed_default->setText("默认");
+    btn_speed_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_speed_default);
+    v1->addWidget(btn_speed_update);
+    QLabel *label=new QLabel;
+    label->setText("通道2");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    gbox_speedx_sec=new QGroupBox();
+    gbox_speedx_sec->setTitle("x轴");
+    speedx1_lineEdt_sec=new QLineEdit;
+    speedx2_lineEdt_sec=new QLineEdit;
+    speedx3_lineEdt_sec=new QLineEdit;
+    speedx4_lineEdt_sec=new QLineEdit;
+    speedx5_lineEdt_sec=new QLineEdit;
+    speedx6_lineEdt_sec=new QLineEdit;
+    speedx7_lineEdt_sec=new QLineEdit;
+    speedx8_lineEdt_sec=new QLineEdit;
+    speedx9_lineEdt_sec=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(speed_s_sec[0],speedx1_lineEdt_sec);
+    f1->addRow(speed_s_sec[1],speedx2_lineEdt_sec);
+    f1->addRow(speed_s_sec[2],speedx3_lineEdt_sec);
+    f1->addRow(speed_s_sec[3],speedx4_lineEdt_sec);
+    f1->addRow(speed_s_sec[4],speedx5_lineEdt_sec);
+    f1->addRow(speed_s_sec[5],speedx6_lineEdt_sec);
+    f1->addRow(speed_s_sec[6],speedx7_lineEdt_sec);
+    f1->addRow(speed_s_sec[7],speedx8_lineEdt_sec);
+    f1->addRow(speed_s_sec[8],speedx9_lineEdt_sec);
+    gbox_speedx_sec->setLayout(f1);
+
+    gbox_speedy_sec=new QGroupBox();
+    gbox_speedy_sec->setTitle("y轴");
+    speedy1_lineEdt_sec=new QLineEdit;
+    speedy2_lineEdt_sec=new QLineEdit;
+    speedy3_lineEdt_sec=new QLineEdit;
+    speedy4_lineEdt_sec=new QLineEdit;
+    speedy5_lineEdt_sec=new QLineEdit;
+    speedy6_lineEdt_sec=new QLineEdit;
+    speedy7_lineEdt_sec=new QLineEdit;
+    speedy8_lineEdt_sec=new QLineEdit;
+    speedy9_lineEdt_sec=new QLineEdit;
+
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(speed_s_sec[0],speedy1_lineEdt_sec);
+    f2->addRow(speed_s_sec[1],speedy2_lineEdt_sec);
+    f2->addRow(speed_s_sec[2],speedy3_lineEdt_sec);
+    f2->addRow(speed_s_sec[3],speedy4_lineEdt_sec);
+    f2->addRow(speed_s_sec[4],speedy5_lineEdt_sec);
+    f2->addRow(speed_s_sec[5],speedy6_lineEdt_sec);
+    f2->addRow(speed_s_sec[6],speedy7_lineEdt_sec);
+    f2->addRow(speed_s_sec[7],speedy8_lineEdt_sec);
+    f2->addRow(speed_s_sec[8],speedy9_lineEdt_sec);
+    gbox_speedy_sec->setLayout(f2);
+
+    QHBoxLayout *sensor_speed=new QHBoxLayout;
+    sensor_speed->addWidget(gbox_speedx_sec);
+    sensor_speed->addWidget(gbox_speedy_sec);
+
+
+
+    maxspeedx_sec = new QLineEdit;
+    maxspeedy_sec = new QLineEdit;
+    deadx_sec     = new QLineEdit;
+    deady_sec     = new QLineEdit;
+    output_d_type_sec =new QComboBox;
+    output_d_type_sec->addItem("像素偏差");
+    output_d_type_sec->addItem("Pid控制算法结果输出");
+    output_d_type_sec->addItem("转台命令输出");
+    out_address_sec =new QLineEdit;
+    baud_rate_sec =new QComboBox;
+    baud_rate_sec->addItem("0");
+    baud_rate_sec->addItem("110");
+    baud_rate_sec->addItem("300");
+    baud_rate_sec->addItem("600");
+    baud_rate_sec->addItem("1200");
+    baud_rate_sec->addItem("2400");
+    baud_rate_sec->addItem("4800");
+    baud_rate_sec->addItem("9600");
+    baud_rate_sec->addItem("14400");
+    baud_rate_sec->addItem("19200");
+    baud_rate_sec->addItem("38400");
+    baud_rate_sec->addItem("56000");
+    baud_rate_sec->addItem("57600");
+    baud_rate_sec->addItem("115200");
+    baud_rate_sec->addItem("128000");
+    baud_rate_sec->addItem("230400");
+    baud_rate_sec->addItem("256000");
+    baud_rate_sec->addItem("460800");
+    baud_rate_sec->addItem("500000");
+    baud_rate_sec->addItem("600000");
+    baud_rate_sec->addItem("750000");
+    baud_rate_sec->addItem("921600");
+    baud_rate_sec->addItem("1000000");
+    baud_rate_sec->addItem("1500000");
+    baud_rate_sec->addItem("2000000");
+    baud_rate_sec->setCurrentIndex(13);
+    data_bit_sec =new QComboBox;
+    data_bit_sec->addItem("5");
+    data_bit_sec->addItem("6");
+    data_bit_sec->addItem("7");
+    data_bit_sec->addItem("8");
+    data_bit_sec->setCurrentIndex(3);
+    stop_bit_sec =new QComboBox;
+    stop_bit_sec->addItem("1.5");
+    stop_bit_sec->addItem("2");
+    stop_bit_sec->setCurrentIndex(1);
+
+    parity_bit_sec =new QComboBox;
+    parity_bit_sec->addItem("None");
+    parity_bit_sec->addItem("Odd");
+    parity_bit_sec->addItem("Even");
+    parity_bit_sec->addItem("Mark");
+    parity_bit_sec->addItem("Space");
+
+    flow_control_sec=new QComboBox;
+    flow_control_sec->addItem("Hardware");
+    flow_control_sec->addItem("Software");
+    flow_control_sec->addItem("None");
+    flow_control_sec->addItem("Custom");
+    flow_control_sec->setCurrentIndex(2);
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(speed_q_sec[0],maxspeedx_sec);
+    f3->addRow(speed_q_sec[1],maxspeedy_sec);
+    f3->addRow(speed_q_sec[2],deadx_sec);
+    f3->addRow(speed_q_sec[3],deady_sec);
+    f3->addRow(speed_q_sec[4],output_d_type_sec);
+    f3->addRow(speed_q_sec[5],out_address_sec);
+    f3->addRow(speed_q_sec[6],baud_rate_sec);
+    f3->addRow(speed_q_sec[7],data_bit_sec);
+    f3->addRow(speed_q_sec[8],stop_bit_sec);
+    f3->addRow(speed_q_sec[9],parity_bit_sec);
+    f3->addRow(speed_q_sec[10],flow_control_sec);
+
+
+
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(sensor_speed);
+    v->addLayout(f3);
+    //v->addWidget(gbox_speedy);
+    w_speedconv_sec->setLayout(v);
+
+    connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot_sec()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot_sec()));
+    connect(speedx1_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot_sec()));
+    connect(speedx2_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot_sec()));
+    connect(speedx3_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot_sec()));
+    connect(speedx4_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx4_Slot_sec()));
+    connect(speedx5_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx5_Slot_sec()));
+    connect(speedx6_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx6_Slot_sec()));
+    connect(speedx7_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx7_Slot_sec()));
+    connect(speedx8_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx8_Slot_sec()));
+    connect(speedx9_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx9_Slot_sec()));
+    connect(speedy1_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy1_Slot_sec()));
+    connect(speedy2_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy2_Slot_sec()));
+    connect(speedy3_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy3_Slot_sec()));
+    connect(speedy4_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy4_Slot_sec()));
+    connect(speedy5_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy5_Slot_sec()));
+    connect(speedy6_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy6_Slot_sec()));
+    connect(speedy7_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot_sec()));
+    connect(speedy8_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_sec()));
+    connect(speedy9_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_sec()));
+    connect(maxspeedx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_sec()));
+    connect(maxspeedy_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_sec()));
+    connect(deadx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_sec()));
+    connect(deady_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_sec()));
+    connect(output_d_type_sec,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
+    connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
+    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
+    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
+    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
+    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
+    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+
+
+}
+
+void MainWindow::init_speedconvCfg_thi()
+{
+    w_speedconv_thi=new MyWidget;
+    w_speedconv_thi->setWindowTitle("转台配置");
+    QPushButton* btn_speed_default=new QPushButton;
+    QPushButton* btn_speed_update=new QPushButton;
+    btn_speed_default->setText("默认");
+    btn_speed_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_speed_default);
+    v1->addWidget(btn_speed_update);
+    QLabel *label=new QLabel;
+    label->setText("通道3");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    gbox_speedx_thi=new QGroupBox();
+    gbox_speedx_thi->setTitle("x轴");
+    speedx1_lineEdt_thi=new QLineEdit;
+    speedx2_lineEdt_thi=new QLineEdit;
+    speedx3_lineEdt_thi=new QLineEdit;
+    speedx4_lineEdt_thi=new QLineEdit;
+    speedx5_lineEdt_thi=new QLineEdit;
+    speedx6_lineEdt_thi=new QLineEdit;
+    speedx7_lineEdt_thi=new QLineEdit;
+    speedx8_lineEdt_thi=new QLineEdit;
+    speedx9_lineEdt_thi=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(speed_s_thi[0],speedx1_lineEdt_thi);
+    f1->addRow(speed_s_thi[1],speedx2_lineEdt_thi);
+    f1->addRow(speed_s_thi[2],speedx3_lineEdt_thi);
+    f1->addRow(speed_s_thi[3],speedx4_lineEdt_thi);
+    f1->addRow(speed_s_thi[4],speedx5_lineEdt_thi);
+    f1->addRow(speed_s_thi[5],speedx6_lineEdt_thi);
+    f1->addRow(speed_s_thi[6],speedx7_lineEdt_thi);
+    f1->addRow(speed_s_thi[7],speedx8_lineEdt_thi);
+    f1->addRow(speed_s_thi[8],speedx9_lineEdt_thi);
+    gbox_speedx_thi->setLayout(f1);
+
+    gbox_speedy_thi=new QGroupBox();
+    gbox_speedy_thi->setTitle("y轴");
+    speedy1_lineEdt_thi=new QLineEdit;
+    speedy2_lineEdt_thi=new QLineEdit;
+    speedy3_lineEdt_thi=new QLineEdit;
+    speedy4_lineEdt_thi=new QLineEdit;
+    speedy5_lineEdt_thi=new QLineEdit;
+    speedy6_lineEdt_thi=new QLineEdit;
+    speedy7_lineEdt_thi=new QLineEdit;
+    speedy8_lineEdt_thi=new QLineEdit;
+    speedy9_lineEdt_thi=new QLineEdit;
+
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(speed_s_thi[0],speedy1_lineEdt_thi);
+    f2->addRow(speed_s_thi[1],speedy2_lineEdt_thi);
+    f2->addRow(speed_s_thi[2],speedy3_lineEdt_thi);
+    f2->addRow(speed_s_thi[3],speedy4_lineEdt_thi);
+    f2->addRow(speed_s_thi[4],speedy5_lineEdt_thi);
+    f2->addRow(speed_s_thi[5],speedy6_lineEdt_thi);
+    f2->addRow(speed_s_thi[6],speedy7_lineEdt_thi);
+    f2->addRow(speed_s_thi[7],speedy8_lineEdt_thi);
+    f2->addRow(speed_s_thi[8],speedy9_lineEdt_thi);
+    gbox_speedy_thi->setLayout(f2);
+
+    QHBoxLayout *sensor_speed=new QHBoxLayout;
+    sensor_speed->addWidget(gbox_speedx_thi);
+    sensor_speed->addWidget(gbox_speedy_thi);
+
+
+
+    maxspeedx_thi = new QLineEdit;
+    maxspeedy_thi = new QLineEdit;
+    deadx_thi     = new QLineEdit;
+    deady_thi     = new QLineEdit;
+    output_d_type_thi =new QComboBox;
+    output_d_type_thi->addItem("像素偏差");
+    output_d_type_thi->addItem("Pid控制算法结果输出");
+    output_d_type_thi->addItem("转台命令输出");
+    out_address_thi =new QLineEdit;
+    baud_rate_thi =new QComboBox;
+    baud_rate_thi->addItem("0");
+    baud_rate_thi->addItem("110");
+    baud_rate_thi->addItem("300");
+    baud_rate_thi->addItem("600");
+    baud_rate_thi->addItem("1200");
+    baud_rate_thi->addItem("2400");
+    baud_rate_thi->addItem("4800");
+    baud_rate_thi->addItem("9600");
+    baud_rate_thi->addItem("14400");
+    baud_rate_thi->addItem("19200");
+    baud_rate_thi->addItem("38400");
+    baud_rate_thi->addItem("56000");
+    baud_rate_thi->addItem("57600");
+    baud_rate_thi->addItem("115200");
+    baud_rate_thi->addItem("128000");
+    baud_rate_thi->addItem("230400");
+    baud_rate_thi->addItem("256000");
+    baud_rate_thi->addItem("460800");
+    baud_rate_thi->addItem("500000");
+    baud_rate_thi->addItem("600000");
+    baud_rate_thi->addItem("750000");
+    baud_rate_thi->addItem("921600");
+    baud_rate_thi->addItem("1000000");
+    baud_rate_thi->addItem("1500000");
+    baud_rate_thi->addItem("2000000");
+    baud_rate_thi->setCurrentIndex(13);
+    data_bit_thi =new QComboBox;
+    data_bit_thi->addItem("5");
+    data_bit_thi->addItem("6");
+    data_bit_thi->addItem("7");
+    data_bit_thi->addItem("8");
+    data_bit_thi->setCurrentIndex(3);
+    stop_bit_thi =new QComboBox;
+    stop_bit_thi->addItem("1.5");
+    stop_bit_thi->addItem("2");
+    stop_bit_thi->setCurrentIndex(1);
+
+    parity_bit_thi =new QComboBox;
+    parity_bit_thi->addItem("None");
+    parity_bit_thi->addItem("Odd");
+    parity_bit_thi->addItem("Even");
+    parity_bit_thi->addItem("Mark");
+    parity_bit_thi->addItem("Space");
+
+    flow_control_thi=new QComboBox;
+    flow_control_thi->addItem("Hardware");
+    flow_control_thi->addItem("Software");
+    flow_control_thi->addItem("None");
+    flow_control_thi->addItem("Custom");
+    flow_control_thi->setCurrentIndex(2);
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(speed_q_thi[0],maxspeedx_thi);
+    f3->addRow(speed_q_thi[1],maxspeedy_thi);
+    f3->addRow(speed_q_thi[2],deadx_thi);
+    f3->addRow(speed_q_thi[3],deady_thi);
+    f3->addRow(speed_q_thi[4],output_d_type_thi);
+    f3->addRow(speed_q_thi[5],out_address_thi);
+    f3->addRow(speed_q_thi[6],baud_rate_thi);
+    f3->addRow(speed_q_thi[7],data_bit_thi);
+    f3->addRow(speed_q_thi[8],stop_bit_thi);
+    f3->addRow(speed_q_thi[9],parity_bit_thi);
+    f3->addRow(speed_q_thi[10],flow_control_thi);
+
+
+
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(sensor_speed);
+    v->addLayout(f3);
+    //v->addWidget(gbox_speedy);
+    w_speedconv_thi->setLayout(v);
+
+    connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot_thi()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot_thi()));
+    connect(speedx1_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot_thi()));
+    connect(speedx2_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot_thi()));
+    connect(speedx3_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot_thi()));
+    connect(speedx4_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx4_Slot_thi()));
+    connect(speedx5_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx5_Slot_thi()));
+    connect(speedx6_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx6_Slot_thi()));
+    connect(speedx7_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx7_Slot_thi()));
+    connect(speedx8_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx8_Slot_thi()));
+    connect(speedx9_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx9_Slot_thi()));
+    connect(speedy1_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy1_Slot_thi()));
+    connect(speedy2_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy2_Slot_thi()));
+    connect(speedy3_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy3_Slot_thi()));
+    connect(speedy4_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy4_Slot_thi()));
+    connect(speedy5_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy5_Slot_thi()));
+    connect(speedy6_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy6_Slot_thi()));
+    connect(speedy7_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot_thi()));
+    connect(speedy8_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_thi()));
+    connect(speedy9_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_thi()));
+    connect(maxspeedx_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_thi()));
+    connect(maxspeedy_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_thi()));
+    connect(deadx_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_thi()));
+    connect(deady_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_thi()));
+    connect(output_d_type_thi,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
+    connect(out_address_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
+    connect(baud_rate_thi,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
+    connect(data_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
+    connect(stop_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
+    connect(flow_control_thi,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
+    connect(parity_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+}
+
+void MainWindow::init_speedconvCfg_fou()
+{
+    w_speedconv_fou=new MyWidget;
+    w_speedconv_fou->setWindowTitle("转台配置");
+    QPushButton* btn_speed_default=new QPushButton;
+    QPushButton* btn_speed_update=new QPushButton;
+    btn_speed_default->setText("默认");
+    btn_speed_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_speed_default);
+    v1->addWidget(btn_speed_update);
+    QLabel *label=new QLabel;
+    label->setText("通道4");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    gbox_speedx_fou=new QGroupBox();
+    gbox_speedx_fou->setTitle("x轴");
+    speedx1_lineEdt_fou=new QLineEdit;
+    speedx2_lineEdt_fou=new QLineEdit;
+    speedx3_lineEdt_fou=new QLineEdit;
+    speedx4_lineEdt_fou=new QLineEdit;
+    speedx5_lineEdt_fou=new QLineEdit;
+    speedx6_lineEdt_fou=new QLineEdit;
+    speedx7_lineEdt_fou=new QLineEdit;
+    speedx8_lineEdt_fou=new QLineEdit;
+    speedx9_lineEdt_fou=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(speed_s_fou[0],speedx1_lineEdt_fou);
+    f1->addRow(speed_s_fou[1],speedx2_lineEdt_fou);
+    f1->addRow(speed_s_fou[2],speedx3_lineEdt_fou);
+    f1->addRow(speed_s_fou[3],speedx4_lineEdt_fou);
+    f1->addRow(speed_s_fou[4],speedx5_lineEdt_fou);
+    f1->addRow(speed_s_fou[5],speedx6_lineEdt_fou);
+    f1->addRow(speed_s_fou[6],speedx7_lineEdt_fou);
+    f1->addRow(speed_s_fou[7],speedx8_lineEdt_fou);
+    f1->addRow(speed_s_fou[8],speedx9_lineEdt_fou);
+    gbox_speedx_fou->setLayout(f1);
+
+    gbox_speedy_fou=new QGroupBox();
+    gbox_speedy_fou->setTitle("y轴");
+    speedy1_lineEdt_fou=new QLineEdit;
+    speedy2_lineEdt_fou=new QLineEdit;
+    speedy3_lineEdt_fou=new QLineEdit;
+    speedy4_lineEdt_fou=new QLineEdit;
+    speedy5_lineEdt_fou=new QLineEdit;
+    speedy6_lineEdt_fou=new QLineEdit;
+    speedy7_lineEdt_fou=new QLineEdit;
+    speedy8_lineEdt_fou=new QLineEdit;
+    speedy9_lineEdt_fou=new QLineEdit;
+
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(speed_s_fou[0],speedy1_lineEdt_fou);
+    f2->addRow(speed_s_fou[1],speedy2_lineEdt_fou);
+    f2->addRow(speed_s_fou[2],speedy3_lineEdt_fou);
+    f2->addRow(speed_s_fou[3],speedy4_lineEdt_fou);
+    f2->addRow(speed_s_fou[4],speedy5_lineEdt_fou);
+    f2->addRow(speed_s_fou[5],speedy6_lineEdt_fou);
+    f2->addRow(speed_s_fou[6],speedy7_lineEdt_fou);
+    f2->addRow(speed_s_fou[7],speedy8_lineEdt_fou);
+    f2->addRow(speed_s_fou[8],speedy9_lineEdt_fou);
+    gbox_speedy_fou->setLayout(f2);
+
+    QHBoxLayout *sensor_speed=new QHBoxLayout;
+    sensor_speed->addWidget(gbox_speedx_fou);
+    sensor_speed->addWidget(gbox_speedy_fou);
+
+
+
+    maxspeedx_fou = new QLineEdit;
+    maxspeedy_fou = new QLineEdit;
+    deadx_fou     = new QLineEdit;
+    deady_fou     = new QLineEdit;
+    output_d_type_fou =new QComboBox;
+    output_d_type_fou->addItem("像素偏差");
+    output_d_type_fou->addItem("Pid控制算法结果输出");
+    output_d_type_fou->addItem("转台命令输出");
+    out_address_fou =new QLineEdit;
+    baud_rate_fou =new QComboBox;
+    baud_rate_fou->addItem("0");
+    baud_rate_fou->addItem("110");
+    baud_rate_fou->addItem("300");
+    baud_rate_fou->addItem("600");
+    baud_rate_fou->addItem("1200");
+    baud_rate_fou->addItem("2400");
+    baud_rate_fou->addItem("4800");
+    baud_rate_fou->addItem("9600");
+    baud_rate_fou->addItem("14400");
+    baud_rate_fou->addItem("19200");
+    baud_rate_fou->addItem("38400");
+    baud_rate_fou->addItem("56000");
+    baud_rate_fou->addItem("57600");
+    baud_rate_fou->addItem("115200");
+    baud_rate_fou->addItem("128000");
+    baud_rate_fou->addItem("230400");
+    baud_rate_fou->addItem("256000");
+    baud_rate_fou->addItem("460800");
+    baud_rate_fou->addItem("500000");
+    baud_rate_fou->addItem("600000");
+    baud_rate_fou->addItem("750000");
+    baud_rate_fou->addItem("921600");
+    baud_rate_fou->addItem("1000000");
+    baud_rate_fou->addItem("1500000");
+    baud_rate_fou->addItem("2000000");
+    baud_rate_fou->setCurrentIndex(13);
+    data_bit_fou =new QComboBox;
+    data_bit_fou->addItem("5");
+    data_bit_fou->addItem("6");
+    data_bit_fou->addItem("7");
+    data_bit_fou->addItem("8");
+    data_bit_fou->setCurrentIndex(3);
+    stop_bit_fou =new QComboBox;
+    stop_bit_fou->addItem("1.5");
+    stop_bit_fou->addItem("2");
+    stop_bit_fou->setCurrentIndex(1);
+
+    parity_bit_fou =new QComboBox;
+    parity_bit_fou->addItem("None");
+    parity_bit_fou->addItem("Odd");
+    parity_bit_fou->addItem("Even");
+    parity_bit_fou->addItem("Mark");
+    parity_bit_fou->addItem("Space");
+
+    flow_control_fou=new QComboBox;
+    flow_control_fou->addItem("Hardware");
+    flow_control_fou->addItem("Software");
+    flow_control_fou->addItem("None");
+    flow_control_fou->addItem("Custom");
+    flow_control_fou->setCurrentIndex(2);
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(speed_q_fou[0],maxspeedx_fou);
+    f3->addRow(speed_q_fou[1],maxspeedy_fou);
+    f3->addRow(speed_q_fou[2],deadx_fou);
+    f3->addRow(speed_q_fou[3],deady_fou);
+    f3->addRow(speed_q_fou[4],output_d_type_fou);
+    f3->addRow(speed_q_fou[5],out_address_fou);
+    f3->addRow(speed_q_fou[6],baud_rate_fou);
+    f3->addRow(speed_q_fou[7],data_bit_fou);
+    f3->addRow(speed_q_fou[8],stop_bit_fou);
+    f3->addRow(speed_q_fou[9],parity_bit_fou);
+    f3->addRow(speed_q_fou[10],flow_control_fou);
+
+
+
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(sensor_speed);
+    v->addLayout(f3);
+    //v->addWidget(gbox_speedy);
+    w_speedconv_fou->setLayout(v);
+
+    connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot_fou()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot_fou()));
+    connect(speedx1_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot_fou()));
+    connect(speedx2_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot_fou()));
+    connect(speedx3_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot_fou()));
+    connect(speedx4_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx4_Slot_fou()));
+    connect(speedx5_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx5_Slot_fou()));
+    connect(speedx6_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx6_Slot_fou()));
+    connect(speedx7_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx7_Slot_fou()));
+    connect(speedx8_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx8_Slot_fou()));
+    connect(speedx9_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx9_Slot_fou()));
+    connect(speedy1_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy1_Slot_fou()));
+    connect(speedy2_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy2_Slot_fou()));
+    connect(speedy3_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy3_Slot_fou()));
+    connect(speedy4_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy4_Slot_fou()));
+    connect(speedy5_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy5_Slot_fou()));
+    connect(speedy6_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy6_Slot_fou()));
+    connect(speedy7_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot_fou()));
+    connect(speedy8_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_fou()));
+    connect(speedy9_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_fou()));
+    connect(maxspeedx_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_fou()));
+    connect(maxspeedy_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fou()));
+    connect(deadx_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fou()));
+    connect(deady_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fou()));
+    connect(output_d_type_fou,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
+    connect(out_address_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
+    connect(baud_rate_fou,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
+    connect(data_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
+    connect(stop_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
+    connect(flow_control_fou,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
+    connect(parity_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+}
+
+void MainWindow::init_speedconvCfg_fif()
+{
+    w_speedconv_fif=new MyWidget;
+    w_speedconv_fif->setWindowTitle("转台配置");
+    QPushButton* btn_speed_default=new QPushButton;
+    QPushButton* btn_speed_update=new QPushButton;
+    btn_speed_default->setText("默认");
+    btn_speed_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_speed_default);
+    v1->addWidget(btn_speed_update);
+    QLabel *label=new QLabel;
+    label->setText("通道5");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
+    gbox_speedx_fif=new QGroupBox();
+    gbox_speedx_fif->setTitle("x轴");
+    speedx1_lineEdt_fif=new QLineEdit;
+    speedx2_lineEdt_fif=new QLineEdit;
+    speedx3_lineEdt_fif=new QLineEdit;
+    speedx4_lineEdt_fif=new QLineEdit;
+    speedx5_lineEdt_fif=new QLineEdit;
+    speedx6_lineEdt_fif=new QLineEdit;
+    speedx7_lineEdt_fif=new QLineEdit;
+    speedx8_lineEdt_fif=new QLineEdit;
+    speedx9_lineEdt_fif=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(speed_s_fif[0],speedx1_lineEdt_fif);
+    f1->addRow(speed_s_fif[1],speedx2_lineEdt_fif);
+    f1->addRow(speed_s_fif[2],speedx3_lineEdt_fif);
+    f1->addRow(speed_s_fif[3],speedx4_lineEdt_fif);
+    f1->addRow(speed_s_fif[4],speedx5_lineEdt_fif);
+    f1->addRow(speed_s_fif[5],speedx6_lineEdt_fif);
+    f1->addRow(speed_s_fif[6],speedx7_lineEdt_fif);
+    f1->addRow(speed_s_fif[7],speedx8_lineEdt_fif);
+    f1->addRow(speed_s_fif[8],speedx9_lineEdt_fif);
+    gbox_speedx_fif->setLayout(f1);
+
+    gbox_speedy_fif=new QGroupBox();
+    gbox_speedy_fif->setTitle("y轴");
+    speedy1_lineEdt_fif=new QLineEdit;
+    speedy2_lineEdt_fif=new QLineEdit;
+    speedy3_lineEdt_fif=new QLineEdit;
+    speedy4_lineEdt_fif=new QLineEdit;
+    speedy5_lineEdt_fif=new QLineEdit;
+    speedy6_lineEdt_fif=new QLineEdit;
+    speedy7_lineEdt_fif=new QLineEdit;
+    speedy8_lineEdt_fif=new QLineEdit;
+    speedy9_lineEdt_fif=new QLineEdit;
+
+    QFormLayout *f2=new QFormLayout();
+    f2->addRow(speed_s_fif[0],speedy1_lineEdt_fif);
+    f2->addRow(speed_s_fif[1],speedy2_lineEdt_fif);
+    f2->addRow(speed_s_fif[2],speedy3_lineEdt_fif);
+    f2->addRow(speed_s_fif[3],speedy4_lineEdt_fif);
+    f2->addRow(speed_s_fif[4],speedy5_lineEdt_fif);
+    f2->addRow(speed_s_fif[5],speedy6_lineEdt_fif);
+    f2->addRow(speed_s_fif[6],speedy7_lineEdt_fif);
+    f2->addRow(speed_s_fif[7],speedy8_lineEdt_fif);
+    f2->addRow(speed_s_fif[8],speedy9_lineEdt_fif);
+    gbox_speedy_fif->setLayout(f2);
+
+    QHBoxLayout *sensor_speed=new QHBoxLayout;
+    sensor_speed->addWidget(gbox_speedx_fif);
+    sensor_speed->addWidget(gbox_speedy_fif);
+
+
+
+    maxspeedx_fif = new QLineEdit;
+    maxspeedy_fif = new QLineEdit;
+    deadx_fif     = new QLineEdit;
+    deady_fif     = new QLineEdit;
+    output_d_type_fif =new QComboBox;
+    output_d_type_fif->addItem("像素偏差");
+    output_d_type_fif->addItem("Pid控制算法结果输出");
+    output_d_type_fif->addItem("转台命令输出");
+    out_address_fif =new QLineEdit;
+    baud_rate_fif =new QComboBox;
+    baud_rate_fif->addItem("0");
+    baud_rate_fif->addItem("110");
+    baud_rate_fif->addItem("300");
+    baud_rate_fif->addItem("600");
+    baud_rate_fif->addItem("1200");
+    baud_rate_fif->addItem("2400");
+    baud_rate_fif->addItem("4800");
+    baud_rate_fif->addItem("9600");
+    baud_rate_fif->addItem("14400");
+    baud_rate_fif->addItem("19200");
+    baud_rate_fif->addItem("38400");
+    baud_rate_fif->addItem("56000");
+    baud_rate_fif->addItem("57600");
+    baud_rate_fif->addItem("115200");
+    baud_rate_fif->addItem("128000");
+    baud_rate_fif->addItem("230400");
+    baud_rate_fif->addItem("256000");
+    baud_rate_fif->addItem("460800");
+    baud_rate_fif->addItem("500000");
+    baud_rate_fif->addItem("600000");
+    baud_rate_fif->addItem("750000");
+    baud_rate_fif->addItem("921600");
+    baud_rate_fif->addItem("1000000");
+    baud_rate_fif->addItem("1500000");
+    baud_rate_fif->addItem("2000000");
+    baud_rate_fif->setCurrentIndex(13);
+    data_bit_fif =new QComboBox;
+    data_bit_fif->addItem("5");
+    data_bit_fif->addItem("6");
+    data_bit_fif->addItem("7");
+    data_bit_fif->addItem("8");
+    data_bit_fif->setCurrentIndex(3);
+    stop_bit_fif =new QComboBox;
+    stop_bit_fif->addItem("1.5");
+    stop_bit_fif->addItem("2");
+    stop_bit_fif->setCurrentIndex(1);
+
+    parity_bit_fif =new QComboBox;
+    parity_bit_fif->addItem("None");
+    parity_bit_fif->addItem("Odd");
+    parity_bit_fif->addItem("Even");
+    parity_bit_fif->addItem("Mark");
+    parity_bit_fif->addItem("Space");
+
+    flow_control_fif=new QComboBox;
+    flow_control_fif->addItem("Hardware");
+    flow_control_fif->addItem("Software");
+    flow_control_fif->addItem("None");
+    flow_control_fif->addItem("Custom");
+    flow_control_fif->setCurrentIndex(2);
+
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(speed_q_fif[0],maxspeedx_fif);
+    f3->addRow(speed_q_fif[1],maxspeedy_fif);
+    f3->addRow(speed_q_fif[2],deadx_fif);
+    f3->addRow(speed_q_fif[3],deady_fif);
+    f3->addRow(speed_q_fif[4],output_d_type_fif);
+    f3->addRow(speed_q_fif[5],out_address_fif);
+    f3->addRow(speed_q_fif[6],baud_rate_fif);
+    f3->addRow(speed_q_fif[7],data_bit_fif);
+    f3->addRow(speed_q_fif[8],stop_bit_fif);
+    f3->addRow(speed_q_fif[9],parity_bit_fif);
+    f3->addRow(speed_q_fif[10],flow_control_fif);
+
+
+
+
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(h1);
+    v->addLayout(sensor_speed);
+    v->addLayout(f3);
+    //v->addWidget(gbox_speedy);
+    w_speedconv_fif->setLayout(v);
+
+    connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot_fif()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot_fif()));
+    connect(speedx1_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot_fif()));
+    connect(speedx2_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot_fif()));
+    connect(speedx3_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot_fif()));
+    connect(speedx4_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx4_Slot_fif()));
+    connect(speedx5_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx5_Slot_fif()));
+    connect(speedx6_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx6_Slot_fif()));
+    connect(speedx7_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx7_Slot_fif()));
+    connect(speedx8_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx8_Slot_fif()));
+    connect(speedx9_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx9_Slot_fif()));
+    connect(speedy1_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy1_Slot_fif()));
+    connect(speedy2_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy2_Slot_fif()));
+    connect(speedy3_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy3_Slot_fif()));
+    connect(speedy4_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy4_Slot_fif()));
+    connect(speedy5_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy5_Slot_fif()));
+    connect(speedy6_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy6_Slot_fif()));
+    connect(speedy7_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy7_Slot_fif()));
+    connect(speedy8_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_fif()));
+    connect(speedy9_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_fif()));
+    connect(maxspeedx_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_fif()));
+    connect(maxspeedy_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fif()));
+    connect(deadx_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fif()));
+    connect(deady_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fif()));
+    connect(output_d_type_fif,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
+    connect(out_address_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
+    connect(baud_rate_fif,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
+    connect(data_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
+    connect(stop_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
+    connect(flow_control_fif,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
+    connect(parity_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
 }
 
 void MainWindow::init_mtdCfg()
@@ -522,7 +2265,31 @@ void MainWindow::init_mtdCfg()
     h1->addLayout(v1);
     h1->addWidget(label);
 
-    rigion=new QLineEdit;
+
+
+
+    QLabel *l=new  QLabel;
+    l->setText(",");
+    QLabel *n=new  QLabel;
+    n->setText("*");
+    rigion_Cen_x=new QLineEdit;
+    rigion_Cen_y=new QLineEdit;
+    rigion_Cen_w=new QLineEdit;
+    rigion_Cen_h=new QLineEdit;
+
+//    lineEdit_fieldResolution->setValidator(new QIntValidator(100,10000,this));
+//    lineEdit_fieldResolution2->setValidator(new QIntValidator(100,10000,this));
+
+    QHBoxLayout *sensor_rigion_Cen_xy=new QHBoxLayout;
+    sensor_rigion_Cen_xy->addWidget(rigion_Cen_x);
+    sensor_rigion_Cen_xy->addWidget(l);
+    sensor_rigion_Cen_xy->addWidget(rigion_Cen_y);
+
+    QHBoxLayout *sensor_rigion_Cen_wh=new QHBoxLayout;
+    sensor_rigion_Cen_wh->addWidget(rigion_Cen_w);
+    sensor_rigion_Cen_wh->addWidget(n);
+    sensor_rigion_Cen_wh->addWidget(rigion_Cen_h);
+
     maxnum=new QLineEdit;
     uspeed=new QLineEdit;
     maxpix=new QLineEdit;
@@ -530,27 +2297,74 @@ void MainWindow::init_mtdCfg()
     sensitive=new QLineEdit;
     dspeed=new QLineEdit;
     trktime=new QLineEdit;
+    Priority_judgment =new QComboBox;
+    Priority_judgment->addItem("距离中心位置最大");
+    Priority_judgment->addItem("距离中心位置最近");
+    Priority_judgment->addItem("亮度最大");
+    Priority_judgment->addItem("亮度最小");
+    Priority_judgment->addItem("面积最大");
+    Priority_judgment->addItem("面积最小");
     output = new QComboBox;
     output->addItem("使能");
     output->addItem("禁止");
-    polar=new QLineEdit;
+    polar=new QComboBox;
+    polar->addItem("常开");
+    polar->addItem("关闭");
+
+    QLabel *d=new  QLabel;
+    d->setText("秒");
+    QLabel *s=new  QLabel;
+    s->setText(" ");
+    Alarm_delay = new QLineEdit;
+    QHBoxLayout *sensor_Ad=new QHBoxLayout;
+    sensor_Ad->addWidget(Alarm_delay);
+    sensor_Ad->addWidget(d);
+    sensor_Ad->addWidget(s);
 
     QFormLayout *f1=new QFormLayout();
-    f1->addRow(mtd_s[0],rigion);
-    f1->addRow(mtd_s[1],maxnum);
-    f1->addRow(mtd_s[2],uspeed);
-    f1->addRow(mtd_s[3],maxpix);
-    f1->addRow(mtd_s[4],minpix);
-    f1->addRow(mtd_s[5],sensitive);
-    f1->addRow(mtd_s[6],dspeed);
-    f1->addRow(mtd_s[7],trktime);
-    f1->addRow(mtd_s[8],output);
-    f1->addRow(mtd_s[9],polar);
+    f1->addRow(mtd_s[0],sensor_rigion_Cen_xy);
+    f1->addRow(mtd_s[1],sensor_rigion_Cen_wh);
+    f1->addRow(mtd_s[2],maxnum);
+    f1->addRow(mtd_s[3],uspeed);
+    f1->addRow(mtd_s[4],maxpix);
+    f1->addRow(mtd_s[5],minpix);
+    f1->addRow(mtd_s[6],sensitive);
+    f1->addRow(mtd_s[7],dspeed);
+    f1->addRow(mtd_s[8],trktime);
+    f1->addRow(mtd_s[9],Priority_judgment);
+    f1->addRow(mtd_s[10],output);
+    f1->addRow(mtd_s[11],polar);
+    f1->addRow(mtd_s[12],sensor_Ad);
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
     v->addLayout(f1);
     w_mtd->setLayout(v);
+    w_mtd->resize(300,450);
+
+    connect(btn_mtd_default,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Default_Slot()));
+    connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Update_Slot()));
+    connect(rigion_Cen_x,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_x_Slot()));
+    connect(rigion_Cen_y,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_y_Slot()));
+    connect(rigion_Cen_w,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_w_Slot()));
+    connect(rigion_Cen_h,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_h_Slot()));
+    connect(maxnum,SIGNAL(returnPressed()),this,SLOT(lEdt_maxnum_Slot()));
+    connect(uspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_uspeed_Slot()));
+    connect(maxpix,SIGNAL(returnPressed()),this,SLOT(lEdt_maxpix_Slot()));
+    connect(minpix,SIGNAL(returnPressed()),this,SLOT(lEdt_minpix_Slot()));
+    connect(sensitive,SIGNAL(returnPressed()),this,SLOT(lEdt_sensitive_Slot()));
+    connect(dspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_dspeed_Slot()));
+    connect(trktime,SIGNAL(returnPressed()),this,SLOT(lEdt_trktime_Slot()));
+      // connect(output,SIGNAL(currentIndexChanged(int)),this,SLOT(combox_output_Slot(int index)));
+    connect(Priority_judgment,SIGNAL(activated(int)),this,SLOT(combox_Priority_judgment_Slot(int)));
+    connect(output,SIGNAL(activated(int)),this,SLOT(combox_output_Slot(int)));
+    connect(polar,SIGNAL(activated(int)),this,SLOT(combox_polar_Slot(int)));
+    connect(Alarm_delay,SIGNAL(returnPressed()),this,SLOT(lEdt_Alarm_delay_Slot()));
+
+}
+void MainWindow::init_josCfg()
+{
+
 }
 
 void MainWindow::init_utcCfg()
@@ -964,11 +2778,13 @@ void MainWindow::init_OSDCfg()
     w_osd1=new MyWidget;
     c=new QComboBox;
     checkBox=new QCheckBox;
+    checkBox2=new QCheckBox;
     osd1_pos_x=new QLineEdit;
     osd1_pos_y=new QLineEdit;
     osd1_lineEdit_label=new QLineEdit;
     osd1_lineEdit_context=new QLineEdit;
     CBox_color=new QComboBox;
+    CBox_transparency=new QComboBox;
 
     btn_osd1_default=new QPushButton;
     btn_osd1_update=new QPushButton;
@@ -977,11 +2793,11 @@ void MainWindow::init_OSDCfg()
     QVBoxLayout *v1=new QVBoxLayout;
     v1->addWidget(btn_osd1_default);
     v1->addWidget(btn_osd1_update);
-    QLabel *label=new QLabel;
-    label->setText("OSD参数设置");
-    QHBoxLayout *h1=new QHBoxLayout;
-    h1->addLayout(v1);
-    h1->addWidget(label);
+    //QLabel *label=new QLabel;
+    //label->setText("字符叠加");
+   // QHBoxLayout *h1=new QHBoxLayout;
+    //h1->addLayout(v1);
+   // h1->addWidget(label);
 
     CBox_font=new QComboBox;
     CBox_font->addItem("宋体");
@@ -990,9 +2806,7 @@ void MainWindow::init_OSDCfg()
     CBox_font_size->addItem("小");
     CBox_font_size->addItem("中");
     CBox_font_size->addItem("大");
-    QFormLayout *pLayout = new QFormLayout;
-    pLayout->addRow("OSD字体配置", CBox_font);
-    pLayout->addRow("OSD字号配置", CBox_font_size);
+
 
     c->addItem("OSD1");
     c->addItem("OSD2");
@@ -1037,28 +2851,152 @@ void MainWindow::init_OSDCfg()
     CBox_color->setCurrentIndex(1);
 
 
+    CBox_transparency->addItem("0%");
+    CBox_transparency->addItem("1%");
+    CBox_transparency->addItem("2%");
+    CBox_transparency->addItem("3%");
+    CBox_transparency->addItem("4%");
+    CBox_transparency->addItem("5%");
+    CBox_transparency->addItem("6%");
+    CBox_transparency->addItem("7%");
+    CBox_transparency->addItem("8%");
+    CBox_transparency->addItem("9%");
+    CBox_transparency->addItem("10%");
+    CBox_transparency->addItem("11%");
+    CBox_transparency->addItem("12%");
+    CBox_transparency->addItem("13%");
+    CBox_transparency->addItem("14%");
+    CBox_transparency->addItem("15%");
+    CBox_transparency->addItem("16%");
+    CBox_transparency->addItem("17%");
+    CBox_transparency->addItem("18%");
+    CBox_transparency->addItem("19%");
+    CBox_transparency->addItem("20%");
+   
+    CBox_transparency->addItem("21%");
+    CBox_transparency->addItem("22%");
+    CBox_transparency->addItem("23%");
+    CBox_transparency->addItem("24%");
+    CBox_transparency->addItem("25%");
+    CBox_transparency->addItem("26%");
+    CBox_transparency->addItem("27%");
+    CBox_transparency->addItem("28%");
+    CBox_transparency->addItem("29%");
+    CBox_transparency->addItem("30%");
+    
+    CBox_transparency->addItem("31%");
+    CBox_transparency->addItem("32%");
+    CBox_transparency->addItem("33%");
+    CBox_transparency->addItem("34%");
+    CBox_transparency->addItem("35%");
+    CBox_transparency->addItem("36%");
+    CBox_transparency->addItem("37%");
+    CBox_transparency->addItem("38%");
+    CBox_transparency->addItem("39%");
+    CBox_transparency->addItem("40%");
+    CBox_transparency->addItem("41%");
+    CBox_transparency->addItem("42%");
+    CBox_transparency->addItem("43%");
+    CBox_transparency->addItem("44%");
+    CBox_transparency->addItem("45%");
+    CBox_transparency->addItem("46%");
+    CBox_transparency->addItem("47%");
+    CBox_transparency->addItem("48%");
+    CBox_transparency->addItem("49%");
+    CBox_transparency->addItem("50%");
+   
+    CBox_transparency->addItem("51%");
+    CBox_transparency->addItem("52%");
+    CBox_transparency->addItem("53%");
+    CBox_transparency->addItem("54%");
+    CBox_transparency->addItem("55%");
+    CBox_transparency->addItem("56%");
+    CBox_transparency->addItem("57%");
+    CBox_transparency->addItem("58%");
+    CBox_transparency->addItem("59%");
+    CBox_transparency->addItem("60%");
+
+    CBox_transparency->addItem("61%");
+    CBox_transparency->addItem("62%");
+    CBox_transparency->addItem("63%");
+    CBox_transparency->addItem("64%");
+    CBox_transparency->addItem("65%");
+    CBox_transparency->addItem("66%");
+    CBox_transparency->addItem("67%");
+    CBox_transparency->addItem("68%");
+    CBox_transparency->addItem("69%");
+    CBox_transparency->addItem("70%");
+
+    CBox_transparency->addItem("71%");
+    CBox_transparency->addItem("72%");
+    CBox_transparency->addItem("73%");
+    CBox_transparency->addItem("74%");
+    CBox_transparency->addItem("75%");
+    CBox_transparency->addItem("76%");
+    CBox_transparency->addItem("77%");
+    CBox_transparency->addItem("78%");
+    CBox_transparency->addItem("79%");
+    CBox_transparency->addItem("80%");
+    CBox_transparency->addItem("80%");
+    CBox_transparency->addItem("81%");
+    CBox_transparency->addItem("82%");
+    CBox_transparency->addItem("83%");
+    CBox_transparency->addItem("84%");
+    CBox_transparency->addItem("85%");
+    CBox_transparency->addItem("86%");
+    CBox_transparency->addItem("87%");
+    CBox_transparency->addItem("88%");
+    CBox_transparency->addItem("89%");
+    CBox_transparency->addItem("90%");
+
+    CBox_transparency->addItem("91%");
+    CBox_transparency->addItem("92%");
+    CBox_transparency->addItem("93%");
+    CBox_transparency->addItem("94%");
+    CBox_transparency->addItem("95%");
+    CBox_transparency->addItem("96%");
+    CBox_transparency->addItem("97%");
+    CBox_transparency->addItem("98%");
+    CBox_transparency->addItem("99%");
+    CBox_transparency->addItem("100%");
+
+    
+
+
 //    osd1_lineEdit_font=new QLineEdit;
 //    osd1_lineEdit_color=new QLineEdit;
-    osd1_lineEdit_transparency=new QLineEdit;
+
+    QFormLayout *f1=new QFormLayout();
+    f1->addRow(osd_s[0],checkBox);
+
+
+    Custom =new QGroupBox();
+    Custom->setTitle("用户自定义");
+
 
 
     QFormLayout *f=new QFormLayout();
-    f->addRow(osd_s[0],checkBox);
-    f->addRow(osd_s[1],osd1_pos_x);
-    f->addRow(osd_s[2],osd1_pos_y);
+    f->addRow(osd_s[1],checkBox2);
+    f->addRow(osd_s[2],osd1_pos_x);
+    f->addRow(osd_s[3],osd1_pos_y);
     //f->addRow(osd_s[3],osd1_lineEdit_label);
     f->addRow(osd_s[4],osd1_lineEdit_context);
 
-    f->addRow(osd_s[7],CBox_color);
-    f->addRow(osd_s[8],osd1_lineEdit_transparency);
+    f->addRow(osd_s[5],CBox_color);
+    f->addRow(osd_s[6],CBox_transparency);
+    f->addRow(osd_s[7],CBox_font_size);
+
 
     //connect(c,SIGNAL(activated(int)),this,SLOT(toCBox(int)));
 
     QVBoxLayout *v=new QVBoxLayout;
-    v->addLayout(h1);
-    v->addLayout(pLayout);
+
+
+    v->addLayout(v1);
+     v->addLayout(f1);
     v->addWidget(c);
     v->addLayout(f);
+
 
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
     connect(btn_osd1_update,SIGNAL(clicked(bool)),this,SLOT(btn_osd_update_Slot()));
@@ -1066,8 +3004,8 @@ void MainWindow::init_OSDCfg()
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
     // connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
-   // connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
-    //connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
+    connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
+    connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
    // connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
 
    // connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osd_color_Slot(int)));
@@ -1336,11 +3274,24 @@ void MainWindow::init_cameraCfg()
     connect(change2,SIGNAL(activated(int)),this,SLOT(toSensor_switch(int)));
     connect(lineEdit_switchRadio,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot()));
     connect(lineEdit_switchResolution2,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot()));
-//    connect(btn1,SIGNAL(clicked(bool)),this,SLOT(btn_switch1_Slot()));
-//    connect(btn2,SIGNAL(clicked(bool)),this,SLOT(btn_switch2_Slot()));
-//    connect(btn3,SIGNAL(clicked(bool)),this,SLOT(btn_switch3_Slot()));
-//    connect(btn4,SIGNAL(clicked(bool)),this,SLOT(btn_switch4_Slot()));
-//    connect(btn5,SIGNAL(clicked(bool)),this,SLOT(btn_switch5_Slot()));
+    connect(lineEdit_s1_Fov0,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV0_Slot()));
+    connect(spbx_switch1,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch1_Slot()));
+    connect(spby_switch1,SIGNAL(valueChanged(int)),this,SLOT(spby_switch1_Slot()));
+    connect(lineEdit_s1_Fov1,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV1_Slot()));
+    connect(spbx_switch2,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch2_Slot()));
+    connect(spby_switch2,SIGNAL(valueChanged(int)),this,SLOT(spby_switch2_Slot()));
+    connect(lineEdit_s1_Fov2,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV2_Slot()));
+    connect(spbx_switch3,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch3_Slot()));
+    connect(spby_switch3,SIGNAL(valueChanged(int)),this,SLOT(spby_switch3_Slot()));
+    connect(lineEdit_s1_Fov3,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV3_Slot()));
+    connect(spbx_switch4,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch4_Slot()));
+    connect(spby_switch4,SIGNAL(valueChanged(int)),this,SLOT(spby_switch4_Slot()));
+    connect(lineEdit_s1_Fov4,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV4_Slot()));
+    connect(spbx_switch5,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch5_Slot()));
+    connect(spby_switch5,SIGNAL(valueChanged(int)),this,SLOT(spby_switch5_Slot()));
+
+
+
     w_seitchField->setLayout(v22);
     w_seitchField->resize(300,200);
 
@@ -1628,6 +3579,59 @@ void MainWindow::init_cameraCfg()
     connect(change3,SIGNAL(activated(int)),this,SLOT(tosersor_continue(int)));
     connect(lineEdit_continueRadio,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot()));
     connect(lineEdit_continueResolution2,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot()));
+    connect(testfov,SIGNAL(returnPressed()),this,SLOT(spby1_Slot()));
+    connect(fEdt1,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt1_Slot()));
+    connect(lEdt1,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt1_Slot()));
+    connect(spbx1,SIGNAL(valueChanged(int)),this,SLOT(spbx1_Slot()));
+    connect(spby1,SIGNAL(valueChanged(int)),this,SLOT(spby1_Slot()));
+    connect(fEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt2_Slot()));
+    connect(lEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt2_Slot()));
+    connect(spbx2,SIGNAL(valueChanged(int)),this,SLOT(spbx2_Slot()));
+    connect(spby2,SIGNAL(valueChanged(int)),this,SLOT(spby2_Slot()));
+    connect(fEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt3_Slot()));
+    connect(lEdt3,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt3_Slot()));
+    connect(spbx3,SIGNAL(valueChanged(int)),this,SLOT(spbx3_Slot()));
+    connect(spby3,SIGNAL(valueChanged(int)),this,SLOT(spby3_Slot()));
+    connect(fEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt4_Slot()));
+    connect(lEdt4,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt4_Slot()));
+    connect(spbx4,SIGNAL(valueChanged(int)),this,SLOT(spbx4_Slot()));
+    connect(spby4,SIGNAL(valueChanged(int)),this,SLOT(spby4_Slot()));
+    connect(fEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt5_Slot()));
+    connect(lEdt5,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt5_Slot()));
+    connect(spbx5,SIGNAL(valueChanged(int)),this,SLOT(spbx5_Slot()));
+    connect(spby5,SIGNAL(valueChanged(int)),this,SLOT(spby5_Slot()));
+    connect(fEdt6,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt6_Slot()));
+    connect(lEdt6,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt6_Slot()));
+    connect(spbx6,SIGNAL(valueChanged(int)),this,SLOT(spbx6_Slot()));
+    connect(spby6,SIGNAL(valueChanged(int)),this,SLOT(spby6_Slot()));
+    connect(fEdt7,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt7_Slot()));
+    connect(lEdt7,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt7_Slot()));
+    connect(spbx7,SIGNAL(valueChanged(int)),this,SLOT(spbx7_Slot()));
+    connect(spby7,SIGNAL(valueChanged(int)),this,SLOT(spby7_Slot()));
+    connect(fEdt8,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt8_Slot()));
+    connect(lEdt8,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt8_Slot()));
+    connect(spbx8,SIGNAL(valueChanged(int)),this,SLOT(spbx8_Slot()));
+    connect(spby8,SIGNAL(valueChanged(int)),this,SLOT(spby8_Slot()));
+    connect(fEdt9,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt9_Slot()));
+    connect(lEdt9,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt9_Slot()));
+    connect(spbx9,SIGNAL(valueChanged(int)),this,SLOT(spbx9_Slot()));
+    connect(spby9,SIGNAL(valueChanged(int)),this,SLOT(spby9_Slot()));
+    connect(fEdt10,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt10_Slot()));
+    connect(lEdt10,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt10_Slot()));
+    connect(spbx10,SIGNAL(valueChanged(int)),this,SLOT(spbx10_Slot()));
+    connect(spby10,SIGNAL(valueChanged(int)),this,SLOT(spby10_Slot()));
+    connect(fEdt11,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt11_Slot()));
+    connect(lEdt11,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt11_Slot()));
+    connect(spbx11,SIGNAL(valueChanged(int)),this,SLOT(spbx11_Slot()));
+    connect(spby11,SIGNAL(valueChanged(int)),this,SLOT(spby11_Slot()));
+    connect(fEdt12,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt12_Slot()));
+    connect(lEdt12,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt12_Slot()));
+    connect(spbx12,SIGNAL(valueChanged(int)),this,SLOT(spbx12_Slot()));
+    connect(spby12,SIGNAL(valueChanged(int)),this,SLOT(spby12_Slot()));
+    connect(fEdt13,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt13_Slot()));
+    connect(lEdt13,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt13_Slot()));
+    connect(spbx13,SIGNAL(valueChanged(int)),this,SLOT(spbx13_Slot()));
+    connect(spby13,SIGNAL(valueChanged(int)),this,SLOT(spby13_Slot()));
 //    connect(btn1,SIGNAL(clicked(bool)),this,SLOT(btn_continue1_Slot()));
 //    connect(btn2,SIGNAL(clicked(bool)),this,SLOT(btn_continue2_Slot()));
 //    connect(btn3,SIGNAL(clicked(bool)),this,SLOT(btn_continue3_Slot()));
@@ -1728,16 +3732,16 @@ void MainWindow::init_cameraCfg_sec()
     v->addWidget(g);
 
     connect(change1_sec,SIGNAL(activated(int)),this,SLOT(tosersor_fix_sec(int)));
-/*
     connect(btn_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot_sec()));
-    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_sec()));
-    connect(lineEdit_fieldRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot_sec()));
-    connect(lineEdit_fieldResolution_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot_sec()));
-    connect(lineEdit_fieldResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot_sec()));
-    connect(lEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot_sec()));
-    connect(sp_sec,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot_sec(int)));
-    connect(sp2_sec,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot_sec(int)));
-*/
+    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_fieldRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot2()));
+    connect(lineEdit_fieldResolution_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot2()));
+    connect(lineEdit_fieldResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot2()));
+    connect(lEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot2()));
+    connect(sp_sec,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot2(int)));
+    connect(sp2_sec,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot2(int)));
+
+
     w_sersor1_sec->setLayout(v);
     w_sersor1_sec->resize(300,200);
 
@@ -1885,12 +3889,26 @@ void MainWindow::init_cameraCfg_sec()
     v22->addWidget(g2);
 
     connect(change2_sec,SIGNAL(activated(int)),this,SLOT(toSensor_switch_sec(int)));
-/*
+
     connect(btn_s1Switch_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot2_sec()));
-    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_sec()));
-    connect(lineEdit_switchRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot_sec()));
-    connect(lineEdit_switchResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot_sec()));
-*/
+    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_switchRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot2()));
+    connect(lineEdit_switchResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot2()));
+    connect(spbx_switch1_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch1_Slot2()));
+    connect(spby_switch1_sec,SIGNAL(valueChanged(int)),this,SLOT(spby_switch1_Slot2()));
+    connect(lineEdit_s1_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV1_Slot2()));
+    connect(spbx_switch2_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch2_Slot2()));
+    connect(spby_switch2_sec,SIGNAL(valueChanged(int)),this,SLOT(spby_switch2_Slot2()));
+    connect(lineEdit_s1_Fov2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV2_Slot2()));
+    connect(spbx_switch3_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch3_Slot2()));
+    connect(spby_switch3_sec,SIGNAL(valueChanged(int)),this,SLOT(spby_switch3_Slot2()));
+    connect(lineEdit_s1_Fov3_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV3_Slot2()));
+    connect(spbx_switch4_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch4_Slot2()));
+    connect(spby_switch4_sec,SIGNAL(valueChanged(int)),this,SLOT(spby_switch4_Slot2()));
+    connect(lineEdit_s1_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV4_Slot2()));
+    connect(spbx_switch5_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch5_Slot2()));
+    connect(spby_switch5_sec,SIGNAL(valueChanged(int)),this,SLOT(spby_switch5_Slot2()));
+
     w_seitchField_sec->setLayout(v22);
     w_seitchField_sec->resize(300,200);
 
@@ -2134,12 +4152,66 @@ void MainWindow::init_cameraCfg_sec()
     v3b->addWidget(g3);
 
     connect(change3_sec,SIGNAL(activated(int)),this,SLOT(tosersor_continue_sec(int)));
-/*
+
     connect(btn_continue_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot3_sec()));
-    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_sec()));
-    connect(lineEdit_continueRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot_sec()));
-    connect(lineEdit_continueResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot_sec()));
-*/
+    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_continueRadio_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot2()));
+    connect(lineEdit_continueResolution2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot2()));
+
+    connect(testfov_sec,SIGNAL(returnPressed()),this,SLOT(spby1_Slot2()));
+    connect(fEdt1_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt1_Slot2()));
+    connect(lEdt1_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt1_Slot2()));
+    connect(spbx1_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx1_Slot2()));
+    connect(spby1_sec,SIGNAL(valueChanged(int)),this,SLOT(spby1_Slot2()));
+    connect(fEdt2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt2_Slot2()));
+    connect(lEdt2_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt2_Slot2()));
+    connect(spbx2_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx2_Slot2()));
+    connect(spby2_sec,SIGNAL(valueChanged(int)),this,SLOT(spby2_Slot2()));
+    connect(fEdt3_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt3_Slot2()));
+    connect(lEdt3_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt3_Slot2()));
+    connect(spbx3_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx3_Slot2()));
+    connect(spby3_sec,SIGNAL(valueChanged(int)),this,SLOT(spby3_Slot2()));
+    connect(fEdt4_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt4_Slot2()));
+    connect(lEdt4_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt4_Slot2()));
+    connect(spbx4_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx4_Slot2()));
+    connect(spby4_sec,SIGNAL(valueChanged(int)),this,SLOT(spby4_Slot2()));
+    connect(fEdt5_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt5_Slot2()));
+    connect(lEdt5_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt5_Slot2()));
+    connect(spbx5_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx5_Slot2()));
+    connect(spby5_sec,SIGNAL(valueChanged(int)),this,SLOT(spby5_Slot2()));
+    connect(fEdt6_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt6_Slot2()));
+    connect(lEdt6_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt6_Slot2()));
+    connect(spbx6_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx6_Slot2()));
+    connect(spby6_sec,SIGNAL(valueChanged(int)),this,SLOT(spby6_Slot2()));
+    connect(fEdt7_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt7_Slot2()));
+    connect(lEdt7_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt7_Slot2()));
+    connect(spbx7_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx7_Slot2()));
+    connect(spby7_sec,SIGNAL(valueChanged(int)),this,SLOT(spby7_Slot2()));
+    connect(fEdt8_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt8_Slot2()));
+    connect(lEdt8_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt8_Slot2()));
+    connect(spbx8_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx8_Slot2()));
+    connect(spby8_sec,SIGNAL(valueChanged(int)),this,SLOT(spby8_Slot2()));
+    connect(fEdt9_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt9_Slot2()));
+    connect(lEdt9_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt9_Slot2()));
+    connect(spbx9_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx9_Slot2()));
+    connect(spby9_sec,SIGNAL(valueChanged(int)),this,SLOT(spby9_Slot2()));
+    connect(fEdt10_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt10_Slot2()));
+    connect(lEdt10_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt10_Slot2()));
+    connect(spbx10_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx10_Slot2()));
+    connect(spby10_sec,SIGNAL(valueChanged(int)),this,SLOT(spby10_Slot2()));
+    connect(fEdt11_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt11_Slot2()));
+    connect(lEdt11_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt11_Slot2()));
+    connect(spbx11_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx11_Slot2()));
+    connect(spby11_sec,SIGNAL(valueChanged(int)),this,SLOT(spby11_Slot2()));
+    connect(fEdt12_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt12_Slot2()));
+    connect(lEdt12_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt12_Slot2()));
+    connect(spbx12_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx12_Slot2()));
+    connect(spby12_sec,SIGNAL(valueChanged(int)),this,SLOT(spby12_Slot2()));
+    connect(fEdt13_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt13_Slot2()));
+    connect(lEdt13_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt13_Slot2()));
+    connect(spbx13_sec,SIGNAL(valueChanged(int)),this,SLOT(spbx13_Slot2()));
+    connect(spby13_sec,SIGNAL(valueChanged(int)),this,SLOT(spby13_Slot2()));
+
     w_ContinueField_sec->setLayout(v3b);
     w_ContinueField_sec->resize(300,500);
     w_ContinueField_sec->setWindowTitle("通道2连续视场");
@@ -2226,16 +4298,16 @@ void MainWindow::init_cameraCfg_thi()
     v->addWidget(g);
 
     connect(change1_thi,SIGNAL(activated(int)),this,SLOT(tosersor_fix_thi(int)));
-/*
+
     connect(btn_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot_thi()));
     connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_thi()));
-    connect(lineEdit_fieldRadio_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot_thi()));
-    connect(lineEdit_fieldResolution_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot_thi()));
-    connect(lineEdit_fieldResolution2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot_thi()));
-    connect(lEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot_thi()));
-    connect(sp_thi,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot_thi(int)));
-    connect(sp2_thi,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot_thi(int)));
-*/
+    connect(lineEdit_fieldRadio_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot()));
+    connect(lineEdit_fieldResolution_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot3()));
+    connect(lineEdit_fieldResolution2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot3()));
+    connect(lEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot3()));
+    connect(sp_thi,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot3(int)));
+    connect(sp2_thi,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot3(int)));
+
     w_sersor1_thi->setLayout(v);
     w_sersor1_thi->resize(300,200);
 
@@ -2383,12 +4455,29 @@ void MainWindow::init_cameraCfg_thi()
     v22->addWidget(g2);
 
     connect(change2_thi,SIGNAL(activated(int)),this,SLOT(toSensor_switch_thi(int)));
-/*
+
     connect(btn_s1Switch_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot2_thi()));
     connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_thi()));
     connect(lineEdit_switchRadio_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot_thi()));
     connect(lineEdit_switchResolution2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot_thi()));
-*/
+
+    connect(spbx_switch1_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch1_Slot3()));
+    connect(spby_switch1_thi,SIGNAL(valueChanged(int)),this,SLOT(spby_switch1_Slot3()));
+    connect(lineEdit_s1_Fov1_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV1_Slot3()));
+    connect(spbx_switch2_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch2_Slot3()));
+    connect(spby_switch2_thi,SIGNAL(valueChanged(int)),this,SLOT(spby_switch2_Slot3()));
+    connect(lineEdit_s1_Fov2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV2_Slot3()));
+    connect(spbx_switch3_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch3_Slot3()));
+    connect(spby_switch3_thi,SIGNAL(valueChanged(int)),this,SLOT(spby_switch3_Slot3()));
+    connect(lineEdit_s1_Fov3_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV3_Slot3()));
+    connect(spbx_switch4_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch4_Slot3()));
+    connect(spby_switch4_thi,SIGNAL(valueChanged(int)),this,SLOT(spby_switch4_Slot3()));
+    connect(lineEdit_s1_Fov4_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV4_Slot3()));
+    connect(spbx_switch5_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch5_Slot3()));
+    connect(spby_switch5_thi,SIGNAL(valueChanged(int)),this,SLOT(spby_switch5_Slot3()));
+
+
+
     w_seitchField_thi->setLayout(v22);
     w_seitchField_thi->resize(300,200);
 
@@ -2632,12 +4721,66 @@ void MainWindow::init_cameraCfg_thi()
     v3b->addWidget(g3);
 
     connect(change3_thi,SIGNAL(activated(int)),this,SLOT(tosersor_continue_thi(int)));
-/*
+
     connect(btn_continue_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot3_thi()));
-    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_thi()));
-    connect(lineEdit_continueRadio_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot_thi()));
+    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_continueRadio_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot3()));
     connect(lineEdit_continueResolution2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot_thi()));
-*/
+
+    connect(testfov_thi,SIGNAL(returnPressed()),this,SLOT(spby1_Slot3()));
+    connect(fEdt1_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt1_Slot3()));
+    connect(lEdt1_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt1_Slot3()));
+    connect(spbx1_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx1_Slot3()));
+    connect(spby1_thi,SIGNAL(valueChanged(int)),this,SLOT(spby1_Slot3()));
+    connect(fEdt2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt2_Slot3()));
+    connect(lEdt2_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt2_Slot3()));
+    connect(spbx2_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx2_Slot3()));
+    connect(spby2_thi,SIGNAL(valueChanged(int)),this,SLOT(spby2_Slot3()));
+    connect(fEdt3_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt3_Slot3()));
+    connect(lEdt3_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt3_Slot3()));
+    connect(spbx3_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx3_Slot3()));
+    connect(spby3_thi,SIGNAL(valueChanged(int)),this,SLOT(spby3_Slot3()));
+    connect(fEdt4_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt4_Slot3()));
+    connect(lEdt4_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt4_Slot3()));
+    connect(spbx4_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx4_Slot3()));
+    connect(spby4_thi,SIGNAL(valueChanged(int)),this,SLOT(spby4_Slot3()));
+    connect(fEdt5_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt5_Slot3()));
+    connect(lEdt5_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt5_Slot3()));
+    connect(spbx5_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx5_Slot3()));
+    connect(spby5_thi,SIGNAL(valueChanged(int)),this,SLOT(spby5_Slot3()));
+    connect(fEdt6_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt6_Slot3()));
+    connect(lEdt6_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt6_Slot3()));
+    connect(spbx6_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx6_Slot3()));
+    connect(spby6_thi,SIGNAL(valueChanged(int)),this,SLOT(spby6_Slot3()));
+    connect(fEdt7_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt7_Slot3()));
+    connect(lEdt7_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt7_Slot3()));
+    connect(spbx7_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx7_Slot3()));
+    connect(spby7_thi,SIGNAL(valueChanged(int)),this,SLOT(spby7_Slot3()));
+    connect(fEdt8_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt8_Slot3()));
+    connect(lEdt8_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt8_Slot3()));
+    connect(spbx8_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx8_Slot3()));
+    connect(spby8_thi,SIGNAL(valueChanged(int)),this,SLOT(spby8_Slot3()));
+    connect(fEdt9_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt9_Slot3()));
+    connect(lEdt9_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt9_Slot3()));
+    connect(spbx9_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx9_Slot3()));
+    connect(spby9_thi,SIGNAL(valueChanged(int)),this,SLOT(spby9_Slot3()));
+    connect(fEdt10_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt10_Slot3()));
+    connect(lEdt10_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt10_Slot3()));
+    connect(spbx10_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx10_Slot3()));
+    connect(spby10_thi,SIGNAL(valueChanged(int)),this,SLOT(spby10_Slot3()));
+    connect(fEdt11_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt11_Slot3()));
+    connect(lEdt11_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt11_Slot3()));
+    connect(spbx11_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx11_Slot3()));
+    connect(spby11_thi,SIGNAL(valueChanged(int)),this,SLOT(spby11_Slot3()));
+    connect(fEdt12_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt12_Slot3()));
+    connect(lEdt12_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt12_Slot3()));
+    connect(spbx12_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx12_Slot3()));
+    connect(spby12_thi,SIGNAL(valueChanged(int)),this,SLOT(spby12_Slot3()));
+    connect(fEdt13_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt13_Slot3()));
+    connect(lEdt13_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt13_Slot3()));
+    connect(spbx13_thi,SIGNAL(valueChanged(int)),this,SLOT(spbx13_Slot3()));
+    connect(spby13_thi,SIGNAL(valueChanged(int)),this,SLOT(spby13_Slot3()));
+
     w_ContinueField_thi->setLayout(v3b);
     w_ContinueField_thi->resize(300,500);
     w_ContinueField_thi->setWindowTitle("通道3连续视场");
@@ -2724,16 +4867,16 @@ void MainWindow::init_cameraCfg_fou()
     v->addWidget(g);
 
     connect(change1_fou,SIGNAL(activated(int)),this,SLOT(tosersor_fix_fou(int)));
-/*
+
     connect(btn_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot_fou()));
-    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fou()));
-    connect(lineEdit_fieldRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot_fou()));
-    connect(lineEdit_fieldResolution_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot_fou()));
-    connect(lineEdit_fieldResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot_fou()));
-    connect(lEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot_fou()));
-    connect(sp_fou,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot_fou(int)));
-    connect(sp2_fou,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot_fou(int)));
-*/
+    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_fieldRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot4()));
+    connect(lineEdit_fieldResolution_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot4()));
+    connect(lineEdit_fieldResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot4()));
+    connect(lEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot4()));
+    connect(sp_fou,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot4(int)));
+    connect(sp2_fou,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot4(int)));
+
     w_sersor1_fou->setLayout(v);
     w_sersor1_fou->resize(300,200);
 
@@ -2881,12 +5024,28 @@ void MainWindow::init_cameraCfg_fou()
     v22->addWidget(g2);
 
     connect(change2_fou,SIGNAL(activated(int)),this,SLOT(toSensor_switch_fou(int)));
-/*
+
     connect(btn_s1Switch_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot2_fou()));
-    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fou()));
-    connect(lineEdit_switchRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot_fou()));
-    connect(lineEdit_switchResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot_fou()));
-*/
+    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_switchRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot4()));
+    connect(lineEdit_switchResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot4()));
+
+    connect(spbx_switch1_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch1_Slot4()));
+    connect(spby_switch1_fou,SIGNAL(valueChanged(int)),this,SLOT(spby_switch1_Slot4()));
+    connect(lineEdit_s1_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV1_Slot4()));
+    connect(spbx_switch2_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch2_Slot4()));
+    connect(spby_switch2_fou,SIGNAL(valueChanged(int)),this,SLOT(spby_switch2_Slot4()));
+    connect(lineEdit_s1_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV2_Slot4()));
+    connect(spbx_switch3_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch3_Slot4()));
+    connect(spby_switch3_fou,SIGNAL(valueChanged(int)),this,SLOT(spby_switch3_Slot4()));
+    connect(lineEdit_s1_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV3_Slot4()));
+    connect(spbx_switch4_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch4_Slot4()));
+    connect(spby_switch4_fou,SIGNAL(valueChanged(int)),this,SLOT(spby_switch4_Slot4()));
+    connect(lineEdit_s1_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV4_Slot4()));
+    connect(spbx_switch5_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch5_Slot4()));
+    connect(spby_switch5_fou,SIGNAL(valueChanged(int)),this,SLOT(spby_switch5_Slot4()));
+
+
     w_seitchField_fou->setLayout(v22);
     w_seitchField_fou->resize(300,200);
 
@@ -3130,12 +5289,65 @@ void MainWindow::init_cameraCfg_fou()
     v3b->addWidget(g3);
 
     connect(change3_fou,SIGNAL(activated(int)),this,SLOT(tosersor_continue_fou(int)));
-/*
+
     connect(btn_continue_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot3_fou()));
-    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fou()));
-    connect(lineEdit_continueRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot_fou()));
-    connect(lineEdit_continueResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot_fou()));
-*/
+    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_continueRadio_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot4()));
+    connect(lineEdit_continueResolution2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot4()));
+
+    connect(testfov_fou,SIGNAL(returnPressed()),this,SLOT(spby1_Slot4()));
+    connect(fEdt1_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt1_Slot4()));
+    connect(lEdt1_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt1_Slot4()));
+    connect(spbx1_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx1_Slot4()));
+    connect(spby1_fou,SIGNAL(valueChanged(int)),this,SLOT(spby1_Slot4()));
+    connect(fEdt2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt2_Slot4()));
+    connect(lEdt2_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt2_Slot4()));
+    connect(spbx2_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx2_Slot4()));
+    connect(spby2_fou,SIGNAL(valueChanged(int)),this,SLOT(spby2_Slot4()));
+    connect(fEdt3_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt3_Slot4()));
+    connect(lEdt3_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt3_Slot4()));
+    connect(spbx3_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx3_Slot4()));
+    connect(spby3_fou,SIGNAL(valueChanged(int)),this,SLOT(spby3_Slot4()));
+    connect(fEdt4_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt4_Slot4()));
+    connect(lEdt4_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt4_Slot4()));
+    connect(spbx4_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx4_Slot4()));
+    connect(spby4_fou,SIGNAL(valueChanged(int)),this,SLOT(spby4_Slot4()));
+    connect(fEdt5_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt5_Slot4()));
+    connect(lEdt5_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt5_Slot4()));
+    connect(spbx5_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx5_Slot4()));
+    connect(spby5_fou,SIGNAL(valueChanged(int)),this,SLOT(spby5_Slot4()));
+    connect(fEdt6_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt6_Slot4()));
+    connect(lEdt6_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt6_Slot4()));
+    connect(spbx6_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx6_Slot4()));
+    connect(spby6_fou,SIGNAL(valueChanged(int)),this,SLOT(spby6_Slot4()));
+    connect(fEdt7_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt7_Slot4()));
+    connect(lEdt7_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt7_Slot4()));
+    connect(spbx7_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx7_Slot4()));
+    connect(spby7_fou,SIGNAL(valueChanged(int)),this,SLOT(spby7_Slot4()));
+    connect(fEdt8_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt8_Slot4()));
+    connect(lEdt8_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt8_Slot4()));
+    connect(spbx8_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx8_Slot4()));
+    connect(spby8_fou,SIGNAL(valueChanged(int)),this,SLOT(spby8_Slot4()));
+    connect(fEdt9_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt9_Slot4()));
+    connect(lEdt9_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt9_Slot4()));
+    connect(spbx9_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx9_Slot4()));
+    connect(spby9_fou,SIGNAL(valueChanged(int)),this,SLOT(spby9_Slot4()));
+    connect(fEdt10_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt10_Slot4()));
+    connect(lEdt10_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt10_Slot4()));
+    connect(spbx10_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx10_Slot4()));
+    connect(spby10_fou,SIGNAL(valueChanged(int)),this,SLOT(spby10_Slot4()));
+    connect(fEdt11_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt11_Slot4()));
+    connect(lEdt11_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt11_Slot4()));
+    connect(spbx11_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx11_Slot4()));
+    connect(spby11_fou,SIGNAL(valueChanged(int)),this,SLOT(spby11_Slot4()));
+    connect(fEdt12_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt12_Slot4()));
+    connect(lEdt12_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt12_Slot4()));
+    connect(spbx12_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx12_Slot4()));
+    connect(spby12_fou,SIGNAL(valueChanged(int)),this,SLOT(spby12_Slot4()));
+    connect(fEdt13_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt13_Slot4()));
+    connect(lEdt13_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt13_Slot4()));
+    connect(spbx13_fou,SIGNAL(valueChanged(int)),this,SLOT(spbx13_Slot4()));
+    connect(spby13_fou,SIGNAL(valueChanged(int)),this,SLOT(spby13_Slot4()));
     w_ContinueField_fou->setLayout(v3b);
     w_ContinueField_fou->resize(300,500);
     w_ContinueField_fou->setWindowTitle("通道4连续视场");
@@ -3222,16 +5434,16 @@ void MainWindow::init_cameraCfg_fif()
     v->addWidget(g);
 
     connect(change1_fif,SIGNAL(activated(int)),this,SLOT(tosersor_fix_fif(int)));
-/*
+
     connect(btn_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot_fif()));
-    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fif()));
-    connect(lineEdit_fieldRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot_fif()));
-    connect(lineEdit_fieldResolution_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot_fif()));
-    connect(lineEdit_fieldResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot_fif()));
-    connect(lEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot_fif()));
-    connect(sp_fif,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot_fif(int)));
-    connect(sp2_fif,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot_fif(int)));
-*/
+    connect(btn_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_fieldRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_Radio_Slot5()));
+    connect(lineEdit_fieldResolution_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution_Slot5()));
+    connect(lineEdit_fieldResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_Resolution2_Slot5()));
+    connect(lEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fix_view_Slot5()));
+    connect(sp_fif,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_x_Slot5(int)));
+    connect(sp2_fif,SIGNAL(valueChanged(int)),this,SLOT(sp_fix_y_Slot5(int)));
+
     w_sersor1_fif->setLayout(v);
     w_sersor1_fif->resize(300,200);
 
@@ -3379,12 +5591,28 @@ void MainWindow::init_cameraCfg_fif()
     v22->addWidget(g2);
 
     connect(change2_fif,SIGNAL(activated(int)),this,SLOT(toSensor_switch_fif(int)));
-/*
+
     connect(btn_s1Switch_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot2_fif()));
-    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fif()));
-    connect(lineEdit_switchRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot_fif()));
-    connect(lineEdit_switchResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot_fif()));
-*/
+    connect(btn_s1Switch_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_switchRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Radio_Slot5()));
+    connect(lineEdit_switchResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_Resolution_Slot5()));
+
+    connect(spbx_switch1_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch1_Slot5()));
+    connect(spby_switch1_fif,SIGNAL(valueChanged(int)),this,SLOT(spby_switch1_Slot5()));
+    connect(lineEdit_s1_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV1_Slot5()));
+    connect(spbx_switch2_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch2_Slot5()));
+    connect(spby_switch2_fif,SIGNAL(valueChanged(int)),this,SLOT(spby_switch2_Slot5()));
+    connect(lineEdit_s1_Fov2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV2_Slot5()));
+    connect(spbx_switch3_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch3_Slot5()));
+    connect(spby_switch3_fif,SIGNAL(valueChanged(int)),this,SLOT(spby_switch3_Slot5()));
+    connect(lineEdit_s1_Fov3_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV3_Slot5()));
+    connect(spbx_switch4_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch4_Slot5()));
+    connect(spby_switch4_fif,SIGNAL(valueChanged(int)),this,SLOT(spby_switch4_Slot5()));
+    connect(lineEdit_s1_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_switch_s1_FOV4_Slot5()));
+    connect(spbx_switch5_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx_switch5_Slot5()));
+    connect(spby_switch5_fif,SIGNAL(valueChanged(int)),this,SLOT(spby_switch5_Slot5()));
+
+
     w_seitchField_fif->setLayout(v22);
     w_seitchField_fif->resize(300,200);
 
@@ -3628,12 +5856,66 @@ void MainWindow::init_cameraCfg_fif()
     v3b->addWidget(g3);
 
     connect(change3_fif,SIGNAL(activated(int)),this,SLOT(tosersor_continue_fif(int)));
-/*
+
     connect(btn_continue_default,SIGNAL(clicked(bool)),this,SLOT(btn_default_Slot3_fif()));
-    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot_fif()));
-    connect(lineEdit_continueRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot_fif()));
-    connect(lineEdit_continueResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot_fif()));
-*/
+    connect(btn_continue_update,SIGNAL(clicked(bool)),this,SLOT(btn_capture2_update_Slot()));
+    connect(lineEdit_continueRadio_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Radio_Slot5()));
+    connect(lineEdit_continueResolution2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_continue_Resolution_Slot5()));
+
+    connect(testfov_fif,SIGNAL(returnPressed()),this,SLOT(spby1_Slot5()));
+    connect(fEdt1_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt1_Slot5()));
+    connect(lEdt1_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt1_Slot5()));
+    connect(spbx1_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx1_Slot5()));
+    connect(spby1_fif,SIGNAL(valueChanged(int)),this,SLOT(spby1_Slot5()));
+    connect(fEdt2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt2_Slot5()));
+    connect(lEdt2_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt2_Slot5()));
+    connect(spbx2_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx2_Slot5()));
+    connect(spby2_fif,SIGNAL(valueChanged(int)),this,SLOT(spby2_Slot5()));
+    connect(fEdt3_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt3_Slot5()));
+    connect(lEdt3_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt3_Slot5()));
+    connect(spbx3_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx3_Slot5()));
+    connect(spby3_fif,SIGNAL(valueChanged(int)),this,SLOT(spby3_Slot5()));
+    connect(fEdt4_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt4_Slot5()));
+    connect(lEdt4_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt4_Slot5()));
+    connect(spbx4_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx4_Slot5()));
+    connect(spby4_fif,SIGNAL(valueChanged(int)),this,SLOT(spby4_Slot5()));
+    connect(fEdt5_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt5_Slot5()));
+    connect(lEdt5_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt5_Slot5()));
+    connect(spbx5_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx5_Slot5()));
+    connect(spby5_fif,SIGNAL(valueChanged(int)),this,SLOT(spby5_Slot5()));
+    connect(fEdt6_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt6_Slot5()));
+    connect(lEdt6_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt6_Slot5()));
+    connect(spbx6_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx6_Slot5()));
+    connect(spby6_fif,SIGNAL(valueChanged(int)),this,SLOT(spby6_Slot5()));
+    connect(fEdt7_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt7_Slot5()));
+    connect(lEdt7_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt7_Slot5()));
+    connect(spbx7_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx7_Slot5()));
+    connect(spby7_fif,SIGNAL(valueChanged(int)),this,SLOT(spby7_Slot5()));
+    connect(fEdt8_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt8_Slot5()));
+    connect(lEdt8_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt8_Slot5()));
+    connect(spbx8_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx8_Slot5()));
+    connect(spby8_fif,SIGNAL(valueChanged(int)),this,SLOT(spby8_Slot5()));
+    connect(fEdt9_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt9_Slot5()));
+    connect(lEdt9_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt9_Slot5()));
+    connect(spbx9_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx9_Slot5()));
+    connect(spby9_fif,SIGNAL(valueChanged(int)),this,SLOT(spby9_Slot5()));
+    connect(fEdt10_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt10_Slot5()));
+    connect(lEdt10_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt10_Slot5()));
+    connect(spbx10_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx10_Slot5()));
+    connect(spby10_fif,SIGNAL(valueChanged(int)),this,SLOT(spby10_Slot5()));
+    connect(fEdt11_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt11_Slot5()));
+    connect(lEdt11_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt11_Slot5()));
+    connect(spbx11_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx11_Slot5()));
+    connect(spby11_fif,SIGNAL(valueChanged(int)),this,SLOT(spby11_Slot5()));
+    connect(fEdt12_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt12_Slot5()));
+    connect(lEdt12_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt12_Slot5()));
+    connect(spbx12_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx12_Slot5()));
+    connect(spby12_fif,SIGNAL(valueChanged(int)),this,SLOT(spby12_Slot5()));
+    connect(fEdt13_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_fEdt13_Slot5()));
+    connect(lEdt13_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_lEdt13_Slot5()));
+    connect(spbx13_fif,SIGNAL(valueChanged(int)),this,SLOT(spbx13_Slot5()));
+    connect(spby13_fif,SIGNAL(valueChanged(int)),this,SLOT(spby13_Slot5()));
+
     w_ContinueField_fif->setLayout(v3b);
     w_ContinueField_fif->resize(300,500);
     w_ContinueField_fif->setWindowTitle("通道5连续视场");
@@ -3851,7 +6133,7 @@ void MainWindow::init_resl()
     //=v->addWidget(O);
 
     w_choose->setLayout(v);
-/*
+
     connect(rdBtn_aisle1_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
     connect(rdBtn_aisle1_2,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
     connect(rdBtn_aisle1_3,SIGNAL(clicked(bool)),this,SLOT(btn_aisle1_Slot()));
@@ -3873,7 +6155,7 @@ void MainWindow::init_resl()
     connect(rdBtn_aisle4_4,SIGNAL(clicked(bool)),this,SLOT(btn_aisle4_Slot()));
 
     connect(rdBtn_aisle5_1,SIGNAL(clicked(bool)),this,SLOT(btn_aisle5_Slot()));
-*/
+
     connect(btn_resolu_confirm,SIGNAL(clicked(bool)),this,SLOT(btn_resolution_clicked()));
 }
 
@@ -4112,14 +6394,9 @@ void MainWindow::showPlat()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=1;i<9;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x02;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+
+
+    /*
     for(int i=1;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
@@ -4127,7 +6404,7 @@ void MainWindow::showPlat()
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }
+    }*/
     send_mutex.lock();
     send_arr[4]=0x31;
     send_arr[5]=0x03;
@@ -4139,6 +6416,183 @@ void MainWindow::showPlat()
     w_plat->show();
     w_plat->show_stat = 1;
 }
+
+void MainWindow::showvedioCfg1()
+{
+    vedio_current_shichang = 0;
+    w_sersor_1->show();
+    w_sersor_1->show_stat = 1;
+}
+void MainWindow::showpidsysCfg1()
+{
+
+        send_mutex.lock();
+        send_arr[4]=0x46;
+        send_arr[5]=0x00;
+        send_oneframe(2);
+        send_mutex.unlock();
+
+    for(int i=1;i<7;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x02;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=48;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x03;
+    send_arr[6]=0x08;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    w_pid->show();
+    w_pid->show_stat = 1;
+}
+
+void MainWindow::showpidsysCfg2()
+{
+    send_mutex.lock();
+    send_arr[4]=0x46;
+    send_arr[5]=0x01;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    for(int i=1;i<7;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=91;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=92;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=0x03;
+    send_arr[6]=0x08;
+    send_oneframe(3);
+    send_mutex.unlock();
+    w_pid2->show();
+    w_pid2->show_stat = 1;
+}
+
+void MainWindow::showpidsysCfg3()
+{
+    send_mutex.lock();
+    send_arr[4]=0x46;
+    send_arr[5]=0x02;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    for(int i=1;i<7;i++){
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=93;
+    send_arr[6]=i;
+    send_oneframe(3);
+    send_mutex.unlock();
+    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=94;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+     send_mutex.lock();
+     send_arr[4]=0x31;
+     send_arr[5]=0x03;
+     send_arr[6]=0x08;
+     send_oneframe(3);
+     send_mutex.unlock();
+     w_pid3->show();
+     w_pid3->show_stat = 1;
+}
+void MainWindow::showpidsysCfg4()
+{
+    send_mutex.lock();
+    send_arr[4]=0x46;
+    send_arr[5]=0x03;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    for(int i=1;i<7;i++){
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=95;
+    send_arr[6]=i;
+    send_oneframe(3);
+    send_mutex.unlock();
+    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=96;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+     send_mutex.lock();
+     send_arr[4]=0x31;
+     send_arr[5]=0x03;
+     send_arr[6]=0x08;
+     send_oneframe(3);
+     send_mutex.unlock();
+    w_pid4->show();
+    w_pid4->show_stat = 1;
+}
+void MainWindow::showpidsysCfg5()
+{
+    send_mutex.lock();
+    send_arr[4]=0x46;
+    send_arr[5]=0x04;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    for(int i=1;i<7;i++){
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=97;
+    send_arr[6]=i;
+    send_oneframe(3);
+    send_mutex.unlock();
+    }
+    for(int i=1;i<5;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=98;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+     send_mutex.lock();
+     send_arr[4]=0x31;
+     send_arr[5]=0x03;
+     send_arr[6]=0x08;
+     send_oneframe(3);
+     send_mutex.unlock();
+    w_pid5->show();
+    w_pid5->show_stat = 1;
+}
+
 
 void MainWindow::showdbgcfg()
 {
@@ -4158,6 +6612,14 @@ void MainWindow::showdbgcfg()
 
 void MainWindow::showspeedconvcfg()
 {
+    send_mutex.lock();
+    send_arr[4]=0x45;
+    send_arr[5]=0x00;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+
+
     for(int i=0;i<16;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
@@ -4166,7 +6628,15 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<2;i++){
+    for(int i=0;i<6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=7;i<13;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=50;
@@ -4179,10 +6649,184 @@ void MainWindow::showspeedconvcfg()
     w_speedconv->show_stat = 1;
 }
 
-void MainWindow::showmtdcfg()
+void MainWindow::showspeedconvcfg_sec()
+{
+
+    send_mutex.lock();
+    send_arr[4]=0x45;
+    send_arr[5]=0x01;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=99;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=100;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=7;i<13;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+
+    w_speedconv_sec->show();
+    w_speedconv_sec->show_stat = 1;
+
+}
+
+void MainWindow::showspeedconvcfg_thi()
+{
+    send_mutex.lock();
+    send_arr[4]=0x45;
+    send_arr[5]=0x02;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+
+
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=101;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=102;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=7;i<13;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    w_speedconv_thi->show();
+    w_speedconv_thi->show_stat = 1;
+}
+
+void MainWindow::showspeedconvcfg_fou()
+{
+    send_mutex.lock();
+    send_arr[4]=0x45;
+    send_arr[5]=0x03;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+
+
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=103;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=104;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=7;i<13;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    w_speedconv_fou->show();
+    w_speedconv_fou->show_stat = 1;
+}
+
+void MainWindow::showspeedconvcfg_fif()
+{
+    send_mutex.lock();
+    send_arr[4]=0x45;
+    send_arr[5]=0x04;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+
+
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=105;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=106;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=7;i<13;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    w_speedconv_fif->show();
+    w_speedconv_fif->show_stat = 1;
+}
+
+void MainWindow:: showmtdcfg()
 {
     w_mtd->show();
     w_mtd->show_stat = 1;
+}
+
+void MainWindow::showjoscfg()
+{
+    /*
+    for(int i=1;i<8;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x01;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    w_jos->show();
+    w_jos->show_stat=1;
+    */
 }
 
 void MainWindow::showCamera()
@@ -4203,30 +6847,30 @@ void MainWindow::showCamera()
 void MainWindow::showCamera_sec()
 {
     current_shichang_sec = 0;
-    /*
+
     for(int i=0;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x3b;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
     w_sersor1_sec->show();
     w_sersor1_sec->show_stat = 1;
 }
 void MainWindow::showCamera_thi()
 {
     current_shichang_thi = 0;
-    /*
+
     for(int i=0;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x43;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
     w_sersor1_thi->show();
     w_sersor1_thi->show_stat = 1;
 }
@@ -4234,15 +6878,15 @@ void MainWindow::showCamera_thi()
 void MainWindow::showCamera_fou()
 {
     current_shichang_fou = 0;
-    /*
+
     for(int i=0;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x4b;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
     w_sersor1_fou->show();
     w_sersor1_fou->show_stat = 1;
 }
@@ -4250,15 +6894,15 @@ void MainWindow::showCamera_fou()
 void MainWindow::showCamera_fif()
 {
     current_shichang_fif = 0;
-    /*
+
     for(int i=0;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x53;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
     w_sersor1_fif->show();
     w_sersor1_fif->show_stat = 1;
 }
@@ -4365,7 +7009,7 @@ void MainWindow::showCapture3()
 
 void MainWindow::showOther()
 {
-    w_osd1->setWindowTitle("OSD参数配置");
+    w_osd1->setWindowTitle("字符叠加");
    
     send_mutex.lock();
     send_arr[4]=0x31;
@@ -4416,10 +7060,10 @@ void MainWindow::btnSensor1SwitchSlot()
 {
     current_shichang = 1;
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x39;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4440,10 +7084,10 @@ void MainWindow::btnSensor1SwitchSlot_sec()
 {
     current_shichang_sec = 1;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x41;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4451,11 +7095,11 @@ void MainWindow::btnSensor1SwitchSlot_sec()
     for(int i=0;i<15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x18;
+        send_arr[5]=0x3c;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_seitchField_sec->show();
     w_seitchField_sec->show_stat = 1;
@@ -4465,10 +7109,10 @@ void MainWindow::btnSensor1SwitchSlot_thi()
 {
     current_shichang_thi = 1;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x49;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4476,11 +7120,11 @@ void MainWindow::btnSensor1SwitchSlot_thi()
     for(int i=0;i<15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x18;
+        send_arr[5]=0x44;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_seitchField_thi->show();
     w_seitchField_thi->show_stat = 1;
@@ -4490,10 +7134,10 @@ void MainWindow::btnSensor1SwitchSlot_fou()
 {
     current_shichang_fou = 1;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x51;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4501,11 +7145,11 @@ void MainWindow::btnSensor1SwitchSlot_fou()
     for(int i=0;i<15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x18;
+        send_arr[5]=0x4c;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_seitchField_fou->show();
     w_seitchField_fou->show_stat = 1;
@@ -4515,10 +7159,10 @@ void MainWindow::btnSensor1SwitchSlot_fif()
 {
     current_shichang_fif = 1;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<5;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x59;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4526,11 +7170,11 @@ void MainWindow::btnSensor1SwitchSlot_fif()
     for(int i=0;i<15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x18;
+        send_arr[5]=0x54;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_seitchField_fif->show();
     w_seitchField_fif->show_stat = 1;
@@ -4543,7 +7187,7 @@ void MainWindow::btnSensor2ContinueSlot()
     for(int i=0;i<4;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=58;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -4564,6 +7208,14 @@ void MainWindow::btnSensor2ContinueSlot()
         send_arr[4]=0x31;
         send_arr[5]=27;
         send_arr[6]=m;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i=0;i<14;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x3c;
+        send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
@@ -4576,15 +7228,15 @@ void MainWindow::btnSensor2ContinueSlot_sec()
 {
     current_shichang_sec = 2;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<4;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x42;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int j=25;j<27;j++){
+    for(int j=61;j<63;j++){
         for(int i=0;i<16;i++){
             send_mutex.lock();
             send_arr[4]=0x31;
@@ -4598,11 +7250,19 @@ void MainWindow::btnSensor2ContinueSlot_sec()
     for(int m=0;m<7;m++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=27;
+        send_arr[5]=63;
         send_arr[6]=m;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
+    for(int i=0;i<14;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=64;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
     w_ContinueField_sec->show();
     w_ContinueField_sec->show_stat = 1;
@@ -4610,16 +7270,24 @@ void MainWindow::btnSensor2ContinueSlot_sec()
 void MainWindow::btnSensor2ContinueSlot_thi()
 {
     current_shichang_thi = 2;
-
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<14;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=72;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int j=25;j<27;j++){
+
+    for(int i=0;i<4;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=74;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int j=69;j<71;j++){
         for(int i=0;i<16;i++){
             send_mutex.lock();
             send_arr[4]=0x31;
@@ -4633,11 +7301,11 @@ void MainWindow::btnSensor2ContinueSlot_thi()
     for(int m=0;m<7;m++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=27;
+        send_arr[5]=71;
         send_arr[6]=m;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_ContinueField_thi->show();
     w_ContinueField_thi->show_stat = 1;
@@ -4647,15 +7315,24 @@ void MainWindow::btnSensor2ContinueSlot_fou()
 {
     current_shichang_fou = 2;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<14;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=0x80;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int j=25;j<27;j++){
+
+    for(int i=0;i<4;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=82;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int j=77;j<79;j++){
         for(int i=0;i<16;i++){
             send_mutex.lock();
             send_arr[4]=0x31;
@@ -4669,11 +7346,11 @@ void MainWindow::btnSensor2ContinueSlot_fou()
     for(int m=0;m<7;m++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=27;
+        send_arr[5]=79;
         send_arr[6]=m;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_ContinueField_fou->show();
     w_ContinueField_fou->show_stat = 1;
@@ -4683,15 +7360,24 @@ void MainWindow::btnSensor2ContinueSlot_fif()
 {
     current_shichang_fif = 2;
 
-    /*for(int i=0;i<4;i++){
+    for(int i=0;i<14;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x17;
+        send_arr[5]=88;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int j=25;j<27;j++){
+
+    for(int i=0;i<4;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=90;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int j=85;j<87;j++){
         for(int i=0;i<16;i++){
             send_mutex.lock();
             send_arr[4]=0x31;
@@ -4705,14 +7391,30 @@ void MainWindow::btnSensor2ContinueSlot_fif()
     for(int m=0;m<7;m++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=27;
+        send_arr[5]=87;
         send_arr[6]=m;
         send_oneframe(3);
         send_mutex.unlock();
-    }*/
+    }
 
     w_ContinueField_fif->show();
     w_ContinueField_fif->show_stat = 1;
+}
+
+void MainWindow::vedio_btnSensor1SwitchSlot()
+{
+    vedio_current_shichang = 1;
+    w_seitchField_1->show();
+    w_seitchField_1->show_stat = 1;
+}
+
+void MainWindow::vedio_btnSensor2ContinueSlot()
+{
+    vedio_current_shichang = 2;
+
+
+    w_ContinueField_1->show();
+    w_ContinueField_1->show_stat = 1;
 }
 
 void MainWindow::tosersor_fix(int i)

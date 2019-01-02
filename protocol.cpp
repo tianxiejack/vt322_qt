@@ -124,7 +124,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 {
     float value_i;
  QString msg;
-     QByteArray ba;
+     QByteArray   ba;
     bool osd_judgment=(output_array[1] == 0x07) || (output_array[1] == 0x08)|| (output_array[1] == 0x09)||(output_array[1] == 0x0a)\
                       ||(output_array[1] == 0x0b) || (output_array[1] == 0x0c)|| (output_array[1] == 0x0d)||(output_array[1] == 0x0e)\
                       ||(output_array[1] == 0x0f) || (output_array[1] == 0x10)|| (output_array[1] == 0x11)||(output_array[1] == 0x12)\
@@ -415,7 +415,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                             CBox_color->setCurrentIndex(value_i-1);
                             break;
                         case 0x06:
-                           osd1_lineEdit_transparency->setText(QString::number(value_i));
+                           CBox_transparency->setCurrentIndex(value_i);
                             break;
                     }
                 }
@@ -445,7 +445,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -475,7 +475,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -505,7 +505,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                             CBox_color->setCurrentIndex(value_i-1);
                             break;
                         case 0x06:
-                           osd1_lineEdit_transparency->setText(QString::number(value_i));
+                           CBox_transparency->setCurrentIndex(value_i);
                             break;
                     }
                 }
@@ -535,7 +535,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -565,7 +565,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -595,7 +595,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -625,7 +625,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                      CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -655,7 +655,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -685,7 +685,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -715,7 +715,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                      CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -745,7 +745,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -775,7 +775,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -805,7 +805,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -835,7 +835,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -865,7 +865,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1138,7 +1138,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1168,7 +1168,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1198,7 +1198,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1228,7 +1228,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1258,7 +1258,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                        CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1288,7 +1288,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1318,7 +1318,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1348,7 +1348,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1378,7 +1378,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1408,7 +1408,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1438,7 +1438,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1468,7 +1468,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1501,7 +1501,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1531,7 +1531,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1561,7 +1561,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -1591,7 +1591,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         CBox_color->setCurrentIndex(value_i-1);
                         break;
                     case 0x06:
-                       osd1_lineEdit_transparency->setText(QString::number(value_i));
+                       CBox_transparency->setCurrentIndex(value_i);
                         break;
                     }
                 }
@@ -2017,19 +2017,19 @@ void MainWindow::read_config(int block)
             send_read_config(block,0,6);
             break;
         case 24:
-            send_read_config(23,0,3);
+            send_read_config(57,0,4);
             send_read_config(block,0,14);
             break;
         case 25:
-            send_read_config(23,0,3);
+            send_read_config(58,0,3);
             send_read_config(block,0,15);
             break;
         case 26:
-            send_read_config(23,0,3);
+            send_read_config(58,0,3);
             send_read_config(block,0,15);
             break;
         case 27:
-            send_read_config(23,0,3);
+            send_read_config(58,0,3);
             send_read_config(block,0,6);
             break;
         case 28:
@@ -2048,6 +2048,130 @@ void MainWindow::read_config(int block)
         case 50:
             send_read_config(block,0,1);
             break;
+        case 56:
+            send_read_config(58,0,3);
+            send_read_config(block,0,13);
+            break;
+        case 57:
+            send_read_config(block,0,4);
+            break;
+        case 58:
+            send_read_config(block,0,3);
+            break;
+        case 59:
+            send_read_config(block,0,6);
+            break;
+        case 60:
+            send_read_config(65,0,4);
+            send_read_config(block,0,14);
+            break;
+        case 61:
+            send_read_config(66,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 62:
+            send_read_config(66,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 63:
+            send_read_config(66,0,3);
+            send_read_config(block,0,6);
+            break;
+        case 64:
+            send_read_config(65,0,4);
+            send_read_config(block,0,13);
+            break;
+        case 65:
+            send_read_config(block,0,4);
+            break;
+        case 66:
+            send_read_config(block,0,3);
+            break;
+        case 67:
+            send_read_config(block,0,6);
+            break;
+        case 68:
+            send_read_config(73,0,4);
+            send_read_config(block,0,14);
+            break;
+        case 69:
+            send_read_config(74,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 70:
+            send_read_config(74,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 71:
+            send_read_config(block,0,6);
+            break;
+        case 72:
+            send_read_config(74,0,3);
+            send_read_config(block,0,13);
+            break;
+        case 73:
+            send_read_config(block,0,4);
+            break;
+        case 74:
+            send_read_config(block,0,3);
+            break;
+        case 75:
+            send_read_config(block,0,6);
+            break;
+        case 76:
+            send_read_config(81,0,4);
+            send_read_config(block,0,14);
+            break;
+        case 77:
+            send_read_config(block,0,15);
+            break;
+        case 78:
+            send_read_config(block,0,15);
+            break;
+        case 79:
+            send_read_config(block,0,6);
+            break;
+        case 80:
+            send_read_config(82,0,3);
+            send_read_config(block,0,13);
+            break;
+        case 81:
+            send_read_config(block,0,4);
+            break;
+        case 82:
+            send_read_config(block,0,3);
+            break;
+        case 83:
+            send_read_config(block,0,6);
+            break;
+        case 84:
+            send_read_config(89,0,4);
+            send_read_config(block,0,14);
+             break;
+        case 85:
+            send_read_config(90,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 86:
+            send_read_config(90,0,3);
+            send_read_config(block,0,15);
+            break;
+        case 87:
+            send_read_config(90,0,3);
+            send_read_config(block,0,6);
+            break;
+        case 88:
+            send_read_config(90,0,3);
+            send_read_config(block,0,13);
+            break;
+        case 89:
+            send_read_config(block,0,4);
+            break;
+        case 90:
+            send_read_config(block,0,3);
+            break;
+
+
         default:
             break;
     }
