@@ -17,6 +17,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QPushButton>
 #include <QComboBox>
 #include <QStackedLayout>
 #include <QFormLayout>
@@ -85,9 +86,25 @@ public:
     void init_menu();
     void init_sysCfg();
     void init_platCfg();
+
+    void init_pidCfg();
+    void init_pidCfg2();
+    void init_pidCfg3();
+    void init_pidCfg4();
+    void init_pidCfg5();
+    void init_vedioCfg();
+    void init_vedioCfg_sec();
+    void init_vedioCfg_thi();
+    void init_vedioCfg_fou();
+    void init_vedioCfg_fif();
     void init_dbCfg();
     void init_speedconvCfg();
+    void init_speedconvCfg_sec();
+    void init_speedconvCfg_thi();
+    void init_speedconvCfg_fou();
+    void init_speedconvCfg_fif();
     void init_mtdCfg();
+    void init_josCfg();
     void init_utcCfg();
     void init_captureCfg();
     void init_OSDCfg();
@@ -125,6 +142,9 @@ public:
     void btnSensor2ContinueSlot_fou();
     void btnSensor2ContinueSlot_fif();
 
+    void vedio_btnSensor1SwitchSlot();
+    void vedio_btnSensor2ContinueSlot();
+
     /*发送0x31命令*/
     void read_config(int block);
     void send_read_config(int block,int start_field, int end_field);
@@ -154,6 +174,14 @@ public slots:
     void showJos();
     void showSysCfg();
     void showPlat();
+
+    void showpidsysCfg1();
+    void showpidsysCfg2();
+    void showpidsysCfg3();
+    void showpidsysCfg4();
+    void showpidsysCfg5();
+    void showvedioCfg1();
+
     void showCamera();
     void showCamera_sec();
     void showCamera_thi();
@@ -168,7 +196,12 @@ public slots:
     void showOther();
     void showdbgcfg();
     void showspeedconvcfg();
+    void showspeedconvcfg_sec();
+    void showspeedconvcfg_thi();
+    void showspeedconvcfg_fou();
+    void showspeedconvcfg_fif();
     void showmtdcfg();
+    void showjoscfg();
 
     /*系统配置槽函数*/
     void btnDownSlot();
@@ -178,10 +211,31 @@ public slots:
     void btnUpdate();
     void btnFPGA_clicked();
 
+    /*摄像机槽函数*/
+    void vedio_tosersor_fix(int i);
+    void vedio_toSensor_switch(int i);
+    void vedio_tosersor_continue(int i);
+
+
     /*相机配置槽函数*/
     void btn_default_Slot();
     void btn_default_Slot2();
     void btn_default_Slot3();
+    void btn_default_Slot_sec();
+    void btn_default_Slot2_sec();
+    void btn_default_Slot3_sec();
+    void btn_default_Slot_thi();
+    void btn_default_Slot2_thi();
+    void btn_default_Slot3_thi();
+    void btn_default_Slot_fou();
+    void btn_default_Slot2_fou();
+    void btn_default_Slot3_fou();
+    void btn_default_Slot_fif();
+    void btn_default_Slot2_fif();
+    void btn_default_Slot3_fif();
+
+
+
     void tosersor_fix(int i);
     void tosersor_fix_sec(int i);
     void tosersor_fix_thi(int i);
@@ -229,7 +283,7 @@ private slots:
     void lEdt_sysCfg_Slot();
 	void btn_choose_Slot();
     void CBox_sysCfg_Slot(int i);
-    void checkBox_channel_Slot(int i);
+    void checkBox_channel_Slot();
 
 	/*通道分辨率*/
     void btn_aisle1_Slot();
@@ -248,7 +302,7 @@ private slots:
     void lEdt_Jos5_Slot();
     void lEdt_Jos6_Slot();
     void lEdt_Jos7_Slot();
-
+/*
     void lEdt_PID1_Slot();
     void lEdt_PID2_Slot();
     void lEdt_PID3_Slot();
@@ -257,6 +311,7 @@ private slots:
     void lEdt_PID6_Slot();
     void lEdt_PID7_Slot();
     void lEdt_PID8_Slot();
+    */
 
     void lEdt_plat1_Slot();
     void lEdt_plat2_Slot();
@@ -267,12 +322,108 @@ private slots:
     void lEdt_plat7_Slot();
     void outMode_Slot(int i);
 
+    /*PID1配置*/
+       void lEdt_kx_Slot();
+       void lEdt_ky_Slot();
+       void x_ratio_control_Slot();
+       void y_ratio_control_Slot();
+       void lEdt_errx_Slot();
+       void lEdt_erry_Slot();
+       void lEdt_time_Slot();
+       void lEdt_PID1_Slot();
+       void lEdt_PID2_Slot();
+       void lEdt_PID3_Slot();
+       void lEdt_PID4_Slot();
+       void lEdt_PID5_Slot();
+       void lEdt_PID6_Slot();
+       void lEdt_PID7_Slot();
+       void lEdt_PID8_Slot();
+       void btn_pid_Default_Slot();
+       void btn_pid_Updata_Slot();
+
+       /*PID2配置*/
+       void lEdt_kx_Slot2();
+       void lEdt_ky_Slot2();
+       void x_ratio_control_Slot2();
+       void y_ratio_control_Slot2();
+       void lEdt_errx_Slot2();
+       void lEdt_erry_Slot2();
+       void lEdt_time_Slot2();
+       void lEdt_PID1_Slot2();
+       void lEdt_PID2_Slot2();
+       void lEdt_PID3_Slot2();
+       void lEdt_PID4_Slot2();
+       void lEdt_PID5_Slot2();
+       void lEdt_PID6_Slot2();
+       void lEdt_PID7_Slot2();
+       void lEdt_PID8_Slot2();
+       void btn_pid_Default_Slot2();
+       void btn_pid_Updata_Slot2();
+
+       /*PID3配置*/
+       void lEdt_kx_Slot3();
+       void lEdt_ky_Slot3();
+       void x_ratio_control_Slot3();
+       void y_ratio_control_Slot3();
+       void lEdt_errx_Slot3();
+       void lEdt_erry_Slot3();
+       void lEdt_time_Slot3();
+       void lEdt_PID1_Slot3();
+       void lEdt_PID2_Slot3();
+       void lEdt_PID3_Slot3();
+       void lEdt_PID4_Slot3();
+       void lEdt_PID5_Slot3();
+       void lEdt_PID6_Slot3();
+       void lEdt_PID7_Slot3();
+       void lEdt_PID8_Slot3();
+       void btn_pid_Default_Slot3();
+       void btn_pid_Updata_Slot3();
+
+       /*PID4配置*/
+       void lEdt_kx_Slot4();
+       void lEdt_ky_Slot4();
+       void x_ratio_control_Slot4();
+       void y_ratio_control_Slot4();
+       void lEdt_errx_Slot4();
+       void lEdt_erry_Slot4();
+       void lEdt_time_Slot4();
+       void lEdt_PID1_Slot4();
+       void lEdt_PID2_Slot4();
+       void lEdt_PID3_Slot4();
+       void lEdt_PID4_Slot4();
+       void lEdt_PID5_Slot4();
+       void lEdt_PID6_Slot4();
+       void lEdt_PID7_Slot4();
+       void lEdt_PID8_Slot4();
+       void btn_pid_Default_Slot4();
+       void btn_pid_Updata_Slot4();
+       /*PID5配置*/
+       void lEdt_kx_Slot5();
+       void lEdt_ky_Slot5();
+       void x_ratio_control_Slot5();
+       void y_ratio_control_Slot5();
+       void lEdt_errx_Slot5();
+       void lEdt_erry_Slot5();
+       void lEdt_time_Slot5();
+       void lEdt_PID1_Slot5();
+       void lEdt_PID2_Slot5();
+       void lEdt_PID3_Slot5();
+       void lEdt_PID4_Slot5();
+       void lEdt_PID5_Slot5();
+       void lEdt_PID6_Slot5();
+       void lEdt_PID7_Slot5();
+       void lEdt_PID8_Slot5();
+       void btn_pid_Default_Slot5();
+       void btn_pid_Updata_Slot5();
+
     /*捕获配置配置*/
+       /*
     void lEdt_kx_Slot();
     void lEdt_ky_Slot();
     void lEdt_errx_Slot();
     void lEdt_erry_Slot();
     void lEdt_time_Slot();
+    */
     void lEdt_dbg5_Slot();
     void lEdt_dbg6_Slot();
     void lEdt_dbg7_Slot();
@@ -285,7 +436,7 @@ private slots:
     void lEdt_dbg14_Slot();
     void lEdt_dbg15_Slot();
 
-    /*转换表配置*/
+    /*转台配置通道1*/
     void lEdt_speedx1_Slot();
     void lEdt_speedx2_Slot();
     void lEdt_speedx3_Slot();
@@ -295,6 +446,7 @@ private slots:
     void lEdt_speedx7_Slot();
     void lEdt_speedx8_Slot();
     void lEdt_speedx9_Slot();
+    void lEdt_speedx10_Slot();
     void lEdt_speedy1_Slot();
     void lEdt_speedy2_Slot();
     void lEdt_speedy3_Slot();
@@ -304,8 +456,151 @@ private slots:
     void lEdt_speedy7_Slot();
     void lEdt_speedy8_Slot();
     void lEdt_speedy9_Slot();
+    void lEdt_speedy10_Slot();
     void btn_Speed_Default_Slot();
     void btn_Speed_Update_Slot();
+
+    void x_Bleed_rate_Slot();
+    void y_Bleed_rate_Slot();
+    void lEdt_maxspeedx_Slot();
+    void lEdt_maxspeedy_Slot();
+    void lEdt_deadx_Slot();
+    void lEdt_deady_Slot();
+    void lEdt_out_address_Slot();
+    void combox_output_d_type_Slot(int index);
+    void combox_baud_rate_type_Slot(int index);
+    void combox_data_bit_type_Slot(int index);
+    void combox_stop_bit_type_Slot(int index);
+    void combox_parity_bit_type_Slot(int index);
+    void combox_flow_control_type_Slot(int index);
+
+     /*转台配置通道2*/
+    void lEdt_speedx1_Slot_sec();
+    void lEdt_speedx2_Slot_sec();
+    void lEdt_speedx3_Slot_sec();
+    void lEdt_speedx4_Slot_sec();
+    void lEdt_speedx5_Slot_sec();
+    void lEdt_speedx6_Slot_sec();
+    void lEdt_speedx7_Slot_sec();
+    void lEdt_speedx8_Slot_sec();
+    void lEdt_speedx9_Slot_sec();
+    void lEdt_speedx10_Slot_sec();
+    void lEdt_speedy1_Slot_sec();
+    void lEdt_speedy2_Slot_sec();
+    void lEdt_speedy3_Slot_sec();
+    void lEdt_speedy4_Slot_sec();
+    void lEdt_speedy5_Slot_sec();
+    void lEdt_speedy6_Slot_sec();
+    void lEdt_speedy7_Slot_sec();
+    void lEdt_speedy8_Slot_sec();
+    void lEdt_speedy9_Slot_sec();
+    void lEdt_speedy10_Slot_sec();
+    void btn_Speed_Default_Slot_sec();
+    void btn_Speed_Update_Slot_sec();
+
+    void x_Bleed_rate_Slot_sec();
+    void y_Bleed_rate_Slot_sec();
+    void lEdt_maxspeedx_Slot_sec();
+    void lEdt_maxspeedy_Slot_sec();
+    void lEdt_deadx_Slot_sec();
+    void lEdt_deady_Slot_sec();
+
+     /*转台配置通道3*/
+    void lEdt_speedx1_Slot_thi();
+    void lEdt_speedx2_Slot_thi();
+    void lEdt_speedx3_Slot_thi();
+    void lEdt_speedx4_Slot_thi();
+    void lEdt_speedx5_Slot_thi();
+    void lEdt_speedx6_Slot_thi();
+    void lEdt_speedx7_Slot_thi();
+    void lEdt_speedx8_Slot_thi();
+    void lEdt_speedx9_Slot_thi();
+    void lEdt_speedx10_Slot_thi();
+    void lEdt_speedy1_Slot_thi();
+    void lEdt_speedy2_Slot_thi();
+    void lEdt_speedy3_Slot_thi();
+    void lEdt_speedy4_Slot_thi();
+    void lEdt_speedy5_Slot_thi();
+    void lEdt_speedy6_Slot_thi();
+    void lEdt_speedy7_Slot_thi();
+    void lEdt_speedy8_Slot_thi();
+    void lEdt_speedy9_Slot_thi();
+    void lEdt_speedy10_Slot_thi();
+    void btn_Speed_Default_Slot_thi();
+    void btn_Speed_Update_Slot_thi();
+
+    void x_Bleed_rate_Slot_thi();
+    void y_Bleed_rate_Slot_thi();
+    void lEdt_maxspeedx_Slot_thi();
+    void lEdt_maxspeedy_Slot_thi();
+    void lEdt_deadx_Slot_thi();
+    void lEdt_deady_Slot_thi();
+
+
+     /*转台配置通道4*/
+    void lEdt_speedx1_Slot_fou();
+    void lEdt_speedx2_Slot_fou();
+    void lEdt_speedx3_Slot_fou();
+    void lEdt_speedx4_Slot_fou();
+    void lEdt_speedx5_Slot_fou();
+    void lEdt_speedx6_Slot_fou();
+    void lEdt_speedx7_Slot_fou();
+    void lEdt_speedx8_Slot_fou();
+    void lEdt_speedx9_Slot_fou();
+    void lEdt_speedx10_Slot_fou();
+    void lEdt_speedy1_Slot_fou();
+    void lEdt_speedy2_Slot_fou();
+    void lEdt_speedy3_Slot_fou();
+    void lEdt_speedy4_Slot_fou();
+    void lEdt_speedy5_Slot_fou();
+    void lEdt_speedy6_Slot_fou();
+    void lEdt_speedy7_Slot_fou();
+    void lEdt_speedy8_Slot_fou();
+    void lEdt_speedy9_Slot_fou();
+    void lEdt_speedy10_Slot_fou();
+    void btn_Speed_Default_Slot_fou();
+    void btn_Speed_Update_Slot_fou();
+
+    void x_Bleed_rate_Slot_fou();
+    void y_Bleed_rate_Slot_fou();
+    void lEdt_maxspeedx_Slot_fou();
+    void lEdt_maxspeedy_Slot_fou();
+    void lEdt_deadx_Slot_fou();
+    void lEdt_deady_Slot_fou();
+
+     /*转台配置通道5*/
+    void lEdt_speedx1_Slot_fif();
+    void lEdt_speedx2_Slot_fif();
+    void lEdt_speedx3_Slot_fif();
+    void lEdt_speedx4_Slot_fif();
+    void lEdt_speedx5_Slot_fif();
+    void lEdt_speedx6_Slot_fif();
+    void lEdt_speedx7_Slot_fif();
+    void lEdt_speedx8_Slot_fif();
+    void lEdt_speedx9_Slot_fif();
+    void lEdt_speedx10_Slot_fif();
+    void lEdt_speedy1_Slot_fif();
+    void lEdt_speedy2_Slot_fif();
+    void lEdt_speedy3_Slot_fif();
+    void lEdt_speedy4_Slot_fif();
+    void lEdt_speedy5_Slot_fif();
+    void lEdt_speedy6_Slot_fif();
+    void lEdt_speedy7_Slot_fif();
+    void lEdt_speedy8_Slot_fif();
+    void lEdt_speedy9_Slot_fif();
+    void lEdt_speedy10_Slot_fif();
+    void btn_Speed_Default_Slot_fif();
+    void btn_Speed_Update_Slot_fif();
+
+    void x_Bleed_rate_Slot_fif();
+    void y_Bleed_rate_Slot_fif();
+    void lEdt_maxspeedx_Slot_fif();
+    void lEdt_maxspeedy_Slot_fif();
+    void lEdt_deadx_Slot_fif();
+    void lEdt_deady_Slot_fif();
+
+
+
 
     /*通道1固定视场*/
     void lEdt_fix_Radio_Slot();
@@ -315,11 +610,28 @@ private slots:
     void lEdt_fix_view_Slot();
     void sp_fix_x_Slot(int i);
     void sp_fix_y_Slot(int i);
-    void sp_test_Slot();
 
     /*通道1可切换视场*/
     void lEdt_switch_Radio_Slot();
     void lEdt_switch_Resolution_Slot();
+    void lEdt_switch_Resolution2_Slot();
+
+    void lEdt_switch_s1_FOV0_Slot();
+    void spbx_switch1_Slot();
+    void spby_switch1_Slot();
+    void lEdt_switch_s1_FOV1_Slot();
+    void spbx_switch2_Slot();
+    void spby_switch2_Slot();
+    void lEdt_switch_s1_FOV2_Slot();
+    void spbx_switch3_Slot();
+    void spby_switch3_Slot();
+    void lEdt_switch_s1_FOV3_Slot();
+    void spbx_switch4_Slot();
+    void spby_switch4_Slot();
+    void lEdt_switch_s1_FOV4_Slot();
+    void spbx_switch5_Slot();
+    void spby_switch5_Slot();
+
     void btn_switch1_Slot();
     void btn_switch2_Slot();
     void btn_switch3_Slot();
@@ -329,6 +641,78 @@ private slots:
     /*通道1连续视场*/
     void lEdt_continue_Radio_Slot();
     void lEdt_continue_Resolution_Slot();
+    void lEdt_continue_Resolution2_Slot();
+    void sp_test_Slot();
+
+    void lEdt_fEdt1_Slot();
+    void lEdt_lEdt1_Slot();
+    void spbx1_Slot();
+    void spby1_Slot();
+
+    void lEdt_fEdt2_Slot();
+    void lEdt_lEdt2_Slot();
+    void spbx2_Slot();
+    void spby2_Slot();
+
+    void lEdt_fEdt3_Slot();
+    void lEdt_lEdt3_Slot();
+    void spbx3_Slot();
+    void spby3_Slot();
+
+    void lEdt_fEdt4_Slot();
+    void lEdt_lEdt4_Slot();
+    void spbx4_Slot();
+    void spby4_Slot();
+
+    void lEdt_fEdt5_Slot();
+    void lEdt_lEdt5_Slot();
+    void spbx5_Slot();
+    void spby5_Slot();
+
+    void lEdt_fEdt6_Slot();
+    void lEdt_lEdt6_Slot();
+    void spbx6_Slot();
+    void spby6_Slot();
+
+    void lEdt_fEdt7_Slot();
+    void lEdt_lEdt7_Slot();
+    void spbx7_Slot();
+    void spby7_Slot();
+
+    void lEdt_fEdt8_Slot();
+    void lEdt_lEdt8_Slot();
+    void spbx8_Slot();
+    void spby8_Slot();
+
+    void lEdt_fEdt9_Slot();
+    void lEdt_lEdt9_Slot();
+    void spbx9_Slot();
+    void spby9_Slot();
+
+    void lEdt_fEdt10_Slot();
+    void lEdt_lEdt10_Slot();
+    void spbx10_Slot();
+    void spby10_Slot();
+
+    void lEdt_fEdt11_Slot();
+    void lEdt_lEdt11_Slot();
+    void spbx11_Slot();
+    void spby11_Slot();
+
+    void lEdt_fEdt12_Slot();
+    void lEdt_lEdt12_Slot();
+    void spbx12_Slot();
+    void spby12_Slot();
+
+    void lEdt_fEdt13_Slot();
+    void lEdt_lEdt13_Slot();
+    void spbx13_Slot();
+    void spby13_Slot();
+
+
+
+
+
     void btn_continue1_Slot();
     void btn_continue2_Slot();
     void btn_continue3_Slot();
@@ -342,6 +726,421 @@ private slots:
     void btn_continue11_Slot();
     void btn_continue12_Slot();
     void btn_continue13_Slot();
+
+
+
+    /*通道2固定视场*/
+    void lEdt_fix_Radio_Slot2();
+    void lEdt_Resolution_Slot2();
+    void lEdt_Resolution2_Slot2();
+    void btn_fix_Slot2();
+    void lEdt_fix_view_Slot2();
+    void sp_fix_x_Slot2(int i);
+    void sp_fix_y_Slot2(int i);
+
+    /*通道2可切换视场*/
+    void lEdt_switch_Radio_Slot2();
+    void lEdt_switch_Resolution_Slot2();
+    void lEdt_switch_Resolution2_Slot2();
+
+    void lEdt_switch_s1_FOV0_Slot2();
+    void spbx_switch1_Slot2();
+    void spby_switch1_Slot2();
+    void lEdt_switch_s1_FOV1_Slot2();
+    void spbx_switch2_Slot2();
+    void spby_switch2_Slot2();
+    void lEdt_switch_s1_FOV2_Slot2();
+    void spbx_switch3_Slot2();
+    void spby_switch3_Slot2();
+    void lEdt_switch_s1_FOV3_Slot2();
+    void spbx_switch4_Slot2();
+    void spby_switch4_Slot2();
+    void lEdt_switch_s1_FOV4_Slot2();
+    void spbx_switch5_Slot2();
+    void spby_switch5_Slot2();
+
+
+    /*通道2连续视场*/
+    void lEdt_continue_Radio_Slot2();
+    void lEdt_continue_Resolution_Slot2();
+    void lEdt_continue_Resolution2_Slot2();
+    void sp_test_Slot2();
+
+    void lEdt_fEdt1_Slot2();
+    void lEdt_lEdt1_Slot2();
+    void spbx1_Slot2();
+    void spby1_Slot2();
+
+    void lEdt_fEdt2_Slot2();
+    void lEdt_lEdt2_Slot2();
+    void spbx2_Slot2();
+    void spby2_Slot2();
+
+    void lEdt_fEdt3_Slot2();
+    void lEdt_lEdt3_Slot2();
+    void spbx3_Slot2();
+    void spby3_Slot2();
+
+    void lEdt_fEdt4_Slot2();
+    void lEdt_lEdt4_Slot2();
+    void spbx4_Slot2();
+    void spby4_Slot2();
+
+    void lEdt_fEdt5_Slot2();
+    void lEdt_lEdt5_Slot2();
+    void spbx5_Slot2();
+    void spby5_Slot2();
+
+    void lEdt_fEdt6_Slot2();
+    void lEdt_lEdt6_Slot2();
+    void spbx6_Slot2();
+    void spby6_Slot2();
+
+    void lEdt_fEdt7_Slot2();
+    void lEdt_lEdt7_Slot2();
+    void spbx7_Slot2();
+    void spby7_Slot2();
+
+    void lEdt_fEdt8_Slot2();
+    void lEdt_lEdt8_Slot2();
+    void spbx8_Slot2();
+    void spby8_Slot2();
+
+    void lEdt_fEdt9_Slot2();
+    void lEdt_lEdt9_Slot2();
+    void spbx9_Slot2();
+    void spby9_Slot2();
+
+    void lEdt_fEdt10_Slot2();
+    void lEdt_lEdt10_Slot2();
+    void spbx10_Slot2();
+    void spby10_Slot2();
+
+    void lEdt_fEdt11_Slot2();
+    void lEdt_lEdt11_Slot2();
+    void spbx11_Slot2();
+    void spby11_Slot2();
+
+    void lEdt_fEdt12_Slot2();
+    void lEdt_lEdt12_Slot2();
+    void spbx12_Slot2();
+    void spby12_Slot2();
+
+    void lEdt_fEdt13_Slot2();
+    void lEdt_lEdt13_Slot2();
+    void spbx13_Slot2();
+    void spby13_Slot2();
+
+
+    /*通道3固定视场*/
+    void lEdt_fix_Radio_Slot3();
+    void lEdt_Resolution_Slot3();
+    void lEdt_Resolution2_Slot3();
+    void btn_fix_Slot3();
+    void lEdt_fix_view_Slot3();
+    void sp_fix_x_Slot3(int i);
+    void sp_fix_y_Slot3(int i);
+
+    /*通道3可切换视场*/
+    void lEdt_switch_Radio_Slot3();
+    void lEdt_switch_Resolution_Slot3();
+    void lEdt_switch_Resolution2_Slot3();
+
+    void lEdt_switch_s1_FOV0_Slot3();
+    void spbx_switch1_Slot3();
+    void spby_switch1_Slot3();
+    void lEdt_switch_s1_FOV1_Slot3();
+    void spbx_switch2_Slot3();
+    void spby_switch2_Slot3();
+    void lEdt_switch_s1_FOV2_Slot3();
+    void spbx_switch3_Slot3();
+    void spby_switch3_Slot3();
+    void lEdt_switch_s1_FOV3_Slot3();
+    void spbx_switch4_Slot3();
+    void spby_switch4_Slot3();
+    void lEdt_switch_s1_FOV4_Slot3();
+    void spbx_switch5_Slot3();
+    void spby_switch5_Slot3();
+
+
+    /*通道3连续视场*/
+    void lEdt_continue_Radio_Slot3();
+    void lEdt_continue_Resolution_Slot3();
+    void lEdt_continue_Resolution2_Slot3();
+    void sp_test_Slot3();
+
+    void lEdt_fEdt1_Slot3();
+    void lEdt_lEdt1_Slot3();
+    void spbx1_Slot3();
+    void spby1_Slot3();
+
+    void lEdt_fEdt2_Slot3();
+    void lEdt_lEdt2_Slot3();
+    void spbx2_Slot3();
+    void spby2_Slot3();
+
+    void lEdt_fEdt3_Slot3();
+    void lEdt_lEdt3_Slot3();
+    void spbx3_Slot3();
+    void spby3_Slot3();
+
+    void lEdt_fEdt4_Slot3();
+    void lEdt_lEdt4_Slot3();
+    void spbx4_Slot3();
+    void spby4_Slot3();
+
+    void lEdt_fEdt5_Slot3();
+    void lEdt_lEdt5_Slot3();
+    void spbx5_Slot3();
+    void spby5_Slot3();
+
+    void lEdt_fEdt6_Slot3();
+    void lEdt_lEdt6_Slot3();
+    void spbx6_Slot3();
+    void spby6_Slot3();
+
+    void lEdt_fEdt7_Slot3();
+    void lEdt_lEdt7_Slot3();
+    void spbx7_Slot3();
+    void spby7_Slot3();
+
+    void lEdt_fEdt8_Slot3();
+    void lEdt_lEdt8_Slot3();
+    void spbx8_Slot3();
+    void spby8_Slot3();
+
+    void lEdt_fEdt9_Slot3();
+    void lEdt_lEdt9_Slot3();
+    void spbx9_Slot3();
+    void spby9_Slot3();
+
+    void lEdt_fEdt10_Slot3();
+    void lEdt_lEdt10_Slot3();
+    void spbx10_Slot3();
+    void spby10_Slot3();
+
+    void lEdt_fEdt11_Slot3();
+    void lEdt_lEdt11_Slot3();
+    void spbx11_Slot3();
+    void spby11_Slot3();
+
+    void lEdt_fEdt12_Slot3();
+    void lEdt_lEdt12_Slot3();
+    void spbx12_Slot3();
+    void spby12_Slot3();
+
+    void lEdt_fEdt13_Slot3();
+    void lEdt_lEdt13_Slot3();
+    void spbx13_Slot3();
+    void spby13_Slot3();
+
+    //4
+    /*通道4固定视场*/
+    void lEdt_fix_Radio_Slot4();
+    void lEdt_Resolution_Slot4();
+    void lEdt_Resolution2_Slot4();
+    void btn_fix_Slot4();
+    void lEdt_fix_view_Slot4();
+    void sp_fix_x_Slot4(int i);
+    void sp_fix_y_Slot4(int i);
+
+    /*通道4可切换视场*/
+    void lEdt_switch_Radio_Slot4();
+    void lEdt_switch_Resolution_Slot4();
+    void lEdt_switch_Resolution2_Slot4();
+
+    void lEdt_switch_s1_FOV0_Slot4();
+    void spbx_switch1_Slot4();
+    void spby_switch1_Slot4();
+    void lEdt_switch_s1_FOV1_Slot4();
+    void spbx_switch2_Slot4();
+    void spby_switch2_Slot4();
+    void lEdt_switch_s1_FOV2_Slot4();
+    void spbx_switch3_Slot4();
+    void spby_switch3_Slot4();
+    void lEdt_switch_s1_FOV3_Slot4();
+    void spbx_switch4_Slot4();
+    void spby_switch4_Slot4();
+    void lEdt_switch_s1_FOV4_Slot4();
+    void spbx_switch5_Slot4();
+    void spby_switch5_Slot4();
+
+
+    /*通道4连续视场*/
+    void lEdt_continue_Radio_Slot4();
+    void lEdt_continue_Resolution_Slot4();
+    void lEdt_continue_Resolution2_Slot4();
+    void sp_test_Slot4();
+
+    void lEdt_fEdt1_Slot4();
+    void lEdt_lEdt1_Slot4();
+    void spbx1_Slot4();
+    void spby1_Slot4();
+
+    void lEdt_fEdt2_Slot4();
+    void lEdt_lEdt2_Slot4();
+    void spbx2_Slot4();
+    void spby2_Slot4();
+
+    void lEdt_fEdt3_Slot4();
+    void lEdt_lEdt3_Slot4();
+    void spbx3_Slot4();
+    void spby3_Slot4();
+
+    void lEdt_fEdt4_Slot4();
+    void lEdt_lEdt4_Slot4();
+    void spbx4_Slot4();
+    void spby4_Slot4();
+
+    void lEdt_fEdt5_Slot4();
+    void lEdt_lEdt5_Slot4();
+    void spbx5_Slot4();
+    void spby5_Slot4();
+
+    void lEdt_fEdt6_Slot4();
+    void lEdt_lEdt6_Slot4();
+    void spbx6_Slot4();
+    void spby6_Slot4();
+
+    void lEdt_fEdt7_Slot4();
+    void lEdt_lEdt7_Slot4();
+    void spbx7_Slot4();
+    void spby7_Slot4();
+
+    void lEdt_fEdt8_Slot4();
+    void lEdt_lEdt8_Slot4();
+    void spbx8_Slot4();
+    void spby8_Slot4();
+
+    void lEdt_fEdt9_Slot4();
+    void lEdt_lEdt9_Slot4();
+    void spbx9_Slot4();
+    void spby9_Slot4();
+
+    void lEdt_fEdt10_Slot4();
+    void lEdt_lEdt10_Slot4();
+    void spbx10_Slot4();
+    void spby10_Slot4();
+
+    void lEdt_fEdt11_Slot4();
+    void lEdt_lEdt11_Slot4();
+    void spbx11_Slot4();
+    void spby11_Slot4();
+
+    void lEdt_fEdt12_Slot4();
+    void lEdt_lEdt12_Slot4();
+    void spbx12_Slot4();
+    void spby12_Slot4();
+
+    void lEdt_fEdt13_Slot4();
+    void lEdt_lEdt13_Slot4();
+    void spbx13_Slot4();
+    void spby13_Slot4();
+
+
+    /*通道5固定视场*/
+    void lEdt_fix_Radio_Slot5();
+    void lEdt_Resolution_Slot5();
+    void lEdt_Resolution2_Slot5();
+    void btn_fix_Slot5();
+    void lEdt_fix_view_Slot5();
+    void sp_fix_x_Slot5(int i);
+    void sp_fix_y_Slot5(int i);
+
+    /*通道5可切换视场*/
+    void lEdt_switch_Radio_Slot5();
+    void lEdt_switch_Resolution_Slot5();
+    void lEdt_switch_Resolution2_Slot5();
+
+    void lEdt_switch_s1_FOV0_Slot5();
+    void spbx_switch1_Slot5();
+    void spby_switch1_Slot5();
+    void lEdt_switch_s1_FOV1_Slot5();
+    void spbx_switch2_Slot5();
+    void spby_switch2_Slot5();
+    void lEdt_switch_s1_FOV2_Slot5();
+    void spbx_switch3_Slot5();
+    void spby_switch3_Slot5();
+    void lEdt_switch_s1_FOV3_Slot5();
+    void spbx_switch4_Slot5();
+    void spby_switch4_Slot5();
+    void lEdt_switch_s1_FOV4_Slot5();
+    void spbx_switch5_Slot5();
+    void spby_switch5_Slot5();
+
+
+    /*通道5连续视场*/
+    void lEdt_continue_Radio_Slot5();
+    void lEdt_continue_Resolution_Slot5();
+    void lEdt_continue_Resolution2_Slot5();
+    void sp_test_Slot5();
+
+    void lEdt_fEdt1_Slot5();
+    void lEdt_lEdt1_Slot5();
+    void spbx1_Slot5();
+    void spby1_Slot5();
+
+    void lEdt_fEdt2_Slot5();
+    void lEdt_lEdt2_Slot5();
+    void spbx2_Slot5();
+    void spby2_Slot5();
+
+    void lEdt_fEdt3_Slot5();
+    void lEdt_lEdt3_Slot5();
+    void spbx3_Slot5();
+    void spby3_Slot5();
+
+    void lEdt_fEdt4_Slot5();
+    void lEdt_lEdt4_Slot5();
+    void spbx4_Slot5();
+    void spby4_Slot5();
+
+    void lEdt_fEdt5_Slot5();
+    void lEdt_lEdt5_Slot5();
+    void spbx5_Slot5();
+    void spby5_Slot5();
+
+    void lEdt_fEdt6_Slot5();
+    void lEdt_lEdt6_Slot5();
+    void spbx6_Slot5();
+    void spby6_Slot5();
+
+    void lEdt_fEdt7_Slot5();
+    void lEdt_lEdt7_Slot5();
+    void spbx7_Slot5();
+    void spby7_Slot5();
+
+    void lEdt_fEdt8_Slot5();
+    void lEdt_lEdt8_Slot5();
+    void spbx8_Slot5();
+    void spby8_Slot5();
+
+    void lEdt_fEdt9_Slot5();
+    void lEdt_lEdt9_Slot5();
+    void spbx9_Slot5();
+    void spby9_Slot5();
+
+    void lEdt_fEdt10_Slot5();
+    void lEdt_lEdt10_Slot5();
+    void spbx10_Slot5();
+    void spby10_Slot5();
+
+    void lEdt_fEdt11_Slot5();
+    void lEdt_lEdt11_Slot5();
+    void spbx11_Slot5();
+    void spby11_Slot5();
+
+    void lEdt_fEdt12_Slot5();
+    void lEdt_lEdt12_Slot5();
+    void spbx12_Slot5();
+    void spby12_Slot5();
+
+    void lEdt_fEdt13_Slot5();
+    void lEdt_lEdt13_Slot5();
+    void spbx13_Slot5();
+    void spby13_Slot5();
+
+
 
     /*UTC1参数配置*/
     void btn_utc1_default_Slot();
@@ -405,9 +1204,10 @@ private slots:
 
     /*OSD参数设置*/
     void btn_osd_default_Slot();
+    void btn_keep1_Slot();
     void btn_osd_update_Slot();
     void CBox_osd_choose_Slot(int i);
-    void checkBox_Slot(int i);
+    void checkBox_Slot();
     void lEdt_osd_x_Slot();
     void lEdt_osd_y_Slot();
     void lEdt_osd_context_Slot();
@@ -415,10 +1215,11 @@ private slots:
     void CBox_osd_font_size_Slot(int i);
     //void CBox_View_Slot(int i);
     void CBox_osd_color_Slot(int i);
-    void lEdt_transparency_Slot();
+    void CBox_transparency_Slot();
+   // void lEdt_transparency_Slot();
 
     /*捕获框设置*/
-    void checkBox_cross_Slot(int i);
+    void checkBox_cross_Slot();
     void lEdt_capture_0();
     void lEdt_capture_1();
     void lEdt_capture_2();
@@ -444,6 +1245,28 @@ private slots:
     void lEdt_bomen_9();
     void lEdt_bomen_10();
     void lEdt_bomen_11();
+
+    //移动检测配置
+    void btn_mtd_Default_Slot();
+    void btn_mtd_Update_Slot();
+    void zone_setting_Slot();
+    void lEdt_rigion_Slot();
+    void lEdt_rigion_Cen_x_Slot();
+    void lEdt_rigion_Cen_y_Slot();
+    void lEdt_rigion_Cen_w_Slot();
+    void lEdt_rigion_Cen_h_Slot();
+    void lEdt_maxnum_Slot();
+    void lEdt_uspeed_Slot();
+    void lEdt_maxpix_Slot();
+    void lEdt_minpix_Slot();
+    void lEdt_sensitive_Slot();
+    void lEdt_dspeed_Slot();
+    void lEdt_trktime_Slot();
+    void combox_Priority_judgment_Slot(int index);
+    void combox_output_Slot(int index);
+    void combox_polar_Slot(int index);
+    void lEdt_Alarm_delay_Slot();
+
 
     void lEdt_drawLine_1();
     void lEdt_drawLine_2();
@@ -509,6 +1332,23 @@ private slots:
 
     void on_comboBox_acqmode_currentIndexChanged(int index);
 
+    void on_btnApertureMinus_2_clicked();
+
+
+    void on_radioButton_workmode_clicked(bool checked);
+
+    void on_radioButton_2_workmode_clicked(bool checked);
+
+    void on_radioButton_3_workmode_clicked(bool checked);
+
+    void on_radioButton_acqmode_clicked(bool checked);
+
+    void on_radioButton_2_acqmode_clicked(bool checked);
+
+    void on_radioButton_3_acqmode_clicked(bool checked);
+
+    void on_call_preset_bit_clicked();
+
 private:
     Ui::MainWindow *ui;
     Jos j;
@@ -571,41 +1411,276 @@ private:
     QLineEdit *editsw;
     /*平台配置*/
     MyWidget *w_plat;
-    QGroupBox *gbox_Jos,*gbox_PID,*gbox_plat;
-    QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,*josPoint_lineEdt2,*josInputG_x2,*josInputG_y2,
-              *josOutputG_x,*josOutputG_y;
-    QComboBox *outMode;
-    QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
-    QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
-     QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
-    QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
-    QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
-    QString plat_s[8]={"x轴最大速度","y轴最大速度","x轴最大速度","y轴最大速度","x轴死区","y轴死区","惯性跟踪时间","平台输出模式"};
+      QGroupBox *gbox_Jos,*gbox_plat;
+      QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,*josPoint_lineEdt2,*josInputG_x2,*josInputG_y2,
+                *josOutputG_x,*josOutputG_y;
+      QComboBox *outMode;
+      //QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
+      QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
+       QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
+      QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
+     // QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+      QString plat_s[8]={"x轴最大速度","y轴最大速度","x轴最大速度","y轴最大速度","x轴死区","y轴死区","惯性跟踪时间","平台输出模式"};
+
+      /*pid配置 通道1*/
+          MyWidget *w_pid,*w_pid3,*w_pid4,*w_pid5;
+          MyWidget *w_pid2;
+          QGroupBox *gbox_PID,*regulator_pid;
+          QPushButton *btn_pid_default,*btn_pid_update;
+          QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
+          QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*x_ratio_control,*y_ratio_control;
+          QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString dbg_s1[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴PID偏差进","进PID时间"};
+          int current_1 = 0;
+          /*pid配置 通道2*/
+          QGroupBox *gbox_PID2,*regulator_pid2;
+          QPushButton *btn_pid_default2,*btn_pid_update2;
+          QLineEdit *kp1_pid2,*ki1_pid2,*kd1_pid2,*k12,*kp2_pid2,*ki2_pid2,*kd2_pid2,*k22;
+          QLineEdit *kx_lineEdt2,*ky_lineEdt2,*errx_lineEdt2,*erry_lineEdt2,*time_lineEdt2,*x_ratio_control2,*y_ratio_control2;
+          QString pid_s2[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString dbg_s2[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴PID偏差进","进PID时间"};
+
+          /*pid配置 通道3*/
+          QGroupBox *gbox_PID3,*regulator_pid3;
+          QPushButton *btn_pid_default3,*btn_pid_update3;
+          QLineEdit *kp1_pid3,*ki1_pid3,*kd1_pid3,*k13,*kp2_pid3,*ki2_pid3,*kd2_pid3,*k23;
+          QLineEdit *kx_lineEdt3,*ky_lineEdt3,*errx_lineEdt3,*erry_lineEdt3,*time_lineEdt3,*x_ratio_control3,*y_ratio_control3;
+          QString pid_s3[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString dbg_s3[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴PID偏差进","进PID时间"};
+
+          /*pid配置 通道4*/
+          QGroupBox *gbox_PID4,*regulator_pid4;
+          QPushButton *btn_pid_default4,*btn_pid_update4;
+          QLineEdit *kp1_pid4,*ki1_pid4,*kd1_pid4,*k14,*kp2_pid4,*ki2_pid4,*kd2_pid4,*k24;
+          QLineEdit *kx_lineEdt4,*ky_lineEdt4,*errx_lineEdt4,*erry_lineEdt4,*time_lineEdt4,*x_ratio_control4,*y_ratio_control4;
+          QString pid_s4[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString dbg_s4[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴PID偏差进","进PID时间"};
+
+          /*pid配置 通道5*/
+          QGroupBox *gbox_PID5,*regulator_pid5;
+          QPushButton *btn_pid_default5,*btn_pid_update5;
+          QLineEdit *kp1_pid5,*ki1_pid5,*kd1_pid5,*k15,*kp2_pid5,*ki2_pid5,*kd2_pid5,*k25;
+          QLineEdit *kx_lineEdt5,*ky_lineEdt5,*errx_lineEdt5,*erry_lineEdt5,*time_lineEdt5,*x_ratio_control5,*y_ratio_control5;
+          QString pid_s5[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString dbg_s5[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴PID偏差进","进PID时间"};
 
     /*捕获配置*/
     MyWidget *w_dbg;
-    QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
+    QLineEdit *dbg5_lineEdt,*dbg6_lineEdt,*dbg7_lineEdt,*dbg8_lineEdt,*dbg9_lineEdt,*dbg10_lineEdt,
     *dbg11_lineEdt,*dbg12_lineEdt,*dbg13_lineEdt,*dbg14_lineEdt,*dbg15_lineEdt;
     QString dbg_s[16]={"x轴比例调节系数","y轴比例调节系数","x轴进PID偏差","y轴进PID偏差","进PID时间","debug5","debug6","debug7","debug8","debug9","debug10","debug11","debug12","debug13","debug14","debug15"};
 
-    /*转换表配置*/
+    /*转台配置通道一*/
     MyWidget *w_speedconv;
     QGroupBox *gbox_speedx,*gbox_speedy;
-    QLineEdit *speedx1_lineEdt,*speedx2_lineEdt,*speedx3_lineEdt,*speedx4_lineEdt,*speedx5_lineEdt,*speedx6_lineEdt,*speedx7_lineEdt,*speedx8_lineEdt,*speedx9_lineEdt;
-    QLineEdit *speedy1_lineEdt,*speedy2_lineEdt,*speedy3_lineEdt,*speedy4_lineEdt,*speedy5_lineEdt,*speedy6_lineEdt,*speedy7_lineEdt,*speedy8_lineEdt,*speedy9_lineEdt;
-    QString speed_s[9]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9"};
+    QLineEdit *speedx1_lineEdt,*speedx2_lineEdt,*speedx3_lineEdt,*speedx4_lineEdt,*speedx5_lineEdt,*speedx6_lineEdt,*speedx7_lineEdt,*speedx8_lineEdt,*speedx9_lineEdt,*speedx10_lineEdt;
+    QLineEdit *speedy1_lineEdt,*speedy2_lineEdt,*speedy3_lineEdt,*speedy4_lineEdt,*speedy5_lineEdt,*speedy6_lineEdt,*speedy7_lineEdt,*speedy8_lineEdt,*speedy9_lineEdt,*speedy10_lineEdt;
+    QLineEdit *maxspeedx,*maxspeedy,*deadx,*deady,*out_address,*x_Bleed_rate,*y_Bleed_rate;
+    QComboBox *output_d_type,*baud_rate,* data_bit,*stop_bit,*parity_bit,*flow_control;
+    QString speed_s[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
+    QString speed_q[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
+
+    /*转台配置通道二*/
+    MyWidget *w_speedconv_sec;
+    QGroupBox *gbox_speedx_sec,*gbox_speedy_sec;
+    QLineEdit *speedx1_lineEdt_sec,*speedx2_lineEdt_sec,*speedx3_lineEdt_sec,*speedx4_lineEdt_sec,*speedx5_lineEdt_sec,*speedx6_lineEdt_sec,*speedx7_lineEdt_sec,*speedx8_lineEdt_sec,*speedx9_lineEdt_sec,*speedx10_lineEdt_sec;
+    QLineEdit *speedy1_lineEdt_sec,*speedy2_lineEdt_sec,*speedy3_lineEdt_sec,*speedy4_lineEdt_sec,*speedy5_lineEdt_sec,*speedy6_lineEdt_sec,*speedy7_lineEdt_sec,*speedy8_lineEdt_sec,*speedy9_lineEdt_sec,*speedy10_lineEdt_sec;
+    QLineEdit *maxspeedx_sec,*maxspeedy_sec,*deadx_sec,*deady_sec,*out_address_sec,*x_Bleed_rate_sec,*y_Bleed_rate_sec;
+    QComboBox *output_d_type_sec,*baud_rate_sec,* data_bit_sec,*stop_bit_sec,*parity_bit_sec,*flow_control_sec;
+    QString speed_s_sec[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
+    QString speed_q_sec[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
+
+    /*转台配置通道三*/
+    MyWidget *w_speedconv_thi;
+    QGroupBox *gbox_speedx_thi,*gbox_speedy_thi;
+    QLineEdit *speedx1_lineEdt_thi,*speedx2_lineEdt_thi,*speedx3_lineEdt_thi,*speedx4_lineEdt_thi,*speedx5_lineEdt_thi,*speedx6_lineEdt_thi,*speedx7_lineEdt_thi,*speedx8_lineEdt_thi,*speedx9_lineEdt_thi,*speedx10_lineEdt_thi;
+    QLineEdit *speedy1_lineEdt_thi,*speedy2_lineEdt_thi,*speedy3_lineEdt_thi,*speedy4_lineEdt_thi,*speedy5_lineEdt_thi,*speedy6_lineEdt_thi,*speedy7_lineEdt_thi,*speedy8_lineEdt_thi,*speedy9_lineEdt_thi,*speedy10_lineEdt_thi;
+    QLineEdit *maxspeedx_thi,*maxspeedy_thi,*deadx_thi,*deady_thi,*out_address_thi,*x_Bleed_rate_thi,*y_Bleed_rate_thi;
+    QComboBox *output_d_type_thi,*baud_rate_thi,* data_bit_thi,*stop_bit_thi,*parity_bit_thi,*flow_control_thi;
+    QString speed_s_thi[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
+    QString speed_q_thi[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
+
+    /*转台配置通道四*/
+    MyWidget *w_speedconv_fou;
+    QGroupBox *gbox_speedx_fou,*gbox_speedy_fou;
+    QLineEdit *speedx1_lineEdt_fou,*speedx2_lineEdt_fou,*speedx3_lineEdt_fou,*speedx4_lineEdt_fou,*speedx5_lineEdt_fou,*speedx6_lineEdt_fou,*speedx7_lineEdt_fou,*speedx8_lineEdt_fou,*speedx9_lineEdt_fou,*speedx10_lineEdt_fou;
+    QLineEdit *speedy1_lineEdt_fou,*speedy2_lineEdt_fou,*speedy3_lineEdt_fou,*speedy4_lineEdt_fou,*speedy5_lineEdt_fou,*speedy6_lineEdt_fou,*speedy7_lineEdt_fou,*speedy8_lineEdt_fou,*speedy9_lineEdt_fou,*speedy10_lineEdt_fou;
+    QLineEdit *maxspeedx_fou,*maxspeedy_fou,*deadx_fou,*deady_fou,*out_address_fou,*x_Bleed_rate_fou,*y_Bleed_rate_fou;
+    QComboBox *output_d_type_fou,*baud_rate_fou,* data_bit_fou,*stop_bit_fou,*parity_bit_fou,*flow_control_fou;
+    QString speed_s_fou[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
+    QString speed_q_fou[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
+
+    /*转台配置通道五*/
+    MyWidget *w_speedconv_fif;
+    QGroupBox *gbox_speedx_fif,*gbox_speedy_fif;
+    QLineEdit *speedx1_lineEdt_fif,*speedx2_lineEdt_fif,*speedx3_lineEdt_fif,*speedx4_lineEdt_fif,*speedx5_lineEdt_fif,*speedx6_lineEdt_fif,*speedx7_lineEdt_fif,*speedx8_lineEdt_fif,*speedx9_lineEdt_fif,*speedx10_lineEdt_fif;
+    QLineEdit *speedy1_lineEdt_fif,*speedy2_lineEdt_fif,*speedy3_lineEdt_fif,*speedy4_lineEdt_fif,*speedy5_lineEdt_fif,*speedy6_lineEdt_fif,*speedy7_lineEdt_fif,*speedy8_lineEdt_fif,*speedy9_lineEdt_fif,*speedy10_lineEdt_fif;
+    QLineEdit *maxspeedx_fif,*maxspeedy_fif,*deadx_fif,*deady_fif,*out_address_fif,*x_Bleed_rate_fif,*y_Bleed_rate_fif;
+    QComboBox *output_d_type_fif,*baud_rate_fif,* data_bit_fif,*stop_bit_fif,*parity_bit_fif,*flow_control_fif;
+    QString speed_s_fif[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
+    QString speed_q_fif[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
 
     /*相机配置*/
     void on_btn_right_clicked();
 
+
+
+    /*摄像机配置通道1*/
+       /*固定视场*/
+       QPushButton  *btn_vediosersor_fix_default,*btn_vediosersor_fix_update;
+       QLineEdit *fixchanelname,*fix_xy_ratio,*fix_gate_sizex,*fix_gate_sizey,*fix_gatelocationx,*fix_gatelocationy,*fix_lEdt;
+       QCheckBox *fixChanelNum,*fixenable,*fix_vediohaveornot,*fix_gateshow,*fix_bullshow,*fix_autogate;
+       QGroupBox *fix_vediochoose;
+       QComboBox *fix_vedio_dpi;
+       QPushButton *set_azimuth,*set_pitch,*set_zoom,*search_azimuth,*search_pitch,*search_zoom;
+       QLineEdit  *ledt_set_azimuth,*ledt_set_pitch,*ledt_set_zoom,*ledt_search_azimuth,*ledt_search_pitch,*ledt_search_zoom;
+       /*可切换视场*/
+       int vedio_current_shichang;
+       MyWidget *w_sersor_1,*w_seitchField_1,*w_ContinueField_1;
+       QPushButton  *btn_vediosersor_default,*btn_vediosersor_update;
+       QComboBox *vedio_dpi,*vedio_change1,*vedio_fovclass,*vedio_QGroupBox,*vedio_change2,*vedio_change3;
+       QCheckBox *ChanelNum,*enable,*gateshow,*bullshow,*autogate,*vediohaveornot;
+       QLineEdit *chanelname,*xy_ratio,*gate_sizex,*gate_sizey,*gatelocationx,*gatelocationy,*vedio_s1_Fov0,*vedio_s1_Fov1,*vedio_s1_Fov2,*vedio_s1_Fov3,*vedio_s1_Fov4;
+       QGroupBox *vediochoose;
+       QString vedio_s[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
+       QSpinBox *vedio_spbx_switch1,*vedio_spbx_switch2,*vedio_spbx_switch3,*vedio_spbx_switch4,*vedio_spbx_switch5,*vedio_spby_switch1,*vedio_spby_switch2,*vedio_spby_switch3,*vedio_spby_switch4,*vedio_spby_switch5;
+       QSpinBox *fix_sp,*fix_sp2;
+       /*连续视场*/
+       QPushButton *btn_vediosersor_continue_default,*btn_vediosersor_continue_update;
+       QLineEdit *continuechanelname,*continue_xy_ratio,*continue_gate_sizex,*continue_gate_sizey,*continue_gatelocationx,*continue_gatelocationy,*test_1;
+       QCheckBox *continueChanelNum,*continueenable,*continue_vediohaveornot,*continue_gateshow,*continue_bullshow,*continue_autogate;
+       QComboBox *continue_vedio_dpi;
+       QGroupBox *continue_vediochoose;
+       QSpinBox *vedio_spbx_continue1,*vedio_spbx_continue2,*vedio_spbx_continue3,*vedio_spbx_continue4,*vedio_spbx_continue5,*vedio_spbx_continue6,*vedio_spbx_continue7,*vedio_spby_continue1,*vedio_spby_continue2,*vedio_spby_continue3,*vedio_spby_continue4,*vedio_spby_continue5,*vedio_spby_continue6,*vedio_spby_continue7;
+       QLineEdit *vedio_l1_continue,*vedio_l2_continue,*vedio_l3_continue,*vedio_l4_continue,*vedio_l5_continue,*vedio_l6_continue,*vedio_l7_continue;
+       QLineEdit *vedio_continue_Fov0,*vedio_continue_Fov1,*vedio_continue_Fov2,*vedio_continue_Fov3,*vedio_continue_Fov4,*vedio_continue_Fov5,*vedio_continue_Fov6;
+
+
+
+
+       /*摄像机配置通道2*/
+          /*固定视场*/
+          QPushButton  *btn_vediosersor_fix_default_sec,*btn_vediosersor_fix_update_sec;
+          QLineEdit *fixchanelname_sec,*fix_xy_ratio_sec,*fix_gate_sizex_sec,*fix_gate_sizey_sec,*fix_gatelocationx_sec,*fix_gatelocationy_sec,*fix_lEdt_sec;
+          QCheckBox *fixChanelNum_sec,*fixenable_sec,*fix_vediohaveornot_sec,*fix_gateshow_sec,*fix_bullshow_sec,*fix_autogate_sec;
+          QGroupBox *fix_vediochoose_sec;
+          QComboBox *fix_vedio_dpi_sec;
+          /*可切换视场*/
+          int vedio_current_shichang_sec;
+          MyWidget *w_sersor_1_sec,*w_seitchField_1_sec,*w_ContinueField_1_sec;
+          QPushButton  *btn_vediosersor_default_sec,*btn_vediosersor_update_sec;
+          QComboBox *vedio_dpi_sec,*vedio_change1_sec,*vedio_fovclass_sec,*vedio_QGroupBox_sec,*vedio_change2_sec,*vedio_change3_sec;
+          QCheckBox *ChanelNum_sec,*enable_sec,*gateshow_sec,*bullshow_sec,*autogate_sec,*vediohaveornot_sec;
+          QLineEdit *chanelname_sec,*xy_ratio_sec,*gate_sizex_sec,*gate_sizey_sec,*gatelocationx_sec,*gatelocationy_sec,*vedio_s1_Fov0_sec,*vedio_s1_Fov1_sec,*vedio_s1_Fov2_sec,*vedio_s1_Fov3_sec,*vedio_s1_Fov4_sec;
+          QGroupBox *vediochoose_sec;
+          QString vedio_s_sec[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
+          QSpinBox *vedio_spbx_switch1_sec,*vedio_spbx_switch2_sec,*vedio_spbx_switch3_sec,*vedio_spbx_switch4_sec,*vedio_spbx_switch5_sec,*vedio_spby_switch1_sec,*vedio_spby_switch2_sec,*vedio_spby_switch3_sec,*vedio_spby_switch4_sec,*vedio_spby_switch5_sec;
+          QSpinBox *fix_sp_sec,*fix_sp2_sec;
+          /*连续视场*/
+          QPushButton *btn_vediosersor_continue_default_sec,*btn_vediosersor_continue_update_sec;
+          QLineEdit *continuechanelname_sec,*continue_xy_ratio_sec,*continue_gate_sizex_sec,*continue_gate_sizey_sec,*continue_gatelocationx_sec,*continue_gatelocationy_sec,*test_1_sec;
+          QCheckBox *continueChanelNum_sec,*continueenable_sec,*continue_vediohaveornot_sec,*continue_gateshow_sec,*continue_bullshow_sec,*continue_autogate_sec;
+          QComboBox *continue_vedio_dpi_sec;
+          QGroupBox *continue_vediochoose_sec;
+          QSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,*vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec;
+          QLineEdit *vedio_l1_continue_sec,*vedio_l2_continue_sec,*vedio_l3_continue_sec,*vedio_l4_continue_sec,*vedio_l5_continue_sec,*vedio_l6_continue_sec,*vedio_l7_continue_sec;
+          QLineEdit *vedio_continue_Fov0_sec,*vedio_continue_Fov1_sec,*vedio_continue_Fov2_sec,*vedio_continue_Fov3_sec,*vedio_continue_Fov4_sec,*vedio_continue_Fov5_sec,*vedio_continue_Fov6_sec;
+
+
+          /*摄像机配置通道3*/
+             /*固定视场*/
+             QPushButton  *btn_vediosersor_fix_default_thi,*btn_vediosersor_fix_update_thi;
+             QLineEdit *fixchanelname_thi,*fix_xy_ratio_thi,*fix_gate_sizex_thi,*fix_gate_sizey_thi,*fix_gatelocationx_thi,*fix_gatelocationy_thi,*fix_lEdt_thi;
+             QCheckBox *fixChanelNum_thi,*fixenable_thi,*fix_vediohaveornot_thi,*fix_gateshow_thi,*fix_bullshow_thi,*fix_autogate_thi;
+             QGroupBox *fix_vediochoose_thi;
+             QComboBox *fix_vedio_dpi_thi;
+             /*可切换视场*/
+             int vedio_current_shichang_thi;
+             MyWidget *w_sersor_1_thi,*w_seitchField_1_thi,*w_ContinueField_1_thi;
+             QPushButton  *btn_vediosersor_default_thi,*btn_vediosersor_update_thi;
+             QComboBox *vedio_dpi_thi,*vedio_change1_thi,*vedio_fovclass_thi,*vedio_QGroupBox_thi,*vedio_change2_thi,*vedio_change3_thi;
+             QCheckBox *ChanelNum_thi,*enable_thi,*gateshow_thi,*bullshow_thi,*autogate_thi,*vediohaveornot_thi;
+             QLineEdit *chanelname_thi,*xy_ratio_thi,*gate_sizex_thi,*gate_sizey_thi,*gatelocationx_thi,*gatelocationy_thi,*vedio_s1_Fov0_thi,*vedio_s1_Fov1_thi,*vedio_s1_Fov2_thi,*vedio_s1_Fov3_thi,*vedio_s1_Fov4_thi;
+             QGroupBox *vediochoose_thi;
+             QString vedio_s_thi[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
+             QSpinBox *vedio_spbx_switch1_thi,*vedio_spbx_switch2_thi,*vedio_spbx_switch3_thi,*vedio_spbx_switch4_thi,*vedio_spbx_switch5_thi,*vedio_spby_switch1_thi,*vedio_spby_switch2_thi,*vedio_spby_switch3_thi,*vedio_spby_switch4_thi,*vedio_spby_switch5_thi;
+             QSpinBox *fix_sp_thi,*fix_sp2_thi;
+             /*连续视场*/
+             QPushButton *btn_vediosersor_continue_default_thi,*btn_vediosersor_continue_update_thi;
+             QLineEdit *continuechanelname_thi,*continue_xy_ratio_thi,*continue_gate_sizex_thi,*continue_gate_sizey_thi,*continue_gatelocationx_thi,*continue_gatelocationy_thi,*test_1_thi;
+             QCheckBox *continueChanelNum_thi,*continueenable_thi,*continue_vediohaveornot_thi,*continue_gateshow_thi,*continue_bullshow_thi,*continue_autogate_thi;
+             QComboBox *continue_vedio_dpi_thi;
+             QGroupBox *continue_vediochoose_thi;
+             QSpinBox *vedio_spbx_continue1_thi,*vedio_spbx_continue2_thi,*vedio_spbx_continue3_thi,*vedio_spbx_continue4_thi,*vedio_spbx_continue5_thi,*vedio_spbx_continue6_thi,*vedio_spbx_continue7_thi,*vedio_spby_continue1_thi,*vedio_spby_continue2_thi,*vedio_spby_continue3_thi,*vedio_spby_continue4_thi,*vedio_spby_continue5_thi,*vedio_spby_continue6_thi,*vedio_spby_continue7_thi;
+             QLineEdit *vedio_l1_continue_thi,*vedio_l2_continue_thi,*vedio_l3_continue_thi,*vedio_l4_continue_thi,*vedio_l5_continue_thi,*vedio_l6_continue_thi,*vedio_l7_continue_thi;
+             QLineEdit *vedio_continue_Fov0_thi,*vedio_continue_Fov1_thi,*vedio_continue_Fov2_thi,*vedio_continue_Fov3_thi,*vedio_continue_Fov4_thi,*vedio_continue_Fov5_thi,*vedio_continue_Fov6_thi;
+
+
+             /*摄像机配置通道4*/
+                /*固定视场*/
+                QPushButton  *btn_vediosersor_fix_default_fou,*btn_vediosersor_fix_update_fou;
+                QLineEdit *fixchanelname_fou,*fix_xy_ratio_fou,*fix_gate_sizex_fou,*fix_gate_sizey_fou,*fix_gatelocationx_fou,*fix_gatelocationy_fou,*fix_lEdt_fou;
+                QCheckBox *fixChanelNum_fou,*fixenable_fou,*fix_vediohaveornot_fou,*fix_gateshow_fou,*fix_bullshow_fou,*fix_autogate_fou;
+                QGroupBox *fix_vediochoose_fou;
+                QComboBox *fix_vedio_dpi_fou;
+                /*可切换视场*/
+                int vedio_current_shichang_fou;
+                MyWidget *w_sersor_1_fou,*w_seitchField_1_fou,*w_ContinueField_1_fou;
+                QPushButton  *btn_vediosersor_default_fou,*btn_vediosersor_update_fou;
+                QComboBox *vedio_dpi_fou,*vedio_change1_fou,*vedio_fovclass_fou,*vedio_QGroupBox_fou,*vedio_change2_fou,*vedio_change3_fou;
+                QCheckBox *ChanelNum_fou,*enable_fou,*gateshow_fou,*bullshow_fou,*autogate_fou,*vediohaveornot_fou;
+                QLineEdit *chanelname_fou,*xy_ratio_fou,*gate_sizex_fou,*gate_sizey_fou,*gatelocationx_fou,*gatelocationy_fou,*vedio_s1_Fov0_fou,*vedio_s1_Fov1_fou,*vedio_s1_Fov2_fou,*vedio_s1_Fov3_fou,*vedio_s1_Fov4_fou;
+                QGroupBox *vediochoose_fou;
+                QString vedio_s_fou[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
+                QSpinBox *vedio_spbx_switch1_fou,*vedio_spbx_switch2_fou,*vedio_spbx_switch3_fou,*vedio_spbx_switch4_fou,*vedio_spbx_switch5_fou,*vedio_spby_switch1_fou,*vedio_spby_switch2_fou,*vedio_spby_switch3_fou,*vedio_spby_switch4_fou,*vedio_spby_switch5_fou;
+                QSpinBox *fix_sp_fou,*fix_sp2_fou;
+                /*连续视场*/
+                QPushButton *btn_vediosersor_continue_default_fou,*btn_vediosersor_continue_update_fou;
+                QLineEdit *continuechanelname_fou,*continue_xy_ratio_fou,*continue_gate_sizex_fou,*continue_gate_sizey_fou,*continue_gatelocationx_fou,*continue_gatelocationy_fou,*test_1_fou;
+                QCheckBox *continueChanelNum_fou,*continueenable_fou,*continue_vediohaveornot_fou,*continue_gateshow_fou,*continue_bullshow_fou,*continue_autogate_fou;
+                QComboBox *continue_vedio_dpi_fou;
+                QGroupBox *continue_vediochoose_fou;
+                QSpinBox *vedio_spbx_continue1_fou,*vedio_spbx_continue2_fou,*vedio_spbx_continue3_fou,*vedio_spbx_continue4_fou,*vedio_spbx_continue5_fou,*vedio_spbx_continue6_fou,*vedio_spbx_continue7_fou,*vedio_spby_continue1_fou,*vedio_spby_continue2_fou,*vedio_spby_continue3_fou,*vedio_spby_continue4_fou,*vedio_spby_continue5_fou,*vedio_spby_continue6_fou,*vedio_spby_continue7_fou;
+                QLineEdit *vedio_l1_continue_fou,*vedio_l2_continue_fou,*vedio_l3_continue_fou,*vedio_l4_continue_fou,*vedio_l5_continue_fou,*vedio_l6_continue_fou,*vedio_l7_continue_fou;
+                QLineEdit *vedio_continue_Fov0_fou,*vedio_continue_Fov1_fou,*vedio_continue_Fov2_fou,*vedio_continue_Fov3_fou,*vedio_continue_Fov4_fou,*vedio_continue_Fov5_fou,*vedio_continue_Fov6_fou;
+
+                /*摄像机配置通道5*/
+                   /*固定视场*/
+                   QPushButton  *btn_vediosersor_fix_default_fif,*btn_vediosersor_fix_update_fif;
+                   QLineEdit *fixchanelname_fif,*fix_xy_ratio_fif,*fix_gate_sizex_fif,*fix_gate_sizey_fif,*fix_gatelocationx_fif,*fix_gatelocationy_fif,*fix_lEdt_fif;
+                   QCheckBox *fixChanelNum_fif,*fixenable_fif,*fix_vediohaveornot_fif,*fix_gateshow_fif,*fix_bullshow_fif,*fix_autogate_fif;
+                   QGroupBox *fix_vediochoose_fif;
+                   QComboBox *fix_vedio_dpi_fif;
+                   /*可切换视场*/
+                   int vedio_current_shichang_fif;
+                   MyWidget *w_sersor_1_fif,*w_seitchField_1_fif,*w_ContinueField_1_fif;
+                   QPushButton  *btn_vediosersor_default_fif,*btn_vediosersor_update_fif;
+                   QComboBox *vedio_dpi_fif,*vedio_change1_fif,*vedio_fovclass_fif,*vedio_QGroupBox_fif,*vedio_change2_fif,*vedio_change3_fif;
+                   QCheckBox *ChanelNum_fif,*enable_fif,*gateshow_fif,*bullshow_fif,*autogate_fif,*vediohaveornot_fif;
+                   QLineEdit *chanelname_fif,*xy_ratio_fif,*gate_sizex_fif,*gate_sizey_fif,*gatelocationx_fif,*gatelocationy_fif,*vedio_s1_Fov0_fif,*vedio_s1_Fov1_fif,*vedio_s1_Fov2_fif,*vedio_s1_Fov3_fif,*vedio_s1_Fov4_fif;
+                   QGroupBox *vediochoose_fif;
+                   QString vedio_s_fif[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
+                   QSpinBox *vedio_spbx_switch1_fif,*vedio_spbx_switch2_fif,*vedio_spbx_switch3_fif,*vedio_spbx_switch4_fif,*vedio_spbx_switch5_fif,*vedio_spby_switch1_fif,*vedio_spby_switch2_fif,*vedio_spby_switch3_fif,*vedio_spby_switch4_fif,*vedio_spby_switch5_fif;
+                   QSpinBox *fix_sp_fif,*fix_sp2_fif;
+                   /*连续视场*/
+                   QPushButton *btn_vediosersor_continue_default_fif,*btn_vediosersor_continue_update_fif;
+                   QLineEdit *continuechanelname_fif,*continue_xy_ratio_fif,*continue_gate_sizex_fif,*continue_gate_sizey_fif,*continue_gatelocationx_fif,*continue_gatelocationy_fif,*test_1_fif;
+                   QCheckBox *continueChanelNum_fif,*continueenable_fif,*continue_vediohaveornot_fif,*continue_gateshow_fif,*continue_bullshow_fif,*continue_autogate_fif;
+                   QComboBox *continue_vedio_dpi_fif;
+                   QGroupBox *continue_vediochoose_fif;
+                   QSpinBox *vedio_spbx_continue1_fif,*vedio_spbx_continue2_fif,*vedio_spbx_continue3_fif,*vedio_spbx_continue4_fif,*vedio_spbx_continue5_fif,*vedio_spbx_continue6_fif,*vedio_spbx_continue7_fif,*vedio_spby_continue1_fif,*vedio_spby_continue2_fif,*vedio_spby_continue3_fif,*vedio_spby_continue4_fif,*vedio_spby_continue5_fif,*vedio_spby_continue6_fif,*vedio_spby_continue7_fif;
+                   QLineEdit *vedio_l1_continue_fif,*vedio_l2_continue_fif,*vedio_l3_continue_fif,*vedio_l4_continue_fif,*vedio_l5_continue_fif,*vedio_l6_continue_fif,*vedio_l7_continue_fif;
+                   QLineEdit *vedio_continue_Fov0_fif,*vedio_continue_Fov1_fif,*vedio_continue_Fov2_fif,*vedio_continue_Fov3_fif,*vedio_continue_Fov4_fif,*vedio_continue_Fov5_fif,*vedio_continue_Fov6_fif;
     /*移动检测配置*/
     MyWidget *w_mtd;
     QPushButton *btn_mtd_default,*btn_mtd_update;
-    QLineEdit *rigion,*maxnum,*uspeed,*maxpix,*minpix,*sensitive,*dspeed,*trktime,*polar;
-    QComboBox *output;
-    QString mtd_s[10]={"检测区域","最多检测个数","模板更新速度","目标像素最大值","目标像素最小值","灵敏度阈值","检测速度","最大跟踪时间","开关量输出","开关量输出极性"};
+    QLineEdit *rigion_Cen_x,*rigion_Cen_y,*rigion_Cen_w,*rigion_Cen_h,*maxnum,*uspeed,*maxpix,*minpix,*sensitive,*dspeed,*trktime,*Alarm_delay;
+    QComboBox *output,*polar,*Priority_judgment;
+    QString mtd_s[14]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间","优先级判断","开关量输出","开关量输出极性","报警延时时间","区域设置提示框"};
+    QCheckBox  *zone_setting;
 
-    /*通道1*/
+
+
     MyWidget *w_sersor1,*w_seitchField,*w_ContinueField;
     QStackedLayout *sta;
     QComboBox *change3,*change2,*change1;
@@ -763,12 +1838,13 @@ private:
     QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     QCheckBox *checkBox_cross;
     /*OSD*/
-    QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size;
-    QPushButton *btn_osd1_default,*btn_osd1_update;
+    QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size,*CBox_transparency;
+    QPushButton *btn_osd1_default,*btn_osd1_update,*btn_keep1;
     MyWidget *w_osd1;
-    QCheckBox *checkBox;
-    QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color,*osd1_lineEdit_transparency;
-    QString osd_s[9]={"使能","x位置","y位置","标签","内容","字体","字体大小","颜色","透明度"};
+    QCheckBox *checkBox,*checkBox2;
+    QGroupBox *Custom;
+    QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color;
+    QString osd_s[14]={"用户自定义字符显示","显示","x位置","y位置","内容","颜色","透明度","字体大小"};
 
     /*软件升级*/
     RcvUSocketdata  *thread_usocket;
@@ -779,6 +1855,11 @@ private:
     qint64 filesize,fpgafilesize; // 文件大小
     qint64 sendsize,fpgasendsize;  // 已经发送的数据大小
 	bool socketIsconnect=false;
+
+
+    QButtonGroup  *workcheckbox;
+    QButtonGroup  *acqcheckbox;
+
 };
 extern MainWindow *pthis;
 #endif // MAINWINDOW_H

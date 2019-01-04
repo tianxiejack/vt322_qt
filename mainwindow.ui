@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>683</width>
-    <height>434</height>
+    <width>710</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
      <rect>
       <x>230</x>
       <y>60</y>
-      <width>71</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -58,7 +58,7 @@
      <rect>
       <x>230</x>
       <y>110</y>
-      <width>71</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -84,7 +84,7 @@
      <rect>
       <x>230</x>
       <y>160</y>
-      <width>71</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -110,7 +110,7 @@
      <rect>
       <x>230</x>
       <y>210</y>
-      <width>71</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -253,7 +253,7 @@
      <rect>
       <x>20</x>
       <y>30</y>
-      <width>54</width>
+      <width>71</width>
       <height>21</height>
      </rect>
     </property>
@@ -266,7 +266,7 @@
      <rect>
       <x>20</x>
       <y>150</y>
-      <width>81</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -274,89 +274,166 @@
      <string>目标中心微调</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_workmode">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>320</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>人工选择目标跟踪</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>自动跟踪监视</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>320</y>
-      <width>51</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>工作模式</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>350</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>目标捕获方式</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_acqmode">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>350</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>移动转台</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>移动波门</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>移动目标检测</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="btnApertureMinus_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>260</y>
-      <width>75</width>
+      <x>330</x>
+      <y>310</y>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>自动监测
-预置位设置</string>
+     <string>设置预置位</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>280</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>0</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>目标捕获方式</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_acqmode">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>移动转台</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2_acqmode">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>移动波门</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3_acqmode">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>移动目标检测</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>工作模式</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_workmode">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>人工选择目标跟踪</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2_workmode">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动跟踪</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3_workmode">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>场景跟踪</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="call_preset_bit">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>310</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>调用预置位</string>
     </property>
    </widget>
    <zorder>btnCapture</zorder>
@@ -379,19 +456,18 @@
    <zorder>btn_down_2</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
-   <zorder>comboBox_workmode</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_6</zorder>
-   <zorder>comboBox_acqmode</zorder>
    <zorder>btnApertureMinus_2</zorder>
+   <zorder>widget</zorder>
+   <zorder>widget_2</zorder>
+   <zorder>call_preset_bit</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>683</width>
-     <height>23</height>
+     <width>710</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

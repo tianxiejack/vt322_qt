@@ -1,4 +1,4 @@
-#include "comchoose.h"
+ #include "comchoose.h"
 #include <QSettings>
 comChoose::comChoose(QWidget *parent) : QWidget(parent)
 {
