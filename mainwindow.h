@@ -505,6 +505,14 @@ private slots:
     void lEdt_deadx_Slot_sec();
     void lEdt_deady_Slot_sec();
 
+    void lEdt_out_address_Slot_sec();
+    void combox_output_d_type_Slot_sec(int index);
+    void combox_baud_rate_type_Slot_sec(int index);
+    void combox_data_bit_type_Slot_sec(int index);
+    void combox_stop_bit_type_Slot_sec(int index);
+    void combox_parity_bit_type_Slot_sec(int index);
+    void combox_flow_control_type_Slot_sec(int index);
+
      /*转台配置通道3*/
     void lEdt_speedx1_Slot_thi();
     void lEdt_speedx2_Slot_thi();
@@ -535,6 +543,14 @@ private slots:
     void lEdt_maxspeedy_Slot_thi();
     void lEdt_deadx_Slot_thi();
     void lEdt_deady_Slot_thi();
+
+    void lEdt_out_address_Slot_thi();
+    void combox_output_d_type_Slot_thi(int index);
+    void combox_baud_rate_type_Slot_thi(int index);
+    void combox_data_bit_type_Slot_thi(int index);
+    void combox_stop_bit_type_Slot_thi(int index);
+    void combox_parity_bit_type_Slot_thi(int index);
+    void combox_flow_control_type_Slot_thi(int index);
 
 
      /*转台配置通道4*/
@@ -568,6 +584,14 @@ private slots:
     void lEdt_deadx_Slot_fou();
     void lEdt_deady_Slot_fou();
 
+    void lEdt_out_address_Slot_fou();
+    void combox_output_d_type_Slot_fou(int index);
+    void combox_baud_rate_type_Slot_fou(int index);
+    void combox_data_bit_type_Slot_fou(int index);
+    void combox_stop_bit_type_Slot_fou(int index);
+    void combox_parity_bit_type_Slot_fou(int index);
+    void combox_flow_control_type_Slot_fou(int index);
+
      /*转台配置通道5*/
     void lEdt_speedx1_Slot_fif();
     void lEdt_speedx2_Slot_fif();
@@ -598,6 +622,14 @@ private slots:
     void lEdt_maxspeedy_Slot_fif();
     void lEdt_deadx_Slot_fif();
     void lEdt_deady_Slot_fif();
+
+    void lEdt_out_address_Slot_fif();
+    void combox_output_d_type_Slot_fif(int index);
+    void combox_baud_rate_type_Slot_fif(int index);
+    void combox_data_bit_type_Slot_fif(int index);
+    void combox_stop_bit_type_Slot_fif(int index);
+    void combox_parity_bit_type_Slot_fif(int index);
+    void combox_flow_control_type_Slot_fif(int index);
 
 
 
@@ -1545,6 +1577,8 @@ private:
        QString vedio_s[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
        QSpinBox *vedio_spbx_switch1,*vedio_spbx_switch2,*vedio_spbx_switch3,*vedio_spbx_switch4,*vedio_spbx_switch5,*vedio_spby_switch1,*vedio_spby_switch2,*vedio_spby_switch3,*vedio_spby_switch4,*vedio_spby_switch5;
        QSpinBox *fix_sp,*fix_sp2;
+       QPushButton *Change_set_azimuth,*Change_set_pitch,*Change_set_zoom,*Change_search_azimuth,*Change_search_pitch,*Change_search_zoom;
+       QLineEdit  *Change_ledt_set_azimuth,*Change_ledt_set_pitch,*Change_ledt_set_zoom,*Change_ledt_search_azimuth,*Change_ledt_search_pitch,*Change_ledt_search_zoom;
        /*连续视场*/
        QPushButton *btn_vediosersor_continue_default,*btn_vediosersor_continue_update;
        QLineEdit *continuechanelname,*continue_xy_ratio,*continue_gate_sizex,*continue_gate_sizey,*continue_gatelocationx,*continue_gatelocationy,*test_1;
@@ -1554,6 +1588,8 @@ private:
        QSpinBox *vedio_spbx_continue1,*vedio_spbx_continue2,*vedio_spbx_continue3,*vedio_spbx_continue4,*vedio_spbx_continue5,*vedio_spbx_continue6,*vedio_spbx_continue7,*vedio_spby_continue1,*vedio_spby_continue2,*vedio_spby_continue3,*vedio_spby_continue4,*vedio_spby_continue5,*vedio_spby_continue6,*vedio_spby_continue7;
        QLineEdit *vedio_l1_continue,*vedio_l2_continue,*vedio_l3_continue,*vedio_l4_continue,*vedio_l5_continue,*vedio_l6_continue,*vedio_l7_continue;
        QLineEdit *vedio_continue_Fov0,*vedio_continue_Fov1,*vedio_continue_Fov2,*vedio_continue_Fov3,*vedio_continue_Fov4,*vedio_continue_Fov5,*vedio_continue_Fov6;
+       QPushButton *continue_set_azimuth,*continue_set_pitch,*continue_set_zoom,*continue_search_azimuth,*continue_search_pitch,*continue_search_zoom;
+       QLineEdit  *continue_ledt_set_azimuth,*continue_ledt_set_pitch,*continue_ledt_set_zoom,*continue_ledt_search_azimuth,*continue_ledt_search_pitch,*continue_ledt_search_zoom;
 
 
 
@@ -1565,6 +1601,8 @@ private:
           QCheckBox *fixChanelNum_sec,*fixenable_sec,*fix_vediohaveornot_sec,*fix_gateshow_sec,*fix_bullshow_sec,*fix_autogate_sec;
           QGroupBox *fix_vediochoose_sec;
           QComboBox *fix_vedio_dpi_sec;
+          QPushButton *set_azimuth_sec,*set_pitch_sec,*set_zoom_sec,*search_azimuth_sec,*search_pitch_sec,*search_zoom_sec;
+          QLineEdit  *ledt_set_azimuth_sec,*ledt_set_pitch_sec,*ledt_set_zoom_sec,*ledt_search_azimuth_sec,*ledt_search_pitch_sec,*ledt_search_zoom_sec;
           /*可切换视场*/
           int vedio_current_shichang_sec;
           MyWidget *w_sersor_1_sec,*w_seitchField_1_sec,*w_ContinueField_1_sec;
@@ -1576,6 +1614,8 @@ private:
           QString vedio_s_sec[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
           QSpinBox *vedio_spbx_switch1_sec,*vedio_spbx_switch2_sec,*vedio_spbx_switch3_sec,*vedio_spbx_switch4_sec,*vedio_spbx_switch5_sec,*vedio_spby_switch1_sec,*vedio_spby_switch2_sec,*vedio_spby_switch3_sec,*vedio_spby_switch4_sec,*vedio_spby_switch5_sec;
           QSpinBox *fix_sp_sec,*fix_sp2_sec;
+          QPushButton *Change_set_azimuth_sec,*Change_set_pitch_sec,*Change_set_zoom_sec,*Change_search_azimuth_sec,*Change_search_pitch_sec,*Change_search_zoom_sec;
+          QLineEdit  *Change_ledt_set_azimuth_sec,*Change_ledt_set_pitch_sec,*Change_ledt_set_zoom_sec,*Change_ledt_search_azimuth_sec,*Change_ledt_search_pitch_sec,*Change_ledt_search_zoom_sec;
           /*连续视场*/
           QPushButton *btn_vediosersor_continue_default_sec,*btn_vediosersor_continue_update_sec;
           QLineEdit *continuechanelname_sec,*continue_xy_ratio_sec,*continue_gate_sizex_sec,*continue_gate_sizey_sec,*continue_gatelocationx_sec,*continue_gatelocationy_sec,*test_1_sec;
@@ -1585,6 +1625,8 @@ private:
           QSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,*vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec;
           QLineEdit *vedio_l1_continue_sec,*vedio_l2_continue_sec,*vedio_l3_continue_sec,*vedio_l4_continue_sec,*vedio_l5_continue_sec,*vedio_l6_continue_sec,*vedio_l7_continue_sec;
           QLineEdit *vedio_continue_Fov0_sec,*vedio_continue_Fov1_sec,*vedio_continue_Fov2_sec,*vedio_continue_Fov3_sec,*vedio_continue_Fov4_sec,*vedio_continue_Fov5_sec,*vedio_continue_Fov6_sec;
+          QPushButton *continue_set_azimuth_sec,*continue_set_pitch_sec,*continue_set_zoom_sec,*continue_search_azimuth_sec,*continue_search_pitch_sec,*continue_search_zoom_sec;
+          QLineEdit  *continue_ledt_set_azimuth_sec,*continue_ledt_set_pitch_sec,*continue_ledt_set_zoom_sec,*continue_ledt_search_azimuth_sec,*continue_ledt_search_pitch_sec,*continue_ledt_search_zoom_sec;
 
 
           /*摄像机配置通道3*/
@@ -1594,6 +1636,8 @@ private:
              QCheckBox *fixChanelNum_thi,*fixenable_thi,*fix_vediohaveornot_thi,*fix_gateshow_thi,*fix_bullshow_thi,*fix_autogate_thi;
              QGroupBox *fix_vediochoose_thi;
              QComboBox *fix_vedio_dpi_thi;
+             QPushButton *set_azimuth_thi,*set_pitch_thi,*set_zoom_thi,*search_azimuth_thi,*search_pitch_thi,*search_zoom_thi;
+             QLineEdit  *ledt_set_azimuth_thi,*ledt_set_pitch_thi,*ledt_set_zoom_thi,*ledt_search_azimuth_thi,*ledt_search_pitch_thi,*ledt_search_zoom_thi;
              /*可切换视场*/
              int vedio_current_shichang_thi;
              MyWidget *w_sersor_1_thi,*w_seitchField_1_thi,*w_ContinueField_1_thi;
@@ -1605,6 +1649,8 @@ private:
              QString vedio_s_thi[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
              QSpinBox *vedio_spbx_switch1_thi,*vedio_spbx_switch2_thi,*vedio_spbx_switch3_thi,*vedio_spbx_switch4_thi,*vedio_spbx_switch5_thi,*vedio_spby_switch1_thi,*vedio_spby_switch2_thi,*vedio_spby_switch3_thi,*vedio_spby_switch4_thi,*vedio_spby_switch5_thi;
              QSpinBox *fix_sp_thi,*fix_sp2_thi;
+             QPushButton *Change_set_azimuth_thi,*Change_set_pitch_thi,*Change_set_zoom_thi,*Change_search_azimuth_thi,*Change_search_pitch_thi,*Change_search_zoom_thi;
+             QLineEdit  *Change_ledt_set_azimuth_thi,*Change_ledt_set_pitch_thi,*Change_ledt_set_zoom_thi,*Change_ledt_search_azimuth_thi,*Change_ledt_search_pitch_thi,*Change_ledt_search_zoom_thi;
              /*连续视场*/
              QPushButton *btn_vediosersor_continue_default_thi,*btn_vediosersor_continue_update_thi;
              QLineEdit *continuechanelname_thi,*continue_xy_ratio_thi,*continue_gate_sizex_thi,*continue_gate_sizey_thi,*continue_gatelocationx_thi,*continue_gatelocationy_thi,*test_1_thi;
@@ -1614,6 +1660,8 @@ private:
              QSpinBox *vedio_spbx_continue1_thi,*vedio_spbx_continue2_thi,*vedio_spbx_continue3_thi,*vedio_spbx_continue4_thi,*vedio_spbx_continue5_thi,*vedio_spbx_continue6_thi,*vedio_spbx_continue7_thi,*vedio_spby_continue1_thi,*vedio_spby_continue2_thi,*vedio_spby_continue3_thi,*vedio_spby_continue4_thi,*vedio_spby_continue5_thi,*vedio_spby_continue6_thi,*vedio_spby_continue7_thi;
              QLineEdit *vedio_l1_continue_thi,*vedio_l2_continue_thi,*vedio_l3_continue_thi,*vedio_l4_continue_thi,*vedio_l5_continue_thi,*vedio_l6_continue_thi,*vedio_l7_continue_thi;
              QLineEdit *vedio_continue_Fov0_thi,*vedio_continue_Fov1_thi,*vedio_continue_Fov2_thi,*vedio_continue_Fov3_thi,*vedio_continue_Fov4_thi,*vedio_continue_Fov5_thi,*vedio_continue_Fov6_thi;
+             QPushButton *continue_set_azimuth_thi,*continue_set_pitch_thi,*continue_set_zoom_thi,*continue_search_azimuth_thi,*continue_search_pitch_thi,*continue_search_zoom_thi;
+             QLineEdit  *continue_ledt_set_azimuth_thi,*continue_ledt_set_pitch_thi,*continue_ledt_set_zoom_thi,*continue_ledt_search_azimuth_thi,*continue_ledt_search_pitch_thi,*continue_ledt_search_zoom_thi;
 
 
              /*摄像机配置通道4*/
@@ -1623,6 +1671,8 @@ private:
                 QCheckBox *fixChanelNum_fou,*fixenable_fou,*fix_vediohaveornot_fou,*fix_gateshow_fou,*fix_bullshow_fou,*fix_autogate_fou;
                 QGroupBox *fix_vediochoose_fou;
                 QComboBox *fix_vedio_dpi_fou;
+                QPushButton *set_azimuth_fou,*set_pitch_fou,*set_zoom_fou,*search_azimuth_fou,*search_pitch_fou,*search_zoom_fou;
+                QLineEdit  *ledt_set_azimuth_fou,*ledt_set_pitch_fou,*ledt_set_zoom_fou,*ledt_search_azimuth_fou,*ledt_search_pitch_fou,*ledt_search_zoom_fou;
                 /*可切换视场*/
                 int vedio_current_shichang_fou;
                 MyWidget *w_sersor_1_fou,*w_seitchField_1_fou,*w_ContinueField_1_fou;
@@ -1634,6 +1684,8 @@ private:
                 QString vedio_s_fou[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
                 QSpinBox *vedio_spbx_switch1_fou,*vedio_spbx_switch2_fou,*vedio_spbx_switch3_fou,*vedio_spbx_switch4_fou,*vedio_spbx_switch5_fou,*vedio_spby_switch1_fou,*vedio_spby_switch2_fou,*vedio_spby_switch3_fou,*vedio_spby_switch4_fou,*vedio_spby_switch5_fou;
                 QSpinBox *fix_sp_fou,*fix_sp2_fou;
+                QPushButton *Change_set_azimuth_fou,*Change_set_pitch_fou,*Change_set_zoom_fou,*Change_search_azimuth_fou,*Change_search_pitch_fou,*Change_search_zoom_fou;
+                QLineEdit  *Change_ledt_set_azimuth_fou,*Change_ledt_set_pitch_fou,*Change_ledt_set_zoom_fou,*Change_ledt_search_azimuth_fou,*Change_ledt_search_pitch_fou,*Change_ledt_search_zoom_fou;
                 /*连续视场*/
                 QPushButton *btn_vediosersor_continue_default_fou,*btn_vediosersor_continue_update_fou;
                 QLineEdit *continuechanelname_fou,*continue_xy_ratio_fou,*continue_gate_sizex_fou,*continue_gate_sizey_fou,*continue_gatelocationx_fou,*continue_gatelocationy_fou,*test_1_fou;

@@ -123,8 +123,8 @@ void MainWindow::send_oneframe(int length)
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
     float value_i;
- QString msg;
-     QByteArray   ba;
+    QString msg;
+    QByteArray   ba;
     bool osd_judgment=(output_array[1] == 0x07) || (output_array[1] == 0x08)|| (output_array[1] == 0x09)||(output_array[1] == 0x0a)\
                       ||(output_array[1] == 0x0b) || (output_array[1] == 0x0c)|| (output_array[1] == 0x0d)||(output_array[1] == 0x0e)\
                       ||(output_array[1] == 0x0f) || (output_array[1] == 0x10)|| (output_array[1] == 0x11)||(output_array[1] == 0x12)\

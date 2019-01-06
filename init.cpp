@@ -1916,13 +1916,13 @@ void MainWindow::init_speedconvCfg_sec()
     connect(maxspeedy_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_sec()));
     connect(deadx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_sec()));
     connect(deady_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_sec()));
-    connect(output_d_type_sec,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
-    connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
-    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
-    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
-    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
-    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
-    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+    connect(output_d_type_sec,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_sec(int)));
+    connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_sec()));
+    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_sec(int)));
+    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_sec(int)));
+    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_sec(int)));
+    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_sec(int)));
+    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_sec(int)));
 
 
 }
@@ -2118,13 +2118,13 @@ void MainWindow::init_speedconvCfg_thi()
     connect(maxspeedy_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_thi()));
     connect(deadx_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_thi()));
     connect(deady_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_thi()));
-    connect(output_d_type_thi,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
-    connect(out_address_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
-    connect(baud_rate_thi,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
-    connect(data_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
-    connect(stop_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
-    connect(flow_control_thi,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
-    connect(parity_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+    connect(output_d_type_thi,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_thi(int)));
+    connect(out_address_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_thi()));
+    connect(baud_rate_thi,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_thi(int)));
+    connect(data_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_thi(int)));
+    connect(stop_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_thi(int)));
+    connect(flow_control_thi,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_thi(int)));
+    connect(parity_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_thi(int)));
 }
 
 void MainWindow::init_speedconvCfg_fou()
@@ -2318,13 +2318,13 @@ void MainWindow::init_speedconvCfg_fou()
     connect(maxspeedy_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fou()));
     connect(deadx_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fou()));
     connect(deady_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fou()));
-    connect(output_d_type_fou,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
-    connect(out_address_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
-    connect(baud_rate_fou,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
-    connect(data_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
-    connect(stop_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
-    connect(flow_control_fou,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
-    connect(parity_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+    connect(output_d_type_fou,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_fou(int)));
+    connect(out_address_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_fou()));
+    connect(baud_rate_fou,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_fou(int)));
+    connect(data_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_fou(int)));
+    connect(stop_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_fou(int)));
+    connect(flow_control_fou,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_fou(int)));
+    connect(parity_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_fou(int)));
 }
 
 void MainWindow::init_speedconvCfg_fif()
@@ -2518,13 +2518,13 @@ void MainWindow::init_speedconvCfg_fif()
     connect(maxspeedy_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fif()));
     connect(deadx_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fif()));
     connect(deady_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fif()));
-    connect(output_d_type_fif,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
-    connect(out_address_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
-    connect(baud_rate_fif,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
-    connect(data_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
-    connect(stop_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
-    connect(flow_control_fif,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
-    connect(parity_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+    connect(output_d_type_fif,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_fif(int)));
+    connect(out_address_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_fif()));
+    connect(baud_rate_fif,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_fif(int)));
+    connect(data_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_fif(int)));
+    connect(stop_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_fif(int)));
+    connect(flow_control_fif,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_fif(int)));
+    connect(parity_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_fif(int)));
 }
 
 void MainWindow::init_mtdCfg()
@@ -6822,7 +6822,7 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<4;i++){
+    for(int i=0;i<2;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=50;
@@ -6830,6 +6830,24 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
+
+
+
+
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=10;
+        send_oneframe(3);
+        send_mutex.unlock();
+
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=50;
+        send_arr[6]=13;
+        send_oneframe(3);
+        send_mutex.unlock();
+
     for(int i=1;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
@@ -6860,7 +6878,7 @@ void MainWindow::showspeedconvcfg_sec()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<10;i++){
+    for(int i=0;i<8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=100;
@@ -6868,15 +6886,20 @@ void MainWindow::showspeedconvcfg_sec()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=7;i<13;i++){
+
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=i;
+        send_arr[5]=100;
+        send_arr[6]=10;
         send_oneframe(3);
         send_mutex.unlock();
-    }
 
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=100;
+        send_arr[6]=13;
+        send_oneframe(3);
+        send_mutex.unlock();
 
     w_speedconv_sec->show();
     w_speedconv_sec->show_stat = 1;
@@ -6891,7 +6914,6 @@ void MainWindow::showspeedconvcfg_thi()
     send_oneframe(2);
     send_mutex.unlock();
 
-
     for(int i=0;i<16;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
@@ -6900,7 +6922,7 @@ void MainWindow::showspeedconvcfg_thi()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<10;i++){
+    for(int i=0;i<8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=102;
@@ -6908,14 +6930,19 @@ void MainWindow::showspeedconvcfg_thi()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=7;i<13;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=102;
+    send_arr[6]=10;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=102;
+    send_arr[6]=13;
+    send_oneframe(3);
+    send_mutex.unlock();
 
     w_speedconv_thi->show();
     w_speedconv_thi->show_stat = 1;
@@ -6928,8 +6955,6 @@ void MainWindow::showspeedconvcfg_fou()
     send_arr[5]=4;
     send_oneframe(2);
     send_mutex.unlock();
-
-
 
     for(int i=0;i<16;i++){
         send_mutex.lock();
@@ -6947,14 +6972,20 @@ void MainWindow::showspeedconvcfg_fou()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=7;i<13;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=104;
+    send_arr[6]=10;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=104;
+    send_arr[6]=13;
+    send_oneframe(3);
+    send_mutex.unlock();
+
 
     w_speedconv_fou->show();
     w_speedconv_fou->show_stat = 1;
@@ -6985,14 +7016,20 @@ void MainWindow::showspeedconvcfg_fif()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=7;i<13;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=106;
+    send_arr[6]=10;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=106;
+    send_arr[6]=13;
+    send_oneframe(3);
+    send_mutex.unlock();
+
 
     w_speedconv_fif->show();
     w_speedconv_fif->show_stat = 1;
