@@ -86,8 +86,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     this->setWindowTitle("控制界面");
-    old_x=a_center=a=POINTX+CENTER/2;
-    old_y=b_center=b=POINTY+CENTER/2;
+    a = POINTX;
+    b = POINTY;
 
     this->resize(580,450);
 

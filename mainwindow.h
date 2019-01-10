@@ -49,9 +49,10 @@
 #define POS_MIN 0
 #define POS_MAX 65535
 #define POS_CENTER 32767
-#define POINTX 350 //圆左上角坐标x
-#define POINTY 100 //圆左上角坐标Y
-#define CENTER 192//圆的半径
+#define POINTX 446 //圆心坐标x
+#define POINTY 196 //圆鑫坐标Y
+#define CENTER_B 96//大圆的半径
+#define CENTER_S 10//小圆的半径
 #define RATIO 10 //矩形框缩小比例
 
 #define BUFFER_FULL          1
@@ -81,6 +82,9 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent (QMouseEvent * event);
     void mouseMoveEvent(QMouseEvent *event);
+    void updatecircle_s(int x, int y);
+    int InJoys(int x, int y);
+    void sendjoyevent(int x, int y);
 
     /*初始化的配置*/
     void init_menu();
@@ -127,9 +131,6 @@ public:
     void usocket_parse_bytearray();
     void socket_Read_Data();
     void upgrade_showtext(int i,int percent);
-
-    /*计算圆边界值*/
-    void calculationCircle(int center_a, int center_b, int x, int y);
 
     void btnSensor1SwitchSlot();
     void btnSensor1SwitchSlot_sec();
@@ -1418,12 +1419,10 @@ private:
 
     QMenu* menu[10];
     /*界面手柄*/
-    int a, b, m_dragging,b_center,a_center,old_x,old_y;
+    int a, b;
     int mousePress = 0;
    // QMutex send_mutex;
     unsigned char send_arr[1080];
-    unsigned short sectrk_x = 0;
-    unsigned short sectrk_y = 0;
 
     /*系统配置*/
     QWidget *w_config,*w_config_serial,*w_config_net;
