@@ -10513,188 +10513,117 @@ void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter paint(this);
-    //paint.drawRect(POINTX-WIDTH/2, POINTY-HEIGHT/2, WIDTH, HEIGHT);
-    // 反走样
     paint.setRenderHint(QPainter::Antialiasing, true);
     // 设置画笔颜色、宽度
     paint.setPen(QPen(QColor(0, 0, 0), 1));
     // 设置画刷颜色
     paint.setBrush(QColor(200, 255, 250));
-    paint.drawEllipse(POINTX,POINTY,CENTER,CENTER);
-   // paint.drawRect(POINTX-WIDTH/RATIO/2, POINTY-HEIGHT/RATIO/2, WIDTH/RATIO, HEIGHT/RATIO);
-    paint.drawEllipse(a-10,b-10,20,20);
+    paint.drawEllipse(POINTX-CENTER_B,POINTY-CENTER_B,CENTER_B*2,CENTER_B*2);
+    paint.drawEllipse(a-CENTER_S,b-CENTER_S,CENTER_S*2,CENTER_S*2);
 
     QPainter painter(this);
     QPen pen(Qt::black,2,Qt::DotLine,Qt::RoundCap,Qt::RoundJoin);
     painter.setPen(pen);
-    painter.drawLine(QPointF(POINTX, POINTY+CENTER/2), QPointF(POINTX+CENTER, POINTY+CENTER/2));
-    painter.drawLine(QPointF(POINTX+CENTER/2, POINTY), QPointF(POINTX+CENTER/2, POINTY+CENTER));
-
-
+    painter.drawLine(QPointF(POINTX-CENTER_B, POINTY), QPointF(POINTX+CENTER_B, POINTY));
+    painter.drawLine(QPointF(POINTX, POINTY-CENTER_B), QPointF(POINTX, POINTY+CENTER_B));
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-//    int x=event->pos().x();
-//    int y=event->pos().y();
-    mousePress = 1;
-   if((abs(event->pos().x()-a)<=10)&&((event->pos().y()-b)<=10)){
-       m_dragging = 1;
-     // qDebug()<<"x"<<x<<endl<<"y"<<y<<endl;
-   }
-   else
-       m_dragging = 0;
+    int x = event->pos().x();
+    int y = event->pos().y();
+
+    if(InJoys(x,y))
+    {
+        mousePress = 1;
+        updatecircle_s(x, y);
+        sendjoyevent(x, y);
+    }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
-    if(mousePress==1){
-        if(a!=(POINTX+CENTER/2)||b!=(POINTY+CENTER/2)){
-            mousePress = 0;
-            a=POINTX+CENTER/2;
-            b=POINTY+CENTER/2;
-            send_mutex.lock();
-            send_arr[4] = 0x15;
-            send_arr[5]=0x00;
-            send_arr[6]=0x00;
-            send_arr[7]=0x00;
-            send_arr[8]=0x00;
-            old_x=a;
-            old_y=b;
-            send_oneframe(5);
-            send_mutex.unlock();
-            update();
-        }
-    }
+    mousePress = 0;
+    int x = POINTX;
+    int y = POINTY;
+
+    updatecircle_s(x, y);
+    sendjoyevent(x, y);
 }
-void MainWindow::calculationCircle(int center_a, int center_b, int x, int y)
-{
-}
+
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
+    int x = event->pos().x();
+    int y = event->pos().y();
 
-
-    if (mousePress&&m_dragging)
+    if(mousePress && InJoys(x,y))
     {
-        int x=event->pos().x();
-        int y=event->pos().y();
-//        int l1=0.414*x+42.604;
-//        int l2=(-0.414)*x+385.396;
-//        int l3=(y+785.396)/2.414;
-//        int l4=(y-1213.396)/(-2.414);
-//        int l5=2.414*x-785.396;
-//        int l6=(-2.414)*x+1213.396;
+        updatecircle_s(x, y);
+        sendjoyevent(x, y);
+    }
+}
 
-        int m=qAbs(x-a_center);
-        int n=qAbs(y-b_center);
-        int l=qSqrt(((x-POINTX-CENTER/2)*(x-POINTX-CENTER/2)+(y-POINTY-CENTER/2)*(y-POINTY-CENTER/2)));
+void MainWindow::updatecircle_s(int x, int y)
+{
+    int m = x - POINTX;
+    int n = y - POINTY;
+    int l = qSqrt(qAbs(m) * qAbs(m) + qAbs(n) * qAbs(n));
 
-        if(l>CENTER/2)
-        {
-            sectrk_x = (event->pos().x()-POINTX)*RATIO+CENTER/2;
-            sectrk_y = (event->pos().y()-POINTY)*RATIO+CENTER/2;
-           if((y-b_center)<0)
-              b=b_center-n*CENTER/(2*l);
-           else
-              b=b_center+n*CENTER/(2*l);
-           if(x-a_center<0)
-              a=a_center-m*CENTER/(2*l);
-           else
-              a=a_center+m*CENTER/(2*l);
-           update();
-        }else{
-           sectrk_x = (event->pos().x()-POINTX)*RATIO+CENTER/2;
-           sectrk_y = (event->pos().y()-POINTY)*RATIO+CENTER/2;
-           a=event->pos().x();
-           b=event->pos().y();
-           update();
+    if(l > CENTER_B)
+    {
+        a = POINTX + m * CENTER_B / l;
+        b = POINTY + n * CENTER_B / l;
+    }
+    else
+    {
+        a = x;
+        b = y;
+    }
+    update();
+}
 
-        }
-//        if(judgment==1){//跟踪微调
+int MainWindow::InJoys(int x, int y)
+{
+    int m = x - POINTX;
+    int n = y - POINTY;
+    int l = qSqrt(qAbs(m)*qAbs(m)+qAbs(n)*qAbs(n));
 
-//            if(l>CENTER/4){
-//               if(y>l2 && y<l1 && x>0){//右
-//                   jud_area=1;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(y<l2 && y>l1){//左
-//                   jud_area=5;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(x<l4 && x>l3 ){//上
-//                   jud_area=7;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(x>l4 && x<l3 ){//下
-//                   jud_area=3;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(y>l1 && l<l5){//右上
-//                   jud_area=2;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(y<l1 && l>l5){//左下
-//                   jud_area=6;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(y>l2 && y<l6){//左上
-//                   jud_area=4;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }else if(y<l2 && y>l6){//右下
-//                   jud_area=8;
-//                   time->start(500);
-//                   qDebug()<<jud_area;
-//               }}else{
-//                jud_area=0;
+    if(l <= CENTER_B)
+        return 1;
+    else
+        return 0;
+}
 
-//                send_mutex.lock();
-//                send_arr[4] = 0x08;
-//                send_arr[5] = 0x00;
-//                send_arr[6] = 0x00;
-//                send_oneframe(3);
-//                send_mutex.unlock();
-//                qDebug()<<jud_area;
-         //   }
-
-
-       // }else{//手柄传输控制
+void MainWindow::sendjoyevent(int x, int y)
+{
+    static int old_x = 0;
+    static int old_y = 0;
+    signed short sx = (x - POINTX) * 32767 / CENTER_B;
+    signed short sy = (y - POINTY) * 32767 / CENTER_B;
+    if(sx != old_x)
+    {
         send_mutex.lock();
         send_arr[4] = 0x15;
-        if(x-a_center>0){//判断方位
-            send_arr[5]=0x02;
-        }else if(x-a_center<0){
-            send_arr[5]=0x01;
-        }else{
-            send_arr[5]=0x00;
-        }
-        if(qAbs(a-a_center)*2/3==64){
-            send_arr[6]=0x3F;
-        }else{
-            send_arr[6]=qAbs(a-a_center)*2/3;
-        }
-
-        if(y-b_center>0){//判断俯仰
-            send_arr[7]=0x02;
-        }else if(y-b_center<0){
-            send_arr[7]=0x01;
-        }else{
-            send_arr[7]=0x00;
-        }
-        if(qAbs(b-b_center)*2/3==64){
-            send_arr[8]=0x3F;
-        }else{
-            send_arr[8]=qAbs(b-b_center)*2/3;
-        }
-
-        //保留上一次x，y的值。
-        old_x=a;
-        old_y=b;
+        send_arr[5] = 0x02;
+        send_arr[6] = 0x00;
+        memcpy(send_arr+7, &sx, 2);
         send_oneframe(5);
         send_mutex.unlock();
-        }
-   // }
+        old_x = sx;
+    }
+    if(sy != old_y)
+    {
+        send_mutex.lock();
+        send_arr[4] = 0x15;
+        send_arr[5] = 0x02;
+        send_arr[6] = 0x01;
+        memcpy(send_arr+7, &sy, 2);
+        send_oneframe(5);
+        send_mutex.unlock();
+        old_y = sy;
+    }
 }
+
 void MainWindow::timeoutSlot()
 {
     switch( value_search){
