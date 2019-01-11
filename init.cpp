@@ -2433,9 +2433,9 @@ void MainWindow::init_vedioCfg_sec(){
     QHBoxLayout *v31=new QHBoxLayout;
     QLabel *label70=new QLabel;
     label70->setText("测试视场");
-    test_1 = new QLineEdit;
+    test_1_sec = new QLineEdit;
     v31->addWidget(label70);
-    v31->addWidget(test_1);
+    v31->addWidget(test_1_sec);
 //
     QGridLayout *glct2=new QGridLayout;
    continue_set_azimuth_sec =new QPushButton;
@@ -5302,9 +5302,9 @@ void MainWindow::init_vedioCfg_fif(){
     QHBoxLayout *v31=new QHBoxLayout;
     QLabel *label70=new QLabel;
     label70->setText("测试视场");
-    test_1 = new QLineEdit;
+    test_1_fif = new QLineEdit;
     v31->addWidget(label70);
-    v31->addWidget(test_1);
+    v31->addWidget(test_1_fif);
 //
     QGridLayout *glct2=new QGridLayout;
    continue_set_azimuth_fif =new QPushButton;

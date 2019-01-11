@@ -62,10 +62,10 @@ MainWindow::MainWindow(QWidget *parent) :
     init_pidCfg4();
     init_pidCfg5();
     init_vedioCfg();
-   // init_vedioCfg_sec();
-   //init_vedioCfg_thi();
-   // init_vedioCfg_fou();
-    //init_vedioCfg_fif();
+    init_vedioCfg_sec();
+    init_vedioCfg_thi();
+    init_vedioCfg_fou();
+    init_vedioCfg_fif();
     init_dbCfg();
     init_speedconvCfg();
     init_speedconvCfg_sec();
