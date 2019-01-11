@@ -7,10 +7,24 @@
 void MainWindow::init_menu()
 {
     menu[0]=new QMenu("配置");
-    QAction* act_sysCfg=new QAction("系统配置",this);
-    menu[0]->addAction(act_sysCfg);
+    QAction* real_time_output=new QAction("实时输出",this);
+    menu[0]->addAction(real_time_output);
+
     QAction* act_platCfg=new QAction("手柄配置",this);
     menu[0]->addAction(act_platCfg);
+
+    QMenu* videoCfg=new QMenu("摄像机配置");
+    QAction* avt_videoCfg1=new QAction("通道1");
+    QAction* avt_videoCfg2=new QAction("通道2");
+    QAction* avt_videoCfg3=new QAction("通道3");
+    QAction* avt_videoCfg4=new QAction("通道4");
+    QAction* avt_videoCfg5=new QAction("通道5");
+    videoCfg->addAction(avt_videoCfg1);
+    videoCfg->addAction(avt_videoCfg2);
+    videoCfg->addAction(avt_videoCfg3);
+    videoCfg->addAction(avt_videoCfg4);
+    videoCfg->addAction(avt_videoCfg5);
+    menu[0]->addMenu(videoCfg);
     QMenu* pidsysCfg=new QMenu("PID配置");
         QAction* act_pidCfg1=new QAction("通道1");
         QAction* act_pidCfg2=new QAction("通道2");
@@ -24,18 +38,18 @@ void MainWindow::init_menu()
         pidsysCfg->addAction(act_pidCfg5);
         menu[0]->addMenu(pidsysCfg);
 
-        QMenu* videoCfg=new QMenu("摄像机配置");
-        QAction* avt_videoCfg1=new QAction("通道1");
-        QAction* avt_videoCfg2=new QAction("通道2");
-        QAction* avt_videoCfg3=new QAction("通道3");
-        QAction* avt_videoCfg4=new QAction("通道4");
-        QAction* avt_videoCfg5=new QAction("通道5");
-        videoCfg->addAction(avt_videoCfg1);
-        videoCfg->addAction(avt_videoCfg2);
-        videoCfg->addAction(avt_videoCfg3);
-        videoCfg->addAction(avt_videoCfg4);
-        videoCfg->addAction(avt_videoCfg5);
-        menu[0]->addMenu(videoCfg);
+    QMenu* speedconv_sysCfg=new QMenu("转台配置");
+        QAction* speedconv=new QAction("通道1",this);
+        QAction* speedconv_sec=new QAction("通道2",this);
+        QAction* speedconv_thi=new QAction("通道3",this);
+        QAction* speedconv_fou=new QAction("通道4",this);
+        QAction* speedconv_fif=new QAction("通道5",this);
+        speedconv_sysCfg->addAction(speedconv);
+        speedconv_sysCfg->addAction(speedconv_sec);
+        speedconv_sysCfg->addAction(speedconv_thi);
+        speedconv_sysCfg->addAction(speedconv_fou);
+        speedconv_sysCfg->addAction(speedconv_fif);
+        menu[0]->addMenu(speedconv_sysCfg);
 
     QMenu* cameracfg=new QMenu("相机配置");
     QAction* act_cmrCfg1=new QAction("通道1",this);
@@ -48,7 +62,7 @@ void MainWindow::init_menu()
     cameracfg->addAction(act_cmrCfg3);
     cameracfg->addAction(act_cmrCfg4);
     cameracfg->addAction(act_cmrCfg5);
-    menu[0]->addMenu(cameracfg);
+    //menu[0]->addMenu(cameracfg);
 
 //    QAction* act_algCfg=new QAction("算法配置");
 //    menu[0]->addAction(act_algCfg);
@@ -72,34 +86,24 @@ void MainWindow::init_menu()
 //    osd->addAction(act_othCfg3);
 //    menu[0]->addMenu(osd);
 
-    QMenu* capture=new QMenu("波门配置");
+   // QMenu* capture=new QMenu("波门配置");
     QAction* act_cap1=new QAction("捕获框",this);
     //capture->addAction(act_cap1);
     QAction* act_cap2=new QAction("波门",this);
-    capture->addAction(act_cap2);
+    //capture->addAction(act_cap2);
     QAction* act_cap3=new QAction("画线",this);
-    capture->addAction(act_cap3);
-    menu[0]->addMenu(capture);
+    //capture->addAction(act_cap3);
+    //menu[0]->addMenu(capture);
 
      QAction* dbg_sysCfg=new QAction("捕获配置",this);
-     menu[0]->addAction(dbg_sysCfg);
+     //menu[0]->addAction(dbg_sysCfg);
 
-     QMenu* speedconv_sysCfg=new QMenu("转台配置");
-     QAction* speedconv=new QAction("通道1",this);
-     QAction* speedconv_sec=new QAction("通道2",this);
-     QAction* speedconv_thi=new QAction("通道3",this);
-     QAction* speedconv_fou=new QAction("通道4",this);
-     QAction* speedconv_fif=new QAction("通道5",this);
-     speedconv_sysCfg->addAction(speedconv);
-     speedconv_sysCfg->addAction(speedconv_sec);
-     speedconv_sysCfg->addAction(speedconv_thi);
-     speedconv_sysCfg->addAction(speedconv_fou);
-     speedconv_sysCfg->addAction(speedconv_fif);
-     menu[0]->addMenu(speedconv_sysCfg);
 
      QAction* mtd_sysCfg=new QAction("移动检测配置",this);
      menu[0]->addAction(mtd_sysCfg);
 
+     QAction* act_sysCfg=new QAction("系统配置",this);
+     menu[0]->addAction(act_sysCfg);
 
     QAction* act_rstCfg=new QAction("恢复默认",this);
     menu[0]->addAction(act_rstCfg);
@@ -107,6 +111,10 @@ void MainWindow::init_menu()
     ui->menuBar->addMenu(menu[0]);
 
     connect(avt_videoCfg1,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg1()));
+    connect(avt_videoCfg2,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg2()));
+    connect(avt_videoCfg3,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg3()));
+    connect(avt_videoCfg4,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg4()));
+    connect(avt_videoCfg5,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg5()));
     connect(act_pidCfg1,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg1()));
     connect(act_pidCfg2,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
     connect(act_pidCfg3,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg3()));
@@ -862,9 +870,9 @@ void MainWindow::init_vedioCfg()
     fix_xy_ratio = new QLineEdit;
     fix_vedio_dpi->addItem("1080P@25HZ");
     fix_vedio_dpi->addItem("1080P@30HZ");
-    fix_vedio_dpi->addItem("1080P@60HZ");
-    fix_vedio_dpi->addItem("720P@60HZ");
+    //fix_vedio_dpi->addItem("1080P@60HZ");
     fix_vedio_dpi->addItem("720P@50HZ");
+    fix_vedio_dpi->addItem("720P@60HZ");
     vedio_change1 = new QComboBox;
     vedio_change1->addItem("固定视场");
     vedio_change1->addItem("可切换视场");
@@ -957,10 +965,6 @@ void MainWindow::init_vedioCfg()
     gl12->addWidget(search_azimuth,1,5,1,1);
     gl12->addWidget(search_pitch,2,5,1,1);
     gl12->addWidget(search_zoom,3,5,1,1);
-
-
-
-
 //
 
     QGroupBox *g=new QGroupBox;
@@ -976,30 +980,34 @@ void MainWindow::init_vedioCfg()
     QLabel* l14=new QLabel;
     l14->setText(" ");
     fix_lEdt=new QLineEdit;
+    fix_vertical=new QLineEdit;
     QLabel* l1d=new QLabel;
     l1d->setText("度");
+    QLabel* l1v=new QLabel;
+    l1v->setText("度");
     fix_sp=new QSpinBox;
     fix_sp2=new QSpinBox;
     fix_sp->setRange(0,9999);
     fix_sp2->setRange(0,9999);
     QGridLayout *gl3=new QGridLayout;
     gl3->addWidget(l11,0,0,1,1);
-
     gl3->addWidget(l14,0,1,1,1);
-    gl3->addWidget(l14,0,2,1,1);
 
-    gl3->addWidget(l12,0,3,1,1);
-    gl3->addWidget(l13,0,4,1,1);
+    gl3->addWidget(l15,0,2,1,1);
+    gl3->addWidget(l14,0,3,1,1);
 
-    gl3->addWidget(l14,0,5,1,1);
+    gl3->addWidget(l14,0,4,1,1);
+    gl3->addWidget(l12,0,5,1,1);
+    gl3->addWidget(l13,0,6,1,1);
+    gl3->addWidget(l14,0,7,1,1);
     gl3->addWidget(fix_lEdt,1,0,1,1);
     gl3->addWidget(l1d,1,1,1,1);
-    gl3->addWidget(l14,1,2,1,1);
-    gl3->addWidget(fix_sp,1,3,1,1);
-    gl3->addWidget(fix_sp2,1,4,1,1);
+    gl3->addWidget(fix_vertical,1,2,1,1);
+    gl3->addWidget(l1v,1,3,1,1);
+    gl3->addWidget(l14,1,4,1,1);
+    gl3->addWidget(fix_sp,1,5,1,1);
+    gl3->addWidget(fix_sp2,1,6,1,1);
     g->setLayout(gl3);
-
-
 
     QVBoxLayout *v0=new QVBoxLayout;
     v0->addLayout(h11);
@@ -1011,7 +1019,39 @@ void MainWindow::init_vedioCfg()
     v0->addLayout(gl12);
     v0->addWidget(g);
     w_sersor_1->setLayout(v0);
+
     connect(vedio_change1,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix(int)));
+    connect(btn_vediosersor_fix_default,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot()));
+    connect(btn_vediosersor_fix_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+    connect(fixChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));
+    connect(fixchanelname,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot(int)));
+    connect(fixenable,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot(int)));
+    connect(fix_vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));
+    connect(fix_vedio_dpi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot(int)));
+    connect(fix_xy_ratio,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot()));
+    connect(fix_gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
+    connect(fix_bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
+    connect(fix_autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
+    connect(fix_gate_sizex,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot()));
+    connect(fix_gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
+    connect(fix_gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
+    connect(fix_gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
+    connect(set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
+    connect(set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
+    connect(set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
+    connect(search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
+    connect(search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
+    connect(search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
+   // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
+   // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
+   // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
+   // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
+   // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
+   // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+    connect(fix_lEdt,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(fix_vertical,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(fix_sp,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(fix_sp2,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
 
     /*可切换视场*/
     w_seitchField_1->setWindowTitle("摄像机配置");
@@ -1033,9 +1073,9 @@ void MainWindow::init_vedioCfg()
     chanelname = new QLineEdit;
     enable = new  QCheckBox();
     enable->setText("使能");
+
     QLabel *label2=new QLabel;
     label2->setText("通道名称");
-
     QHBoxLayout *v2=new QHBoxLayout;
     v2->addWidget(ChanelNum);
     v2->addWidget(label2);
@@ -1048,8 +1088,8 @@ void MainWindow::init_vedioCfg()
     vedio_dpi->addItem("1080P@25HZ");
     vedio_dpi->addItem("1080P@30HZ");
     vedio_dpi->addItem("1080P@60HZ");
-    vedio_dpi->addItem("720P@60HZ");
     vedio_dpi->addItem("720P@50HZ");
+    vedio_dpi->addItem("720P@60HZ");
     vedio_change2 = new QComboBox;
     vedio_change2->addItem("可切换视场");
     vedio_change2->addItem("固定视场");
@@ -1108,12 +1148,67 @@ void MainWindow::init_vedioCfg()
     vedio_fovclass->addItem("可切换视场5");
     h2->addWidget(label7);
     h2->addWidget(vedio_fovclass);
+    //
+
+    QGridLayout *glc2=new QGridLayout;
+   Change_set_azimuth =new QPushButton;
+   Change_set_pitch =new QPushButton;
+   Change_set_zoom  =new QPushButton;
+   Change_search_azimuth=new QPushButton;
+   Change_search_pitch=new QPushButton;
+   Change_search_zoom=new QPushButton;
+   Change_set_azimuth->setText("设置");
+   Change_set_pitch->setText("设置");
+   Change_set_zoom->setText("设置");
+   Change_search_azimuth->setText("查询");
+   Change_search_pitch->setText("查询");
+   Change_search_zoom->setText("查询");
+
+   Change_ledt_set_azimuth=new QLineEdit;
+   Change_ledt_set_pitch=new QLineEdit;
+   Change_ledt_set_zoom=new QLineEdit;
+
+   Change_ledt_search_azimuth=new QLineEdit;
+   Change_ledt_search_pitch=new QLineEdit;
+   Change_ledt_search_zoom=new QLineEdit;
+
+   QLabel *labelac=new QLabel;
+   labelac->setText("方位角");
+   QLabel *labelpc=new QLabel;
+   labelpc->setText("俯仰角");
+   QLabel *labelzc=new QLabel;
+   labelzc->setText("zoom位置");
+
+   glc2->addWidget(labelac,1,0,1,1);
+   glc2->addWidget(labelpc,2,0,1,1);
+   glc2->addWidget(labelzc,3,0,1,1);
+
+
+   glc2->addWidget(Change_ledt_set_azimuth,1,2,1,1);
+   glc2->addWidget(Change_ledt_set_pitch,2,2,1,1);
+   glc2->addWidget(Change_ledt_set_zoom,3,2,1,1);
+
+   glc2->addWidget(Change_set_azimuth,1,3,1,1);
+   glc2->addWidget(Change_set_pitch,2,3,1,1);
+   glc2->addWidget(Change_set_zoom,3,3,1,1);
+   glc2->addWidget(Change_ledt_search_azimuth,1,4,1,1);
+   glc2->addWidget(Change_ledt_search_pitch,2,4,1,1);
+   glc2->addWidget(Change_ledt_search_zoom,3,4,1,1);
+
+   glc2->addWidget(Change_search_azimuth,1,5,1,1);
+   glc2->addWidget(Change_search_pitch,2,5,1,1);
+   glc2->addWidget(Change_search_zoom,3,5,1,1);
+
+
+    //
 
     QGroupBox *g2=new QGroupBox;
     g2->setTitle("视场靶心补偿表");
     QGridLayout *gl2=new QGridLayout;
     QLabel* l21=new QLabel;
     l21->setText("水平视场");
+    QLabel* l25=new QLabel;
+    l25->setText("垂直视场");
     QLabel* l22=new QLabel;
     l22->setText("靶心X位置");
     QLabel* l23=new QLabel;
@@ -1121,9 +1216,10 @@ void MainWindow::init_vedioCfg()
     QLabel* l24=new QLabel;
     l24->setText(" ");
     gl2->addWidget(l21,0,1,1,1);
-    gl2->addWidget(l22,0,3,1,1);
-    gl2->addWidget(l23,0,4,1,1);
-    gl2->addWidget(l24,0,5,1,1);
+    gl2->addWidget(l25,0,3,1,1);
+    gl2->addWidget(l22,0,5,1,1);
+    gl2->addWidget(l23,0,6,1,1);
+    gl2->addWidget(l24,0,7,1,1);
 
     QLabel *fovclass_label1 = new QLabel;
     QLabel *fovclass_label2 = new QLabel;
@@ -1151,6 +1247,17 @@ void MainWindow::init_vedioCfg()
     gl2->addWidget(vedio_s1_Fov3,4,1,1,1);
     gl2->addWidget(vedio_s1_Fov4,5,1,1,1);
 
+    Change_vertical1=new QLineEdit;
+    Change_vertical2=new QLineEdit;
+    Change_vertical3=new QLineEdit;
+    Change_vertical4=new QLineEdit;
+    Change_vertical5=new QLineEdit;
+    gl2->addWidget(Change_vertical1,1,3,1,1);
+    gl2->addWidget(Change_vertical2,2,3,1,1);
+    gl2->addWidget(Change_vertical3,3,3,1,1);
+    gl2->addWidget(Change_vertical4,4,3,1,1);
+    gl2->addWidget(Change_vertical5,5,3,1,1);
+
     QLabel* l1d21=new QLabel;
     QLabel* l1d22=new QLabel;
     QLabel* l1d23=new QLabel;
@@ -1162,11 +1269,28 @@ void MainWindow::init_vedioCfg()
     l1d24->setText("度");
     l1d25->setText("度");
 
+    QLabel* l1c21=new QLabel;
+    QLabel* l1c22=new QLabel;
+    QLabel* l1c23=new QLabel;
+    QLabel* l1c24=new QLabel;
+    QLabel* l1c25=new QLabel;
+    l1c21->setText("度");
+    l1c22->setText("度");
+    l1c23->setText("度");
+    l1c24->setText("度");
+    l1c25->setText("度");
+
     gl2->addWidget(l1d21,1,2,1,1);
     gl2->addWidget(l1d22,2,2,1,1);
     gl2->addWidget(l1d23,3,2,1,1);
     gl2->addWidget(l1d24,4,2,1,1);
     gl2->addWidget(l1d25,5,2,1,1);
+
+    gl2->addWidget(l1c21,1,4,1,1);
+    gl2->addWidget(l1c22,2,4,1,1);
+    gl2->addWidget(l1c23,3,4,1,1);
+    gl2->addWidget(l1c24,4,4,1,1);
+    gl2->addWidget(l1c25,5,4,1,1);
 
 
     vedio_spbx_switch1=new QSpinBox;
@@ -1179,11 +1303,11 @@ void MainWindow::init_vedioCfg()
     vedio_spbx_switch3->setRange(0,9999);
     vedio_spbx_switch4->setRange(0,9999);
     vedio_spbx_switch5->setRange(0,9999);
-    gl2->addWidget(vedio_spbx_switch1,1,3,1,1);
-    gl2->addWidget(vedio_spbx_switch2,2,3,1,1);
-    gl2->addWidget(vedio_spbx_switch3,3,3,1,1);
-    gl2->addWidget(vedio_spbx_switch4,4,3,1,1);
-    gl2->addWidget(vedio_spbx_switch5,5,3,1,1);
+    gl2->addWidget(vedio_spbx_switch1,1,5,1,1);
+    gl2->addWidget(vedio_spbx_switch2,2,5,1,1);
+    gl2->addWidget(vedio_spbx_switch3,3,5,1,1);
+    gl2->addWidget(vedio_spbx_switch4,4,5,1,1);
+    gl2->addWidget(vedio_spbx_switch5,5,5,1,1);
 
     vedio_spby_switch1=new QSpinBox;
     vedio_spby_switch2=new QSpinBox;
@@ -1195,15 +1319,16 @@ void MainWindow::init_vedioCfg()
     vedio_spby_switch3->setRange(0,9999);
     vedio_spby_switch4->setRange(0,9999);
     vedio_spby_switch5->setRange(0,9999);
-    gl2->addWidget(vedio_spby_switch1,1,4,1,1);
-    gl2->addWidget(vedio_spby_switch2,2,4,1,1);
-    gl2->addWidget(vedio_spby_switch3,3,4,1,1);
-    gl2->addWidget(vedio_spby_switch4,4,4,1,1);
-    gl2->addWidget(vedio_spby_switch5,5,4,1,1);
+    gl2->addWidget(vedio_spby_switch1,1,6,1,1);
+    gl2->addWidget(vedio_spby_switch2,2,6,1,1);
+    gl2->addWidget(vedio_spby_switch3,3,6,1,1);
+    gl2->addWidget(vedio_spby_switch4,4,6,1,1);
+    gl2->addWidget(vedio_spby_switch5,5,6,1,1);
 
     g2->setLayout(gl2);
     QVBoxLayout *v22=new QVBoxLayout;
     v22->addLayout(h2);
+    v22->addLayout(glc2);
     v22->addWidget(g2);
 
     QVBoxLayout *v=new QVBoxLayout;
@@ -1219,6 +1344,51 @@ void MainWindow::init_vedioCfg()
   //v->addLayout(h2);
     v->addLayout(v22);
     w_seitchField_1->setLayout(v);
+    connect(btn_vediosersor_default,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot()));
+    connect(btn_vediosersor_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+    connect(ChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(chanelname,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot(int)));//
+    connect(vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(vedio_dpi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
+    connect(bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
+    connect(xy_ratio,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot()));
+    connect(gateshow,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot()));
+    connect(bullshow,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot()));
+    connect(autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
+    connect(gate_sizex,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot()));
+    connect(gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
+    connect(gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
+    connect(gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
+    connect(Change_set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
+    connect(Change_set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
+    connect(Change_set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
+    connect(Change_search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
+    connect(Change_search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
+    connect(Change_search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
+    connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
+
+    connect(vedio_s1_Fov0,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical1,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(vedio_spbx_switch1,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_spby_switch1,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_s1_Fov1,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical2,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(vedio_spbx_switch2,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_spby_switch2,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_s1_Fov2,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical3,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(vedio_spbx_switch3,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_spby_switch3,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_s1_Fov3,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical4,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(vedio_spbx_switch4,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_spby_switch4,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_s1_Fov4,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical5,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
+    connect(vedio_spbx_switch5,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_spby_switch5,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
 
     /*连续视场*/
     w_ContinueField_1->setWindowTitle("摄像机配置");
@@ -1244,7 +1414,7 @@ void MainWindow::init_vedioCfg()
     label61->setText("通道名称");
     QHBoxLayout *v9=new QHBoxLayout;
     v9->addWidget(continueChanelNum);
-    v9->addWidget(label2);
+    v9->addWidget(label61);
     v9->addWidget(continuechanelname);
     v9->addWidget(continueenable);
 
@@ -1254,8 +1424,8 @@ void MainWindow::init_vedioCfg()
     continue_vedio_dpi->addItem("1080P@25HZ");
     continue_vedio_dpi->addItem("1080P@30HZ");
     continue_vedio_dpi->addItem("1080P@60HZ");
-    continue_vedio_dpi->addItem("720P@60HZ");
     continue_vedio_dpi->addItem("720P@50HZ");
+    continue_vedio_dpi->addItem("720P@60HZ");
     vedio_change3 = new QComboBox;
     vedio_change3->addItem("连续视场");
     vedio_change3->addItem("固定视场");
@@ -1303,11 +1473,59 @@ void MainWindow::init_vedioCfg()
 
     QHBoxLayout *v31=new QHBoxLayout;
     QLabel *label70=new QLabel;
-    label70->setText("测试现场");
+    label70->setText("测试视场");
     test_1 = new QLineEdit;
     v31->addWidget(label70);
     v31->addWidget(test_1);
+//
+    QGridLayout *glct2=new QGridLayout;
+   continue_set_azimuth =new QPushButton;
+   continue_set_pitch =new QPushButton;
+   continue_set_zoom  =new QPushButton;
+   continue_search_azimuth=new QPushButton;
+   continue_search_pitch=new QPushButton;
+   continue_search_zoom=new QPushButton;
+   continue_set_azimuth->setText("设置");
+   continue_set_pitch->setText("设置");
+   continue_set_zoom->setText("设置");
+   continue_search_azimuth->setText("查询");
+   continue_search_pitch->setText("查询");
+   continue_search_zoom->setText("查询");
 
+   continue_ledt_set_azimuth=new QLineEdit;
+   continue_ledt_set_pitch=new QLineEdit;
+   continue_ledt_set_zoom=new QLineEdit;
+
+   continue_ledt_search_azimuth=new QLineEdit;
+   continue_ledt_search_pitch=new QLineEdit;
+   continue_ledt_search_zoom=new QLineEdit;
+
+   QLabel *labelact=new QLabel;
+   labelact->setText("方位角");
+   QLabel *labelpct=new QLabel;
+   labelpct->setText("俯仰角");
+   QLabel *labelzct=new QLabel;
+   labelzct->setText("zoom位置");
+
+   glct2->addWidget(labelact,1,0,1,1);
+   glct2->addWidget(labelpct,2,0,1,1);
+   glct2->addWidget(labelzct,3,0,1,1);
+
+
+   glct2->addWidget(continue_ledt_set_azimuth,1,2,1,1);
+   glct2->addWidget(continue_ledt_set_pitch,2,2,1,1);
+   glct2->addWidget(continue_ledt_set_zoom,3,2,1,1);
+
+   glct2->addWidget(continue_set_azimuth,1,3,1,1);
+   glct2->addWidget(continue_set_pitch,2,3,1,1);
+   glct2->addWidget(continue_set_zoom,3,3,1,1);
+   glct2->addWidget(continue_ledt_search_azimuth,1,4,1,1);
+   glct2->addWidget(continue_ledt_search_pitch,2,4,1,1);
+   glct2->addWidget(continue_ledt_search_zoom,3,4,1,1);
+
+   glct2->addWidget(continue_search_azimuth,1,5,1,1);
+   glct2->addWidget(continue_search_pitch,2,5,1,1);
+   glct2->addWidget(continue_search_zoom,3,5,1,1);
 
    //
 
@@ -1319,17 +1537,23 @@ void MainWindow::init_vedioCfg()
     l30->setText("与视场相关的反馈值");
     QLabel* l31=new QLabel;
     l31->setText("水平视场");
+    QLabel* l35=new QLabel;
+    l35->setText("垂直视场");
     QLabel* l32=new QLabel;
     l32->setText("靶心X位置");
     QLabel* l33=new QLabel;
     l33->setText("靶心Y位置");
     QLabel* l34=new QLabel;
     l34->setText(" ");
+    QLabel* l36=new QLabel;
+    l36->setText(" ");
     glc->addWidget(l30,0,1,1,1);
     glc->addWidget(l31,0,2,1,1);
-    glc->addWidget(l32,0,3,1,1);
-    glc->addWidget(l33,0,4,1,1);
-    glc->addWidget(l34,0,5,1,1);
+    glc->addWidget(l35,0,4,1,1);
+    glc->addWidget(l36,0,5,1,1);
+    glc->addWidget(l32,0,6,1,1);
+    glc->addWidget(l33,0,7,1,1);
+    glc->addWidget(l34,0,8,1,1);
 
 
     vedio_l1_continue=new QLineEdit;
@@ -1362,6 +1586,44 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(vedio_continue_Fov5,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6,7,2,1,1);
 
+    continue_vertical1 = new QLineEdit;
+    continue_vertical2 = new QLineEdit;
+    continue_vertical3 = new QLineEdit;
+    continue_vertical4 = new QLineEdit;
+    continue_vertical5 = new QLineEdit;
+    continue_vertical6 = new QLineEdit;
+    continue_vertical7 = new QLineEdit;
+    glc->addWidget(continue_vertical1,1,4,1,1);
+    glc->addWidget(continue_vertical2,2,4,1,1);
+    glc->addWidget(continue_vertical3,3,4,1,1);
+    glc->addWidget(continue_vertical4,4,4,1,1);
+    glc->addWidget(continue_vertical5,5,4,1,1);
+    glc->addWidget(continue_vertical6,6,4,1,1);
+    glc->addWidget(continue_vertical7,7,4,1,1);
+
+    QLabel* l1dv31=new QLabel;
+    QLabel* l1dv32=new QLabel;
+    QLabel* l1dv33=new QLabel;
+    QLabel* l1dv34=new QLabel;
+    QLabel* l1dv35=new QLabel;
+    QLabel* l1dv36=new QLabel;
+    QLabel* l1dv37=new QLabel;
+    l1dv31->setText("度");
+    l1dv32->setText("度");
+    l1dv33->setText("度");
+    l1dv34->setText("度");
+    l1dv35->setText("度");
+    l1dv36->setText("度");
+    l1dv37->setText("度");
+
+    glc->addWidget(l1dv31,1,5,1,1);
+    glc->addWidget(l1dv32,2,5,1,1);
+    glc->addWidget(l1dv33,3,5,1,1);
+    glc->addWidget(l1dv34,4,5,1,1);
+    glc->addWidget(l1dv35,5,5,1,1);
+    glc->addWidget(l1dv36,6,5,1,1);
+    glc->addWidget(l1dv37,7,5,1,1);
+
     QLabel* l1d31=new QLabel;
     QLabel* l1d32=new QLabel;
     QLabel* l1d33=new QLabel;
@@ -1382,8 +1644,8 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(l1d33,3,3,1,1);
     glc->addWidget(l1d34,4,3,1,1);
     glc->addWidget(l1d35,5,3,1,1);
-    glc->addWidget(l1d36,5,3,1,1);
-    glc->addWidget(l1d37,5,3,1,1);
+    glc->addWidget(l1d36,6,3,1,1);
+    glc->addWidget(l1d37,7,3,1,1);
 
 
     vedio_spbx_continue1=new QSpinBox;
@@ -1402,13 +1664,13 @@ void MainWindow::init_vedioCfg()
     vedio_spbx_continue6->setRange(0,9999);
     vedio_spbx_continue7->setRange(0,9999);
 
-    glc->addWidget(vedio_spbx_continue1,1,3,1,1);
-    glc->addWidget(vedio_spbx_continue2,2,3,1,1);
-    glc->addWidget(vedio_spbx_continue3,3,3,1,1);
-    glc->addWidget(vedio_spbx_continue4,4,3,1,1);
-    glc->addWidget(vedio_spbx_continue5,5,3,1,1);
-    glc->addWidget(vedio_spbx_continue6,6,3,1,1);
-    glc->addWidget(vedio_spbx_continue7,7,3,1,1);
+    glc->addWidget(vedio_spbx_continue1,1,6,1,1);
+    glc->addWidget(vedio_spbx_continue2,2,6,1,1);
+    glc->addWidget(vedio_spbx_continue3,3,6,1,1);
+    glc->addWidget(vedio_spbx_continue4,4,6,1,1);
+    glc->addWidget(vedio_spbx_continue5,5,6,1,1);
+    glc->addWidget(vedio_spbx_continue6,6,6,1,1);
+    glc->addWidget(vedio_spbx_continue7,7,6,1,1);
 
 
     vedio_spby_continue1=new QSpinBox;
@@ -1427,13 +1689,13 @@ void MainWindow::init_vedioCfg()
     vedio_spby_continue6->setRange(0,9999);
     vedio_spby_continue7->setRange(0,9999);
 
-    glc->addWidget(vedio_spby_continue1,1,4,1,1);
-    glc->addWidget(vedio_spby_continue2,2,4,1,1);
-    glc->addWidget(vedio_spby_continue3,3,4,1,1);
-    glc->addWidget(vedio_spby_continue4,4,4,1,1);
-    glc->addWidget(vedio_spby_continue5,5,4,1,1);
-    glc->addWidget(vedio_spby_continue6,6,4,1,1);
-    glc->addWidget(vedio_spby_continue7,7,4,1,1);
+    glc->addWidget(vedio_spby_continue1,1,7,1,1);
+    glc->addWidget(vedio_spby_continue2,2,7,1,1);
+    glc->addWidget(vedio_spby_continue3,3,7,1,1);
+    glc->addWidget(vedio_spby_continue4,4,7,1,1);
+    glc->addWidget(vedio_spby_continue5,5,7,1,1);
+    glc->addWidget(vedio_spby_continue6,6,7,1,1);
+    glc->addWidget(vedio_spby_continue7,7,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -1444,6 +1706,7 @@ void MainWindow::init_vedioCfg()
     v10->addWidget(continue_autogate);
     v10->addLayout(gl4);
     v10->addLayout(v31);
+    v10->addLayout(glct2);
     v10->addWidget(g3);
 
     //
@@ -1451,11 +1714,3902 @@ void MainWindow::init_vedioCfg()
     w_ContinueField_1->setLayout(v10);
 
     connect(vedio_change3,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue(int)));
+
+    connect(btn_vediosersor_default,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot()));
+    connect(btn_vediosersor_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+    connect(continueChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continuechanelname,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot(int)));//
+    connect(continue_vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continue_vedio_dpi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(continue_gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
+    connect(continue_bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
+    connect(continue_xy_ratio,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot()));
+    connect(continue_gateshow,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot()));
+    connect(continue_bullshow,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot()));
+    connect(continue_autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
+    connect(continue_gate_sizex,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot()));
+    connect(continue_gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
+    connect(continue_gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
+    connect(continue_gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
+    connect(continue_set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
+    connect(continue_set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
+    connect(continue_set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
+    connect(continue_search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
+    connect(continue_search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
+    connect(continue_search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
+    connect(continue_vediohaveornot,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
+    connect(test_1,SIGNAL(activated(int)),this,SLOT(test_1_Slot()));
+    connect(vedio_l1_continue,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot()));
+     connect(vedio_l2_continue,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot()));
+      connect(vedio_l3_continue,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot()));
+       connect(vedio_l4_continue,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot()));
+        connect(vedio_l5_continue,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot()));
+         connect(vedio_l6_continue,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot()));
+          connect(vedio_l7_continue,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot()));
+
+    connect( vedio_continue_Fov0,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot()));
+    connect( vedio_continue_Fov1,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot()));
+    connect( vedio_continue_Fov2,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot()));
+    connect( vedio_continue_Fov3,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot()));
+    connect( vedio_continue_Fov4,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot()));
+    connect( vedio_continue_Fov5,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot()));
+    connect( vedio_continue_Fov6,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot()));
+     connect( continue_vertical1,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot()));
+     connect( continue_vertical2,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot()));
+     connect( continue_vertical3,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot()));
+     connect( continue_vertical4,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot()));
+     connect( continue_vertical5,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot()));
+     connect( continue_vertical6,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot()));
+     connect( continue_vertical7,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot()));
+
+      connect( vedio_spbx_continue1,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot()));
+      connect( vedio_spbx_continue2,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot()));
+      connect( vedio_spbx_continue3,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot()));
+      connect( vedio_spbx_continue4,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot()));
+      connect( vedio_spbx_continue5,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot()));
+      connect( vedio_spbx_continue6,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot()));
+      connect( vedio_spbx_continue7,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot()));
+
+      connect( vedio_spby_continue1,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot()));
+      connect( vedio_spby_continue2,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot()));
+      connect( vedio_spby_continue3,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot()));
+      connect( vedio_spby_continue4,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot()));
+      connect( vedio_spby_continue5,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot()));
+      connect( vedio_spby_continue6,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot()));
+      connect( vedio_spby_continue7,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot()));
+
+
+
 }
-void MainWindow::init_vedioCfg_sec(){}
-void MainWindow::init_vedioCfg_thi(){}
-void MainWindow::init_vedioCfg_fou(){}
-void MainWindow::init_vedioCfg_fif(){}
+
+void MainWindow::init_vedioCfg_sec(){
+
+
+    /*固定视场*/
+    w_sersor_1_sec = new MyWidget;
+    w_seitchField_1_sec = new MyWidget;
+    w_ContinueField_1_sec=new MyWidget;
+    w_sersor_1_sec->setWindowTitle("摄像机配置");
+    btn_vediosersor_fix_default_sec=new QPushButton;
+    btn_vediosersor_fix_update_sec=new QPushButton;
+    btn_vediosersor_fix_default_sec->setText("默认");
+    btn_vediosersor_fix_update_sec->setText("保存");
+    QVBoxLayout *v11=new QVBoxLayout;
+    v11->addWidget(btn_vediosersor_fix_default_sec);
+    v11->addWidget(btn_vediosersor_fix_update_sec);
+    QLabel *label30=new QLabel;
+    label30->setText("通道2");
+    QHBoxLayout *h11=new QHBoxLayout;
+    h11->addLayout(v11);
+    h11->addWidget(label30);
+
+    fixChanelNum_sec = new  QCheckBox();
+    fixChanelNum_sec->setText("通道号");
+    fixchanelname_sec = new QLineEdit;
+    fixenable_sec = new  QCheckBox();
+    fixenable_sec->setText("使能");
+    QLabel *label40=new QLabel;
+    label40->setText("通道名称");
+    QHBoxLayout *v21=new QHBoxLayout;
+    v21->addWidget(fixChanelNum_sec);
+    v21->addWidget(label40);
+    v21->addWidget(fixchanelname_sec);
+    v21->addWidget(fixenable_sec);
+
+    fix_vediohaveornot_sec = new  QCheckBox();
+    fix_vedio_dpi_sec = new QComboBox;
+    fix_xy_ratio_sec = new QLineEdit;
+    fix_vedio_dpi_sec->addItem("1080P@25HZ");
+    fix_vedio_dpi_sec->addItem("1080P@30HZ");
+    fix_vedio_dpi_sec->addItem("1080P@60HZ");
+    fix_vedio_dpi_sec->addItem("720P@50HZ");
+    fix_vedio_dpi_sec->addItem("720P@60HZ");
+    vedio_change1_sec = new QComboBox;
+    vedio_change1_sec->addItem("固定视场");
+    vedio_change1_sec->addItem("可切换视场");
+    vedio_change1_sec->addItem("连续视场");
+    fix_vediochoose_sec = new QGroupBox();
+    QFormLayout *f4=new QFormLayout();
+    f4->addRow(vedio_s_sec[0],fix_vediohaveornot_sec);
+    f4->addRow(vedio_s_sec[1],fix_vedio_dpi_sec);
+    f4->addRow(vedio_s_sec[2],vedio_change1_sec);
+    f4->addRow(vedio_s_sec[3],fix_xy_ratio_sec);
+    fix_vediochoose_sec->setLayout(f4);
+
+    fix_gateshow_sec = new  QCheckBox();
+    fix_bullshow_sec = new  QCheckBox();
+    fix_gateshow_sec->setText("波门显示");
+    fix_bullshow_sec->setText("靶心显示");
+    QHBoxLayout *v6=new QHBoxLayout;
+    v6->addWidget(fix_gateshow_sec);
+    v6->addWidget(fix_bullshow_sec);
+
+    fix_autogate_sec = new  QCheckBox();
+    fix_autogate_sec->setText("自动波门");
+
+    QLabel *label51=new QLabel;
+    label51->setText("波门尺寸X");
+    QLabel *label52=new QLabel;
+    label52->setText("波门尺寸Y");
+    QLabel *label53=new QLabel;
+    label53->setText("波门位置X");
+    QLabel *label54=new QLabel;
+    label54->setText("波门位置Y");
+    fix_gate_sizex_sec=new QLineEdit;
+    fix_gate_sizey_sec=new QLineEdit;
+    fix_gatelocationx_sec=new QLineEdit;
+    fix_gatelocationy_sec=new QLineEdit;
+    QGridLayout *gl1=new QGridLayout;
+    gl1->addWidget(label51,0,0);
+    gl1->addWidget(fix_gate_sizex_sec,0,1);
+    gl1->addWidget(label52,0,3);
+    gl1->addWidget(fix_gate_sizey_sec,0,4);
+    gl1->addWidget(label53,1,0);
+    gl1->addWidget(fix_gatelocationx_sec,1,1);
+    gl1->addWidget(label54,1,3);
+    gl1->addWidget(fix_gatelocationy_sec,1,4);
+    //2.10新增
+     QGridLayout *gl12=new QGridLayout;
+    set_azimuth_sec =new QPushButton;
+    set_pitch_sec =new QPushButton;
+    set_zoom_sec  =new QPushButton;
+    search_azimuth_sec=new QPushButton;
+    search_pitch_sec=new QPushButton;
+    search_zoom_sec=new QPushButton;
+    set_azimuth_sec->setText("设置");
+    set_pitch_sec->setText("设置");
+    set_zoom_sec->setText("设置");
+    search_azimuth_sec->setText("查询");
+    search_pitch_sec->setText("查询");
+    search_zoom_sec->setText("查询");
+
+    QLabel *labela=new QLabel;
+    labela->setText("方位角");
+    QLabel *labelp=new QLabel;
+    labelp->setText("俯仰角");
+    QLabel *labelz=new QLabel;
+    labelz->setText("zoom位置");
+    ledt_set_azimuth_sec=new QLineEdit;
+    ledt_set_pitch_sec=new QLineEdit;
+    ledt_set_zoom_sec=new QLineEdit;
+
+    ledt_search_azimuth_sec=new QLineEdit;
+    ledt_search_pitch_sec=new QLineEdit;
+    ledt_search_zoom_sec=new QLineEdit;
+
+    gl12->addWidget(labela,1,0,1,1);
+    gl12->addWidget(labelp,2,0,1,1);
+    gl12->addWidget(labelz,3,0,1,1);
+
+
+    gl12->addWidget(ledt_set_azimuth_sec,1,2,1,1);
+    gl12->addWidget(ledt_set_pitch_sec,2,2,1,1);
+    gl12->addWidget(ledt_set_zoom_sec,3,2,1,1);
+
+    gl12->addWidget(set_azimuth_sec,1,3,1,1);
+    gl12->addWidget(set_pitch_sec,2,3,1,1);
+    gl12->addWidget(set_zoom_sec,3,3,1,1);
+    gl12->addWidget(ledt_search_azimuth_sec,1,4,1,1);
+    gl12->addWidget(ledt_search_pitch_sec,2,4,1,1);
+    gl12->addWidget(ledt_search_zoom_sec,3,4,1,1);
+
+    gl12->addWidget(search_azimuth_sec,1,5,1,1);
+    gl12->addWidget(search_pitch_sec,2,5,1,1);
+    gl12->addWidget(search_zoom_sec,3,5,1,1);
+//
+
+    QGroupBox *g=new QGroupBox;
+    g->setTitle("固定视场");
+    QLabel* l11=new QLabel;
+    l11->setText("水平视场");
+    QLabel* l15=new QLabel;
+    l15->setText("垂直视场");
+    QLabel* l12=new QLabel;
+    l12->setText("靶心X位置");
+    QLabel* l13=new QLabel;
+    l13->setText("靶心Y位置");
+    QLabel* l14=new QLabel;
+    l14->setText(" ");
+    fix_lEdt_sec=new QLineEdit;
+    fix_vertical_sec=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
+    QLabel* l1v=new QLabel;
+    l1v->setText("度");
+    fix_sp_sec=new QSpinBox;
+    fix_sp2_sec=new QSpinBox;
+    fix_sp_sec->setRange(0,9999);
+    fix_sp2_sec->setRange(0,9999);
+    QGridLayout *gl3=new QGridLayout;
+    gl3->addWidget(l11,0,0,1,1);
+    gl3->addWidget(l14,0,1,1,1);
+
+    gl3->addWidget(l15,0,2,1,1);
+    gl3->addWidget(l14,0,3,1,1);
+
+    gl3->addWidget(l14,0,4,1,1);
+    gl3->addWidget(l12,0,5,1,1);
+    gl3->addWidget(l13,0,6,1,1);
+    gl3->addWidget(l14,0,7,1,1);
+    gl3->addWidget(fix_lEdt_sec,1,0,1,1);
+    gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(fix_vertical_sec,1,2,1,1);
+    gl3->addWidget(l1v,1,3,1,1);
+    gl3->addWidget(l14,1,4,1,1);
+    gl3->addWidget(fix_sp_sec,1,5,1,1);
+    gl3->addWidget(fix_sp2_sec,1,6,1,1);
+    g->setLayout(gl3);
+
+    QVBoxLayout *v0=new QVBoxLayout;
+    v0->addLayout(h11);
+    v0->addLayout(v21);
+    v0->addWidget(fix_vediochoose_sec);
+    v0->addLayout(v6);
+    v0->addWidget(fix_autogate_sec);
+    v0->addLayout(gl1);
+    v0->addLayout(gl12);
+    v0->addWidget(g);
+    w_sersor_1_sec->setLayout(v0);
+
+
+    connect(vedio_change1_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
+/*
+    connect(btn_vediosersor_fix_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
+    connect(btn_vediosersor_fix_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
+    connect(fixChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));
+    connect(fixchanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec(int)));
+    connect(fixenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));
+    connect(fix_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));
+    connect(fix_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));
+    connect(fix_xy_ratio_sec,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_sec()));
+    connect(fix_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
+    connect(fix_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
+    connect(fix_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(fix_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
+    connect(fix_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
+    connect(fix_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
+    connect(fix_gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
+    connect(set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
+    connect(set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
+    connect(set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
+    connect(search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
+    connect(search_pitch_sec,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
+    connect(search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
+   // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
+   // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
+   // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
+   // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
+   // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
+   // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+    connect(fix_lEdt_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
+    connect(fix_vertical_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(fix_sp_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(fix_sp2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    */
+
+    /*可切换视场*/
+
+    w_seitchField_1_sec->setWindowTitle("摄像机配置");
+    btn_vediosersor_default_sec=new QPushButton;
+    btn_vediosersor_update_sec=new QPushButton;
+    btn_vediosersor_default_sec->setText("默认");
+    btn_vediosersor_update_sec->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_vediosersor_default_sec);
+    v1->addWidget(btn_vediosersor_update_sec);
+    QLabel *label1=new QLabel;
+    label1->setText("通道2");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label1);
+
+    ChanelNum_sec = new  QCheckBox();
+    ChanelNum_sec->setText("通道号");
+    chanelname_sec = new QLineEdit;
+    enable_sec = new  QCheckBox();
+    enable_sec->setText("使能");
+
+    QLabel *label2=new QLabel;
+    label2->setText("通道名称");
+    QHBoxLayout *v2=new QHBoxLayout;
+    v2->addWidget(ChanelNum_sec);
+    v2->addWidget(label2);
+    v2->addWidget(chanelname_sec);
+    v2->addWidget(enable_sec);
+
+    vediohaveornot_sec = new  QCheckBox();
+    vedio_dpi_sec = new QComboBox;
+    xy_ratio_sec = new QLineEdit;
+    vedio_dpi_sec->addItem("1080P@25HZ");
+    vedio_dpi_sec->addItem("1080P@30HZ");
+    vedio_dpi_sec->addItem("1080P@60HZ");
+    vedio_dpi_sec->addItem("720P@50HZ");
+    vedio_dpi_sec->addItem("720P@60HZ");
+    vedio_change2_sec = new QComboBox;
+    vedio_change2_sec->addItem("可切换视场");
+    vedio_change2_sec->addItem("固定视场");
+    vedio_change2_sec->addItem("连续视场");
+
+    vediochoose_sec = new QGroupBox();
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(vedio_s_sec[0],vediohaveornot_sec);
+    f3->addRow(vedio_s_sec[1],vedio_dpi_sec);
+    f3->addRow(vedio_s_sec[2],vedio_change2_sec);
+    f3->addRow(vedio_s_sec[3],xy_ratio_sec);
+    vediochoose_sec->setLayout(f3);
+
+    connect(vedio_change2_sec,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
+    gateshow_sec = new  QCheckBox();
+    bullshow_sec = new  QCheckBox();
+    gateshow_sec->setText("波门显示");
+    bullshow_sec->setText("靶心显示");
+    QHBoxLayout *v3=new QHBoxLayout;
+    v3->addWidget(gateshow_sec);
+    v3->addWidget(bullshow_sec);
+
+    autogate_sec = new  QCheckBox();
+    autogate_sec->setText("自动波门");
+
+    QLabel *label3=new QLabel;
+    label3->setText("波门尺寸X");
+    QLabel *label4=new QLabel;
+    label4->setText("波门尺寸Y");
+    QLabel *label5=new QLabel;
+    label5->setText("波门位置X");
+    QLabel *label6=new QLabel;
+    label6->setText("波门位置Y");
+    gate_sizex_sec=new QLineEdit;
+    gate_sizey_sec=new QLineEdit;
+    gatelocationx_sec=new QLineEdit;
+    gatelocationy_sec=new QLineEdit;
+    QGridLayout *gl=new QGridLayout;
+    gl->addWidget(label3,0,0);
+    gl->addWidget(gate_sizex_sec,0,1);
+    gl->addWidget(label4,0,3);
+    gl->addWidget(gate_sizey_sec,0,4);
+    gl->addWidget(label5,1,0);
+    gl->addWidget(gatelocationx_sec,1,1);
+    gl->addWidget(label6,1,3);
+    gl->addWidget(gatelocationy_sec,1,4);
+
+    QHBoxLayout *h2=new QHBoxLayout;
+    QLabel *label7=new QLabel;
+    label7->setText("测试现场等级");
+    vedio_fovclass_sec = new QComboBox;
+    vedio_fovclass_sec->addItem("可切换视场1");
+    vedio_fovclass_sec->addItem("可切换视场2");
+    vedio_fovclass_sec->addItem("可切换视场3");
+    vedio_fovclass_sec->addItem("可切换视场4");
+    vedio_fovclass_sec->addItem("可切换视场5");
+    h2->addWidget(label7);
+    h2->addWidget(vedio_fovclass_sec);
+    //
+
+    QGridLayout *glc2=new QGridLayout;
+   Change_set_azimuth_sec =new QPushButton;
+   Change_set_pitch_sec =new QPushButton;
+   Change_set_zoom_sec  =new QPushButton;
+   Change_search_azimuth_sec=new QPushButton;
+   Change_search_pitch_sec=new QPushButton;
+   Change_search_zoom_sec=new QPushButton;
+   Change_set_azimuth_sec->setText("设置");
+   Change_set_pitch_sec->setText("设置");
+   Change_set_zoom_sec->setText("设置");
+   Change_search_azimuth_sec->setText("查询");
+   Change_search_pitch_sec->setText("查询");
+   Change_search_zoom_sec->setText("查询");
+
+   Change_ledt_set_azimuth_sec=new QLineEdit;
+   Change_ledt_set_pitch_sec=new QLineEdit;
+   Change_ledt_set_zoom_sec=new QLineEdit;
+
+   Change_ledt_search_azimuth_sec=new QLineEdit;
+   Change_ledt_search_pitch_sec=new QLineEdit;
+   Change_ledt_search_zoom_sec=new QLineEdit;
+
+   QLabel *labelac=new QLabel;
+   labelac->setText("方位角");
+   QLabel *labelpc=new QLabel;
+   labelpc->setText("俯仰角");
+   QLabel *labelzc=new QLabel;
+   labelzc->setText("zoom位置");
+
+   glc2->addWidget(labelac,1,0,1,1);
+   glc2->addWidget(labelpc,2,0,1,1);
+   glc2->addWidget(labelzc,3,0,1,1);
+
+
+   glc2->addWidget(Change_ledt_set_azimuth_sec,1,2,1,1);
+   glc2->addWidget(Change_ledt_set_pitch_sec,2,2,1,1);
+   glc2->addWidget(Change_ledt_set_zoom_sec,3,2,1,1);
+
+   glc2->addWidget(Change_set_azimuth_sec,1,3,1,1);
+   glc2->addWidget(Change_set_pitch_sec,2,3,1,1);
+   glc2->addWidget(Change_set_zoom_sec,3,3,1,1);
+   glc2->addWidget(Change_ledt_search_azimuth_sec,1,4,1,1);
+   glc2->addWidget(Change_ledt_search_pitch_sec,2,4,1,1);
+   glc2->addWidget(Change_ledt_search_zoom_sec,3,4,1,1);
+
+   glc2->addWidget(Change_search_azimuth_sec,1,5,1,1);
+   glc2->addWidget(Change_search_pitch_sec,2,5,1,1);
+   glc2->addWidget(Change_search_zoom_sec,3,5,1,1);
+
+
+    //
+
+    QGroupBox *g2=new QGroupBox;
+    g2->setTitle("视场靶心补偿表");
+    QGridLayout *gl2=new QGridLayout;
+    QLabel* l21=new QLabel;
+    l21->setText("水平视场");
+    QLabel* l25=new QLabel;
+    l25->setText("垂直视场");
+    QLabel* l22=new QLabel;
+    l22->setText("靶心X位置");
+    QLabel* l23=new QLabel;
+    l23->setText("靶心Y位置");
+    QLabel* l24=new QLabel;
+    l24->setText(" ");
+    gl2->addWidget(l21,0,1,1,1);
+    gl2->addWidget(l25,0,3,1,1);
+    gl2->addWidget(l22,0,5,1,1);
+    gl2->addWidget(l23,0,6,1,1);
+    gl2->addWidget(l24,0,7,1,1);
+
+    QLabel *fovclass_label1 = new QLabel;
+    QLabel *fovclass_label2 = new QLabel;
+    QLabel *fovclass_label3 = new QLabel;
+    QLabel *fovclass_label4 = new QLabel;
+    QLabel *fovclass_label5 = new QLabel;
+    fovclass_label1->setText("可切换视场1");
+    fovclass_label2->setText("可切换视场2");
+    fovclass_label3->setText("可切换视场3");
+    fovclass_label4->setText("可切换视场4");
+    fovclass_label5->setText("可切换视场5");
+    gl2->addWidget(fovclass_label1,1,0,1,1);
+    gl2->addWidget(fovclass_label2,2,0,1,1);
+    gl2->addWidget(fovclass_label3,3,0,1,1);
+    gl2->addWidget(fovclass_label4,4,0,1,1);
+    gl2->addWidget(fovclass_label5,5,0,1,1);
+    vedio_s1_Fov0_sec=new QLineEdit;
+    vedio_s1_Fov1_sec=new QLineEdit;
+    vedio_s1_Fov2_sec=new QLineEdit;
+    vedio_s1_Fov3_sec=new QLineEdit;
+    vedio_s1_Fov4_sec=new QLineEdit;
+    gl2->addWidget(vedio_s1_Fov0_sec,1,1,1,1);
+    gl2->addWidget(vedio_s1_Fov1_sec,2,1,1,1);
+    gl2->addWidget(vedio_s1_Fov2_sec,3,1,1,1);
+    gl2->addWidget(vedio_s1_Fov3_sec,4,1,1,1);
+    gl2->addWidget(vedio_s1_Fov4_sec,5,1,1,1);
+
+    Change_vertical1_sec=new QLineEdit;
+    Change_vertical2_sec=new QLineEdit;
+    Change_vertical3_sec=new QLineEdit;
+    Change_vertical4_sec=new QLineEdit;
+    Change_vertical5_sec=new QLineEdit;
+    gl2->addWidget(Change_vertical1_sec,1,3,1,1);
+    gl2->addWidget(Change_vertical2_sec,2,3,1,1);
+    gl2->addWidget(Change_vertical3_sec,3,3,1,1);
+    gl2->addWidget(Change_vertical4_sec,4,3,1,1);
+    gl2->addWidget(Change_vertical5_sec,5,3,1,1);
+
+    QLabel* l1d21=new QLabel;
+    QLabel* l1d22=new QLabel;
+    QLabel* l1d23=new QLabel;
+    QLabel* l1d24=new QLabel;
+    QLabel* l1d25=new QLabel;
+    l1d21->setText("度");
+    l1d22->setText("度");
+    l1d23->setText("度");
+    l1d24->setText("度");
+    l1d25->setText("度");
+
+    QLabel* l1c21=new QLabel;
+    QLabel* l1c22=new QLabel;
+    QLabel* l1c23=new QLabel;
+    QLabel* l1c24=new QLabel;
+    QLabel* l1c25=new QLabel;
+    l1c21->setText("度");
+    l1c22->setText("度");
+    l1c23->setText("度");
+    l1c24->setText("度");
+    l1c25->setText("度");
+
+    gl2->addWidget(l1d21,1,2,1,1);
+    gl2->addWidget(l1d22,2,2,1,1);
+    gl2->addWidget(l1d23,3,2,1,1);
+    gl2->addWidget(l1d24,4,2,1,1);
+    gl2->addWidget(l1d25,5,2,1,1);
+
+    gl2->addWidget(l1c21,1,4,1,1);
+    gl2->addWidget(l1c22,2,4,1,1);
+    gl2->addWidget(l1c23,3,4,1,1);
+    gl2->addWidget(l1c24,4,4,1,1);
+    gl2->addWidget(l1c25,5,4,1,1);
+
+
+    vedio_spbx_switch1_sec=new QSpinBox;
+    vedio_spbx_switch2_sec=new QSpinBox;
+    vedio_spbx_switch3_sec=new QSpinBox;
+    vedio_spbx_switch4_sec=new QSpinBox;
+    vedio_spbx_switch5_sec=new QSpinBox;
+    vedio_spbx_switch1_sec->setRange(0,9999);
+    vedio_spbx_switch2_sec->setRange(0,9999);
+    vedio_spbx_switch3_sec->setRange(0,9999);
+    vedio_spbx_switch4_sec->setRange(0,9999);
+    vedio_spbx_switch5_sec->setRange(0,9999);
+    gl2->addWidget(vedio_spbx_switch1_sec,1,5,1,1);
+    gl2->addWidget(vedio_spbx_switch2_sec,2,5,1,1);
+    gl2->addWidget(vedio_spbx_switch3_sec,3,5,1,1);
+    gl2->addWidget(vedio_spbx_switch4_sec,4,5,1,1);
+    gl2->addWidget(vedio_spbx_switch5_sec,5,5,1,1);
+
+    vedio_spby_switch1_sec=new QSpinBox;
+    vedio_spby_switch2_sec=new QSpinBox;
+    vedio_spby_switch3_sec=new QSpinBox;
+    vedio_spby_switch4_sec=new QSpinBox;
+    vedio_spby_switch5_sec=new QSpinBox;
+    vedio_spby_switch1_sec->setRange(0,9999);
+    vedio_spby_switch2_sec->setRange(0,9999);
+    vedio_spby_switch3_sec->setRange(0,9999);
+    vedio_spby_switch4_sec->setRange(0,9999);
+    vedio_spby_switch5_sec->setRange(0,9999);
+    gl2->addWidget(vedio_spby_switch1_sec,1,6,1,1);
+    gl2->addWidget(vedio_spby_switch2_sec,2,6,1,1);
+    gl2->addWidget(vedio_spby_switch3_sec,3,6,1,1);
+    gl2->addWidget(vedio_spby_switch4_sec,4,6,1,1);
+    gl2->addWidget(vedio_spby_switch5_sec,5,6,1,1);
+
+    g2->setLayout(gl2);
+    QVBoxLayout *v22=new QVBoxLayout;
+    v22->addLayout(h2);
+    v22->addLayout(glc2);
+    v22->addWidget(g2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(v1);
+
+    v->addLayout(h1);
+
+    v->addLayout(v2);
+    v->addWidget(vediochoose_sec);
+    v->addLayout(v3);
+    v->addWidget(autogate_sec);
+    v->addLayout(gl);
+  //v->addLayout(h2);
+    v->addLayout(v22);
+    w_seitchField_1_sec->setLayout(v);
+    /*
+    connect(btn_vediosersor_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
+    connect(btn_vediosersor_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
+    connect(ChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(chanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec(int)));//
+    connect(vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
+    connect(bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
+    connect(xy_ratio_sec,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_sec()));
+    connect(gateshow_sec,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_sec()));
+    connect(bullshow_sec,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_sec()));
+    connect(autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
+    connect(gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
+    connect(gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
+    connect(gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
+    connect(Change_set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
+    connect(Change_set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
+    connect(Change_set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
+    connect(Change_search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
+    connect(Change_search_pitch_sec ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
+    connect(Change_search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
+    connect( vedio_fovclass_sec,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_sec()));
+
+    connect(vedio_s1_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
+    connect(Change_vertical1_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(vedio_spbx_switch1_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_spby_switch1_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_s1_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
+    connect(Change_vertical2_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(vedio_spbx_switch2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_spby_switch2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_s1_Fov2_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
+    connect(Change_vertical3_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(vedio_spbx_switch3_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slo_sect()));
+    connect(vedio_spby_switch3_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_s1_Fov3_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
+    connect(Change_vertical4_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(vedio_spbx_switch4_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_spby_switch4_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_s1_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
+    connect(Change_vertical5_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
+    connect(vedio_spbx_switch5_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+    connect(vedio_spby_switch5_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
+*/
+
+    /*连续视场*/
+
+    w_ContinueField_1_sec->setWindowTitle("摄像机配置");
+    btn_vediosersor_continue_default_sec=new QPushButton;
+    btn_vediosersor_continue_update_sec=new QPushButton;
+    btn_vediosersor_continue_default_sec->setText("默认");
+    btn_vediosersor_continue_update_sec->setText("保存");
+    QVBoxLayout *v8=new QVBoxLayout;
+    v8->addWidget(btn_vediosersor_continue_default_sec);
+    v8->addWidget(btn_vediosersor_continue_update_sec);
+    QLabel *label60=new QLabel;
+    label60->setText("通道2");
+    QHBoxLayout *h5=new QHBoxLayout;
+    h5->addLayout(v8);
+    h5->addWidget(label60);
+
+    continueChanelNum_sec = new  QCheckBox();
+    continueChanelNum_sec->setText("通道号");
+    continuechanelname_sec = new QLineEdit;
+    continueenable_sec = new  QCheckBox();
+    continueenable_sec->setText("使能");
+    QLabel *label61=new QLabel;
+    label61->setText("通道名称");
+    QHBoxLayout *v9=new QHBoxLayout;
+    v9->addWidget(continueChanelNum_sec);
+    v9->addWidget(label61);
+    v9->addWidget(continuechanelname_sec);
+    v9->addWidget(continueenable_sec);
+
+    continue_vediohaveornot_sec = new  QCheckBox();
+    continue_vedio_dpi_sec = new QComboBox;
+    continue_xy_ratio_sec = new QLineEdit;
+   // continue_vedio_dpi_sec->addItem("1080P@25HZ");
+    continue_vedio_dpi_sec->addItem("1080P@30HZ");
+    continue_vedio_dpi_sec->addItem("1080P@60HZ");
+    continue_vedio_dpi_sec->addItem("720P@50HZ");
+    continue_vedio_dpi_sec->addItem("720P@60HZ");
+    vedio_change3_sec = new QComboBox;
+    vedio_change3_sec->addItem("连续视场");
+    vedio_change3_sec->addItem("固定视场");
+    vedio_change3_sec->addItem("可切换视场");
+    continue_vediochoose_sec = new QGroupBox();
+    QFormLayout *f5=new QFormLayout();
+    f5->addRow(vedio_s_sec[0],continue_vediohaveornot_sec);
+    f5->addRow(vedio_s_sec[1],continue_vedio_dpi_sec);
+    f5->addRow(vedio_s_sec[2],vedio_change3_sec);
+    f5->addRow(vedio_s_sec[3],continue_xy_ratio_sec);
+    continue_vediochoose_sec->setLayout(f5);
+
+    continue_gateshow_sec = new  QCheckBox();
+    continue_bullshow_sec = new  QCheckBox();
+    continue_gateshow_sec->setText("波门显示");
+    continue_bullshow_sec->setText("靶心显示");
+    QHBoxLayout *v7=new QHBoxLayout;
+    v7->addWidget(continue_gateshow_sec);
+    v7->addWidget(continue_bullshow_sec);
+
+    continue_autogate_sec = new  QCheckBox();
+    continue_autogate_sec->setText("自动波门");
+
+    QLabel *label55=new QLabel;
+    label55->setText("波门尺寸X");
+    QLabel *label56=new QLabel;
+    label56->setText("波门尺寸Y");
+    QLabel *label57=new QLabel;
+    label57->setText("波门位置X");
+    QLabel *label58=new QLabel;
+    label58->setText("波门位置Y");
+    continue_gate_sizex_sec=new QLineEdit;
+    continue_gate_sizey_sec=new QLineEdit;
+    continue_gatelocationx_sec=new QLineEdit;
+    continue_gatelocationy_sec=new QLineEdit;
+    QGridLayout *gl4=new QGridLayout;
+    gl4->addWidget(label55,0,0);
+    gl4->addWidget(continue_gate_sizex_sec,0,1);
+    gl4->addWidget(label56,0,3);
+    gl4->addWidget(continue_gate_sizey_sec,0,4);
+    gl4->addWidget(label57,1,0);
+    gl4->addWidget(continue_gatelocationx_sec,1,1);
+    gl4->addWidget(label58,1,3);
+    gl4->addWidget(continue_gatelocationy_sec,1,4);
+
+    QHBoxLayout *v31=new QHBoxLayout;
+    QLabel *label70=new QLabel;
+    label70->setText("测试视场");
+    test_1 = new QLineEdit;
+    v31->addWidget(label70);
+    v31->addWidget(test_1);
+//
+    QGridLayout *glct2=new QGridLayout;
+   continue_set_azimuth_sec =new QPushButton;
+   continue_set_pitch_sec =new QPushButton;
+   continue_set_zoom_sec  =new QPushButton;
+   continue_search_azimuth_sec=new QPushButton;
+   continue_search_pitch_sec=new QPushButton;
+   continue_search_zoom_sec=new QPushButton;
+   continue_set_azimuth_sec->setText("设置");
+   continue_set_pitch_sec->setText("设置");
+   continue_set_zoom_sec->setText("设置");
+   continue_search_azimuth_sec->setText("查询");
+   continue_search_pitch_sec->setText("查询");
+   continue_search_zoom_sec->setText("查询");
+
+   continue_ledt_set_azimuth_sec=new QLineEdit;
+   continue_ledt_set_pitch_sec=new QLineEdit;
+   continue_ledt_set_zoom_sec=new QLineEdit;
+
+   continue_ledt_search_azimuth_sec=new QLineEdit;
+   continue_ledt_search_pitch_sec=new QLineEdit;
+   continue_ledt_search_zoom_sec=new QLineEdit;
+
+   QLabel *labelact=new QLabel;
+   labelact->setText("方位角");
+   QLabel *labelpct=new QLabel;
+   labelpct->setText("俯仰角");
+   QLabel *labelzct=new QLabel;
+   labelzct->setText("zoom位置");
+
+   glct2->addWidget(labelact,1,0,1,1);
+   glct2->addWidget(labelpct,2,0,1,1);
+   glct2->addWidget(labelzct,3,0,1,1);
+
+
+   glct2->addWidget(continue_ledt_set_azimuth_sec,1,2,1,1);
+   glct2->addWidget(continue_ledt_set_pitch_sec,2,2,1,1);
+   glct2->addWidget(continue_ledt_set_zoom_sec,3,2,1,1);
+
+   glct2->addWidget(continue_set_azimuth_sec,1,3,1,1);
+   glct2->addWidget(continue_set_pitch_sec,2,3,1,1);
+   glct2->addWidget(continue_set_zoom_sec,3,3,1,1);
+   glct2->addWidget(continue_ledt_search_azimuth_sec,1,4,1,1);
+   glct2->addWidget(continue_ledt_search_pitch_sec,2,4,1,1);
+   glct2->addWidget(continue_ledt_search_zoom_sec,3,4,1,1);
+
+   glct2->addWidget(continue_search_azimuth_sec,1,5,1,1);
+   glct2->addWidget(continue_search_pitch_sec,2,5,1,1);
+   glct2->addWidget(continue_search_zoom_sec,3,5,1,1);
+
+   //
+
+
+    QGroupBox *g3=new QGroupBox;
+    g3->setTitle("视场靶心补偿表");
+    QGridLayout *glc=new QGridLayout;
+    QLabel* l30=new QLabel;
+    l30->setText("与视场相关的反馈值");
+    QLabel* l31=new QLabel;
+    l31->setText("水平视场");
+    QLabel* l35=new QLabel;
+    l35->setText("垂直视场");
+    QLabel* l32=new QLabel;
+    l32->setText("靶心X位置");
+    QLabel* l33=new QLabel;
+    l33->setText("靶心Y位置");
+    QLabel* l34=new QLabel;
+    l34->setText(" ");
+    QLabel* l36=new QLabel;
+    l36->setText(" ");
+    glc->addWidget(l30,0,1,1,1);
+    glc->addWidget(l31,0,2,1,1);
+    glc->addWidget(l35,0,4,1,1);
+    glc->addWidget(l36,0,5,1,1);
+    glc->addWidget(l32,0,6,1,1);
+    glc->addWidget(l33,0,7,1,1);
+    glc->addWidget(l34,0,8,1,1);
+
+
+    vedio_l1_continue_sec=new QLineEdit;
+    vedio_l2_continue_sec=new QLineEdit;
+    vedio_l3_continue_sec=new QLineEdit;
+    vedio_l4_continue_sec=new QLineEdit;
+    vedio_l5_continue_sec=new QLineEdit;
+    vedio_l6_continue_sec=new QLineEdit;
+    vedio_l7_continue_sec=new QLineEdit;
+    glc->addWidget(vedio_l1_continue_sec,1,1,1,1);
+    glc->addWidget(vedio_l2_continue_sec,2,1,1,1);
+    glc->addWidget(vedio_l3_continue_sec,3,1,1,1);
+    glc->addWidget(vedio_l4_continue_sec,4,1,1,1);
+    glc->addWidget(vedio_l5_continue_sec,5,1,1,1);
+    glc->addWidget(vedio_l6_continue_sec,6,1,1,1);
+    glc->addWidget(vedio_l7_continue_sec,7,1,1,1);
+
+    vedio_continue_Fov0_sec = new QLineEdit;
+    vedio_continue_Fov1_sec = new QLineEdit;
+    vedio_continue_Fov2_sec = new QLineEdit;
+    vedio_continue_Fov3_sec = new QLineEdit;
+    vedio_continue_Fov4_sec = new QLineEdit;
+    vedio_continue_Fov5_sec = new QLineEdit;
+    vedio_continue_Fov6_sec = new QLineEdit;
+    glc->addWidget(vedio_continue_Fov0_sec,1,2,1,1);
+    glc->addWidget(vedio_continue_Fov1_sec,2,2,1,1);
+    glc->addWidget(vedio_continue_Fov2_sec,3,2,1,1);
+    glc->addWidget(vedio_continue_Fov3_sec,4,2,1,1);
+    glc->addWidget(vedio_continue_Fov4_sec,5,2,1,1);
+    glc->addWidget(vedio_continue_Fov5_sec,6,2,1,1);
+    glc->addWidget(vedio_continue_Fov6_sec,7,2,1,1);
+
+    continue_vertical1_sec = new QLineEdit;
+    continue_vertical2_sec = new QLineEdit;
+    continue_vertical3_sec = new QLineEdit;
+    continue_vertical4_sec = new QLineEdit;
+    continue_vertical5_sec= new QLineEdit;
+    continue_vertical6_sec = new QLineEdit;
+    continue_vertical7_sec = new QLineEdit;
+    glc->addWidget(continue_vertical1_sec,1,4,1,1);
+    glc->addWidget(continue_vertical2_sec,2,4,1,1);
+    glc->addWidget(continue_vertical3_sec,3,4,1,1);
+    glc->addWidget(continue_vertical4_sec,4,4,1,1);
+    glc->addWidget(continue_vertical5_sec,5,4,1,1);
+    glc->addWidget(continue_vertical6_sec,6,4,1,1);
+    glc->addWidget(continue_vertical7_sec,7,4,1,1);
+
+    QLabel* l1dv31=new QLabel;
+    QLabel* l1dv32=new QLabel;
+    QLabel* l1dv33=new QLabel;
+    QLabel* l1dv34=new QLabel;
+    QLabel* l1dv35=new QLabel;
+    QLabel* l1dv36=new QLabel;
+    QLabel* l1dv37=new QLabel;
+    l1dv31->setText("度");
+    l1dv32->setText("度");
+    l1dv33->setText("度");
+    l1dv34->setText("度");
+    l1dv35->setText("度");
+    l1dv36->setText("度");
+    l1dv37->setText("度");
+
+    glc->addWidget(l1dv31,1,5,1,1);
+    glc->addWidget(l1dv32,2,5,1,1);
+    glc->addWidget(l1dv33,3,5,1,1);
+    glc->addWidget(l1dv34,4,5,1,1);
+    glc->addWidget(l1dv35,5,5,1,1);
+    glc->addWidget(l1dv36,6,5,1,1);
+    glc->addWidget(l1dv37,7,5,1,1);
+
+    QLabel* l1d31=new QLabel;
+    QLabel* l1d32=new QLabel;
+    QLabel* l1d33=new QLabel;
+    QLabel* l1d34=new QLabel;
+    QLabel* l1d35=new QLabel;
+    QLabel* l1d36=new QLabel;
+    QLabel* l1d37=new QLabel;
+    l1d31->setText("度");
+    l1d32->setText("度");
+    l1d33->setText("度");
+    l1d34->setText("度");
+    l1d35->setText("度");
+    l1d36->setText("度");
+    l1d37->setText("度");
+
+    glc->addWidget(l1d31,1,3,1,1);
+    glc->addWidget(l1d32,2,3,1,1);
+    glc->addWidget(l1d33,3,3,1,1);
+    glc->addWidget(l1d34,4,3,1,1);
+    glc->addWidget(l1d35,5,3,1,1);
+    glc->addWidget(l1d36,6,3,1,1);
+    glc->addWidget(l1d37,7,3,1,1);
+
+
+    vedio_spbx_continue1_sec=new QSpinBox;
+    vedio_spbx_continue2_sec=new QSpinBox;
+    vedio_spbx_continue3_sec=new QSpinBox;
+    vedio_spbx_continue4_sec=new QSpinBox;
+    vedio_spbx_continue5_sec=new QSpinBox;
+    vedio_spbx_continue6_sec=new QSpinBox;
+    vedio_spbx_continue7_sec=new QSpinBox;
+
+    vedio_spbx_continue1_sec->setRange(0,9999);
+    vedio_spbx_continue2_sec->setRange(0,9999);
+    vedio_spbx_continue3_sec->setRange(0,9999);
+    vedio_spbx_continue4_sec->setRange(0,9999);
+    vedio_spbx_continue5_sec->setRange(0,9999);
+    vedio_spbx_continue6_sec->setRange(0,9999);
+    vedio_spbx_continue7_sec->setRange(0,9999);
+
+    glc->addWidget(vedio_spbx_continue1_sec,1,6,1,1);
+    glc->addWidget(vedio_spbx_continue2_sec,2,6,1,1);
+    glc->addWidget(vedio_spbx_continue3_sec,3,6,1,1);
+    glc->addWidget(vedio_spbx_continue4_sec,4,6,1,1);
+    glc->addWidget(vedio_spbx_continue5_sec,5,6,1,1);
+    glc->addWidget(vedio_spbx_continue6_sec,6,6,1,1);
+    glc->addWidget(vedio_spbx_continue7_sec,7,6,1,1);
+
+
+    vedio_spby_continue1_sec=new QSpinBox;
+    vedio_spby_continue2_sec=new QSpinBox;
+    vedio_spby_continue3_sec=new QSpinBox;
+    vedio_spby_continue4_sec=new QSpinBox;
+    vedio_spby_continue5_sec=new QSpinBox;
+    vedio_spby_continue6_sec=new QSpinBox;
+    vedio_spby_continue7_sec=new QSpinBox;
+
+    vedio_spby_continue1_sec->setRange(0,9999);
+    vedio_spby_continue2_sec->setRange(0,9999);
+    vedio_spby_continue3_sec->setRange(0,9999);
+    vedio_spby_continue4_sec->setRange(0,9999);
+    vedio_spby_continue5_sec->setRange(0,9999);
+    vedio_spby_continue6_sec->setRange(0,9999);
+    vedio_spby_continue7_sec->setRange(0,9999);
+
+    glc->addWidget(vedio_spby_continue1_sec,1,7,1,1);
+    glc->addWidget(vedio_spby_continue2_sec,2,7,1,1);
+    glc->addWidget(vedio_spby_continue3_sec,3,7,1,1);
+    glc->addWidget(vedio_spby_continue4_sec,4,7,1,1);
+    glc->addWidget(vedio_spby_continue5_sec,5,7,1,1);
+    glc->addWidget(vedio_spby_continue6_sec,6,7,1,1);
+    glc->addWidget(vedio_spby_continue7_sec,7,7,1,1);
+    g3->setLayout(glc);
+
+    QVBoxLayout *v10=new QVBoxLayout;
+    v10->addLayout(h5);
+    v10->addLayout(v9);
+    v10->addWidget(continue_vediochoose_sec);
+    v10->addLayout(v7);
+    v10->addWidget(continue_autogate_sec);
+    v10->addLayout(gl4);
+    v10->addLayout(v31);
+    v10->addLayout(glct2);
+    v10->addWidget(g3);
+
+    //
+
+    w_ContinueField_1_sec->setLayout(v10);
+
+    connect(vedio_change3_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
+/*
+    connect(btn_vediosersor_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
+    connect(btn_vediosersor_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
+    connect(continueChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slo_sect_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continuechanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec_sec(int)));//
+    connect(continue_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continue_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(continue_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
+    connect(continue_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
+    connect(continue_xy_ratio_sec,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_sec()));
+    connect(continue_gateshow_sec,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_sec()));
+    connect(continue_bullshow_sec,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_sec()));
+    connect(continue_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(continue_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
+    connect(continue_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
+    connect(continue_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
+    connect(continue_gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
+    connect(continue_set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
+    connect(continue_set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
+    connect(continue_set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
+    connect(continue_search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
+    connect(continue_search_pitch_sec ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
+    connect(continue_search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
+    connect(continue_vediohaveornot_sec,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_sec()));
+    connect(test_1_sec,SIGNAL(activated(int)),this,SLOT(test_1_Slot_sec()));
+    connect(vedio_l1_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_sec()));
+    connect(vedio_l2_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_sec()));
+    connect(vedio_l3_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_sec()));
+    connect(vedio_l4_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_sec()));
+    connect(vedio_l5_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_sec()));
+    connect(vedio_l6_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_sec()));
+    connect(vedio_l7_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_sec()));
+
+    connect( vedio_continue_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_sec()));
+    connect( vedio_continue_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_sec()));
+    connect( vedio_continue_Fov2_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_sec()));
+    connect( vedio_continue_Fov3_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_sec()));
+    connect( vedio_continue_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_sec()));
+    connect( vedio_continue_Fov5_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_sec()));
+    connect( vedio_continue_Fov6_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_sec()));
+     connect( continue_vertical1_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_sec()));
+     connect( continue_vertical2_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_sec()));
+     connect( continue_vertical3_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_sec()));
+     connect( continue_vertical4_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_sec()));
+     connect( continue_vertical5_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_sec()));
+     connect( continue_vertical6_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_sec()));
+     connect( continue_vertical7_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_sec()));
+
+      connect( vedio_spbx_continue1_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_sec()));
+      connect( vedio_spbx_continue2_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_sec()));
+      connect( vedio_spbx_continue3_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_sec()));
+      connect( vedio_spbx_continue4_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_sec()));
+      connect( vedio_spbx_continue5_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_sec()));
+      connect( vedio_spbx_continue6_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_sec()));
+      connect( vedio_spbx_continue7_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_sec()));
+
+      connect( vedio_spby_continue1_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_sec()));
+      connect( vedio_spby_continue2_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_sec()));
+      connect( vedio_spby_continue3_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_sec()));
+      connect( vedio_spby_continue4_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_sec()));
+      connect( vedio_spby_continue5_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_sec()));
+      connect( vedio_spby_continue6_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_sec()));
+      connect( vedio_spby_continue7_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_sec()));
+      */
+
+}
+
+void MainWindow::init_vedioCfg_thi(){
+
+    w_sersor_1_thi = new MyWidget;
+    w_seitchField_1_thi = new MyWidget;
+    w_ContinueField_1_thi=new MyWidget;
+    w_sersor_1_thi->setWindowTitle("摄像机配置");
+    btn_vediosersor_fix_default_thi=new QPushButton;
+    btn_vediosersor_fix_update_thi=new QPushButton;
+    btn_vediosersor_fix_default_thi->setText("默认");
+    btn_vediosersor_fix_update_thi->setText("保存");
+    QVBoxLayout *v11=new QVBoxLayout;
+    v11->addWidget(btn_vediosersor_fix_default_thi);
+    v11->addWidget(btn_vediosersor_fix_update_thi);
+    QLabel *label30=new QLabel;
+    label30->setText("通道3");
+    QHBoxLayout *h11=new QHBoxLayout;
+    h11->addLayout(v11);
+    h11->addWidget(label30);
+
+    fixChanelNum_thi = new  QCheckBox();
+    fixChanelNum_thi->setText("通道号");
+    fixchanelname_thi = new QLineEdit;
+    fixenable_thi = new  QCheckBox();
+    fixenable_thi->setText("使能");
+    QLabel *label40=new QLabel;
+    label40->setText("通道名称");
+    QHBoxLayout *v21=new QHBoxLayout;
+    v21->addWidget(fixChanelNum_thi);
+    v21->addWidget(label40);
+    v21->addWidget(fixchanelname_thi);
+    v21->addWidget(fixenable_thi);
+
+    fix_vediohaveornot_thi = new  QCheckBox();
+    fix_vedio_dpi_thi = new QComboBox;
+    fix_xy_ratio_thi = new QLineEdit;
+    fix_vedio_dpi_thi->addItem("1080P@25HZ");
+    fix_vedio_dpi_thi->addItem("1080P@30HZ");
+    fix_vedio_dpi_thi->addItem("1080P@60HZ");
+    fix_vedio_dpi_thi->addItem("720P@60HZ");
+    fix_vedio_dpi_thi->addItem("720P@50HZ");
+    vedio_change1_thi = new QComboBox;
+    vedio_change1_thi->addItem("固定视场");
+    vedio_change1_thi->addItem("可切换视场");
+    vedio_change1_thi->addItem("连续视场");
+    fix_vediochoose_thi = new QGroupBox();
+    QFormLayout *f4=new QFormLayout();
+    f4->addRow(vedio_s_thi[0],fix_vediohaveornot_thi);
+    f4->addRow(vedio_s_thi[1],fix_vedio_dpi_thi);
+    f4->addRow(vedio_s_thi[2],vedio_change1_thi);
+    f4->addRow(vedio_s_thi[3],fix_xy_ratio_thi);
+    fix_vediochoose_thi->setLayout(f4);
+
+    fix_gateshow_thi = new  QCheckBox();
+    fix_bullshow_thi = new  QCheckBox();
+    fix_gateshow_thi->setText("波门显示");
+    fix_bullshow_thi->setText("靶心显示");
+    QHBoxLayout *v6=new QHBoxLayout;
+    v6->addWidget(fix_gateshow_thi);
+    v6->addWidget(fix_bullshow_thi);
+
+    fix_autogate_thi = new  QCheckBox();
+    fix_autogate_thi->setText("自动波门");
+
+    QLabel *label51=new QLabel;
+    label51->setText("波门尺寸X");
+    QLabel *label52=new QLabel;
+    label52->setText("波门尺寸Y");
+    QLabel *label53=new QLabel;
+    label53->setText("波门位置X");
+    QLabel *label54=new QLabel;
+    label54->setText("波门位置Y");
+    fix_gate_sizex_thi=new QLineEdit;
+    fix_gate_sizey_thi=new QLineEdit;
+    fix_gatelocationx_thi=new QLineEdit;
+    fix_gatelocationy_thi=new QLineEdit;
+    QGridLayout *gl1=new QGridLayout;
+    gl1->addWidget(label51,0,0);
+    gl1->addWidget(fix_gate_sizex_thi,0,1);
+    gl1->addWidget(label52,0,3);
+    gl1->addWidget(fix_gate_sizey_thi,0,4);
+    gl1->addWidget(label53,1,0);
+    gl1->addWidget(fix_gatelocationx_thi,1,1);
+    gl1->addWidget(label54,1,3);
+    gl1->addWidget(fix_gatelocationy_thi,1,4);
+    //2.10新增
+     QGridLayout *gl12=new QGridLayout;
+    set_azimuth_thi =new QPushButton;
+    set_pitch_thi =new QPushButton;
+    set_zoom_thi  =new QPushButton;
+    search_azimuth_thi=new QPushButton;
+    search_pitch_thi=new QPushButton;
+    search_zoom_thi=new QPushButton;
+    set_azimuth_thi->setText("设置");
+    set_pitch_thi->setText("设置");
+    set_zoom_thi->setText("设置");
+    search_azimuth_thi->setText("查询");
+    search_pitch_thi->setText("查询");
+    search_zoom_thi->setText("查询");
+
+    QLabel *labela=new QLabel;
+    labela->setText("方位角");
+    QLabel *labelp=new QLabel;
+    labelp->setText("俯仰角");
+    QLabel *labelz=new QLabel;
+    labelz->setText("zoom位置");
+    ledt_set_azimuth_thi=new QLineEdit;
+    ledt_set_pitch_thi=new QLineEdit;
+    ledt_set_zoom_thi=new QLineEdit;
+
+    ledt_search_azimuth_thi=new QLineEdit;
+    ledt_search_pitch_thi=new QLineEdit;
+    ledt_search_zoom_thi=new QLineEdit;
+
+    gl12->addWidget(labela,1,0,1,1);
+    gl12->addWidget(labelp,2,0,1,1);
+    gl12->addWidget(labelz,3,0,1,1);
+
+
+    gl12->addWidget(ledt_set_azimuth_thi,1,2,1,1);
+    gl12->addWidget(ledt_set_pitch_thi,2,2,1,1);
+    gl12->addWidget(ledt_set_zoom_thi,3,2,1,1);
+
+    gl12->addWidget(set_azimuth_thi,1,3,1,1);
+    gl12->addWidget(set_pitch_thi,2,3,1,1);
+    gl12->addWidget(set_zoom_thi,3,3,1,1);
+    gl12->addWidget(ledt_search_azimuth_thi,1,4,1,1);
+    gl12->addWidget(ledt_search_pitch_thi,2,4,1,1);
+    gl12->addWidget(ledt_search_zoom_thi,3,4,1,1);
+
+    gl12->addWidget(search_azimuth_thi,1,5,1,1);
+    gl12->addWidget(search_pitch_thi,2,5,1,1);
+    gl12->addWidget(search_zoom_thi,3,5,1,1);
+//
+
+    QGroupBox *g=new QGroupBox;
+    g->setTitle("固定视场");
+    QLabel* l11=new QLabel;
+    l11->setText("水平视场");
+    QLabel* l15=new QLabel;
+    l15->setText("垂直视场");
+    QLabel* l12=new QLabel;
+    l12->setText("靶心X位置");
+    QLabel* l13=new QLabel;
+    l13->setText("靶心Y位置");
+    QLabel* l14=new QLabel;
+    l14->setText(" ");
+    fix_lEdt_thi=new QLineEdit;
+    fix_vertical_thi=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
+    QLabel* l1v=new QLabel;
+    l1v->setText("度");
+    fix_sp_thi=new QSpinBox;
+    fix_sp2_thi=new QSpinBox;
+    fix_sp_thi->setRange(0,9999);
+    fix_sp2_thi->setRange(0,9999);
+    QGridLayout *gl3=new QGridLayout;
+    gl3->addWidget(l11,0,0,1,1);
+    gl3->addWidget(l14,0,1,1,1);
+
+    gl3->addWidget(l15,0,2,1,1);
+    gl3->addWidget(l14,0,3,1,1);
+
+    gl3->addWidget(l14,0,4,1,1);
+    gl3->addWidget(l12,0,5,1,1);
+    gl3->addWidget(l13,0,6,1,1);
+    gl3->addWidget(l14,0,7,1,1);
+    gl3->addWidget(fix_lEdt_thi,1,0,1,1);
+    gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(fix_vertical_thi,1,2,1,1);
+    gl3->addWidget(l1v,1,3,1,1);
+    gl3->addWidget(l14,1,4,1,1);
+    gl3->addWidget(fix_sp_thi,1,5,1,1);
+    gl3->addWidget(fix_sp2_thi,1,6,1,1);
+    g->setLayout(gl3);
+
+    QVBoxLayout *v0=new QVBoxLayout;
+    v0->addLayout(h11);
+    v0->addLayout(v21);
+    v0->addWidget(fix_vediochoose_thi);
+    v0->addLayout(v6);
+    v0->addWidget(fix_autogate_thi);
+    v0->addLayout(gl1);
+    v0->addLayout(gl12);
+    v0->addWidget(g);
+    w_sersor_1_thi->setLayout(v0);
+    connect(vedio_change1_thi,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_thi(int)));
+
+    connect(btn_vediosersor_fix_default_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_thi()));
+    connect(btn_vediosersor_fix_update_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_thi()));
+    connect(fixChanelNum_thi,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_thi(int)));
+    connect(fixchanelname_thi,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_thi(int)));
+    connect(fixenable_thi,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_thi(int)));
+    connect(fix_vediohaveornot_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_thi(int)));
+    connect(fix_vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));
+    connect(fix_xy_ratio_thi,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_thi()));
+    connect(fix_gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
+    connect(fix_bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
+    connect(fix_autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
+    connect(fix_gate_sizex_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_thi()));
+    connect(fix_gate_sizey_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_thi()));
+    connect(fix_gatelocationx_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_thi()));
+    connect(fix_gatelocationy_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_thi()));
+    connect(set_azimuth_thi,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_thi()));
+    connect(set_pitch_thi,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_thi()));
+    connect(set_zoom_thi,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_thi()));
+    connect(search_azimuth_thi,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_thi()));
+    connect(search_pitch_thi,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_thi()));
+    connect(search_zoom_thi,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_thi()));
+   // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
+   // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
+   // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
+   // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
+   // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
+   // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+    connect(fix_lEdt_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(fix_vertical_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(fix_sp_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(fix_sp2_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+
+    /*可切换视场*/
+
+    w_seitchField_1_thi->setWindowTitle("摄像机配置");
+    btn_vediosersor_default_thi=new QPushButton;
+    btn_vediosersor_update_thi=new QPushButton;
+    btn_vediosersor_default_thi->setText("默认");
+    btn_vediosersor_update_thi->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_vediosersor_default_thi);
+    v1->addWidget(btn_vediosersor_update_thi);
+    QLabel *label1=new QLabel;
+    label1->setText("通道3");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label1);
+
+    ChanelNum_thi = new  QCheckBox();
+    ChanelNum_thi->setText("通道号");
+    chanelname_thi = new QLineEdit;
+    enable_thi = new  QCheckBox();
+    enable_thi->setText("使能");
+
+    QLabel *label2=new QLabel;
+    label2->setText("通道名称");
+    QHBoxLayout *v2=new QHBoxLayout;
+    v2->addWidget(ChanelNum_thi);
+    v2->addWidget(label2);
+    v2->addWidget(chanelname_thi);
+    v2->addWidget(enable_thi);
+
+    vediohaveornot_thi = new  QCheckBox();
+    vedio_dpi_thi = new QComboBox;
+    xy_ratio_thi = new QLineEdit;
+    vedio_dpi_thi->addItem("1080P@25HZ");
+    vedio_dpi_thi->addItem("1080P@30HZ");
+    vedio_dpi_thi->addItem("1080P@60HZ");
+    vedio_dpi_thi->addItem("720P@60HZ");
+    vedio_dpi_thi->addItem("720P@50HZ");
+    vedio_change2_thi = new QComboBox;
+    vedio_change2_thi->addItem("可切换视场");
+    vedio_change2_thi->addItem("固定视场");
+    vedio_change2_thi->addItem("连续视场");
+
+    vediochoose_thi = new QGroupBox();
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(vedio_s_thi[0],vediohaveornot_thi);
+    f3->addRow(vedio_s_thi[1],vedio_dpi_thi);
+    f3->addRow(vedio_s_thi[2],vedio_change2_thi);
+    f3->addRow(vedio_s_thi[3],xy_ratio_thi);
+    vediochoose_thi->setLayout(f3);
+
+    connect(vedio_change2_thi,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_thi(int)));
+    gateshow_thi = new  QCheckBox();
+    bullshow_thi = new  QCheckBox();
+    gateshow_thi->setText("波门显示");
+    bullshow_thi->setText("靶心显示");
+    QHBoxLayout *v3=new QHBoxLayout;
+    v3->addWidget(gateshow_thi);
+    v3->addWidget(bullshow_thi);
+
+    autogate_thi = new  QCheckBox();
+    autogate_thi->setText("自动波门");
+
+    QLabel *label3=new QLabel;
+    label3->setText("波门尺寸X");
+    QLabel *label4=new QLabel;
+    label4->setText("波门尺寸Y");
+    QLabel *label5=new QLabel;
+    label5->setText("波门位置X");
+    QLabel *label6=new QLabel;
+    label6->setText("波门位置Y");
+    gate_sizex_thi=new QLineEdit;
+    gate_sizey_thi=new QLineEdit;
+    gatelocationx_thi=new QLineEdit;
+    gatelocationy_thi=new QLineEdit;
+    QGridLayout *gl=new QGridLayout;
+    gl->addWidget(label3,0,0);
+    gl->addWidget(gate_sizex_thi,0,1);
+    gl->addWidget(label4,0,3);
+    gl->addWidget(gate_sizey_thi,0,4);
+    gl->addWidget(label5,1,0);
+    gl->addWidget(gatelocationx_thi,1,1);
+    gl->addWidget(label6,1,3);
+    gl->addWidget(gatelocationy_thi,1,4);
+
+    QHBoxLayout *h2=new QHBoxLayout;
+    QLabel *label7=new QLabel;
+    label7->setText("测试现场等级");
+    vedio_fovclass_thi = new QComboBox;
+    vedio_fovclass_thi->addItem("可切换视场1");
+    vedio_fovclass_thi->addItem("可切换视场2");
+    vedio_fovclass_thi->addItem("可切换视场3");
+    vedio_fovclass_thi->addItem("可切换视场4");
+    vedio_fovclass_thi->addItem("可切换视场5");
+    h2->addWidget(label7);
+    h2->addWidget(vedio_fovclass_thi);
+    //
+
+    QGridLayout *glc2=new QGridLayout;
+   Change_set_azimuth_thi =new QPushButton;
+   Change_set_pitch_thi =new QPushButton;
+   Change_set_zoom_thi  =new QPushButton;
+   Change_search_azimuth_thi=new QPushButton;
+   Change_search_pitch_thi=new QPushButton;
+   Change_search_zoom_thi=new QPushButton;
+   Change_set_azimuth_thi->setText("设置");
+   Change_set_pitch_thi->setText("设置");
+   Change_set_zoom_thi->setText("设置");
+   Change_search_azimuth_thi->setText("查询");
+   Change_search_pitch_thi->setText("查询");
+   Change_search_zoom_thi->setText("查询");
+
+   Change_ledt_set_azimuth_thi=new QLineEdit;
+   Change_ledt_set_pitch_thi=new QLineEdit;
+   Change_ledt_set_zoom_thi=new QLineEdit;
+
+   Change_ledt_search_azimuth_thi=new QLineEdit;
+   Change_ledt_search_pitch_thi=new QLineEdit;
+   Change_ledt_search_zoom_thi=new QLineEdit;
+
+   QLabel *labelac=new QLabel;
+   labelac->setText("方位角");
+   QLabel *labelpc=new QLabel;
+   labelpc->setText("俯仰角");
+   QLabel *labelzc=new QLabel;
+   labelzc->setText("zoom位置");
+
+   glc2->addWidget(labelac,1,0,1,1);
+   glc2->addWidget(labelpc,2,0,1,1);
+   glc2->addWidget(labelzc,3,0,1,1);
+
+
+   glc2->addWidget(Change_ledt_set_azimuth_thi,1,2,1,1);
+   glc2->addWidget(Change_ledt_set_pitch_thi,2,2,1,1);
+   glc2->addWidget(Change_ledt_set_zoom_thi,3,2,1,1);
+
+   glc2->addWidget(Change_set_azimuth_thi,1,3,1,1);
+   glc2->addWidget(Change_set_pitch_thi,2,3,1,1);
+   glc2->addWidget(Change_set_zoom_thi,3,3,1,1);
+   glc2->addWidget(Change_ledt_search_azimuth_thi,1,4,1,1);
+   glc2->addWidget(Change_ledt_search_pitch_thi,2,4,1,1);
+   glc2->addWidget(Change_ledt_search_zoom_thi,3,4,1,1);
+
+   glc2->addWidget(Change_search_azimuth_thi,1,5,1,1);
+   glc2->addWidget(Change_search_pitch_thi,2,5,1,1);
+   glc2->addWidget(Change_search_zoom_thi,3,5,1,1);
+
+
+    //
+
+    QGroupBox *g2=new QGroupBox;
+    g2->setTitle("视场靶心补偿表");
+    QGridLayout *gl2=new QGridLayout;
+    QLabel* l21=new QLabel;
+    l21->setText("水平视场");
+    QLabel* l25=new QLabel;
+    l25->setText("垂直视场");
+    QLabel* l22=new QLabel;
+    l22->setText("靶心X位置");
+    QLabel* l23=new QLabel;
+    l23->setText("靶心Y位置");
+    QLabel* l24=new QLabel;
+    l24->setText(" ");
+    gl2->addWidget(l21,0,1,1,1);
+    gl2->addWidget(l25,0,3,1,1);
+    gl2->addWidget(l22,0,5,1,1);
+    gl2->addWidget(l23,0,6,1,1);
+    gl2->addWidget(l24,0,7,1,1);
+
+    QLabel *fovclass_label1 = new QLabel;
+    QLabel *fovclass_label2 = new QLabel;
+    QLabel *fovclass_label3 = new QLabel;
+    QLabel *fovclass_label4 = new QLabel;
+    QLabel *fovclass_label5 = new QLabel;
+    fovclass_label1->setText("可切换视场1");
+    fovclass_label2->setText("可切换视场2");
+    fovclass_label3->setText("可切换视场3");
+    fovclass_label4->setText("可切换视场4");
+    fovclass_label5->setText("可切换视场5");
+    gl2->addWidget(fovclass_label1,1,0,1,1);
+    gl2->addWidget(fovclass_label2,2,0,1,1);
+    gl2->addWidget(fovclass_label3,3,0,1,1);
+    gl2->addWidget(fovclass_label4,4,0,1,1);
+    gl2->addWidget(fovclass_label5,5,0,1,1);
+    vedio_s1_Fov0_thi=new QLineEdit;
+    vedio_s1_Fov1_thi=new QLineEdit;
+    vedio_s1_Fov2_thi=new QLineEdit;
+    vedio_s1_Fov3_thi=new QLineEdit;
+    vedio_s1_Fov4_thi=new QLineEdit;
+    gl2->addWidget(vedio_s1_Fov0_thi,1,1,1,1);
+    gl2->addWidget(vedio_s1_Fov1_thi,2,1,1,1);
+    gl2->addWidget(vedio_s1_Fov2_thi,3,1,1,1);
+    gl2->addWidget(vedio_s1_Fov3_thi,4,1,1,1);
+    gl2->addWidget(vedio_s1_Fov4_thi,5,1,1,1);
+
+    Change_vertical1_thi=new QLineEdit;
+    Change_vertical2_thi=new QLineEdit;
+    Change_vertical3_thi=new QLineEdit;
+    Change_vertical4_thi=new QLineEdit;
+    Change_vertical5_thi=new QLineEdit;
+    gl2->addWidget(Change_vertical1_thi,1,3,1,1);
+    gl2->addWidget(Change_vertical2_thi,2,3,1,1);
+    gl2->addWidget(Change_vertical3_thi,3,3,1,1);
+    gl2->addWidget(Change_vertical4_thi,4,3,1,1);
+    gl2->addWidget(Change_vertical5_thi,5,3,1,1);
+
+    QLabel* l1d21=new QLabel;
+    QLabel* l1d22=new QLabel;
+    QLabel* l1d23=new QLabel;
+    QLabel* l1d24=new QLabel;
+    QLabel* l1d25=new QLabel;
+    l1d21->setText("度");
+    l1d22->setText("度");
+    l1d23->setText("度");
+    l1d24->setText("度");
+    l1d25->setText("度");
+
+    QLabel* l1c21=new QLabel;
+    QLabel* l1c22=new QLabel;
+    QLabel* l1c23=new QLabel;
+    QLabel* l1c24=new QLabel;
+    QLabel* l1c25=new QLabel;
+    l1c21->setText("度");
+    l1c22->setText("度");
+    l1c23->setText("度");
+    l1c24->setText("度");
+    l1c25->setText("度");
+
+    gl2->addWidget(l1d21,1,2,1,1);
+    gl2->addWidget(l1d22,2,2,1,1);
+    gl2->addWidget(l1d23,3,2,1,1);
+    gl2->addWidget(l1d24,4,2,1,1);
+    gl2->addWidget(l1d25,5,2,1,1);
+
+    gl2->addWidget(l1c21,1,4,1,1);
+    gl2->addWidget(l1c22,2,4,1,1);
+    gl2->addWidget(l1c23,3,4,1,1);
+    gl2->addWidget(l1c24,4,4,1,1);
+    gl2->addWidget(l1c25,5,4,1,1);
+
+
+    vedio_spbx_switch1_thi=new QSpinBox;
+    vedio_spbx_switch2_thi=new QSpinBox;
+    vedio_spbx_switch3_thi=new QSpinBox;
+    vedio_spbx_switch4_thi=new QSpinBox;
+    vedio_spbx_switch5_thi=new QSpinBox;
+    vedio_spbx_switch1_thi->setRange(0,9999);
+    vedio_spbx_switch2_thi->setRange(0,9999);
+    vedio_spbx_switch3_thi->setRange(0,9999);
+    vedio_spbx_switch4_thi->setRange(0,9999);
+    vedio_spbx_switch5_thi->setRange(0,9999);
+    gl2->addWidget(vedio_spbx_switch1_thi,1,5,1,1);
+    gl2->addWidget(vedio_spbx_switch2_thi,2,5,1,1);
+    gl2->addWidget(vedio_spbx_switch3_thi,3,5,1,1);
+    gl2->addWidget(vedio_spbx_switch4_thi,4,5,1,1);
+    gl2->addWidget(vedio_spbx_switch5_thi,5,5,1,1);
+
+    vedio_spby_switch1_thi=new QSpinBox;
+    vedio_spby_switch2_thi=new QSpinBox;
+    vedio_spby_switch3_thi=new QSpinBox;
+    vedio_spby_switch4_thi=new QSpinBox;
+    vedio_spby_switch5_thi=new QSpinBox;
+    vedio_spby_switch1_thi->setRange(0,9999);
+    vedio_spby_switch2_thi->setRange(0,9999);
+    vedio_spby_switch3_thi->setRange(0,9999);
+    vedio_spby_switch4_thi->setRange(0,9999);
+    vedio_spby_switch5_thi->setRange(0,9999);
+    gl2->addWidget(vedio_spby_switch1_thi,1,6,1,1);
+    gl2->addWidget(vedio_spby_switch2_thi,2,6,1,1);
+    gl2->addWidget(vedio_spby_switch3_thi,3,6,1,1);
+    gl2->addWidget(vedio_spby_switch4_thi,4,6,1,1);
+    gl2->addWidget(vedio_spby_switch5_thi,5,6,1,1);
+
+    g2->setLayout(gl2);
+    QVBoxLayout *v22=new QVBoxLayout;
+    v22->addLayout(h2);
+    v22->addLayout(glc2);
+    v22->addWidget(g2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(v1);
+
+    v->addLayout(h1);
+
+    v->addLayout(v2);
+    v->addWidget(vediochoose_thi);
+    v->addLayout(v3);
+    v->addWidget(autogate_thi);
+    v->addLayout(gl);
+  //v->addLayout(h2);
+    v->addLayout(v22);
+    w_seitchField_1_thi->setLayout(v);
+    connect(btn_vediosersor_default_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_thi()));
+    connect(btn_vediosersor_update_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_thi()));
+    connect(ChanelNum_thi,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_thi(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_thi,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_thi(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(chanelname_thi,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_thi(int)));//
+    connect(vediohaveornot_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_thi(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
+    connect(bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
+    connect(xy_ratio_thi,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_thi()));
+    connect(gateshow_thi,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_thi()));
+    connect(bullshow_thi,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_thi()));
+    connect(autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
+    connect(gate_sizex_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_thi()));
+    connect(gate_sizey_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_thi()));
+    connect(gatelocationx_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_thi()));
+    connect(gatelocationy_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_thi()));
+    connect(Change_set_azimuth_thi,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_thi()));
+    connect(Change_set_pitch_thi,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_thi()));
+    connect(Change_set_zoom_thi,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_thi()));
+    connect(Change_search_azimuth_thi,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_thi()));
+    connect(Change_search_pitch_thi ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_thi()));
+    connect(Change_search_zoom_thi,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_thi()));
+    connect( vedio_fovclass_thi,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_thi()));
+
+    connect(vedio_s1_Fov0_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(Change_vertical1_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(vedio_spbx_switch1_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_spby_switch1_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_s1_Fov1_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(Change_vertical2_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(vedio_spbx_switch2_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_spby_switch2_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_s1_Fov2_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(Change_vertical3_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(vedio_spbx_switch3_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_spby_switch3_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_s1_Fov3_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(Change_vertical4_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(vedio_spbx_switch4_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_spby_switch4_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_s1_Fov4_thi,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_thi()));
+    connect(Change_vertical5_thi,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_thi()));
+    connect(vedio_spbx_switch5_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+    connect(vedio_spby_switch5_thi,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_thi()));
+
+
+    /*连续视场*/
+
+    w_ContinueField_1_thi->setWindowTitle("摄像机配置");
+    btn_vediosersor_continue_default_thi=new QPushButton;
+    btn_vediosersor_continue_update_thi=new QPushButton;
+    btn_vediosersor_continue_default_thi->setText("默认");
+    btn_vediosersor_continue_update_thi->setText("保存");
+    QVBoxLayout *v8=new QVBoxLayout;
+    v8->addWidget(btn_vediosersor_continue_default_thi);
+    v8->addWidget(btn_vediosersor_continue_update_thi);
+    QLabel *label60=new QLabel;
+    label60->setText("通道3");
+    QHBoxLayout *h5=new QHBoxLayout;
+    h5->addLayout(v8);
+    h5->addWidget(label60);
+
+    continueChanelNum_thi = new  QCheckBox();
+    continueChanelNum_thi->setText("通道号");
+    continuechanelname_thi = new QLineEdit;
+    continueenable_thi = new  QCheckBox();
+    continueenable_thi->setText("使能");
+    QLabel *label61=new QLabel;
+    label61->setText("通道名称");
+    QHBoxLayout *v9=new QHBoxLayout;
+    v9->addWidget(continueChanelNum_thi);
+    v9->addWidget(label61);
+    v9->addWidget(continuechanelname_thi);
+    v9->addWidget(continueenable_thi);
+
+    continue_vediohaveornot_thi = new  QCheckBox();
+    continue_vedio_dpi_thi = new QComboBox;
+    continue_xy_ratio_thi = new QLineEdit;
+    continue_vedio_dpi_thi->addItem("1080P@25HZ");
+    continue_vedio_dpi_thi->addItem("1080P@30HZ");
+    continue_vedio_dpi_thi->addItem("1080P@60HZ");
+    continue_vedio_dpi_thi->addItem("720P@60HZ");
+    continue_vedio_dpi_thi->addItem("720P@50HZ");
+    vedio_change3_thi = new QComboBox;
+    vedio_change3_thi->addItem("连续视场");
+    vedio_change3_thi->addItem("固定视场");
+    vedio_change3_thi->addItem("可切换视场");
+    continue_vediochoose_thi = new QGroupBox();
+    QFormLayout *f5=new QFormLayout();
+    f5->addRow(vedio_s_thi[0],continue_vediohaveornot_thi);
+    f5->addRow(vedio_s_thi[1],continue_vedio_dpi_thi);
+    f5->addRow(vedio_s_thi[2],vedio_change3_thi);
+    f5->addRow(vedio_s_thi[3],continue_xy_ratio_thi);
+    continue_vediochoose_thi->setLayout(f5);
+
+    continue_gateshow_thi = new  QCheckBox();
+    continue_bullshow_thi = new  QCheckBox();
+    continue_gateshow_thi->setText("波门显示");
+    continue_bullshow_thi->setText("靶心显示");
+    QHBoxLayout *v7=new QHBoxLayout;
+    v7->addWidget(continue_gateshow_thi);
+    v7->addWidget(continue_bullshow_thi);
+
+    continue_autogate_thi = new  QCheckBox();
+    continue_autogate_thi->setText("自动波门");
+
+    QLabel *label55=new QLabel;
+    label55->setText("波门尺寸X");
+    QLabel *label56=new QLabel;
+    label56->setText("波门尺寸Y");
+    QLabel *label57=new QLabel;
+    label57->setText("波门位置X");
+    QLabel *label58=new QLabel;
+    label58->setText("波门位置Y");
+    continue_gate_sizex_thi=new QLineEdit;
+    continue_gate_sizey_thi=new QLineEdit;
+    continue_gatelocationx_thi=new QLineEdit;
+    continue_gatelocationy_thi=new QLineEdit;
+    QGridLayout *gl4=new QGridLayout;
+    gl4->addWidget(label55,0,0);
+    gl4->addWidget(continue_gate_sizex_thi,0,1);
+    gl4->addWidget(label56,0,3);
+    gl4->addWidget(continue_gate_sizey_thi,0,4);
+    gl4->addWidget(label57,1,0);
+    gl4->addWidget(continue_gatelocationx_thi,1,1);
+    gl4->addWidget(label58,1,3);
+    gl4->addWidget(continue_gatelocationy_thi,1,4);
+
+    QHBoxLayout *v31=new QHBoxLayout;
+    QLabel *label70=new QLabel;
+    label70->setText("测试视场");
+    test_1_thi = new QLineEdit;
+    v31->addWidget(label70);
+    v31->addWidget(test_1_thi);
+//
+    QGridLayout *glct2=new QGridLayout;
+   continue_set_azimuth_thi =new QPushButton;
+   continue_set_pitch_thi =new QPushButton;
+   continue_set_zoom_thi  =new QPushButton;
+   continue_search_azimuth_thi=new QPushButton;
+   continue_search_pitch_thi=new QPushButton;
+   continue_search_zoom_thi=new QPushButton;
+   continue_set_azimuth_thi->setText("设置");
+   continue_set_pitch_thi->setText("设置");
+   continue_set_zoom_thi->setText("设置");
+   continue_search_azimuth_thi->setText("查询");
+   continue_search_pitch_thi->setText("查询");
+   continue_search_zoom_thi->setText("查询");
+
+   continue_ledt_set_azimuth_thi=new QLineEdit;
+   continue_ledt_set_pitch_thi=new QLineEdit;
+   continue_ledt_set_zoom_thi=new QLineEdit;
+
+   continue_ledt_search_azimuth_thi=new QLineEdit;
+   continue_ledt_search_pitch_thi=new QLineEdit;
+   continue_ledt_search_zoom_thi=new QLineEdit;
+
+   QLabel *labelact=new QLabel;
+   labelact->setText("方位角");
+   QLabel *labelpct=new QLabel;
+   labelpct->setText("俯仰角");
+   QLabel *labelzct=new QLabel;
+   labelzct->setText("zoom位置");
+
+   glct2->addWidget(labelact,1,0,1,1);
+   glct2->addWidget(labelpct,2,0,1,1);
+   glct2->addWidget(labelzct,3,0,1,1);
+
+
+   glct2->addWidget(continue_ledt_set_azimuth_thi,1,2,1,1);
+   glct2->addWidget(continue_ledt_set_pitch_thi,2,2,1,1);
+   glct2->addWidget(continue_ledt_set_zoom_thi,3,2,1,1);
+
+   glct2->addWidget(continue_set_azimuth_thi,1,3,1,1);
+   glct2->addWidget(continue_set_pitch_thi,2,3,1,1);
+   glct2->addWidget(continue_set_zoom_thi,3,3,1,1);
+   glct2->addWidget(continue_ledt_search_azimuth_thi,1,4,1,1);
+   glct2->addWidget(continue_ledt_search_pitch_thi,2,4,1,1);
+   glct2->addWidget(continue_ledt_search_zoom_thi,3,4,1,1);
+
+   glct2->addWidget(continue_search_azimuth_thi,1,5,1,1);
+   glct2->addWidget(continue_search_pitch_thi,2,5,1,1);
+   glct2->addWidget(continue_search_zoom_thi,3,5,1,1);
+
+   //
+
+
+    QGroupBox *g3=new QGroupBox;
+    g3->setTitle("视场靶心补偿表");
+    QGridLayout *glc=new QGridLayout;
+    QLabel* l30=new QLabel;
+    l30->setText("与视场相关的反馈值");
+    QLabel* l31=new QLabel;
+    l31->setText("水平视场");
+    QLabel* l35=new QLabel;
+    l35->setText("垂直视场");
+    QLabel* l32=new QLabel;
+    l32->setText("靶心X位置");
+    QLabel* l33=new QLabel;
+    l33->setText("靶心Y位置");
+    QLabel* l34=new QLabel;
+    l34->setText(" ");
+    QLabel* l36=new QLabel;
+    l36->setText(" ");
+    glc->addWidget(l30,0,1,1,1);
+    glc->addWidget(l31,0,2,1,1);
+    glc->addWidget(l35,0,4,1,1);
+    glc->addWidget(l36,0,5,1,1);
+    glc->addWidget(l32,0,6,1,1);
+    glc->addWidget(l33,0,7,1,1);
+    glc->addWidget(l34,0,8,1,1);
+
+
+    vedio_l1_continue_thi=new QLineEdit;
+    vedio_l2_continue_thi=new QLineEdit;
+    vedio_l3_continue_thi=new QLineEdit;
+    vedio_l4_continue_thi=new QLineEdit;
+    vedio_l5_continue_thi=new QLineEdit;
+    vedio_l6_continue_thi=new QLineEdit;
+    vedio_l7_continue_thi=new QLineEdit;
+    glc->addWidget(vedio_l1_continue_thi,1,1,1,1);
+    glc->addWidget(vedio_l2_continue_thi,2,1,1,1);
+    glc->addWidget(vedio_l3_continue_thi,3,1,1,1);
+    glc->addWidget(vedio_l4_continue_thi,4,1,1,1);
+    glc->addWidget(vedio_l5_continue_thi,5,1,1,1);
+    glc->addWidget(vedio_l6_continue_thi,6,1,1,1);
+    glc->addWidget(vedio_l7_continue_thi,7,1,1,1);
+
+    vedio_continue_Fov0_thi = new QLineEdit;
+    vedio_continue_Fov1_thi = new QLineEdit;
+    vedio_continue_Fov2_thi = new QLineEdit;
+    vedio_continue_Fov3_thi = new QLineEdit;
+    vedio_continue_Fov4_thi = new QLineEdit;
+    vedio_continue_Fov5_thi = new QLineEdit;
+    vedio_continue_Fov6_thi = new QLineEdit;
+    glc->addWidget(vedio_continue_Fov0_thi,1,2,1,1);
+    glc->addWidget(vedio_continue_Fov1_thi,2,2,1,1);
+    glc->addWidget(vedio_continue_Fov2_thi,3,2,1,1);
+    glc->addWidget(vedio_continue_Fov3_thi,4,2,1,1);
+    glc->addWidget(vedio_continue_Fov4_thi,5,2,1,1);
+    glc->addWidget(vedio_continue_Fov5_thi,6,2,1,1);
+    glc->addWidget(vedio_continue_Fov6_thi,7,2,1,1);
+
+    continue_vertical1_thi = new QLineEdit;
+    continue_vertical2_thi = new QLineEdit;
+    continue_vertical3_thi = new QLineEdit;
+    continue_vertical4_thi = new QLineEdit;
+    continue_vertical5_thi = new QLineEdit;
+    continue_vertical6_thi = new QLineEdit;
+    continue_vertical7_thi = new QLineEdit;
+    glc->addWidget(continue_vertical1_thi,1,4,1,1);
+    glc->addWidget(continue_vertical2_thi,2,4,1,1);
+    glc->addWidget(continue_vertical3_thi,3,4,1,1);
+    glc->addWidget(continue_vertical4_thi,4,4,1,1);
+    glc->addWidget(continue_vertical5_thi,5,4,1,1);
+    glc->addWidget(continue_vertical6_thi,6,4,1,1);
+    glc->addWidget(continue_vertical7_thi,7,4,1,1);
+
+    QLabel* l1dv31=new QLabel;
+    QLabel* l1dv32=new QLabel;
+    QLabel* l1dv33=new QLabel;
+    QLabel* l1dv34=new QLabel;
+    QLabel* l1dv35=new QLabel;
+    QLabel* l1dv36=new QLabel;
+    QLabel* l1dv37=new QLabel;
+    l1dv31->setText("度");
+    l1dv32->setText("度");
+    l1dv33->setText("度");
+    l1dv34->setText("度");
+    l1dv35->setText("度");
+    l1dv36->setText("度");
+    l1dv37->setText("度");
+
+    glc->addWidget(l1dv31,1,5,1,1);
+    glc->addWidget(l1dv32,2,5,1,1);
+    glc->addWidget(l1dv33,3,5,1,1);
+    glc->addWidget(l1dv34,4,5,1,1);
+    glc->addWidget(l1dv35,5,5,1,1);
+    glc->addWidget(l1dv36,6,5,1,1);
+    glc->addWidget(l1dv37,7,5,1,1);
+
+    QLabel* l1d31=new QLabel;
+    QLabel* l1d32=new QLabel;
+    QLabel* l1d33=new QLabel;
+    QLabel* l1d34=new QLabel;
+    QLabel* l1d35=new QLabel;
+    QLabel* l1d36=new QLabel;
+    QLabel* l1d37=new QLabel;
+    l1d31->setText("度");
+    l1d32->setText("度");
+    l1d33->setText("度");
+    l1d34->setText("度");
+    l1d35->setText("度");
+    l1d36->setText("度");
+    l1d37->setText("度");
+
+    glc->addWidget(l1d31,1,3,1,1);
+    glc->addWidget(l1d32,2,3,1,1);
+    glc->addWidget(l1d33,3,3,1,1);
+    glc->addWidget(l1d34,4,3,1,1);
+    glc->addWidget(l1d35,5,3,1,1);
+    glc->addWidget(l1d36,6,3,1,1);
+    glc->addWidget(l1d37,7,3,1,1);
+
+
+    vedio_spbx_continue1_thi=new QSpinBox;
+    vedio_spbx_continue2_thi=new QSpinBox;
+    vedio_spbx_continue3_thi=new QSpinBox;
+    vedio_spbx_continue4_thi=new QSpinBox;
+    vedio_spbx_continue5_thi=new QSpinBox;
+    vedio_spbx_continue6_thi=new QSpinBox;
+    vedio_spbx_continue7_thi=new QSpinBox;
+
+    vedio_spbx_continue1_thi->setRange(0,9999);
+    vedio_spbx_continue2_thi->setRange(0,9999);
+    vedio_spbx_continue3_thi->setRange(0,9999);
+    vedio_spbx_continue4_thi->setRange(0,9999);
+    vedio_spbx_continue5_thi->setRange(0,9999);
+    vedio_spbx_continue6_thi->setRange(0,9999);
+    vedio_spbx_continue7_thi->setRange(0,9999);
+
+    glc->addWidget(vedio_spbx_continue1_thi,1,6,1,1);
+    glc->addWidget(vedio_spbx_continue2_thi,2,6,1,1);
+    glc->addWidget(vedio_spbx_continue3_thi,3,6,1,1);
+    glc->addWidget(vedio_spbx_continue4_thi,4,6,1,1);
+    glc->addWidget(vedio_spbx_continue5_thi,5,6,1,1);
+    glc->addWidget(vedio_spbx_continue6_thi,6,6,1,1);
+    glc->addWidget(vedio_spbx_continue7_thi,7,6,1,1);
+
+
+    vedio_spby_continue1_thi=new QSpinBox;
+    vedio_spby_continue2_thi=new QSpinBox;
+    vedio_spby_continue3_thi=new QSpinBox;
+    vedio_spby_continue4_thi=new QSpinBox;
+    vedio_spby_continue5_thi=new QSpinBox;
+    vedio_spby_continue6_thi=new QSpinBox;
+    vedio_spby_continue7_thi=new QSpinBox;
+
+    vedio_spby_continue1_thi->setRange(0,9999);
+    vedio_spby_continue2_thi->setRange(0,9999);
+    vedio_spby_continue3_thi->setRange(0,9999);
+    vedio_spby_continue4_thi->setRange(0,9999);
+    vedio_spby_continue5_thi->setRange(0,9999);
+    vedio_spby_continue6_thi->setRange(0,9999);
+    vedio_spby_continue7_thi->setRange(0,9999);
+
+    glc->addWidget(vedio_spby_continue1_thi,1,7,1,1);
+    glc->addWidget(vedio_spby_continue2_thi,2,7,1,1);
+    glc->addWidget(vedio_spby_continue3_thi,3,7,1,1);
+    glc->addWidget(vedio_spby_continue4_thi,4,7,1,1);
+    glc->addWidget(vedio_spby_continue5_thi,5,7,1,1);
+    glc->addWidget(vedio_spby_continue6_thi,6,7,1,1);
+    glc->addWidget(vedio_spby_continue7_thi,7,7,1,1);
+    g3->setLayout(glc);
+
+    QVBoxLayout *v10=new QVBoxLayout;
+    v10->addLayout(h5);
+    v10->addLayout(v9);
+    v10->addWidget(continue_vediochoose_thi);
+    v10->addLayout(v7);
+    v10->addWidget(continue_autogate_thi);
+    v10->addLayout(gl4);
+    v10->addLayout(v31);
+    v10->addLayout(glct2);
+    v10->addWidget(g3);
+
+    //
+
+    w_ContinueField_1_thi->setLayout(v10);
+
+    connect(vedio_change3_thi,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_thi(int)));
+
+    connect(btn_vediosersor_default_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_thi()));
+    connect(btn_vediosersor_update_thi,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_thi()));
+    connect(continueChanelNum_thi,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_thi(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_thi,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_thi(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continuechanelname_thi,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_thi(int)));//
+    connect(continue_vediohaveornot_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_thi(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continue_vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(continue_gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
+    connect(continue_bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
+    connect(continue_xy_ratio_thi,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_thi()));
+    connect(continue_gateshow_thi,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_thi()));
+    connect(continue_bullshow_thi,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_thi()));
+    connect(continue_autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
+    connect(continue_gate_sizex_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_thi()));
+    connect(continue_gate_sizey_thi,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_thi()));
+    connect(continue_gatelocationx_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_thi()));
+    connect(continue_gatelocationy_thi,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_thi()));
+    connect(continue_set_azimuth_thi,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_thi()));
+    connect(continue_set_pitch_thi,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_thi()));
+    connect(continue_set_zoom_thi,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_thi()));
+    connect(continue_search_azimuth_thi,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_thi()));
+    connect(continue_search_pitch_thi ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_thi()));
+    connect(continue_search_zoom_thi,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_thi()));
+    connect(continue_vediohaveornot_thi,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_thi()));
+    connect(test_1_thi,SIGNAL(activated(int)),this,SLOT(test_1_Slot_thi()));
+    connect(vedio_l1_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_thi()));
+     connect(vedio_l2_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_thi()));
+      connect(vedio_l3_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_thi()));
+       connect(vedio_l4_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_thi()));
+        connect(vedio_l5_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_thi()));
+         connect(vedio_l6_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_thi()));
+          connect(vedio_l7_continue_thi,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_thi()));
+
+    connect( vedio_continue_Fov0_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_thi()));
+    connect( vedio_continue_Fov1_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_thi()));
+    connect( vedio_continue_Fov2_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_thi()));
+    connect( vedio_continue_Fov3_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_thi()));
+    connect( vedio_continue_Fov4_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_thi()));
+    connect( vedio_continue_Fov5_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_thi()));
+    connect( vedio_continue_Fov6_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_thi()));
+     connect( continue_vertical1_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_thi()));
+     connect( continue_vertical2_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_thi()));
+     connect( continue_vertical3_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_thi()));
+     connect( continue_vertical4_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_thi()));
+     connect( continue_vertical5_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_thi()));
+     connect( continue_vertical6_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_thi()));
+     connect( continue_vertical7_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_thi()));
+
+      connect( vedio_spbx_continue1_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_thi()));
+       connect( vedio_spbx_continue2_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_thi()));
+      connect( vedio_spbx_continue3_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_thi()));
+      connect( vedio_spbx_continue4_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_thi()));
+       connect( vedio_spbx_continue5_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_thi()));
+       connect( vedio_spbx_continue6_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_thi()));
+       connect( vedio_spbx_continue7_thi,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_thi()));
+
+       connect( vedio_spby_continue1,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot()));
+       connect( vedio_spby_continue2,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot()));
+       connect( vedio_spby_continue3,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot()));
+       connect( vedio_spby_continue4,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot()));
+       connect( vedio_spby_continue5,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot()));
+       connect( vedio_spby_continue6,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot()));
+       connect( vedio_spby_continue7,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot()));
+
+
+}
+
+void MainWindow::init_vedioCfg_fou(){
+
+    /*固定视场*/
+
+    w_sersor_1_fou = new MyWidget;
+    w_seitchField_1_fou = new MyWidget;
+    w_ContinueField_1_fou=new MyWidget;
+    w_sersor_1_fou->setWindowTitle("摄像机配置");
+    btn_vediosersor_fix_default_fou=new QPushButton;
+    btn_vediosersor_fix_update_fou=new QPushButton;
+    btn_vediosersor_fix_default_fou->setText("默认");
+    btn_vediosersor_fix_update_fou->setText("保存");
+    QVBoxLayout *v11=new QVBoxLayout;
+    v11->addWidget(btn_vediosersor_fix_default_fou);
+    v11->addWidget(btn_vediosersor_fix_update_fou);
+    QLabel *label30=new QLabel;
+    label30->setText("通道4");
+    QHBoxLayout *h11=new QHBoxLayout;
+    h11->addLayout(v11);
+    h11->addWidget(label30);
+
+    fixChanelNum_fou = new  QCheckBox();
+    fixChanelNum_fou->setText("通道号");
+    fixchanelname_fou = new QLineEdit;
+    fixenable_fou = new  QCheckBox();
+    fixenable_fou->setText("使能");
+    QLabel *label40=new QLabel;
+    label40->setText("通道名称");
+    QHBoxLayout *v21=new QHBoxLayout;
+    v21->addWidget(fixChanelNum_fou);
+    v21->addWidget(label40);
+    v21->addWidget(fixchanelname_fou);
+    v21->addWidget(fixenable_fou);
+
+    fix_vediohaveornot_fou = new  QCheckBox();
+    fix_vedio_dpi_fou = new QComboBox;
+    fix_xy_ratio_fou = new QLineEdit;
+    fix_vedio_dpi_fou->addItem("1080P@25HZ");
+    fix_vedio_dpi_fou->addItem("1080P@30HZ");
+    fix_vedio_dpi_fou->addItem("1080P@60HZ");
+    fix_vedio_dpi_fou->addItem("720P@50HZ");
+    fix_vedio_dpi_fou->addItem("720P@60HZ");
+    vedio_change1_fou = new QComboBox;
+    vedio_change1_fou->addItem("固定视场");
+    vedio_change1_fou->addItem("可切换视场");
+    vedio_change1_fou->addItem("连续视场");
+    fix_vediochoose_fou = new QGroupBox();
+    QFormLayout *f4=new QFormLayout();
+    f4->addRow(vedio_s_fou[0],fix_vediohaveornot_fou);
+    f4->addRow(vedio_s_fou[1],fix_vedio_dpi_fou);
+    f4->addRow(vedio_s_fou[2],vedio_change1_fou);
+    f4->addRow(vedio_s_fou[3],fix_xy_ratio_fou);
+    fix_vediochoose_fou->setLayout(f4);
+
+    fix_gateshow_fou = new  QCheckBox();
+    fix_bullshow_fou = new  QCheckBox();
+    fix_gateshow_fou->setText("波门显示");
+    fix_bullshow_fou->setText("靶心显示");
+    QHBoxLayout *v6=new QHBoxLayout;
+    v6->addWidget(fix_gateshow_fou);
+    v6->addWidget(fix_bullshow_fou);
+
+    fix_autogate_fou = new  QCheckBox();
+    fix_autogate_fou->setText("自动波门");
+
+    QLabel *label51=new QLabel;
+    label51->setText("波门尺寸X");
+    QLabel *label52=new QLabel;
+    label52->setText("波门尺寸Y");
+    QLabel *label53=new QLabel;
+    label53->setText("波门位置X");
+    QLabel *label54=new QLabel;
+    label54->setText("波门位置Y");
+    fix_gate_sizex_fou=new QLineEdit;
+    fix_gate_sizey_fou=new QLineEdit;
+    fix_gatelocationx_fou=new QLineEdit;
+    fix_gatelocationy_fou=new QLineEdit;
+    QGridLayout *gl1=new QGridLayout;
+    gl1->addWidget(label51,0,0);
+    gl1->addWidget(fix_gate_sizex_fou,0,1);
+    gl1->addWidget(label52,0,3);
+    gl1->addWidget(fix_gate_sizey_fou,0,4);
+    gl1->addWidget(label53,1,0);
+    gl1->addWidget(fix_gatelocationx_fou,1,1);
+    gl1->addWidget(label54,1,3);
+    gl1->addWidget(fix_gatelocationy_fou,1,4);
+    //2.10新增
+     QGridLayout *gl12=new QGridLayout;
+    set_azimuth_fou =new QPushButton;
+    set_pitch_fou =new QPushButton;
+    set_zoom_fou  =new QPushButton;
+    search_azimuth_fou=new QPushButton;
+    search_pitch_fou=new QPushButton;
+    search_zoom_fou=new QPushButton;
+    set_azimuth_fou->setText("设置");
+    set_pitch_fou->setText("设置");
+    set_zoom_fou->setText("设置");
+    search_azimuth_fou->setText("查询");
+    search_pitch_fou->setText("查询");
+    search_zoom_fou->setText("查询");
+
+    QLabel *labela=new QLabel;
+    labela->setText("方位角");
+    QLabel *labelp=new QLabel;
+    labelp->setText("俯仰角");
+    QLabel *labelz=new QLabel;
+    labelz->setText("zoom位置");
+    ledt_set_azimuth_fou=new QLineEdit;
+    ledt_set_pitch_fou=new QLineEdit;
+    ledt_set_zoom_fou=new QLineEdit;
+
+    ledt_search_azimuth_fou=new QLineEdit;
+    ledt_search_pitch_fou=new QLineEdit;
+    ledt_search_zoom_fou=new QLineEdit;
+
+    gl12->addWidget(labela,1,0,1,1);
+    gl12->addWidget(labelp,2,0,1,1);
+    gl12->addWidget(labelz,3,0,1,1);
+
+
+    gl12->addWidget(ledt_set_azimuth_fou,1,2,1,1);
+    gl12->addWidget(ledt_set_pitch_fou,2,2,1,1);
+    gl12->addWidget(ledt_set_zoom_fou,3,2,1,1);
+
+    gl12->addWidget(set_azimuth_fou,1,3,1,1);
+    gl12->addWidget(set_pitch_fou,2,3,1,1);
+    gl12->addWidget(set_zoom_fou,3,3,1,1);
+    gl12->addWidget(ledt_search_azimuth_fou,1,4,1,1);
+    gl12->addWidget(ledt_search_pitch_fou,2,4,1,1);
+    gl12->addWidget(ledt_search_zoom_fou,3,4,1,1);
+
+    gl12->addWidget(search_azimuth_fou,1,5,1,1);
+    gl12->addWidget(search_pitch_fou,2,5,1,1);
+    gl12->addWidget(search_zoom_fou,3,5,1,1);
+//
+
+    QGroupBox *g=new QGroupBox;
+    g->setTitle("固定视场");
+    QLabel* l11=new QLabel;
+    l11->setText("水平视场");
+    QLabel* l15=new QLabel;
+    l15->setText("垂直视场");
+    QLabel* l12=new QLabel;
+    l12->setText("靶心X位置");
+    QLabel* l13=new QLabel;
+    l13->setText("靶心Y位置");
+    QLabel* l14=new QLabel;
+    l14->setText(" ");
+    fix_lEdt_fou=new QLineEdit;
+    fix_vertical_fou=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
+    QLabel* l1v=new QLabel;
+    l1v->setText("度");
+    fix_sp_fou=new QSpinBox;
+    fix_sp2_fou=new QSpinBox;
+    fix_sp_fou->setRange(0,9999);
+    fix_sp2_fou->setRange(0,9999);
+    QGridLayout *gl3=new QGridLayout;
+    gl3->addWidget(l11,0,0,1,1);
+    gl3->addWidget(l14,0,1,1,1);
+
+    gl3->addWidget(l15,0,2,1,1);
+    gl3->addWidget(l14,0,3,1,1);
+
+    gl3->addWidget(l14,0,4,1,1);
+    gl3->addWidget(l12,0,5,1,1);
+    gl3->addWidget(l13,0,6,1,1);
+    gl3->addWidget(l14,0,7,1,1);
+    gl3->addWidget(fix_lEdt_fou,1,0,1,1);
+    gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(fix_vertical_fou,1,2,1,1);
+    gl3->addWidget(l1v,1,3,1,1);
+    gl3->addWidget(l14,1,4,1,1);
+    gl3->addWidget(fix_sp_fou,1,5,1,1);
+    gl3->addWidget(fix_sp2_fou,1,6,1,1);
+    g->setLayout(gl3);
+
+    QVBoxLayout *v0=new QVBoxLayout;
+    v0->addLayout(h11);
+    v0->addLayout(v21);
+    v0->addWidget(fix_vediochoose_fou);
+    v0->addLayout(v6);
+    v0->addWidget(fix_autogate_fou);
+    v0->addLayout(gl1);
+    v0->addLayout(gl12);
+    v0->addWidget(g);
+    w_sersor_1_fou->setLayout(v0);
+    connect(vedio_change1_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fou(int)));
+
+    connect(btn_vediosersor_fix_default_fou,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
+    connect(btn_vediosersor_fix_update_fou,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
+    connect(fixChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));
+    connect(fixchanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));
+    connect(fixenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));
+    connect(fix_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));
+    connect(fix_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));
+    connect(fix_xy_ratio_fou,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_fou()));
+    connect(fix_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
+    connect(fix_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
+    connect(fix_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
+    connect(fix_gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
+    connect(fix_gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
+    connect(fix_gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
+    connect(fix_gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fou()));
+    connect(set_azimuth_fou,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fou()));
+    connect(set_pitch_fou,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fou()));
+    connect(set_zoom_fou,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fou()));
+    connect(search_azimuth_fou,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fou()));
+    connect(search_pitch_fou ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fou()));
+    connect(search_zoom_fou,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fou()));
+   // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
+   // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
+   // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
+   // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
+   // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
+   // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+    connect(fix_lEdt_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(fix_vertical_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(fix_sp_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(fix_sp2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+
+    /*可切换视场*/
+
+    w_seitchField_1_fou->setWindowTitle("摄像机配置");
+    btn_vediosersor_default_fou=new QPushButton;
+    btn_vediosersor_update_fou=new QPushButton;
+    btn_vediosersor_default_fou->setText("默认");
+    btn_vediosersor_update_fou->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_vediosersor_default_fou);
+    v1->addWidget(btn_vediosersor_update_fou);
+    QLabel *label1=new QLabel;
+    label1->setText("通道4");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label1);
+
+    ChanelNum_fou = new  QCheckBox();
+    ChanelNum_fou->setText("通道号");
+    chanelname_fou = new QLineEdit;
+    enable_fou = new  QCheckBox();
+    enable_fou->setText("使能");
+
+    QLabel *label2=new QLabel;
+    label2->setText("通道名称");
+    QHBoxLayout *v2=new QHBoxLayout;
+    v2->addWidget(ChanelNum_fou);
+    v2->addWidget(label2);
+    v2->addWidget(chanelname_fou);
+    v2->addWidget(enable_fou);
+
+    vediohaveornot_fou = new  QCheckBox();
+    vedio_dpi_fou = new QComboBox;
+    xy_ratio_fou = new QLineEdit;
+    vedio_dpi_fou->addItem("1080P@25HZ");
+    vedio_dpi_fou->addItem("1080P@30HZ");
+    vedio_dpi_fou->addItem("1080P@60HZ");
+    vedio_dpi_fou->addItem("720P@50HZ");
+    vedio_dpi_fou->addItem("720P@60HZ");
+    vedio_change2_fou = new QComboBox;
+    vedio_change2_fou->addItem("可切换视场");
+    vedio_change2_fou->addItem("固定视场");
+    vedio_change2_fou->addItem("连续视场");
+
+    vediochoose_fou = new QGroupBox();
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(vedio_s_fou[0],vediohaveornot_fou);
+    f3->addRow(vedio_s_fou[1],vedio_dpi_fou);
+    f3->addRow(vedio_s_fou[2],vedio_change2_fou);
+    f3->addRow(vedio_s_fou[3],xy_ratio_fou);
+    vediochoose_fou->setLayout(f3);
+
+    connect(vedio_change2_fou,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_fou(int)));
+    gateshow_fou = new  QCheckBox();
+    bullshow_fou = new  QCheckBox();
+    gateshow_fou->setText("波门显示");
+    bullshow_fou->setText("靶心显示");
+    QHBoxLayout *v3=new QHBoxLayout;
+    v3->addWidget(gateshow_fou);
+    v3->addWidget(bullshow_fou);
+
+    autogate_fou = new  QCheckBox();
+    autogate_fou->setText("自动波门");
+
+    QLabel *label3=new QLabel;
+    label3->setText("波门尺寸X");
+    QLabel *label4=new QLabel;
+    label4->setText("波门尺寸Y");
+    QLabel *label5=new QLabel;
+    label5->setText("波门位置X");
+    QLabel *label6=new QLabel;
+    label6->setText("波门位置Y");
+    gate_sizex_fou=new QLineEdit;
+    gate_sizey_fou=new QLineEdit;
+    gatelocationx_fou=new QLineEdit;
+    gatelocationy_fou=new QLineEdit;
+    QGridLayout *gl=new QGridLayout;
+    gl->addWidget(label3,0,0);
+    gl->addWidget(gate_sizex_fou,0,1);
+    gl->addWidget(label4,0,3);
+    gl->addWidget(gate_sizey_fou,0,4);
+    gl->addWidget(label5,1,0);
+    gl->addWidget(gatelocationx_fou,1,1);
+    gl->addWidget(label6,1,3);
+    gl->addWidget(gatelocationy_fou,1,4);
+
+    QHBoxLayout *h2=new QHBoxLayout;
+    QLabel *label7=new QLabel;
+    label7->setText("测试现场等级");
+    vedio_fovclass_fou = new QComboBox;
+    vedio_fovclass_fou->addItem("可切换视场1");
+    vedio_fovclass_fou->addItem("可切换视场2");
+    vedio_fovclass_fou->addItem("可切换视场3");
+    vedio_fovclass_fou->addItem("可切换视场4");
+    vedio_fovclass_fou->addItem("可切换视场5");
+    h2->addWidget(label7);
+    h2->addWidget(vedio_fovclass_fou);
+    //
+
+    QGridLayout *glc2=new QGridLayout;
+   Change_set_azimuth_fou =new QPushButton;
+   Change_set_pitch_fou =new QPushButton;
+   Change_set_zoom_fou  =new QPushButton;
+   Change_search_azimuth_fou=new QPushButton;
+   Change_search_pitch_fou=new QPushButton;
+   Change_search_zoom_fou=new QPushButton;
+   Change_set_azimuth_fou->setText("设置");
+   Change_set_pitch_fou->setText("设置");
+   Change_set_zoom_fou->setText("设置");
+   Change_search_azimuth_fou->setText("查询");
+   Change_search_pitch_fou->setText("查询");
+   Change_search_zoom_fou->setText("查询");
+
+   Change_ledt_set_azimuth_fou=new QLineEdit;
+   Change_ledt_set_pitch_fou=new QLineEdit;
+   Change_ledt_set_zoom_fou=new QLineEdit;
+
+   Change_ledt_search_azimuth_fou=new QLineEdit;
+   Change_ledt_search_pitch_fou=new QLineEdit;
+   Change_ledt_search_zoom_fou=new QLineEdit;
+
+   QLabel *labelac=new QLabel;
+   labelac->setText("方位角");
+   QLabel *labelpc=new QLabel;
+   labelpc->setText("俯仰角");
+   QLabel *labelzc=new QLabel;
+   labelzc->setText("zoom位置");
+
+   glc2->addWidget(labelac,1,0,1,1);
+   glc2->addWidget(labelpc,2,0,1,1);
+   glc2->addWidget(labelzc,3,0,1,1);
+
+
+   glc2->addWidget(Change_ledt_set_azimuth_fou,1,2,1,1);
+   glc2->addWidget(Change_ledt_set_pitch_fou,2,2,1,1);
+   glc2->addWidget(Change_ledt_set_zoom_fou,3,2,1,1);
+
+   glc2->addWidget(Change_set_azimuth_fou,1,3,1,1);
+   glc2->addWidget(Change_set_pitch_fou,2,3,1,1);
+   glc2->addWidget(Change_set_zoom_fou,3,3,1,1);
+   glc2->addWidget(Change_ledt_search_azimuth_fou,1,4,1,1);
+   glc2->addWidget(Change_ledt_search_pitch_fou,2,4,1,1);
+   glc2->addWidget(Change_ledt_search_zoom_fou,3,4,1,1);
+
+   glc2->addWidget(Change_search_azimuth_fou,1,5,1,1);
+   glc2->addWidget(Change_search_pitch_fou,2,5,1,1);
+   glc2->addWidget(Change_search_zoom_fou,3,5,1,1);
+
+
+    //
+
+    QGroupBox *g2=new QGroupBox;
+    g2->setTitle("视场靶心补偿表");
+    QGridLayout *gl2=new QGridLayout;
+    QLabel* l21=new QLabel;
+    l21->setText("水平视场");
+    QLabel* l25=new QLabel;
+    l25->setText("垂直视场");
+    QLabel* l22=new QLabel;
+    l22->setText("靶心X位置");
+    QLabel* l23=new QLabel;
+    l23->setText("靶心Y位置");
+    QLabel* l24=new QLabel;
+    l24->setText(" ");
+    gl2->addWidget(l21,0,1,1,1);
+    gl2->addWidget(l25,0,3,1,1);
+    gl2->addWidget(l22,0,5,1,1);
+    gl2->addWidget(l23,0,6,1,1);
+    gl2->addWidget(l24,0,7,1,1);
+
+    QLabel *fovclass_label1 = new QLabel;
+    QLabel *fovclass_label2 = new QLabel;
+    QLabel *fovclass_label3 = new QLabel;
+    QLabel *fovclass_label4 = new QLabel;
+    QLabel *fovclass_label5 = new QLabel;
+    fovclass_label1->setText("可切换视场1");
+    fovclass_label2->setText("可切换视场2");
+    fovclass_label3->setText("可切换视场3");
+    fovclass_label4->setText("可切换视场4");
+    fovclass_label5->setText("可切换视场5");
+    gl2->addWidget(fovclass_label1,1,0,1,1);
+    gl2->addWidget(fovclass_label2,2,0,1,1);
+    gl2->addWidget(fovclass_label3,3,0,1,1);
+    gl2->addWidget(fovclass_label4,4,0,1,1);
+    gl2->addWidget(fovclass_label5,5,0,1,1);
+    vedio_s1_Fov0_fou=new QLineEdit;
+    vedio_s1_Fov1_fou=new QLineEdit;
+    vedio_s1_Fov2_fou=new QLineEdit;
+    vedio_s1_Fov3_fou=new QLineEdit;
+    vedio_s1_Fov4_fou=new QLineEdit;
+    gl2->addWidget(vedio_s1_Fov0_fou,1,1,1,1);
+    gl2->addWidget(vedio_s1_Fov1_fou,2,1,1,1);
+    gl2->addWidget(vedio_s1_Fov2_fou,3,1,1,1);
+    gl2->addWidget(vedio_s1_Fov3_fou,4,1,1,1);
+    gl2->addWidget(vedio_s1_Fov4_fou,5,1,1,1);
+
+    Change_vertical1_fou=new QLineEdit;
+    Change_vertical2_fou=new QLineEdit;
+    Change_vertical3_fou=new QLineEdit;
+    Change_vertical4_fou=new QLineEdit;
+    Change_vertical5_fou=new QLineEdit;
+    gl2->addWidget(Change_vertical1_fou,1,3,1,1);
+    gl2->addWidget(Change_vertical2_fou,2,3,1,1);
+    gl2->addWidget(Change_vertical3_fou,3,3,1,1);
+    gl2->addWidget(Change_vertical4_fou,4,3,1,1);
+    gl2->addWidget(Change_vertical5_fou,5,3,1,1);
+
+    QLabel* l1d21=new QLabel;
+    QLabel* l1d22=new QLabel;
+    QLabel* l1d23=new QLabel;
+    QLabel* l1d24=new QLabel;
+    QLabel* l1d25=new QLabel;
+    l1d21->setText("度");
+    l1d22->setText("度");
+    l1d23->setText("度");
+    l1d24->setText("度");
+    l1d25->setText("度");
+
+    QLabel* l1c21=new QLabel;
+    QLabel* l1c22=new QLabel;
+    QLabel* l1c23=new QLabel;
+    QLabel* l1c24=new QLabel;
+    QLabel* l1c25=new QLabel;
+    l1c21->setText("度");
+    l1c22->setText("度");
+    l1c23->setText("度");
+    l1c24->setText("度");
+    l1c25->setText("度");
+
+    gl2->addWidget(l1d21,1,2,1,1);
+    gl2->addWidget(l1d22,2,2,1,1);
+    gl2->addWidget(l1d23,3,2,1,1);
+    gl2->addWidget(l1d24,4,2,1,1);
+    gl2->addWidget(l1d25,5,2,1,1);
+
+    gl2->addWidget(l1c21,1,4,1,1);
+    gl2->addWidget(l1c22,2,4,1,1);
+    gl2->addWidget(l1c23,3,4,1,1);
+    gl2->addWidget(l1c24,4,4,1,1);
+    gl2->addWidget(l1c25,5,4,1,1);
+
+
+    vedio_spbx_switch1_fou=new QSpinBox;
+    vedio_spbx_switch2_fou=new QSpinBox;
+    vedio_spbx_switch3_fou=new QSpinBox;
+    vedio_spbx_switch4_fou=new QSpinBox;
+    vedio_spbx_switch5_fou=new QSpinBox;
+    vedio_spbx_switch1_fou->setRange(0,9999);
+    vedio_spbx_switch2_fou->setRange(0,9999);
+    vedio_spbx_switch3_fou->setRange(0,9999);
+    vedio_spbx_switch4_fou->setRange(0,9999);
+    vedio_spbx_switch5_fou->setRange(0,9999);
+    gl2->addWidget(vedio_spbx_switch1_fou,1,5,1,1);
+    gl2->addWidget(vedio_spbx_switch2_fou,2,5,1,1);
+    gl2->addWidget(vedio_spbx_switch3_fou,3,5,1,1);
+    gl2->addWidget(vedio_spbx_switch4_fou,4,5,1,1);
+    gl2->addWidget(vedio_spbx_switch5_fou,5,5,1,1);
+
+    vedio_spby_switch1_fou=new QSpinBox;
+    vedio_spby_switch2_fou=new QSpinBox;
+    vedio_spby_switch3_fou=new QSpinBox;
+    vedio_spby_switch4_fou=new QSpinBox;
+    vedio_spby_switch5_fou=new QSpinBox;
+    vedio_spby_switch1_fou->setRange(0,9999);
+    vedio_spby_switch2_fou->setRange(0,9999);
+    vedio_spby_switch3_fou->setRange(0,9999);
+    vedio_spby_switch4_fou->setRange(0,9999);
+    vedio_spby_switch5_fou->setRange(0,9999);
+    gl2->addWidget(vedio_spby_switch1_fou,1,6,1,1);
+    gl2->addWidget(vedio_spby_switch2_fou,2,6,1,1);
+    gl2->addWidget(vedio_spby_switch3_fou,3,6,1,1);
+    gl2->addWidget(vedio_spby_switch4_fou,4,6,1,1);
+    gl2->addWidget(vedio_spby_switch5_fou,5,6,1,1);
+
+    g2->setLayout(gl2);
+    QVBoxLayout *v22=new QVBoxLayout;
+    v22->addLayout(h2);
+    v22->addLayout(glc2);
+    v22->addWidget(g2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(v1);
+
+    v->addLayout(h1);
+
+    v->addLayout(v2);
+    v->addWidget(vediochoose_fou);
+    v->addLayout(v3);
+    v->addWidget(autogate_fou);
+    v->addLayout(gl);
+  //v->addLayout(h2);
+    v->addLayout(v22);
+    w_seitchField_1_fou->setLayout(v);
+    connect(btn_vediosersor_default_fou,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
+    connect(btn_vediosersor_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
+    connect(ChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(chanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));//
+    connect(vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
+    connect(bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
+    connect(xy_ratio_fou,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fou()));
+    connect(gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
+    connect(bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
+    connect(autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
+    connect(gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
+    connect(gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
+    connect(gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
+    connect(gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fou()));
+    connect(Change_set_azimuth_fou,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fou()));
+    connect(Change_set_pitch_fou,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fou()));
+    connect(Change_set_zoom_fou,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fou()));
+    connect(Change_search_azimuth_fou,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fou()));
+    connect(Change_search_pitch_fou ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fou()));
+    connect(Change_search_zoom_fou,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fou()));
+    connect( vedio_fovclass_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
+
+    connect(vedio_s1_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(Change_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(vedio_spbx_switch1_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_spby_switch1_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_s1_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(Change_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(vedio_spbx_switch2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_spby_switch2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_s1_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(Change_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(vedio_spbx_switch3_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_spby_switch3_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_s1_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(Change_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(vedio_spbx_switch4_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_spby_switch4_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_s1_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
+    connect(Change_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
+    connect(vedio_spbx_switch5_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_spby_switch5_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+
+
+    /*连续视场*/
+
+    w_ContinueField_1_fou->setWindowTitle("摄像机配置");
+    btn_vediosersor_continue_default_fou=new QPushButton;
+    btn_vediosersor_continue_update_fou=new QPushButton;
+    btn_vediosersor_continue_default_fou->setText("默认");
+    btn_vediosersor_continue_update_fou->setText("保存");
+    QVBoxLayout *v8=new QVBoxLayout;
+    v8->addWidget(btn_vediosersor_continue_default_fou);
+    v8->addWidget(btn_vediosersor_continue_update_fou);
+    QLabel *label60=new QLabel;
+    label60->setText("通道4");
+    QHBoxLayout *h5=new QHBoxLayout;
+    h5->addLayout(v8);
+    h5->addWidget(label60);
+
+    continueChanelNum_fou = new  QCheckBox();
+    continueChanelNum_fou->setText("通道号");
+    continuechanelname_fou = new QLineEdit;
+    continueenable_fou = new  QCheckBox();
+    continueenable_fou->setText("使能");
+    QLabel *label61=new QLabel;
+    label61->setText("通道名称");
+    QHBoxLayout *v9=new QHBoxLayout;
+    v9->addWidget(continueChanelNum_fou);
+    v9->addWidget(label61);
+    v9->addWidget(continuechanelname_fou);
+    v9->addWidget(continueenable_fou);
+
+    continue_vediohaveornot_fou = new  QCheckBox();
+    continue_vedio_dpi_fou = new QComboBox;
+    continue_xy_ratio_fou = new QLineEdit;
+    continue_vedio_dpi_fou->addItem("1080P@25HZ");
+    continue_vedio_dpi_fou->addItem("1080P@30HZ");
+    continue_vedio_dpi_fou->addItem("1080P@60HZ");
+    continue_vedio_dpi_fou->addItem("720P@50HZ");
+    continue_vedio_dpi_fou->addItem("720P@60HZ");
+    vedio_change3_fou= new QComboBox;
+    vedio_change3_fou->addItem("连续视场");
+    vedio_change3_fou->addItem("固定视场");
+    vedio_change3_fou->addItem("可切换视场");
+    continue_vediochoose_fou = new QGroupBox();
+    QFormLayout *f5=new QFormLayout();
+    f5->addRow(vedio_s_fou[0],continue_vediohaveornot_fou);
+    f5->addRow(vedio_s_fou[1],continue_vedio_dpi_fou);
+    f5->addRow(vedio_s_fou[2],vedio_change3_fou);
+    f5->addRow(vedio_s_fou[3],continue_xy_ratio_fou);
+    continue_vediochoose_fou->setLayout(f5);
+
+    continue_gateshow_fou = new  QCheckBox();
+    continue_bullshow_fou = new  QCheckBox();
+    continue_gateshow_fou->setText("波门显示");
+    continue_bullshow_fou->setText("靶心显示");
+    QHBoxLayout *v7=new QHBoxLayout;
+    v7->addWidget(continue_gateshow_fou);
+    v7->addWidget(continue_bullshow_fou);
+
+    continue_autogate_fou = new  QCheckBox();
+    continue_autogate_fou->setText("自动波门");
+
+    QLabel *label55=new QLabel;
+    label55->setText("波门尺寸X");
+    QLabel *label56=new QLabel;
+    label56->setText("波门尺寸Y");
+    QLabel *label57=new QLabel;
+    label57->setText("波门位置X");
+    QLabel *label58=new QLabel;
+    label58->setText("波门位置Y");
+    continue_gate_sizex_fou=new QLineEdit;
+    continue_gate_sizey_fou=new QLineEdit;
+    continue_gatelocationx_fou=new QLineEdit;
+    continue_gatelocationy_fou=new QLineEdit;
+    QGridLayout *gl4=new QGridLayout;
+    gl4->addWidget(label55,0,0);
+    gl4->addWidget(continue_gate_sizex_fou,0,1);
+    gl4->addWidget(label56,0,3);
+    gl4->addWidget(continue_gate_sizey_fou,0,4);
+    gl4->addWidget(label57,1,0);
+    gl4->addWidget(continue_gatelocationx_fou,1,1);
+    gl4->addWidget(label58,1,3);
+    gl4->addWidget(continue_gatelocationy_fou,1,4);
+
+    QHBoxLayout *v31=new QHBoxLayout;
+    QLabel *label70=new QLabel;
+    label70->setText("测试视场");
+    test_1_fou = new QLineEdit;
+    v31->addWidget(label70);
+    v31->addWidget(test_1_fou);
+//
+    QGridLayout *glct2=new QGridLayout;
+   continue_set_azimuth_fou =new QPushButton;
+   continue_set_pitch_fou =new QPushButton;
+   continue_set_zoom_fou  =new QPushButton;
+   continue_search_azimuth_fou=new QPushButton;
+   continue_search_pitch_fou=new QPushButton;
+   continue_search_zoom_fou=new QPushButton;
+   continue_set_azimuth_fou->setText("设置");
+   continue_set_pitch_fou->setText("设置");
+   continue_set_zoom_fou->setText("设置");
+   continue_search_azimuth_fou->setText("查询");
+   continue_search_pitch_fou->setText("查询");
+   continue_search_zoom_fou->setText("查询");
+
+   continue_ledt_set_azimuth_fou=new QLineEdit;
+   continue_ledt_set_pitch_fou=new QLineEdit;
+   continue_ledt_set_zoom_fou=new QLineEdit;
+
+   continue_ledt_search_azimuth_fou=new QLineEdit;
+   continue_ledt_search_pitch_fou=new QLineEdit;
+   continue_ledt_search_zoom_fou=new QLineEdit;
+
+   QLabel *labelact=new QLabel;
+   labelact->setText("方位角");
+   QLabel *labelpct=new QLabel;
+   labelpct->setText("俯仰角");
+   QLabel *labelzct=new QLabel;
+   labelzct->setText("zoom位置");
+
+   glct2->addWidget(labelact,1,0,1,1);
+   glct2->addWidget(labelpct,2,0,1,1);
+   glct2->addWidget(labelzct,3,0,1,1);
+
+
+   glct2->addWidget(continue_ledt_set_azimuth_fou,1,2,1,1);
+   glct2->addWidget(continue_ledt_set_pitch_fou,2,2,1,1);
+   glct2->addWidget(continue_ledt_set_zoom_fou,3,2,1,1);
+
+   glct2->addWidget(continue_set_azimuth_fou,1,3,1,1);
+   glct2->addWidget(continue_set_pitch_fou,2,3,1,1);
+   glct2->addWidget(continue_set_zoom_fou,3,3,1,1);
+   glct2->addWidget(continue_ledt_search_azimuth_fou,1,4,1,1);
+   glct2->addWidget(continue_ledt_search_pitch_fou,2,4,1,1);
+   glct2->addWidget(continue_ledt_search_zoom_fou,3,4,1,1);
+
+   glct2->addWidget(continue_search_azimuth_fou,1,5,1,1);
+   glct2->addWidget(continue_search_pitch_fou,2,5,1,1);
+   glct2->addWidget(continue_search_zoom_fou,3,5,1,1);
+
+   //
+
+
+    QGroupBox *g3=new QGroupBox;
+    g3->setTitle("视场靶心补偿表");
+    QGridLayout *glc=new QGridLayout;
+    QLabel* l30=new QLabel;
+    l30->setText("与视场相关的反馈值");
+    QLabel* l31=new QLabel;
+    l31->setText("水平视场");
+    QLabel* l35=new QLabel;
+    l35->setText("垂直视场");
+    QLabel* l32=new QLabel;
+    l32->setText("靶心X位置");
+    QLabel* l33=new QLabel;
+    l33->setText("靶心Y位置");
+    QLabel* l34=new QLabel;
+    l34->setText(" ");
+    QLabel* l36=new QLabel;
+    l36->setText(" ");
+    glc->addWidget(l30,0,1,1,1);
+    glc->addWidget(l31,0,2,1,1);
+    glc->addWidget(l35,0,4,1,1);
+    glc->addWidget(l36,0,5,1,1);
+    glc->addWidget(l32,0,6,1,1);
+    glc->addWidget(l33,0,7,1,1);
+    glc->addWidget(l34,0,8,1,1);
+
+
+    vedio_l1_continue_fou=new QLineEdit;
+    vedio_l2_continue_fou=new QLineEdit;
+    vedio_l3_continue_fou=new QLineEdit;
+    vedio_l4_continue_fou=new QLineEdit;
+    vedio_l5_continue_fou=new QLineEdit;
+    vedio_l6_continue_fou=new QLineEdit;
+    vedio_l7_continue_fou=new QLineEdit;
+    glc->addWidget(vedio_l1_continue_fou,1,1,1,1);
+    glc->addWidget(vedio_l2_continue_fou,2,1,1,1);
+    glc->addWidget(vedio_l3_continue_fou,3,1,1,1);
+    glc->addWidget(vedio_l4_continue_fou,4,1,1,1);
+    glc->addWidget(vedio_l5_continue_fou,5,1,1,1);
+    glc->addWidget(vedio_l6_continue_fou,6,1,1,1);
+    glc->addWidget(vedio_l7_continue_fou,7,1,1,1);
+
+    vedio_continue_Fov0_fou = new QLineEdit;
+    vedio_continue_Fov1_fou = new QLineEdit;
+    vedio_continue_Fov2_fou = new QLineEdit;
+    vedio_continue_Fov3_fou = new QLineEdit;
+    vedio_continue_Fov4_fou = new QLineEdit;
+    vedio_continue_Fov5_fou= new QLineEdit;
+    vedio_continue_Fov6_fou = new QLineEdit;
+    glc->addWidget(vedio_continue_Fov0_fou,1,2,1,1);
+    glc->addWidget(vedio_continue_Fov1_fou,2,2,1,1);
+    glc->addWidget(vedio_continue_Fov2_fou,3,2,1,1);
+    glc->addWidget(vedio_continue_Fov3_fou,4,2,1,1);
+    glc->addWidget(vedio_continue_Fov4_fou,5,2,1,1);
+    glc->addWidget(vedio_continue_Fov5_fou,6,2,1,1);
+    glc->addWidget(vedio_continue_Fov6_fou,7,2,1,1);
+
+    continue_vertical1_fou = new QLineEdit;
+    continue_vertical2_fou = new QLineEdit;
+    continue_vertical3_fou = new QLineEdit;
+    continue_vertical4_fou = new QLineEdit;
+    continue_vertical5_fou = new QLineEdit;
+    continue_vertical6_fou = new QLineEdit;
+    continue_vertical7_fou = new QLineEdit;
+    glc->addWidget(continue_vertical1_fou,1,4,1,1);
+    glc->addWidget(continue_vertical2_fou,2,4,1,1);
+    glc->addWidget(continue_vertical3_fou,3,4,1,1);
+    glc->addWidget(continue_vertical4_fou,4,4,1,1);
+    glc->addWidget(continue_vertical5_fou,5,4,1,1);
+    glc->addWidget(continue_vertical6_fou,6,4,1,1);
+    glc->addWidget(continue_vertical7_fou,7,4,1,1);
+
+    QLabel* l1dv31=new QLabel;
+    QLabel* l1dv32=new QLabel;
+    QLabel* l1dv33=new QLabel;
+    QLabel* l1dv34=new QLabel;
+    QLabel* l1dv35=new QLabel;
+    QLabel* l1dv36=new QLabel;
+    QLabel* l1dv37=new QLabel;
+    l1dv31->setText("度");
+    l1dv32->setText("度");
+    l1dv33->setText("度");
+    l1dv34->setText("度");
+    l1dv35->setText("度");
+    l1dv36->setText("度");
+    l1dv37->setText("度");
+
+    glc->addWidget(l1dv31,1,5,1,1);
+    glc->addWidget(l1dv32,2,5,1,1);
+    glc->addWidget(l1dv33,3,5,1,1);
+    glc->addWidget(l1dv34,4,5,1,1);
+    glc->addWidget(l1dv35,5,5,1,1);
+    glc->addWidget(l1dv36,6,5,1,1);
+    glc->addWidget(l1dv37,7,5,1,1);
+
+    QLabel* l1d31=new QLabel;
+    QLabel* l1d32=new QLabel;
+    QLabel* l1d33=new QLabel;
+    QLabel* l1d34=new QLabel;
+    QLabel* l1d35=new QLabel;
+    QLabel* l1d36=new QLabel;
+    QLabel* l1d37=new QLabel;
+    l1d31->setText("度");
+    l1d32->setText("度");
+    l1d33->setText("度");
+    l1d34->setText("度");
+    l1d35->setText("度");
+    l1d36->setText("度");
+    l1d37->setText("度");
+
+    glc->addWidget(l1d31,1,3,1,1);
+    glc->addWidget(l1d32,2,3,1,1);
+    glc->addWidget(l1d33,3,3,1,1);
+    glc->addWidget(l1d34,4,3,1,1);
+    glc->addWidget(l1d35,5,3,1,1);
+    glc->addWidget(l1d36,6,3,1,1);
+    glc->addWidget(l1d37,7,3,1,1);
+
+
+    vedio_spbx_continue1_fou=new QSpinBox;
+    vedio_spbx_continue2_fou=new QSpinBox;
+    vedio_spbx_continue3_fou=new QSpinBox;
+    vedio_spbx_continue4_fou=new QSpinBox;
+    vedio_spbx_continue5_fou=new QSpinBox;
+    vedio_spbx_continue6_fou=new QSpinBox;
+    vedio_spbx_continue7_fou=new QSpinBox;
+
+    vedio_spbx_continue1_fou->setRange(0,9999);
+    vedio_spbx_continue2_fou->setRange(0,9999);
+    vedio_spbx_continue3_fou->setRange(0,9999);
+    vedio_spbx_continue4_fou->setRange(0,9999);
+    vedio_spbx_continue5_fou->setRange(0,9999);
+    vedio_spbx_continue6_fou->setRange(0,9999);
+    vedio_spbx_continue7_fou->setRange(0,9999);
+
+    glc->addWidget(vedio_spbx_continue1_fou,1,6,1,1);
+    glc->addWidget(vedio_spbx_continue2_fou,2,6,1,1);
+    glc->addWidget(vedio_spbx_continue3_fou,3,6,1,1);
+    glc->addWidget(vedio_spbx_continue4_fou,4,6,1,1);
+    glc->addWidget(vedio_spbx_continue5_fou,5,6,1,1);
+    glc->addWidget(vedio_spbx_continue6_fou,6,6,1,1);
+    glc->addWidget(vedio_spbx_continue7_fou,7,6,1,1);
+
+
+    vedio_spby_continue1_fou=new QSpinBox;
+    vedio_spby_continue2_fou=new QSpinBox;
+    vedio_spby_continue3_fou=new QSpinBox;
+    vedio_spby_continue4_fou=new QSpinBox;
+    vedio_spby_continue5_fou=new QSpinBox;
+    vedio_spby_continue6_fou=new QSpinBox;
+    vedio_spby_continue7_fou=new QSpinBox;
+
+    vedio_spby_continue1_fou->setRange(0,9999);
+    vedio_spby_continue2_fou->setRange(0,9999);
+    vedio_spby_continue3_fou->setRange(0,9999);
+    vedio_spby_continue4_fou->setRange(0,9999);
+    vedio_spby_continue5_fou->setRange(0,9999);
+    vedio_spby_continue6_fou->setRange(0,9999);
+    vedio_spby_continue7_fou->setRange(0,9999);
+
+    glc->addWidget(vedio_spby_continue1_fou,1,7,1,1);
+    glc->addWidget(vedio_spby_continue2_fou,2,7,1,1);
+    glc->addWidget(vedio_spby_continue3_fou,3,7,1,1);
+    glc->addWidget(vedio_spby_continue4_fou,4,7,1,1);
+    glc->addWidget(vedio_spby_continue5_fou,5,7,1,1);
+    glc->addWidget(vedio_spby_continue6_fou,6,7,1,1);
+    glc->addWidget(vedio_spby_continue7_fou,7,7,1,1);
+    g3->setLayout(glc);
+
+    QVBoxLayout *v10=new QVBoxLayout;
+    v10->addLayout(h5);
+    v10->addLayout(v9);
+    v10->addWidget(continue_vediochoose_fou);
+    v10->addLayout(v7);
+    v10->addWidget(continue_autogate_fou);
+    v10->addLayout(gl4);
+    v10->addLayout(v31);
+    v10->addLayout(glct2);
+    v10->addWidget(g3);
+
+    //
+
+    w_ContinueField_1_fou->setLayout(v10);
+
+    connect(vedio_change3_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_fou(int)));
+
+    connect(btn_vediosersor_default_fou,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
+    connect(btn_vediosersor_update_fou,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
+    connect(continueChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continuechanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));//
+    connect(continue_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continue_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(continue_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
+    connect(continue_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
+    connect(continue_xy_ratio_fou,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fou()));
+    connect(continue_gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
+    connect(continue_bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
+    connect(continue_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
+    connect(continue_gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
+    connect(continue_gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
+    connect(continue_gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
+    connect(continue_gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fou()));
+    connect(continue_set_azimuth_fou,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fou()));
+    connect(continue_set_pitch_fou,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fou()));
+    connect(continue_set_zoom_fou,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fou()));
+    connect(continue_search_azimuth_fou,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fou()));
+    connect(continue_search_pitch_fou ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fou()));
+    connect(continue_search_zoom_fou,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fou()));
+    connect(continue_vediohaveornot_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
+    connect(test_1_fou,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fou()));
+    connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fou()));
+     connect(vedio_l2_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fou()));
+      connect(vedio_l3_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fou()));
+       connect(vedio_l4_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fou()));
+        connect(vedio_l5_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fou()));
+         connect(vedio_l6_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fou()));
+          connect(vedio_l7_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fou()));
+
+    connect( vedio_continue_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fou()));
+    connect( vedio_continue_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fou()));
+    connect( vedio_continue_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_fou()));
+    connect( vedio_continue_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_fou()));
+    connect( vedio_continue_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fou()));
+    connect( vedio_continue_Fov5_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fou()));
+    connect( vedio_continue_Fov6_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fou()));
+     connect( continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
+     connect( continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
+     connect( continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
+     connect( continue_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fou()));
+     connect( continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
+     connect( continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
+     connect( continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
+
+      connect( vedio_spbx_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fou()));
+       connect( vedio_spbx_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_fou()));
+        connect( vedio_spbx_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_fou()));
+         connect( vedio_spbx_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_fou()));
+       connect( vedio_spbx_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_fou()));
+        connect( vedio_spbx_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_fou()));
+         connect( vedio_spbx_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_fou()));
+
+       connect( vedio_spby_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fou()));
+         connect( vedio_spby_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fou()));
+         connect( vedio_spby_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fou()));
+         connect( vedio_spby_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fou()));
+         connect( vedio_spby_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fou()));
+         connect( vedio_spby_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fou()));
+         connect( vedio_spby_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fou()));
+
+
+}
+
+void MainWindow::init_vedioCfg_fif(){
+    /*固定视场*/
+
+    w_sersor_1_fif = new MyWidget;
+    w_seitchField_1_fif = new MyWidget;
+    w_ContinueField_1_fif=new MyWidget;
+
+    w_sersor_1_fif->setWindowTitle("摄像机配置");
+
+    btn_vediosersor_fix_default_fif=new QPushButton;
+    btn_vediosersor_fix_update_fif=new QPushButton;
+    btn_vediosersor_fix_default_fif->setText("默认");
+    btn_vediosersor_fix_update_fif->setText("保存");
+    QVBoxLayout *v11=new QVBoxLayout;
+    v11->addWidget(btn_vediosersor_fix_default_fif);
+    v11->addWidget(btn_vediosersor_fix_update_fif);
+
+    QLabel *label30=new QLabel;
+    label30->setText("通道5");
+    QHBoxLayout *h11=new QHBoxLayout;
+    h11->addLayout(v11);
+    h11->addWidget(label30);
+
+    fixChanelNum_fif = new  QCheckBox();
+    fixChanelNum_fif->setText("通道号");
+    fixchanelname_fif = new QLineEdit;
+    fixenable_fif = new  QCheckBox();
+    fixenable_fif->setText("使能");
+    QLabel *label40=new QLabel;
+    label40->setText("通道名称");
+    QHBoxLayout *v21=new QHBoxLayout;
+    v21->addWidget(fixChanelNum_fif);
+    v21->addWidget(label40);
+    v21->addWidget(fixchanelname_fif);
+    v21->addWidget(fixenable_fif);
+
+    fix_vediohaveornot_fif = new  QCheckBox();
+    fix_vedio_dpi_fif = new QComboBox;
+    fix_xy_ratio_fif = new QLineEdit;
+    fix_vedio_dpi_fif->addItem("1080P@25HZ");
+    fix_vedio_dpi_fif->addItem("1080P@30HZ");
+    fix_vedio_dpi_fif->addItem("1080P@60HZ");
+    fix_vedio_dpi_fif->addItem("720P@50HZ");
+    fix_vedio_dpi_fif->addItem("720P@60HZ");
+    vedio_change1_fif = new QComboBox;
+    vedio_change1_fif->addItem("固定视场");
+    vedio_change1_fif->addItem("可切换视场");
+    vedio_change1_fif->addItem("连续视场");
+    fix_vediochoose_fif = new QGroupBox();
+
+    QFormLayout *f4=new QFormLayout();
+    f4->addRow(vedio_s_fif[0],fix_vediohaveornot_fif);
+    f4->addRow(vedio_s_fif[1],fix_vedio_dpi_fif);
+    f4->addRow(vedio_s_fif[2],vedio_change1_fif);
+    f4->addRow(vedio_s_fif[3],fix_xy_ratio_fif);
+    fix_vediochoose_fif->setLayout(f4);
+
+    fix_gateshow_fif = new  QCheckBox();
+    fix_bullshow_fif = new  QCheckBox();
+    fix_gateshow_fif->setText("波门显示");
+    fix_bullshow_fif->setText("靶心显示");
+    QHBoxLayout *v6=new QHBoxLayout;
+    v6->addWidget(fix_gateshow_fif);
+    v6->addWidget(fix_bullshow_fif);
+
+    fix_autogate_fif = new  QCheckBox();
+    fix_autogate_fif->setText("自动波门");
+
+    QLabel *label51=new QLabel;
+    label51->setText("波门尺寸X");
+    QLabel *label52=new QLabel;
+    label52->setText("波门尺寸Y");
+    QLabel *label53=new QLabel;
+    label53->setText("波门位置X");
+    QLabel *label54=new QLabel;
+    label54->setText("波门位置Y");
+    fix_gate_sizex_fif=new QLineEdit;
+    fix_gate_sizey_fif=new QLineEdit;
+    fix_gatelocationx_fif=new QLineEdit;
+    fix_gatelocationy_fif=new QLineEdit;
+    QGridLayout *gl1=new QGridLayout;
+    gl1->addWidget(label51,0,0);
+    gl1->addWidget(fix_gate_sizex_fif,0,1);
+    gl1->addWidget(label52,0,3);
+    gl1->addWidget(fix_gate_sizey_fif,0,4);
+    gl1->addWidget(label53,1,0);
+    gl1->addWidget(fix_gatelocationx_fif,1,1);
+    gl1->addWidget(label54,1,3);
+    gl1->addWidget(fix_gatelocationy_fif,1,4);
+
+    //2.10新增
+     QGridLayout *gl12=new QGridLayout;
+    set_azimuth_fif =new QPushButton;
+    set_pitch_fif =new QPushButton;
+    set_zoom_fif  =new QPushButton;
+    search_azimuth_fif=new QPushButton;
+    search_pitch_fif=new QPushButton;
+    search_zoom_fif=new QPushButton;
+    set_azimuth_fif->setText("设置");
+    set_pitch_fif->setText("设置");
+    set_zoom_fif->setText("设置");
+    search_azimuth_fif->setText("查询");
+    search_pitch_fif->setText("查询");
+    search_zoom_fif->setText("查询");
+
+    QLabel *labela=new QLabel;
+    labela->setText("方位角");
+    QLabel *labelp=new QLabel;
+    labelp->setText("俯仰角");
+    QLabel *labelz=new QLabel;
+    labelz->setText("zoom位置");
+    ledt_set_azimuth_fif=new QLineEdit;
+    ledt_set_pitch_fif=new QLineEdit;
+    ledt_set_zoom_fif=new QLineEdit;
+
+    ledt_search_azimuth_fif=new QLineEdit;
+    ledt_search_pitch_fif=new QLineEdit;
+    ledt_search_zoom_fif=new QLineEdit;
+
+    gl12->addWidget(labela,1,0,1,1);
+    gl12->addWidget(labelp,2,0,1,1);
+    gl12->addWidget(labelz,3,0,1,1);
+
+
+    gl12->addWidget(ledt_set_azimuth_fif,1,2,1,1);
+    gl12->addWidget(ledt_set_pitch_fif,2,2,1,1);
+    gl12->addWidget(ledt_set_zoom_fif,3,2,1,1);
+
+    gl12->addWidget(set_azimuth_fif,1,3,1,1);
+    gl12->addWidget(set_pitch_fif,2,3,1,1);
+    gl12->addWidget(set_zoom_fif,3,3,1,1);
+    gl12->addWidget(ledt_search_azimuth_fif,1,4,1,1);
+    gl12->addWidget(ledt_search_pitch_fif,2,4,1,1);
+    gl12->addWidget(ledt_search_zoom_fif,3,4,1,1);
+
+    gl12->addWidget(search_azimuth_fif,1,5,1,1);
+    gl12->addWidget(search_pitch_fif,2,5,1,1);
+    gl12->addWidget(search_zoom_fif,3,5,1,1);
+//
+
+    QGroupBox *g=new QGroupBox;
+    g->setTitle("固定视场");
+    QLabel* l11=new QLabel;
+    l11->setText("水平视场");
+    QLabel* l15=new QLabel;
+    l15->setText("垂直视场");
+    QLabel* l12=new QLabel;
+    l12->setText("靶心X位置");
+    QLabel* l13=new QLabel;
+    l13->setText("靶心Y位置");
+    QLabel* l14=new QLabel;
+    l14->setText(" ");
+    fix_lEdt_fif=new QLineEdit;
+    fix_vertical_fif=new QLineEdit;
+    QLabel* l1d=new QLabel;
+    l1d->setText("度");
+    QLabel* l1v=new QLabel;
+    l1v->setText("度");
+    fix_sp_fif=new QSpinBox;
+    fix_sp2_fif=new QSpinBox;
+    fix_sp_fif->setRange(0,9999);
+    fix_sp2_fif->setRange(0,9999);
+
+    QGridLayout *gl3=new QGridLayout;
+    gl3->addWidget(l11,0,0,1,1);
+    gl3->addWidget(l14,0,1,1,1);
+    gl3->addWidget(l15,0,2,1,1);
+    gl3->addWidget(l14,0,3,1,1);
+    gl3->addWidget(l14,0,4,1,1);
+    gl3->addWidget(l12,0,5,1,1);
+    gl3->addWidget(l13,0,6,1,1);
+    gl3->addWidget(l14,0,7,1,1);
+
+
+        gl3->addWidget(fix_lEdt_fif,1,0,1,1);
+
+                 gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(fix_vertical_fif,1,2,1,1);
+                 gl3->addWidget(l1v,1,3,1,1);
+                 gl3->addWidget(l14,1,4,1,1);
+          gl3->addWidget(fix_sp_fif,1,5,1,1);
+         gl3->addWidget(fix_sp2_fif,1,6,1,1);
+
+
+
+
+                           g->setLayout(gl3);
+
+    QVBoxLayout *v0=new QVBoxLayout;
+    v0->addLayout(h11);
+    v0->addLayout(v21);
+    v0->addWidget(fix_vediochoose_fif);
+    v0->addLayout(v6);
+    v0->addWidget(fix_autogate_fif);
+    v0->addLayout(gl1);
+    v0->addLayout(gl12);
+    v0->addWidget(g);
+    w_sersor_1_fif->setLayout(v0);
+   connect(vedio_change1_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fif(int)));
+   connect(vedio_change1_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fif(int)));
+   connect(btn_vediosersor_fix_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
+   connect(btn_vediosersor_fix_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
+   connect(fixChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));
+   connect(fixchanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));
+   connect(fixenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));
+   connect(fix_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));
+   connect(fix_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));
+   connect(fix_xy_ratio_fif,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_fif()));
+   connect(fix_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
+   connect(fix_bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
+   connect(fix_autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
+   connect(fix_gate_sizex_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fif()));
+   connect(fix_gate_sizey_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fif()));
+   connect(fix_gatelocationx_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fif()));
+   connect(fix_gatelocationy_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fif()));
+   connect(set_azimuth_fif,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fif()));
+   connect(set_pitch_fif,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fif()));
+   connect(set_zoom_fif,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fif()));
+   connect(search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
+   connect(search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
+   connect(search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
+  // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
+  // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
+  // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
+  // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
+  // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
+  // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+   connect(fix_lEdt_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+   connect(fix_vertical_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+   connect(fix_sp_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+   connect(fix_sp2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+
+    /*可切换视场*/
+
+    w_seitchField_1_fif->setWindowTitle("摄像机配置");
+    btn_vediosersor_default_fif=new QPushButton;
+    btn_vediosersor_update_fif=new QPushButton;
+    btn_vediosersor_default_fif->setText("默认");
+    btn_vediosersor_update_fif->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_vediosersor_default_fif);
+    v1->addWidget(btn_vediosersor_update_fif);
+    QLabel *label1=new QLabel;
+    label1->setText("通道1");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label1);
+
+    ChanelNum_fif = new  QCheckBox();
+    ChanelNum_fif->setText("通道号");
+    chanelname_fif = new QLineEdit;
+    enable_fif = new  QCheckBox();
+    enable_fif->setText("使能");
+
+    QLabel *label2=new QLabel;
+    label2->setText("通道名称");
+    QHBoxLayout *v2=new QHBoxLayout;
+    v2->addWidget(ChanelNum_fif);
+    v2->addWidget(label2);
+    v2->addWidget(chanelname_fif);
+    v2->addWidget(enable_fif);
+
+    vediohaveornot_fif = new  QCheckBox();
+    vedio_dpi_fif = new QComboBox;
+    xy_ratio_fif = new QLineEdit;
+    vedio_dpi_fif->addItem("1080P@25HZ");
+    vedio_dpi_fif->addItem("1080P@30HZ");
+    vedio_dpi_fif->addItem("1080P@60HZ");
+    vedio_dpi_fif->addItem("720P@50HZ");
+    vedio_dpi_fif->addItem("720P@60HZ");
+    vedio_change2_fif = new QComboBox;
+    vedio_change2_fif->addItem("可切换视场");
+    vedio_change2_fif->addItem("固定视场");
+    vedio_change2_fif->addItem("连续视场");
+
+    vediochoose_fif = new QGroupBox();
+    QFormLayout *f3=new QFormLayout();
+    f3->addRow(vedio_s_fif[0],vediohaveornot_fif);
+    f3->addRow(vedio_s_fif[1],vedio_dpi);
+    f3->addRow(vedio_s_fif[2],vedio_change2);
+    f3->addRow(vedio_s_fif[3],xy_ratio);
+    vediochoose_fif->setLayout(f3);
+
+    connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    gateshow_fif = new  QCheckBox();
+    bullshow_fif = new  QCheckBox();
+    gateshow_fif->setText("波门显示");
+    bullshow_fif->setText("靶心显示");
+    QHBoxLayout *v3=new QHBoxLayout;
+    v3->addWidget(gateshow_fif);
+    v3->addWidget(bullshow_fif);
+
+    autogate_fif = new  QCheckBox();
+    autogate_fif->setText("自动波门");
+
+    QLabel *label3=new QLabel;
+    label3->setText("波门尺寸X");
+    QLabel *label4=new QLabel;
+    label4->setText("波门尺寸Y");
+    QLabel *label5=new QLabel;
+    label5->setText("波门位置X");
+    QLabel *label6=new QLabel;
+    label6->setText("波门位置Y");
+    gate_sizex_fif=new QLineEdit;
+    gate_sizey_fif=new QLineEdit;
+    gatelocationx_fif=new QLineEdit;
+    gatelocationy_fif=new QLineEdit;
+    QGridLayout *gl=new QGridLayout;
+    gl->addWidget(label3,0,0);
+    gl->addWidget(gate_sizex_fif,0,1);
+    gl->addWidget(label4,0,3);
+    gl->addWidget(gate_sizey_fif,0,4);
+    gl->addWidget(label5,1,0);
+    gl->addWidget(gatelocationx_fif,1,1);
+    gl->addWidget(label6,1,3);
+    gl->addWidget(gatelocationy_fif,1,4);
+
+    QHBoxLayout *h2=new QHBoxLayout;
+    QLabel *label7=new QLabel;
+    label7->setText("测试现场等级");
+    vedio_fovclass_fif= new QComboBox;
+    vedio_fovclass_fif->addItem("可切换视场1");
+    vedio_fovclass_fif->addItem("可切换视场2");
+    vedio_fovclass_fif->addItem("可切换视场3");
+    vedio_fovclass_fif->addItem("可切换视场4");
+    vedio_fovclass_fif->addItem("可切换视场5");
+    h2->addWidget(label7);
+    h2->addWidget(vedio_fovclass_fif);
+    //
+
+    QGridLayout *glc2=new QGridLayout;
+   Change_set_azimuth_fif =new QPushButton;
+   Change_set_pitch_fif =new QPushButton;
+   Change_set_zoom_fif  =new QPushButton;
+   Change_search_azimuth_fif=new QPushButton;
+   Change_search_pitch_fif=new QPushButton;
+   Change_search_zoom_fif=new QPushButton;
+   Change_set_azimuth_fif->setText("设置");
+   Change_set_pitch_fif->setText("设置");
+   Change_set_zoom_fif->setText("设置");
+   Change_search_azimuth_fif->setText("查询");
+   Change_search_pitch_fif->setText("查询");
+   Change_search_zoom_fif->setText("查询");
+
+   Change_ledt_set_azimuth_fif=new QLineEdit;
+   Change_ledt_set_pitch_fif=new QLineEdit;
+   Change_ledt_set_zoom_fif=new QLineEdit;
+
+   Change_ledt_search_azimuth_fif=new QLineEdit;
+   Change_ledt_search_pitch_fif=new QLineEdit;
+   Change_ledt_search_zoom_fif=new QLineEdit;
+
+   QLabel *labelac=new QLabel;
+   labelac->setText("方位角");
+   QLabel *labelpc=new QLabel;
+   labelpc->setText("俯仰角");
+   QLabel *labelzc=new QLabel;
+   labelzc->setText("zoom位置");
+
+   glc2->addWidget(labelac,1,0,1,1);
+   glc2->addWidget(labelpc,2,0,1,1);
+   glc2->addWidget(labelzc,3,0,1,1);
+
+
+   glc2->addWidget(Change_ledt_set_azimuth_fif,1,2,1,1);
+   glc2->addWidget(Change_ledt_set_pitch_fif,2,2,1,1);
+   glc2->addWidget(Change_ledt_set_zoom_fif,3,2,1,1);
+
+   glc2->addWidget(Change_set_azimuth_fif,1,3,1,1);
+   glc2->addWidget(Change_set_pitch_fif,2,3,1,1);
+   glc2->addWidget(Change_set_zoom_fif,3,3,1,1);
+   glc2->addWidget(Change_ledt_search_azimuth_fif,1,4,1,1);
+   glc2->addWidget(Change_ledt_search_pitch_fif,2,4,1,1);
+   glc2->addWidget(Change_ledt_search_zoom_fif,3,4,1,1);
+
+   glc2->addWidget(Change_search_azimuth_fif,1,5,1,1);
+   glc2->addWidget(Change_search_pitch_fif,2,5,1,1);
+   glc2->addWidget(Change_search_zoom_fif,3,5,1,1);
+
+
+    //
+
+    QGroupBox *g2=new QGroupBox;
+    g2->setTitle("视场靶心补偿表");
+    QGridLayout *gl2=new QGridLayout;
+    QLabel* l21=new QLabel;
+    l21->setText("水平视场");
+    QLabel* l25=new QLabel;
+    l25->setText("垂直视场");
+    QLabel* l22=new QLabel;
+    l22->setText("靶心X位置");
+    QLabel* l23=new QLabel;
+    l23->setText("靶心Y位置");
+    QLabel* l24=new QLabel;
+    l24->setText(" ");
+    gl2->addWidget(l21,0,1,1,1);
+    gl2->addWidget(l25,0,3,1,1);
+    gl2->addWidget(l22,0,5,1,1);
+    gl2->addWidget(l23,0,6,1,1);
+    gl2->addWidget(l24,0,7,1,1);
+
+    QLabel *fovclass_label1 = new QLabel;
+    QLabel *fovclass_label2 = new QLabel;
+    QLabel *fovclass_label3 = new QLabel;
+    QLabel *fovclass_label4 = new QLabel;
+    QLabel *fovclass_label5 = new QLabel;
+    fovclass_label1->setText("可切换视场1");
+    fovclass_label2->setText("可切换视场2");
+    fovclass_label3->setText("可切换视场3");
+    fovclass_label4->setText("可切换视场4");
+    fovclass_label5->setText("可切换视场5");
+    gl2->addWidget(fovclass_label1,1,0,1,1);
+    gl2->addWidget(fovclass_label2,2,0,1,1);
+    gl2->addWidget(fovclass_label3,3,0,1,1);
+    gl2->addWidget(fovclass_label4,4,0,1,1);
+    gl2->addWidget(fovclass_label5,5,0,1,1);
+    vedio_s1_Fov0_fif=new QLineEdit;
+    vedio_s1_Fov1_fif=new QLineEdit;
+    vedio_s1_Fov2_fif=new QLineEdit;
+    vedio_s1_Fov3_fif=new QLineEdit;
+    vedio_s1_Fov4_fif=new QLineEdit;
+    gl2->addWidget(vedio_s1_Fov0_fif,1,1,1,1);
+    gl2->addWidget(vedio_s1_Fov1_fif,2,1,1,1);
+    gl2->addWidget(vedio_s1_Fov2_fif,3,1,1,1);
+    gl2->addWidget(vedio_s1_Fov3_fif,4,1,1,1);
+    gl2->addWidget(vedio_s1_Fov4_fif,5,1,1,1);
+
+    Change_vertical1_fif=new QLineEdit;
+    Change_vertical2_fif=new QLineEdit;
+    Change_vertical3_fif=new QLineEdit;
+    Change_vertical4_fif=new QLineEdit;
+    Change_vertical5_fif=new QLineEdit;
+    gl2->addWidget(Change_vertical1_fif,1,3,1,1);
+    gl2->addWidget(Change_vertical2_fif,2,3,1,1);
+    gl2->addWidget(Change_vertical3_fif,3,3,1,1);
+    gl2->addWidget(Change_vertical4_fif,4,3,1,1);
+    gl2->addWidget(Change_vertical5_fif,5,3,1,1);
+
+    QLabel* l1d21=new QLabel;
+    QLabel* l1d22=new QLabel;
+    QLabel* l1d23=new QLabel;
+    QLabel* l1d24=new QLabel;
+    QLabel* l1d25=new QLabel;
+    l1d21->setText("度");
+    l1d22->setText("度");
+    l1d23->setText("度");
+    l1d24->setText("度");
+    l1d25->setText("度");
+
+    QLabel* l1c21=new QLabel;
+    QLabel* l1c22=new QLabel;
+    QLabel* l1c23=new QLabel;
+    QLabel* l1c24=new QLabel;
+    QLabel* l1c25=new QLabel;
+    l1c21->setText("度");
+    l1c22->setText("度");
+    l1c23->setText("度");
+    l1c24->setText("度");
+    l1c25->setText("度");
+
+    gl2->addWidget(l1d21,1,2,1,1);
+    gl2->addWidget(l1d22,2,2,1,1);
+    gl2->addWidget(l1d23,3,2,1,1);
+    gl2->addWidget(l1d24,4,2,1,1);
+    gl2->addWidget(l1d25,5,2,1,1);
+
+    gl2->addWidget(l1c21,1,4,1,1);
+    gl2->addWidget(l1c22,2,4,1,1);
+    gl2->addWidget(l1c23,3,4,1,1);
+    gl2->addWidget(l1c24,4,4,1,1);
+    gl2->addWidget(l1c25,5,4,1,1);
+
+
+    vedio_spbx_switch1_fif=new QSpinBox;
+    vedio_spbx_switch2_fif=new QSpinBox;
+    vedio_spbx_switch3_fif=new QSpinBox;
+    vedio_spbx_switch4_fif=new QSpinBox;
+    vedio_spbx_switch5_fif=new QSpinBox;
+    vedio_spbx_switch1_fif->setRange(0,9999);
+    vedio_spbx_switch2_fif->setRange(0,9999);
+    vedio_spbx_switch3_fif->setRange(0,9999);
+    vedio_spbx_switch4_fif->setRange(0,9999);
+    vedio_spbx_switch5_fif->setRange(0,9999);
+    gl2->addWidget(vedio_spbx_switch1_fif,1,5,1,1);
+    gl2->addWidget(vedio_spbx_switch2_fif,2,5,1,1);
+    gl2->addWidget(vedio_spbx_switch3_fif,3,5,1,1);
+    gl2->addWidget(vedio_spbx_switch4_fif,4,5,1,1);
+    gl2->addWidget(vedio_spbx_switch5_fif,5,5,1,1);
+
+    vedio_spby_switch1_fif=new QSpinBox;
+    vedio_spby_switch2_fif=new QSpinBox;
+    vedio_spby_switch3_fif=new QSpinBox;
+    vedio_spby_switch4_fif=new QSpinBox;
+    vedio_spby_switch5_fif=new QSpinBox;
+    vedio_spby_switch1_fif->setRange(0,9999);
+    vedio_spby_switch2_fif->setRange(0,9999);
+    vedio_spby_switch3_fif->setRange(0,9999);
+    vedio_spby_switch4_fif->setRange(0,9999);
+    vedio_spby_switch5_fif->setRange(0,9999);
+    gl2->addWidget(vedio_spby_switch1_fif,1,6,1,1);
+    gl2->addWidget(vedio_spby_switch2_fif,2,6,1,1);
+    gl2->addWidget(vedio_spby_switch3_fif,3,6,1,1);
+    gl2->addWidget(vedio_spby_switch4_fif,4,6,1,1);
+    gl2->addWidget(vedio_spby_switch5_fif,5,6,1,1);
+
+    g2->setLayout(gl2);
+    QVBoxLayout *v22=new QVBoxLayout;
+    v22->addLayout(h2);
+    v22->addLayout(glc2);
+    v22->addWidget(g2);
+
+    QVBoxLayout *v=new QVBoxLayout;
+    v->addLayout(v1);
+
+    v->addLayout(h1);
+
+    v->addLayout(v2);
+    v->addWidget(vediochoose_fif);
+    v->addLayout(v3);
+    v->addWidget(autogate_fif);
+    v->addLayout(gl);
+  //v->addLayout(h2);
+    v->addLayout(v22);
+    w_seitchField_1_fif->setLayout(v);
+    connect(btn_vediosersor_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
+    connect(btn_vediosersor_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
+    connect(ChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(chanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));//
+    connect(vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
+    connect(bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
+    connect(xy_ratio_fif,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fif()));
+    connect(gateshow_fif,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fif()));
+    connect(bullshow_fif,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fif()));
+    connect(autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
+    connect(gate_sizex_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fif()));
+    connect(gate_sizey_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fif()));
+    connect(gatelocationx_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fif()));
+    connect(gatelocationy_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fif()));
+    connect(Change_set_azimuth_fif,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fif()));
+    connect(Change_set_pitch_fif,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fif()));
+    connect(Change_set_zoom_fif,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fif()));
+    connect(Change_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
+    connect(Change_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
+    connect(Change_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
+    connect( vedio_fovclass_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
+
+    connect(vedio_s1_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+    connect(Change_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(vedio_spbx_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_s1_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+    connect(Change_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(vedio_spbx_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_s1_Fov2_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+    connect(Change_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(vedio_spbx_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_s1_Fov3_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+    connect(Change_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(vedio_spbx_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_s1_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
+    connect(Change_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(vedio_spbx_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+
+
+    /*连续视场*/
+    w_ContinueField_1_fif->setWindowTitle("摄像机配置");
+    btn_vediosersor_continue_default_fif=new QPushButton;
+    btn_vediosersor_continue_update_fif=new QPushButton;
+    btn_vediosersor_continue_default_fif->setText("默认");
+    btn_vediosersor_continue_update_fif->setText("保存");
+    QVBoxLayout *v8=new QVBoxLayout;
+    v8->addWidget(btn_vediosersor_continue_default_fif);
+    v8->addWidget(btn_vediosersor_continue_update_fif);
+    QLabel *label60=new QLabel;
+    label60->setText("通道1");
+    QHBoxLayout *h5=new QHBoxLayout;
+    h5->addLayout(v8);
+    h5->addWidget(label60);
+
+    continueChanelNum_fif = new  QCheckBox();
+    continueChanelNum_fif->setText("通道号");
+    continuechanelname_fif = new QLineEdit;
+    continueenable_fif = new  QCheckBox();
+    continueenable_fif->setText("使能");
+    QLabel *label61=new QLabel;
+    label61->setText("通道名称");
+    QHBoxLayout *v9=new QHBoxLayout;
+    v9->addWidget(continueChanelNum_fif);
+    v9->addWidget(label61);
+    v9->addWidget(continuechanelname_fif);
+    v9->addWidget(continueenable_fif);
+
+    continue_vediohaveornot_fif = new  QCheckBox();
+    continue_vedio_dpi_fif = new QComboBox;
+    continue_xy_ratio_fif = new QLineEdit;
+    continue_vedio_dpi_fif->addItem("1080P@25HZ");
+    continue_vedio_dpi_fif->addItem("1080P@30HZ");
+    continue_vedio_dpi_fif->addItem("1080P@60HZ");
+    continue_vedio_dpi_fif->addItem("720P@50HZ");
+    continue_vedio_dpi_fif->addItem("720P@60HZ");
+    vedio_change3_fif = new QComboBox;
+    vedio_change3_fif->addItem("连续视场");
+    vedio_change3_fif->addItem("固定视场");
+    vedio_change3_fif->addItem("可切换视场");
+    continue_vediochoose_fif = new QGroupBox();
+    QFormLayout *f5=new QFormLayout();
+    f5->addRow(vedio_s_fif[0],continue_vediohaveornot_fif);
+    f5->addRow(vedio_s_fif[1],continue_vedio_dpi_fif);
+    f5->addRow(vedio_s_fif[2],vedio_change3_fif);
+    f5->addRow(vedio_s_fif[3],continue_xy_ratio_fif);
+    continue_vediochoose_fif->setLayout(f5);
+
+    continue_gateshow_fif = new  QCheckBox();
+    continue_bullshow_fif = new  QCheckBox();
+    continue_gateshow_fif->setText("波门显示");
+    continue_bullshow_fif->setText("靶心显示");
+    QHBoxLayout *v7=new QHBoxLayout;
+    v7->addWidget(continue_gateshow_fif);
+    v7->addWidget(continue_bullshow_fif);
+
+    continue_autogate_fif = new  QCheckBox();
+    continue_autogate_fif->setText("自动波门");
+
+    QLabel *label55=new QLabel;
+    label55->setText("波门尺寸X");
+    QLabel *label56=new QLabel;
+    label56->setText("波门尺寸Y");
+    QLabel *label57=new QLabel;
+    label57->setText("波门位置X");
+    QLabel *label58=new QLabel;
+    label58->setText("波门位置Y");
+    continue_gate_sizex_fif=new QLineEdit;
+    continue_gate_sizey_fif=new QLineEdit;
+    continue_gatelocationx_fif=new QLineEdit;
+    continue_gatelocationy_fif=new QLineEdit;
+    QGridLayout *gl4=new QGridLayout;
+    gl4->addWidget(label55,0,0);
+    gl4->addWidget(continue_gate_sizex_fif,0,1);
+    gl4->addWidget(label56,0,3);
+    gl4->addWidget(continue_gate_sizey_fif,0,4);
+    gl4->addWidget(label57,1,0);
+    gl4->addWidget(continue_gatelocationx_fif,1,1);
+    gl4->addWidget(label58,1,3);
+    gl4->addWidget(continue_gatelocationy_fif,1,4);
+
+    QHBoxLayout *v31=new QHBoxLayout;
+    QLabel *label70=new QLabel;
+    label70->setText("测试视场");
+    test_1 = new QLineEdit;
+    v31->addWidget(label70);
+    v31->addWidget(test_1);
+//
+    QGridLayout *glct2=new QGridLayout;
+   continue_set_azimuth_fif =new QPushButton;
+   continue_set_pitch_fif =new QPushButton;
+   continue_set_zoom_fif =new QPushButton;
+   continue_search_azimuth_fif=new QPushButton;
+   continue_search_pitch_fif=new QPushButton;
+   continue_search_zoom_fif=new QPushButton;
+   continue_set_azimuth_fif->setText("设置");
+   continue_set_pitch_fif->setText("设置");
+   continue_set_zoom_fif->setText("设置");
+   continue_search_azimuth_fif->setText("查询");
+   continue_search_pitch_fif->setText("查询");
+   continue_search_zoom_fif->setText("查询");
+
+   continue_ledt_set_azimuth_fif=new QLineEdit;
+   continue_ledt_set_pitch_fif=new QLineEdit;
+   continue_ledt_set_zoom_fif=new QLineEdit;
+
+   continue_ledt_search_azimuth_fif=new QLineEdit;
+   continue_ledt_search_pitch_fif=new QLineEdit;
+   continue_ledt_search_zoom_fif=new QLineEdit;
+
+   QLabel *labelact=new QLabel;
+   labelact->setText("方位角");
+   QLabel *labelpct=new QLabel;
+   labelpct->setText("俯仰角");
+   QLabel *labelzct=new QLabel;
+   labelzct->setText("zoom位置");
+
+   glct2->addWidget(labelact,1,0,1,1);
+   glct2->addWidget(labelpct,2,0,1,1);
+   glct2->addWidget(labelzct,3,0,1,1);
+
+
+   glct2->addWidget(continue_ledt_set_azimuth_fif,1,2,1,1);
+   glct2->addWidget(continue_ledt_set_pitch_fif,2,2,1,1);
+   glct2->addWidget(continue_ledt_set_zoom_fif,3,2,1,1);
+
+   glct2->addWidget(continue_set_azimuth_fif,1,3,1,1);
+   glct2->addWidget(continue_set_pitch_fif,2,3,1,1);
+   glct2->addWidget(continue_set_zoom_fif,3,3,1,1);
+   glct2->addWidget(continue_ledt_search_azimuth_fif,1,4,1,1);
+   glct2->addWidget(continue_ledt_search_pitch_fif,2,4,1,1);
+   glct2->addWidget(continue_ledt_search_zoom_fif,3,4,1,1);
+
+   glct2->addWidget(continue_search_azimuth_fif,1,5,1,1);
+   glct2->addWidget(continue_search_pitch_fif,2,5,1,1);
+   glct2->addWidget(continue_search_zoom_fif,3,5,1,1);
+
+   //
+
+
+    QGroupBox *g3=new QGroupBox;
+    g3->setTitle("视场靶心补偿表");
+    QGridLayout *glc=new QGridLayout;
+    QLabel* l30=new QLabel;
+    l30->setText("与视场相关的反馈值");
+    QLabel* l31=new QLabel;
+    l31->setText("水平视场");
+    QLabel* l35=new QLabel;
+    l35->setText("垂直视场");
+    QLabel* l32=new QLabel;
+    l32->setText("靶心X位置");
+    QLabel* l33=new QLabel;
+    l33->setText("靶心Y位置");
+    QLabel* l34=new QLabel;
+    l34->setText(" ");
+    QLabel* l36=new QLabel;
+    l36->setText(" ");
+    glc->addWidget(l30,0,1,1,1);
+    glc->addWidget(l31,0,2,1,1);
+    glc->addWidget(l35,0,4,1,1);
+    glc->addWidget(l36,0,5,1,1);
+    glc->addWidget(l32,0,6,1,1);
+    glc->addWidget(l33,0,7,1,1);
+    glc->addWidget(l34,0,8,1,1);
+
+
+    vedio_l1_continue_fif=new QLineEdit;
+    vedio_l2_continue_fif=new QLineEdit;
+    vedio_l3_continue_fif=new QLineEdit;
+    vedio_l4_continue_fif=new QLineEdit;
+    vedio_l5_continue_fif=new QLineEdit;
+    vedio_l6_continue_fif=new QLineEdit;
+    vedio_l7_continue_fif=new QLineEdit;
+    glc->addWidget(vedio_l1_continue_fif,1,1,1,1);
+    glc->addWidget(vedio_l2_continue_fif,2,1,1,1);
+    glc->addWidget(vedio_l3_continue_fif,3,1,1,1);
+    glc->addWidget(vedio_l4_continue_fif,4,1,1,1);
+    glc->addWidget(vedio_l5_continue_fif,5,1,1,1);
+    glc->addWidget(vedio_l6_continue_fif,6,1,1,1);
+    glc->addWidget(vedio_l7_continue_fif,7,1,1,1);
+
+    vedio_continue_Fov0_fif = new QLineEdit;
+    vedio_continue_Fov1_fif = new QLineEdit;
+    vedio_continue_Fov2_fif = new QLineEdit;
+    vedio_continue_Fov3_fif = new QLineEdit;
+    vedio_continue_Fov4_fif = new QLineEdit;
+    vedio_continue_Fov5_fif = new QLineEdit;
+    vedio_continue_Fov6_fif = new QLineEdit;
+    glc->addWidget(vedio_continue_Fov0_fif,1,2,1,1);
+    glc->addWidget(vedio_continue_Fov1_fif,2,2,1,1);
+    glc->addWidget(vedio_continue_Fov2_fif,3,2,1,1);
+    glc->addWidget(vedio_continue_Fov3_fif,4,2,1,1);
+    glc->addWidget(vedio_continue_Fov4_fif,5,2,1,1);
+    glc->addWidget(vedio_continue_Fov5_fif,6,2,1,1);
+    glc->addWidget(vedio_continue_Fov6_fif,7,2,1,1);
+
+    continue_vertical1_fif = new QLineEdit;
+    continue_vertical2_fif = new QLineEdit;
+    continue_vertical3_fif = new QLineEdit;
+    continue_vertical4_fif = new QLineEdit;
+    continue_vertical5_fif = new QLineEdit;
+    continue_vertical6_fif = new QLineEdit;
+    continue_vertical7_fif = new QLineEdit;
+    glc->addWidget(continue_vertical1_fif,1,4,1,1);
+    glc->addWidget(continue_vertical2_fif,2,4,1,1);
+    glc->addWidget(continue_vertical3_fif,3,4,1,1);
+    glc->addWidget(continue_vertical4_fif,4,4,1,1);
+    glc->addWidget(continue_vertical5_fif,5,4,1,1);
+    glc->addWidget(continue_vertical6_fif,6,4,1,1);
+    glc->addWidget(continue_vertical7_fif,7,4,1,1);
+
+    QLabel* l1dv31=new QLabel;
+    QLabel* l1dv32=new QLabel;
+    QLabel* l1dv33=new QLabel;
+    QLabel* l1dv34=new QLabel;
+    QLabel* l1dv35=new QLabel;
+    QLabel* l1dv36=new QLabel;
+    QLabel* l1dv37=new QLabel;
+    l1dv31->setText("度");
+    l1dv32->setText("度");
+    l1dv33->setText("度");
+    l1dv34->setText("度");
+    l1dv35->setText("度");
+    l1dv36->setText("度");
+    l1dv37->setText("度");
+
+    glc->addWidget(l1dv31,1,5,1,1);
+    glc->addWidget(l1dv32,2,5,1,1);
+    glc->addWidget(l1dv33,3,5,1,1);
+    glc->addWidget(l1dv34,4,5,1,1);
+    glc->addWidget(l1dv35,5,5,1,1);
+    glc->addWidget(l1dv36,6,5,1,1);
+    glc->addWidget(l1dv37,7,5,1,1);
+
+    QLabel* l1d31=new QLabel;
+    QLabel* l1d32=new QLabel;
+    QLabel* l1d33=new QLabel;
+    QLabel* l1d34=new QLabel;
+    QLabel* l1d35=new QLabel;
+    QLabel* l1d36=new QLabel;
+    QLabel* l1d37=new QLabel;
+    l1d31->setText("度");
+    l1d32->setText("度");
+    l1d33->setText("度");
+    l1d34->setText("度");
+    l1d35->setText("度");
+    l1d36->setText("度");
+    l1d37->setText("度");
+
+    glc->addWidget(l1d31,1,3,1,1);
+    glc->addWidget(l1d32,2,3,1,1);
+    glc->addWidget(l1d33,3,3,1,1);
+    glc->addWidget(l1d34,4,3,1,1);
+    glc->addWidget(l1d35,5,3,1,1);
+    glc->addWidget(l1d36,6,3,1,1);
+    glc->addWidget(l1d37,7,3,1,1);
+
+
+    vedio_spbx_continue1_fif=new QSpinBox;
+    vedio_spbx_continue2_fif=new QSpinBox;
+    vedio_spbx_continue3_fif=new QSpinBox;
+    vedio_spbx_continue4_fif=new QSpinBox;
+    vedio_spbx_continue5_fif=new QSpinBox;
+    vedio_spbx_continue6_fif=new QSpinBox;
+    vedio_spbx_continue7_fif=new QSpinBox;
+
+    vedio_spbx_continue1_fif->setRange(0,9999);
+    vedio_spbx_continue2_fif->setRange(0,9999);
+    vedio_spbx_continue3_fif->setRange(0,9999);
+    vedio_spbx_continue4_fif->setRange(0,9999);
+    vedio_spbx_continue5_fif->setRange(0,9999);
+    vedio_spbx_continue6_fif->setRange(0,9999);
+    vedio_spbx_continue7_fif->setRange(0,9999);
+
+    glc->addWidget(vedio_spbx_continue1_fif,1,6,1,1);
+    glc->addWidget(vedio_spbx_continue2_fif,2,6,1,1);
+    glc->addWidget(vedio_spbx_continue3_fif,3,6,1,1);
+    glc->addWidget(vedio_spbx_continue4_fif,4,6,1,1);
+    glc->addWidget(vedio_spbx_continue5_fif,5,6,1,1);
+    glc->addWidget(vedio_spbx_continue6_fif,6,6,1,1);
+    glc->addWidget(vedio_spbx_continue7_fif,7,6,1,1);
+
+
+    vedio_spby_continue1_fif=new QSpinBox;
+    vedio_spby_continue2_fif=new QSpinBox;
+    vedio_spby_continue3_fif=new QSpinBox;
+    vedio_spby_continue4_fif=new QSpinBox;
+    vedio_spby_continue5_fif=new QSpinBox;
+    vedio_spby_continue6_fif=new QSpinBox;
+    vedio_spby_continue7_fif=new QSpinBox;
+
+    vedio_spby_continue1_fif->setRange(0,9999);
+    vedio_spby_continue2_fif->setRange(0,9999);
+    vedio_spby_continue3_fif->setRange(0,9999);
+    vedio_spby_continue4_fif->setRange(0,9999);
+    vedio_spby_continue5_fif->setRange(0,9999);
+    vedio_spby_continue6_fif->setRange(0,9999);
+    vedio_spby_continue7_fif->setRange(0,9999);
+
+    glc->addWidget(vedio_spby_continue1_fif,1,7,1,1);
+    glc->addWidget(vedio_spby_continue2_fif,2,7,1,1);
+    glc->addWidget(vedio_spby_continue3_fif,3,7,1,1);
+    glc->addWidget(vedio_spby_continue4_fif,4,7,1,1);
+    glc->addWidget(vedio_spby_continue5_fif,5,7,1,1);
+    glc->addWidget(vedio_spby_continue6_fif,6,7,1,1);
+    glc->addWidget(vedio_spby_continue7_fif,7,7,1,1);
+    g3->setLayout(glc);
+
+    QVBoxLayout *v10=new QVBoxLayout;
+    v10->addLayout(h5);
+    v10->addLayout(v9);
+    v10->addWidget(continue_vediochoose_fif);
+    v10->addLayout(v7);
+    v10->addWidget(continue_autogate_fif);
+    v10->addLayout(gl4);
+    v10->addLayout(v31);
+    v10->addLayout(glct2);
+    v10->addWidget(g3);
+
+    //
+
+    w_ContinueField_1_fif->setLayout(v10);
+
+    connect(vedio_change3_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_fif(int)));
+
+
+    connect(btn_vediosersor_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
+    connect(btn_vediosersor_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
+    connect(continueChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continuechanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));//
+    connect(continue_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continue_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(continue_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
+    connect(continue_bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
+    connect(continue_xy_ratio_fif,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fif()));
+    connect(continue_gateshow_fif,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fif()));
+    connect(continue_bullshow_fif,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fif()));
+    connect(continue_autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
+    connect(continue_gate_sizex_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fif()));
+    connect(continue_gate_sizey_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fif()));
+    connect(continue_gatelocationx_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fif()));
+    connect(continue_gatelocationy_fif,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fif()));
+    connect(continue_set_azimuth_fif,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fif()));
+    connect(continue_set_pitch_fif,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fif()));
+    connect(continue_set_zoom_fif,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fif()));
+    connect(continue_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
+    connect(continue_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
+    connect(continue_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
+    connect(continue_vediohaveornot_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
+    connect(test_1_fif,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fif()));
+    connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fif()));
+     connect(vedio_l2_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fif()));
+      connect(vedio_l3_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fif()));
+       connect(vedio_l4_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fif()));
+        connect(vedio_l5_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fif()));
+         connect(vedio_l6_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fif()));
+          connect(vedio_l7_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fif()));
+
+    connect( vedio_continue_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fif()));
+    connect( vedio_continue_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fif()));
+    connect( vedio_continue_Fov2_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_fif()));
+    connect( vedio_continue_Fov3_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_fif()));
+    connect( vedio_continue_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fif()));
+    connect( vedio_continue_Fov5_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fif()));
+    connect( vedio_continue_Fov6_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fif()));
+     connect( continue_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fif()));
+     connect( continue_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fif()));
+     connect( continue_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fif()));
+     connect( continue_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fif()));
+     connect( continue_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fif()));
+     connect( continue_vertical6_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fif()));
+     connect( continue_vertical7_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fif()));
+
+      connect( vedio_spbx_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+       connect( vedio_spbx_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+        connect( vedio_spbx_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+         connect( vedio_spbx_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+       connect( vedio_spbx_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+        connect( vedio_spbx_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+         connect( vedio_spbx_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+
+       connect( vedio_spby_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fif()));
+        connect( vedio_spby_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fif()));
+         connect( vedio_spby_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fif()));
+          connect( vedio_spby_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fif()));
+           connect( vedio_spby_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fif()));
+            connect( vedio_spby_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fif()));
+             connect( vedio_spby_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fif()));
+
+}
+
 
 void MainWindow::init_dbCfg()
 {
@@ -1488,8 +5642,9 @@ void MainWindow::init_dbCfg()
     f3->addRow(dbg_s[4],time_lineEdt);
     f3->addRow(plat_s[0],bleedx_plat);
     f3->addRow(plat_s[1],bleedy_plat);
-    /*
+
     f3->addRow(dbg_s[5],dbg5_lineEdt);
+
     f3->addRow(dbg_s[6],dbg6_lineEdt);
     f3->addRow(dbg_s[7],dbg7_lineEdt);
     f3->addRow(dbg_s[8],dbg8_lineEdt);
@@ -1500,7 +5655,7 @@ void MainWindow::init_dbCfg()
     f3->addRow(dbg_s[13],dbg13_lineEdt);
     f3->addRow(dbg_s[14],dbg14_lineEdt);
     f3->addRow(dbg_s[15],dbg15_lineEdt);
-    */
+
     w_dbg->setLayout(f3);
     connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
     connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
@@ -1524,6 +5679,7 @@ void MainWindow::init_dbCfg()
     */
 
 }
+
 void MainWindow::init_speedconvCfg()
 {
     w_speedconv=new MyWidget;
@@ -1662,8 +5818,8 @@ void MainWindow::init_speedconvCfg()
     flow_control->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q[11],x_Bleed_rate);
-    f3->addRow(speed_q[12],y_Bleed_rate);
+    //f3->addRow(speed_q[11],x_Bleed_rate);
+    //f3->addRow(speed_q[12],y_Bleed_rate);
     f3->addRow(speed_q[0],maxspeedx);
     f3->addRow(speed_q[1],maxspeedy);
     f3->addRow(speed_q[2],deadx);
@@ -1723,6 +5879,7 @@ void MainWindow::init_speedconvCfg()
     connect(flow_control,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
     connect(parity_bit,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
 }
+
 
 void MainWindow::init_speedconvCfg_sec()
 {
@@ -1862,8 +6019,8 @@ void MainWindow::init_speedconvCfg_sec()
     flow_control_sec->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q[11],x_Bleed_rate_sec);
-    f3->addRow(speed_q[12],y_Bleed_rate_sec);
+    //f3->addRow(speed_q[11],x_Bleed_rate_sec);
+    //f3->addRow(speed_q[12],y_Bleed_rate_sec);
     f3->addRow(speed_q_sec[0],maxspeedx_sec);
     f3->addRow(speed_q_sec[1],maxspeedy_sec);
     f3->addRow(speed_q_sec[2],deadx_sec);
@@ -2065,8 +6222,8 @@ void MainWindow::init_speedconvCfg_thi()
     flow_control_thi->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q[11],x_Bleed_rate_thi);
-    f3->addRow(speed_q[12],y_Bleed_rate_thi);
+    //f3->addRow(speed_q[11],x_Bleed_rate_thi);
+    //f3->addRow(speed_q[12],y_Bleed_rate_thi);
     f3->addRow(speed_q_thi[0],maxspeedx_thi);
     f3->addRow(speed_q_thi[1],maxspeedy_thi);
     f3->addRow(speed_q_thi[2],deadx_thi);
@@ -2265,8 +6422,8 @@ void MainWindow::init_speedconvCfg_fou()
     flow_control_fou->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q[11],x_Bleed_rate_fou);
-    f3->addRow(speed_q[12],y_Bleed_rate_fou);
+   // f3->addRow(speed_q[11],x_Bleed_rate_fou);
+    //f3->addRow(speed_q[12],y_Bleed_rate_fou);
     f3->addRow(speed_q_fou[0],maxspeedx_fou);
     f3->addRow(speed_q_fou[1],maxspeedy_fou);
     f3->addRow(speed_q_fou[2],deadx_fou);
@@ -2465,8 +6622,8 @@ void MainWindow::init_speedconvCfg_fif()
     flow_control_fif->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q[11],x_Bleed_rate_fif);
-    f3->addRow(speed_q[12],y_Bleed_rate_fif);
+    //f3->addRow(speed_q[11],x_Bleed_rate_fif);
+   // f3->addRow(speed_q[12],y_Bleed_rate_fif);
     f3->addRow(speed_q_fif[0],maxspeedx_fif);
     f3->addRow(speed_q_fif[1],maxspeedy_fif);
     f3->addRow(speed_q_fif[2],deadx_fif);
@@ -3193,10 +7350,11 @@ void MainWindow::init_OSDCfg()
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
     connect(btn_keep1,SIGNAL(clicked(bool)),this,SLOT(btn_keep1_Slot()));
     connect(btn_osd1_update,SIGNAL(clicked(bool)),this,SLOT(btn_osd_update_Slot()));
+
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
     connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
-    // connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
+    connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
     //connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
    // connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
    // connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
@@ -4415,7 +8573,6 @@ void MainWindow::init_cameraCfg_thi()
     w_sersor1_thi=new MyWidget;
     w_seitchField_thi=new MyWidget;
     w_ContinueField_thi=new MyWidget;
-
     w_sersor1_thi->setWindowTitle("通道3固定视场");
     QPushButton *btn_default=new QPushButton;
     QPushButton *btn_update=new QPushButton;
@@ -6612,9 +10769,62 @@ void MainWindow::showPlat()
 
 void MainWindow::showvedioCfg1()
 {
+    send_mutex.lock();
+    send_arr[4]=0x63;
+    send_arr[5]=0x01;
+    send_oneframe(2);
+    send_mutex.unlock();
     vedio_current_shichang = 0;
     w_sersor_1->show();
     w_sersor_1->show_stat = 1;
+}
+
+void MainWindow::showvedioCfg2()
+{
+    vedio_current_shichang_sec = 0;
+    send_mutex.lock();
+    send_arr[4]=0x63;
+    send_arr[5]=0x02;
+    send_oneframe(2);
+    send_mutex.unlock();
+    w_sersor_1_sec->show();
+    w_sersor_1_sec->show_stat = 1;
+}
+
+void MainWindow::showvedioCfg3()
+{
+    send_mutex.lock();
+    send_arr[4]=0x63;
+    send_arr[5]=0x03;
+    send_oneframe(2);
+    send_mutex.unlock();
+    vedio_current_shichang_thi = 0;
+    w_sersor_1_thi->show();
+    w_sersor_1_thi->show_stat = 1;
+}
+
+void MainWindow::showvedioCfg4()
+{
+    send_mutex.lock();
+    send_arr[4]=0x63;
+    send_arr[5]=0x04;
+    send_oneframe(2);
+    send_mutex.unlock();
+    vedio_current_shichang_fou = 0;
+    w_sersor_1_fou->show();
+    w_sersor_1_fou->show_stat = 1;
+}
+
+void MainWindow::showvedioCfg5()
+{
+    send_mutex.lock();
+    send_arr[4]=0x63;
+    send_arr[5]=0x05;
+    send_oneframe(2);
+    send_mutex.unlock();
+    vedio_current_shichang_fif= 0;
+    w_sersor_1_fif->show();
+    w_sersor_1_fif->show_stat = 1;
 }
 void MainWindow::showpidsysCfg1()
 {
@@ -7639,10 +11849,77 @@ void MainWindow::vedio_btnSensor1SwitchSlot()
 void MainWindow::vedio_btnSensor2ContinueSlot()
 {
     vedio_current_shichang = 2;
-
-
     w_ContinueField_1->show();
     w_ContinueField_1->show_stat = 1;
+}
+
+void MainWindow::vedio_btnSensor1SwitchSlot_sec()
+{
+    vedio_current_shichang_sec = 1;
+    w_seitchField_1_sec->show();
+    w_seitchField_1_sec->show_stat = 1;
+}
+
+void MainWindow::vedio_btnSensor2ContinueSlot_sec()
+{
+    vedio_current_shichang_sec = 2;
+
+    w_ContinueField_1_sec->show();
+    w_ContinueField_1_sec->show_stat = 1;
+}
+
+void MainWindow::vedio_btnSensor1SwitchSlot_thi()
+{
+    vedio_current_shichang_thi = 1;
+    w_seitchField_1_thi->show();
+    w_seitchField_1_thi->show_stat = 1;
+
+}
+
+void MainWindow::vedio_btnSensor2ContinueSlot_thi()
+{
+    vedio_current_shichang_thi = 2;
+
+    w_ContinueField_1_thi->show();
+    w_ContinueField_1_thi->show_stat = 1;
+
+}
+
+void MainWindow::vedio_btnSensor1SwitchSlot_fou()
+{
+    vedio_current_shichang_fou = 1;
+
+    w_seitchField_1_fou->show();
+    w_seitchField_1_fou->show_stat = 1;
+
+
+}
+
+void MainWindow::vedio_btnSensor2ContinueSlot_fou()
+{
+    vedio_current_shichang_fou = 2;
+
+    w_ContinueField_1_fou->show();
+    w_ContinueField_1_fou->show_stat = 1;
+
+}
+
+void MainWindow::vedio_btnSensor1SwitchSlot_fif()
+{
+    vedio_current_shichang_fif = 1;
+
+    w_seitchField_1_fif->show();
+    w_seitchField_1_fif->show_stat = 1;
+
+}
+
+void MainWindow::vedio_btnSensor2ContinueSlot_fif()
+{
+    vedio_current_shichang_fif = 2;
+
+    w_ContinueField_1_fif->show();
+    w_ContinueField_1_fif->show_stat = 1;
+
 }
 
 void MainWindow::tosersor_fix(int i)

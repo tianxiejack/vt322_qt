@@ -166,7 +166,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 break;
             case 0x02:
-                if(w_plat->show_stat)
+                if(w_pid->show_stat)
                 {
                     switch (output_array[2]){
                         case 0x01:
@@ -196,34 +196,318 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
+
+        case 91:
+            if(w_pid2->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x01:
+                        kp1_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        ki1_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        kd1_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        k12->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        kp2_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        ki2_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        kd2_pid2->setText(QString::number(value_i));
+                        break;
+                    case 0x08:
+                        k22->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+
+        case 92:
+            if(w_pid3->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x01:
+                        kp1_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        ki1_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        kd1_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        k13->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        kp2_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        ki2_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        kd2_pid3->setText(QString::number(value_i));
+                        break;
+                    case 0x08:
+                        k23->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+        case 93:
+            if(w_pid4->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x01:
+                        kp1_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        ki1_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        kd1_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        k14->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        kp2_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        ki2_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        kd2_pid4->setText(QString::number(value_i));
+                        break;
+                    case 0x08:
+                        k24->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+        case 94:
+            if(w_pid5->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x01:
+                        kp1_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        ki1_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        kd1_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        k15->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        kp2_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        ki2_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        kd2_pid5->setText(QString::number(value_i));
+                        break;
+                    case 0x08:
+                        k25->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
             case 0x03:
-                if(w_plat->show_stat)
+                if(w_speedconv->show_stat)
                 {
                     switch (output_array[2]){
                         case 0x01:
-                            bleedx_plat->setText(QString::number(value_i));
+                           x_Bleed_rate->setText(QString::number(value_i));
                             break;
                         case 0x02:
-                            bleedy_plat->setText(QString::number(value_i));
+                            y_Bleed_rate->setText(QString::number(value_i));
                             break;
                         case 0x03:
-                            mx_plat->setText(QString::number(value_i));
+                            maxspeedx->setText(QString::number(value_i));
                             break;
                         case 0x04:
-                            my_plat->setText(QString::number(value_i));
+                           maxspeedy->setText(QString::number(value_i));
                             break;
                         case 0x05:
-                            deadx_plat->setText(QString::number(value_i));
+                            deadx->setText(QString::number(value_i));
                             break;
                         case 0x06:
-                            deady_plat->setText(QString::number(value_i));
+                            deady->setText(QString::number(value_i));
                             break;
-                        case 0x08:
-                            a_plat->setText(QString::number(value_i));
+                       // case 0x08:
+                        //    a_plat->setText(QString::number(value_i));
                              break;
                     }
                 }
                 break;
+
+        case 100:
+            if(w_speedconv_sec->show_stat)
+            {
+                switch (output_array[2]){
+
+                     case 0x00:
+                       speedy8_lineEdt_sec->setText(QString::number(value_i));
+                        break;
+                     case 0x01:
+                       speedy9_lineEdt_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                       x_Bleed_rate_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        y_Bleed_rate_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        maxspeedx_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                       maxspeedy_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        deadx_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        deady_sec->setText(QString::number(value_i));
+                        break;
+                    case 0x09:
+                    deadx_sec->setText(QString::number(value_i));
+                    break;
+                    case 13:
+                    deady_sec->setText(QString::number(value_i));
+                    break;
+                   // case 0x08:
+                    //    a_plat->setText(QString::number(value_i));
+                         break;
+                }
+            }
+            break;
+        case 102:
+            if(w_speedconv_thi->show_stat)
+            {
+                switch (output_array[2]){
+
+                case 0x00:
+                  speedy8_lineEdt_thi->setText(QString::number(value_i));
+                   break;
+                case 0x01:
+                  speedy9_lineEdt_thi->setText(QString::number(value_i));
+                   break;
+               case 0x02:
+                  x_Bleed_rate_thi->setText(QString::number(value_i));
+                   break;
+               case 0x03:
+                   y_Bleed_rate_thi->setText(QString::number(value_i));
+                   break;
+               case 0x04:
+                   maxspeedx_thi->setText(QString::number(value_i));
+                   break;
+               case 0x05:
+                  maxspeedy_thi->setText(QString::number(value_i));
+                   break;
+               case 0x06:
+                   deadx_thi->setText(QString::number(value_i));
+                   break;
+               case 0x07:
+                   deady_thi->setText(QString::number(value_i));
+                   break;
+               case 0x09:
+                   deadx_thi->setText(QString::number(value_i));
+               break;
+               case 13:
+                   deady_thi->setText(QString::number(value_i));
+               break;
+                }
+            }
+            break;
+        case 104:
+            if(w_speedconv_fou->show_stat)
+            {
+                switch (output_array[2]){
+
+                case 0x00:
+                  speedy8_lineEdt_fou->setText(QString::number(value_i));
+                   break;
+                case 0x01:
+                  speedy9_lineEdt_fou->setText(QString::number(value_i));
+                   break;
+               case 0x02:
+                  x_Bleed_rate_fou->setText(QString::number(value_i));
+                   break;
+               case 0x03:
+                   y_Bleed_rate_fou->setText(QString::number(value_i));
+                   break;
+               case 0x04:
+                   maxspeedx_fou->setText(QString::number(value_i));
+                   break;
+               case 0x05:
+                  maxspeedy_fou->setText(QString::number(value_i));
+                   break;
+               case 0x06:
+                   deadx_fou->setText(QString::number(value_i));
+                   break;
+               case 0x07:
+                   deady_fou->setText(QString::number(value_i));
+                   break;
+               case 0x09:
+               deadx_fou->setText(QString::number(value_i));
+               break;
+               case 13:
+               deady_fou->setText(QString::number(value_i));
+               break;
+                }
+            }
+            break;
+        case 106:
+            if(w_speedconv_fif->show_stat)
+            {
+                switch (output_array[2]){
+
+                case 0x00:
+                  speedy8_lineEdt_fif->setText(QString::number(value_i));
+                   break;
+                case 0x01:
+                  speedy9_lineEdt_fif->setText(QString::number(value_i));
+                   break;
+               case 0x02:
+                  x_Bleed_rate_fif->setText(QString::number(value_i));
+                   break;
+               case 0x03:
+                   y_Bleed_rate_fif->setText(QString::number(value_i));
+                   break;
+               case 0x04:
+                   maxspeedx_fif->setText(QString::number(value_i));
+                   break;
+               case 0x05:
+                  maxspeedy_fif->setText(QString::number(value_i));
+                   break;
+               case 0x06:
+                   deadx_fif->setText(QString::number(value_i));
+                   break;
+               case 0x07:
+                   deady_fif->setText(QString::number(value_i));
+                   break;
+               case 0x09:
+               deady_fif->setText(QString::number(value_i));
+               break;
+               case 13:
+               deady_fif->setText(QString::number(value_i));
+               break;
+                }
+            }
+            break;
+
+
             case 0x04:
                 if(utc1->show_stat)
                 {
@@ -1708,7 +1992,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
+                //比例调节器通道1//
         case 0x30:
+            if(w_pid->show_stat){
                 if(output_array[2]==0x00){
                     kx_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x01){
@@ -1719,29 +2005,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     erry_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x04){
                     time_lineEdt->setText(QString::number(value_i));
-                } /*else if(output_array[2]==0x05){
-                    dbg5_lineEdt->setText(QString::number(value_i));
+                }else if(output_array[2]==0x05){
+                    x_ratio_control->setText(QString::number(value_i));
                 }else if(output_array[2]==0x06){
-                    dbg6_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==0x07){
-                    dbg7_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==0x08){
-                    dbg8_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==0x09){
-                    dbg9_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==10){
-                    dbg10_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==11){
-                    dbg11_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==12){
-                    dbg12_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==13){
-                    dbg13_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==14){
-                    dbg14_lineEdt->setText(QString::number(value_i));
-                }else if(output_array[2]==15){
-                    dbg15_lineEdt->setText(QString::number(value_i));
-                }*/
+                    y_ratio_control->setText(QString::number(value_i));
+                }
+            }
+
+
                 break;
         case 49:
             if(w_speedconv->show_stat)
@@ -1781,6 +2052,164 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
             }
             break;
+         case 99:
+            if(w_speedconv_sec->show_stat)
+            {
+                if(0x00 == output_array[2]){
+                    speedx1_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x01 == output_array[2]){
+                    speedx2_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x02 == output_array[2]){
+                    speedx3_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x03 == output_array[2]){
+                    speedx4_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x04 == output_array[2]){
+                    speedx5_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x05 == output_array[2]){
+                    speedx6_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x06 == output_array[2]){
+                    speedx7_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x07 == output_array[2]){
+                    speedx8_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x08 == output_array[2]){
+                    speedx9_lineEdt_sec->setText(QString::number(value_i));
+                }else if(0x09 == output_array[2]){
+                    speedy1_lineEdt_sec->setText(QString::number(value_i));
+                }else if(10 == output_array[2]){
+                    speedy2_lineEdt_sec->setText(QString::number(value_i));
+                }else if(11 == output_array[2]){
+                    speedy3_lineEdt_sec->setText(QString::number(value_i));
+                }else if(12 == output_array[2]){
+                    speedy4_lineEdt_sec->setText(QString::number(value_i));
+                }else if(13 == output_array[2]){
+                    speedy5_lineEdt_sec->setText(QString::number(value_i));
+                }else if(14 == output_array[2]){
+                    speedy6_lineEdt_sec->setText(QString::number(value_i));
+                }else if(15 == output_array[2]){
+                    speedy7_lineEdt_sec->setText(QString::number(value_i));
+                }
+            }
+            break;
+
+
+        case 101:
+           if(w_speedconv_thi->show_stat)
+           {
+               if(0x00 == output_array[2]){
+                   speedx1_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x01 == output_array[2]){
+                   speedx2_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x02 == output_array[2]){
+                   speedx3_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x03 == output_array[2]){
+                   speedx4_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x04 == output_array[2]){
+                   speedx5_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x05 == output_array[2]){
+                   speedx6_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x06 == output_array[2]){
+                   speedx7_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x07 == output_array[2]){
+                   speedx8_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x08 == output_array[2]){
+                   speedx9_lineEdt_thi->setText(QString::number(value_i));
+               }else if(0x09 == output_array[2]){
+                   speedy1_lineEdt_thi->setText(QString::number(value_i));
+               }else if(10 == output_array[2]){
+                   speedy2_lineEdt_thi->setText(QString::number(value_i));
+               }else if(11 == output_array[2]){
+                   speedy3_lineEdt_thi->setText(QString::number(value_i));
+               }else if(12 == output_array[2]){
+                   speedy4_lineEdt_thi->setText(QString::number(value_i));
+               }else if(13 == output_array[2]){
+                   speedy5_lineEdt_thi->setText(QString::number(value_i));
+               }else if(14 == output_array[2]){
+                   speedy6_lineEdt_thi->setText(QString::number(value_i));
+               }else if(15 == output_array[2]){
+                   speedy7_lineEdt_thi->setText(QString::number(value_i));
+               }
+           }
+           break;
+
+
+        case 103:
+           if(w_speedconv_fou->show_stat)
+           {
+               if(0x00 == output_array[2]){
+                   speedx1_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x01 == output_array[2]){
+                   speedx2_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x02 == output_array[2]){
+                   speedx3_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x03 == output_array[2]){
+                   speedx4_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x04 == output_array[2]){
+                   speedx5_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x05 == output_array[2]){
+                   speedx6_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x06 == output_array[2]){
+                   speedx7_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x07 == output_array[2]){
+                   speedx8_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x08 == output_array[2]){
+                   speedx9_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x09 == output_array[2]){
+                   speedy1_lineEdt_fou->setText(QString::number(value_i));
+               }else if(10 == output_array[2]){
+                   speedy2_lineEdt_fou->setText(QString::number(value_i));
+               }else if(11 == output_array[2]){
+                   speedy3_lineEdt_fou->setText(QString::number(value_i));
+               }else if(12 == output_array[2]){
+                   speedy4_lineEdt_fou->setText(QString::number(value_i));
+               }else if(13 == output_array[2]){
+                   speedy5_lineEdt_fou->setText(QString::number(value_i));
+               }else if(14 == output_array[2]){
+                   speedy6_lineEdt_fou->setText(QString::number(value_i));
+               }else if(15 == output_array[2]){
+                   speedy7_lineEdt_fou->setText(QString::number(value_i));
+               }
+           }
+           break;
+
+
+        case 105:
+           if(w_speedconv_fif->show_stat)
+           {
+               if(0x00 == output_array[2]){
+                   speedx1_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x01 == output_array[2]){
+                   speedx2_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x02 == output_array[2]){
+                   speedx3_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x03 == output_array[2]){
+                   speedx4_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x04 == output_array[2]){
+                   speedx5_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x05 == output_array[2]){
+                   speedx6_lineEdt_fou->setText(QString::number(value_i));
+               }else if(0x06 == output_array[2]){
+                   speedx7_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x07 == output_array[2]){
+                   speedx8_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x08 == output_array[2]){
+                   speedx9_lineEdt_fif->setText(QString::number(value_i));
+               }else if(0x09 == output_array[2]){
+                   speedy1_lineEdt_fif->setText(QString::number(value_i));
+               }else if(10 == output_array[2]){
+                   speedy2_lineEdt_fif->setText(QString::number(value_i));
+               }else if(11 == output_array[2]){
+                   speedy3_lineEdt_fif->setText(QString::number(value_i));
+               }else if(12 == output_array[2]){
+                   speedy4_lineEdt_fif->setText(QString::number(value_i));
+               }else if(13 == output_array[2]){
+                   speedy5_lineEdt_fif->setText(QString::number(value_i));
+               }else if(14 == output_array[2]){
+                   speedy6_lineEdt_fif->setText(QString::number(value_i));
+               }else if(15 == output_array[2]){
+                   speedy7_lineEdt_fif->setText(QString::number(value_i));
+               }
+           }
+           break;
         case 50:
             if(w_speedconv->show_stat)
             {
@@ -1791,6 +2220,12 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 else if(0x01 == output_array[2])
                 {
                     speedy9_lineEdt->setText(QString::number(value_i));
+                } else if(10 == output_array[2])
+                {
+                    speedx10_lineEdt->setText(QString::number(value_i));
+                } else if(13 == output_array[2])
+                {
+                    speedy10_lineEdt->setText(QString::number(value_i));
                 }
             }
             break;
@@ -1887,6 +2322,864 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
             }
             break;
+
+        case 52:
+            if(0x00 == output_array[2])
+            {
+                out_address->setText(msg.fromUtf8(ba));
+            }else if (0x01 == output_array[2]) {
+                switch((int)value_i)
+                {
+                 case 0:
+                    baud_rate->setCurrentIndex(0);
+                    break;
+                case 110:
+                    baud_rate->setCurrentIndex(1);
+                    break;
+                case 300:
+                    baud_rate->setCurrentIndex(2);
+                    break;
+                case 600:
+                    baud_rate->setCurrentIndex(3);
+                    break;
+                case 1200:
+                    baud_rate->setCurrentIndex(4);
+                    break;
+                case 2400:
+                    baud_rate->setCurrentIndex(5);
+                    break;
+                case 4800:
+                    baud_rate->setCurrentIndex(6);
+                    break;
+                case 9600:
+                    baud_rate->setCurrentIndex(7);
+                    break;
+                case 14000:
+                    baud_rate->setCurrentIndex(8);
+                    break;
+                case 19200:
+                    baud_rate->setCurrentIndex(9);
+                    break;
+                case 38400:
+                    baud_rate->setCurrentIndex(10);
+                    break;
+                case 56000:
+                    baud_rate->setCurrentIndex(11);
+                    break;
+                case 57600:
+                    baud_rate->setCurrentIndex(12);
+                    break;
+                case 115200:
+                    baud_rate->setCurrentIndex(13);
+                    break;
+
+                case 128000:
+                    baud_rate->setCurrentIndex(14);
+                    break;
+
+                case 230400:
+                    baud_rate->setCurrentIndex(15);
+                    break;
+
+
+                case 256000:
+                    baud_rate->setCurrentIndex(16);
+                    break;
+
+                case 460800:
+                    baud_rate->setCurrentIndex(17);
+                    break;
+                case 500000:
+                    baud_rate->setCurrentIndex(18);
+                    break;
+
+                case 512000:
+                    baud_rate->setCurrentIndex(19);
+                    break;
+
+                case 600000:
+                    baud_rate->setCurrentIndex(20);
+                    break;
+
+                case 750000:
+                    baud_rate->setCurrentIndex(21);
+                    break;
+                case 921600:
+                    baud_rate->setCurrentIndex(22);
+                    break;
+                case 1000000:
+                    baud_rate->setCurrentIndex(23);
+                    break;
+                case 1500000:
+                    baud_rate->setCurrentIndex(24);
+                    break;
+                case 2000000:
+                    baud_rate->setCurrentIndex(25);
+                    break;
+                    default:
+                        break;
+                }
+
+            }else if (0x02 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    data_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    data_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    data_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    data_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    data_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x03 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    parity_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    parity_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    parity_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    parity_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    parity_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x04 == output_array[2]){
+               if((int)value_i==1)
+               {
+                   stop_bit->setCurrentIndex(0);
+               }else if((int)value_i==2)
+               {
+                   stop_bit->setCurrentIndex(2);
+               }else
+               {
+                   stop_bit->setCurrentIndex(1);
+               }
+            }
+            break;
+
+        case 107:
+            if(0x00 == output_array[2])
+            {
+                out_address->setText(msg.fromUtf8(ba));
+            }else if (0x01 == output_array[2]) {
+                switch((int)value_i)
+                {
+                 case 0:
+                    baud_rate->setCurrentIndex(0);
+                    break;
+                case 110:
+                    baud_rate->setCurrentIndex(1);
+                    break;
+                case 300:
+                    baud_rate->setCurrentIndex(2);
+                    break;
+                case 600:
+                    baud_rate->setCurrentIndex(3);
+                    break;
+                case 1200:
+                    baud_rate->setCurrentIndex(4);
+                    break;
+                case 2400:
+                    baud_rate->setCurrentIndex(5);
+                    break;
+                case 4800:
+                    baud_rate->setCurrentIndex(6);
+                    break;
+                case 9600:
+                    baud_rate->setCurrentIndex(7);
+                    break;
+                case 14000:
+                    baud_rate->setCurrentIndex(8);
+                    break;
+                case 19200:
+                    baud_rate->setCurrentIndex(9);
+                    break;
+                case 38400:
+                    baud_rate->setCurrentIndex(10);
+                    break;
+                case 56000:
+                    baud_rate->setCurrentIndex(11);
+                    break;
+                case 57600:
+                    baud_rate->setCurrentIndex(12);
+                    break;
+                case 115200:
+                    baud_rate->setCurrentIndex(13);
+                    break;
+
+                case 128000:
+                    baud_rate->setCurrentIndex(14);
+                    break;
+
+                case 230400:
+                    baud_rate->setCurrentIndex(15);
+                    break;
+
+
+                case 256000:
+                    baud_rate->setCurrentIndex(16);
+                    break;
+
+                case 460800:
+                    baud_rate->setCurrentIndex(17);
+                    break;
+                case 500000:
+                    baud_rate->setCurrentIndex(18);
+                    break;
+
+                case 512000:
+                    baud_rate->setCurrentIndex(19);
+                    break;
+
+                case 600000:
+                    baud_rate->setCurrentIndex(20);
+                    break;
+
+                case 750000:
+                    baud_rate->setCurrentIndex(21);
+                    break;
+                case 921600:
+                    baud_rate->setCurrentIndex(22);
+                    break;
+                case 1000000:
+                    baud_rate->setCurrentIndex(23);
+                    break;
+                case 1500000:
+                    baud_rate->setCurrentIndex(24);
+                    break;
+                case 2000000:
+                    baud_rate->setCurrentIndex(25);
+                    break;
+                    default:
+                        break;
+                }
+
+            }else if (0x02 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    data_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    data_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    data_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    data_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    data_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x03 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    parity_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    parity_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    parity_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    parity_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    parity_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x04 == output_array[2]){
+               if((int)value_i==1)
+               {
+                   stop_bit->setCurrentIndex(0);
+               }else if((int)value_i==2)
+               {
+                   stop_bit->setCurrentIndex(2);
+               }else
+               {
+                   stop_bit->setCurrentIndex(1);
+               }
+            }
+            break;
+        case 108:
+            if(0x00 == output_array[2])
+            {
+                out_address->setText(msg.fromUtf8(ba));
+            }else if (0x01 == output_array[2]) {
+                switch((int)value_i)
+                {
+                 case 0:
+                    baud_rate->setCurrentIndex(0);
+                    break;
+                case 110:
+                    baud_rate->setCurrentIndex(1);
+                    break;
+                case 300:
+                    baud_rate->setCurrentIndex(2);
+                    break;
+                case 600:
+                    baud_rate->setCurrentIndex(3);
+                    break;
+                case 1200:
+                    baud_rate->setCurrentIndex(4);
+                    break;
+                case 2400:
+                    baud_rate->setCurrentIndex(5);
+                    break;
+                case 4800:
+                    baud_rate->setCurrentIndex(6);
+                    break;
+                case 9600:
+                    baud_rate->setCurrentIndex(7);
+                    break;
+                case 14000:
+                    baud_rate->setCurrentIndex(8);
+                    break;
+                case 19200:
+                    baud_rate->setCurrentIndex(9);
+                    break;
+                case 38400:
+                    baud_rate->setCurrentIndex(10);
+                    break;
+                case 56000:
+                    baud_rate->setCurrentIndex(11);
+                    break;
+                case 57600:
+                    baud_rate->setCurrentIndex(12);
+                    break;
+                case 115200:
+                    baud_rate->setCurrentIndex(13);
+                    break;
+
+                case 128000:
+                    baud_rate->setCurrentIndex(14);
+                    break;
+
+                case 230400:
+                    baud_rate->setCurrentIndex(15);
+                    break;
+
+
+                case 256000:
+                    baud_rate->setCurrentIndex(16);
+                    break;
+
+                case 460800:
+                    baud_rate->setCurrentIndex(17);
+                    break;
+                case 500000:
+                    baud_rate->setCurrentIndex(18);
+                    break;
+
+                case 512000:
+                    baud_rate->setCurrentIndex(19);
+                    break;
+
+                case 600000:
+                    baud_rate->setCurrentIndex(20);
+                    break;
+
+                case 750000:
+                    baud_rate->setCurrentIndex(21);
+                    break;
+                case 921600:
+                    baud_rate->setCurrentIndex(22);
+                    break;
+                case 1000000:
+                    baud_rate->setCurrentIndex(23);
+                    break;
+                case 1500000:
+                    baud_rate->setCurrentIndex(24);
+                    break;
+                case 2000000:
+                    baud_rate->setCurrentIndex(25);
+                    break;
+                    default:
+                        break;
+                }
+
+            }else if (0x02 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    data_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    data_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    data_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    data_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    data_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x03 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    parity_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    parity_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    parity_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    parity_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    parity_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x04 == output_array[2]){
+               if((int)value_i==1)
+               {
+                   stop_bit->setCurrentIndex(0);
+               }else if((int)value_i==2)
+               {
+                   stop_bit->setCurrentIndex(2);
+               }else
+               {
+                   stop_bit->setCurrentIndex(1);
+               }
+            }
+
+
+
+
+            break;
+        case 109:
+            if(0x00 == output_array[2])
+            {
+                out_address->setText(msg.fromUtf8(ba));
+            }else if (0x01 == output_array[2]) {
+                switch((int)value_i)
+                {
+                 case 0:
+                    baud_rate->setCurrentIndex(0);
+                    break;
+                case 110:
+                    baud_rate->setCurrentIndex(1);
+                    break;
+                case 300:
+                    baud_rate->setCurrentIndex(2);
+                    break;
+                case 600:
+                    baud_rate->setCurrentIndex(3);
+                    break;
+                case 1200:
+                    baud_rate->setCurrentIndex(4);
+                    break;
+                case 2400:
+                    baud_rate->setCurrentIndex(5);
+                    break;
+                case 4800:
+                    baud_rate->setCurrentIndex(6);
+                    break;
+                case 9600:
+                    baud_rate->setCurrentIndex(7);
+                    break;
+                case 14000:
+                    baud_rate->setCurrentIndex(8);
+                    break;
+                case 19200:
+                    baud_rate->setCurrentIndex(9);
+                    break;
+                case 38400:
+                    baud_rate->setCurrentIndex(10);
+                    break;
+                case 56000:
+                    baud_rate->setCurrentIndex(11);
+                    break;
+                case 57600:
+                    baud_rate->setCurrentIndex(12);
+                    break;
+                case 115200:
+                    baud_rate->setCurrentIndex(13);
+                    break;
+
+                case 128000:
+                    baud_rate->setCurrentIndex(14);
+                    break;
+
+                case 230400:
+                    baud_rate->setCurrentIndex(15);
+                    break;
+
+
+                case 256000:
+                    baud_rate->setCurrentIndex(16);
+                    break;
+
+                case 460800:
+                    baud_rate->setCurrentIndex(17);
+                    break;
+                case 500000:
+                    baud_rate->setCurrentIndex(18);
+                    break;
+
+                case 512000:
+                    baud_rate->setCurrentIndex(19);
+                    break;
+
+                case 600000:
+                    baud_rate->setCurrentIndex(20);
+                    break;
+
+                case 750000:
+                    baud_rate->setCurrentIndex(21);
+                    break;
+                case 921600:
+                    baud_rate->setCurrentIndex(22);
+                    break;
+                case 1000000:
+                    baud_rate->setCurrentIndex(23);
+                    break;
+                case 1500000:
+                    baud_rate->setCurrentIndex(24);
+                    break;
+                case 2000000:
+                    baud_rate->setCurrentIndex(25);
+                    break;
+                    default:
+                        break;
+                }
+
+            }else if (0x02 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    data_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    data_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    data_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    data_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    data_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x03 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    parity_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    parity_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    parity_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    parity_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    parity_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x04 == output_array[2]){
+               if((int)value_i==1)
+               {
+                   stop_bit->setCurrentIndex(0);
+               }else if((int)value_i==2)
+               {
+                   stop_bit->setCurrentIndex(2);
+               }else
+               {
+                   stop_bit->setCurrentIndex(1);
+               }
+            }
+
+            break;
+        case 110:
+            if(0x00 == output_array[2])
+            {
+                out_address->setText(msg.fromUtf8(ba));
+            }else if (0x01 == output_array[2]) {
+                switch((int)value_i)
+                {
+                 case 0:
+                    baud_rate->setCurrentIndex(0);
+                    break;
+                case 110:
+                    baud_rate->setCurrentIndex(1);
+                    break;
+                case 300:
+                    baud_rate->setCurrentIndex(2);
+                    break;
+                case 600:
+                    baud_rate->setCurrentIndex(3);
+                    break;
+                case 1200:
+                    baud_rate->setCurrentIndex(4);
+                    break;
+                case 2400:
+                    baud_rate->setCurrentIndex(5);
+                    break;
+                case 4800:
+                    baud_rate->setCurrentIndex(6);
+                    break;
+                case 9600:
+                    baud_rate->setCurrentIndex(7);
+                    break;
+                case 14000:
+                    baud_rate->setCurrentIndex(8);
+                    break;
+                case 19200:
+                    baud_rate->setCurrentIndex(9);
+                    break;
+                case 38400:
+                    baud_rate->setCurrentIndex(10);
+                    break;
+                case 56000:
+                    baud_rate->setCurrentIndex(11);
+                    break;
+                case 57600:
+                    baud_rate->setCurrentIndex(12);
+                    break;
+                case 115200:
+                    baud_rate->setCurrentIndex(13);
+                    break;
+
+                case 128000:
+                    baud_rate->setCurrentIndex(14);
+                    break;
+
+                case 230400:
+                    baud_rate->setCurrentIndex(15);
+                    break;
+
+
+                case 256000:
+                    baud_rate->setCurrentIndex(16);
+                    break;
+
+                case 460800:
+                    baud_rate->setCurrentIndex(17);
+                    break;
+                case 500000:
+                    baud_rate->setCurrentIndex(18);
+                    break;
+
+                case 512000:
+                    baud_rate->setCurrentIndex(19);
+                    break;
+
+                case 600000:
+                    baud_rate->setCurrentIndex(20);
+                    break;
+
+                case 750000:
+                    baud_rate->setCurrentIndex(21);
+                    break;
+                case 921600:
+                    baud_rate->setCurrentIndex(22);
+                    break;
+                case 1000000:
+                    baud_rate->setCurrentIndex(23);
+                    break;
+                case 1500000:
+                    baud_rate->setCurrentIndex(24);
+                    break;
+                case 2000000:
+                    baud_rate->setCurrentIndex(25);
+                    break;
+                    default:
+                        break;
+                }
+
+            }else if (0x02 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    data_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    data_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    data_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    data_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    data_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x03 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    parity_bit->setCurrentIndex(0);
+                    break;
+                case 1:
+                    parity_bit->setCurrentIndex(1);
+                    break;
+                case 2:
+                    parity_bit->setCurrentIndex(2);
+                    break;
+                case 3:
+                    parity_bit->setCurrentIndex(3);
+                    break;
+                case 4:
+                    parity_bit->setCurrentIndex(4);
+                    break;
+                default:
+                    break;
+                 }
+            }else if (0x04 == output_array[2]){
+               if((int)value_i==1)
+               {
+                   stop_bit->setCurrentIndex(0);
+               }else if((int)value_i==2)
+               {
+                   stop_bit->setCurrentIndex(2);
+               }else
+               {
+                   stop_bit->setCurrentIndex(1);
+               }
+            }
+
+            break;
+        case 54:
+            if(0x00 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 0:
+                    zone_setting->setChecked(false);
+                    break;
+                case 1:
+                    zone_setting->setChecked(true);
+                    break;
+                default:
+                        break;
+                }
+               }else if(0x01 == output_array[2]){
+                   maxnum->setText(QString::number(value_i));
+               }else if(0x02 == output_array[2]){
+                   uspeed->setText(QString::number(value_i));
+               }else if(0x03 == output_array[2]){
+                maxpix->setText(QString::number(value_i));
+                }else if(0x04 == output_array[2]){
+                minpix->setText(QString::number(value_i));
+                }else if(0x05 == output_array[2]){
+                sensitive->setText(QString::number(value_i));
+                }else if(0x06 == output_array[2]){
+                dspeed->setText(QString::number(value_i));
+                }else if(0x07 == output_array[2]){
+                trktime->setText(QString::number(value_i));
+                }else if(0x08 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 1:
+                 output->setCurrentIndex(0);
+                    break;
+                case 2:
+                 output->setCurrentIndex(1);
+                    break;
+                default:
+                        break;
+                }
+                }else if(0x09 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 1:
+                 polar->setCurrentIndex(0);
+                    break;
+                case 2:
+                 polar->setCurrentIndex(1);
+                    break;
+                default:
+                        break;
+                }
+                }else if(10 == output_array[2]){
+                rigion_Cen_x->setText(QString::number(value_i));
+              }else if(11 == output_array[2]){
+                rigion_Cen_y->setText(QString::number(value_i));
+              }else if(12 == output_array[2]){
+                rigion_Cen_w->setText(QString::number(value_i));
+              }else if(13 == output_array[2]){
+                rigion_Cen_h->setText(QString::number(value_i));
+              }else if(14 == output_array[2]){
+                switch((int)value_i)
+                {
+                 case 1:
+                    Priority_judgment->setCurrentIndex(0);
+                    break;
+                case 2:
+                    Priority_judgment->setCurrentIndex(1);
+                    break;
+                case 3:
+                    Priority_judgment->setCurrentIndex(2);
+                    break;
+                case 4:
+                    Priority_judgment->setCurrentIndex(3);
+                    break;
+                case 5:
+                    Priority_judgment->setCurrentIndex(4);
+                    break;
+                case 6:
+                    Priority_judgment->setCurrentIndex(5);
+                    break;
+                default:
+                    break;
+                 }
+              }else if(15 == output_array[2]){
+                Alarm_delay->setText(QString::number(value_i));
+            }
+            break;
+        case 55:
+            break;
+
         default:
                 break;
         }
@@ -1936,12 +3229,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            {
                 read_config(49);
                 read_config(50);
+                read_config(52);
            }
            if(w_sersor1->show_stat)
            {
                 read_config(23);
            }
-           /*if(w_seitchField->show_stat)
+          if(w_seitchField->show_stat)
            {
                 read_config(24);
            }
@@ -1950,7 +3244,70 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 read_config(25);
                 read_config(26);
                 read_config(27);
-           }*/
+           }
+           if(w_mtd->show_stat)
+           {
+               read_config(54);
+
+           }
+           if(w_speedconv_sec->show_stat)
+           {
+               read_config(99);
+               read_config(100);
+               read_config(107);
+
+           }
+           if(w_speedconv_thi->show_stat)
+           {
+               read_config(101);
+               read_config(102);
+               read_config(108);
+
+           }
+           if(w_speedconv_fou->show_stat)
+           {
+               read_config(103);
+               read_config(104);
+               read_config(109);
+
+           }
+           if(w_speedconv_fif->show_stat)
+           {
+               read_config(105);
+               read_config(106);
+               read_config(110);
+
+           }
+           if(w_pid->show_stat)
+           {
+                read_config(2);
+                read_config(48);
+
+           }
+           if(w_pid2->show_stat)
+           {
+               read_config(91);
+               read_config(92);
+
+           }
+           if(w_pid3->show_stat)
+           {
+               read_config(93);
+               read_config(94);
+
+           }
+           if(w_pid4->show_stat)
+           {
+               read_config(95);
+               read_config(96);
+
+           }
+           if(w_pid5->show_stat)
+           {
+               read_config(97);
+               read_config(98);
+
+           }
        }
     }
     memset(output_array,0,sizeof(output_array));
@@ -2048,6 +3405,9 @@ void MainWindow::read_config(int block)
         case 50:
             send_read_config(block,0,1);
             break;
+        case 54:
+            send_read_config(block,0,15);
+        break;
         case 56:
             send_read_config(58,0,3);
             send_read_config(block,0,13);
@@ -2170,6 +3530,75 @@ void MainWindow::read_config(int block)
         case 90:
             send_read_config(block,0,3);
             break;
+        case 91:
+            send_read_config(block,1,8);
+            break;
+        case 92:
+            send_read_config(block,0,6);
+            break;
+        case 93:
+            send_read_config(block,1,8);
+            break;
+         case 94:
+            send_read_config(block,0,6);
+            break;
+         case 95:
+            send_read_config(block,1,8);
+            break;
+         case 96:
+            send_read_config(block,0,6);
+            break;
+         case 97:
+            send_read_config(block,1,8);
+             break;
+         case 98:
+            send_read_config(block,0,6);
+             break;
+
+         case 99:
+          send_read_config(block,0,15);
+          break;
+         case 100:
+         send_read_config(block,0,7);
+         send_read_config(block,10,10);
+         send_read_config(block,13,13);
+          break;
+         case 101:
+          send_read_config(block,0,15);
+          break;
+         case 102:
+        send_read_config(block,0,7);
+        send_read_config(block,10,10);
+        send_read_config(block,13,13);
+            break;
+         case 103:
+        send_read_config(block,0,15);
+        break;
+        case 104:
+        send_read_config(block,0,7);
+        send_read_config(block,10,10);
+        send_read_config(block,13,13);
+        break;
+        case 105:
+       send_read_config(block,0,15);
+        break;
+        case 106:
+        send_read_config(block,0,7);
+        send_read_config(block,10,10);
+        send_read_config(block,13,13);
+        break;
+        case 107:
+        send_read_config(block,0,4);
+         break;
+        case 108:
+        send_read_config(block,0,4);
+         break;
+        case 109:
+        send_read_config(block,0,4);
+        break;
+        case 110:
+        send_read_config(block,0,4);
+        break;
 
 
         default:
