@@ -1016,12 +1016,12 @@ void MainWindow::init_vedioCfg()
     connect(fix_gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
     connect(fix_gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
     connect(fix_gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
-    connect(set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
-    connect(search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
-    connect(set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
-    connect(search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
-    connect(set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
-    connect(search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
+    connect(set_azimuth,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot()));
+    connect(search_azimuth,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(set_pitch,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot()));
+    connect(search_pitch ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(set_zoom,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot()));
+    connect(search_zoom,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
     connect(fix_lEdt,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
     connect(fix_vertical,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
     connect(fix_sp,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
