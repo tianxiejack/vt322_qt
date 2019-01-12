@@ -7831,22 +7831,27 @@ void MainWindow::showvedioCfg5()
 }
 void MainWindow::showpidsysCfg1()
 {
+    /*
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=0x2;
+    send_arr[6]=0x0;
+    float tmp = 1;
+    memcpy(&send_arr[7],&tmp,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+    */
 
-        send_mutex.lock();
-        send_arr[4]=0x46;
-        send_arr[5]=1;
-        send_oneframe(2);
-        send_mutex.unlock();
 
-    for(int i=1;i<7;i++){
+    for(int i=1;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=0x02;
+        send_arr[5]=2;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=1;i<5;i++){
+    for(int i=0;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=48;
@@ -7854,12 +7859,15 @@ void MainWindow::showpidsysCfg1()
         send_oneframe(3);
         send_mutex.unlock();
     }
+
+    /*
     send_mutex.lock();
     send_arr[4]=0x31;
-    send_arr[5]=0x03;
-    send_arr[6]=0x08;
+    send_arr[5]=03;
+    send_arr[6]=08;
     send_oneframe(3);
     send_mutex.unlock();
+    */
 
     w_pid->show();
     w_pid->show_stat = 1;
@@ -7867,13 +7875,7 @@ void MainWindow::showpidsysCfg1()
 
 void MainWindow::showpidsysCfg2()
 {
-    send_mutex.lock();
-    send_arr[4]=0x46;
-    send_arr[5]=2;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=1;i<7;i++){
+    for(int i=1;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=91;
@@ -7881,7 +7883,7 @@ void MainWindow::showpidsysCfg2()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=1;i<5;i++){
+    for(int i=0;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=92;
@@ -7889,33 +7891,22 @@ void MainWindow::showpidsysCfg2()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x03;
-    send_arr[6]=0x08;
-    send_oneframe(3);
-    send_mutex.unlock();
+
     w_pid2->show();
     w_pid2->show_stat = 1;
 }
 
 void MainWindow::showpidsysCfg3()
 {
-    send_mutex.lock();
-    send_arr[4]=0x46;
-    send_arr[5]=3;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=1;i<7;i++){
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=93;
-    send_arr[6]=i;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=8;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=93;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
     }
-    for(int i=1;i<5;i++){
+    for(int i=0;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=94;
@@ -7923,32 +7914,21 @@ void MainWindow::showpidsysCfg3()
         send_oneframe(3);
         send_mutex.unlock();
     }
-     send_mutex.lock();
-     send_arr[4]=0x31;
-     send_arr[5]=0x03;
-     send_arr[6]=0x08;
-     send_oneframe(3);
-     send_mutex.unlock();
+
      w_pid3->show();
      w_pid3->show_stat = 1;
 }
 void MainWindow::showpidsysCfg4()
 {
-    send_mutex.lock();
-    send_arr[4]=0x46;
-    send_arr[5]=4;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=1;i<7;i++){
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=95;
-    send_arr[6]=i;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=8;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=95;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
     }
-    for(int i=1;i<5;i++){
+    for(int i=0;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=96;
@@ -7956,32 +7936,21 @@ void MainWindow::showpidsysCfg4()
         send_oneframe(3);
         send_mutex.unlock();
     }
-     send_mutex.lock();
-     send_arr[4]=0x31;
-     send_arr[5]=0x03;
-     send_arr[6]=0x08;
-     send_oneframe(3);
-     send_mutex.unlock();
+
     w_pid4->show();
     w_pid4->show_stat = 1;
 }
 void MainWindow::showpidsysCfg5()
 {
-    send_mutex.lock();
-    send_arr[4]=0x46;
-    send_arr[5]=5;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=1;i<7;i++){
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=97;
-    send_arr[6]=i;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=8;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=97;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
     }
-    for(int i=1;i<5;i++){
+    for(int i=0;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=98;
@@ -7989,12 +7958,6 @@ void MainWindow::showpidsysCfg5()
         send_oneframe(3);
         send_mutex.unlock();
     }
-     send_mutex.lock();
-     send_arr[4]=0x31;
-     send_arr[5]=0x03;
-     send_arr[6]=0x08;
-     send_oneframe(3);
-     send_mutex.unlock();
     w_pid5->show();
     w_pid5->show_stat = 1;
 }
