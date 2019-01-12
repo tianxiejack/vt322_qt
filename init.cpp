@@ -7902,16 +7902,7 @@ void MainWindow::showdbgcfg()
 
 void MainWindow::showspeedconvcfg()
 {
-
-    send_mutex.lock();
-    send_arr[4] = 0x45;
-    send_arr[5] = 1;
-    send_oneframe(7);
-    send_mutex.unlock();
-
-
-
-    for(int i=0;i<16;i++){
+    for(int i=0;i<=15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=49;
@@ -7919,7 +7910,7 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<2;i++){
+    for(int i=0;i<=1;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=50;
@@ -7927,9 +7918,6 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
-
-
-
 
         send_mutex.lock();
         send_arr[4]=0x31;
