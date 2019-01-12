@@ -1046,21 +1046,18 @@ void MainWindow::init_vedioCfg()
 
     ChanelNum = new  QCheckBox();
     ChanelNum->setText("通道号");
-    chanelname = new QLineEdit;
     enable = new  QCheckBox();
     enable->setText("使能");
 
     QLabel *label2=new QLabel;
-    label2->setText("通道名称");
+    label2->setText("通道名称:通道1");
     QHBoxLayout *v2=new QHBoxLayout;
     v2->addWidget(ChanelNum);
     v2->addWidget(label2);
-    v2->addWidget(chanelname);
     v2->addWidget(enable);
 
     vediohaveornot = new  QCheckBox();
     vedio_dpi = new QComboBox;
-    xy_ratio = new QLineEdit;
     vedio_dpi->addItem("1080P@25HZ");
     vedio_dpi->addItem("1080P@30HZ");
     vedio_dpi->addItem("1080P@60HZ");
@@ -1070,16 +1067,13 @@ void MainWindow::init_vedioCfg()
     vedio_change2->addItem("可切换视场");
     vedio_change2->addItem("固定视场");
     vedio_change2->addItem("连续视场");
-
     vediochoose = new QGroupBox();
     QFormLayout *f3=new QFormLayout();
     f3->addRow(vedio_s[0],vediohaveornot);
     f3->addRow(vedio_s[1],vedio_dpi);
     f3->addRow(vedio_s[2],vedio_change2);
-    f3->addRow(vedio_s[3],xy_ratio);
     vediochoose->setLayout(f3);
 
-    connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
     gateshow = new  QCheckBox();
     bullshow = new  QCheckBox();
     gateshow->setText("波门显示");
@@ -1317,54 +1311,13 @@ void MainWindow::init_vedioCfg()
     v->addLayout(v3);
     v->addWidget(autogate);
     v->addLayout(gl);
-  //v->addLayout(h2);
     v->addLayout(v22);
     w_seitchField_1->setLayout(v);
-    //connect(btn_vediosersor_default,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot()));
-    //connect(btn_vediosersor_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot()));
-    //connect(ChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    //connect(enable,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    //connect(chanelname,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot(int)));//
-    //connect(vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
-    //connect(vedio_dpi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    //connect(gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
-    //connect(bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
-    //connect(xy_ratio,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot()));
-    //connect(gateshow,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot()));
-    //connect(bullshow,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot()));
-    //connect(autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
-    //connect(gate_sizex,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot()));
-    //connect(gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
-    //connect(gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
-    //connect(gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
-    //connect(Change_set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
-    //connect(Change_set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
-    //connect(Change_set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
-    //connect(Change_search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
-    //connect(Change_search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
-    //connect(Change_search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
-    connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
 
-    //connect(vedio_s1_Fov0,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    //connect(Change_vertical1,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
-    //connect(vedio_spbx_switch1,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_spby_switch1,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_s1_Fov1,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    //connect(Change_vertical2,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
-    //connect(vedio_spbx_switch2,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_spby_switch2,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_s1_Fov2,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    //connect(Change_vertical3,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
-    //connect(vedio_spbx_switch3,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_spby_switch3,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_s1_Fov3,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    //connect(Change_vertical4,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
-    //connect(vedio_spbx_switch4,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_spby_switch4,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_s1_Fov4,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    //connect(Change_vertical5,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
-    //connect(vedio_spbx_switch5,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
-    //connect(vedio_spby_switch5,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot()));
+    connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    //connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
+
+
 
     /*连续视场*/
     w_ContinueField_1->setWindowTitle("摄像机配置");
@@ -1502,8 +1455,6 @@ void MainWindow::init_vedioCfg()
    glct2->addWidget(continue_search_azimuth,1,5,1,1);
    glct2->addWidget(continue_search_pitch,2,5,1,1);
    glct2->addWidget(continue_search_zoom,3,5,1,1);
-
-   //
 
 
     QGroupBox *g3=new QGroupBox;
@@ -1690,30 +1641,6 @@ void MainWindow::init_vedioCfg()
     w_ContinueField_1->setLayout(v10);
 
     connect(vedio_change3,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue(int)));
-
-    //connect(btn_vediosersor_default,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot()));
-    //connect(btn_vediosersor_update,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot()));
-    //connect(continueChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    //connect(continueenable,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    //connect(continuechanelname,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot(int)));//
-    //connect(continue_vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
-    //connect(continue_vedio_dpi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    //connect(continue_gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
-    //connect(continue_bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
-    //connect(continue_xy_ratio,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot()));
-    //connect(continue_gateshow,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot()));
-    //connect(continue_bullshow,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot()));
-    //connect(continue_autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
-    //connect(continue_gate_sizex,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot()));
-    //connect(continue_gate_sizey,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot()));
-    //connect(continue_gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
-    //connect(continue_gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
-    //connect(continue_set_azimuth,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot()));
-    //connect(continue_set_pitch,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot()));
-    //connect(continue_set_zoom,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot()));
-    //connect(continue_search_azimuth,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
-    //connect(continue_search_pitch ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
-    //connect(continue_search_zoom,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
     connect(continue_vediohaveornot,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
     connect(test_1,SIGNAL(activated(int)),this,SLOT(test_1_Slot()));
     connect(vedio_l1_continue,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot()));
@@ -4901,9 +4828,9 @@ void MainWindow::init_vedioCfg_fif(){
     vediochoose_fif = new QGroupBox();
     QFormLayout *f3=new QFormLayout();
     f3->addRow(vedio_s_fif[0],vediohaveornot_fif);
-    f3->addRow(vedio_s_fif[1],vedio_dpi);
-    f3->addRow(vedio_s_fif[2],vedio_change2);
-    f3->addRow(vedio_s_fif[3],xy_ratio);
+    f3->addRow(vedio_s_fif[1],vedio_dpi_fif);
+    f3->addRow(vedio_s_fif[2],vedio_change2_fif);
+    f3->addRow(vedio_s_fif[3],xy_ratio_fif);
     vediochoose_fif->setLayout(f3);
 
     connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));

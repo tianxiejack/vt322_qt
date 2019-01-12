@@ -1533,7 +1533,7 @@ private:
        QPushButton *btn_vediosersor_default,*btn_vediosersor_update;
        QComboBox *vedio_dpi,*vedio_change1,*vedio_fovclass,*vedio_QGroupBox,*vedio_change2,*vedio_change3;
        QCheckBox *ChanelNum,*enable,*gateshow,*bullshow,*autogate,*vediohaveornot;
-       QLineEdit *chanelname,*xy_ratio,*gate_sizex,*gate_sizey,*gatelocationx,*gatelocationy,*vedio_s1_Fov0,*vedio_s1_Fov1,*vedio_s1_Fov2,*vedio_s1_Fov3,*vedio_s1_Fov4;
+       QLineEdit *gate_sizex,*gate_sizey,*gatelocationx,*gatelocationy,*vedio_s1_Fov0,*vedio_s1_Fov1,*vedio_s1_Fov2,*vedio_s1_Fov3,*vedio_s1_Fov4;
        QGroupBox *vediochoose;
        QString vedio_s[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
        QSpinBox *vedio_spbx_switch1,*vedio_spbx_switch2,*vedio_spbx_switch3,*vedio_spbx_switch4,*vedio_spbx_switch5,*vedio_spby_switch1,*vedio_spby_switch2,*vedio_spby_switch3,*vedio_spby_switch4,*vedio_spby_switch5;
