@@ -3127,11 +3127,10 @@ void MainWindow::read_config(int block)
             send_read_config(block,5,6);
             break;
         case 23:
-            send_read_config(block,0,6);
+            send_read_config(block,0,15);
             break;
         case 24:
-            send_read_config(57,0,4);
-            send_read_config(block,0,14);
+            send_read_config(block,0,3);
             break;
         case 25:
             send_read_config(58,0,3);

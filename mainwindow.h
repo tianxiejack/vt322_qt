@@ -627,8 +627,7 @@ private slots:
     void btn_vediosersor_fix_default_Slot();
     void btn_vediosersor_fix_update_Slot();
     void fixChanelNum_Slot(int i);
-    void fixchanelname_Slot();
-    void fixenable_Slot(int i);
+    void fixchanel_enable_Slot(int i);
     void fix_vediohaveornot_Slot(int i);
     void fix_vedio_dpi_Slot(int index);
     void fix_xy_ratio_Slot();
@@ -732,7 +731,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_sec();
     void fixChanelNum_Slot_sec(int i);
     void fixchanelname_Slot_sec();
-    void fixenable_Slot_sec(int i);
     void fix_vediohaveornot_Slot_sec(int i);
     void fix_vedio_dpi_Slot_sec(int index);
     void fix_xy_ratio_Slot_sec();
@@ -835,7 +833,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_thi();
     void fixChanelNum_Slot_thi(int i);
     void fixchanelname_Slot_thi();
-    void fixenable_Slot_thi(int i);
     void fix_vediohaveornot_Slot_thi(int i);
     void fix_vedio_dpi_Slot_thi(int index);
     void fix_xy_ratio_Slot_thi();
@@ -938,7 +935,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_fou();
     void fixChanelNum_Slot_fou(int i);
     void fixchanelname_Slot_fou();
-    void fixenable_Slot_fou(int i);
     void fix_vediohaveornot_Slot_fou(int i);
     void fix_vedio_dpi_Slot_fou(int index);
     void fix_xy_ratio_Slot_fou();
@@ -1041,7 +1037,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_fif();
     void fixChanelNum_Slot_fif(int i);
     void fixchanelname_Slot_fif();
-    void fixenable_Slot_fif(int i);
     void fix_vediohaveornot_Slot_fif(int i);
     void fix_vedio_dpi_Slot_fif(int index);
     void fix_xy_ratio_Slot_fif();
@@ -1528,7 +1523,7 @@ private:
         MyWidget *w_sersor_1,*w_seitchField_1,*w_ContinueField_1;
        /*固定视场*/
        QPushButton *btn_vediosersor_fix_default,*btn_vediosersor_fix_update;
-       QLineEdit *fixchanelname,*fix_xy_ratio,*fix_gate_sizex,*fix_gate_sizey,*fix_gatelocationx,*fix_gatelocationy,*fix_lEdt,*fix_vertical;
+       QLineEdit *fix_xy_ratio,*fix_gate_sizex,*fix_gate_sizey,*fix_gatelocationx,*fix_gatelocationy,*fix_lEdt,*fix_vertical;
        QCheckBox *fixChanelNum,*fixenable,*fix_vediohaveornot,*fix_gateshow,*fix_bullshow,*fix_autogate;
        QGroupBox *fix_vediochoose;
        QComboBox *fix_vedio_dpi;
