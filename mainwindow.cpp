@@ -385,7 +385,17 @@ void MainWindow::CBox_sysCfg_Slot(int i)
 
 void MainWindow::btn_vediosersor_fix_default_Slot()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 23;
+    send_oneframe(2);
+    send_mutex.unlock();
 
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 24;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_vediosersor_fix_update_Slot()
@@ -394,141 +404,102 @@ void MainWindow::btn_vediosersor_fix_update_Slot()
     send_arr[4] = 0x34;
     send_oneframe(1);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fixChanelNum_Slot(int i)
 {
+    float value= 0;
     if(i == Qt::Checked){
-
+        value = 1;
         send_mutex.lock();
-        send_arr[4]=0x50;
-        send_arr[5]=0x01;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=00;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
     else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4]=0x50;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=00;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
 }
 
-void MainWindow::fixchanelname_Slot()
+void MainWindow::fixchanel_enable_Slot(int i)
 {
-
-}
-
-void MainWindow::fixenable_Slot(int i)
-{
+    float value= 0;
     if(i == Qt::Checked){
-
+        value = 1;
         send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x01;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=02;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
-
-
-        int length=0;
-        QString msg=fixchanelname->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        if(dd.size()>128){
-            QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-            send_arr[4]=0x20;
-            for(int i=0;i<dd.size();i++){
-               int addr1=dd[i] & 0x000000FF;
-               send_arr[5+i]=addr1;
-            }
-            send_oneframe(length);
-            send_mutex.unlock();
-        }
     }
     else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=02;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
 }
 
 void MainWindow::fix_vediohaveornot_Slot(int i)
 {
+    float value= 0;
     if(i == Qt::Checked){
-
+        value = 1;
         send_mutex.lock();
-        send_arr[4]=0x52;
-        send_arr[5]=0x01;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=03;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
     else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4]=0x52;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4]=0x30;
+        send_arr[5]=23;
+        send_arr[6]=03;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
-
 }
 
 void MainWindow::fix_vedio_dpi_Slot(int index)
 {
-    switch(index)
-    {
-        case 0:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-            break;
-        case 1:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-            break;
-        case 2:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x02;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-        case 3:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x03;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-         default:
-        break;
-    }
-
-
+    float value = index;
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=23;
+    send_arr[6]=04;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::fix_xy_ratio_Slot()
 {
-
     float value=fix_xy_ratio->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
-    send_arr[6] = 0x6;
+    send_arr[5] = 23;
+    send_arr[6] = 06;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -536,63 +507,77 @@ void MainWindow::fix_xy_ratio_Slot()
 
 void MainWindow::fix_gateshow_Slot(int i)
 {
+    float value = 0;
     if(i == Qt::Checked){
-
+        value = 1;
         send_mutex.lock();
-        send_arr[4]=0x55;
-        send_arr[5]=0x01;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 07;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
     else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4]=0x55;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 07;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
-
 }
 
 void MainWindow::fix_bullshow_Slot(int i)
 {
+    float value = 0;
     if(i == Qt::Checked){
-
+        value = 1;
         send_mutex.lock();
-        send_arr[4]=0x56;
-        send_arr[5]=0x01;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 8;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
     else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4]=0x56;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 8;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
-
 }
 
 void MainWindow::fix_autogate_Slot(int i)
 {
-    if( i== Qt::Checked)
-    {
+    float value = 0;
+    if(i == Qt::Checked){
+        value = 1;
         send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 9;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
-    else if(i == Qt::Unchecked)
-    {
+    else if(i == Qt::Unchecked){
+        value = 0;
         send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
+        send_arr[4] = 0x30;
+        send_arr[5] = 23;
+        send_arr[6] = 9;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
         send_mutex.unlock();
     }
-
 }
 
 void MainWindow::fix_gate_sizex_Slot()
@@ -600,7 +585,7 @@ void MainWindow::fix_gate_sizex_Slot()
     float value=fix_gate_sizex->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 23;
     send_arr[6] = 10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -612,12 +597,11 @@ void MainWindow::fix_gate_sizey_Slot()
     float value=fix_gate_sizey->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 23;
     send_arr[6] = 11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_gatelocationx_Slot()
@@ -625,12 +609,11 @@ void MainWindow::fix_gatelocationx_Slot()
     float value=fix_gatelocationx->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 23;
     send_arr[6] = 12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_gatelocationy_Slot()
@@ -638,34 +621,35 @@ void MainWindow::fix_gatelocationy_Slot()
     float value=fix_gatelocationx->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 23;
     send_arr[6] = 13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_azimuth_Slot()
 {
-    int value=ledt_set_azimuth->text().toInt();
+    float value=ledt_set_azimuth->text().toInt();
     send_mutex.lock();
-    send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(2);
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_pitch_Slot()
 {
-    int value=ledt_set_pitch->text().toInt();
+    float value=ledt_set_pitch->text().toInt();
     send_mutex.lock();
-    send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(2);
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_zoom_Slot()
@@ -674,7 +658,7 @@ void MainWindow::set_zoom_Slot()
     send_mutex.lock();
     send_arr[4] = 0x59;
     memcpy(send_arr+5,&value,4);
-    send_oneframe(2);
+    send_oneframe(5);
     send_mutex.unlock();
 
 }
@@ -682,20 +666,21 @@ void MainWindow::set_zoom_Slot()
 void MainWindow::search_azimuth_Slot()
 {
     send_mutex.lock();
-    send_arr[4] = 0x60;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
+    send_arr[4] = 0x31;
+    send_arr[5] = 23;
+    send_arr[6] = 14;
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::search_pitch_Slot()
 {
     send_mutex.lock();
-    send_arr[4] = 0x61;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
+    send_arr[4] = 0x31;
+    send_arr[5] = 23;
+    send_arr[6] = 15;
+    send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::search_zoom_Slot()
@@ -705,7 +690,6 @@ void MainWindow::search_zoom_Slot()
     send_arr[5] = 0x01;
     send_oneframe(2);
     send_mutex.unlock();
-
 }
 
 void MainWindow::ledt_set_azimuth_Slot()
@@ -739,11 +723,10 @@ void MainWindow::fix_lEdt_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] =24;
-    send_arr[6] =2;
+    send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_vertical_Slot()
@@ -752,11 +735,10 @@ void MainWindow::fix_vertical_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] =24;
-    send_arr[6] =3;
+    send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_sp_Slot()
@@ -765,11 +747,10 @@ void MainWindow::fix_sp_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] =24;
-    send_arr[6] =4;
+    send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_sp2_Slot()
@@ -778,7 +759,7 @@ void MainWindow::fix_sp2_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] =24;
-    send_arr[6] =5;
+    send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -1619,43 +1600,6 @@ void MainWindow::fixChanelNum_Slot_sec(int i)
 void MainWindow::fixchanelname_Slot_sec()
 {
 
-}
-
-void MainWindow::fixenable_Slot_sec(int i)
-{
-    if(i == Qt::Checked){
-
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-
-
-        int length=0;
-        QString msg=fixchanelname->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        if(dd.size()>128){
-            QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-            send_arr[4]=0x20;
-            for(int i=0;i<dd.size();i++){
-               int addr1=dd[i] & 0x000000FF;
-               send_arr[5+i]=addr1;
-            }
-            send_oneframe(length);
-            send_mutex.unlock();
-        }
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
 }
 
 void MainWindow::fix_vediohaveornot_Slot_sec(int i)
@@ -2841,43 +2785,6 @@ void MainWindow::fixchanelname_Slot_thi()
 
 }
 
-void MainWindow::fixenable_Slot_thi(int i)
-{
-    if(i == Qt::Checked){
-
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-
-
-        int length=0;
-        QString msg=fixchanelname->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        if(dd.size()>128){
-            QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-            send_arr[4]=0x20;
-            for(int i=0;i<dd.size();i++){
-               int addr1=dd[i] & 0x000000FF;
-               send_arr[5+i]=addr1;
-            }
-            send_oneframe(length);
-            send_mutex.unlock();
-        }
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-}
-
 void MainWindow::fix_vediohaveornot_Slot_thi(int i)
 {
     if(i == Qt::Checked){
@@ -4051,43 +3958,6 @@ void MainWindow::fixchanelname_Slot_fou()
 
 }
 
-void MainWindow::fixenable_Slot_fou(int i)
-{
-    if(i == Qt::Checked){
-
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-
-
-        int length=0;
-        QString msg=fixchanelname->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        if(dd.size()>128){
-            QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-            send_arr[4]=0x20;
-            for(int i=0;i<dd.size();i++){
-               int addr1=dd[i] & 0x000000FF;
-               send_arr[5+i]=addr1;
-            }
-            send_oneframe(length);
-            send_mutex.unlock();
-        }
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-}
-
 void MainWindow::fix_vediohaveornot_Slot_fou(int i)
 {
     if(i == Qt::Checked){
@@ -5259,43 +5129,6 @@ void MainWindow::fixChanelNum_Slot_fif(int i)
 void MainWindow::fixchanelname_Slot_fif()
 {
 
-}
-
-void MainWindow::fixenable_Slot_fif(int i)
-{
-    if(i == Qt::Checked){
-
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-
-
-        int length=0;
-        QString msg=fixchanelname->text();
-        QByteArray dd=msg.toUtf8();
-        length=dd.size()+9;
-        if(dd.size()>128){
-            QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-        }else{
-            send_mutex.lock();
-            send_arr[4]=0x20;
-            for(int i=0;i<dd.size();i++){
-               int addr1=dd[i] & 0x000000FF;
-               send_arr[5+i]=addr1;
-            }
-            send_oneframe(length);
-            send_mutex.unlock();
-        }
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x51;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
 }
 
 void MainWindow::fix_vediohaveornot_Slot_fif(int i)
@@ -14570,41 +14403,29 @@ void MainWindow::btnFPGA_clicked()
 
 void MainWindow::vedio_tosersor_fix(int i)
 {
+    float value = i;
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=23;
+    send_arr[6]=05;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+
     //vedio_current_shichang = 0;
     if(i==0)
     {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 23;
-        send_arr[6] = 0x05;
-        send_arr[7] = 1;
-        send_oneframe(7);
-        send_mutex.unlock();
+
     }
     else if(i==1)
     {
         w_sersor_1->close();
         vedio_btnSensor1SwitchSlot();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 23;
-        send_arr[6] = 0x05;
-        send_arr[7] = 2;
-        send_oneframe(7);
-        send_mutex.unlock();
-
     }
     else if(i==2)
     {
         w_sersor_1->close();
         vedio_btnSensor2ContinueSlot();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =23;
-        send_arr[6] = 0x05;
-        send_arr[7] = 3;
-        send_oneframe(7);
-        send_mutex.unlock();
     }
 }
 

@@ -627,8 +627,7 @@ private slots:
     void btn_vediosersor_fix_default_Slot();
     void btn_vediosersor_fix_update_Slot();
     void fixChanelNum_Slot(int i);
-    void fixchanelname_Slot();
-    void fixenable_Slot(int i);
+    void fixchanel_enable_Slot(int i);
     void fix_vediohaveornot_Slot(int i);
     void fix_vedio_dpi_Slot(int index);
     void fix_xy_ratio_Slot();
@@ -732,7 +731,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_sec();
     void fixChanelNum_Slot_sec(int i);
     void fixchanelname_Slot_sec();
-    void fixenable_Slot_sec(int i);
     void fix_vediohaveornot_Slot_sec(int i);
     void fix_vedio_dpi_Slot_sec(int index);
     void fix_xy_ratio_Slot_sec();
@@ -835,7 +833,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_thi();
     void fixChanelNum_Slot_thi(int i);
     void fixchanelname_Slot_thi();
-    void fixenable_Slot_thi(int i);
     void fix_vediohaveornot_Slot_thi(int i);
     void fix_vedio_dpi_Slot_thi(int index);
     void fix_xy_ratio_Slot_thi();
@@ -938,7 +935,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_fou();
     void fixChanelNum_Slot_fou(int i);
     void fixchanelname_Slot_fou();
-    void fixenable_Slot_fou(int i);
     void fix_vediohaveornot_Slot_fou(int i);
     void fix_vedio_dpi_Slot_fou(int index);
     void fix_xy_ratio_Slot_fou();
@@ -1041,7 +1037,6 @@ private slots:
     void btn_vediosersor_fix_update_Slot_fif();
     void fixChanelNum_Slot_fif(int i);
     void fixchanelname_Slot_fif();
-    void fixenable_Slot_fif(int i);
     void fix_vediohaveornot_Slot_fif(int i);
     void fix_vedio_dpi_Slot_fif(int index);
     void fix_xy_ratio_Slot_fif();
@@ -1528,7 +1523,7 @@ private:
         MyWidget *w_sersor_1,*w_seitchField_1,*w_ContinueField_1;
        /*固定视场*/
        QPushButton *btn_vediosersor_fix_default,*btn_vediosersor_fix_update;
-       QLineEdit *fixchanelname,*fix_xy_ratio,*fix_gate_sizex,*fix_gate_sizey,*fix_gatelocationx,*fix_gatelocationy,*fix_lEdt,*fix_vertical;
+       QLineEdit *fix_xy_ratio,*fix_gate_sizex,*fix_gate_sizey,*fix_gatelocationx,*fix_gatelocationy,*fix_lEdt,*fix_vertical;
        QCheckBox *fixChanelNum,*fixenable,*fix_vediohaveornot,*fix_gateshow,*fix_bullshow,*fix_autogate;
        QGroupBox *fix_vediochoose;
        QComboBox *fix_vedio_dpi;
@@ -1538,7 +1533,7 @@ private:
        QPushButton *btn_vediosersor_default,*btn_vediosersor_update;
        QComboBox *vedio_dpi,*vedio_change1,*vedio_fovclass,*vedio_QGroupBox,*vedio_change2,*vedio_change3;
        QCheckBox *ChanelNum,*enable,*gateshow,*bullshow,*autogate,*vediohaveornot;
-       QLineEdit *chanelname,*xy_ratio,*gate_sizex,*gate_sizey,*gatelocationx,*gatelocationy,*vedio_s1_Fov0,*vedio_s1_Fov1,*vedio_s1_Fov2,*vedio_s1_Fov3,*vedio_s1_Fov4;
+       QLineEdit *gate_sizex,*gate_sizey,*gatelocationx,*gatelocationy,*vedio_s1_Fov0,*vedio_s1_Fov1,*vedio_s1_Fov2,*vedio_s1_Fov3,*vedio_s1_Fov4;
        QGroupBox *vediochoose;
        QString vedio_s[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
        QSpinBox *vedio_spbx_switch1,*vedio_spbx_switch2,*vedio_spbx_switch3,*vedio_spbx_switch4,*vedio_spbx_switch5,*vedio_spby_switch1,*vedio_spby_switch2,*vedio_spby_switch3,*vedio_spby_switch4,*vedio_spby_switch5;
