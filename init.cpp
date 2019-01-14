@@ -847,7 +847,6 @@ void MainWindow::init_vedioCfg()
 
     fix_vediohaveornot = new  QCheckBox();
     fix_vedio_dpi = new QComboBox;
-    fix_xy_ratio = new QLineEdit;
     fix_vedio_dpi->addItem("1080P@25HZ");
     fix_vedio_dpi->addItem("1080P@30HZ");
     //fix_vedio_dpi->addItem("1080P@60HZ");
@@ -862,7 +861,6 @@ void MainWindow::init_vedioCfg()
     f4->addRow(vedio_s[0],fix_vediohaveornot);
     f4->addRow(vedio_s[1],fix_vedio_dpi);
     f4->addRow(vedio_s[2],vedio_change1);
-    f4->addRow(vedio_s[3],fix_xy_ratio);
     fix_vediochoose->setLayout(f4);
 
     fix_gateshow = new  QCheckBox();
@@ -1008,7 +1006,6 @@ void MainWindow::init_vedioCfg()
     connect(fix_vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));
     connect(fix_vedio_dpi,SIGNAL(activated(int)),this,SLOT(fix_vedio_dpi_Slot(int)));
     connect(vedio_change1,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix(int)));
-    connect(fix_xy_ratio,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot()));
     connect(fix_gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
     connect(fix_bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
     connect(fix_autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
@@ -1314,9 +1311,19 @@ void MainWindow::init_vedioCfg()
     v->addLayout(v22);
     w_seitchField_1->setLayout(v);
 
-    connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    //connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
     //connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
 
+
+    connect(btn_vediosersor_default,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot()));
+    connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+
+    connect(ChanelNum,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));
+    connect(enable,SIGNAL(stateChanged(int)),this,SLOT(fixchanel_enable_Slot(int)));
+    connect(vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));
+    connect(vedio_dpi,SIGNAL(activated(int)),this,SLOT(fix_vedio_dpi_Slot(int)));
+    connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    //connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
 
 
     /*连续视场*/
@@ -1349,7 +1356,6 @@ void MainWindow::init_vedioCfg()
 
     continue_vediohaveornot = new  QCheckBox();
     continue_vedio_dpi = new QComboBox;
-    continue_xy_ratio = new QLineEdit;
     continue_vedio_dpi->addItem("1080P@25HZ");
     continue_vedio_dpi->addItem("1080P@30HZ");
     continue_vedio_dpi->addItem("1080P@60HZ");
@@ -1364,7 +1370,6 @@ void MainWindow::init_vedioCfg()
     f5->addRow(vedio_s[0],continue_vediohaveornot);
     f5->addRow(vedio_s[1],continue_vedio_dpi);
     f5->addRow(vedio_s[2],vedio_change3);
-    f5->addRow(vedio_s[3],continue_xy_ratio);
     continue_vediochoose->setLayout(f5);
 
     continue_gateshow = new  QCheckBox();
@@ -1722,7 +1727,6 @@ void MainWindow::init_vedioCfg_sec(){
 
     fix_vediohaveornot_sec = new  QCheckBox();
     fix_vedio_dpi_sec = new QComboBox;
-    fix_xy_ratio_sec = new QLineEdit;
     fix_vedio_dpi_sec->addItem("1080P@25HZ");
     fix_vedio_dpi_sec->addItem("1080P@30HZ");
     fix_vedio_dpi_sec->addItem("1080P@60HZ");
@@ -1737,7 +1741,6 @@ void MainWindow::init_vedioCfg_sec(){
     f4->addRow(vedio_s_sec[0],fix_vediohaveornot_sec);
     f4->addRow(vedio_s_sec[1],fix_vedio_dpi_sec);
     f4->addRow(vedio_s_sec[2],vedio_change1_sec);
-    f4->addRow(vedio_s_sec[3],fix_xy_ratio_sec);
     fix_vediochoose_sec->setLayout(f4);
 
     fix_gateshow_sec = new  QCheckBox();
@@ -1943,7 +1946,6 @@ void MainWindow::init_vedioCfg_sec(){
 
     vediohaveornot_sec = new  QCheckBox();
     vedio_dpi_sec = new QComboBox;
-    xy_ratio_sec = new QLineEdit;
     vedio_dpi_sec->addItem("1080P@25HZ");
     vedio_dpi_sec->addItem("1080P@30HZ");
     vedio_dpi_sec->addItem("1080P@60HZ");
@@ -1959,7 +1961,6 @@ void MainWindow::init_vedioCfg_sec(){
     f3->addRow(vedio_s_sec[0],vediohaveornot_sec);
     f3->addRow(vedio_s_sec[1],vedio_dpi_sec);
     f3->addRow(vedio_s_sec[2],vedio_change2_sec);
-    f3->addRow(vedio_s_sec[3],xy_ratio_sec);
     vediochoose_sec->setLayout(f3);
 
     connect(vedio_change2_sec,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
@@ -2282,7 +2283,6 @@ void MainWindow::init_vedioCfg_sec(){
 
     continue_vediohaveornot_sec = new  QCheckBox();
     continue_vedio_dpi_sec = new QComboBox;
-    continue_xy_ratio_sec = new QLineEdit;
    // continue_vedio_dpi_sec->addItem("1080P@25HZ");
     continue_vedio_dpi_sec->addItem("1080P@30HZ");
     continue_vedio_dpi_sec->addItem("1080P@60HZ");
@@ -2297,7 +2297,6 @@ void MainWindow::init_vedioCfg_sec(){
     f5->addRow(vedio_s_sec[0],continue_vediohaveornot_sec);
     f5->addRow(vedio_s_sec[1],continue_vedio_dpi_sec);
     f5->addRow(vedio_s_sec[2],vedio_change3_sec);
-    f5->addRow(vedio_s_sec[3],continue_xy_ratio_sec);
     continue_vediochoose_sec->setLayout(f5);
 
     continue_gateshow_sec = new  QCheckBox();
@@ -2678,7 +2677,6 @@ void MainWindow::init_vedioCfg_thi(){
 
     fix_vediohaveornot_thi = new  QCheckBox();
     fix_vedio_dpi_thi = new QComboBox;
-    fix_xy_ratio_thi = new QLineEdit;
     fix_vedio_dpi_thi->addItem("1080P@25HZ");
     fix_vedio_dpi_thi->addItem("1080P@30HZ");
     fix_vedio_dpi_thi->addItem("1080P@60HZ");
@@ -2693,7 +2691,6 @@ void MainWindow::init_vedioCfg_thi(){
     f4->addRow(vedio_s_thi[0],fix_vediohaveornot_thi);
     f4->addRow(vedio_s_thi[1],fix_vedio_dpi_thi);
     f4->addRow(vedio_s_thi[2],vedio_change1_thi);
-    f4->addRow(vedio_s_thi[3],fix_xy_ratio_thi);
     fix_vediochoose_thi->setLayout(f4);
 
     fix_gateshow_thi = new  QCheckBox();
@@ -2839,7 +2836,6 @@ void MainWindow::init_vedioCfg_thi(){
     connect(fixenable_thi,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_thi(int)));
     connect(fix_vediohaveornot_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_thi(int)));
     connect(fix_vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));
-    connect(fix_xy_ratio_thi,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_thi()));
     connect(fix_gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
     connect(fix_bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
     connect(fix_autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
@@ -2896,7 +2892,6 @@ void MainWindow::init_vedioCfg_thi(){
 
     vediohaveornot_thi = new  QCheckBox();
     vedio_dpi_thi = new QComboBox;
-    xy_ratio_thi = new QLineEdit;
     vedio_dpi_thi->addItem("1080P@25HZ");
     vedio_dpi_thi->addItem("1080P@30HZ");
     vedio_dpi_thi->addItem("1080P@60HZ");
@@ -2912,7 +2907,6 @@ void MainWindow::init_vedioCfg_thi(){
     f3->addRow(vedio_s_thi[0],vediohaveornot_thi);
     f3->addRow(vedio_s_thi[1],vedio_dpi_thi);
     f3->addRow(vedio_s_thi[2],vedio_change2_thi);
-    f3->addRow(vedio_s_thi[3],xy_ratio_thi);
     vediochoose_thi->setLayout(f3);
 
     connect(vedio_change2_thi,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_thi(int)));
@@ -3165,7 +3159,6 @@ void MainWindow::init_vedioCfg_thi(){
     connect(vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
     connect(bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
-    connect(xy_ratio_thi,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_thi()));
     connect(gateshow_thi,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_thi()));
     connect(bullshow_thi,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_thi()));
     connect(autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
@@ -3234,7 +3227,6 @@ void MainWindow::init_vedioCfg_thi(){
 
     continue_vediohaveornot_thi = new  QCheckBox();
     continue_vedio_dpi_thi = new QComboBox;
-    continue_xy_ratio_thi = new QLineEdit;
     continue_vedio_dpi_thi->addItem("1080P@25HZ");
     continue_vedio_dpi_thi->addItem("1080P@30HZ");
     continue_vedio_dpi_thi->addItem("1080P@60HZ");
@@ -3249,7 +3241,6 @@ void MainWindow::init_vedioCfg_thi(){
     f5->addRow(vedio_s_thi[0],continue_vediohaveornot_thi);
     f5->addRow(vedio_s_thi[1],continue_vedio_dpi_thi);
     f5->addRow(vedio_s_thi[2],vedio_change3_thi);
-    f5->addRow(vedio_s_thi[3],continue_xy_ratio_thi);
     continue_vediochoose_thi->setLayout(f5);
 
     continue_gateshow_thi = new  QCheckBox();
@@ -3538,7 +3529,6 @@ void MainWindow::init_vedioCfg_thi(){
     connect(continue_vedio_dpi_thi,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_thi(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(continue_gateshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_thi(int)));
     connect(continue_bullshow_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_thi(int)));
-    connect(continue_xy_ratio_thi,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_thi()));
     connect(continue_gateshow_thi,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_thi()));
     connect(continue_bullshow_thi,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_thi()));
     connect(continue_autogate_thi,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_thi(int)));
@@ -3632,7 +3622,6 @@ void MainWindow::init_vedioCfg_fou(){
 
     fix_vediohaveornot_fou = new  QCheckBox();
     fix_vedio_dpi_fou = new QComboBox;
-    fix_xy_ratio_fou = new QLineEdit;
     fix_vedio_dpi_fou->addItem("1080P@25HZ");
     fix_vedio_dpi_fou->addItem("1080P@30HZ");
     fix_vedio_dpi_fou->addItem("1080P@60HZ");
@@ -3647,7 +3636,6 @@ void MainWindow::init_vedioCfg_fou(){
     f4->addRow(vedio_s_fou[0],fix_vediohaveornot_fou);
     f4->addRow(vedio_s_fou[1],fix_vedio_dpi_fou);
     f4->addRow(vedio_s_fou[2],vedio_change1_fou);
-    f4->addRow(vedio_s_fou[3],fix_xy_ratio_fou);
     fix_vediochoose_fou->setLayout(f4);
 
     fix_gateshow_fou = new  QCheckBox();
@@ -3793,7 +3781,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(fixenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));
     connect(fix_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));
     connect(fix_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));
-    connect(fix_xy_ratio_fou,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_fou()));
     connect(fix_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
     connect(fix_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
     connect(fix_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
@@ -3850,7 +3837,6 @@ void MainWindow::init_vedioCfg_fou(){
 
     vediohaveornot_fou = new  QCheckBox();
     vedio_dpi_fou = new QComboBox;
-    xy_ratio_fou = new QLineEdit;
     vedio_dpi_fou->addItem("1080P@25HZ");
     vedio_dpi_fou->addItem("1080P@30HZ");
     vedio_dpi_fou->addItem("1080P@60HZ");
@@ -3866,7 +3852,6 @@ void MainWindow::init_vedioCfg_fou(){
     f3->addRow(vedio_s_fou[0],vediohaveornot_fou);
     f3->addRow(vedio_s_fou[1],vedio_dpi_fou);
     f3->addRow(vedio_s_fou[2],vedio_change2_fou);
-    f3->addRow(vedio_s_fou[3],xy_ratio_fou);
     vediochoose_fou->setLayout(f3);
 
     connect(vedio_change2_fou,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_fou(int)));
@@ -4119,7 +4104,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
     connect(bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
-    connect(xy_ratio_fou,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fou()));
     connect(gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
     connect(bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
     connect(autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
@@ -4188,7 +4172,6 @@ void MainWindow::init_vedioCfg_fou(){
 
     continue_vediohaveornot_fou = new  QCheckBox();
     continue_vedio_dpi_fou = new QComboBox;
-    continue_xy_ratio_fou = new QLineEdit;
     continue_vedio_dpi_fou->addItem("1080P@25HZ");
     continue_vedio_dpi_fou->addItem("1080P@30HZ");
     continue_vedio_dpi_fou->addItem("1080P@60HZ");
@@ -4203,7 +4186,6 @@ void MainWindow::init_vedioCfg_fou(){
     f5->addRow(vedio_s_fou[0],continue_vediohaveornot_fou);
     f5->addRow(vedio_s_fou[1],continue_vedio_dpi_fou);
     f5->addRow(vedio_s_fou[2],vedio_change3_fou);
-    f5->addRow(vedio_s_fou[3],continue_xy_ratio_fou);
     continue_vediochoose_fou->setLayout(f5);
 
     continue_gateshow_fou = new  QCheckBox();
@@ -4492,7 +4474,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(continue_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(continue_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
     connect(continue_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
-    connect(continue_xy_ratio_fou,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fou()));
     connect(continue_gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
     connect(continue_bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
     connect(continue_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
@@ -4588,7 +4569,6 @@ void MainWindow::init_vedioCfg_fif(){
 
     fix_vediohaveornot_fif = new  QCheckBox();
     fix_vedio_dpi_fif = new QComboBox;
-    fix_xy_ratio_fif = new QLineEdit;
     fix_vedio_dpi_fif->addItem("1080P@25HZ");
     fix_vedio_dpi_fif->addItem("1080P@30HZ");
     fix_vedio_dpi_fif->addItem("1080P@60HZ");
@@ -4604,7 +4584,6 @@ void MainWindow::init_vedioCfg_fif(){
     f4->addRow(vedio_s_fif[0],fix_vediohaveornot_fif);
     f4->addRow(vedio_s_fif[1],fix_vedio_dpi_fif);
     f4->addRow(vedio_s_fif[2],vedio_change1_fif);
-    f4->addRow(vedio_s_fif[3],fix_xy_ratio_fif);
     fix_vediochoose_fif->setLayout(f4);
 
     fix_gateshow_fif = new  QCheckBox();
@@ -4757,7 +4736,6 @@ void MainWindow::init_vedioCfg_fif(){
    connect(fixenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));
    connect(fix_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));
    connect(fix_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));
-   connect(fix_xy_ratio_fif,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_fif()));
    connect(fix_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
    connect(fix_bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
    connect(fix_autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
@@ -4814,7 +4792,6 @@ void MainWindow::init_vedioCfg_fif(){
 
     vediohaveornot_fif = new  QCheckBox();
     vedio_dpi_fif = new QComboBox;
-    xy_ratio_fif = new QLineEdit;
     vedio_dpi_fif->addItem("1080P@25HZ");
     vedio_dpi_fif->addItem("1080P@30HZ");
     vedio_dpi_fif->addItem("1080P@60HZ");
@@ -4830,10 +4807,9 @@ void MainWindow::init_vedioCfg_fif(){
     f3->addRow(vedio_s_fif[0],vediohaveornot_fif);
     f3->addRow(vedio_s_fif[1],vedio_dpi_fif);
     f3->addRow(vedio_s_fif[2],vedio_change2_fif);
-    f3->addRow(vedio_s_fif[3],xy_ratio_fif);
     vediochoose_fif->setLayout(f3);
 
-    connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    //connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
     gateshow_fif = new  QCheckBox();
     bullshow_fif = new  QCheckBox();
     gateshow_fif->setText("波门显示");
@@ -5083,7 +5059,6 @@ void MainWindow::init_vedioCfg_fif(){
     connect(vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
     connect(bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
-    connect(xy_ratio_fif,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fif()));
     connect(gateshow_fif,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fif()));
     connect(bullshow_fif,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fif()));
     connect(autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
@@ -5151,7 +5126,6 @@ void MainWindow::init_vedioCfg_fif(){
 
     continue_vediohaveornot_fif = new  QCheckBox();
     continue_vedio_dpi_fif = new QComboBox;
-    continue_xy_ratio_fif = new QLineEdit;
     continue_vedio_dpi_fif->addItem("1080P@25HZ");
     continue_vedio_dpi_fif->addItem("1080P@30HZ");
     continue_vedio_dpi_fif->addItem("1080P@60HZ");
@@ -5166,7 +5140,6 @@ void MainWindow::init_vedioCfg_fif(){
     f5->addRow(vedio_s_fif[0],continue_vediohaveornot_fif);
     f5->addRow(vedio_s_fif[1],continue_vedio_dpi_fif);
     f5->addRow(vedio_s_fif[2],vedio_change3_fif);
-    f5->addRow(vedio_s_fif[3],continue_xy_ratio_fif);
     continue_vediochoose_fif->setLayout(f5);
 
     continue_gateshow_fif = new  QCheckBox();
@@ -5456,7 +5429,6 @@ void MainWindow::init_vedioCfg_fif(){
     connect(continue_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(continue_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
     connect(continue_bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
-    connect(continue_xy_ratio_fif,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_fif()));
     connect(continue_gateshow_fif,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fif()));
     connect(continue_bullshow_fif,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fif()));
     connect(continue_autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
@@ -7693,11 +7665,6 @@ void MainWindow::showPlat()
 
 void MainWindow::showvedioCfg1()
 {
-    send_mutex.lock();
-    send_arr[4]=0x63;
-    send_arr[5]=0x01;
-    send_oneframe(2);
-    send_mutex.unlock();
     vedio_current_shichang = 0;
     w_sersor_1->show();
     w_sersor_1->show_stat = 1;

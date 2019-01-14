@@ -493,18 +493,6 @@ void MainWindow::fix_vedio_dpi_Slot(int index)
     send_mutex.unlock();
 }
 
-void MainWindow::fix_xy_ratio_Slot()
-{
-    float value=fix_xy_ratio->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 23;
-    send_arr[6] = 06;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
 void MainWindow::fix_gateshow_Slot(int i)
 {
     float value = 0;
@@ -768,7 +756,17 @@ void MainWindow::fix_sp2_Slot()
 
 void MainWindow::btn_vediosersor_default_Slot()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 25;
+    send_oneframe(2);
+    send_mutex.unlock();
 
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 26;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_vediosersor_update_Slot()
@@ -1663,19 +1661,6 @@ void MainWindow::fix_vedio_dpi_Slot_sec(int index)
     }
 
 
-}
-
-void MainWindow::fix_xy_ratio_Slot_sec()
-{
-
-    float value=fix_xy_ratio->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
-    send_arr[6] = 0x6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
 }
 
 void MainWindow::fix_gateshow_Slot_sec(int i)
@@ -2848,19 +2833,6 @@ void MainWindow::fix_vedio_dpi_Slot_thi(int index)
 
 }
 
-void MainWindow::fix_xy_ratio_Slot_thi()
-{
-
-    float value=fix_xy_ratio->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
-    send_arr[6] = 0x6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
 void MainWindow::fix_gateshow_Slot_thi(int i)
 {
     if(i == Qt::Checked){
@@ -4021,19 +3993,6 @@ void MainWindow::fix_vedio_dpi_Slot_fou(int index)
 
 }
 
-void MainWindow::fix_xy_ratio_Slot_fou()
-{
-
-    float value=fix_xy_ratio->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
-    send_arr[6] = 0x6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
 void MainWindow::fix_gateshow_Slot_fou(int i)
 {
     if(i == Qt::Checked){
@@ -5192,19 +5151,6 @@ void MainWindow::fix_vedio_dpi_Slot_fif(int index)
     }
 
 
-}
-
-void MainWindow::fix_xy_ratio_Slot_fif()
-{
-
-    float value=fix_xy_ratio->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
-    send_arr[6] = 0x6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
 }
 
 void MainWindow::fix_gateshow_Slot_fif(int i)
@@ -14431,25 +14377,28 @@ void MainWindow::vedio_tosersor_fix(int i)
 
 void MainWindow::vedio_toSensor_switch(int i)
 {
+    float value = 0;
    if(i==1){
+       value = 0;
        w_seitchField_1->close();
        showvedioCfg1();
        send_mutex.lock();
        send_arr[4] = 0x30;
        send_arr[5] =23;
        send_arr[6] = 0x05;
-       send_arr[7] = 1;
+       memcpy(send_arr+7, &value, 4);
        send_oneframe(7);
        send_mutex.unlock();
 
    }else if(i==2){
+       value = 2;
        w_seitchField_1->close();;
        vedio_btnSensor2ContinueSlot();
        send_mutex.lock();
        send_arr[4] = 0x30;
        send_arr[5] = 23;
        send_arr[6] = 0x05;
-       send_arr[7] = 3;
+       memcpy(send_arr+7, &value, 4);
        send_oneframe(7);
        send_mutex.unlock();
    }
