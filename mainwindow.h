@@ -656,7 +656,6 @@ private slots:
 
     //可切换视场
     void btn_vediosersor_default_Slot();
-    void btn_vediosersor_update_Slot();
     void vedio_fovclass_Slot(int i);
     void vedio_s1_Fov0_Slot();
     void vedio_s1_Fov1_Slot();
@@ -687,6 +686,15 @@ private slots:
     void change_set_zoom_Slot();
 
     //连续视场
+    void btn_vediosersor_continue_default_Slot();
+    void continue_gate_sizex_Slot();
+    void continue_gate_sizey_Slot();
+    void continue_gatelocationx_Slot();
+    void continue_gatelocationy_Slot();
+    void continue_set_azimuth_Slot();
+    void continue_set_pitch_Slot();
+    void continue_set_zoom_Slot();
+
     void test_1_Slot();
     void vedio_l1_continue_Slot();
     void vedio_l2_continue_Slot();
@@ -1540,7 +1548,7 @@ private:
        QLineEdit  *Change_ledt_set_azimuth,*Change_ledt_set_pitch,*Change_ledt_set_zoom,*Change_ledt_search_azimuth,*Change_ledt_search_pitch,*Change_ledt_search_zoom,*Change_vertical1,*Change_vertical2,*Change_vertical3,*Change_vertical4,*Change_vertical5;
        /*连续视场*/
        QPushButton *btn_vediosersor_continue_default,*btn_vediosersor_continue_update;
-       QLineEdit *continuechanelname,*continue_gate_sizex,*continue_gate_sizey,*continue_gatelocationx,*continue_gatelocationy,*test_1;
+       QLineEdit *continue_gate_sizex,*continue_gate_sizey,*continue_gatelocationx,*continue_gatelocationy,*test_1;
        QCheckBox *continueChanelNum,*continueenable,*continue_vediohaveornot,*continue_gateshow,*continue_bullshow,*continue_autogate;
        QComboBox *continue_vedio_dpi;
        QGroupBox *continue_vediochoose;
