@@ -786,6 +786,15 @@ private slots:
 
 
     //连续视场
+    void btn_vediosersor_continue_default_Slot_sec();
+    void continue_gate_sizex_Slot_sec();
+    void continue_gate_sizey_Slot_sec();
+    void continue_gatelocationx_Slot_sec();
+    void continue_gatelocationy_Slot_sec();
+    void continue_set_azimuth_Slot_sec();
+    void continue_set_pitch_Slot_sec();
+    void continue_set_zoom_Slot_sec();
+
     void test_1_Slot_sec();
     void vedio_l1_continue_Slot_sec();
     void vedio_l2_continue_Slot_sec();
@@ -801,7 +810,6 @@ private slots:
     void vedio_continue_Fov4_Slot_sec();
     void vedio_continue_Fov5_Slot_sec();
     void vedio_continue_Fov6_Slot_sec();
-    void vedio_continue_Fov7_Slot_sec();
     void continue_vertical1_Slot_sec();
     void continue_vertical2_Slot_sec();
     void continue_vertical3_Slot_sec();

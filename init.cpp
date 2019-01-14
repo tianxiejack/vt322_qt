@@ -2592,40 +2592,35 @@ void MainWindow::init_vedioCfg_sec(){
 
     w_ContinueField_1_sec->setLayout(v10);
 
-    connect(vedio_change3_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
-/*
-    connect(btn_vediosersor_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
-    connect(btn_vediosersor_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
+    connect(btn_vediosersor_continue_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_continue_default_Slot_sec()));
+    connect(btn_vediosersor_continue_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
     connect(continueChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    connect(continueenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slo_sect_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(continuechanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec_sec(int)));//
-    connect(continue_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continueenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continue_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(vedio_change3_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
     connect(continue_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
     connect(continue_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
-    connect(continue_xy_ratio_sec,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_sec()));
-    connect(continue_gateshow_sec,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_sec()));
-    connect(continue_bullshow_sec,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_sec()));
     connect(continue_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
-    connect(continue_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
-    connect(continue_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
-    connect(continue_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
-    connect(continue_gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
-    connect(continue_set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
-    connect(continue_set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
-    connect(continue_set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
-    connect(continue_search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
-    connect(continue_search_pitch_sec ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
-    connect(continue_search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
-    connect(continue_vediohaveornot_sec,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_sec()));
-    connect(test_1_sec,SIGNAL(activated(int)),this,SLOT(test_1_Slot_sec()));
-    connect(vedio_l1_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_sec()));
-    connect(vedio_l2_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_sec()));
-    connect(vedio_l3_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_sec()));
-    connect(vedio_l4_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_sec()));
-    connect(vedio_l5_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_sec()));
-    connect(vedio_l6_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_sec()));
-    connect(vedio_l7_continue_sec,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_sec()));
+    connect(continue_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizex_Slot_sec()));
+    connect(continue_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizey_Slot_sec()));
+    connect(continue_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(continue_gatelocationx_Slot_sec()));
+    connect(continue_gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(continue_gatelocationy_Slot_sec()));
+    connect(continue_set_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(continue_set_azimuth_Slot_sec()));
+    connect(continue_set_pitch_sec,SIGNAL(clicked(bool)),this,SLOT(continue_set_pitch_Slot_sec()));
+    connect(continue_set_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(continue_set_zoom_Slot_sec()));
+    connect(continue_search_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(continue_search_pitch_sec ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(continue_search_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
+    connect(test_1_sec,SIGNAL(returnPressed()),this,SLOT(test_1_Slot_sec()));
+
+    connect(vedio_l1_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l1_continue_Slot_sec()));
+    connect(vedio_l2_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l2_continue_Slot_sec()));
+    connect(vedio_l3_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l3_continue_Slot_sec()));
+    connect(vedio_l4_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l4_continue_Slot_sec()));
+    connect(vedio_l5_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l5_continue_Slot_sec()));
+    connect(vedio_l6_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l6_continue_Slot_sec()));
+    connect(vedio_l7_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l7_continue_Slot_sec()));
 
     connect( vedio_continue_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_sec()));
     connect( vedio_continue_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_sec()));
@@ -2642,23 +2637,21 @@ void MainWindow::init_vedioCfg_sec(){
      connect( continue_vertical6_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_sec()));
      connect( continue_vertical7_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_sec()));
 
-      connect( vedio_spbx_continue1_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_sec()));
-      connect( vedio_spbx_continue2_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_sec()));
-      connect( vedio_spbx_continue3_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_sec()));
-      connect( vedio_spbx_continue4_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_sec()));
-      connect( vedio_spbx_continue5_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_sec()));
-      connect( vedio_spbx_continue6_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_sec()));
-      connect( vedio_spbx_continue7_sec,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_sec()));
+      connect( vedio_spbx_continue1_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue1_Slot_sec()));
+      connect( vedio_spbx_continue2_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue2_Slot_sec()));
+      connect( vedio_spbx_continue3_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue3_Slot_sec()));
+      connect( vedio_spbx_continue4_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue4_Slot_sec()));
+      connect( vedio_spbx_continue5_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue5_Slot_sec()));
+      connect( vedio_spbx_continue6_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue6_Slot_sec()));
+      connect( vedio_spbx_continue7_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_continue7_Slot_sec()));
 
-      connect( vedio_spby_continue1_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_sec()));
-      connect( vedio_spby_continue2_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_sec()));
-      connect( vedio_spby_continue3_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_sec()));
-      connect( vedio_spby_continue4_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_sec()));
-      connect( vedio_spby_continue5_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_sec()));
-      connect( vedio_spby_continue6_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_sec()));
-      connect( vedio_spby_continue7_sec,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_sec()));
-      */
-
+      connect( vedio_spby_continue1_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue1_Slot_sec()));
+      connect( vedio_spby_continue2_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue2_Slot_sec()));
+      connect( vedio_spby_continue3_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue3_Slot_sec()));
+      connect( vedio_spby_continue4_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue4_Slot_sec()));
+      connect( vedio_spby_continue5_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue5_Slot_sec()));
+      connect( vedio_spby_continue6_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue6_Slot_sec()));
+      connect( vedio_spby_continue7_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue7_Slot_sec()));
 }
 
 void MainWindow::init_vedioCfg_thi(){
