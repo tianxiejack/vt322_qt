@@ -678,10 +678,10 @@ private slots:
     void vedio_spby_switch3_Slot();
     void vedio_spby_switch4_Slot();
     void vedio_spby_switch5_Slot();
-
-
-
-
+    void gatelocationx_Slot();
+    void gatelocationy_Slot();
+    void gate_sizex_Slot();
+    void gate_sizey_Slot();
 
     //连续视场
     void test_1_Slot();
