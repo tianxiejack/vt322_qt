@@ -1014,10 +1014,10 @@ void MainWindow::init_vedioCfg()
     connect(fix_gatelocationx,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot()));
     connect(fix_gatelocationy,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot()));
     connect(set_azimuth,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot()));
-    connect(search_azimuth,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
     connect(set_pitch,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot()));
-    connect(search_pitch ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
     connect(set_zoom,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot()));
+    connect(search_azimuth,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(search_pitch ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
     connect(search_zoom,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
     connect(fix_lEdt,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
     connect(fix_vertical,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot()));
@@ -1311,10 +1311,6 @@ void MainWindow::init_vedioCfg()
     v->addLayout(v22);
     w_seitchField_1->setLayout(v);
 
-    //connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
-    //connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
-
-
     connect(btn_vediosersor_default,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot()));
     connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
 
@@ -1323,6 +1319,15 @@ void MainWindow::init_vedioCfg()
     connect(vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot(int)));
     connect(vedio_dpi,SIGNAL(activated(int)),this,SLOT(fix_vedio_dpi_Slot(int)));
     connect(vedio_change2,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
+    connect(gateshow,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot(int)));
+    connect(bullshow,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot(int)));
+    connect(autogate,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot(int)));
+    connect(gate_sizex,SIGNAL(returnPressed()),this,SLOT(gate_sizex_Slot()));
+    connect(gate_sizey,SIGNAL(returnPressed()),this,SLOT(gate_sizey_Slot()));
+    connect(gatelocationx,SIGNAL(returnPressed()),this,SLOT(gatelocationx_Slot()));
+    connect(gatelocationy,SIGNAL(returnPressed()),this,SLOT(gatelocationy_Slot()));
+
+
     //connect( vedio_fovclass,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot()));
 
 

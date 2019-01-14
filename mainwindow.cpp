@@ -580,9 +580,33 @@ void MainWindow::fix_gate_sizex_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::gate_sizex_Slot()
+{
+    float value=gate_sizex->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_gate_sizey_Slot()
 {
     float value=fix_gate_sizey->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::gate_sizey_Slot()
+{
+    float value=gate_sizey->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 23;
@@ -604,9 +628,33 @@ void MainWindow::fix_gatelocationx_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::gatelocationx_Slot()
+{
+    float value=gatelocationx->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_gatelocationy_Slot()
 {
     float value=fix_gatelocationx->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 23;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::gatelocationy_Slot()
+{
+    float value=gatelocationx->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 23;
@@ -620,11 +668,9 @@ void MainWindow::set_azimuth_Slot()
 {
     float value=ledt_set_azimuth->text().toInt();
     send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 23;
-    send_arr[6] = 14;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
+    send_arr[4] = 0x57;
+    memcpy(send_arr+5,&value,4);
+    send_oneframe(5);
     send_mutex.unlock();
 }
 
@@ -632,11 +678,9 @@ void MainWindow::set_pitch_Slot()
 {
     float value=ledt_set_pitch->text().toInt();
     send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 23;
-    send_arr[6] = 15;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
+    send_arr[4] = 0x58;
+    memcpy(send_arr+5,&value,4);
+    send_oneframe(5);
     send_mutex.unlock();
 }
 
@@ -654,20 +698,18 @@ void MainWindow::set_zoom_Slot()
 void MainWindow::search_azimuth_Slot()
 {
     send_mutex.lock();
-    send_arr[4] = 0x31;
-    send_arr[5] = 23;
-    send_arr[6] = 14;
-    send_oneframe(3);
+    send_arr[4] = 0x60;
+    send_arr[5] = 0x01;
+    send_oneframe(2);
     send_mutex.unlock();
 }
 
 void MainWindow::search_pitch_Slot()
 {
     send_mutex.lock();
-    send_arr[4] = 0x31;
-    send_arr[5] = 23;
-    send_arr[6] = 15;
-    send_oneframe(7);
+    send_arr[4] = 0x61;
+    send_arr[5] = 0x01;
+    send_oneframe(2);
     send_mutex.unlock();
 }
 
