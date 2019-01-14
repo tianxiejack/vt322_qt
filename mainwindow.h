@@ -650,8 +650,8 @@ private slots:
     void ledt_search_zoom_Slot();
     void fix_lEdt_Slot();
     void fix_vertical_Slot();
-    void fix_sp_Slot();
-    void fix_sp2_Slot();
+    void fix_sp_Slot(int);
+    void fix_sp2_Slot(int);
 
 
     //可切换视场
@@ -668,20 +668,23 @@ private slots:
     void Change_vertical3_Slot();
     void Change_vertical4_Slot();
     void Change_vertical5_Slot();
-    void vedio_spbx_switch1_Slot();
-    void vedio_spbx_switch2_Slot();
-    void vedio_spbx_switch3_Slot();
-    void vedio_spbx_switch4_Slot();
-    void vedio_spbx_switch5_Slot();
-    void vedio_spby_switch1_Slot();
-    void vedio_spby_switch2_Slot();
-    void vedio_spby_switch3_Slot();
-    void vedio_spby_switch4_Slot();
-    void vedio_spby_switch5_Slot();
+    void vedio_spbx_switch1_Slot(int);
+    void vedio_spbx_switch2_Slot(int);
+    void vedio_spbx_switch3_Slot(int);
+    void vedio_spbx_switch4_Slot(int);
+    void vedio_spbx_switch5_Slot(int);
+    void vedio_spby_switch1_Slot(int);
+    void vedio_spby_switch2_Slot(int);
+    void vedio_spby_switch3_Slot(int);
+    void vedio_spby_switch4_Slot(int);
+    void vedio_spby_switch5_Slot(int);
     void gatelocationx_Slot();
     void gatelocationy_Slot();
     void gate_sizex_Slot();
     void gate_sizey_Slot();
+    void change_set_azimuth_Slot();
+    void change_set_pitch_Slot();
+    void change_set_zoom_Slot();
 
     //连续视场
     void test_1_Slot();
