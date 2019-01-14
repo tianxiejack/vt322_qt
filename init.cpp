@@ -5530,6 +5530,7 @@ void MainWindow::init_vedioCfg_fif(){
 
 void MainWindow::init_dbCfg()
 {
+    /*
     w_dbg=new MyWidget;
     w_dbg->setWindowTitle("捕获配置");
     bleedx_plat=new QLineEdit;
@@ -5581,6 +5582,8 @@ void MainWindow::init_dbCfg()
     connect(errx_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot()));
     connect(erry_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot()));
     connect(time_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot()));
+    */
+
     /*
     connect(dbg5_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg5_Slot()));
     connect(dbg6_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_dbg6_Slot()));
@@ -7761,18 +7764,6 @@ void MainWindow::showvedioCfg5()
 }
 void MainWindow::showpidsysCfg1()
 {
-    /*
-    send_mutex.lock();
-    send_arr[4]=0x30;
-    send_arr[5]=0x2;
-    send_arr[6]=0x0;
-    float tmp = 1;
-    memcpy(&send_arr[7],&tmp,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-    */
-
-
     for(int i=1;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
@@ -7789,16 +7780,6 @@ void MainWindow::showpidsysCfg1()
         send_oneframe(3);
         send_mutex.unlock();
     }
-
-    /*
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=03;
-    send_arr[6]=08;
-    send_oneframe(3);
-    send_mutex.unlock();
-    */
-
     w_pid->show();
     w_pid->show_stat = 1;
 }

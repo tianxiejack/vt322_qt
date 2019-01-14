@@ -230,6 +230,34 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             break;
 
         case 92:
+            if(w_pid2->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x00:
+                        kx_lineEdt2->setText(QString::number(value_i));
+                        break;
+                    case 0x01:
+                        ky_lineEdt2->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        errx_lineEdt2->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        erry_lineEdt2->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        time_lineEdt2->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        x_ratio_control2->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        y_ratio_control2->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+        case 93:
             if(w_pid3->show_stat)
             {
                 switch (output_array[2]){
@@ -260,7 +288,36 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
             }
             break;
-        case 93:
+        case 94:
+            if(w_pid3->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x00:
+                        kx_lineEdt3->setText(QString::number(value_i));
+                        break;
+                    case 0x01:
+                        ky_lineEdt3->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        errx_lineEdt3->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        erry_lineEdt3->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        time_lineEdt3->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        x_ratio_control3->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        y_ratio_control3->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+
+        case 95:
             if(w_pid4->show_stat)
             {
                 switch (output_array[2]){
@@ -291,7 +348,37 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
             }
             break;
-        case 94:
+        case 96:
+            if(w_pid4->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x00:
+                        kx_lineEdt4->setText(QString::number(value_i));
+                        break;
+                    case 0x01:
+                        ky_lineEdt4->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        errx_lineEdt4->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        erry_lineEdt4->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        time_lineEdt4->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        x_ratio_control4->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        y_ratio_control4->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+
+
+        case 97:
             if(w_pid5->show_stat)
             {
                 switch (output_array[2]){
@@ -322,6 +409,36 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
             }
             break;
+        case 98:
+            if(w_pid5->show_stat)
+            {
+                switch (output_array[2]){
+                    case 0x00:
+                        kx_lineEdt5->setText(QString::number(value_i));
+                        break;
+                    case 0x01:
+                        ky_lineEdt5->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        errx_lineEdt5->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        erry_lineEdt5->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        time_lineEdt5->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        x_ratio_control5->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        y_ratio_control5->setText(QString::number(value_i));
+                        break;
+                }
+            }
+            break;
+
+
             case 0x03:
                 if(w_speedconv->show_stat)
                 {
@@ -1766,7 +1883,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         case 0x30:
             if(w_pid->show_stat){
                 if(output_array[2]==0x00){
-                    kx_lineEdt->setText(QString::number(value_i));
+                    kx_lineEdt->setText(QString::number(value_i));      
                 }else if(output_array[2]==0x01){
                     ky_lineEdt->setText(QString::number(value_i));
                 }else if(output_array[2]==0x02){
