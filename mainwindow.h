@@ -755,7 +755,6 @@ private slots:
 
     //可切换视场
     void btn_vediosersor_default_Slot_sec();
-    void btn_vediosersor_update_Slot_sec();
     void vedio_fovclass_Slot_sec(int i);
     void vedio_s1_Fov0_Slot_sec();
     void vedio_s1_Fov1_Slot_sec();
@@ -777,9 +776,13 @@ private slots:
     void vedio_spby_switch3_Slot_sec();
     void vedio_spby_switch4_Slot_sec();
     void vedio_spby_switch5_Slot_sec();
-
-
-
+    void fix_gate_sizex_change_Slot_sec();
+    void fix_gate_sizey_change_Slot_sec();
+    void fix_gatelocationx_change_Slot_sec();
+    void fix_gatelocationy_change_Slot_sec();
+    void set_azimuth_change_Slot_sec();
+    void set_pitch_change_Slot_sec();
+    void set_zoom_change_Slot_sec();
 
 
     //连续视场

@@ -1989,7 +1989,6 @@ void MainWindow::init_vedioCfg_sec(){
     f3->addRow(vedio_s_sec[2],vedio_change2_sec);
     vediochoose_sec->setLayout(f3);
 
-    connect(vedio_change2_sec,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
     gateshow_sec = new  QCheckBox();
     bullshow_sec = new  QCheckBox();
     gateshow_sec->setText("波门显示");
@@ -2025,7 +2024,7 @@ void MainWindow::init_vedioCfg_sec(){
 
     QHBoxLayout *h2=new QHBoxLayout;
     QLabel *label7=new QLabel;
-    label7->setText("测试现场等级");
+    label7->setText("测试视场等级");
     vedio_fovclass_sec = new QComboBox;
     vedio_fovclass_sec->addItem("可切换视场1");
     vedio_fovclass_sec->addItem("可切换视场2");
@@ -2227,56 +2226,53 @@ void MainWindow::init_vedioCfg_sec(){
     v->addLayout(v3);
     v->addWidget(autogate_sec);
     v->addLayout(gl);
-  //v->addLayout(h2);
     v->addLayout(v22);
     w_seitchField_1_sec->setLayout(v);
-    /*
-    connect(btn_vediosersor_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
-    connect(btn_vediosersor_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
-    connect(ChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+
+    connect(btn_vediosersor_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot_sec()));
+    connect(btn_vediosersor_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+
+    connect(ChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(enable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(chanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec(int)));//
     connect(vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(vedio_change2_sec,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
     connect(gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
     connect(bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
-    connect(xy_ratio_sec,SIGNAL(activated(int)),this,SLOT(fix_xy_ratio_Slot_sec()));
-    connect(gateshow_sec,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_sec()));
-    connect(bullshow_sec,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_sec()));
     connect(autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
-    connect(gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
-    connect(gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
-    connect(gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
-    connect(gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
-    connect(Change_set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
-    connect(Change_set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
-    connect(Change_set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
-    connect(Change_search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
-    connect(Change_search_pitch_sec ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
-    connect(Change_search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
-    connect( vedio_fovclass_sec,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_sec()));
+    connect(gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_change_Slot_sec()));
+    connect(gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_change_Slot_sec()));
+    connect(gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_change_Slot_sec()));
+    connect(gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_change_Slot_sec()));
+    connect(Change_set_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_change_Slot_sec()));
+    connect(Change_set_pitch_sec,SIGNAL(clicked(bool)),this,SLOT(set_pitch_change_Slot_sec()));
+    connect(Change_set_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(set_zoom_change_Slot_sec()));
+    connect(Change_search_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(Change_search_pitch_sec ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(Change_search_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
+    connect(vedio_fovclass_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_fovclass_Slot_sec(int)));
 
-    connect(vedio_s1_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot()));
-    connect(Change_vertical1_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(vedio_spbx_switch1_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_spby_switch1_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_s1_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
-    connect(Change_vertical2_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(vedio_spbx_switch2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_spby_switch2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_s1_Fov2_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
-    connect(Change_vertical3_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(vedio_spbx_switch3_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slo_sect()));
-    connect(vedio_spby_switch3_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_s1_Fov3_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
-    connect(Change_vertical4_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(vedio_spbx_switch4_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_spby_switch4_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_s1_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
-    connect(Change_vertical5_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(vedio_spbx_switch5_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(vedio_spby_switch5_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-*/
+    connect(vedio_s1_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov0_Slot_sec()));
+    connect(Change_vertical1_sec,SIGNAL(returnPressed()),this,SLOT(Change_vertical1_Slot_sec()));
+    connect(vedio_spbx_switch1_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_switch1_Slot_sec()));
+    connect(vedio_spby_switch1_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_switch1_Slot_sec()));
+    connect(vedio_s1_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov1_Slot_sec()));
+    connect(Change_vertical2_sec,SIGNAL(returnPressed()),this,SLOT(Change_vertical2_Slot_sec()));
+    connect(vedio_spbx_switch2_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_switch2_Slot_sec()));
+    connect(vedio_spby_switch2_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_switch2_Slot_sec()));
+    connect(vedio_s1_Fov2_sec,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov2_Slot_sec()));
+    connect(Change_vertical3_sec,SIGNAL(returnPressed()),this,SLOT(Change_vertical3_Slot_sec()));
+    connect(vedio_spbx_switch3_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_switch3_Slot_sec()));
+    connect(vedio_spby_switch3_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_switch3_Slot_sec()));
+    connect(vedio_s1_Fov3_sec,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov3_Slot_sec()));
+    connect(Change_vertical4_sec,SIGNAL(returnPressed()),this,SLOT(Change_vertical4_Slot_sec()));
+    connect(vedio_spbx_switch4_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_switch4_Slot_sec()));
+    connect(vedio_spby_switch4_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_switch4_Slot_sec()));
+    connect(vedio_s1_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov4_Slot_sec()));
+    connect(Change_vertical5_sec,SIGNAL(returnPressed()),this,SLOT(Change_vertical5_Slot_sec()));
+    connect(vedio_spbx_switch5_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spbx_switch5_Slot_sec()));
+    connect(vedio_spby_switch5_sec,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_switch5_Slot_sec()));
+
 
     /*连续视场*/
     w_ContinueField_1_sec->setWindowTitle("摄像机配置");
@@ -2965,7 +2961,7 @@ void MainWindow::init_vedioCfg_thi(){
 
     QHBoxLayout *h2=new QHBoxLayout;
     QLabel *label7=new QLabel;
-    label7->setText("测试现场等级");
+    label7->setText("测试视场等级");
     vedio_fovclass_thi = new QComboBox;
     vedio_fovclass_thi->addItem("可切换视场1");
     vedio_fovclass_thi->addItem("可切换视场2");
@@ -3907,7 +3903,7 @@ void MainWindow::init_vedioCfg_fou(){
 
     QHBoxLayout *h2=new QHBoxLayout;
     QLabel *label7=new QLabel;
-    label7->setText("测试现场等级");
+    label7->setText("测试视场等级");
     vedio_fovclass_fou = new QComboBox;
     vedio_fovclass_fou->addItem("可切换视场1");
     vedio_fovclass_fou->addItem("可切换视场2");
@@ -4861,7 +4857,7 @@ void MainWindow::init_vedioCfg_fif(){
 
     QHBoxLayout *h2=new QHBoxLayout;
     QLabel *label7=new QLabel;
-    label7->setText("测试现场等级");
+    label7->setText("测试视场等级");
     vedio_fovclass_fif= new QComboBox;
     vedio_fovclass_fif->addItem("可切换视场1");
     vedio_fovclass_fif->addItem("可切换视场2");
@@ -7689,11 +7685,6 @@ void MainWindow::showvedioCfg1()
 void MainWindow::showvedioCfg2()
 {
     vedio_current_shichang_sec = 0;
-    send_mutex.lock();
-    send_arr[4]=0x63;
-    send_arr[5]=0x02;
-    send_oneframe(2);
-    send_mutex.unlock();
     w_sersor_1_sec->show();
     w_sersor_1_sec->show_stat = 1;
 }
