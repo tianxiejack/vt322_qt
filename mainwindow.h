@@ -643,11 +643,6 @@ private slots:
     void search_azimuth_Slot();
     void search_pitch_Slot();
     void search_zoom_Slot();
-    void ledt_set_azimuth_Slot();
-    void ledt_set_pitch_Slot();
-    void ledt_set_zoom_Slot();
-    void ledt_search_azimuth_Slot();
-    void ledt_search_zoom_Slot();
     void fix_lEdt_Slot();
     void fix_vertical_Slot();
     void fix_sp_Slot(int);
@@ -738,9 +733,8 @@ private slots:
 
     //摄像机通道二
     void btn_vediosersor_fix_default_Slot_sec();
-    void btn_vediosersor_fix_update_Slot_sec();
     void fixChanelNum_Slot_sec(int i);
-    void fixchanelname_Slot_sec();
+    void fixchanelname_Slot_sec(int i);
     void fix_vediohaveornot_Slot_sec(int i);
     void fix_vedio_dpi_Slot_sec(int index);
     void fix_gateshow_Slot_sec(int i);
@@ -753,14 +747,6 @@ private slots:
     void set_azimuth_Slot_sec();
     void set_pitch_Slot_sec();
     void set_zoom_Slot_sec();
-    void search_azimuth_Slot_sec();
-    void search_pitch_Slot_sec();
-    void search_zoom_Slot_sec();
-    void ledt_set_azimuth_Slot_sec();
-    void ledt_set_pitch_Slot_sec();
-    void ledt_set_zoom_Slot_sec();
-    void ledt_search_azimuth_Slot_sec();
-    void ledt_search_zoom_Slot_sec();
     void fix_lEdt_Slot_sec();
     void fix_vertical_Slot_sec();
     void fix_sp_Slot_sec();
@@ -1567,7 +1553,7 @@ private:
           MyWidget *w_sersor_1_sec,*w_seitchField_1_sec,*w_ContinueField_1_sec;
           /*固定视场*/
           QPushButton  *btn_vediosersor_fix_default_sec,*btn_vediosersor_fix_update_sec;
-          QLineEdit *fixchanelname_sec,*fix_gate_sizex_sec,*fix_gate_sizey_sec,*fix_gatelocationx_sec,*fix_gatelocationy_sec,*fix_lEdt_sec,*fix_vertical_sec;
+          QLineEdit *fix_gate_sizex_sec,*fix_gate_sizey_sec,*fix_gatelocationx_sec,*fix_gatelocationy_sec,*fix_lEdt_sec,*fix_vertical_sec;
           QCheckBox *fixChanelNum_sec,*fixenable_sec,*fix_vediohaveornot_sec,*fix_gateshow_sec,*fix_bullshow_sec,*fix_autogate_sec;
           QGroupBox *fix_vediochoose_sec;
           QComboBox *fix_vedio_dpi_sec;
@@ -1577,7 +1563,7 @@ private:
           QPushButton  *btn_vediosersor_default_sec,*btn_vediosersor_update_sec;
           QComboBox *vedio_dpi_sec,*vedio_change1_sec,*vedio_fovclass_sec,*vedio_QGroupBox_sec,*vedio_change2_sec,*vedio_change3_sec;
           QCheckBox *ChanelNum_sec,*enable_sec,*gateshow_sec,*bullshow_sec,*autogate_sec,*vediohaveornot_sec;
-          QLineEdit *chanelname_sec,*gate_sizex_sec,*gate_sizey_sec,*gatelocationx_sec,*gatelocationy_sec,*vedio_s1_Fov0_sec,*vedio_s1_Fov1_sec,*vedio_s1_Fov2_sec,*vedio_s1_Fov3_sec,*vedio_s1_Fov4_sec;
+          QLineEdit *gate_sizex_sec,*gate_sizey_sec,*gatelocationx_sec,*gatelocationy_sec,*vedio_s1_Fov0_sec,*vedio_s1_Fov1_sec,*vedio_s1_Fov2_sec,*vedio_s1_Fov3_sec,*vedio_s1_Fov4_sec;
           QGroupBox *vediochoose_sec;
           QString vedio_s_sec[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
           QSpinBox *vedio_spbx_switch1_sec,*vedio_spbx_switch2_sec,*vedio_spbx_switch3_sec,*vedio_spbx_switch4_sec,*vedio_spbx_switch5_sec,*vedio_spby_switch1_sec,*vedio_spby_switch2_sec,*vedio_spby_switch3_sec,*vedio_spby_switch4_sec,*vedio_spby_switch5_sec;
@@ -1586,7 +1572,7 @@ private:
           QLineEdit  *Change_ledt_set_azimuth_sec,*Change_ledt_set_pitch_sec,*Change_ledt_set_zoom_sec,*Change_ledt_search_azimuth_sec,*Change_ledt_search_pitch_sec,*Change_ledt_search_zoom_sec,*Change_vertical1_sec,*Change_vertical2_sec,*Change_vertical3_sec,*Change_vertical4_sec,*Change_vertical5_sec;
           /*连续视场*/
           QPushButton *btn_vediosersor_continue_default_sec,*btn_vediosersor_continue_update_sec;
-          QLineEdit *continuechanelname_sec,*continue_gate_sizex_sec,*continue_gate_sizey_sec,*continue_gatelocationx_sec,*continue_gatelocationy_sec,*test_1_sec;
+          QLineEdit *continue_gate_sizex_sec,*continue_gate_sizey_sec,*continue_gatelocationx_sec,*continue_gatelocationy_sec,*test_1_sec;
           QCheckBox *continueChanelNum_sec,*continueenable_sec,*continue_vediohaveornot_sec,*continue_gateshow_sec,*continue_bullshow_sec,*continue_autogate_sec;
           QComboBox *continue_vedio_dpi_sec;
           QGroupBox *continue_vediochoose_sec;

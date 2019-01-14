@@ -849,9 +849,9 @@ void MainWindow::init_vedioCfg()
     fix_vedio_dpi = new QComboBox;
     fix_vedio_dpi->addItem("1080P@25HZ");
     fix_vedio_dpi->addItem("1080P@30HZ");
-    //fix_vedio_dpi->addItem("1080P@60HZ");
     fix_vedio_dpi->addItem("720P@50HZ");
     fix_vedio_dpi->addItem("720P@60HZ");
+    fix_vedio_dpi->addItem("1080P@60HZ");
     vedio_change1 = new QComboBox;
     vedio_change1->addItem("固定视场");
     vedio_change1->addItem("可切换视场");
@@ -1057,9 +1057,9 @@ void MainWindow::init_vedioCfg()
     vedio_dpi = new QComboBox;
     vedio_dpi->addItem("1080P@25HZ");
     vedio_dpi->addItem("1080P@30HZ");
-    vedio_dpi->addItem("1080P@60HZ");
     vedio_dpi->addItem("720P@50HZ");
     vedio_dpi->addItem("720P@60HZ");
+    vedio_dpi->addItem("1080P@60HZ");
     vedio_change2 = new QComboBox;
     vedio_change2->addItem("可切换视场");
     vedio_change2->addItem("固定视场");
@@ -1382,9 +1382,9 @@ void MainWindow::init_vedioCfg()
     continue_vedio_dpi = new QComboBox;
     continue_vedio_dpi->addItem("1080P@25HZ");
     continue_vedio_dpi->addItem("1080P@30HZ");
-    continue_vedio_dpi->addItem("1080P@60HZ");
     continue_vedio_dpi->addItem("720P@50HZ");
     continue_vedio_dpi->addItem("720P@60HZ");
+    continue_vedio_dpi->addItem("1080P@60HZ");
     vedio_change3 = new QComboBox;
     vedio_change3->addItem("连续视场");
     vedio_change3->addItem("固定视场");
@@ -1733,9 +1733,8 @@ void MainWindow::init_vedioCfg()
     connect(vedio_spby_continue7,SIGNAL(valueChanged(int)),this,SLOT(vedio_spby_continue7_Slot()));
 }
 
+
 void MainWindow::init_vedioCfg_sec(){
-
-
     /*固定视场*/
     w_sersor_1_sec = new MyWidget;
     w_seitchField_1_sec = new MyWidget;
@@ -1756,22 +1755,19 @@ void MainWindow::init_vedioCfg_sec(){
 
     fixChanelNum_sec = new  QCheckBox();
     fixChanelNum_sec->setText("通道号");
-    fixchanelname_sec = new QLineEdit;
     fixenable_sec = new  QCheckBox();
     fixenable_sec->setText("使能");
     QLabel *label40=new QLabel;
-    label40->setText("通道名称");
+    label40->setText("通道名称:通道2");
     QHBoxLayout *v21=new QHBoxLayout;
     v21->addWidget(fixChanelNum_sec);
     v21->addWidget(label40);
-    v21->addWidget(fixchanelname_sec);
     v21->addWidget(fixenable_sec);
 
     fix_vediohaveornot_sec = new  QCheckBox();
     fix_vedio_dpi_sec = new QComboBox;
     fix_vedio_dpi_sec->addItem("1080P@25HZ");
     fix_vedio_dpi_sec->addItem("1080P@30HZ");
-    fix_vedio_dpi_sec->addItem("1080P@60HZ");
     fix_vedio_dpi_sec->addItem("720P@50HZ");
     fix_vedio_dpi_sec->addItem("720P@60HZ");
     vedio_change1_sec = new QComboBox;
@@ -1921,16 +1917,14 @@ void MainWindow::init_vedioCfg_sec(){
     w_sersor_1_sec->setLayout(v0);
 
 
-    connect(vedio_change1_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
-/*
-    connect(btn_vediosersor_fix_default_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
-    connect(btn_vediosersor_fix_update_sec,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_sec()));
+    connect(btn_vediosersor_fix_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
+    connect(btn_vediosersor_fix_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+
     connect(fixChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));
-    connect(fixchanelname_sec,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_sec(int)));
     connect(fixenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));
     connect(fix_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));
     connect(fix_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));
-    connect(fix_xy_ratio_sec,SIGNAL(returnPressed()),this,SLOT(fix_xy_ratio_Slot_sec()));
+    connect(vedio_change1_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
     connect(fix_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
     connect(fix_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
     connect(fix_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
@@ -1938,26 +1932,19 @@ void MainWindow::init_vedioCfg_sec(){
     connect(fix_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
     connect(fix_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
     connect(fix_gatelocationy_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_sec()));
-    connect(set_azimuth_sec,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_sec()));
-    connect(set_pitch_sec,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_sec()));
-    connect(set_zoom_sec,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_sec()));
-    connect(search_azimuth_sec,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_sec()));
-    connect(search_pitch_sec,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_sec()));
-    connect(search_zoom_sec,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_sec()));
-   // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
-   // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
-   // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
-   // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
-   // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
-   // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
+    connect(set_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot_sec()));
+    connect(set_pitch_sec,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot_sec()));
+    connect(set_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot_sec()));
+    connect(search_azimuth_sec,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(search_pitch_sec,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(search_zoom_sec,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
     connect(fix_lEdt_sec,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_sec()));
     connect(fix_vertical_sec,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_sec()));
-    connect(fix_sp_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    connect(fix_sp2_sec,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_sec()));
-    */
+    connect(fix_sp_sec,SIGNAL(valueChanged(int)),this,SLOT(fix_sp_Slot_sec()));
+    connect(fix_sp2_sec,SIGNAL(valueChanged(int)),this,SLOT(fix_sp2_Slot_sec()));
+
 
     /*可切换视场*/
-
     w_seitchField_1_sec->setWindowTitle("摄像机配置");
     btn_vediosersor_default_sec=new QPushButton;
     btn_vediosersor_update_sec=new QPushButton;
@@ -1974,23 +1961,20 @@ void MainWindow::init_vedioCfg_sec(){
 
     ChanelNum_sec = new  QCheckBox();
     ChanelNum_sec->setText("通道号");
-    chanelname_sec = new QLineEdit;
     enable_sec = new  QCheckBox();
     enable_sec->setText("使能");
 
     QLabel *label2=new QLabel;
-    label2->setText("通道名称");
+    label2->setText("通道名称：通道2");
     QHBoxLayout *v2=new QHBoxLayout;
     v2->addWidget(ChanelNum_sec);
     v2->addWidget(label2);
-    v2->addWidget(chanelname_sec);
     v2->addWidget(enable_sec);
 
     vediohaveornot_sec = new  QCheckBox();
     vedio_dpi_sec = new QComboBox;
     vedio_dpi_sec->addItem("1080P@25HZ");
     vedio_dpi_sec->addItem("1080P@30HZ");
-    vedio_dpi_sec->addItem("1080P@60HZ");
     vedio_dpi_sec->addItem("720P@50HZ");
     vedio_dpi_sec->addItem("720P@60HZ");
     vedio_change2_sec = new QComboBox;
@@ -2295,7 +2279,6 @@ void MainWindow::init_vedioCfg_sec(){
 */
 
     /*连续视场*/
-
     w_ContinueField_1_sec->setWindowTitle("摄像机配置");
     btn_vediosersor_continue_default_sec=new QPushButton;
     btn_vediosersor_continue_update_sec=new QPushButton;
@@ -2312,22 +2295,19 @@ void MainWindow::init_vedioCfg_sec(){
 
     continueChanelNum_sec = new  QCheckBox();
     continueChanelNum_sec->setText("通道号");
-    continuechanelname_sec = new QLineEdit;
     continueenable_sec = new  QCheckBox();
     continueenable_sec->setText("使能");
     QLabel *label61=new QLabel;
-    label61->setText("通道名称");
+    label61->setText("通道名称：通道2");
     QHBoxLayout *v9=new QHBoxLayout;
     v9->addWidget(continueChanelNum_sec);
     v9->addWidget(label61);
-    v9->addWidget(continuechanelname_sec);
     v9->addWidget(continueenable_sec);
 
     continue_vediohaveornot_sec = new  QCheckBox();
     continue_vedio_dpi_sec = new QComboBox;
-   // continue_vedio_dpi_sec->addItem("1080P@25HZ");
+    continue_vedio_dpi_sec->addItem("1080P@25HZ");
     continue_vedio_dpi_sec->addItem("1080P@30HZ");
-    continue_vedio_dpi_sec->addItem("1080P@60HZ");
     continue_vedio_dpi_sec->addItem("720P@50HZ");
     continue_vedio_dpi_sec->addItem("720P@60HZ");
     vedio_change3_sec = new QComboBox;
@@ -2721,9 +2701,8 @@ void MainWindow::init_vedioCfg_thi(){
     fix_vedio_dpi_thi = new QComboBox;
     fix_vedio_dpi_thi->addItem("1080P@25HZ");
     fix_vedio_dpi_thi->addItem("1080P@30HZ");
-    fix_vedio_dpi_thi->addItem("1080P@60HZ");
-    fix_vedio_dpi_thi->addItem("720P@60HZ");
     fix_vedio_dpi_thi->addItem("720P@50HZ");
+    fix_vedio_dpi_thi->addItem("720P@60HZ");
     vedio_change1_thi = new QComboBox;
     vedio_change1_thi->addItem("固定视场");
     vedio_change1_thi->addItem("可切换视场");
@@ -2936,9 +2915,8 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_dpi_thi = new QComboBox;
     vedio_dpi_thi->addItem("1080P@25HZ");
     vedio_dpi_thi->addItem("1080P@30HZ");
-    vedio_dpi_thi->addItem("1080P@60HZ");
-    vedio_dpi_thi->addItem("720P@60HZ");
     vedio_dpi_thi->addItem("720P@50HZ");
+    vedio_dpi_thi->addItem("720P@60HZ");
     vedio_change2_thi = new QComboBox;
     vedio_change2_thi->addItem("可切换视场");
     vedio_change2_thi->addItem("固定视场");
@@ -3271,9 +3249,8 @@ void MainWindow::init_vedioCfg_thi(){
     continue_vedio_dpi_thi = new QComboBox;
     continue_vedio_dpi_thi->addItem("1080P@25HZ");
     continue_vedio_dpi_thi->addItem("1080P@30HZ");
-    continue_vedio_dpi_thi->addItem("1080P@60HZ");
-    continue_vedio_dpi_thi->addItem("720P@60HZ");
     continue_vedio_dpi_thi->addItem("720P@50HZ");
+    continue_vedio_dpi_thi->addItem("720P@60HZ");
     vedio_change3_thi = new QComboBox;
     vedio_change3_thi->addItem("连续视场");
     vedio_change3_thi->addItem("固定视场");
@@ -3666,7 +3643,6 @@ void MainWindow::init_vedioCfg_fou(){
     fix_vedio_dpi_fou = new QComboBox;
     fix_vedio_dpi_fou->addItem("1080P@25HZ");
     fix_vedio_dpi_fou->addItem("1080P@30HZ");
-    fix_vedio_dpi_fou->addItem("1080P@60HZ");
     fix_vedio_dpi_fou->addItem("720P@50HZ");
     fix_vedio_dpi_fou->addItem("720P@60HZ");
     vedio_change1_fou = new QComboBox;
@@ -3881,7 +3857,6 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_dpi_fou = new QComboBox;
     vedio_dpi_fou->addItem("1080P@25HZ");
     vedio_dpi_fou->addItem("1080P@30HZ");
-    vedio_dpi_fou->addItem("1080P@60HZ");
     vedio_dpi_fou->addItem("720P@50HZ");
     vedio_dpi_fou->addItem("720P@60HZ");
     vedio_change2_fou = new QComboBox;
@@ -4216,7 +4191,6 @@ void MainWindow::init_vedioCfg_fou(){
     continue_vedio_dpi_fou = new QComboBox;
     continue_vedio_dpi_fou->addItem("1080P@25HZ");
     continue_vedio_dpi_fou->addItem("1080P@30HZ");
-    continue_vedio_dpi_fou->addItem("1080P@60HZ");
     continue_vedio_dpi_fou->addItem("720P@50HZ");
     continue_vedio_dpi_fou->addItem("720P@60HZ");
     vedio_change3_fou= new QComboBox;
@@ -4613,9 +4587,9 @@ void MainWindow::init_vedioCfg_fif(){
     fix_vedio_dpi_fif = new QComboBox;
     fix_vedio_dpi_fif->addItem("1080P@25HZ");
     fix_vedio_dpi_fif->addItem("1080P@30HZ");
-    fix_vedio_dpi_fif->addItem("1080P@60HZ");
     fix_vedio_dpi_fif->addItem("720P@50HZ");
     fix_vedio_dpi_fif->addItem("720P@60HZ");
+    fix_vedio_dpi_fif->addItem("720*576@50HZ");
     vedio_change1_fif = new QComboBox;
     vedio_change1_fif->addItem("固定视场");
     vedio_change1_fif->addItem("可切换视场");
@@ -8306,7 +8280,6 @@ void MainWindow::vedio_btnSensor1SwitchSlot_sec()
 void MainWindow::vedio_btnSensor2ContinueSlot_sec()
 {
     vedio_current_shichang_sec = 2;
-
     w_ContinueField_1_sec->show();
     w_ContinueField_1_sec->show_stat = 1;
 }
