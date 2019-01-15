@@ -3064,6 +3064,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 Alarm_delay->setText(QString::number(value_i));
             }
             break;
+
+
+
         case 55:
             break;
 

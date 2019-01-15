@@ -6674,7 +6674,7 @@ void MainWindow::init_mtdCfg()
 
     connect(btn_mtd_default,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Default_Slot()));
     connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Update_Slot()));
-    connect(zone_setting,SIGNAL(checked(bool)),this,SLOT(zone_setting_Slot()));
+    connect(zone_setting,SIGNAL(stateChanged(int)),this,SLOT(zone_setting_Slot()));
     connect(rigion_Cen_x,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_x_Slot()));
     connect(rigion_Cen_y,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_y_Slot()));
     connect(rigion_Cen_w,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_w_Slot()));
@@ -8077,6 +8077,24 @@ void MainWindow::showspeedconvcfg_fif()
 
 void MainWindow:: showmtdcfg()
 {
+    for(int i=0;i<16;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x36;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i=0;i<=1;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=0x37;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
     w_mtd->show();
     w_mtd->show_stat = 1;
 }

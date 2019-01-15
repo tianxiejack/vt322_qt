@@ -7705,7 +7705,7 @@ void MainWindow::zone_setting_Slot()
         send_arr[4] = 0x47;
         send_arr[5] = 0x01;
         send_oneframe(2);
-        send_mutex.unlock();
+        send_mutex.unlock(); 
     }
     else
     {
