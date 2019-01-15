@@ -7672,10 +7672,29 @@ void MainWindow::showPlat()
 }
 
 void MainWindow::showvedioCfg1()
-{
+{   
     vedio_current_shichang = 0;
     w_sersor_1->show();
     w_sersor_1->show_stat = 1;
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=23;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=24;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::showvedioCfg2()
@@ -8245,6 +8264,37 @@ void MainWindow::vedio_btnSensor1SwitchSlot()
     vedio_current_shichang = 1;
     w_seitchField_1->show();
     w_seitchField_1->show_stat = 1;
+
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=23;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=25;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i = 0; i <= 4; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=26;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor2ContinueSlot()
@@ -8252,6 +8302,46 @@ void MainWindow::vedio_btnSensor2ContinueSlot()
     vedio_current_shichang = 2;
     w_ContinueField_1->show();
     w_ContinueField_1->show_stat = 1;
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=23;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=27;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=56;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=57;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor1SwitchSlot_sec()
@@ -8279,7 +8369,6 @@ void MainWindow::vedio_btnSensor1SwitchSlot_thi()
 void MainWindow::vedio_btnSensor2ContinueSlot_thi()
 {
     vedio_current_shichang_thi = 2;
-
     w_ContinueField_1_thi->show();
     w_ContinueField_1_thi->show_stat = 1;
 
@@ -8288,7 +8377,6 @@ void MainWindow::vedio_btnSensor2ContinueSlot_thi()
 void MainWindow::vedio_btnSensor1SwitchSlot_fou()
 {
     vedio_current_shichang_fou = 1;
-
     w_seitchField_1_fou->show();
     w_seitchField_1_fou->show_stat = 1;
 
@@ -8298,7 +8386,6 @@ void MainWindow::vedio_btnSensor1SwitchSlot_fou()
 void MainWindow::vedio_btnSensor2ContinueSlot_fou()
 {
     vedio_current_shichang_fou = 2;
-
     w_ContinueField_1_fou->show();
     w_ContinueField_1_fou->show_stat = 1;
 
@@ -8307,7 +8394,6 @@ void MainWindow::vedio_btnSensor2ContinueSlot_fou()
 void MainWindow::vedio_btnSensor1SwitchSlot_fif()
 {
     vedio_current_shichang_fif = 1;
-
     w_seitchField_1_fif->show();
     w_seitchField_1_fif->show_stat = 1;
 
@@ -8316,7 +8402,6 @@ void MainWindow::vedio_btnSensor1SwitchSlot_fif()
 void MainWindow::vedio_btnSensor2ContinueSlot_fif()
 {
     vedio_current_shichang_fif = 2;
-
     w_ContinueField_1_fif->show();
     w_ContinueField_1_fif->show_stat = 1;
 

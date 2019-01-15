@@ -144,6 +144,14 @@ public:
     /*发送0x31命令*/
     void read_config(int block);
     void send_read_config(int block,int start_field, int end_field);
+    /*解析0x31命令*/
+    void showblk23(int field, float value);
+    void showblk24(int field, float value);
+    void showblk25(int field, float value);
+    void showblk26(int field, float value);
+    void showblk27(int field, float value);
+    void showblk56(int field, float value);
+    void showblk57(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);

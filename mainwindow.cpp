@@ -14412,6 +14412,7 @@ void MainWindow::btnFPGA_clicked()
 
 void MainWindow::vedio_tosersor_fix(int i)
 {
+    qDebug("!!@@chage1 activated i=%d\n", i);
     float value = i;
     send_mutex.lock();
     send_arr[4]=0x30;
@@ -14421,12 +14422,7 @@ void MainWindow::vedio_tosersor_fix(int i)
     send_oneframe(7);
     send_mutex.unlock();
 
-    //vedio_current_shichang = 0;
-    if(i==0)
-    {
-
-    }
-    else if(i==1)
+    if(i==1)
     {
         w_sersor_1->close();
         vedio_btnSensor1SwitchSlot();
@@ -14440,6 +14436,7 @@ void MainWindow::vedio_tosersor_fix(int i)
 
 void MainWindow::vedio_toSensor_switch(int i)
 {
+    qDebug("!!@@chage2 activated i=%d\n", i);
     float value = 0;
    if(i==1){
        value = 0;
@@ -14468,6 +14465,7 @@ void MainWindow::vedio_toSensor_switch(int i)
 }
 void MainWindow::vedio_tosersor_continue(int i)
 {
+    qDebug("!!@@chage3 activated i=%d\n", i);
     float value = 0;
     if(i==1){
         w_ContinueField_1->close();
@@ -14496,7 +14494,6 @@ void MainWindow::vedio_tosersor_continue(int i)
 
 void MainWindow::vedio_tosersor_fix_sec(int i)
 {
-   // vedio_current_shichang_sec = 0;
     float value = 0;
     if(i==1)
     {
