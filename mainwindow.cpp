@@ -606,12 +606,37 @@ void MainWindow::continue_gate_sizex_Slot()
     send_oneframe(7);
     send_mutex.unlock();
 }
+
+void MainWindow::continue_gate_sizex_Slot_sec()
+{
+    float value=continue_gate_sizex_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 58;
+    send_arr[6] = 10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_gate_sizey_Slot()
 {
     float value=fix_gate_sizey->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 23;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_gate_sizey_Slot_sec()
+{
+    float value=fix_gate_sizey_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 58;
     send_arr[6] = 11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -678,6 +703,18 @@ void MainWindow::continue_gatelocationx_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_gatelocationx_Slot_sec()
+{
+    float value=continue_gatelocationx_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 58;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_gatelocationy_Slot()
 {
     float value=fix_gatelocationy->text().toFloat();
@@ -714,6 +751,18 @@ void MainWindow::continue_gatelocationy_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_gatelocationy_Slot_sec()
+{
+    float value=continue_gatelocationy_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 58;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::set_azimuth_Slot()
 {
     int value=ledt_set_azimuth->text().toInt();
@@ -737,6 +786,16 @@ void MainWindow::change_set_azimuth_Slot()
 void MainWindow::continue_set_azimuth_Slot()
 {
     int value=continue_ledt_set_azimuth->text().toInt();
+    send_mutex.lock();
+    send_arr[4] = 0x57;
+    memcpy(send_arr+5,&value,4);
+    send_oneframe(5);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_set_azimuth_Slot_sec()
+{
+    int value=continue_ledt_set_azimuth_sec->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x57;
     memcpy(send_arr+5,&value,4);
@@ -774,6 +833,16 @@ void MainWindow::continue_set_pitch_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_set_pitch_Slot_sec()
+{
+    int value=continue_ledt_set_pitch_sec->text().toInt();
+    send_mutex.lock();
+    send_arr[4] = 0x58;
+    memcpy(send_arr+5,&value,4);
+    send_oneframe(5);
+    send_mutex.unlock();
+}
+
 void MainWindow::set_zoom_Slot()
 {
     int value=ledt_set_zoom->text().toInt();
@@ -797,6 +866,16 @@ void MainWindow::change_set_zoom_Slot()
 void MainWindow::continue_set_zoom_Slot()
 {
     int value=continue_ledt_set_zoom->text().toInt();
+    send_mutex.lock();
+    send_arr[4] = 0x59;
+    memcpy(send_arr+5,&value,4);
+    send_oneframe(5);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_set_zoom_Slot_sec()
+{
+    int value=continue_ledt_set_zoom_sec->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x59;
     memcpy(send_arr+5,&value,4);
@@ -884,6 +963,12 @@ void MainWindow::btn_vediosersor_default_Slot()
 {
     send_mutex.lock();
     send_arr[4] = 0x09;
+    send_arr[5] = 23;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
     send_arr[5] = 25;
     send_oneframe(2);
     send_mutex.unlock();
@@ -899,6 +984,12 @@ void MainWindow::btn_vediosersor_continue_default_Slot()
 {
     send_mutex.lock();
     send_arr[4] = 0x09;
+    send_arr[5] = 23;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
     send_arr[5] = 27;
     send_oneframe(2);
     send_mutex.unlock();
@@ -912,6 +1003,33 @@ void MainWindow::btn_vediosersor_continue_default_Slot()
     send_mutex.lock();
     send_arr[4] = 0x09;
     send_arr[5] = 57;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_vediosersor_continue_default_Slot_sec()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 58;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 62;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 63;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 64;
     send_oneframe(2);
     send_mutex.unlock();
 }
@@ -1987,6 +2105,12 @@ void MainWindow::btn_vediosersor_default_Slot_sec()
 {
     send_mutex.lock();
     send_arr[4] = 0x09;
+    send_arr[5] = 58;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
     send_arr[5] = 60;
     send_oneframe(2);
     send_mutex.unlock();
@@ -2254,79 +2378,22 @@ void MainWindow::vedio_spby_switch5_Slot_sec()
 
 void MainWindow::test_1_Slot_sec()
 {
-    int value=test_1->text().toInt();
-    if(value ==1){
+    float value = test_1_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =64;
     send_arr[6] =3;
-    send_arr[7] =1;
+    memcpy(send_arr+7, &value, 4);
     send_oneframe(7);
     send_mutex.unlock();
-    }else if (value ==2) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =2;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==3) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =3;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==4) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =4;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }
-    else if (value ==5) {
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] =57;
-            send_arr[6] =3;
-            send_arr[7] =5;
-            send_oneframe(7);
-            send_mutex.unlock();
-
-        }else if (value ==6) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =6;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==7) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =7;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }
 }
 
 void MainWindow::vedio_l1_continue_Slot_sec()
 {
-    float value=vedio_l1_continue->text().toFloat();
+    float value=vedio_l1_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2336,10 +2403,10 @@ void MainWindow::vedio_l1_continue_Slot_sec()
 
 void MainWindow::vedio_l2_continue_Slot_sec()
 {
-    float value=vedio_l2_continue->text().toFloat();
+    float value=vedio_l2_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =5;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2348,10 +2415,10 @@ void MainWindow::vedio_l2_continue_Slot_sec()
 
 void MainWindow::vedio_l3_continue_Slot_sec()
 {
-    float value=vedio_l3_continue->text().toFloat();
+    float value=vedio_l3_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2360,11 +2427,11 @@ void MainWindow::vedio_l3_continue_Slot_sec()
 
 void MainWindow::vedio_l4_continue_Slot_sec()
 {
-    float value=vedio_l4_continue->text().toFloat();
+    float value=vedio_l4_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
-    send_arr[6] =10;
+    send_arr[5] =62;
+    send_arr[6] =15;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -2372,10 +2439,10 @@ void MainWindow::vedio_l4_continue_Slot_sec()
 
 void MainWindow::vedio_l5_continue_Slot_sec()
 {
-    float value=vedio_l5_continue->text().toFloat();
+    float value=vedio_l5_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2384,10 +2451,10 @@ void MainWindow::vedio_l5_continue_Slot_sec()
 
 void MainWindow::vedio_l6_continue_Slot_sec()
 {
-    float value=vedio_l6_continue->text().toFloat();
+    float value=vedio_l6_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =9;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2396,10 +2463,10 @@ void MainWindow::vedio_l6_continue_Slot_sec()
 
 void MainWindow::vedio_l7_continue_Slot_sec()
 {
-    float value=vedio_l7_continue->text().toFloat();
+    float value=vedio_l7_continue_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =14;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2408,10 +2475,10 @@ void MainWindow::vedio_l7_continue_Slot_sec()
 
 void MainWindow::vedio_continue_Fov0_Slot_sec()
 {
-    float value=vedio_continue_Fov0->text().toFloat();
+    float value=vedio_continue_Fov0_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2420,10 +2487,10 @@ void MainWindow::vedio_continue_Fov0_Slot_sec()
 
 void MainWindow::vedio_continue_Fov1_Slot_sec()
 {
-    float value=vedio_continue_Fov1->text().toFloat();
+    float value=vedio_continue_Fov1_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2432,10 +2499,10 @@ void MainWindow::vedio_continue_Fov1_Slot_sec()
 
 void MainWindow::vedio_continue_Fov2_Slot_sec()
 {
-    float value=vedio_continue_Fov2->text().toFloat();
+    float value=vedio_continue_Fov2_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2444,10 +2511,10 @@ void MainWindow::vedio_continue_Fov2_Slot_sec()
 
 void MainWindow::vedio_continue_Fov3_Slot_sec()
 {
-    float value=vedio_continue_Fov3->text().toFloat();
+    float value=vedio_continue_Fov3_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2456,10 +2523,10 @@ void MainWindow::vedio_continue_Fov3_Slot_sec()
 
 void MainWindow::vedio_continue_Fov4_Slot_sec()
 {
-    float value=vedio_continue_Fov4->text().toFloat();
+    float value=vedio_continue_Fov4_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =5;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2468,10 +2535,10 @@ void MainWindow::vedio_continue_Fov4_Slot_sec()
 
 void MainWindow::vedio_continue_Fov5_Slot_sec()
 {
-    float value=vedio_continue_Fov5->text().toFloat();
+    float value=vedio_continue_Fov5_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2480,22 +2547,10 @@ void MainWindow::vedio_continue_Fov5_Slot_sec()
 
 void MainWindow::vedio_continue_Fov6_Slot_sec()
 {
-    float value=vedio_continue_Fov6->text().toFloat();
+    float value=vedio_continue_Fov6_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
-    send_arr[6] =15;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::vedio_continue_Fov7_Slot_sec()
-{
-    float value=vedio_continue_Fov6->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =15;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2504,10 +2559,10 @@ void MainWindow::vedio_continue_Fov7_Slot_sec()
 
 void MainWindow::continue_vertical1_Slot_sec()
 {
-    float value=continue_vertical1->text().toFloat();
+    float value=continue_vertical1_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2516,10 +2571,10 @@ void MainWindow::continue_vertical1_Slot_sec()
 
 void MainWindow::continue_vertical2_Slot_sec()
 {
-    float value=continue_vertical2->text().toFloat();
+    float value=continue_vertical2_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =7;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2529,10 +2584,10 @@ void MainWindow::continue_vertical2_Slot_sec()
 
 void MainWindow::continue_vertical3_Slot_sec()
 {
-    float value=continue_vertical3->text().toFloat();
+    float value=continue_vertical3_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2541,10 +2596,10 @@ void MainWindow::continue_vertical3_Slot_sec()
 
 void MainWindow::continue_vertical4_Slot_sec()
 {
-    float value=continue_vertical4->text().toFloat();
+    float value=continue_vertical4_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2553,10 +2608,10 @@ void MainWindow::continue_vertical4_Slot_sec()
 
 void MainWindow::continue_vertical5_Slot_sec()
 {
-    float value=continue_vertical5->text().toFloat();
+    float value=continue_vertical5_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2565,10 +2620,10 @@ void MainWindow::continue_vertical5_Slot_sec()
 
 void MainWindow::continue_vertical6_Slot_sec()
 {
-    float value=continue_vertical6->text().toFloat();
+    float value=continue_vertical6_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2577,10 +2632,10 @@ void MainWindow::continue_vertical6_Slot_sec()
 
 void MainWindow::continue_vertical7_Slot_sec()
 {
-    float value=continue_vertical7->text().toFloat();
+    float value=continue_vertical7_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =64;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2589,10 +2644,10 @@ void MainWindow::continue_vertical7_Slot_sec()
 
 void MainWindow::vedio_spbx_continue1_Slot_sec()
 {
-    float value=vedio_spbx_continue1->text().toFloat();
+    float value=vedio_spbx_continue1_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2601,10 +2656,10 @@ void MainWindow::vedio_spbx_continue1_Slot_sec()
 
 void MainWindow::vedio_spbx_continue2_Slot_sec()
 {
-    float value=vedio_spbx_continue2->text().toFloat();
+    float value=vedio_spbx_continue2_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =8;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2613,10 +2668,10 @@ void MainWindow::vedio_spbx_continue2_Slot_sec()
 
 void MainWindow::vedio_spbx_continue3_Slot_sec()
 {
-    float value=vedio_spbx_continue3->text().toFloat();
+    float value=vedio_spbx_continue3_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2625,10 +2680,10 @@ void MainWindow::vedio_spbx_continue3_Slot_sec()
 
 void MainWindow::vedio_spbx_continue4_Slot_sec()
 {
-    float value=vedio_spbx_continue4->text().toFloat();
+    float value=vedio_spbx_continue4_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2637,10 +2692,10 @@ void MainWindow::vedio_spbx_continue4_Slot_sec()
 
 void MainWindow::vedio_spbx_continue5_Slot_sec()
 {
-    float value=vedio_spbx_continue5->text().toFloat();
+    float value=vedio_spbx_continue5_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =7;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2649,10 +2704,10 @@ void MainWindow::vedio_spbx_continue5_Slot_sec()
 
 void MainWindow::vedio_spbx_continue6_Slot_sec()
 {
-    float value=vedio_spbx_continue6->text().toFloat();
+    float value=vedio_spbx_continue6_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2661,10 +2716,10 @@ void MainWindow::vedio_spbx_continue6_Slot_sec()
 
 void MainWindow::vedio_spbx_continue7_Slot_sec()
 {
-    float value=vedio_spbx_continue7->text().toFloat();
+    float value=vedio_spbx_continue7_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =64;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2673,10 +2728,10 @@ void MainWindow::vedio_spbx_continue7_Slot_sec()
 
 void MainWindow::vedio_spby_continue1_Slot_sec()
 {
-    float value=vedio_spby_continue1->text().toFloat();
+    float value=vedio_spby_continue1_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2685,10 +2740,10 @@ void MainWindow::vedio_spby_continue1_Slot_sec()
 
 void MainWindow::vedio_spby_continue2_Slot_sec()
 {
-    float value=vedio_spby_continue2->text().toFloat();
+    float value=vedio_spby_continue2_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =9;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2697,10 +2752,10 @@ void MainWindow::vedio_spby_continue2_Slot_sec()
 
 void MainWindow::vedio_spby_continue3_Slot_sec()
 {
-    float value=vedio_spby_continue3->text().toFloat();
+    float value=vedio_spby_continue3_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =62;
     send_arr[6] =14;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2709,10 +2764,10 @@ void MainWindow::vedio_spby_continue3_Slot_sec()
 
 void MainWindow::vedio_spby_continue4_Slot_sec()
 {
-    float value=vedio_spby_continue4->text().toFloat();
+    float value=vedio_spby_continue4_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2721,10 +2776,10 @@ void MainWindow::vedio_spby_continue4_Slot_sec()
 
 void MainWindow::vedio_spby_continue5_Slot_sec()
 {
-    float value=vedio_spby_continue5->text().toFloat();
+    float value=vedio_spby_continue5_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =8;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2733,10 +2788,10 @@ void MainWindow::vedio_spby_continue5_Slot_sec()
 
 void MainWindow::vedio_spby_continue6_Slot_sec()
 {
-    float value=vedio_spby_continue6->text().toFloat();
+    float value=vedio_spby_continue6_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =63;
     send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -2745,10 +2800,10 @@ void MainWindow::vedio_spby_continue6_Slot_sec()
 
 void MainWindow::vedio_spby_continue7_Slot_sec()
 {
-    float value=vedio_spby_continue7->text().toFloat();
+    float value=vedio_spby_continue7_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =64;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -14381,6 +14436,7 @@ void MainWindow::btnFPGA_clicked()
 
 void MainWindow::vedio_tosersor_fix(int i)
 {
+    qDebug("!!@@chage1 activated i=%d\n", i);
     float value = i;
     send_mutex.lock();
     send_arr[4]=0x30;
@@ -14390,12 +14446,7 @@ void MainWindow::vedio_tosersor_fix(int i)
     send_oneframe(7);
     send_mutex.unlock();
 
-    //vedio_current_shichang = 0;
-    if(i==0)
-    {
-
-    }
-    else if(i==1)
+    if(i==1)
     {
         w_sersor_1->close();
         vedio_btnSensor1SwitchSlot();
@@ -14409,6 +14460,7 @@ void MainWindow::vedio_tosersor_fix(int i)
 
 void MainWindow::vedio_toSensor_switch(int i)
 {
+    qDebug("!!@@chage2 activated i=%d\n", i);
     float value = 0;
    if(i==1){
        value = 0;
@@ -14437,6 +14489,7 @@ void MainWindow::vedio_toSensor_switch(int i)
 }
 void MainWindow::vedio_tosersor_continue(int i)
 {
+    qDebug("!!@@chage3 activated i=%d\n", i);
     float value = 0;
     if(i==1){
         w_ContinueField_1->close();
@@ -14465,7 +14518,6 @@ void MainWindow::vedio_tosersor_continue(int i)
 
 void MainWindow::vedio_tosersor_fix_sec(int i)
 {
-   // vedio_current_shichang_sec = 0;
     float value = 0;
     if(i==1)
     {
@@ -14527,29 +14579,30 @@ void MainWindow::vedio_toSensor_switch_sec(int i)
 
 void MainWindow::vedio_tosersor_continue_sec(int i)
 {
-
+    float value = 0;
     if(i==1){
+        value = 0;
         w_ContinueField_1_sec->close();
         showvedioCfg2();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 58;
-        send_arr[6] = 0x05;
-        send_arr[7] = 1;
+        send_arr[6] = 5;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
     }else if(i==2){
+        value = 1;
         w_ContinueField_1_sec->close();
         vedio_btnSensor1SwitchSlot_sec();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 58;
-        send_arr[6] = 0x05;
-        send_arr[7] = 2;
+        send_arr[6] = 5;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
     }
-
 }
 
 void MainWindow::vedio_tosersor_fix_thi(int i)

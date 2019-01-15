@@ -144,6 +144,21 @@ public:
     /*发送0x31命令*/
     void read_config(int block);
     void send_read_config(int block,int start_field, int end_field);
+    /*解析0x31命令*/
+    void showblk23(int field, float value);
+    void showblk24(int field, float value);
+    void showblk25(int field, float value);
+    void showblk26(int field, float value);
+    void showblk27(int field, float value);
+    void showblk56(int field, float value);
+    void showblk57(int field, float value);
+    void showblk58(int field, float value);
+    void showblk59(int field, float value);
+    void showblk60(int field, float value);
+    void showblk61(int field, float value);
+    void showblk62(int field, float value);
+    void showblk63(int field, float value);
+    void showblk64(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -786,6 +801,15 @@ private slots:
 
 
     //连续视场
+    void btn_vediosersor_continue_default_Slot_sec();
+    void continue_gate_sizex_Slot_sec();
+    void continue_gate_sizey_Slot_sec();
+    void continue_gatelocationx_Slot_sec();
+    void continue_gatelocationy_Slot_sec();
+    void continue_set_azimuth_Slot_sec();
+    void continue_set_pitch_Slot_sec();
+    void continue_set_zoom_Slot_sec();
+
     void test_1_Slot_sec();
     void vedio_l1_continue_Slot_sec();
     void vedio_l2_continue_Slot_sec();
@@ -801,7 +825,6 @@ private slots:
     void vedio_continue_Fov4_Slot_sec();
     void vedio_continue_Fov5_Slot_sec();
     void vedio_continue_Fov6_Slot_sec();
-    void vedio_continue_Fov7_Slot_sec();
     void continue_vertical1_Slot_sec();
     void continue_vertical2_Slot_sec();
     void continue_vertical3_Slot_sec();
