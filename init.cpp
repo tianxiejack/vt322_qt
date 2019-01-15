@@ -1924,7 +1924,7 @@ void MainWindow::init_vedioCfg_sec(){
     connect(fixenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));
     connect(fix_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));
     connect(fix_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));
-    connect(vedio_change1_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
+    connect(vedio_change1_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
     connect(fix_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
     connect(fix_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
     connect(fix_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
