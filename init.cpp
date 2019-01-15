@@ -7702,6 +7702,25 @@ void MainWindow::showvedioCfg2()
     vedio_current_shichang_sec = 0;
     w_sersor_1_sec->show();
     w_sersor_1_sec->show_stat = 1;
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=58;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=59;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::showvedioCfg3()
@@ -8349,6 +8368,34 @@ void MainWindow::vedio_btnSensor1SwitchSlot_sec()
     vedio_current_shichang_sec = 1;
     w_seitchField_1_sec->show();
     w_seitchField_1_sec->show_stat = 1;
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=58;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=60;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 4; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=61;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor2ContinueSlot_sec()
@@ -8356,6 +8403,43 @@ void MainWindow::vedio_btnSensor2ContinueSlot_sec()
     vedio_current_shichang_sec = 2;
     w_ContinueField_1_sec->show();
     w_ContinueField_1_sec->show_stat = 1;
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=58;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=62;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=63;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=64;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor1SwitchSlot_thi()

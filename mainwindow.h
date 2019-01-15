@@ -152,6 +152,13 @@ public:
     void showblk27(int field, float value);
     void showblk56(int field, float value);
     void showblk57(int field, float value);
+    void showblk58(int field, float value);
+    void showblk59(int field, float value);
+    void showblk60(int field, float value);
+    void showblk61(int field, float value);
+    void showblk62(int field, float value);
+    void showblk63(int field, float value);
+    void showblk64(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);

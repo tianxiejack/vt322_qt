@@ -963,6 +963,12 @@ void MainWindow::btn_vediosersor_default_Slot()
 {
     send_mutex.lock();
     send_arr[4] = 0x09;
+    send_arr[5] = 23;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
     send_arr[5] = 25;
     send_oneframe(2);
     send_mutex.unlock();
@@ -976,6 +982,12 @@ void MainWindow::btn_vediosersor_default_Slot()
 
 void MainWindow::btn_vediosersor_continue_default_Slot()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 23;
+    send_oneframe(2);
+    send_mutex.unlock();
+
     send_mutex.lock();
     send_arr[4] = 0x09;
     send_arr[5] = 27;
@@ -997,6 +1009,12 @@ void MainWindow::btn_vediosersor_continue_default_Slot()
 
 void MainWindow::btn_vediosersor_continue_default_Slot_sec()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 58;
+    send_oneframe(2);
+    send_mutex.unlock();
+
     send_mutex.lock();
     send_arr[4] = 0x09;
     send_arr[5] = 62;
@@ -2085,6 +2103,12 @@ void MainWindow::fix_sp2_Slot_sec()
 
 void MainWindow::btn_vediosersor_default_Slot_sec()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 58;
+    send_oneframe(2);
+    send_mutex.unlock();
+
     send_mutex.lock();
     send_arr[4] = 0x09;
     send_arr[5] = 60;
