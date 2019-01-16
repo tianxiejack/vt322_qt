@@ -175,8 +175,8 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     }
     else if(0x08 == i)
     {
-        short speedclassx = output_array_7[1];
-        short speedclassy = output_array_7[2];
+        char speedclassx = output_array_7[1];
+        char speedclassy = output_array_7[2];
         rto_speedclassx->setText(QString::number(speedclassx));
         rto_speedclassx->setText(QString::number(speedclassy));
     }
@@ -518,10 +518,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                        speedy9_lineEdt_sec->setText(QString::number(value_i));
                         break;
                     case 0x02:
-                       x_Bleed_rate_sec->setText(QString::number(value_i));
+                       speedx10_lineEdt_sec->setText(QString::number(value_i));
                         break;
                     case 0x03:
-                        y_Bleed_rate_sec->setText(QString::number(value_i));
+                        speedy10_lineEdt_sec->setText(QString::number(value_i));
                         break;
                     case 0x04:
                         maxspeedx_sec->setText(QString::number(value_i));
@@ -559,10 +559,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                   speedy9_lineEdt_thi->setText(QString::number(value_i));
                    break;
                case 0x02:
-                  x_Bleed_rate_thi->setText(QString::number(value_i));
+                  speedx10_lineEdt_thi->setText(QString::number(value_i));
                    break;
                case 0x03:
-                   y_Bleed_rate_thi->setText(QString::number(value_i));
+                   speedy10_lineEdt_thi->setText(QString::number(value_i));
                    break;
                case 0x04:
                    maxspeedx_thi->setText(QString::number(value_i));
@@ -597,10 +597,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                   speedy9_lineEdt_fou->setText(QString::number(value_i));
                    break;
                case 0x02:
-                  x_Bleed_rate_fou->setText(QString::number(value_i));
+                  speedx10_lineEdt_fou->setText(QString::number(value_i));
                    break;
                case 0x03:
-                   y_Bleed_rate_fou->setText(QString::number(value_i));
+                   speedy10_lineEdt_fou->setText(QString::number(value_i));
                    break;
                case 0x04:
                    maxspeedx_fou->setText(QString::number(value_i));
@@ -635,10 +635,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                   speedy9_lineEdt_fif->setText(QString::number(value_i));
                    break;
                case 0x02:
-                  x_Bleed_rate_fif->setText(QString::number(value_i));
+                  speedx10_lineEdt_fif->setText(QString::number(value_i));
                    break;
                case 0x03:
-                   y_Bleed_rate_fif->setText(QString::number(value_i));
+                   speedy10_lineEdt_fif->setText(QString::number(value_i));
                    break;
                case 0x04:
                    maxspeedx_fif->setText(QString::number(value_i));
@@ -2150,10 +2150,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 else if(0x01 == output_array[2])
                 {
                     speedy9_lineEdt->setText(QString::number(value_i));
-                } else if(10 == output_array[2])
+                } else if(0x02 == output_array[2])
                 {
                     speedx10_lineEdt->setText(QString::number(value_i));
-                } else if(13 == output_array[2])
+                } else if(0x03 == output_array[2])
                 {
                     speedy10_lineEdt->setText(QString::number(value_i));
                 }
