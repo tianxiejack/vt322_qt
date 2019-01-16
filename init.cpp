@@ -7451,6 +7451,7 @@ void MainWindow::init_realtime_output()
     w_realtime_output->setWindowTitle(tr("实时输出"));
 
     rto_currstat = new QLineEdit;
+    rto_currstat->setText("目标捕获");
     rto_trkerrorx = new QLineEdit;
     rto_trkerrory = new QLineEdit;
     rto_speedneedx = new QLineEdit;
