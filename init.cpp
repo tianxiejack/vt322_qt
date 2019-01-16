@@ -7947,7 +7947,7 @@ void MainWindow::showspeedconvcfg()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<=1;i++){
+    for(int i=0;i<=3;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=50;
@@ -7956,24 +7956,19 @@ void MainWindow::showspeedconvcfg()
         send_mutex.unlock();
     }
 
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=10;
-        send_oneframe(3);
-        send_mutex.unlock();
-
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=50;
-        send_arr[6]=13;
-        send_oneframe(3);
-        send_mutex.unlock();
-
     for(int i=1;i<7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=3;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+
+    for(int i=1;i<7;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=52;
         send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
@@ -8009,19 +8004,14 @@ void MainWindow::showspeedconvcfg_sec()
         send_mutex.unlock();
     }
 
+    for(int i=0;i<=7;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
-        send_arr[5]=100;
-        send_arr[6]=10;
+        send_arr[5]=107;
+        send_arr[6]=i;
         send_oneframe(3);
         send_mutex.unlock();
-
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=100;
-        send_arr[6]=13;
-        send_oneframe(3);
-        send_mutex.unlock();
+    }
 
     w_speedconv_sec->show();
     w_speedconv_sec->show_stat = 1;

@@ -2256,7 +2256,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         case 52:
             if(0x00 == output_array[2])
             {
-                out_address->setText(msg.fromUtf8(ba));
+                //out_address->setText(msg.fromUtf8(ba));
             }else if (0x01 == output_array[2]) {
                 switch((int)value_i)
                 {
@@ -2403,13 +2403,15 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                {
                    stop_bit->setCurrentIndex(1);
                }
+            }else if (0x06 == output_array[2]){
+                out_address->setText(QString::number(value_i));
             }
             break;
 
         case 107:
             if(0x00 == output_array[2])
             {
-                out_address->setText(msg.fromUtf8(ba));
+                //out_address->setText(msg.fromUtf8(ba));
             }else if (0x01 == output_array[2]) {
                 switch((int)value_i)
                 {
@@ -2556,6 +2558,8 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                {
                    stop_bit->setCurrentIndex(1);
                }
+            }else if (0x06 == output_array[2]){
+                out_address_sec->setText(QString::number(value_i));
             }
             break;
         case 108:
