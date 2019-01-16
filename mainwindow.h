@@ -112,6 +112,7 @@ public:
     void init_captureCfg();
     void init_OSDCfg();
     void init_resl();
+    void init_realtime_output();
 
     /*协议传输*/
     QByteArray string2hex(QString str,bool &flag);
@@ -212,6 +213,7 @@ public slots:
     void showspeedconvcfg_fif();
     void showmtdcfg();
     void showjoscfg();
+    void show_realtime_output();
 
     /*系统配置槽函数*/
     void btnDownSlot();
@@ -1362,6 +1364,7 @@ private slots:
 
     void on_call_preset_bit_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     Jos j;
@@ -1776,6 +1779,9 @@ private:
     QButtonGroup  *workcheckbox;
     QButtonGroup  *acqcheckbox;
 
+    /*实时输出界面*/
+    MyWidget *w_realtime_output;
+    QLineEdit *rto_currstat, *rto_trkerrorx, *rto_trkerrory, *rto_speedneedx, *rto_speedneedy, *rto_speedclassx, *rto_speedclassy;
 };
 extern MainWindow *pthis;
 #endif // MAINWINDOW_H

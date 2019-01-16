@@ -97,6 +97,7 @@ void MainWindow::init_menu()
 
     ui->menuBar->addMenu(menu[0]);
 
+    connect(real_time_output,SIGNAL(triggered(bool)),this,SLOT(show_realtime_output()));
     connect(avt_videoCfg1,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg1()));
     connect(avt_videoCfg2,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg2()));
     connect(avt_videoCfg3,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg3()));
@@ -7484,6 +7485,56 @@ void MainWindow::init_resl()
     connect(btn_resolu_confirm,SIGNAL(clicked(bool)),this,SLOT(btn_resolution_clicked()));
 }
 
+void MainWindow::init_realtime_output()
+{
+    w_realtime_output=new MyWidget;
+    w_realtime_output->setWindowTitle(tr("实时输出"));
+
+    rto_currstat = new QLineEdit;
+    rto_trkerrorx = new QLineEdit;
+    rto_trkerrory = new QLineEdit;
+    rto_speedneedx = new QLineEdit;
+    rto_speedneedy = new QLineEdit;
+    rto_speedclassx = new QLineEdit;
+    rto_speedclassy = new QLineEdit;
+
+    QLabel* rto_currstat_l=new QLabel;
+    rto_currstat_l->setText("当前状态");
+    QLabel* rto_trkerrorx_l=new QLabel;
+    rto_trkerrorx_l->setText("像素偏差X");
+    QLabel* rto_trkerrory_l=new QLabel;
+    rto_trkerrory_l->setText("像素偏差Y");
+    QLabel* rto_speedneedx_l=new QLabel;
+    rto_speedneedx_l->setText("速度需求X");
+    QLabel* rto_speedneedy_l=new QLabel;
+    rto_speedneedy_l->setText("速度需求Y");
+    QLabel* rto_speedclassx_l=new QLabel;
+    rto_speedclassx_l->setText("速度等级X");
+    QLabel* rto_speedclassy_l=new QLabel;
+    rto_speedclassy_l->setText("速度等级Y");
+
+    QGridLayout *grto=new QGridLayout;
+    grto->addWidget(rto_currstat_l, 0, 0, 1, 1);
+    grto->addWidget(rto_currstat, 0, 1, 1, 1);
+
+    grto->addWidget(rto_trkerrorx_l, 1, 0, 1, 1);
+    grto->addWidget(rto_trkerrorx, 1, 1, 1, 1);
+    grto->addWidget(rto_trkerrory_l, 1, 2, 1, 1);
+    grto->addWidget(rto_trkerrory, 1, 3, 1, 1);
+
+    grto->addWidget(rto_speedneedx_l, 2, 0, 1, 1);
+    grto->addWidget(rto_speedneedx, 2, 1, 1, 1);
+    grto->addWidget(rto_speedneedy_l, 2, 2, 1, 1);
+    grto->addWidget(rto_speedneedy, 2, 3, 1, 1);
+
+    grto->addWidget(rto_speedclassx_l, 3, 0, 1, 1);
+    grto->addWidget(rto_speedclassx, 3, 1, 1, 1);
+    grto->addWidget(rto_speedclassy_l, 3, 2, 1, 1);
+    grto->addWidget(rto_speedclassy, 3, 3, 1, 1);
+
+    w_realtime_output->setLayout(grto);
+}
+
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
@@ -8294,6 +8345,12 @@ void MainWindow::showOther()
 
     w_osd1->show();
     w_osd1->show_stat = 1;
+}
+
+void MainWindow::show_realtime_output()
+{
+    w_realtime_output->show();
+    w_realtime_output->show_stat = 1;
 }
 
 void MainWindow::vedio_btnSensor1SwitchSlot()

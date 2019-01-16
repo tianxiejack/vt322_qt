@@ -77,6 +77,7 @@ MainWindow::MainWindow(QWidget *parent) :
     init_captureCfg();
     init_OSDCfg();
     init_resl();
+    init_realtime_output();
 
 
     this->setWindowTitle("控制界面");

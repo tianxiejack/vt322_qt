@@ -141,8 +141,46 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         memcpy(&value_i,output_array+3,4);
     }
 
-
-    if(i==0x31){
+    if(0x05 == i)
+    {
+        int curstat = output_array[1];
+        switch(curstat)
+        {
+            case 0x00:
+                rto_currstat->setText("目标捕获");
+                break;
+            case 0x01:
+                rto_currstat->setText("自动跟踪");
+                break;
+            case 0x02:
+                rto_currstat->setText("惯性捕获");
+                break;
+            default:
+                break;
+        }
+    }
+    if(0x06 == i)
+    {
+        short errorx = (output_array_6[1] | (output_array_6[2]<<8));
+        short errory = (output_array_6[3] | (output_array_6[4]<<8));
+        rto_trkerrorx->setText(QString::number(errorx));
+        rto_trkerrory->setText(QString::number(errory));
+    }
+    else if(0x07 == i)
+    {
+        short speedneedx = (output_array_7[1] | (output_array_7[2]<<8));
+        short speedneedy = (output_array_7[3] | (output_array_7[4]<<8));
+        rto_speedneedx->setText(QString::number(speedneedx));
+        rto_speedneedy->setText(QString::number(speedneedy));
+    }
+    else if(0x08 == i)
+    {
+        short speedclassx = output_array_7[1];
+        short speedclassy = output_array_7[2];
+        rto_speedclassx->setText(QString::number(speedclassx));
+        rto_speedclassx->setText(QString::number(speedclassy));
+    }
+    else if(0x31 == i){
         switch (output_array[1]) {
 
             case 0x01:
