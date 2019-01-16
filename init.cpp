@@ -5650,31 +5650,13 @@ void MainWindow::init_speedconvCfg()
     output_d_type->addItem("转台命令输出");
     out_address =new QLineEdit;
     baud_rate =new QComboBox;
-    baud_rate->addItem("0");
-    baud_rate->addItem("110");
-    baud_rate->addItem("300");
-    baud_rate->addItem("600");
-    baud_rate->addItem("1200");
     baud_rate->addItem("2400");
     baud_rate->addItem("4800");
     baud_rate->addItem("9600");
-    baud_rate->addItem("14400");
     baud_rate->addItem("19200");
     baud_rate->addItem("38400");
-    baud_rate->addItem("56000");
     baud_rate->addItem("57600");
     baud_rate->addItem("115200");
-    baud_rate->addItem("128000");
-    baud_rate->addItem("230400");
-    baud_rate->addItem("256000");
-    baud_rate->addItem("460800");
-    baud_rate->addItem("500000");
-    baud_rate->addItem("600000");
-    baud_rate->addItem("750000");
-    baud_rate->addItem("921600");
-    baud_rate->addItem("1000000");
-    baud_rate->addItem("1500000");
-    baud_rate->addItem("2000000");
     baud_rate->setCurrentIndex(13);
     data_bit =new QComboBox;
     data_bit->addItem("5");
@@ -5683,6 +5665,7 @@ void MainWindow::init_speedconvCfg()
     data_bit->addItem("8");
     data_bit->setCurrentIndex(3);
     stop_bit =new QComboBox;
+    stop_bit->addItem("1");
     stop_bit->addItem("1.5");
     stop_bit->addItem("2");
     stop_bit->setCurrentIndex(1);
@@ -5691,14 +5674,11 @@ void MainWindow::init_speedconvCfg()
     parity_bit->addItem("None");
     parity_bit->addItem("Odd");
     parity_bit->addItem("Even");
-    parity_bit->addItem("Mark");
-    parity_bit->addItem("Space");
 
     flow_control=new QComboBox;
     flow_control->addItem("Hardware");
     flow_control->addItem("Software");
     flow_control->addItem("None");
-    flow_control->addItem("Custom");
     flow_control->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
@@ -5851,31 +5831,13 @@ void MainWindow::init_speedconvCfg_sec()
     output_d_type_sec->addItem("转台命令输出");
     out_address_sec =new QLineEdit;
     baud_rate_sec =new QComboBox;
-    baud_rate_sec->addItem("0");
-    baud_rate_sec->addItem("110");
-    baud_rate_sec->addItem("300");
-    baud_rate_sec->addItem("600");
-    baud_rate_sec->addItem("1200");
     baud_rate_sec->addItem("2400");
     baud_rate_sec->addItem("4800");
     baud_rate_sec->addItem("9600");
-    baud_rate_sec->addItem("14400");
     baud_rate_sec->addItem("19200");
     baud_rate_sec->addItem("38400");
-    baud_rate_sec->addItem("56000");
     baud_rate_sec->addItem("57600");
     baud_rate_sec->addItem("115200");
-    baud_rate_sec->addItem("128000");
-    baud_rate_sec->addItem("230400");
-    baud_rate_sec->addItem("256000");
-    baud_rate_sec->addItem("460800");
-    baud_rate_sec->addItem("500000");
-    baud_rate_sec->addItem("600000");
-    baud_rate_sec->addItem("750000");
-    baud_rate_sec->addItem("921600");
-    baud_rate_sec->addItem("1000000");
-    baud_rate_sec->addItem("1500000");
-    baud_rate_sec->addItem("2000000");
     baud_rate_sec->setCurrentIndex(13);
     data_bit_sec =new QComboBox;
     data_bit_sec->addItem("5");
@@ -5884,6 +5846,7 @@ void MainWindow::init_speedconvCfg_sec()
     data_bit_sec->addItem("8");
     data_bit_sec->setCurrentIndex(3);
     stop_bit_sec =new QComboBox;
+    stop_bit_sec->addItem("1");
     stop_bit_sec->addItem("1.5");
     stop_bit_sec->addItem("2");
     stop_bit_sec->setCurrentIndex(1);
@@ -5892,14 +5855,11 @@ void MainWindow::init_speedconvCfg_sec()
     parity_bit_sec->addItem("None");
     parity_bit_sec->addItem("Odd");
     parity_bit_sec->addItem("Even");
-    parity_bit_sec->addItem("Mark");
-    parity_bit_sec->addItem("Space");
 
     flow_control_sec=new QComboBox;
     flow_control_sec->addItem("Hardware");
     flow_control_sec->addItem("Software");
     flow_control_sec->addItem("None");
-    flow_control_sec->addItem("Custom");
     flow_control_sec->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
@@ -7956,7 +7916,7 @@ void MainWindow::showspeedconvcfg()
         send_mutex.unlock();
     }
 
-    for(int i=1;i<7;i++){
+    for(int i=3;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=3;
@@ -7965,7 +7925,14 @@ void MainWindow::showspeedconvcfg()
         send_mutex.unlock();
     }
 
-    for(int i=1;i<7;i++){
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=3;
+    send_arr[6]=14;
+    send_oneframe(3);
+    send_mutex.unlock();
+
+    for(int i=1;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=52;
@@ -7980,14 +7947,7 @@ void MainWindow::showspeedconvcfg()
 
 void MainWindow::showspeedconvcfg_sec()
 {
-
-    send_mutex.lock();
-    send_arr[4]=0x45;
-    send_arr[5]=2;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=0;i<16;i++){
+    for(int i=0;i<=15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=99;
@@ -7995,7 +7955,7 @@ void MainWindow::showspeedconvcfg_sec()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<8;i++){
+    for(int i=0;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=100;
@@ -8004,7 +7964,7 @@ void MainWindow::showspeedconvcfg_sec()
         send_mutex.unlock();
     }
 
-    for(int i=0;i<=7;i++){
+    for(int i=1;i<=6;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=107;
@@ -8020,13 +7980,7 @@ void MainWindow::showspeedconvcfg_sec()
 
 void MainWindow::showspeedconvcfg_thi()
 {
-    send_mutex.lock();
-    send_arr[4]=0x45;
-    send_arr[5]=3;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=0;i<16;i++){
+    for(int i=0;i<=15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=101;
@@ -8034,7 +7988,7 @@ void MainWindow::showspeedconvcfg_thi()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<8;i++){
+    for(int i=0;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=102;
@@ -8042,19 +7996,15 @@ void MainWindow::showspeedconvcfg_thi()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=102;
-    send_arr[6]=10;
-    send_oneframe(3);
-    send_mutex.unlock();
 
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=102;
-    send_arr[6]=13;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=108;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
     w_speedconv_thi->show();
     w_speedconv_thi->show_stat = 1;
@@ -8062,13 +8012,7 @@ void MainWindow::showspeedconvcfg_thi()
 
 void MainWindow::showspeedconvcfg_fou()
 {
-    send_mutex.lock();
-    send_arr[4]=0x45;
-    send_arr[5]=4;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    for(int i=0;i<16;i++){
+    for(int i=0;i<=15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=103;
@@ -8076,7 +8020,7 @@ void MainWindow::showspeedconvcfg_fou()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<10;i++){
+    for(int i=0;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=104;
@@ -8084,19 +8028,14 @@ void MainWindow::showspeedconvcfg_fou()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=104;
-    send_arr[6]=10;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=104;
-    send_arr[6]=13;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=109;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
 
     w_speedconv_fou->show();
@@ -8105,14 +8044,7 @@ void MainWindow::showspeedconvcfg_fou()
 
 void MainWindow::showspeedconvcfg_fif()
 {
-    send_mutex.lock();
-    send_arr[4]=0x45;
-    send_arr[5]=5;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-
-    for(int i=0;i<16;i++){
+    for(int i=0;i<=15;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=105;
@@ -8120,7 +8052,7 @@ void MainWindow::showspeedconvcfg_fif()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    for(int i=0;i<10;i++){
+    for(int i=0;i<=8;i++){
         send_mutex.lock();
         send_arr[4]=0x31;
         send_arr[5]=106;
@@ -8128,19 +8060,14 @@ void MainWindow::showspeedconvcfg_fif()
         send_oneframe(3);
         send_mutex.unlock();
     }
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=106;
-    send_arr[6]=10;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=106;
-    send_arr[6]=13;
-    send_oneframe(3);
-    send_mutex.unlock();
+    for(int i=1;i<=6;i++){
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=110;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 
 
     w_speedconv_fif->show();

@@ -766,121 +766,121 @@ void MainWindow::continue_gatelocationy_Slot_sec()
 
 void MainWindow::set_azimuth_Slot()
 {
-    int value=ledt_set_azimuth->text().toInt();
+    unsigned short value=ledt_set_azimuth->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::change_set_azimuth_Slot()
 {
-    int value=Change_ledt_set_azimuth->text().toInt();
+    unsigned short value=Change_ledt_set_azimuth->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_azimuth_Slot()
 {
-    int value=continue_ledt_set_azimuth->text().toInt();
+    unsigned short value=continue_ledt_set_azimuth->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_azimuth_Slot_sec()
 {
-    int value=continue_ledt_set_azimuth_sec->text().toInt();
+    unsigned short value=continue_ledt_set_azimuth_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_pitch_Slot()
 {
-    int value=ledt_set_pitch->text().toInt();
+    unsigned short value=ledt_set_pitch->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::change_set_pitch_Slot()
 {
-    int value=Change_ledt_set_pitch->text().toInt();
+    unsigned short value=Change_ledt_set_pitch->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_pitch_Slot()
 {
-    int value=continue_ledt_set_pitch->text().toInt();
+    unsigned short value=continue_ledt_set_pitch->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_pitch_Slot_sec()
 {
-    int value=continue_ledt_set_pitch_sec->text().toInt();
+    unsigned short value=continue_ledt_set_pitch_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_zoom_Slot()
 {
-    int value=ledt_set_zoom->text().toInt();
+    unsigned short value=ledt_set_zoom->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::change_set_zoom_Slot()
 {
-    int value=Change_ledt_set_zoom->text().toInt();
+    unsigned short value=Change_ledt_set_zoom->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_zoom_Slot()
 {
-    int value=continue_ledt_set_zoom->text().toInt();
+    unsigned short value=continue_ledt_set_zoom->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::continue_set_zoom_Slot_sec()
 {
-    int value=continue_ledt_set_zoom_sec->text().toInt();
+    unsigned short value=continue_ledt_set_zoom_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
@@ -1996,61 +1996,61 @@ void MainWindow::fix_gatelocationy_Slot_sec()
 
 void MainWindow::set_azimuth_Slot_sec()
 {
-    int value=ledt_set_azimuth_sec->text().toInt();
+    unsigned short value=ledt_set_azimuth_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_azimuth_change_Slot_sec()
 {
-    int value=Change_ledt_set_azimuth_sec->text().toInt();
+    unsigned short value=Change_ledt_set_azimuth_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_pitch_Slot_sec()
 {
-    int value=ledt_set_pitch_sec->text().toInt();
+    unsigned short value=ledt_set_pitch_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_pitch_change_Slot_sec()
 {
-    int value=Change_ledt_set_pitch_sec->text().toInt();
+    unsigned short value=Change_ledt_set_pitch_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_zoom_Slot_sec()
 {
-    int value=ledt_set_zoom_sec->text().toInt();
+    unsigned short value=ledt_set_zoom_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
 void MainWindow::set_zoom_change_Slot_sec()
 {
-    int value=Change_ledt_set_zoom_sec->text().toInt();
+    unsigned short value=Change_ledt_set_zoom_sec->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(5);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
 }
 
