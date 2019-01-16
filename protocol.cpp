@@ -3248,51 +3248,54 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     }
     else if(0x60 == i)
     {
+        int value_int = (output_array[1] | (output_array[2]<<8));
         if(w_sersor_1->show_stat)
-            ledt_search_azimuth->setText(QString::number(value_i));
+            ledt_search_azimuth->setText(QString::number(value_int));
         if(w_seitchField_1->show_stat)
-            Change_ledt_search_azimuth->setText(QString::number(value_i));
+            Change_ledt_search_azimuth->setText(QString::number(value_int));
         if(w_ContinueField_1->show_stat)
-            continue_ledt_search_azimuth->setText(QString::number(value_i));
+            continue_ledt_search_azimuth->setText(QString::number(value_int));
 
         if(w_sersor_1_sec->show_stat)
-            ledt_search_azimuth_sec->setText(QString::number(value_i));
+            ledt_search_azimuth_sec->setText(QString::number(value_int));
         if(w_seitchField_1_sec->show_stat)
-            Change_ledt_search_azimuth_sec->setText(QString::number(value_i));
+            Change_ledt_search_azimuth_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
-            continue_ledt_search_azimuth_sec->setText(QString::number(value_i));
+            continue_ledt_search_azimuth_sec->setText(QString::number(value_int));
     }
     else if(0x61 == i)
     {
+        int value_int = (output_array[1] | (output_array[2]<<8));
         if(w_sersor_1->show_stat)
-            ledt_search_pitch->setText(QString::number(value_i));
+            ledt_search_pitch->setText(QString::number(value_int));
         if(w_seitchField_1->show_stat)
-            Change_ledt_search_pitch->setText(QString::number(value_i));
+            Change_ledt_search_pitch->setText(QString::number(value_int));
         if(w_ContinueField_1->show_stat)
-            continue_ledt_search_pitch->setText(QString::number(value_i));
+            continue_ledt_search_pitch->setText(QString::number(value_int));
 
         if(w_sersor_1_sec->show_stat)
-            ledt_search_pitch_sec->setText(QString::number(value_i));
+            ledt_search_pitch_sec->setText(QString::number(value_int));
         if(w_seitchField_1_sec->show_stat)
-            Change_ledt_search_pitch_sec->setText(QString::number(value_i));
+            Change_ledt_search_pitch_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
-            continue_ledt_search_pitch_sec->setText(QString::number(value_i));
+            continue_ledt_search_pitch_sec->setText(QString::number(value_int));
     }
     else if(0x62 == i)
     {
+        int value_int = (output_array[1] | (output_array[2]<<8));
         if(w_sersor_1->show_stat)
-            ledt_search_zoom->setText(QString::number(value_i));
+            ledt_search_zoom->setText(QString::number(value_int));
         if(w_seitchField_1->show_stat)
-            Change_ledt_search_zoom->setText(QString::number(value_i));
+            Change_ledt_search_zoom->setText(QString::number(value_int));
         if(w_ContinueField_1->show_stat)
-            continue_ledt_search_zoom->setText(QString::number(value_i));
+            continue_ledt_search_zoom->setText(QString::number(value_int));
 
         if(w_sersor_1_sec->show_stat)
-            ledt_search_zoom_sec->setText(QString::number(value_i));
+            ledt_search_zoom_sec->setText(QString::number(value_int));
         if(w_seitchField_1_sec->show_stat)
-            Change_ledt_search_zoom_sec->setText(QString::number(value_i));
+            Change_ledt_search_zoom_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
-            continue_ledt_search_zoom_sec->setText(QString::number(value_i));
+            continue_ledt_search_zoom_sec->setText(QString::number(value_int));
     }
     memset(output_array,0,sizeof(output_array));
 }
