@@ -41,6 +41,7 @@ unsigned char uoutput_array[5000] = {0};
 extern int connect_flag;
 extern int current_povstat;
 int data_length=0;
+QTcpSocket *socket;
 QTcpSocket *usocket;
 QFile expfile;
 QTextEdit *upgrade_show;
@@ -96,12 +97,12 @@ MainWindow::MainWindow(QWidget *parent) :
     thread_01->start();
 
     socket = new QTcpSocket(this);
-    connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_Read_Data);
+    //connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_Read_Data);
     connect(this,&MainWindow::socket_copy_Done, this ,&MainWindow::socket_parse_bytearray);
 	connect(socket, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
     thread_socket = new RcvSocketdata(this);
     thread_run_socket = true;
-    thread_socket->start();
+    //thread_socket->start();
 
     time=new QTimer(this);
     connect(time,SIGNAL(timeout()),this,SLOT(timeoutSlot()));
@@ -13660,7 +13661,7 @@ QString ShowHex(QByteArray str)
     }
     return buf;
 }
-
+    /*
 void MainWindow::socket_Read_Data()
 {
     socketRcvData = socket->readAll();//读网口
@@ -13672,7 +13673,7 @@ void MainWindow::socket_Read_Data()
     //ui->textEdit->append(rcvBuf);
     socketRcvData.clear();
 }
-
+    */
 
 
 

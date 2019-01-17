@@ -9,6 +9,7 @@ class RcvSocketdata : public QThread
     Q_OBJECT
 public:
     explicit RcvSocketdata(QObject *parent = nullptr);
+    void socket_Read_Data();
 
 protected:
     void run();

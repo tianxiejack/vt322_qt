@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+extern QTcpSocket *socket;
+
 typedef struct resp
 {
     unsigned char autocheck;

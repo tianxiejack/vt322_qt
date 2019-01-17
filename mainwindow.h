@@ -124,7 +124,7 @@ public:
     void output_to_label(int i);
     void socket_parse_bytearray();
     void usocket_parse_bytearray();
-    void socket_Read_Data();
+    //void socket_Read_Data();
     void upgrade_showtext(int i,int percent);
 
     void vedio_btnSensor1SwitchSlot();
@@ -1377,7 +1377,6 @@ private:
         QLineEdit *lineEdit;
         int sersor_count=0;
     /**/
-    QTcpSocket *socket;
     QSerialPort * serialPort_command;
     QStackedLayout *btnStack;
     QByteArray sndData_02;
