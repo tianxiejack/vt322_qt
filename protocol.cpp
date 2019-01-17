@@ -549,37 +549,38 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             if(w_speedconv_thi->show_stat)
             {
                 switch (output_array[2]){
-
-                case 0x00:
-                  speedy8_lineEdt_thi->setText(QString::number(value_i));
-                   break;
-                case 0x01:
-                  speedy9_lineEdt_thi->setText(QString::number(value_i));
-                   break;
-               case 0x02:
-                  speedx10_lineEdt_thi->setText(QString::number(value_i));
-                   break;
-               case 0x03:
-                   speedy10_lineEdt_thi->setText(QString::number(value_i));
-                   break;
-               case 0x04:
-                   maxspeedx_thi->setText(QString::number(value_i));
-                   break;
-               case 0x05:
-                  maxspeedy_thi->setText(QString::number(value_i));
-                   break;
-               case 0x06:
-                   deadx_thi->setText(QString::number(value_i));
-                   break;
-               case 0x07:
-                   deady_thi->setText(QString::number(value_i));
-                   break;
-               case 0x09:
-                   deadx_thi->setText(QString::number(value_i));
-               break;
-               case 13:
-                   deady_thi->setText(QString::number(value_i));
-               break;
+                    case 0x00:
+                        speedy8_lineEdt_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x01:
+                        speedy9_lineEdt_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x02:
+                        speedx10_lineEdt_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x03:
+                        speedy10_lineEdt_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x04:
+                        maxspeedx_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x05:
+                        maxspeedy_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x06:
+                        deadx_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x07:
+                        deady_thi->setText(QString::number(value_i));
+                        break;
+                    case 0x08:
+                        if((int)value_i == 1)
+                            output_d_type_thi->setCurrentIndex(0);
+                        else if((int)value_i == 2)
+                            output_d_type_thi->setCurrentIndex(1);
+                        else if((int)value_i == 3)
+                            output_d_type_thi->setCurrentIndex(2);
+                        break;
                 }
             }
             break;
@@ -2373,16 +2374,16 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 switch((int)value_i)
                 {
                     case 5:
-                        data_bit->setCurrentIndex(0);
+                        data_bit_sec->setCurrentIndex(0);
                         break;
                     case 6:
-                        data_bit->setCurrentIndex(1);
+                        data_bit_sec->setCurrentIndex(1);
                         break;
                     case 7:
-                        data_bit->setCurrentIndex(2);
+                        data_bit_sec->setCurrentIndex(2);
                         break;
                     case 8:
-                        data_bit->setCurrentIndex(3);
+                        data_bit_sec->setCurrentIndex(3);
                         break;
                 default:
                     break;
@@ -2391,13 +2392,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 switch((int)value_i)
                 {
                     case 0:
-                        parity_bit->setCurrentIndex(0);
+                        parity_bit_sec->setCurrentIndex(0);
                         break;
                     case 1:
-                        parity_bit->setCurrentIndex(1);
+                        parity_bit_sec->setCurrentIndex(1);
                         break;
                     case 2:
-                        parity_bit->setCurrentIndex(2);
+                        parity_bit_sec->setCurrentIndex(2);
                         break;
                     default:
                         break;
@@ -2405,122 +2406,54 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }else if (0x04 == output_array[2]){
                 if((int)value_i==0)
                 {
-                    stop_bit->setCurrentIndex(0);
+                    stop_bit_sec->setCurrentIndex(0);
                 }else if((value_i > 1) && (value_i < 2))
                 {
-                    stop_bit->setCurrentIndex(1);
+                    stop_bit_sec->setCurrentIndex(1);
                 }else if((int)value_i==2)
                 {
-                    stop_bit->setCurrentIndex(2);
+                    stop_bit_sec->setCurrentIndex(2);
                 }
             }else if (0x05 == output_array[2]){
                 if((int)value_i==1)
                 {
-                    flow_control->setCurrentIndex(0);
+                    flow_control_sec->setCurrentIndex(0);
                 }else if((int)value_i==2)
                 {
-                    flow_control->setCurrentIndex(1);
+                    flow_control_sec->setCurrentIndex(1);
                 }else if((int)value_i==3)
                 {
-                    flow_control->setCurrentIndex(2);
+                    flow_control_sec->setCurrentIndex(2);
                 }
             }else if (0x06 == output_array[2]){
                 out_address_sec->setText(QString::number(value_i));
             }
             break;
         case 108:
-            if(0x00 == output_array[2])
-            {
-                out_address->setText(msg.fromUtf8(ba));
-            }else if (0x01 == output_array[2]) {
+            if (0x01 == output_array[2]) {
                 switch((int)value_i)
                 {
-                 case 0:
-                    baud_rate->setCurrentIndex(0);
-                    break;
-                case 110:
-                    baud_rate->setCurrentIndex(1);
-                    break;
-                case 300:
-                    baud_rate->setCurrentIndex(2);
-                    break;
-                case 600:
-                    baud_rate->setCurrentIndex(3);
-                    break;
-                case 1200:
-                    baud_rate->setCurrentIndex(4);
-                    break;
-                case 2400:
-                    baud_rate->setCurrentIndex(5);
-                    break;
-                case 4800:
-                    baud_rate->setCurrentIndex(6);
-                    break;
-                case 9600:
-                    baud_rate->setCurrentIndex(7);
-                    break;
-                case 14000:
-                    baud_rate->setCurrentIndex(8);
-                    break;
-                case 19200:
-                    baud_rate->setCurrentIndex(9);
-                    break;
-                case 38400:
-                    baud_rate->setCurrentIndex(10);
-                    break;
-                case 56000:
-                    baud_rate->setCurrentIndex(11);
-                    break;
-                case 57600:
-                    baud_rate->setCurrentIndex(12);
-                    break;
-                case 115200:
-                    baud_rate->setCurrentIndex(13);
-                    break;
-
-                case 128000:
-                    baud_rate->setCurrentIndex(14);
-                    break;
-
-                case 230400:
-                    baud_rate->setCurrentIndex(15);
-                    break;
-
-
-                case 256000:
-                    baud_rate->setCurrentIndex(16);
-                    break;
-
-                case 460800:
-                    baud_rate->setCurrentIndex(17);
-                    break;
-                case 500000:
-                    baud_rate->setCurrentIndex(18);
-                    break;
-
-                case 512000:
-                    baud_rate->setCurrentIndex(19);
-                    break;
-
-                case 600000:
-                    baud_rate->setCurrentIndex(20);
-                    break;
-
-                case 750000:
-                    baud_rate->setCurrentIndex(21);
-                    break;
-                case 921600:
-                    baud_rate->setCurrentIndex(22);
-                    break;
-                case 1000000:
-                    baud_rate->setCurrentIndex(23);
-                    break;
-                case 1500000:
-                    baud_rate->setCurrentIndex(24);
-                    break;
-                case 2000000:
-                    baud_rate->setCurrentIndex(25);
-                    break;
+                    case 2400:
+                        baud_rate_thi->setCurrentIndex(0);
+                        break;
+                    case 4800:
+                        baud_rate_thi->setCurrentIndex(1);
+                        break;
+                    case 9600:
+                        baud_rate_thi->setCurrentIndex(2);
+                        break;
+                    case 19200:
+                        baud_rate_thi->setCurrentIndex(3);
+                        break;
+                    case 38400:
+                        baud_rate_thi->setCurrentIndex(4);
+                        break;
+                    case 57600:
+                        baud_rate_thi->setCurrentIndex(5);
+                        break;
+                    case 115200:
+                        baud_rate_thi->setCurrentIndex(6);
+                        break;
                     default:
                         break;
                 }
@@ -2528,155 +2461,87 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }else if (0x02 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    data_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    data_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    data_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    data_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    data_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 5:
+                        data_bit_thi->setCurrentIndex(0);
+                        break;
+                    case 6:
+                        data_bit_thi->setCurrentIndex(1);
+                        break;
+                    case 7:
+                        data_bit_thi->setCurrentIndex(2);
+                        break;
+                    case 8:
+                        data_bit_thi->setCurrentIndex(3);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x03 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    parity_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    parity_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    parity_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    parity_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    parity_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 0:
+                        parity_bit_thi->setCurrentIndex(0);
+                        break;
+                    case 1:
+                        parity_bit_thi->setCurrentIndex(1);
+                        break;
+                    case 2:
+                        parity_bit_thi->setCurrentIndex(2);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x04 == output_array[2]){
-               if((int)value_i==1)
-               {
-                   stop_bit->setCurrentIndex(0);
-               }else if((int)value_i==2)
-               {
-                   stop_bit->setCurrentIndex(2);
-               }else
-               {
-                   stop_bit->setCurrentIndex(1);
-               }
+                if((int)value_i==0)
+                {
+                    stop_bit_thi->setCurrentIndex(0);
+                }else if((value_i > 1) && (value_i < 2))
+                {
+                    stop_bit_thi->setCurrentIndex(1);
+                }else if((int)value_i==2)
+                {
+                    stop_bit_thi->setCurrentIndex(2);
+                }
+            }else if (0x05 == output_array[2]){
+                if((int)value_i==1)
+                {
+                    flow_control_thi->setCurrentIndex(0);
+                }else if((int)value_i==2)
+                {
+                    flow_control_thi->setCurrentIndex(1);
+                }else if((int)value_i==3)
+                {
+                    flow_control_thi->setCurrentIndex(2);
+                }
+            }else if (0x06 == output_array[2]){
+                out_address_thi->setText(QString::number(value_i));
             }
-
-
-
-
             break;
         case 109:
-            if(0x00 == output_array[2])
-            {
-                out_address->setText(msg.fromUtf8(ba));
-            }else if (0x01 == output_array[2]) {
+            if (0x01 == output_array[2]) {
                 switch((int)value_i)
                 {
-                 case 0:
-                    baud_rate->setCurrentIndex(0);
-                    break;
-                case 110:
-                    baud_rate->setCurrentIndex(1);
-                    break;
-                case 300:
-                    baud_rate->setCurrentIndex(2);
-                    break;
-                case 600:
-                    baud_rate->setCurrentIndex(3);
-                    break;
-                case 1200:
-                    baud_rate->setCurrentIndex(4);
-                    break;
-                case 2400:
-                    baud_rate->setCurrentIndex(5);
-                    break;
-                case 4800:
-                    baud_rate->setCurrentIndex(6);
-                    break;
-                case 9600:
-                    baud_rate->setCurrentIndex(7);
-                    break;
-                case 14000:
-                    baud_rate->setCurrentIndex(8);
-                    break;
-                case 19200:
-                    baud_rate->setCurrentIndex(9);
-                    break;
-                case 38400:
-                    baud_rate->setCurrentIndex(10);
-                    break;
-                case 56000:
-                    baud_rate->setCurrentIndex(11);
-                    break;
-                case 57600:
-                    baud_rate->setCurrentIndex(12);
-                    break;
-                case 115200:
-                    baud_rate->setCurrentIndex(13);
-                    break;
-
-                case 128000:
-                    baud_rate->setCurrentIndex(14);
-                    break;
-
-                case 230400:
-                    baud_rate->setCurrentIndex(15);
-                    break;
-
-
-                case 256000:
-                    baud_rate->setCurrentIndex(16);
-                    break;
-
-                case 460800:
-                    baud_rate->setCurrentIndex(17);
-                    break;
-                case 500000:
-                    baud_rate->setCurrentIndex(18);
-                    break;
-
-                case 512000:
-                    baud_rate->setCurrentIndex(19);
-                    break;
-
-                case 600000:
-                    baud_rate->setCurrentIndex(20);
-                    break;
-
-                case 750000:
-                    baud_rate->setCurrentIndex(21);
-                    break;
-                case 921600:
-                    baud_rate->setCurrentIndex(22);
-                    break;
-                case 1000000:
-                    baud_rate->setCurrentIndex(23);
-                    break;
-                case 1500000:
-                    baud_rate->setCurrentIndex(24);
-                    break;
-                case 2000000:
-                    baud_rate->setCurrentIndex(25);
-                    break;
+                    case 2400:
+                        baud_rate_fou->setCurrentIndex(0);
+                        break;
+                    case 4800:
+                        baud_rate_fou->setCurrentIndex(1);
+                        break;
+                    case 9600:
+                        baud_rate_fou->setCurrentIndex(2);
+                        break;
+                    case 19200:
+                        baud_rate_fou->setCurrentIndex(3);
+                        break;
+                    case 38400:
+                        baud_rate_fou->setCurrentIndex(4);
+                        break;
+                    case 57600:
+                        baud_rate_fou->setCurrentIndex(5);
+                        break;
+                    case 115200:
+                        baud_rate_fou->setCurrentIndex(6);
+                        break;
                     default:
                         break;
                 }
@@ -2684,152 +2549,87 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }else if (0x02 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    data_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    data_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    data_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    data_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    data_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 5:
+                        data_bit_fou->setCurrentIndex(0);
+                        break;
+                    case 6:
+                        data_bit_fou->setCurrentIndex(1);
+                        break;
+                    case 7:
+                        data_bit_fou->setCurrentIndex(2);
+                        break;
+                    case 8:
+                        data_bit_fou->setCurrentIndex(3);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x03 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    parity_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    parity_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    parity_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    parity_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    parity_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 0:
+                        parity_bit_fou->setCurrentIndex(0);
+                        break;
+                    case 1:
+                        parity_bit_fou->setCurrentIndex(1);
+                        break;
+                    case 2:
+                        parity_bit_fou->setCurrentIndex(2);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x04 == output_array[2]){
-               if((int)value_i==1)
-               {
-                   stop_bit->setCurrentIndex(0);
-               }else if((int)value_i==2)
-               {
-                   stop_bit->setCurrentIndex(2);
-               }else
-               {
-                   stop_bit->setCurrentIndex(1);
-               }
+                if((int)value_i==0)
+                {
+                    stop_bit_fou->setCurrentIndex(0);
+                }else if((value_i > 1) && (value_i < 2))
+                {
+                    stop_bit_fou->setCurrentIndex(1);
+                }else if((int)value_i==2)
+                {
+                    stop_bit_fou->setCurrentIndex(2);
+                }
+            }else if (0x05 == output_array[2]){
+                if((int)value_i==1)
+                {
+                    flow_control_fou->setCurrentIndex(0);
+                }else if((int)value_i==2)
+                {
+                    flow_control_fou->setCurrentIndex(1);
+                }else if((int)value_i==3)
+                {
+                    flow_control_fou->setCurrentIndex(2);
+                }
+            }else if (0x06 == output_array[2]){
+                out_address_fou->setText(QString::number(value_i));
             }
-
             break;
         case 110:
-            if(0x00 == output_array[2])
-            {
-                out_address->setText(msg.fromUtf8(ba));
-            }else if (0x01 == output_array[2]) {
+            if (0x01 == output_array[2]) {
                 switch((int)value_i)
                 {
-                 case 0:
-                    baud_rate->setCurrentIndex(0);
-                    break;
-                case 110:
-                    baud_rate->setCurrentIndex(1);
-                    break;
-                case 300:
-                    baud_rate->setCurrentIndex(2);
-                    break;
-                case 600:
-                    baud_rate->setCurrentIndex(3);
-                    break;
-                case 1200:
-                    baud_rate->setCurrentIndex(4);
-                    break;
-                case 2400:
-                    baud_rate->setCurrentIndex(5);
-                    break;
-                case 4800:
-                    baud_rate->setCurrentIndex(6);
-                    break;
-                case 9600:
-                    baud_rate->setCurrentIndex(7);
-                    break;
-                case 14000:
-                    baud_rate->setCurrentIndex(8);
-                    break;
-                case 19200:
-                    baud_rate->setCurrentIndex(9);
-                    break;
-                case 38400:
-                    baud_rate->setCurrentIndex(10);
-                    break;
-                case 56000:
-                    baud_rate->setCurrentIndex(11);
-                    break;
-                case 57600:
-                    baud_rate->setCurrentIndex(12);
-                    break;
-                case 115200:
-                    baud_rate->setCurrentIndex(13);
-                    break;
-
-                case 128000:
-                    baud_rate->setCurrentIndex(14);
-                    break;
-
-                case 230400:
-                    baud_rate->setCurrentIndex(15);
-                    break;
-
-
-                case 256000:
-                    baud_rate->setCurrentIndex(16);
-                    break;
-
-                case 460800:
-                    baud_rate->setCurrentIndex(17);
-                    break;
-                case 500000:
-                    baud_rate->setCurrentIndex(18);
-                    break;
-
-                case 512000:
-                    baud_rate->setCurrentIndex(19);
-                    break;
-
-                case 600000:
-                    baud_rate->setCurrentIndex(20);
-                    break;
-
-                case 750000:
-                    baud_rate->setCurrentIndex(21);
-                    break;
-                case 921600:
-                    baud_rate->setCurrentIndex(22);
-                    break;
-                case 1000000:
-                    baud_rate->setCurrentIndex(23);
-                    break;
-                case 1500000:
-                    baud_rate->setCurrentIndex(24);
-                    break;
-                case 2000000:
-                    baud_rate->setCurrentIndex(25);
-                    break;
+                    case 2400:
+                        baud_rate_fif->setCurrentIndex(0);
+                        break;
+                    case 4800:
+                        baud_rate_fif->setCurrentIndex(1);
+                        break;
+                    case 9600:
+                        baud_rate_fif->setCurrentIndex(2);
+                        break;
+                    case 19200:
+                        baud_rate_fif->setCurrentIndex(3);
+                        break;
+                    case 38400:
+                        baud_rate_fif->setCurrentIndex(4);
+                        break;
+                    case 57600:
+                        baud_rate_fif->setCurrentIndex(5);
+                        break;
+                    case 115200:
+                        baud_rate_fif->setCurrentIndex(6);
+                        break;
                     default:
                         break;
                 }
@@ -2837,58 +2637,61 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }else if (0x02 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    data_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    data_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    data_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    data_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    data_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 5:
+                        data_bit_fif->setCurrentIndex(0);
+                        break;
+                    case 6:
+                        data_bit_fif->setCurrentIndex(1);
+                        break;
+                    case 7:
+                        data_bit_fif->setCurrentIndex(2);
+                        break;
+                    case 8:
+                        data_bit_fif->setCurrentIndex(3);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x03 == output_array[2]){
                 switch((int)value_i)
                 {
-                 case 0:
-                    parity_bit->setCurrentIndex(0);
-                    break;
-                case 1:
-                    parity_bit->setCurrentIndex(1);
-                    break;
-                case 2:
-                    parity_bit->setCurrentIndex(2);
-                    break;
-                case 3:
-                    parity_bit->setCurrentIndex(3);
-                    break;
-                case 4:
-                    parity_bit->setCurrentIndex(4);
-                    break;
-                default:
-                    break;
+                    case 0:
+                        parity_bit_fif->setCurrentIndex(0);
+                        break;
+                    case 1:
+                        parity_bit_fif->setCurrentIndex(1);
+                        break;
+                    case 2:
+                        parity_bit_fif->setCurrentIndex(2);
+                        break;
+                    default:
+                        break;
                  }
             }else if (0x04 == output_array[2]){
-               if((int)value_i==1)
-               {
-                   stop_bit->setCurrentIndex(0);
-               }else if((int)value_i==2)
-               {
-                   stop_bit->setCurrentIndex(2);
-               }else
-               {
-                   stop_bit->setCurrentIndex(1);
-               }
+                if((int)value_i==0)
+                {
+                    stop_bit_fif->setCurrentIndex(0);
+                }else if((value_i > 1) && (value_i < 2))
+                {
+                    stop_bit_fif->setCurrentIndex(1);
+                }else if((int)value_i==2)
+                {
+                    stop_bit_fif->setCurrentIndex(2);
+                }
+            }else if (0x05 == output_array[2]){
+                if((int)value_i==1)
+                {
+                    flow_control_fif->setCurrentIndex(0);
+                }else if((int)value_i==2)
+                {
+                    flow_control_fif->setCurrentIndex(1);
+                }else if((int)value_i==3)
+                {
+                    flow_control_fif->setCurrentIndex(2);
+                }
+            }else if (0x06 == output_array[2]){
+                out_address_fif->setText(QString::number(value_i));
             }
-
             break;
         case 54:
             if(0x00 == output_array[2]){
@@ -3052,32 +2855,29 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 read_config(49);
                 read_config(50);
                 read_config(52);
+                read_config(3);
            }
            if(w_mtd->show_stat)
            {
                read_config(54);
-
            }
            if(w_speedconv_sec->show_stat)
            {
                read_config(99);
                read_config(100);
                read_config(107);
-
            }
            if(w_speedconv_thi->show_stat)
            {
                read_config(101);
                read_config(102);
                read_config(108);
-
            }
            if(w_speedconv_fou->show_stat)
            {
                read_config(103);
                read_config(104);
                read_config(109);
-
            }
            if(w_speedconv_fif->show_stat)
            {
@@ -3090,13 +2890,11 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            {
                 read_config(2);
                 read_config(48);
-
            }
            if(w_pid2->show_stat)
            {
                read_config(91);
                read_config(92);
-
            }
            if(w_pid3->show_stat)
            {
@@ -3108,13 +2906,11 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            {
                read_config(95);
                read_config(96);
-
            }
            if(w_pid5->show_stat)
            {
                read_config(97);
                read_config(98);
-
            }
            if(w_sersor_1->show_stat)
            {
@@ -3219,8 +3015,8 @@ void MainWindow::read_config(int block)
             send_read_config(block,1,8);
             break;
         case 3:
-            send_read_config(block,1,6);
-            send_read_config(block,8,8);
+            send_read_config(block,3,6);
+            send_read_config(block,14,14);
             break;
         case 4:
             send_read_config(block,0,15);
@@ -3295,7 +3091,10 @@ void MainWindow::read_config(int block)
             send_read_config(block,0,15);
             break;
         case 50:
-            send_read_config(block,0,1);
+            send_read_config(block,0,3);
+            break;
+        case 52:
+            send_read_config(block,1,6);
             break;
         case 54:
             send_read_config(block,0,15);
@@ -3433,51 +3232,41 @@ void MainWindow::read_config(int block)
              break;
 
          case 99:
-          send_read_config(block,0,15);
-          break;
+            send_read_config(block,0,15);
+            break;
          case 100:
-         send_read_config(block,0,7);
-         send_read_config(block,10,10);
-         send_read_config(block,13,13);
-          break;
+            send_read_config(block,0,8);
+            break;
          case 101:
-          send_read_config(block,0,15);
-          break;
+            send_read_config(block,0,15);
+            break;
          case 102:
-        send_read_config(block,0,7);
-        send_read_config(block,10,10);
-        send_read_config(block,13,13);
+            send_read_config(block,0,8);
             break;
          case 103:
-        send_read_config(block,0,15);
-        break;
+            send_read_config(block,0,15);
+            break;
         case 104:
-        send_read_config(block,0,7);
-        send_read_config(block,10,10);
-        send_read_config(block,13,13);
-        break;
+            send_read_config(block,0,8);
+            break;
         case 105:
-       send_read_config(block,0,15);
-        break;
+            send_read_config(block,0,15);
+            break;
         case 106:
-        send_read_config(block,0,7);
-        send_read_config(block,10,10);
-        send_read_config(block,13,13);
-        break;
+            send_read_config(block,0,8);
+            break;
         case 107:
-        send_read_config(block,0,4);
-         break;
+            send_read_config(block,1,6);
+            break;
         case 108:
-        send_read_config(block,0,4);
-         break;
+            send_read_config(block,1,6);
+            break;
         case 109:
-        send_read_config(block,0,4);
-        break;
+            send_read_config(block,1,6);
+            break;
         case 110:
-        send_read_config(block,0,4);
-        break;
-
-
+            send_read_config(block,1,6);
+            break;
         default:
             break;
     }

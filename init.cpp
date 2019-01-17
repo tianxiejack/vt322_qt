@@ -5637,9 +5637,6 @@ void MainWindow::init_speedconvCfg()
     sensor_speed->addWidget(gbox_speedx);
     sensor_speed->addWidget(gbox_speedy);
 
-
-    x_Bleed_rate= new QLineEdit;
-    y_Bleed_rate= new QLineEdit;
     maxspeedx = new QLineEdit;
     maxspeedy = new QLineEdit;
     deadx     = new QLineEdit;
@@ -5682,8 +5679,6 @@ void MainWindow::init_speedconvCfg()
     flow_control->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    //f3->addRow(speed_q[11],x_Bleed_rate);
-    //f3->addRow(speed_q[12],y_Bleed_rate);
     f3->addRow(speed_q[0],maxspeedx);
     f3->addRow(speed_q[1],maxspeedy);
     f3->addRow(speed_q[2],deadx);
@@ -5729,19 +5724,17 @@ void MainWindow::init_speedconvCfg()
     connect(speedy8_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot()));
     connect(speedy9_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot()));
     connect(speedy10_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy10_Slot()));
-    connect(x_Bleed_rate,SIGNAL(returnPressed()),this,SLOT(x_Bleed_rate_Slot()));
-    connect(y_Bleed_rate,SIGNAL(returnPressed()),this,SLOT(y_Bleed_rate_Slot()));
     connect(maxspeedx,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot()));
     connect(maxspeedy,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot()));
     connect(deadx,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot()));
     connect(deady,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot()));
     connect(output_d_type,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot(int)));
     connect(out_address,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot()));
-    connect(baud_rate,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot(int)));
-    connect(data_bit,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot(int)));
-    connect(stop_bit,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot(int)));
-    connect(flow_control,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot(int)));
-    connect(parity_bit,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot(int)));
+    connect(baud_rate,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot(int)));
+    connect(data_bit,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot(int)));
+    connect(stop_bit,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot(int)));
+    connect(flow_control,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot(int)));
+    connect(parity_bit,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot(int)));
 }
 
 
@@ -5818,9 +5811,6 @@ void MainWindow::init_speedconvCfg_sec()
     sensor_speed->addWidget(gbox_speedx_sec);
     sensor_speed->addWidget(gbox_speedy_sec);
 
-
-    x_Bleed_rate_sec= new QLineEdit;
-    y_Bleed_rate_sec= new QLineEdit;
     maxspeedx_sec = new QLineEdit;
     maxspeedy_sec = new QLineEdit;
     deadx_sec     = new QLineEdit;
@@ -5863,8 +5853,6 @@ void MainWindow::init_speedconvCfg_sec()
     flow_control_sec->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    //f3->addRow(speed_q[11],x_Bleed_rate_sec);
-    //f3->addRow(speed_q[12],y_Bleed_rate_sec);
     f3->addRow(speed_q_sec[0],maxspeedx_sec);
     f3->addRow(speed_q_sec[1],maxspeedy_sec);
     f3->addRow(speed_q_sec[2],deadx_sec);
@@ -5911,21 +5899,17 @@ void MainWindow::init_speedconvCfg_sec()
     connect(speedy9_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_sec()));
     connect(speedy10_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy10_Slot_sec()));
 
-    connect(x_Bleed_rate_sec,SIGNAL(returnPressed()),this,SLOT(x_Bleed_rate_Slot_sec()));
-    connect(y_Bleed_rate_sec,SIGNAL(returnPressed()),this,SLOT(y_Bleed_rate_Slot_sec()));
     connect(maxspeedx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_sec()));
     connect(maxspeedy_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_sec()));
     connect(deadx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_sec()));
     connect(deady_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_sec()));
     connect(output_d_type_sec,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_sec(int)));
     connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_sec()));
-    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_sec(int)));
-    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_sec(int)));
-    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_sec(int)));
-    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_sec(int)));
-    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_sec(int)));
-
-
+    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_sec(int)));
+    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_sec(int)));
+    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_sec(int)));
+    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_sec(int)));
+    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_sec(int)));
 }
 
 void MainWindow::init_speedconvCfg_thi()
@@ -6001,9 +5985,6 @@ void MainWindow::init_speedconvCfg_thi()
     sensor_speed->addWidget(gbox_speedx_thi);
     sensor_speed->addWidget(gbox_speedy_thi);
 
-
-    x_Bleed_rate_thi= new QLineEdit;
-    y_Bleed_rate_thi= new QLineEdit;
     maxspeedx_thi = new QLineEdit;
     maxspeedy_thi = new QLineEdit;
     deadx_thi     = new QLineEdit;
@@ -6014,31 +5995,13 @@ void MainWindow::init_speedconvCfg_thi()
     output_d_type_thi->addItem("转台命令输出");
     out_address_thi =new QLineEdit;
     baud_rate_thi =new QComboBox;
-    baud_rate_thi->addItem("0");
-    baud_rate_thi->addItem("110");
-    baud_rate_thi->addItem("300");
-    baud_rate_thi->addItem("600");
-    baud_rate_thi->addItem("1200");
     baud_rate_thi->addItem("2400");
     baud_rate_thi->addItem("4800");
     baud_rate_thi->addItem("9600");
-    baud_rate_thi->addItem("14400");
     baud_rate_thi->addItem("19200");
     baud_rate_thi->addItem("38400");
-    baud_rate_thi->addItem("56000");
     baud_rate_thi->addItem("57600");
     baud_rate_thi->addItem("115200");
-    baud_rate_thi->addItem("128000");
-    baud_rate_thi->addItem("230400");
-    baud_rate_thi->addItem("256000");
-    baud_rate_thi->addItem("460800");
-    baud_rate_thi->addItem("500000");
-    baud_rate_thi->addItem("600000");
-    baud_rate_thi->addItem("750000");
-    baud_rate_thi->addItem("921600");
-    baud_rate_thi->addItem("1000000");
-    baud_rate_thi->addItem("1500000");
-    baud_rate_thi->addItem("2000000");
     baud_rate_thi->setCurrentIndex(13);
     data_bit_thi =new QComboBox;
     data_bit_thi->addItem("5");
@@ -6047,6 +6010,7 @@ void MainWindow::init_speedconvCfg_thi()
     data_bit_thi->addItem("8");
     data_bit_thi->setCurrentIndex(3);
     stop_bit_thi =new QComboBox;
+    stop_bit_thi->addItem("1");
     stop_bit_thi->addItem("1.5");
     stop_bit_thi->addItem("2");
     stop_bit_thi->setCurrentIndex(1);
@@ -6055,19 +6019,14 @@ void MainWindow::init_speedconvCfg_thi()
     parity_bit_thi->addItem("None");
     parity_bit_thi->addItem("Odd");
     parity_bit_thi->addItem("Even");
-    parity_bit_thi->addItem("Mark");
-    parity_bit_thi->addItem("Space");
 
     flow_control_thi=new QComboBox;
     flow_control_thi->addItem("Hardware");
     flow_control_thi->addItem("Software");
     flow_control_thi->addItem("None");
-    flow_control_thi->addItem("Custom");
     flow_control_thi->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    //f3->addRow(speed_q[11],x_Bleed_rate_thi);
-    //f3->addRow(speed_q[12],y_Bleed_rate_thi);
     f3->addRow(speed_q_thi[0],maxspeedx_thi);
     f3->addRow(speed_q_thi[1],maxspeedy_thi);
     f3->addRow(speed_q_thi[2],deadx_thi);
@@ -6079,10 +6038,6 @@ void MainWindow::init_speedconvCfg_thi()
     f3->addRow(speed_q_thi[8],stop_bit_thi);
     f3->addRow(speed_q_thi[9],parity_bit_thi);
     f3->addRow(speed_q_thi[10],flow_control_thi);
-
-
-
-
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
@@ -6113,19 +6068,17 @@ void MainWindow::init_speedconvCfg_thi()
     connect(speedy8_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_thi()));
     connect(speedy9_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_thi()));
     connect(speedy10_lineEdt_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy10_Slot_thi()));
-    connect(x_Bleed_rate_thi,SIGNAL(returnPressed()),this,SLOT(x_Bleed_rate_Slot_thi()));
-    connect(y_Bleed_rate_thi,SIGNAL(returnPressed()),this,SLOT(y_Bleed_rate_Slot_thi()));
     connect(maxspeedx_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_thi()));
     connect(maxspeedy_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_thi()));
     connect(deadx_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_thi()));
     connect(deady_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_thi()));
     connect(output_d_type_thi,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_thi(int)));
     connect(out_address_thi,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_thi()));
-    connect(baud_rate_thi,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_thi(int)));
-    connect(data_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_thi(int)));
-    connect(stop_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_thi(int)));
-    connect(flow_control_thi,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_thi(int)));
-    connect(parity_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_thi(int)));
+    connect(baud_rate_thi,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_thi(int)));
+    connect(data_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_thi(int)));
+    connect(stop_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_thi(int)));
+    connect(flow_control_thi,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_thi(int)));
+    connect(parity_bit_thi,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_thi(int)));
 }
 
 void MainWindow::init_speedconvCfg_fou()
@@ -6201,9 +6154,6 @@ void MainWindow::init_speedconvCfg_fou()
     sensor_speed->addWidget(gbox_speedx_fou);
     sensor_speed->addWidget(gbox_speedy_fou);
 
-
-    x_Bleed_rate_fou= new QLineEdit;
-    y_Bleed_rate_fou= new QLineEdit;
     maxspeedx_fou = new QLineEdit;
     maxspeedy_fou = new QLineEdit;
     deadx_fou     = new QLineEdit;
@@ -6214,31 +6164,13 @@ void MainWindow::init_speedconvCfg_fou()
     output_d_type_fou->addItem("转台命令输出");
     out_address_fou =new QLineEdit;
     baud_rate_fou =new QComboBox;
-    baud_rate_fou->addItem("0");
-    baud_rate_fou->addItem("110");
-    baud_rate_fou->addItem("300");
-    baud_rate_fou->addItem("600");
-    baud_rate_fou->addItem("1200");
     baud_rate_fou->addItem("2400");
     baud_rate_fou->addItem("4800");
     baud_rate_fou->addItem("9600");
-    baud_rate_fou->addItem("14400");
     baud_rate_fou->addItem("19200");
     baud_rate_fou->addItem("38400");
-    baud_rate_fou->addItem("56000");
     baud_rate_fou->addItem("57600");
     baud_rate_fou->addItem("115200");
-    baud_rate_fou->addItem("128000");
-    baud_rate_fou->addItem("230400");
-    baud_rate_fou->addItem("256000");
-    baud_rate_fou->addItem("460800");
-    baud_rate_fou->addItem("500000");
-    baud_rate_fou->addItem("600000");
-    baud_rate_fou->addItem("750000");
-    baud_rate_fou->addItem("921600");
-    baud_rate_fou->addItem("1000000");
-    baud_rate_fou->addItem("1500000");
-    baud_rate_fou->addItem("2000000");
     baud_rate_fou->setCurrentIndex(13);
     data_bit_fou =new QComboBox;
     data_bit_fou->addItem("5");
@@ -6247,6 +6179,7 @@ void MainWindow::init_speedconvCfg_fou()
     data_bit_fou->addItem("8");
     data_bit_fou->setCurrentIndex(3);
     stop_bit_fou =new QComboBox;
+    stop_bit_fou->addItem("1");
     stop_bit_fou->addItem("1.5");
     stop_bit_fou->addItem("2");
     stop_bit_fou->setCurrentIndex(1);
@@ -6255,19 +6188,14 @@ void MainWindow::init_speedconvCfg_fou()
     parity_bit_fou->addItem("None");
     parity_bit_fou->addItem("Odd");
     parity_bit_fou->addItem("Even");
-    parity_bit_fou->addItem("Mark");
-    parity_bit_fou->addItem("Space");
 
     flow_control_fou=new QComboBox;
     flow_control_fou->addItem("Hardware");
     flow_control_fou->addItem("Software");
     flow_control_fou->addItem("None");
-    flow_control_fou->addItem("Custom");
     flow_control_fou->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-   // f3->addRow(speed_q[11],x_Bleed_rate_fou);
-    //f3->addRow(speed_q[12],y_Bleed_rate_fou);
     f3->addRow(speed_q_fou[0],maxspeedx_fou);
     f3->addRow(speed_q_fou[1],maxspeedy_fou);
     f3->addRow(speed_q_fou[2],deadx_fou);
@@ -6313,19 +6241,17 @@ void MainWindow::init_speedconvCfg_fou()
     connect(speedy8_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_fou()));
     connect(speedy9_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_fou()));
     connect(speedy10_lineEdt_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy10_Slot_fou()));
-    connect(x_Bleed_rate_fou,SIGNAL(returnPressed()),this,SLOT(x_Bleed_rate_Slot_fou()));
-    connect(y_Bleed_rate_fou,SIGNAL(returnPressed()),this,SLOT(y_Bleed_rate_Slot_fou()));
     connect(maxspeedx_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_fou()));
     connect(maxspeedy_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fou()));
     connect(deadx_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fou()));
     connect(deady_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fou()));
     connect(output_d_type_fou,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_fou(int)));
     connect(out_address_fou,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_fou()));
-    connect(baud_rate_fou,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_fou(int)));
-    connect(data_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_fou(int)));
-    connect(stop_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_fou(int)));
-    connect(flow_control_fou,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_fou(int)));
-    connect(parity_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_fou(int)));
+    connect(baud_rate_fou,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_fou(int)));
+    connect(data_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_fou(int)));
+    connect(stop_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_fou(int)));
+    connect(flow_control_fou,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_fou(int)));
+    connect(parity_bit_fou,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_fou(int)));
 }
 
 void MainWindow::init_speedconvCfg_fif()
@@ -6401,9 +6327,6 @@ void MainWindow::init_speedconvCfg_fif()
     sensor_speed->addWidget(gbox_speedx_fif);
     sensor_speed->addWidget(gbox_speedy_fif);
 
-
-    x_Bleed_rate_fif= new QLineEdit;
-    y_Bleed_rate_fif= new QLineEdit;
     maxspeedx_fif = new QLineEdit;
     maxspeedy_fif = new QLineEdit;
     deadx_fif     = new QLineEdit;
@@ -6414,31 +6337,13 @@ void MainWindow::init_speedconvCfg_fif()
     output_d_type_fif->addItem("转台命令输出");
     out_address_fif =new QLineEdit;
     baud_rate_fif =new QComboBox;
-    baud_rate_fif->addItem("0");
-    baud_rate_fif->addItem("110");
-    baud_rate_fif->addItem("300");
-    baud_rate_fif->addItem("600");
-    baud_rate_fif->addItem("1200");
     baud_rate_fif->addItem("2400");
     baud_rate_fif->addItem("4800");
     baud_rate_fif->addItem("9600");
-    baud_rate_fif->addItem("14400");
     baud_rate_fif->addItem("19200");
     baud_rate_fif->addItem("38400");
-    baud_rate_fif->addItem("56000");
     baud_rate_fif->addItem("57600");
     baud_rate_fif->addItem("115200");
-    baud_rate_fif->addItem("128000");
-    baud_rate_fif->addItem("230400");
-    baud_rate_fif->addItem("256000");
-    baud_rate_fif->addItem("460800");
-    baud_rate_fif->addItem("500000");
-    baud_rate_fif->addItem("600000");
-    baud_rate_fif->addItem("750000");
-    baud_rate_fif->addItem("921600");
-    baud_rate_fif->addItem("1000000");
-    baud_rate_fif->addItem("1500000");
-    baud_rate_fif->addItem("2000000");
     baud_rate_fif->setCurrentIndex(13);
     data_bit_fif =new QComboBox;
     data_bit_fif->addItem("5");
@@ -6447,6 +6352,7 @@ void MainWindow::init_speedconvCfg_fif()
     data_bit_fif->addItem("8");
     data_bit_fif->setCurrentIndex(3);
     stop_bit_fif =new QComboBox;
+    stop_bit_fif->addItem("1");
     stop_bit_fif->addItem("1.5");
     stop_bit_fif->addItem("2");
     stop_bit_fif->setCurrentIndex(1);
@@ -6455,19 +6361,14 @@ void MainWindow::init_speedconvCfg_fif()
     parity_bit_fif->addItem("None");
     parity_bit_fif->addItem("Odd");
     parity_bit_fif->addItem("Even");
-    parity_bit_fif->addItem("Mark");
-    parity_bit_fif->addItem("Space");
 
     flow_control_fif=new QComboBox;
     flow_control_fif->addItem("Hardware");
     flow_control_fif->addItem("Software");
     flow_control_fif->addItem("None");
-    flow_control_fif->addItem("Custom");
     flow_control_fif->setCurrentIndex(2);
 
     QFormLayout *f3=new QFormLayout();
-    //f3->addRow(speed_q[11],x_Bleed_rate_fif);
-   // f3->addRow(speed_q[12],y_Bleed_rate_fif);
     f3->addRow(speed_q_fif[0],maxspeedx_fif);
     f3->addRow(speed_q_fif[1],maxspeedy_fif);
     f3->addRow(speed_q_fif[2],deadx_fif);
@@ -6513,19 +6414,17 @@ void MainWindow::init_speedconvCfg_fif()
     connect(speedy8_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy8_Slot_fif()));
     connect(speedy9_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy9_Slot_fif()));
     connect(speedy10_lineEdt_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_speedy10_Slot_fif()));
-    connect(x_Bleed_rate_fif,SIGNAL(returnPressed()),this,SLOT(x_Bleed_rate_Slot_fif()));
-    connect(y_Bleed_rate_fif,SIGNAL(returnPressed()),this,SLOT(y_Bleed_rate_Slot_fif()));
     connect(maxspeedx_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedx_Slot_fif()));
     connect(maxspeedy_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_maxspeedy_Slot_fif()));
     connect(deadx_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_fif()));
     connect(deady_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_fif()));
     connect(output_d_type_fif,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_fif(int)));
     connect(out_address_fif,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_fif()));
-    connect(baud_rate_fif,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_Slot_fif(int)));
-    connect(data_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_data_bit_Slot_fif(int)));
-    connect(stop_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_Slot_fif(int)));
-    connect(flow_control_fif,SIGNAL(activated(int)),this,SLOT(combox_flow_control_Slot_fif(int)));
-    connect(parity_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_Slot_fif(int)));
+    connect(baud_rate_fif,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_fif(int)));
+    connect(data_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_fif(int)));
+    connect(stop_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_fif(int)));
+    connect(flow_control_fif,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_fif(int)));
+    connect(parity_bit_fif,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_fif(int)));
 }
 
 void MainWindow::init_mtdCfg()

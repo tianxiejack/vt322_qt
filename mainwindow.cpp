@@ -8304,6 +8304,12 @@ void MainWindow::btn_Speed_Default_Slot()
     send_arr[5] = 50;
     send_oneframe(2);
     send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 3;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Speed_Update_Slot()
@@ -8314,29 +8320,6 @@ void MainWindow::btn_Speed_Update_Slot()
     send_mutex.unlock();
 }
 
-void MainWindow::x_Bleed_rate_Slot()
-{
-    float value=x_Bleed_rate->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 3;
-    send_arr[6] = 1;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::y_Bleed_rate_Slot()
-{
-    float value=y_Bleed_rate->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 3;
-    send_arr[6] = 2;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
 
 void MainWindow::lEdt_maxspeedx_Slot()
 {
@@ -8396,7 +8379,7 @@ void MainWindow::lEdt_out_address_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 52;
-    send_arr[6] = 0x00;
+    send_arr[6] = 6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -8404,328 +8387,94 @@ void MainWindow::lEdt_out_address_Slot()
 
 void MainWindow::combox_output_d_type_Slot(int index)
 {
-
-        switch(index)
-        {
-            case 0:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x00;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 1:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 2:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-        }
-
-
-
+        float value = index + 1;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 3;
+        send_arr[6] = 14;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
 }
 
 void MainWindow::combox_baud_rate_type_Slot(int index)
 {
     float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 110;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 300;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 1200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
+    switch(index)
+    {
+        case 0:
             value = 2400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 6:
+        case 1:
             value = 4800;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
-
             break;
-            case 7:
+        case 2:
             value = 9600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 8:
-            value = 14400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 9:
+        case 3:
             value = 19200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 10:
+        case 4:
             value = 38400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 11:
-            value = 56000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 12:
+        case 5:
             value = 57600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 13:
+        case 6:
             value = 115200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 52;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 14:
-            value = 128000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
+        default:
             break;
-            case 15:
-            value = 230400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 16:
-            value = 256000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 17:
-            value = 460800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 18:
-            value = 500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 19:
-            value = 600000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 20:
-            value = 750000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 21:
-            value = 921600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 22:
-            value = 1000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 23:
-            value = 1500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 24:
-            value = 2000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 52;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-
-            default:
-                break;
-        }
-
+    }
 }
 
 void MainWindow::combox_data_bit_type_Slot(int index)
@@ -8733,217 +8482,164 @@ void MainWindow::combox_data_bit_type_Slot(int index)
     float value;
     switch (index)
     {
-    case 0:
-        value = 5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 6;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 7;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 8;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-         default:
-        break;
-
-
+        case 0:
+            value = 5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 6;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 7;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 3:
+            value = 8;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
-
 }
 
 void MainWindow::combox_stop_bit_type_Slot(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 1.5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
-         default:
-        break;
+        case 0:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1.5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
 
 void MainWindow::combox_parity_bit_type_Slot(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        value = 4;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
+        case 0:
+            value = 0;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
          default:
-        break;
+            break;
     }
-
 }
 
 void MainWindow::combox_flow_control_type_Slot(int index)
 {
-    float value;
+    float value = index + 1;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 52;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-   break;
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 52;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
-//
 
 void MainWindow::lEdt_speedx1_Slot_sec()
 {
@@ -9051,7 +8747,7 @@ void MainWindow::lEdt_speedx10_Slot_sec()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 100;
-    send_arr[6] = 10;
+    send_arr[6] = 2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -9162,7 +8858,7 @@ void MainWindow::lEdt_speedy10_Slot_sec()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 100;
-    send_arr[6] = 13;
+    send_arr[6] = 3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -9183,6 +8879,12 @@ void MainWindow::btn_Speed_Default_Slot_sec()
     send_arr[5] = 100;
     send_oneframe(2);
     send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 107;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Speed_Update_Slot_sec()
@@ -9190,30 +8892,6 @@ void MainWindow::btn_Speed_Update_Slot_sec()
     send_mutex.lock();
     send_arr[4] = 0x34;
     send_oneframe(1);
-    send_mutex.unlock();
-}
-
-void MainWindow::x_Bleed_rate_Slot_sec()
-{
-    float value=x_Bleed_rate_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 2;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::y_Bleed_rate_Slot_sec()
-{
-    float value=x_Bleed_rate_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 3;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
     send_mutex.unlock();
 }
 
@@ -9275,7 +8953,7 @@ void MainWindow::lEdt_out_address_Slot_sec()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 107;
-    send_arr[6] = 0x00;
+    send_arr[6] = 6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -9283,328 +8961,94 @@ void MainWindow::lEdt_out_address_Slot_sec()
 
 void MainWindow::combox_output_d_type_Slot_sec(int index)
 {
-
-        switch(index)
-        {
-            case 0:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x00;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 1:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 2:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-        }
-
-
-
+        float value = index + 1;
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 100;
+        send_arr[6] = 8;
+        memcpy(send_arr+7,&value,4);
+        send_oneframe(7);
+        send_mutex.unlock();
 }
 
 void MainWindow::combox_baud_rate_type_Slot_sec(int index)
 {
     float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 110;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 300;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 1200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
+    switch(index)
+    {
+        case 0:
             value = 2400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 6:
+        case 1:
             value = 4800;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
-
             break;
-            case 7:
+        case 2:
             value = 9600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 8:
-            value = 14400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 9:
+        case 3:
             value = 19200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 10:
+        case 4:
             value = 38400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 11:
-            value = 56000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 12:
+        case 5:
             value = 57600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 13:
+        case 6:
             value = 115200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 107;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 14:
-            value = 128000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
+        default:
             break;
-            case 15:
-            value = 230400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 16:
-            value = 256000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 17:
-            value = 460800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 18:
-            value = 500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 19:
-            value = 600000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 20:
-            value = 750000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 21:
-            value = 921600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 22:
-            value = 1000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 23:
-            value = 1500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 24:
-            value = 2000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-
-            default:
-                break;
-        }
-
+    }
 }
 
 void MainWindow::combox_data_bit_type_Slot_sec(int index)
@@ -9612,221 +9056,164 @@ void MainWindow::combox_data_bit_type_Slot_sec(int index)
     float value;
     switch (index)
     {
-    case 0:
-        value = 5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 6;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 7;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 8;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-         default:
-        break;
-
-
+        case 0:
+            value = 5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 6;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 7;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 3:
+            value = 8;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
-
 }
 
 void MainWindow::combox_stop_bit_type_Slot_sec(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 1.5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
-         default:
-        break;
+        case 0:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1.5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
 
 void MainWindow::combox_parity_bit_type_Slot_sec(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        value = 4;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
+        case 0:
+            value = 0;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
          default:
-        break;
+            break;
     }
-
 }
 
 void MainWindow::combox_flow_control_type_Slot_sec(int index)
 {
-    float value;
+    float value = index + 1;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 107;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-   break;
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 107;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
-
-
-
-
-//
 
 void MainWindow::lEdt_speedx1_Slot_thi()
 {
@@ -9934,7 +9321,7 @@ void MainWindow::lEdt_speedx10_Slot_thi()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 102;
-    send_arr[6] = 10;
+    send_arr[6] = 2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -10045,7 +9432,7 @@ void MainWindow::lEdt_speedy10_Slot_thi()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 102;
-    send_arr[6] = 13;
+    send_arr[6] = 3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -10066,6 +9453,12 @@ void MainWindow::btn_Speed_Default_Slot_thi()
     send_arr[5] = 102;
     send_oneframe(2);
     send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 108;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Speed_Update_Slot_thi()
@@ -10073,30 +9466,6 @@ void MainWindow::btn_Speed_Update_Slot_thi()
     send_mutex.lock();
     send_arr[4] = 0x34;
     send_oneframe(1);
-    send_mutex.unlock();
-}
-
-void MainWindow::x_Bleed_rate_Slot_thi()
-{
-    float value=x_Bleed_rate_thi->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 102;
-    send_arr[6] = 2;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::y_Bleed_rate_Slot_thi()
-{
-    float value=x_Bleed_rate_thi->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 102;
-    send_arr[6] = 3;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
     send_mutex.unlock();
 }
 
@@ -10154,11 +9523,11 @@ void MainWindow::lEdt_deady_Slot_thi()
 
 void MainWindow::lEdt_out_address_Slot_thi()
 {
-    float value=out_address->text().toFloat();
+    float value=out_address_thi->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 108;
-    send_arr[6] = 0x00;
+    send_arr[6] = 6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -10166,328 +9535,94 @@ void MainWindow::lEdt_out_address_Slot_thi()
 
 void MainWindow::combox_output_d_type_Slot_thi(int index)
 {
-
-        switch(index)
-        {
-            case 0:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x00;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 1:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 2:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-        }
-
-
-
+    float value = index + 1;
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 102;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::combox_baud_rate_type_Slot_thi(int index)
 {
     float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 110;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 300;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 1200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
+    switch(index)
+    {
+        case 0:
             value = 2400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 6:
+        case 1:
             value = 4800;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
-
             break;
-            case 7:
+        case 2:
             value = 9600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 8:
-            value = 14400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 9:
+        case 3:
             value = 19200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 10:
+        case 4:
             value = 38400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 11:
-            value = 56000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 12:
+        case 5:
             value = 57600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 13:
+        case 6:
             value = 115200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 108;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 14:
-            value = 128000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
+        default:
             break;
-            case 15:
-            value = 230400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 16:
-            value = 256000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 17:
-            value = 460800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 18:
-            value = 500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 19:
-            value = 600000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 20:
-            value = 750000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 21:
-            value = 921600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] =108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 22:
-            value = 1000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 23:
-            value = 1500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 24:
-            value = 2000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 108;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-
-            default:
-                break;
-        }
-
+    }
 }
 
 void MainWindow::combox_data_bit_type_Slot_thi(int index)
@@ -10495,218 +9630,164 @@ void MainWindow::combox_data_bit_type_Slot_thi(int index)
     float value;
     switch (index)
     {
-    case 0:
-        value = 5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 6;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 7;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 8;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-         default:
-        break;
-
-
+        case 0:
+            value = 5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 6;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 7;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 3:
+            value = 8;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
-
 }
 
 void MainWindow::combox_stop_bit_type_Slot_thi(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 1.5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
-         default:
-        break;
+        case 0:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1.5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
 
 void MainWindow::combox_parity_bit_type_Slot_thi(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =108;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        value = 4;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
+        case 0:
+            value = 0;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
          default:
-        break;
+            break;
     }
-
 }
 
 void MainWindow::combox_flow_control_type_Slot_thi(int index)
 {
-    float value;
+    float value = index + 1;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =108;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 108;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-   break;
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 108;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
-
-//
 
 void MainWindow::lEdt_speedx1_Slot_fou()
 {
@@ -10814,7 +9895,7 @@ void MainWindow::lEdt_speedx10_Slot_fou()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 104;
-    send_arr[6] = 10;
+    send_arr[6] = 2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -10925,13 +10006,11 @@ void MainWindow::lEdt_speedy10_Slot_fou()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 104;
-    send_arr[6] = 13;
+    send_arr[6] = 3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
 }
-
-
 
 void MainWindow::btn_Speed_Default_Slot_fou()
 {
@@ -10946,6 +10025,12 @@ void MainWindow::btn_Speed_Default_Slot_fou()
     send_arr[5] = 104;
     send_oneframe(2);
     send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 109;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Speed_Update_Slot_fou()
@@ -10953,30 +10038,6 @@ void MainWindow::btn_Speed_Update_Slot_fou()
     send_mutex.lock();
     send_arr[4] = 0x34;
     send_oneframe(1);
-    send_mutex.unlock();
-}
-
-void MainWindow::x_Bleed_rate_Slot_fou()
-{
-    float value=x_Bleed_rate_fou->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 104;
-    send_arr[6] = 2;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::y_Bleed_rate_Slot_fou()
-{
-    float value=y_Bleed_rate_fou->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 104;
-    send_arr[6] = 3;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
     send_mutex.unlock();
 }
 
@@ -11034,11 +10095,11 @@ void MainWindow::lEdt_deady_Slot_fou()
 
 void MainWindow::lEdt_out_address_Slot_fou()
 {
-    float value=out_address->text().toFloat();
+    float value=out_address_fou->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =109;
-    send_arr[6] = 0x00;
+    send_arr[5] = 109;
+    send_arr[6] = 6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -11046,328 +10107,94 @@ void MainWindow::lEdt_out_address_Slot_fou()
 
 void MainWindow::combox_output_d_type_Slot_fou(int index)
 {
-
-        switch(index)
-        {
-            case 0:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x00;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 1:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 2:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-        }
-
-
-
+    float value = index + 1;
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 104;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::combox_baud_rate_type_Slot_fou(int index)
 {
     float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 110;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 300;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 1200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
+    switch(index)
+    {
+        case 0:
             value = 2400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 6:
+        case 1:
             value = 4800;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
-
             break;
-            case 7:
+        case 2:
             value = 9600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 8:
-            value = 14400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 9:
+        case 3:
             value = 19200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 10:
+        case 4:
             value = 38400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 11:
-            value = 56000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 12:
+        case 5:
             value = 57600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 13:
+        case 6:
             value = 115200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 109;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 14:
-            value = 128000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
+        default:
             break;
-            case 15:
-            value = 230400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 16:
-            value = 256000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 17:
-            value = 460800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 18:
-            value = 500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 19:
-            value = 600000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 20:
-            value = 750000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 21:
-            value = 921600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 22:
-            value = 1000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 23:
-            value = 1500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 24:
-            value = 2000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 109;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-
-            default:
-                break;
-        }
-
+    }
 }
 
 void MainWindow::combox_data_bit_type_Slot_fou(int index)
@@ -11375,219 +10202,164 @@ void MainWindow::combox_data_bit_type_Slot_fou(int index)
     float value;
     switch (index)
     {
-    case 0:
-        value = 5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 6;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 7;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 8;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-         default:
-        break;
-
-
+        case 0:
+            value = 5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 6;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 7;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 3:
+            value = 8;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
-
 }
 
 void MainWindow::combox_stop_bit_type_Slot_fou(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 1.5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
-         default:
-        break;
+        case 0:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1.5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
 
 void MainWindow::combox_parity_bit_type_Slot_fou(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        value = 4;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
+        case 0:
+            value = 0;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
          default:
-        break;
+            break;
     }
-
 }
 
 void MainWindow::combox_flow_control_type_Slot_fou(int index)
 {
-    float value;
+    float value = index + 1;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 109;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-   break;
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 109;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
-
-
-//
 
 void MainWindow::lEdt_speedx1_Slot_fif()
 {
@@ -11695,7 +10467,7 @@ void MainWindow::lEdt_speedx10_Slot_fif()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 106;
-    send_arr[6] = 10;
+    send_arr[6] = 2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -11713,7 +10485,7 @@ void MainWindow::lEdt_speedy1_Slot_fif()
 }
 void MainWindow::lEdt_speedy2_Slot_fif()
 {
-    float value=speedy2_lineEdt_sec->text().toFloat();
+    float value=speedy2_lineEdt_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 105;
@@ -11779,7 +10551,7 @@ void MainWindow::lEdt_speedy7_Slot_fif()
 }
 void MainWindow::lEdt_speedy8_Slot_fif()
 {
-    float value=speedy8_lineEdt_sec->text().toFloat();
+    float value=speedy8_lineEdt_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 106;
@@ -11806,13 +10578,11 @@ void MainWindow::lEdt_speedy10_Slot_fif()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 106;
-    send_arr[6] = 13;
+    send_arr[6] = 3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
 }
-
-
 
 void MainWindow::btn_Speed_Default_Slot_fif()
 {
@@ -11827,6 +10597,12 @@ void MainWindow::btn_Speed_Default_Slot_fif()
     send_arr[5] = 106;
     send_oneframe(2);
     send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 110;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
 void MainWindow::btn_Speed_Update_Slot_fif()
@@ -11834,30 +10610,6 @@ void MainWindow::btn_Speed_Update_Slot_fif()
     send_mutex.lock();
     send_arr[4] = 0x34;
     send_oneframe(1);
-    send_mutex.unlock();
-}
-
-void MainWindow::x_Bleed_rate_Slot_fif()
-{
-    float value=x_Bleed_rate_fif->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 106;
-    send_arr[6] = 2;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::y_Bleed_rate_Slot_fif()
-{
-    float value=y_Bleed_rate_fif->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 106;
-    send_arr[6] = 3;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
     send_mutex.unlock();
 }
 
@@ -11871,7 +10623,6 @@ void MainWindow::lEdt_maxspeedx_Slot_fif()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::lEdt_maxspeedy_Slot_fif()
@@ -11884,7 +10635,6 @@ void MainWindow::lEdt_maxspeedy_Slot_fif()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::lEdt_deadx_Slot_fif()
@@ -11897,7 +10647,6 @@ void MainWindow::lEdt_deadx_Slot_fif()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::lEdt_deady_Slot_fif()
@@ -11910,16 +10659,15 @@ void MainWindow::lEdt_deady_Slot_fif()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::lEdt_out_address_Slot_fif()
 {
-    float value=out_address->text().toFloat();
+    float value=out_address_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 110;
-    send_arr[6] = 0x00;
+    send_arr[6] = 6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -11927,328 +10675,94 @@ void MainWindow::lEdt_out_address_Slot_fif()
 
 void MainWindow::combox_output_d_type_Slot_fif(int index)
 {
-
-        switch(index)
-        {
-            case 0:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x00;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 1:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-                break;
-            case 2:
-
-            send_mutex.lock();
-            send_arr[4] = 0x44;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-        }
-
-
-
+    float value = index + 1;
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 106;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::combox_baud_rate_type_Slot_fif(int index)
 {
     float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 110;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 300;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 1200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
+    switch(index)
+    {
+        case 0:
             value = 2400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 6:
+        case 1:
             value = 4800;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
-
             break;
-            case 7:
+        case 2:
             value = 9600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 8:
-            value = 14400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 9:
+        case 3:
             value = 19200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 10:
+        case 4:
             value = 38400;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 11:
-            value = 56000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 12:
+        case 5:
             value = 57600;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 13:
+        case 6:
             value = 115200;
             send_mutex.lock();
             send_arr[4] = 0x30;
             send_arr[5] = 110;
             send_arr[6] = 1;
-            send_arr[7] = value;
             memcpy(send_arr+7,&value,4);
             send_oneframe(7);
             send_mutex.unlock();
             break;
-            case 14:
-            value = 128000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
+        default:
             break;
-            case 15:
-            value = 230400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 16:
-            value = 256000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 17:
-            value = 460800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 18:
-            value = 500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 19:
-            value = 600000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 20:
-            value = 750000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 21:
-            value = 921600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 22:
-            value = 1000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 23:
-            value = 1500000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 24:
-            value = 2000000;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 110;
-            send_arr[6] = 1;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-
-            default:
-                break;
-        }
-
+    }
 }
 
 void MainWindow::combox_data_bit_type_Slot_fif(int index)
@@ -12256,221 +10770,164 @@ void MainWindow::combox_data_bit_type_Slot_fif(int index)
     float value;
     switch (index)
     {
-    case 0:
-        value = 5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 6;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 7;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 8;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 2;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-         default:
-        break;
-
-
+        case 0:
+            value = 5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 6;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 7;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 3:
+            value = 8;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 2;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
-
 }
 
 void MainWindow::combox_stop_bit_type_Slot_fif(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 1.5;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 3;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
-         default:
-        break;
+        case 0:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1.5;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 4;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
 
 void MainWindow::combox_parity_bit_type_Slot_fif(int index)
 {
     float value;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        value = 4;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 4;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-
-
+        case 0:
+            value = 0;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            value = 1;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            value = 2;
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 3;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
          default:
-        break;
+            break;
     }
-
 }
 
 void MainWindow::combox_flow_control_type_Slot_fif(int index)
 {
-    float value;
+    float value = index + 1;
     switch (index) {
-    case 0:
-        value = 0;
-
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        value = 1;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        value = 2;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        value = 3;
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 110;
-        send_arr[6] = 5;
-        send_arr[7] = value;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-   break;
+        case 0:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 1:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        case 2:
+            send_mutex.lock();
+            send_arr[4] = 0x30;
+            send_arr[5] = 110;
+            send_arr[6] = 5;
+            memcpy(send_arr+7,&value,4);
+            send_oneframe(7);
+            send_mutex.unlock();
+            break;
+        default:
+            break;
     }
-
 }
-
-
-//
-
-
 
 void MainWindow::lEdt_Jos1_Slot()
 {
@@ -13040,7 +11497,7 @@ void MainWindow::lEdt_speedx10_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 50;
-    send_arr[6] = 10;
+    send_arr[6] = 2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -13151,7 +11608,7 @@ void MainWindow::lEdt_speedy10_Slot()
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 50;
-    send_arr[6] = 13;
+    send_arr[6] = 3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();

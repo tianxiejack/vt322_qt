@@ -467,8 +467,6 @@ private slots:
     void btn_Speed_Default_Slot();
     void btn_Speed_Update_Slot();
 
-    void x_Bleed_rate_Slot();
-    void y_Bleed_rate_Slot();
     void lEdt_maxspeedx_Slot();
     void lEdt_maxspeedy_Slot();
     void lEdt_deadx_Slot();
@@ -505,8 +503,6 @@ private slots:
     void btn_Speed_Default_Slot_sec();
     void btn_Speed_Update_Slot_sec();
 
-    void x_Bleed_rate_Slot_sec();
-    void y_Bleed_rate_Slot_sec();
     void lEdt_maxspeedx_Slot_sec();
     void lEdt_maxspeedy_Slot_sec();
     void lEdt_deadx_Slot_sec();
@@ -544,8 +540,6 @@ private slots:
     void btn_Speed_Default_Slot_thi();
     void btn_Speed_Update_Slot_thi();
 
-    void x_Bleed_rate_Slot_thi();
-    void y_Bleed_rate_Slot_thi();
     void lEdt_maxspeedx_Slot_thi();
     void lEdt_maxspeedy_Slot_thi();
     void lEdt_deadx_Slot_thi();
@@ -584,8 +578,6 @@ private slots:
     void btn_Speed_Default_Slot_fou();
     void btn_Speed_Update_Slot_fou();
 
-    void x_Bleed_rate_Slot_fou();
-    void y_Bleed_rate_Slot_fou();
     void lEdt_maxspeedx_Slot_fou();
     void lEdt_maxspeedy_Slot_fou();
     void lEdt_deadx_Slot_fou();
@@ -623,8 +615,6 @@ private slots:
     void btn_Speed_Default_Slot_fif();
     void btn_Speed_Update_Slot_fif();
 
-    void x_Bleed_rate_Slot_fif();
-    void y_Bleed_rate_Slot_fif();
     void lEdt_maxspeedx_Slot_fif();
     void lEdt_maxspeedy_Slot_fif();
     void lEdt_deadx_Slot_fif();
@@ -1489,7 +1479,7 @@ private:
     QGroupBox *gbox_speedx,*gbox_speedy;
     QLineEdit *speedx1_lineEdt,*speedx2_lineEdt,*speedx3_lineEdt,*speedx4_lineEdt,*speedx5_lineEdt,*speedx6_lineEdt,*speedx7_lineEdt,*speedx8_lineEdt,*speedx9_lineEdt,*speedx10_lineEdt;
     QLineEdit *speedy1_lineEdt,*speedy2_lineEdt,*speedy3_lineEdt,*speedy4_lineEdt,*speedy5_lineEdt,*speedy6_lineEdt,*speedy7_lineEdt,*speedy8_lineEdt,*speedy9_lineEdt,*speedy10_lineEdt;
-    QLineEdit *maxspeedx,*maxspeedy,*deadx,*deady,*out_address,*x_Bleed_rate,*y_Bleed_rate;
+    QLineEdit *maxspeedx,*maxspeedy,*deadx,*deady,*out_address;
     QComboBox *output_d_type,*baud_rate,* data_bit,*stop_bit,*parity_bit,*flow_control;
     QString speed_s[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
@@ -1499,7 +1489,7 @@ private:
     QGroupBox *gbox_speedx_sec,*gbox_speedy_sec;
     QLineEdit *speedx1_lineEdt_sec,*speedx2_lineEdt_sec,*speedx3_lineEdt_sec,*speedx4_lineEdt_sec,*speedx5_lineEdt_sec,*speedx6_lineEdt_sec,*speedx7_lineEdt_sec,*speedx8_lineEdt_sec,*speedx9_lineEdt_sec,*speedx10_lineEdt_sec;
     QLineEdit *speedy1_lineEdt_sec,*speedy2_lineEdt_sec,*speedy3_lineEdt_sec,*speedy4_lineEdt_sec,*speedy5_lineEdt_sec,*speedy6_lineEdt_sec,*speedy7_lineEdt_sec,*speedy8_lineEdt_sec,*speedy9_lineEdt_sec,*speedy10_lineEdt_sec;
-    QLineEdit *maxspeedx_sec,*maxspeedy_sec,*deadx_sec,*deady_sec,*out_address_sec,*x_Bleed_rate_sec,*y_Bleed_rate_sec;
+    QLineEdit *maxspeedx_sec,*maxspeedy_sec,*deadx_sec,*deady_sec,*out_address_sec;
     QComboBox *output_d_type_sec,*baud_rate_sec,* data_bit_sec,*stop_bit_sec,*parity_bit_sec,*flow_control_sec;
     QString speed_s_sec[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q_sec[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
@@ -1509,7 +1499,7 @@ private:
     QGroupBox *gbox_speedx_thi,*gbox_speedy_thi;
     QLineEdit *speedx1_lineEdt_thi,*speedx2_lineEdt_thi,*speedx3_lineEdt_thi,*speedx4_lineEdt_thi,*speedx5_lineEdt_thi,*speedx6_lineEdt_thi,*speedx7_lineEdt_thi,*speedx8_lineEdt_thi,*speedx9_lineEdt_thi,*speedx10_lineEdt_thi;
     QLineEdit *speedy1_lineEdt_thi,*speedy2_lineEdt_thi,*speedy3_lineEdt_thi,*speedy4_lineEdt_thi,*speedy5_lineEdt_thi,*speedy6_lineEdt_thi,*speedy7_lineEdt_thi,*speedy8_lineEdt_thi,*speedy9_lineEdt_thi,*speedy10_lineEdt_thi;
-    QLineEdit *maxspeedx_thi,*maxspeedy_thi,*deadx_thi,*deady_thi,*out_address_thi,*x_Bleed_rate_thi,*y_Bleed_rate_thi;
+    QLineEdit *maxspeedx_thi,*maxspeedy_thi,*deadx_thi,*deady_thi,*out_address_thi;
     QComboBox *output_d_type_thi,*baud_rate_thi,* data_bit_thi,*stop_bit_thi,*parity_bit_thi,*flow_control_thi;
     QString speed_s_thi[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q_thi[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
@@ -1519,7 +1509,7 @@ private:
     QGroupBox *gbox_speedx_fou,*gbox_speedy_fou;
     QLineEdit *speedx1_lineEdt_fou,*speedx2_lineEdt_fou,*speedx3_lineEdt_fou,*speedx4_lineEdt_fou,*speedx5_lineEdt_fou,*speedx6_lineEdt_fou,*speedx7_lineEdt_fou,*speedx8_lineEdt_fou,*speedx9_lineEdt_fou,*speedx10_lineEdt_fou;
     QLineEdit *speedy1_lineEdt_fou,*speedy2_lineEdt_fou,*speedy3_lineEdt_fou,*speedy4_lineEdt_fou,*speedy5_lineEdt_fou,*speedy6_lineEdt_fou,*speedy7_lineEdt_fou,*speedy8_lineEdt_fou,*speedy9_lineEdt_fou,*speedy10_lineEdt_fou;
-    QLineEdit *maxspeedx_fou,*maxspeedy_fou,*deadx_fou,*deady_fou,*out_address_fou,*x_Bleed_rate_fou,*y_Bleed_rate_fou;
+    QLineEdit *maxspeedx_fou,*maxspeedy_fou,*deadx_fou,*deady_fou,*out_address_fou;
     QComboBox *output_d_type_fou,*baud_rate_fou,* data_bit_fou,*stop_bit_fou,*parity_bit_fou,*flow_control_fou;
     QString speed_s_fou[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q_fou[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
@@ -1529,7 +1519,7 @@ private:
     QGroupBox *gbox_speedx_fif,*gbox_speedy_fif;
     QLineEdit *speedx1_lineEdt_fif,*speedx2_lineEdt_fif,*speedx3_lineEdt_fif,*speedx4_lineEdt_fif,*speedx5_lineEdt_fif,*speedx6_lineEdt_fif,*speedx7_lineEdt_fif,*speedx8_lineEdt_fif,*speedx9_lineEdt_fif,*speedx10_lineEdt_fif;
     QLineEdit *speedy1_lineEdt_fif,*speedy2_lineEdt_fif,*speedy3_lineEdt_fif,*speedy4_lineEdt_fif,*speedy5_lineEdt_fif,*speedy6_lineEdt_fif,*speedy7_lineEdt_fif,*speedy8_lineEdt_fif,*speedy9_lineEdt_fif,*speedy10_lineEdt_fif;
-    QLineEdit *maxspeedx_fif,*maxspeedy_fif,*deadx_fif,*deady_fif,*out_address_fif,*x_Bleed_rate_fif,*y_Bleed_rate_fif;
+    QLineEdit *maxspeedx_fif,*maxspeedy_fif,*deadx_fif,*deady_fif,*out_address_fif;
     QComboBox *output_d_type_fif,*baud_rate_fif,* data_bit_fif,*stop_bit_fif,*parity_bit_fif,*flow_control_fif;
     QString speed_s_fif[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q_fif[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
