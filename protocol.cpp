@@ -178,7 +178,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         char speedclassx = output_array_8[1];
         char speedclassy = output_array_8[2];
         rto_speedclassx->setText(QString::number(speedclassx));
-        rto_speedclassx->setText(QString::number(speedclassy));
+        rto_speedclassy->setText(QString::number(speedclassy));
     }
     else if(0x31 == i){
         switch (output_array[1]) {
