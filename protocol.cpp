@@ -2317,16 +2317,16 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                  }
             }else if (0x04 == output_array[2]){
-               if((int)value_i==0)
-               {
-                   stop_bit->setCurrentIndex(0);
-               }else if((value_i > 1) && (value_i < 2))
-               {
-                   stop_bit->setCurrentIndex(1);
-               }else if((int)value_i==2)
-               {
-                   stop_bit->setCurrentIndex(2);
-               }
+                if(value_i < 1.5)
+                {
+                    stop_bit->setCurrentIndex(0);
+                }else if((value_i > 1) && (value_i < 2))
+                {
+                    stop_bit->setCurrentIndex(1);
+                }else if(value_i > 1.5)
+                {
+                    stop_bit->setCurrentIndex(2);
+                }
             }else if (0x05 == output_array[2]){
                 if((int)value_i==1)
                 {
@@ -2406,13 +2406,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                  }
             }else if (0x04 == output_array[2]){
-                if((int)value_i==0)
+                if(value_i < 1.5)
                 {
                     stop_bit_sec->setCurrentIndex(0);
                 }else if((value_i > 1) && (value_i < 2))
                 {
                     stop_bit_sec->setCurrentIndex(1);
-                }else if((int)value_i==2)
+                }else if(value_i > 1.5)
                 {
                     stop_bit_sec->setCurrentIndex(2);
                 }
@@ -2494,13 +2494,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                  }
             }else if (0x04 == output_array[2]){
-                if((int)value_i==0)
+                if(value_i < 1.5)
                 {
                     stop_bit_thi->setCurrentIndex(0);
                 }else if((value_i > 1) && (value_i < 2))
                 {
                     stop_bit_thi->setCurrentIndex(1);
-                }else if((int)value_i==2)
+                }else if(value_i > 1.5)
                 {
                     stop_bit_thi->setCurrentIndex(2);
                 }
@@ -2582,13 +2582,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                  }
             }else if (0x04 == output_array[2]){
-                if((int)value_i==0)
+                if(value_i < 1.5)
                 {
                     stop_bit_fou->setCurrentIndex(0);
                 }else if((value_i > 1) && (value_i < 2))
                 {
                     stop_bit_fou->setCurrentIndex(1);
-                }else if((int)value_i==2)
+                }else if(value_i > 1.5)
                 {
                     stop_bit_fou->setCurrentIndex(2);
                 }
@@ -2670,13 +2670,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         break;
                  }
             }else if (0x04 == output_array[2]){
-                if((int)value_i==0)
+                if(value_i < 1.5)
                 {
                     stop_bit_fif->setCurrentIndex(0);
                 }else if((value_i > 1) && (value_i < 2))
                 {
                     stop_bit_fif->setCurrentIndex(1);
-                }else if((int)value_i==2)
+                }else if(value_i > 1.5)
                 {
                     stop_bit_fif->setCurrentIndex(2);
                 }
