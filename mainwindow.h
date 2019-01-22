@@ -1653,7 +1653,7 @@ private:
              /*摄像机配置通道4*/
                 /*固定视场*/
                 QPushButton  *btn_vediosersor_fix_default_fou,*btn_vediosersor_fix_update_fou;
-                QLineEdit *fixchanelname_fou,*fix_gate_sizex_fou,*fix_gate_sizey_fou,*fix_gatelocationx_fou,*fix_gatelocationy_fou,*fix_lEdt_fou,*fix_vertical_fou;
+                QLineEdit *fix_gate_sizex_fou,*fix_gate_sizey_fou,*fix_gatelocationx_fou,*fix_gatelocationy_fou,*fix_lEdt_fou,*fix_vertical_fou;
                 QCheckBox *fixChanelNum_fou,*fixenable_fou,*fix_vediohaveornot_fou,*fix_gateshow_fou,*fix_bullshow_fou,*fix_autogate_fou;
                 QGroupBox *fix_vediochoose_fou;
                 QComboBox *fix_vedio_dpi_fou;
@@ -1665,7 +1665,7 @@ private:
                 QPushButton  *btn_vediosersor_default_fou,*btn_vediosersor_update_fou;
                 QComboBox *vedio_dpi_fou,*vedio_change1_fou,*vedio_fovclass_fou,*vedio_QGroupBox_fou,*vedio_change2_fou,*vedio_change3_fou;
                 QCheckBox *ChanelNum_fou,*enable_fou,*gateshow_fou,*bullshow_fou,*autogate_fou,*vediohaveornot_fou;
-                QLineEdit *chanelname_fou,*gate_sizex_fou,*gate_sizey_fou,*gatelocationx_fou,*gatelocationy_fou,*vedio_s1_Fov0_fou,*vedio_s1_Fov1_fou,*vedio_s1_Fov2_fou,*vedio_s1_Fov3_fou,*vedio_s1_Fov4_fou;
+                QLineEdit *gate_sizex_fou,*gate_sizey_fou,*gatelocationx_fou,*gatelocationy_fou,*vedio_s1_Fov0_fou,*vedio_s1_Fov1_fou,*vedio_s1_Fov2_fou,*vedio_s1_Fov3_fou,*vedio_s1_Fov4_fou;
                 QGroupBox *vediochoose_fou;
                 QString vedio_s_fou[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
                 QSpinBox *vedio_spbx_switch1_fou,*vedio_spbx_switch2_fou,*vedio_spbx_switch3_fou,*vedio_spbx_switch4_fou,*vedio_spbx_switch5_fou,*vedio_spby_switch1_fou,*vedio_spby_switch2_fou,*vedio_spby_switch3_fou,*vedio_spby_switch4_fou,*vedio_spby_switch5_fou;
@@ -1674,7 +1674,7 @@ private:
                 QLineEdit  *Change_ledt_set_azimuth_fou,*Change_ledt_set_pitch_fou,*Change_ledt_set_zoom_fou,*Change_ledt_search_azimuth_fou,*Change_ledt_search_pitch_fou,*Change_ledt_search_zoom_fou,*Change_vertical1_fou,*Change_vertical2_fou,*Change_vertical3_fou,*Change_vertical4_fou,*Change_vertical5_fou;
                 /*连续视场*/
                 QPushButton *btn_vediosersor_continue_default_fou,*btn_vediosersor_continue_update_fou;
-                QLineEdit *continuechanelname_fou,*continue_gate_sizex_fou,*continue_gate_sizey_fou,*continue_gatelocationx_fou,*continue_gatelocationy_fou,*test_1_fou;
+                QLineEdit *continue_gate_sizex_fou,*continue_gate_sizey_fou,*continue_gatelocationx_fou,*continue_gatelocationy_fou,*test_1_fou;
                 QCheckBox *continueChanelNum_fou,*continueenable_fou,*continue_vediohaveornot_fou,*continue_gateshow_fou,*continue_bullshow_fou,*continue_autogate_fou;
                 QComboBox *continue_vedio_dpi_fou;
                 QGroupBox *continue_vediochoose_fou;
@@ -1688,7 +1688,7 @@ private:
                 /*摄像机配置通道5*/
                    /*固定视场*/
                    QPushButton  *btn_vediosersor_fix_default_fif,*btn_vediosersor_fix_update_fif;
-                   QLineEdit *fixchanelname_fif,*fix_gate_sizex_fif,*fix_gate_sizey_fif,*fix_gatelocationx_fif,*fix_gatelocationy_fif,*fix_lEdt_fif,*fix_vertical_fif;
+                   QLineEdit *fix_gate_sizex_fif,*fix_gate_sizey_fif,*fix_gatelocationx_fif,*fix_gatelocationy_fif,*fix_lEdt_fif,*fix_vertical_fif;
                    QCheckBox *fixChanelNum_fif,*fixenable_fif,*fix_vediohaveornot_fif,*fix_gateshow_fif,*fix_bullshow_fif,*fix_autogate_fif;
                    QGroupBox *fix_vediochoose_fif;
                    QComboBox *fix_vedio_dpi_fif;
@@ -1700,7 +1700,7 @@ private:
                    QPushButton  *btn_vediosersor_default_fif,*btn_vediosersor_update_fif;
                    QComboBox *vedio_dpi_fif,*vedio_change1_fif,*vedio_fovclass_fif,*vedio_QGroupBox_fif,*vedio_change2_fif,*vedio_change3_fif;
                    QCheckBox *ChanelNum_fif,*enable_fif,*gateshow_fif,*bullshow_fif,*autogate_fif,*vediohaveornot_fif;
-                   QLineEdit *chanelname_fif,*gate_sizex_fif,*gate_sizey_fif,*gatelocationx_fif,*gatelocationy_fif,*vedio_s1_Fov0_fif,*vedio_s1_Fov1_fif,*vedio_s1_Fov2_fif,*vedio_s1_Fov3_fif,*vedio_s1_Fov4_fif;
+                   QLineEdit *gate_sizex_fif,*gate_sizey_fif,*gatelocationx_fif,*gatelocationy_fif,*vedio_s1_Fov0_fif,*vedio_s1_Fov1_fif,*vedio_s1_Fov2_fif,*vedio_s1_Fov3_fif,*vedio_s1_Fov4_fif;
                    QGroupBox *vediochoose_fif;
                    QString vedio_s_fif[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
                    QSpinBox *vedio_spbx_switch1_fif,*vedio_spbx_switch2_fif,*vedio_spbx_switch3_fif,*vedio_spbx_switch4_fif,*vedio_spbx_switch5_fif,*vedio_spby_switch1_fif,*vedio_spby_switch2_fif,*vedio_spby_switch3_fif,*vedio_spby_switch4_fif,*vedio_spby_switch5_fif;
@@ -1709,7 +1709,7 @@ private:
                    QLineEdit  *Change_ledt_set_azimuth_fif,*Change_ledt_set_pitch_fif,*Change_ledt_set_zoom_fif,*Change_ledt_search_azimuth_fif,*Change_ledt_search_pitch_fif,*Change_ledt_search_zoom_fif,*Change_vertical1_fif,*Change_vertical2_fif,*Change_vertical3_fif,*Change_vertical4_fif,*Change_vertical5_fif;
                    /*连续视场*/
                    QPushButton *btn_vediosersor_continue_default_fif,*btn_vediosersor_continue_update_fif;
-                   QLineEdit *continuechanelname_fif,*continue_gate_sizex_fif,*continue_gate_sizey_fif,*continue_gatelocationx_fif,*continue_gatelocationy_fif,*test_1_fif;
+                   QLineEdit *continue_gate_sizex_fif,*continue_gate_sizey_fif,*continue_gatelocationx_fif,*continue_gatelocationy_fif,*test_1_fif;
                    QCheckBox *continueChanelNum_fif,*continueenable_fif,*continue_vediohaveornot_fif,*continue_gateshow_fif,*continue_bullshow_fif,*continue_autogate_fif;
                    QComboBox *continue_vedio_dpi_fif;
                    QGroupBox *continue_vediochoose_fif;

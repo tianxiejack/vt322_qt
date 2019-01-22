@@ -3595,15 +3595,13 @@ void MainWindow::init_vedioCfg_fou(){
 
     fixChanelNum_fou = new  QCheckBox();
     fixChanelNum_fou->setText("通道号");
-    fixchanelname_fou = new QLineEdit;
     fixenable_fou = new  QCheckBox();
     fixenable_fou->setText("使能");
     QLabel *label40=new QLabel;
-    label40->setText("通道名称");
+    label40->setText("通道名称:通道4");
     QHBoxLayout *v21=new QHBoxLayout;
     v21->addWidget(fixChanelNum_fou);
     v21->addWidget(label40);
-    v21->addWidget(fixchanelname_fou);
     v21->addWidget(fixenable_fou);
 
     fix_vediohaveornot_fou = new  QCheckBox();
@@ -3762,7 +3760,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(btn_vediosersor_fix_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
     connect(btn_vediosersor_fix_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
     connect(fixChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));
-    connect(fixchanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));
     connect(fixenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));
     connect(fix_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));
     connect(fix_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));
@@ -3802,16 +3799,14 @@ void MainWindow::init_vedioCfg_fou(){
 
     ChanelNum_fou = new  QCheckBox();
     ChanelNum_fou->setText("通道号");
-    chanelname_fou = new QLineEdit;
     enable_fou = new  QCheckBox();
     enable_fou->setText("使能");
 
     QLabel *label2=new QLabel;
-    label2->setText("通道名称");
+    label2->setText("通道名称：通道4");
     QHBoxLayout *v2=new QHBoxLayout;
     v2->addWidget(ChanelNum_fou);
     v2->addWidget(label2);
-    v2->addWidget(chanelname_fou);
     v2->addWidget(enable_fou);
 
     vediohaveornot_fou = new  QCheckBox();
@@ -4077,7 +4072,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
     connect(ChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(enable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(chanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));//
     connect(vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
@@ -4137,15 +4131,13 @@ void MainWindow::init_vedioCfg_fou(){
 
     continueChanelNum_fou = new  QCheckBox();
     continueChanelNum_fou->setText("通道号");
-    continuechanelname_fou = new QLineEdit;
     continueenable_fou = new  QCheckBox();
     continueenable_fou->setText("使能");
     QLabel *label61=new QLabel;
-    label61->setText("通道名称");
+    label61->setText("通道名称：通道4");
     QHBoxLayout *v9=new QHBoxLayout;
     v9->addWidget(continueChanelNum_fou);
     v9->addWidget(label61);
-    v9->addWidget(continuechanelname_fou);
     v9->addWidget(continueenable_fou);
 
     continue_vediohaveornot_fou = new  QCheckBox();
@@ -4446,7 +4438,6 @@ void MainWindow::init_vedioCfg_fou(){
     connect(btn_vediosersor_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
     connect(continueChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(continueenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(continuechanelname_fou,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fou(int)));//
     connect(continue_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(continue_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
@@ -4467,12 +4458,12 @@ void MainWindow::init_vedioCfg_fou(){
     connect(continue_vediohaveornot_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
     connect(test_1_fou,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fou()));
     connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fou()));
-     connect(vedio_l2_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fou()));
-      connect(vedio_l3_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fou()));
-       connect(vedio_l4_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fou()));
-        connect(vedio_l5_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fou()));
-         connect(vedio_l6_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fou()));
-          connect(vedio_l7_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fou()));
+    connect(vedio_l2_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fou()));
+    connect(vedio_l3_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fou()));
+    connect(vedio_l4_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fou()));
+    connect(vedio_l5_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fou()));
+    connect(vedio_l6_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fou()));
+    connect(vedio_l7_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fou()));
 
     connect( vedio_continue_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fou()));
     connect( vedio_continue_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fou()));
@@ -4481,31 +4472,29 @@ void MainWindow::init_vedioCfg_fou(){
     connect( vedio_continue_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fou()));
     connect( vedio_continue_Fov5_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fou()));
     connect( vedio_continue_Fov6_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fou()));
-     connect( continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
-     connect( continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
-     connect( continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
-     connect( continue_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fou()));
-     connect( continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
-     connect( continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
-     connect( continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
+    connect( continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
+    connect( continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
+    connect( continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
+    connect( continue_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fou()));
+    connect( continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
+    connect( continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
+    connect( continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
 
-      connect( vedio_spbx_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fou()));
-       connect( vedio_spbx_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_fou()));
-        connect( vedio_spbx_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_fou()));
-         connect( vedio_spbx_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_fou()));
-       connect( vedio_spbx_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_fou()));
-        connect( vedio_spbx_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_fou()));
-         connect( vedio_spbx_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_fou()));
+    connect( vedio_spbx_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fou()));
+    connect( vedio_spbx_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_fou()));
+    connect( vedio_spbx_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_fou()));
+    connect( vedio_spbx_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_fou()));
+    connect( vedio_spbx_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_fou()));
+    connect( vedio_spbx_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_fou()));
+    connect( vedio_spbx_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_fou()));
 
-       connect( vedio_spby_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fou()));
-         connect( vedio_spby_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fou()));
-         connect( vedio_spby_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fou()));
-         connect( vedio_spby_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fou()));
-         connect( vedio_spby_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fou()));
-         connect( vedio_spby_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fou()));
-         connect( vedio_spby_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fou()));
-
-
+    connect( vedio_spby_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fou()));
+    connect( vedio_spby_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fou()));
+    connect( vedio_spby_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fou()));
+    connect( vedio_spby_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fou()));
+    connect( vedio_spby_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fou()));
+    connect( vedio_spby_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fou()));
+    connect( vedio_spby_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fou()));
 }
 
 void MainWindow::init_vedioCfg_fif(){
@@ -4533,15 +4522,13 @@ void MainWindow::init_vedioCfg_fif(){
 
     fixChanelNum_fif = new  QCheckBox();
     fixChanelNum_fif->setText("通道号");
-    fixchanelname_fif = new QLineEdit;
     fixenable_fif = new  QCheckBox();
     fixenable_fif->setText("使能");
     QLabel *label40=new QLabel;
-    label40->setText("通道名称");
+    label40->setText("通道名称:通道5");
     QHBoxLayout *v21=new QHBoxLayout;
     v21->addWidget(fixChanelNum_fif);
     v21->addWidget(label40);
-    v21->addWidget(fixchanelname_fif);
     v21->addWidget(fixenable_fif);
 
     fix_vediohaveornot_fif = new  QCheckBox();
@@ -4709,7 +4696,6 @@ void MainWindow::init_vedioCfg_fif(){
    connect(btn_vediosersor_fix_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
    connect(btn_vediosersor_fix_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
    connect(fixChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));
-   connect(fixchanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));
    connect(fixenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));
    connect(fix_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));
    connect(fix_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));
@@ -4755,16 +4741,14 @@ void MainWindow::init_vedioCfg_fif(){
 
     ChanelNum_fif = new  QCheckBox();
     ChanelNum_fif->setText("通道号");
-    chanelname_fif = new QLineEdit;
     enable_fif = new  QCheckBox();
     enable_fif->setText("使能");
 
     QLabel *label2=new QLabel;
-    label2->setText("通道名称");
+    label2->setText("通道名称：通道5");
     QHBoxLayout *v2=new QHBoxLayout;
     v2->addWidget(ChanelNum_fif);
     v2->addWidget(label2);
-    v2->addWidget(chanelname_fif);
     v2->addWidget(enable_fif);
 
     vediohaveornot_fif = new  QCheckBox();
@@ -5031,7 +5015,6 @@ void MainWindow::init_vedioCfg_fif(){
     connect(btn_vediosersor_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
     connect(ChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(enable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(chanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));//
     connect(vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
@@ -5090,15 +5073,13 @@ void MainWindow::init_vedioCfg_fif(){
 
     continueChanelNum_fif = new  QCheckBox();
     continueChanelNum_fif->setText("通道号");
-    continuechanelname_fif = new QLineEdit;
     continueenable_fif = new  QCheckBox();
     continueenable_fif->setText("使能");
     QLabel *label61=new QLabel;
-    label61->setText("通道名称");
+    label61->setText("通道名称:通道5");
     QHBoxLayout *v9=new QHBoxLayout;
     v9->addWidget(continueChanelNum_fif);
     v9->addWidget(label61);
-    v9->addWidget(continuechanelname_fif);
     v9->addWidget(continueenable_fif);
 
     continue_vediohaveornot_fif = new  QCheckBox();
@@ -5401,7 +5382,6 @@ void MainWindow::init_vedioCfg_fif(){
     connect(btn_vediosersor_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
     connect(continueChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(continueenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(continuechanelname_fif,SIGNAL(activated(int)),this,SLOT(fixchanelname_Slot_fif(int)));//
     connect(continue_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(continue_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
@@ -5422,12 +5402,12 @@ void MainWindow::init_vedioCfg_fif(){
     connect(continue_vediohaveornot_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
     connect(test_1_fif,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fif()));
     connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fif()));
-     connect(vedio_l2_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fif()));
-      connect(vedio_l3_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fif()));
-       connect(vedio_l4_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fif()));
-        connect(vedio_l5_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fif()));
-         connect(vedio_l6_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fif()));
-          connect(vedio_l7_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fif()));
+    connect(vedio_l2_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fif()));
+    connect(vedio_l3_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fif()));
+    connect(vedio_l4_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l4_continue_Slot_fif()));
+    connect(vedio_l5_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l5_continue_Slot_fif()));
+    connect(vedio_l6_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fif()));
+    connect(vedio_l7_continue_fif,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fif()));
 
     connect( vedio_continue_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fif()));
     connect( vedio_continue_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fif()));
@@ -5436,30 +5416,29 @@ void MainWindow::init_vedioCfg_fif(){
     connect( vedio_continue_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fif()));
     connect( vedio_continue_Fov5_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fif()));
     connect( vedio_continue_Fov6_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fif()));
-     connect( continue_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fif()));
-     connect( continue_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fif()));
-     connect( continue_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fif()));
-     connect( continue_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fif()));
-     connect( continue_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fif()));
-     connect( continue_vertical6_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fif()));
-     connect( continue_vertical7_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fif()));
+    connect( continue_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fif()));
+    connect( continue_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fif()));
+    connect( continue_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fif()));
+    connect( continue_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fif()));
+    connect( continue_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fif()));
+    connect( continue_vertical6_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fif()));
+    connect( continue_vertical7_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fif()));
 
-      connect( vedio_spbx_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-       connect( vedio_spbx_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-        connect( vedio_spbx_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-         connect( vedio_spbx_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-       connect( vedio_spbx_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-        connect( vedio_spbx_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
-         connect( vedio_spbx_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
+    connect( vedio_spbx_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fif()));
 
-       connect( vedio_spby_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fif()));
-        connect( vedio_spby_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fif()));
-         connect( vedio_spby_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fif()));
-          connect( vedio_spby_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fif()));
-           connect( vedio_spby_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fif()));
-            connect( vedio_spby_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fif()));
-             connect( vedio_spby_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fif()));
-
+    connect( vedio_spby_continue1_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fif()));
+    connect( vedio_spby_continue2_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fif()));
+    connect( vedio_spby_continue3_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fif()));
+    connect( vedio_spby_continue4_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fif()));
+    connect( vedio_spby_continue5_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fif()));
+    connect( vedio_spby_continue6_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fif()));
+    connect( vedio_spby_continue7_fif,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fif()));
 }
 
 
