@@ -14311,3 +14311,90 @@ void MainWindow::on_call_preset_bit_clicked()
     send_oneframe(2);
     send_mutex.unlock();
 }
+
+void MainWindow::mystepby(int spid)
+{
+    switch(spid)
+    {
+        case fix_spinx_sec:
+            fix_sp_Slot_sec();
+            break;
+        case fix_spiny_sec:
+            fix_sp2_Slot_sec();
+            break;
+        case switch1_spinx_sec:
+            vedio_spbx_switch1_Slot_sec();
+            break;
+        case switch2_spinx_sec:
+            vedio_spbx_switch2_Slot_sec();
+            break;
+        case switch3_spinx_sec:
+            vedio_spbx_switch3_Slot_sec();
+            break;
+        case switch4_spinx_sec:
+            vedio_spbx_switch4_Slot_sec();
+            break;
+        case switch5_spinx_sec:
+            vedio_spbx_switch5_Slot_sec();
+            break;
+        case switch1_spiny_sec:
+            vedio_spby_switch1_Slot_sec();
+            break;
+        case switch2_spiny_sec:
+            vedio_spby_switch2_Slot_sec();
+            break;
+        case switch3_spiny_sec:
+            vedio_spby_switch3_Slot_sec();
+            break;
+        case switch4_spiny_sec:
+            vedio_spby_switch4_Slot_sec();
+            break;
+        case switch5_spiny_sec:
+            vedio_spby_switch5_Slot_sec();
+            break;
+        case continue1_spinx_sec:
+            vedio_spbx_continue1_Slot_sec();
+            break;
+        case continue2_spinx_sec:
+            vedio_spbx_continue2_Slot_sec();
+            break;
+        case continue3_spinx_sec:
+            vedio_spbx_continue3_Slot_sec();
+            break;
+        case continue4_spinx_sec:
+            vedio_spbx_continue4_Slot_sec();
+            break;
+        case continue5_spinx_sec:
+            vedio_spbx_continue5_Slot_sec();
+            break;
+        case continue6_spinx_sec:
+            vedio_spbx_continue6_Slot_sec();
+            break;
+        case continue7_spinx_sec:
+            vedio_spbx_continue7_Slot_sec();
+            break;
+        case continue1_spiny_sec:
+            vedio_spby_continue1_Slot_sec();
+            break;
+        case continue2_spiny_sec:
+            vedio_spby_continue2_Slot_sec();
+            break;
+        case continue3_spiny_sec:
+            vedio_spby_continue3_Slot_sec();
+            break;
+        case continue4_spiny_sec:
+            vedio_spby_continue4_Slot_sec();
+            break;
+        case continue5_spiny_sec:
+            vedio_spby_continue5_Slot_sec();
+            break;
+        case continue6_spiny_sec:
+            vedio_spby_continue6_Slot_sec();
+            break;
+        case continue7_spiny_sec:
+            vedio_spby_continue7_Slot_sec();
+            break;
+        default:
+            break;
+    }
+}

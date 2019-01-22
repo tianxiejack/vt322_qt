@@ -44,6 +44,7 @@
 #include "recvusocket.h"
 #include <QRadioButton>
 #include "mywidget.h"
+#include "myqspinbox.h"
 
 #define POS_MIN 0
 #define POS_MAX 65535
@@ -126,6 +127,7 @@ public:
     void usocket_parse_bytearray();
     //void socket_Read_Data();
     void upgrade_showtext(int i,int percent);
+    void mystepby(int spid);
 
     void vedio_btnSensor1SwitchSlot();
     void vedio_btnSensor2ContinueSlot();
@@ -1606,8 +1608,8 @@ private:
           QLineEdit *gate_sizex_sec,*gate_sizey_sec,*gatelocationx_sec,*gatelocationy_sec,*vedio_s1_Fov0_sec,*vedio_s1_Fov1_sec,*vedio_s1_Fov2_sec,*vedio_s1_Fov3_sec,*vedio_s1_Fov4_sec;
           QGroupBox *vediochoose_sec;
           QString vedio_s_sec[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
-          QSpinBox *vedio_spbx_switch1_sec,*vedio_spbx_switch2_sec,*vedio_spbx_switch3_sec,*vedio_spbx_switch4_sec,*vedio_spbx_switch5_sec,*vedio_spby_switch1_sec,*vedio_spby_switch2_sec,*vedio_spby_switch3_sec,*vedio_spby_switch4_sec,*vedio_spby_switch5_sec;
-          QSpinBox *fix_sp_sec,*fix_sp2_sec;
+          MyQSpinBox *vedio_spbx_switch1_sec,*vedio_spbx_switch2_sec,*vedio_spbx_switch3_sec,*vedio_spbx_switch4_sec,*vedio_spbx_switch5_sec,*vedio_spby_switch1_sec,*vedio_spby_switch2_sec,*vedio_spby_switch3_sec,*vedio_spby_switch4_sec,*vedio_spby_switch5_sec;
+          MyQSpinBox *fix_sp_sec, *fix_sp2_sec;
           QPushButton *Change_set_azimuth_sec,*Change_set_pitch_sec,*Change_set_zoom_sec,*Change_search_azimuth_sec,*Change_search_pitch_sec,*Change_search_zoom_sec;
           QLineEdit  *Change_ledt_set_azimuth_sec,*Change_ledt_set_pitch_sec,*Change_ledt_set_zoom_sec,*Change_ledt_search_azimuth_sec,*Change_ledt_search_pitch_sec,*Change_ledt_search_zoom_sec,*Change_vertical1_sec,*Change_vertical2_sec,*Change_vertical3_sec,*Change_vertical4_sec,*Change_vertical5_sec;
           /*连续视场*/
@@ -1616,7 +1618,7 @@ private:
           QCheckBox *continueChanelNum_sec,*continueenable_sec,*continue_vediohaveornot_sec,*continue_gateshow_sec,*continue_bullshow_sec,*continue_autogate_sec;
           QComboBox *continue_vedio_dpi_sec;
           QGroupBox *continue_vediochoose_sec;
-          QSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,*vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec;
+          MyQSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,*vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec;
           QLineEdit *vedio_l1_continue_sec,*vedio_l2_continue_sec,*vedio_l3_continue_sec,*vedio_l4_continue_sec,*vedio_l5_continue_sec,*vedio_l6_continue_sec,*vedio_l7_continue_sec;
           QLineEdit *vedio_continue_Fov0_sec,*vedio_continue_Fov1_sec,*vedio_continue_Fov2_sec,*vedio_continue_Fov3_sec,*vedio_continue_Fov4_sec,*vedio_continue_Fov5_sec,*vedio_continue_Fov6_sec;
           QPushButton *continue_set_azimuth_sec,*continue_set_pitch_sec,*continue_set_zoom_sec,*continue_search_azimuth_sec,*continue_search_pitch_sec,*continue_search_zoom_sec;

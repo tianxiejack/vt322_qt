@@ -33,7 +33,8 @@ SOURCES += \
     recserial.cpp \
     recvsocket.cpp \
     recvusocket.cpp \
-    mywidget.cpp
+    mywidget.cpp \
+    myqspinbox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     recserial.h \
     recvsocket.h \
     recvusocket.h \
-    mywidget.h
+    mywidget.h \
+    myqspinbox.h
 
 FORMS += \
         mainwindow.ui \
