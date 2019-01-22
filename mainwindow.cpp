@@ -13172,6 +13172,7 @@ void MainWindow::vedio_tosersor_continue(int i)
 
 void MainWindow::vedio_tosersor_fix_sec(int i)
 {
+    qDebug("guding shichang caohanshu start");
     float value = 0;
     if(i==1)
     {

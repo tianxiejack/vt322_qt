@@ -3787,7 +3787,8 @@ void MainWindow::showblk58(int field, float value)
                     fix_vedio_dpi_sec->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change1_sec->setCurrentIndex(valuei);
+                //qDebug("guding shichang read value %d\n", valuei);
+                //vedio_change1_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3842,7 +3843,7 @@ void MainWindow::showblk58(int field, float value)
                     vedio_dpi_sec->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change2_sec->setCurrentIndex(valuei);
+                //vedio_change2_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3897,7 +3898,7 @@ void MainWindow::showblk58(int field, float value)
                     continue_vedio_dpi_sec->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change3_sec->setCurrentIndex(valuei);
+                //vedio_change3_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;

@@ -1930,7 +1930,7 @@ void MainWindow::init_vedioCfg_sec(){
     connect(fixenable_sec,SIGNAL(clicked(bool)),this,SLOT(fixchanelname_Slot_sec()));
     connect(fix_vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(fix_vediohaveornot_Slot_sec()));
     connect(fix_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));
-    connect(vedio_change1_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
+    connect(vedio_change1_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
     connect(fix_gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(fix_gateshow_Slot_sec()));
     connect(fix_bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(fix_bullshow_Slot_sec()));
     connect(fix_autogate_sec,SIGNAL(clicked(bool)),this,SLOT(fix_autogate_Slot_sec()));
@@ -2256,7 +2256,7 @@ void MainWindow::init_vedioCfg_sec(){
     connect(enable_sec,SIGNAL(clicked(bool)),this,SLOT(change_chanelname_Slot_sec()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
     connect(vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(change_vediohaveornot_Slot_sec()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    connect(vedio_change2_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
+    connect(vedio_change2_sec,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
     connect(gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(change_gateshow_Slot_sec()));
     connect(bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(change_bullshow_Slot_sec()));
     connect(autogate_sec,SIGNAL(clicked(bool)),this,SLOT(change_autogate_Slot_sec()));
@@ -2631,7 +2631,7 @@ void MainWindow::init_vedioCfg_sec(){
     connect(continueenable_sec,SIGNAL(clicked(bool)),this,SLOT(continue_chanelname_Slot_sec()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
     connect(continue_vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(continue_vediohaveornot_Slot_sec()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    connect(vedio_change3_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
+    connect(vedio_change3_sec,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
     connect(continue_gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(continue_gateshow_Slot_sec()));
     connect(continue_bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(continue_bullshow_Slot_sec()));
     connect(continue_autogate_sec,SIGNAL(clicked(bool)),this,SLOT(continue_autogate_Slot_sec()));
@@ -7596,6 +7596,8 @@ void MainWindow::showvedioCfg2()
     w_sersor_1_sec->show();
     w_sersor_1_sec->show_stat = 1;
 
+    vedio_change1_sec->setCurrentIndex(0);
+
     for(int i = 0; i <= 13; i++)
     {
         send_mutex.lock();
@@ -8257,6 +8259,8 @@ void MainWindow::vedio_btnSensor1SwitchSlot_sec()
     w_seitchField_1_sec->show();
     w_seitchField_1_sec->show_stat = 1;
 
+    vedio_change2_sec->setCurrentIndex(0);
+
     for(int i = 0; i <= 13; i++)
     {
         send_mutex.lock();
@@ -8291,6 +8295,8 @@ void MainWindow::vedio_btnSensor2ContinueSlot_sec()
     vedio_current_shichang_sec = 2;
     w_ContinueField_1_sec->show();
     w_ContinueField_1_sec->show_stat = 1;
+
+    vedio_change3_sec->setCurrentIndex(0);
 
     for(int i = 0; i <= 13; i++)
     {
