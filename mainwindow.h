@@ -160,6 +160,13 @@ public:
     void showblk62(int field, float value);
     void showblk63(int field, float value);
     void showblk64(int field, float value);
+    void showblk65(int field, float value);
+    void showblk66(int field, float value);
+    void showblk67(int field, float value);
+    void showblk68(int field, float value);
+    void showblk69(int field, float value);
+    void showblk70(int field, float value);
+    void showblk71(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -843,14 +850,13 @@ private slots:
 
     //摄像机通道三
     void btn_vediosersor_fix_default_Slot_thi();
-    void btn_vediosersor_fix_update_Slot_thi();
-    void fixChanelNum_Slot_thi(int i);
+    void fixChanelNum_Slot_thi();
     void fixchanelname_Slot_thi();
-    void fix_vediohaveornot_Slot_thi(int i);
+    void fix_vediohaveornot_Slot_thi();
     void fix_vedio_dpi_Slot_thi(int index);
-    void fix_gateshow_Slot_thi(int i);
-    void fix_bullshow_Slot_thi(int i);
-    void fix_autogate_Slot_thi(int i);
+    void fix_gateshow_Slot_thi();
+    void fix_bullshow_Slot_thi();
+    void fix_autogate_Slot_thi();
     void fix_gate_sizex_Slot_thi();
     void fix_gate_sizey_Slot_thi();
     void fix_gatelocationx_Slot_thi();
@@ -858,14 +864,6 @@ private slots:
     void set_azimuth_Slot_thi();
     void set_pitch_Slot_thi();
     void set_zoom_Slot_thi();
-    void search_azimuth_Slot_thi();
-    void search_pitch_Slot_thi();
-    void search_zoom_Slot_thi();
-    void ledt_set_azimuth_Slot_thi();
-    void ledt_set_pitch_Slot_thi();
-    void ledt_set_zoom_Slot_thi();
-    void ledt_search_azimuth_Slot_thi();
-    void ledt_search_zoom_Slot_thi();
     void fix_lEdt_Slot_thi();
     void fix_vertical_Slot_thi();
     void fix_sp_Slot_thi();
@@ -874,7 +872,19 @@ private slots:
 
     //可切换视场
     void btn_vediosersor_default_Slot_thi();
-    void btn_vediosersor_update_Slot_thi();
+    void change_ChanelNum_Slot_thi();
+    void change_chanelname_Slot_thi();
+    void change_vediohaveornot_Slot_thi();
+    void change_gateshow_Slot_thi();
+    void change_bullshow_Slot_thi();
+    void change_autogate_Slot_thi();
+    void change_fix_gate_sizex_Slot_thi();
+    void change_fix_gate_sizey_Slot_thi();
+    void change_fix_gatelocationx_Slot_thi();
+    void change_fix_gatelocationy_Slot_thi();
+    void change_set_azimuth_Slot_thi();
+    void change_set_pitch_Slot_thi();
+    void change_set_zoom_Slot_thi();
     void vedio_fovclass_Slot_thi(int i);
     void vedio_s1_Fov0_Slot_thi();
     void vedio_s1_Fov1_Slot_thi();
@@ -902,6 +912,20 @@ private slots:
 
 
     //连续视场
+    void btn_vediosersor_continue_default_Slot_thi();
+    void continue_ChanelNum_Slot_thi();
+    void continue_chanelname_Slot_thi();
+    void continue_vediohaveornot_Slot_thi();
+    void continue_gateshow_Slot_thi();
+    void continue_bullshow_Slot_thi();
+    void continue_autogate_Slot_thi();
+    void continue_fix_gate_sizex_Slot_thi();
+    void continue_fix_gate_sizey_Slot_thi();
+    void continue_fix_gatelocationx_Slot_thi();
+    void continue_fix_gatelocationy_Slot_thi();
+    void continue_set_azimuth_Slot_thi();
+    void continue_set_pitch_Slot_thi();
+    void continue_set_zoom_Slot_thi();
     void test_1_Slot_thi();
     void vedio_l1_continue_Slot_thi();
     void vedio_l2_continue_Slot_thi();
@@ -917,7 +941,6 @@ private slots:
     void vedio_continue_Fov4_Slot_thi();
     void vedio_continue_Fov5_Slot_thi();
     void vedio_continue_Fov6_Slot_thi();
-    void vedio_continue_Fov7_Slot_thi();
     void continue_vertical1_Slot_thi();
     void continue_vertical2_Slot_thi();
     void continue_vertical3_Slot_thi();
@@ -962,11 +985,6 @@ private slots:
     void search_azimuth_Slot_fou();
     void search_pitch_Slot_fou();
     void search_zoom_Slot_fou();
-    void ledt_set_azimuth_Slot_fou();
-    void ledt_set_pitch_Slot_fou();
-    void ledt_set_zoom_Slot_fou();
-    void ledt_search_azimuth_Slot_fou();
-    void ledt_search_zoom_Slot_fou();
     void fix_lEdt_Slot_fou();
     void fix_vertical_Slot_fou();
     void fix_sp_Slot_fou();
@@ -1063,11 +1081,6 @@ private slots:
     void search_azimuth_Slot_fif();
     void search_pitch_Slot_fif();
     void search_zoom_Slot_fif();
-    void ledt_set_azimuth_Slot_fif();
-    void ledt_set_pitch_Slot_fif();
-    void ledt_set_zoom_Slot_fif();
-    void ledt_search_azimuth_Slot_fif();
-    void ledt_search_zoom_Slot_fif();
     void fix_lEdt_Slot_fif();
     void fix_vertical_Slot_fif();
     void fix_sp_Slot_fif();
@@ -1337,9 +1350,6 @@ private slots:
 
     void on_comboBox_acqmode_currentIndexChanged(int index);
 
-    void on_btnApertureMinus_2_clicked();
-
-
     void on_radioButton_workmode_clicked(bool checked);
 
     void on_radioButton_2_workmode_clicked(bool checked);
@@ -1608,7 +1618,7 @@ private:
                 MyWidget *w_sersor_1_thi,*w_seitchField_1_thi,*w_ContinueField_1_thi;
              /*固定视场*/
              QPushButton  *btn_vediosersor_fix_default_thi,*btn_vediosersor_fix_update_thi;
-             QLineEdit *fixchanelname_thi,*fix_gate_sizex_thi,*fix_gate_sizey_thi,*fix_gatelocationx_thi,*fix_gatelocationy_thi,*fix_lEdt_thi,*fix_vertical_thi;
+             QLineEdit *fix_gate_sizex_thi,*fix_gate_sizey_thi,*fix_gatelocationx_thi,*fix_gatelocationy_thi,*fix_lEdt_thi,*fix_vertical_thi;
              QCheckBox *fixChanelNum_thi,*fixenable_thi,*fix_vediohaveornot_thi,*fix_gateshow_thi,*fix_bullshow_thi,*fix_autogate_thi;
              QGroupBox *fix_vediochoose_thi;
              QComboBox *fix_vedio_dpi_thi;
@@ -1619,7 +1629,7 @@ private:
              QPushButton  *btn_vediosersor_default_thi,*btn_vediosersor_update_thi;
              QComboBox *vedio_dpi_thi,*vedio_change1_thi,*vedio_fovclass_thi,*vedio_QGroupBox_thi,*vedio_change2_thi,*vedio_change3_thi;
              QCheckBox *ChanelNum_thi,*enable_thi,*gateshow_thi,*bullshow_thi,*autogate_thi,*vediohaveornot_thi;
-             QLineEdit *chanelname_thi,*gate_sizex_thi,*gate_sizey_thi,*gatelocationx_thi,*gatelocationy_thi,*vedio_s1_Fov0_thi,*vedio_s1_Fov1_thi,*vedio_s1_Fov2_thi,*vedio_s1_Fov3_thi,*vedio_s1_Fov4_thi;
+             QLineEdit *gate_sizex_thi,*gate_sizey_thi,*gatelocationx_thi,*gatelocationy_thi,*vedio_s1_Fov0_thi,*vedio_s1_Fov1_thi,*vedio_s1_Fov2_thi,*vedio_s1_Fov3_thi,*vedio_s1_Fov4_thi;
              QGroupBox *vediochoose_thi;
              QString vedio_s_thi[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
              QSpinBox *vedio_spbx_switch1_thi,*vedio_spbx_switch2_thi,*vedio_spbx_switch3_thi,*vedio_spbx_switch4_thi,*vedio_spbx_switch5_thi,*vedio_spby_switch1_thi,*vedio_spby_switch2_thi,*vedio_spby_switch3_thi,*vedio_spby_switch4_thi,*vedio_spby_switch5_thi;
@@ -1628,7 +1638,7 @@ private:
              QLineEdit  *Change_ledt_set_azimuth_thi,*Change_ledt_set_pitch_thi,*Change_ledt_set_zoom_thi,*Change_ledt_search_azimuth_thi,*Change_ledt_search_pitch_thi,*Change_ledt_search_zoom_thi,*Change_vertical1_thi,*Change_vertical2_thi,*Change_vertical3_thi,*Change_vertical4_thi,*Change_vertical5_thi;
              /*连续视场*/
              QPushButton *btn_vediosersor_continue_default_thi,*btn_vediosersor_continue_update_thi;
-             QLineEdit *continuechanelname_thi,*continue_gate_sizex_thi,*continue_gate_sizey_thi,*continue_gatelocationx_thi,*continue_gatelocationy_thi,*test_1_thi;
+             QLineEdit *continue_gate_sizex_thi,*continue_gate_sizey_thi,*continue_gatelocationx_thi,*continue_gatelocationy_thi,*test_1_thi;
              QCheckBox *continueChanelNum_thi,*continueenable_thi,*continue_vediohaveornot_thi,*continue_gateshow_thi,*continue_bullshow_thi,*continue_autogate_thi;
              QComboBox *continue_vedio_dpi_thi;
              QGroupBox *continue_vediochoose_thi;
