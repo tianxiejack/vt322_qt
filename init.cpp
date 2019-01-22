@@ -1921,14 +1921,14 @@ void MainWindow::init_vedioCfg_sec(){
     connect(btn_vediosersor_fix_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_sec()));
     connect(btn_vediosersor_fix_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
 
-    connect(fixChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));
-    connect(fixenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));
-    connect(fix_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));
+    connect(fixChanelNum_sec,SIGNAL(clicked(bool)),this,SLOT(fixChanelNum_Slot_sec()));
+    connect(fixenable_sec,SIGNAL(clicked(bool)),this,SLOT(fixchanelname_Slot_sec()));
+    connect(fix_vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(fix_vediohaveornot_Slot_sec()));
     connect(fix_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));
     connect(vedio_change1_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_fix_sec(int)));
-    connect(fix_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
-    connect(fix_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
-    connect(fix_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(fix_gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(fix_gateshow_Slot_sec()));
+    connect(fix_bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(fix_bullshow_Slot_sec()));
+    connect(fix_autogate_sec,SIGNAL(clicked(bool)),this,SLOT(fix_autogate_Slot_sec()));
     connect(fix_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_sec()));
     connect(fix_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_sec()));
     connect(fix_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_sec()));
@@ -2233,14 +2233,14 @@ void MainWindow::init_vedioCfg_sec(){
     connect(btn_vediosersor_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot_sec()));
     connect(btn_vediosersor_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
 
-    connect(ChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    connect(enable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(ChanelNum_sec,SIGNAL(clicked(bool)),this,SLOT(change_ChanelNum_Slot_sec()));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_sec,SIGNAL(clicked(bool)),this,SLOT(change_chanelname_Slot_sec()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(change_vediohaveornot_Slot_sec()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(vedio_change2_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_toSensor_switch_sec(int)));
-    connect(gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
-    connect(bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
-    connect(autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(change_gateshow_Slot_sec()));
+    connect(bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(change_bullshow_Slot_sec()));
+    connect(autogate_sec,SIGNAL(clicked(bool)),this,SLOT(change_autogate_Slot_sec()));
     connect(gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_change_Slot_sec()));
     connect(gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_change_Slot_sec()));
     connect(gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_change_Slot_sec()));
@@ -2595,14 +2595,14 @@ void MainWindow::init_vedioCfg_sec(){
 
     connect(btn_vediosersor_continue_default_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_continue_default_Slot_sec()));
     connect(btn_vediosersor_continue_update_sec,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
-    connect(continueChanelNum_sec,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_sec(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    connect(continueenable_sec,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_sec(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(continue_vediohaveornot_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_sec(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continueChanelNum_sec,SIGNAL(clicked(bool)),this,SLOT(continue_ChanelNum_Slot_sec()));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_sec,SIGNAL(clicked(bool)),this,SLOT(continue_chanelname_Slot_sec()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continue_vediohaveornot_sec,SIGNAL(clicked(bool)),this,SLOT(continue_vediohaveornot_Slot_sec()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_sec(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
     connect(vedio_change3_sec,SIGNAL(currentIndexChanged(int)),this,SLOT(vedio_tosersor_continue_sec(int)));
-    connect(continue_gateshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_sec(int)));
-    connect(continue_bullshow_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_sec(int)));
-    connect(continue_autogate_sec,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_sec(int)));
+    connect(continue_gateshow_sec,SIGNAL(clicked(bool)),this,SLOT(continue_gateshow_Slot_sec()));
+    connect(continue_bullshow_sec,SIGNAL(clicked(bool)),this,SLOT(continue_bullshow_Slot_sec()));
+    connect(continue_autogate_sec,SIGNAL(clicked(bool)),this,SLOT(continue_autogate_Slot_sec()));
     connect(continue_gate_sizex_sec,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizex_Slot_sec()));
     connect(continue_gate_sizey_sec,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizey_Slot_sec()));
     connect(continue_gatelocationx_sec,SIGNAL(returnPressed()),this,SLOT(continue_gatelocationx_Slot_sec()));

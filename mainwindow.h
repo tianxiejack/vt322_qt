@@ -747,13 +747,13 @@ private slots:
 
     //摄像机通道二
     void btn_vediosersor_fix_default_Slot_sec();
-    void fixChanelNum_Slot_sec(int i);
-    void fixchanelname_Slot_sec(int i);
-    void fix_vediohaveornot_Slot_sec(int i);
+    void fixChanelNum_Slot_sec();
+    void fixchanelname_Slot_sec();
+    void fix_vediohaveornot_Slot_sec();
     void fix_vedio_dpi_Slot_sec(int index);
-    void fix_gateshow_Slot_sec(int i);
-    void fix_bullshow_Slot_sec(int i);
-    void fix_autogate_Slot_sec(int i);
+    void fix_gateshow_Slot_sec();
+    void fix_bullshow_Slot_sec();
+    void fix_autogate_Slot_sec();
     void fix_gate_sizex_Slot_sec();
     void fix_gate_sizey_Slot_sec();
     void fix_gatelocationx_Slot_sec();
@@ -769,6 +769,12 @@ private slots:
 
     //可切换视场
     void btn_vediosersor_default_Slot_sec();
+    void change_ChanelNum_Slot_sec();
+    void change_chanelname_Slot_sec();
+    void change_vediohaveornot_Slot_sec();
+    void change_gateshow_Slot_sec();
+    void change_bullshow_Slot_sec();
+    void change_autogate_Slot_sec();
     void vedio_fovclass_Slot_sec(int i);
     void vedio_s1_Fov0_Slot_sec();
     void vedio_s1_Fov1_Slot_sec();
@@ -801,6 +807,12 @@ private slots:
 
     //连续视场
     void btn_vediosersor_continue_default_Slot_sec();
+    void continue_ChanelNum_Slot_sec();
+    void continue_chanelname_Slot_sec();
+    void continue_vediohaveornot_Slot_sec();
+    void continue_gateshow_Slot_sec();
+    void continue_bullshow_Slot_sec();
+    void continue_autogate_Slot_sec();
     void continue_gate_sizex_Slot_sec();
     void continue_gate_sizey_Slot_sec();
     void continue_gatelocationx_Slot_sec();
