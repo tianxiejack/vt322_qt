@@ -2835,6 +2835,27 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         case 71:
             showblk71(output_array[2],value_i);
             break;
+        case 72:
+            showblk72(output_array[2],value_i);
+            break;
+        case 73:
+            showblk73(output_array[2],value_i);
+            break;
+        case 74:
+            showblk74(output_array[2],value_i);
+            break;
+        case 75:
+            showblk75(output_array[2],value_i);
+            break;
+        case 76:
+            showblk76(output_array[2],value_i);
+            break;
+        case 77:
+            showblk77(output_array[2],value_i);
+            break;
+        case 78:
+            showblk78(output_array[2],value_i);
+            break;
         default:
             break;
         }
@@ -3380,7 +3401,7 @@ void MainWindow::showblk23(int field, float value)
                     fix_vedio_dpi->setCurrentIndex(4);
                 break;
             case 5:
-                vedio_change1->setCurrentIndex(valuei);
+                //vedio_change1->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3437,7 +3458,7 @@ void MainWindow::showblk23(int field, float value)
                     vedio_dpi->setCurrentIndex(4);
                 break;
             case 5:
-                vedio_change2->setCurrentIndex(valuei);
+                //vedio_change2->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3494,7 +3515,7 @@ void MainWindow::showblk23(int field, float value)
                     continue_vedio_dpi->setCurrentIndex(4);
                 break;
             case 5:
-                vedio_change3->setCurrentIndex(valuei);
+                //vedio_change3->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3787,7 +3808,6 @@ void MainWindow::showblk58(int field, float value)
                     fix_vedio_dpi_sec->setCurrentIndex(3);
                 break;
             case 5:
-                //qDebug("guding shichang read value %d\n", valuei);
                 //vedio_change1_sec->setCurrentIndex(valuei);
                 break;
             case 6:
@@ -3898,7 +3918,7 @@ void MainWindow::showblk58(int field, float value)
                     continue_vedio_dpi_sec->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change3_sec->setCurrentIndex(valuei);
+                //vedio_change3_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4191,7 +4211,7 @@ void MainWindow::showblk65(int field, float value)
                     fix_vedio_dpi_thi->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change1_thi->setCurrentIndex(valuei);
+                //vedio_change1_thi->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4246,7 +4266,7 @@ void MainWindow::showblk65(int field, float value)
                     vedio_dpi_thi->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change2_thi->setCurrentIndex(valuei);
+                //vedio_change2_thi->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4301,7 +4321,7 @@ void MainWindow::showblk65(int field, float value)
                     continue_vedio_dpi_thi->setCurrentIndex(3);
                 break;
             case 5:
-                vedio_change3_thi->setCurrentIndex(valuei);
+                //vedio_change3_thi->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4564,6 +4584,409 @@ void MainWindow::showblk71(int field, float value)
             break;
         case 3:
             test_1_thi->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::showblk72(int field, float value)
+{
+    int valuei = (int)value;
+    if(vedio_current_shichang_fou == 0)
+    {
+        switch(field)
+        {
+            case 0:
+                fixChanelNum_fou->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                fixenable_fou->setChecked(valuei);
+                break;
+            case 3:
+                fix_vediohaveornot_fou->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    fix_vedio_dpi_fou->setCurrentIndex(0);
+                if(valuei == 1)
+                    fix_vedio_dpi_fou->setCurrentIndex(1);
+                if(valuei == 2)
+                    fix_vedio_dpi_fou->setCurrentIndex(2);
+                if(valuei == 3)
+                    fix_vedio_dpi_fou->setCurrentIndex(3);
+                break;
+            case 5:
+                //vedio_change1_fou->setCurrentIndex(valuei);
+                break;
+            case 6:
+                break;
+            case 7:
+                fix_gateshow_fou->setChecked(valuei);
+                break;
+            case 8:
+                fix_bullshow_fou->setChecked(valuei);
+                break;
+            case 9:
+                fix_autogate_fou->setChecked(valuei);
+                break;
+            case 10:
+                fix_gate_sizex_fou->setText(QString::number(value));
+                break;
+            case 11:
+                fix_gate_sizey_fou->setText(QString::number(value));
+                break;
+            case 12:
+                fix_gatelocationx_fou->setText(QString::number(value));
+                break;
+            case 13:
+                fix_gatelocationy_fou->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+    if(vedio_current_shichang_fou == 1)
+    {
+        switch(field)
+        {
+            case 0:
+                ChanelNum_fou->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                enable_fou->setChecked(valuei);
+                break;
+            case 3:
+                vediohaveornot_fou->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    vedio_dpi_fou->setCurrentIndex(0);
+                if(valuei == 1)
+                    vedio_dpi_fou->setCurrentIndex(1);
+                if(valuei == 2)
+                    vedio_dpi_fou->setCurrentIndex(2);
+                if(valuei == 3)
+                    vedio_dpi_fou->setCurrentIndex(3);
+                break;
+            case 5:
+                //vedio_change2_fou->setCurrentIndex(valuei);
+                break;
+            case 6:
+                break;
+            case 7:
+                gateshow_fou->setChecked(valuei);
+                break;
+            case 8:
+                bullshow_fou->setChecked(valuei);
+                break;
+            case 9:
+                autogate_fou->setChecked(valuei);
+                break;
+            case 10:
+                gate_sizex_fou->setText(QString::number(value));
+                break;
+            case 11:
+                gate_sizey_fou->setText(QString::number(value));
+                break;
+            case 12:
+                gatelocationx_fou->setText(QString::number(value));
+                break;
+            case 13:
+                gatelocationy_fou->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+    if(vedio_current_shichang_fou == 2)
+    {
+        switch(field)
+        {
+            case 0:
+                continueChanelNum_fou->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                continueenable_fou->setChecked(valuei);
+                break;
+            case 3:
+                continue_vediohaveornot_fou->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    continue_vedio_dpi_fou->setCurrentIndex(0);
+                if(valuei == 1)
+                    continue_vedio_dpi_fou->setCurrentIndex(1);
+                if(valuei == 2)
+                    continue_vedio_dpi_fou->setCurrentIndex(2);
+                if(valuei == 3)
+                    continue_vedio_dpi_fou->setCurrentIndex(3);
+                break;
+            case 5:
+                //vedio_change3_fou->setCurrentIndex(valuei);
+                break;
+            case 6:
+                break;
+            case 7:
+                continue_gateshow_fou->setChecked(valuei);
+                break;
+            case 8:
+                continue_bullshow_fou->setChecked(valuei);
+                break;
+            case 9:
+                continue_autogate_fou->setChecked(valuei);
+                break;
+            case 10:
+                continue_gate_sizex_fou->setText(QString::number(value));
+                break;
+            case 11:
+                continue_gate_sizey_fou->setText(QString::number(value));
+                break;
+            case 12:
+                continue_gatelocationx_fou->setText(QString::number(value));
+                break;
+            case 13:
+                continue_gatelocationy_fou->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void MainWindow::showblk73(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            fix_lEdt_fou->setText(QString::number(value));
+            break;
+        case 1:
+            fix_vertical_fou->setText(QString::number(value));
+            break;
+        case 2:
+            fix_sp_fou->setValue(value);
+            break;
+        case 3:
+            fix_sp2_fou->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk74(int field, float value)
+{
+    int valuei = (int)value;
+    switch(field)
+    {
+        case 0:
+            vedio_fovclass_fou->setCurrentIndex(valuei);
+            break;
+        case 1:
+            vedio_s1_Fov0_fou->setText(QString::number(value));
+            break;
+        case 2:
+            Change_vertical1_fou->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_switch1_fou->setValue(value);
+            break;
+        case 4:
+            vedio_spby_switch1_fou->setValue(value);
+            break;
+        case 5:
+            vedio_s1_Fov1_fou->setText(QString::number(value));
+            break;
+        case 6:
+            Change_vertical2_fou->setText(QString::number(value));
+            break;
+        case 7:
+            vedio_spbx_switch2_fou->setValue(value);
+            break;
+        case 8:
+            vedio_spby_switch2_fou->setValue(value);
+            break;
+        case 9:
+            vedio_s1_Fov2_fou->setText(QString::number(value));
+            break;
+        case 10:
+            Change_vertical3_fou->setText(QString::number(value));
+            break;
+        case 11:
+            vedio_spbx_switch3_fou->setValue(value);
+            break;
+        case 12:
+            vedio_spby_switch3_fou->setValue(value);
+            break;
+        case 13:
+            vedio_s1_Fov3_fou->setText(QString::number(value));
+            break;
+        case 14:
+            Change_vertical4_fou->setText(QString::number(value));
+            break;
+        case 15:
+            vedio_spbx_switch4_fou->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk75(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_spby_switch4_fou->setValue(value);
+            break;
+        case 1:
+            vedio_s1_Fov4_fou->setText(QString::number(value));
+            break;
+        case 2:
+            Change_vertical5_fou->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_switch5_fou->setValue(value);
+            break;
+        case 4:
+            vedio_spby_switch5_fou->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk76(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_l1_continue_fou->setText(QString::number(value));
+            break;
+        case 1:
+            vedio_continue_Fov0_fou->setText(QString::number(value));
+            break;
+        case 2:
+            continue_vertical1_fou->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_continue1_fou->setValue(value);
+            break;
+        case 4:
+            vedio_spby_continue1_fou->setValue(value);
+            break;
+        case 5:
+            vedio_l2_continue_fou->setText(QString::number(value));
+            break;
+        case 6:
+            vedio_continue_Fov1_fou->setText(QString::number(value));
+            break;
+        case 7:
+            continue_vertical2_fou->setText(QString::number(value));
+            break;
+        case 8:
+            vedio_spbx_continue2_fou->setValue(value);
+            break;
+        case 9:
+            vedio_spby_continue2_fou->setValue(value);
+            break;
+        case 10:
+            vedio_l3_continue_fou->setText(QString::number(value));
+            break;
+        case 11:
+            vedio_continue_Fov2_fou->setText(QString::number(value));
+            break;
+        case 12:
+            continue_vertical3_fou->setText(QString::number(value));
+            break;
+        case 13:
+            vedio_spbx_continue3_fou->setValue(value);
+            break;
+        case 14:
+            vedio_spby_continue3_fou->setValue(value);
+            break;
+        case 15:
+            vedio_l4_continue_fou->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk77(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_continue_Fov3_fou->setText(QString::number(value));
+            break;
+        case 1:
+            continue_vertical4_fou->setText(QString::number(value));
+            break;
+        case 2:
+            vedio_spbx_continue4_fou->setValue(value);
+            break;
+        case 3:
+            vedio_spby_continue4_fou->setValue(value);
+            break;
+        case 4:
+            vedio_l5_continue_fou->setText(QString::number(value));
+            break;
+        case 5:
+            vedio_continue_Fov4_fou->setText(QString::number(value));
+            break;
+        case 6:
+            continue_vertical5_fou->setText(QString::number(value));
+            break;
+        case 7:
+            vedio_spbx_continue5_fou->setValue(value);
+            break;
+        case 8:
+            vedio_spby_continue5_fou->setValue(value);
+            break;
+        case 9:
+            vedio_l6_continue_fou->setText(QString::number(value));
+            break;
+        case 10:
+            vedio_continue_Fov5_fou->setText(QString::number(value));
+            break;
+        case 11:
+            continue_vertical6_fou->setText(QString::number(value));
+            break;
+        case 12:
+            vedio_spbx_continue6_fou->setValue(value);
+            break;
+        case 13:
+            vedio_spby_continue6_fou->setValue(value);
+            break;
+        case 14:
+            vedio_l7_continue_fou->setText(QString::number(value));
+            break;
+        case 15:
+            vedio_continue_Fov6_fou->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk78(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            continue_vertical7_fou->setText(QString::number(value));
+            break;
+        case 1:
+            vedio_spbx_continue7_fou->setValue(value);
+            break;
+        case 2:
+            vedio_spby_continue7_fou->setValue(value);
+            break;
+        case 3:
+            test_1_fou->setText(QString::number(value));
             break;
         default:
             break;

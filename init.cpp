@@ -3658,7 +3658,6 @@ void MainWindow::init_vedioCfg_thi(){
 void MainWindow::init_vedioCfg_fou(){
 
     /*固定视场*/
-
     w_sersor_1_fou = new MyWidget;
     w_seitchField_1_fou = new MyWidget;
     w_ContinueField_1_fou=new MyWidget;
@@ -3804,8 +3803,12 @@ void MainWindow::init_vedioCfg_fou(){
     l1d->setText("度");
     QLabel* l1v=new QLabel;
     l1v->setText("度");
-    fix_sp_fou=new QSpinBox;
-    fix_sp2_fou=new QSpinBox;
+    fix_sp_fou=new MyQSpinBox;
+    fix_sp2_fou=new MyQSpinBox;
+
+    fix_sp_fou->spid = fix_spinx_fou;
+    fix_sp2_fou->spid = fix_spiny_fou;
+
     fix_sp_fou->setRange(0,9999);
     fix_sp2_fou->setRange(0,9999);
     QGridLayout *gl3=new QGridLayout;
@@ -3838,17 +3841,18 @@ void MainWindow::init_vedioCfg_fou(){
     v0->addLayout(gl12);
     v0->addWidget(g);
     w_sersor_1_fou->setLayout(v0);
-    connect(vedio_change1_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fou(int)));
 
     connect(btn_vediosersor_fix_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
-    connect(btn_vediosersor_fix_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
-    connect(fixChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));
-    connect(fixenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));
-    connect(fix_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));
+    connect(btn_vediosersor_fix_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+
+    connect(fixChanelNum_fou,SIGNAL(clicked(bool)),this,SLOT(fixChanelNum_Slot_fou()));
+    connect(fixenable_fou,SIGNAL(clicked(bool)),this,SLOT(fixchanelname_Slot_fou()));
+    connect(fix_vediohaveornot_fou,SIGNAL(clicked(bool)),this,SLOT(fix_vediohaveornot_Slot_fou()));
     connect(fix_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));
-    connect(fix_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
-    connect(fix_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
-    connect(fix_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
+    connect(vedio_change1_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fou(int)));
+    connect(fix_gateshow_fou,SIGNAL(clicked(bool)),this,SLOT(fix_gateshow_Slot_fou()));
+    connect(fix_bullshow_fou,SIGNAL(clicked(bool)),this,SLOT(fix_bullshow_Slot_fou()));
+    connect(fix_autogate_fou,SIGNAL(clicked(bool)),this,SLOT(fix_autogate_Slot_fou()));
     connect(fix_gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
     connect(fix_gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
     connect(fix_gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
@@ -3856,16 +3860,15 @@ void MainWindow::init_vedioCfg_fou(){
     connect(set_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot_fou()));
     connect(set_pitch_fou,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot_fou()));
     connect(set_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot_fou()));
-    connect(search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot_fou()));
-    connect(search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot_fou()));
-    connect(search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot_fou()));
+    connect(search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
     connect(fix_lEdt_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
     connect(fix_vertical_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(fix_sp_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(fix_sp2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(fix_sp_fou,SIGNAL(editingFinished()),this,SLOT(fix_sp_Slot_fou()));
+    connect(fix_sp2_fou,SIGNAL(editingFinished()),this,SLOT(fix_sp2_Slot_fou()));
 
     /*可切换视场*/
-
     w_seitchField_1_fou->setWindowTitle("摄像机配置");
     btn_vediosersor_default_fou=new QPushButton;
     btn_vediosersor_update_fou=new QPushButton;
@@ -3910,7 +3913,6 @@ void MainWindow::init_vedioCfg_fou(){
     f3->addRow(vedio_s_fou[2],vedio_change2_fou);
     vediochoose_fou->setLayout(f3);
 
-    connect(vedio_change2_fou,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_fou(int)));
     gateshow_fou = new  QCheckBox();
     bullshow_fou = new  QCheckBox();
     gateshow_fou->setText("波门显示");
@@ -3955,9 +3957,8 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_fovclass_fou->addItem("可切换视场5");
     h2->addWidget(label7);
     h2->addWidget(vedio_fovclass_fou);
-    //
 
-    QGridLayout *glc2=new QGridLayout;
+   QGridLayout *glc2=new QGridLayout;
    Change_set_azimuth_fou =new QPushButton;
    Change_set_pitch_fou =new QPushButton;
    Change_set_zoom_fou  =new QPushButton;
@@ -4005,9 +4006,6 @@ void MainWindow::init_vedioCfg_fou(){
    glc2->addWidget(Change_search_azimuth_fou,1,5,1,1);
    glc2->addWidget(Change_search_pitch_fou,2,5,1,1);
    glc2->addWidget(Change_search_zoom_fou,3,5,1,1);
-
-
-    //
 
     QGroupBox *g2=new QGroupBox;
     g2->setTitle("视场靶心补偿表");
@@ -4100,11 +4098,18 @@ void MainWindow::init_vedioCfg_fou(){
     gl2->addWidget(l1c25,5,4,1,1);
 
 
-    vedio_spbx_switch1_fou=new QSpinBox;
-    vedio_spbx_switch2_fou=new QSpinBox;
-    vedio_spbx_switch3_fou=new QSpinBox;
-    vedio_spbx_switch4_fou=new QSpinBox;
-    vedio_spbx_switch5_fou=new QSpinBox;
+    vedio_spbx_switch1_fou=new MyQSpinBox;
+    vedio_spbx_switch2_fou=new MyQSpinBox;
+    vedio_spbx_switch3_fou=new MyQSpinBox;
+    vedio_spbx_switch4_fou=new MyQSpinBox;
+    vedio_spbx_switch5_fou=new MyQSpinBox;
+
+    vedio_spbx_switch1_fou->spid = switch1_spinx_fou;
+    vedio_spbx_switch2_fou->spid = switch2_spinx_fou;
+    vedio_spbx_switch3_fou->spid = switch3_spinx_fou;
+    vedio_spbx_switch4_fou->spid = switch4_spinx_fou;
+    vedio_spbx_switch5_fou->spid = switch5_spinx_fou;
+
     vedio_spbx_switch1_fou->setRange(0,9999);
     vedio_spbx_switch2_fou->setRange(0,9999);
     vedio_spbx_switch3_fou->setRange(0,9999);
@@ -4116,11 +4121,18 @@ void MainWindow::init_vedioCfg_fou(){
     gl2->addWidget(vedio_spbx_switch4_fou,4,5,1,1);
     gl2->addWidget(vedio_spbx_switch5_fou,5,5,1,1);
 
-    vedio_spby_switch1_fou=new QSpinBox;
-    vedio_spby_switch2_fou=new QSpinBox;
-    vedio_spby_switch3_fou=new QSpinBox;
-    vedio_spby_switch4_fou=new QSpinBox;
-    vedio_spby_switch5_fou=new QSpinBox;
+    vedio_spby_switch1_fou=new MyQSpinBox;
+    vedio_spby_switch2_fou=new MyQSpinBox;
+    vedio_spby_switch3_fou=new MyQSpinBox;
+    vedio_spby_switch4_fou=new MyQSpinBox;
+    vedio_spby_switch5_fou=new MyQSpinBox;
+
+    vedio_spby_switch1_fou->spid = switch1_spiny_fou;
+    vedio_spby_switch2_fou->spid = switch2_spiny_fou;
+    vedio_spby_switch3_fou->spid = switch3_spiny_fou;
+    vedio_spby_switch4_fou->spid = switch4_spiny_fou;
+    vedio_spby_switch5_fou->spid = switch5_spiny_fou;
+
     vedio_spby_switch1_fou->setRange(0,9999);
     vedio_spby_switch2_fou->setRange(0,9999);
     vedio_spby_switch3_fou->setRange(0,9999);
@@ -4151,53 +4163,54 @@ void MainWindow::init_vedioCfg_fou(){
   //v->addLayout(h2);
     v->addLayout(v22);
     w_seitchField_1_fou->setLayout(v);
-    connect(btn_vediosersor_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
-    connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
-    connect(ChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    connect(enable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(btn_vediosersor_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot_fou()));
+    connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+
+    connect(ChanelNum_fou,SIGNAL(clicked(bool)),this,SLOT(change_ChanelNum_Slot_fou()));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(enable_fou,SIGNAL(clicked(bool)),this,SLOT(change_chanelname_Slot_fou()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(vediohaveornot_fou,SIGNAL(clicked(bool)),this,SLOT(change_vediohaveornot_Slot_fou()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    connect(gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
-    connect(bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
-    connect(gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
-    connect(bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
-    connect(autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
-    connect(gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
-    connect(gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
-    connect(gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
-    connect(gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fou()));
-    connect(Change_set_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot_fou()));
-    connect(Change_set_pitch_fou,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot_fou()));
-    connect(Change_set_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot_fou()));
-    connect(Change_search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot_fou()));
-    connect(Change_search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot_fou()));
-    connect(Change_search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot_fou()));
-    connect( vedio_fovclass_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
+    connect(vedio_change2_fou,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch_fou(int)));
+    connect(gateshow_fou,SIGNAL(clicked(bool)),this,SLOT(change_gateshow_Slot_fou()));
+    connect(bullshow_fou,SIGNAL(clicked(bool)),this,SLOT(change_bullshow_Slot_fou()));
+    connect(autogate_fou,SIGNAL(clicked(bool)),this,SLOT(change_autogate_Slot_fou()));
+    connect(gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(change_gate_sizex_Slot_fou()));
+    connect(gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(change_gate_sizey_Slot_fou()));
+    connect(gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(change_gatelocationx_Slot_fou()));
+    connect(gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(change_gatelocationy_Slot_fou()));
+    connect(Change_set_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(change_set_azimuth_Slot_fou()));
+    connect(Change_set_pitch_fou,SIGNAL(clicked(bool)),this,SLOT(change_set_pitch_Slot_fou()));
+    connect(Change_set_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(change_set_zoom_Slot_fou()));
+    connect(Change_search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(Change_search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(Change_search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
+    connect(vedio_fovclass_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
 
-    connect(vedio_s1_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
-    connect(Change_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(vedio_spbx_switch1_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_spby_switch1_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_s1_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
-    connect(Change_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(vedio_spbx_switch2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_spby_switch2_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_s1_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
-    connect(Change_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(vedio_spbx_switch3_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_spby_switch3_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_s1_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
-    connect(Change_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(vedio_spbx_switch4_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_spby_switch4_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_s1_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fou()));
-    connect(Change_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fou()));
-    connect(vedio_spbx_switch5_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
-    connect(vedio_spby_switch5_fou,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fou()));
+    connect(vedio_s1_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov0_Slot_fou()));
+    connect(vedio_s1_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov1_Slot_fou()));
+    connect(vedio_s1_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov2_Slot_fou()));
+    connect(vedio_s1_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov3_Slot_fou()));
+    connect(vedio_s1_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_s1_Fov4_Slot_fou()));
 
+    connect(Change_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(Change_vertical1_Slot_fou()));
+    connect(Change_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(Change_vertical2_Slot_fou()));
+    connect(Change_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(Change_vertical3_Slot_fou()));
+    connect(Change_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(Change_vertical4_Slot_fou()));
+    connect(Change_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(Change_vertical5_Slot_fou()));
+
+    connect(vedio_spbx_switch1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_switch1_Slot_fou()));
+    connect(vedio_spbx_switch2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_switch2_Slot_fou()));
+    connect(vedio_spbx_switch3_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_switch3_Slot_fou()));
+    connect(vedio_spbx_switch4_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_switch4_Slot_fou()));
+    connect(vedio_spbx_switch5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_switch5_Slot_fou()));
+
+    connect(vedio_spby_switch1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_switch1_Slot_fou()));
+    connect(vedio_spby_switch2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_switch2_Slot_fou()));
+    connect(vedio_spby_switch3_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_switch3_Slot_fou()));
+    connect(vedio_spby_switch4_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_switch4_Slot_fou()));
+    connect(vedio_spby_switch5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_switch5_Slot_fou()));
 
     /*连续视场*/
-
     w_ContinueField_1_fou->setWindowTitle("摄像机配置");
     btn_vediosersor_continue_default_fou=new QPushButton;
     btn_vediosersor_continue_update_fou=new QPushButton;
@@ -4279,8 +4292,8 @@ void MainWindow::init_vedioCfg_fou(){
     test_1_fou = new QLineEdit;
     v31->addWidget(label70);
     v31->addWidget(test_1_fou);
-//
-    QGridLayout *glct2=new QGridLayout;
+
+   QGridLayout *glct2=new QGridLayout;
    continue_set_azimuth_fou =new QPushButton;
    continue_set_pitch_fou =new QPushButton;
    continue_set_zoom_fou  =new QPushButton;
@@ -4328,9 +4341,6 @@ void MainWindow::init_vedioCfg_fou(){
    glct2->addWidget(continue_search_azimuth_fou,1,5,1,1);
    glct2->addWidget(continue_search_pitch_fou,2,5,1,1);
    glct2->addWidget(continue_search_zoom_fou,3,5,1,1);
-
-   //
-
 
     QGroupBox *g3=new QGroupBox;
     g3->setTitle("视场靶心补偿表");
@@ -4450,13 +4460,21 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(l1d37,7,3,1,1);
 
 
-    vedio_spbx_continue1_fou=new QSpinBox;
-    vedio_spbx_continue2_fou=new QSpinBox;
-    vedio_spbx_continue3_fou=new QSpinBox;
-    vedio_spbx_continue4_fou=new QSpinBox;
-    vedio_spbx_continue5_fou=new QSpinBox;
-    vedio_spbx_continue6_fou=new QSpinBox;
-    vedio_spbx_continue7_fou=new QSpinBox;
+    vedio_spbx_continue1_fou=new MyQSpinBox;
+    vedio_spbx_continue2_fou=new MyQSpinBox;
+    vedio_spbx_continue3_fou=new MyQSpinBox;
+    vedio_spbx_continue4_fou=new MyQSpinBox;
+    vedio_spbx_continue5_fou=new MyQSpinBox;
+    vedio_spbx_continue6_fou=new MyQSpinBox;
+    vedio_spbx_continue7_fou=new MyQSpinBox;
+
+    vedio_spbx_continue1_fou->spid = continue1_spinx_fou;
+    vedio_spbx_continue2_fou->spid = continue2_spinx_fou;
+    vedio_spbx_continue3_fou->spid = continue3_spinx_fou;
+    vedio_spbx_continue4_fou->spid = continue4_spinx_fou;
+    vedio_spbx_continue5_fou->spid = continue5_spinx_fou;
+    vedio_spbx_continue6_fou->spid = continue6_spinx_fou;
+    vedio_spbx_continue7_fou->spid = continue7_spinx_fou;
 
     vedio_spbx_continue1_fou->setRange(0,9999);
     vedio_spbx_continue2_fou->setRange(0,9999);
@@ -4475,13 +4493,21 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(vedio_spbx_continue7_fou,7,6,1,1);
 
 
-    vedio_spby_continue1_fou=new QSpinBox;
-    vedio_spby_continue2_fou=new QSpinBox;
-    vedio_spby_continue3_fou=new QSpinBox;
-    vedio_spby_continue4_fou=new QSpinBox;
-    vedio_spby_continue5_fou=new QSpinBox;
-    vedio_spby_continue6_fou=new QSpinBox;
-    vedio_spby_continue7_fou=new QSpinBox;
+    vedio_spby_continue1_fou=new MyQSpinBox;
+    vedio_spby_continue2_fou=new MyQSpinBox;
+    vedio_spby_continue3_fou=new MyQSpinBox;
+    vedio_spby_continue4_fou=new MyQSpinBox;
+    vedio_spby_continue5_fou=new MyQSpinBox;
+    vedio_spby_continue6_fou=new MyQSpinBox;
+    vedio_spby_continue7_fou=new MyQSpinBox;
+
+    vedio_spby_continue1_fou->spid = continue1_spiny_fou;
+    vedio_spby_continue2_fou->spid = continue2_spiny_fou;
+    vedio_spby_continue3_fou->spid = continue3_spiny_fou;
+    vedio_spby_continue4_fou->spid = continue4_spiny_fou;
+    vedio_spby_continue5_fou->spid = continue5_spiny_fou;
+    vedio_spby_continue6_fou->spid = continue6_spiny_fou;
+    vedio_spby_continue7_fou->spid = continue7_spiny_fou;
 
     vedio_spby_continue1_fou->setRange(0,9999);
     vedio_spby_continue2_fou->setRange(0,9999);
@@ -4515,31 +4541,29 @@ void MainWindow::init_vedioCfg_fou(){
 
     w_ContinueField_1_fou->setLayout(v10);
 
-    connect(vedio_change3_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_fou(int)));
+    connect(btn_vediosersor_continue_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_continue_default_Slot_fou()));
+    connect(btn_vediosersor_continue_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
 
-    connect(btn_vediosersor_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_default_Slot_fou()));
-    connect(btn_vediosersor_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot_fou()));
-    connect(continueChanelNum_fou,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fou(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
-    connect(continueenable_fou,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fou(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
-    connect(continue_vediohaveornot_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fou(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
+    connect(continueChanelNum_fou,SIGNAL(clicked(bool)),this,SLOT(continue_ChanelNum_Slot_fou()));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
+    connect(continueenable_fou,SIGNAL(clicked(bool)),this,SLOT(continue_chanelname_Slot_fou()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
+    connect(continue_vediohaveornot_fou,SIGNAL(clicked(bool)),this,SLOT(continue_vediohaveornot_Slot_fou()));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(continue_vedio_dpi_fou,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fou(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
-    connect(continue_gateshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fou(int)));
-    connect(continue_bullshow_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fou(int)));
-    connect(continue_gateshow_fou,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fou()));
-    connect(continue_bullshow_fou,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fou()));
-    connect(continue_autogate_fou,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fou(int)));
-    connect(continue_gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fou()));
-    connect(continue_gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fou()));
-    connect(continue_gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationx_Slot_fou()));
-    connect(continue_gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(fix_gatelocationy_Slot_fou()));
-    connect(continue_set_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(set_azimuth_Slot_fou()));
-    connect(continue_set_pitch_fou,SIGNAL(clicked(bool)),this,SLOT(set_pitch_Slot_fou()));
-    connect(continue_set_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(set_zoom_Slot_fou()));
-    connect(continue_search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot_fou()));
-    connect(continue_search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot_fou()));
-    connect(continue_search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot_fou()));
-    connect(continue_vediohaveornot_fou,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fou()));
+    connect(vedio_change3_fou,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_fou(int)));
+    connect(continue_gateshow_fou,SIGNAL(clicked(bool)),this,SLOT(continue_gateshow_Slot_fou()));
+    connect(continue_bullshow_fou,SIGNAL(clicked(bool)),this,SLOT(continue_bullshow_Slot_fou()));
+    connect(continue_autogate_fou,SIGNAL(clicked(bool)),this,SLOT(continue_autogate_Slot_fou()));
+    connect(continue_gate_sizex_fou,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizex_Slot_fou()));
+    connect(continue_gate_sizey_fou,SIGNAL(returnPressed()),this,SLOT(continue_gate_sizey_Slot_fou()));
+    connect(continue_gatelocationx_fou,SIGNAL(returnPressed()),this,SLOT(continue_gatelocationx_Slot_fou()));
+    connect(continue_gatelocationy_fou,SIGNAL(returnPressed()),this,SLOT(continue_gatelocationy_Slot_fou()));
+    connect(continue_set_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(continue_set_azimuth_Slot_fou()));
+    connect(continue_set_pitch_fou,SIGNAL(clicked(bool)),this,SLOT(continue_set_pitch_Slot_fou()));
+    connect(continue_set_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(continue_set_zoom_Slot_fou()));
+    connect(continue_search_azimuth_fou,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
+    connect(continue_search_pitch_fou ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
+    connect(continue_search_zoom_fou,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
     connect(test_1_fou,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fou()));
+
     connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fou()));
     connect(vedio_l2_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l2_continue_Slot_fou()));
     connect(vedio_l3_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l3_continue_Slot_fou()));
@@ -4548,36 +4572,36 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_l6_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l6_continue_Slot_fou()));
     connect(vedio_l7_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l7_continue_Slot_fou()));
 
-    connect( vedio_continue_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fou()));
-    connect( vedio_continue_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fou()));
-    connect( vedio_continue_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_fou()));
-    connect( vedio_continue_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_fou()));
-    connect( vedio_continue_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fou()));
-    connect( vedio_continue_Fov5_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fou()));
-    connect( vedio_continue_Fov6_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fou()));
-    connect( continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
-    connect( continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
-    connect( continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
-    connect( continue_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fou()));
-    connect( continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
-    connect( continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
-    connect( continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
+    connect(vedio_continue_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fou()));
+    connect(vedio_continue_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fou()));
+    connect(vedio_continue_Fov2_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov2_Slot_fou()));
+    connect(vedio_continue_Fov3_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov3_Slot_fou()));
+    connect(vedio_continue_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fou()));
+    connect(vedio_continue_Fov5_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fou()));
+    connect(vedio_continue_Fov6_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fou()));
+    connect(continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
+    connect(continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
+    connect(continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
+    connect(continue_vertical4_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical4_Slot_fou()));
+    connect(continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
+    connect(continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
+    connect(continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
 
-    connect( vedio_spbx_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue1_Slot_fou()));
-    connect( vedio_spbx_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue2_Slot_fou()));
-    connect( vedio_spbx_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue3_Slot_fou()));
-    connect( vedio_spbx_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue4_Slot_fou()));
-    connect( vedio_spbx_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue5_Slot_fou()));
-    connect( vedio_spbx_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue6_Slot_fou()));
-    connect( vedio_spbx_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spbx_continue7_Slot_fou()));
+    connect(vedio_spbx_continue1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot_fou()));
+    connect(vedio_spbx_continue2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot_fou()));
+    connect(vedio_spbx_continue3_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue3_Slot_fou()));
+    connect(vedio_spbx_continue4_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue4_Slot_fou()));
+    connect(vedio_spbx_continue5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot_fou()));
+    connect(vedio_spbx_continue6_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot_fou()));
+    connect(vedio_spbx_continue7_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot_fou()));
 
-    connect( vedio_spby_continue1_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue1_Slot_fou()));
-    connect( vedio_spby_continue2_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue2_Slot_fou()));
-    connect( vedio_spby_continue3_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue3_Slot_fou()));
-    connect( vedio_spby_continue4_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue4_Slot_fou()));
-    connect( vedio_spby_continue5_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue5_Slot_fou()));
-    connect( vedio_spby_continue6_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue6_Slot_fou()));
-    connect( vedio_spby_continue7_fou,SIGNAL(activated(int)),this,SLOT(vedio_spby_continue7_Slot_fou()));
+    connect(vedio_spby_continue1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot_fou()));
+    connect(vedio_spby_continue2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot_fou()));
+    connect(vedio_spby_continue3_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue3_Slot_fou()));
+    connect(vedio_spby_continue4_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue4_Slot_fou()));
+    connect(vedio_spby_continue5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot_fou()));
+    connect(vedio_spby_continue6_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot_fou()));
+    connect(vedio_spby_continue7_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot_fou()));
 }
 
 void MainWindow::init_vedioCfg_fif(){
@@ -4794,12 +4818,6 @@ void MainWindow::init_vedioCfg_fif(){
    connect(search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
    connect(search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
    connect(search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
-  // connect(ledt_set_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_set_azimuth_Slot()));
-  // connect(ledt_set_pitch,SIGNAL(activated(int)),this,SLOT(ledt_set_pitch_Slot()));
-  // connect(ledt_set_zoom,SIGNAL(activated(int)),this,SLOT(ledt_set_zoom_Slot()));
-  // connect(ledt_search_azimuth,SIGNAL(activated(int)),this,SLOT(ledt_search_azimuth_Slot()));
-  // connect(ledt_search_pitch,SIGNAL(activated(int)),this,SLOT(ledt_search_pitch_Slot()));
-  // connect(ledt_search_zoom,SIGNAL(activated(int)),this,SLOT(ledt_search_zoom_Slot()));
    connect(fix_lEdt_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
    connect(fix_vertical_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
    connect(fix_sp_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
@@ -5111,9 +5129,9 @@ void MainWindow::init_vedioCfg_fif(){
     connect(Change_set_azimuth_fif,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fif()));
     connect(Change_set_pitch_fif,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fif()));
     connect(Change_set_zoom_fif,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fif()));
-    connect(Change_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
-    connect(Change_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
-    connect(Change_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
+    connect(Change_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
+    connect(Change_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
+    connect(Change_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
     connect( vedio_fovclass_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
 
     connect(vedio_s1_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
@@ -5478,9 +5496,9 @@ void MainWindow::init_vedioCfg_fif(){
     connect(continue_set_azimuth_fif,SIGNAL(activated(int)),this,SLOT(set_azimuth_Slot_fif()));
     connect(continue_set_pitch_fif,SIGNAL(activated(int)),this,SLOT(set_pitch_Slot_fif()));
     connect(continue_set_zoom_fif,SIGNAL(activated(int)),this,SLOT(set_zoom_Slot_fif()));
-    connect(continue_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot_fif()));
-    connect(continue_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot_fif()));
-    connect(continue_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot_fif()));
+    connect(continue_search_azimuth_fif,SIGNAL(activated(int)),this,SLOT(search_azimuth_Slot()));
+    connect(continue_search_pitch_fif ,SIGNAL(activated(int)),this,SLOT(search_pitch_Slot()));
+    connect(continue_search_zoom_fif,SIGNAL(activated(int)),this,SLOT(search_zoom_Slot()));
     connect(continue_vediohaveornot_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
     connect(test_1_fif,SIGNAL(activated(int)),this,SLOT(test_1_Slot_fif()));
     connect(vedio_l1_continue_fou,SIGNAL(activated(int)),this,SLOT(vedio_l1_continue_Slot_fif()));
@@ -7620,6 +7638,8 @@ void MainWindow::showvedioCfg1()
     w_sersor_1->show();
     w_sersor_1->show_stat = 1;
 
+    vedio_change1->setCurrentIndex(0);
+
     for(int i = 0; i <= 13; i++)
     {
         send_mutex.lock();
@@ -7674,6 +7694,8 @@ void MainWindow::showvedioCfg3()
     w_sersor_1_thi->show();
     w_sersor_1_thi->show_stat = 1;
 
+    vedio_change1_thi->setCurrentIndex(0);
+
     for(int i = 0; i <= 13; i++)
     {
         send_mutex.lock();
@@ -7696,27 +7718,60 @@ void MainWindow::showvedioCfg3()
 
 void MainWindow::showvedioCfg4()
 {
-    send_mutex.lock();
-    send_arr[4]=0x63;
-    send_arr[5]=0x04;
-    send_oneframe(2);
-    send_mutex.unlock();
     vedio_current_shichang_fou = 0;
     w_sersor_1_fou->show();
     w_sersor_1_fou->show_stat = 1;
+
+    vedio_change1_fou->setCurrentIndex(0);
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=72;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=73;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::showvedioCfg5()
 {
-    send_mutex.lock();
-    send_arr[4]=0x63;
-    send_arr[5]=0x05;
-    send_oneframe(2);
-    send_mutex.unlock();
     vedio_current_shichang_fif= 0;
     w_sersor_1_fif->show();
     w_sersor_1_fif->show_stat = 1;
+
+    vedio_change1_fif->setCurrentIndex(0);
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=79;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=80;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
+
 void MainWindow::showpidsysCfg1()
 {
     for(int i=1;i<=8;i++){
@@ -8224,6 +8279,7 @@ void MainWindow::vedio_btnSensor1SwitchSlot()
     w_seitchField_1->show();
     w_seitchField_1->show_stat = 1;
 
+    vedio_change2->setCurrentIndex(0);
 
     for(int i = 0; i <= 13; i++)
     {
@@ -8261,6 +8317,8 @@ void MainWindow::vedio_btnSensor2ContinueSlot()
     vedio_current_shichang = 2;
     w_ContinueField_1->show();
     w_ContinueField_1->show_stat = 1;
+
+    vedio_change3->setCurrentIndex(0);
 
     for(int i = 0; i <= 13; i++)
     {
@@ -8392,6 +8450,8 @@ void MainWindow::vedio_btnSensor1SwitchSlot_thi()
     w_seitchField_1_thi->show();
     w_seitchField_1_thi->show_stat = 1;
 
+    vedio_change2_thi->setCurrentIndex(0);
+
     for(int i = 0; i <= 13; i++)
     {
         send_mutex.lock();
@@ -8426,6 +8486,8 @@ void MainWindow::vedio_btnSensor2ContinueSlot_thi()
     vedio_current_shichang_thi = 2;
     w_ContinueField_1_thi->show();
     w_ContinueField_1_thi->show_stat = 1;
+
+    vedio_change3_thi->setCurrentIndex(0);
 
     for(int i = 0; i <= 13; i++)
     {
@@ -8471,7 +8533,35 @@ void MainWindow::vedio_btnSensor1SwitchSlot_fou()
     w_seitchField_1_fou->show();
     w_seitchField_1_fou->show_stat = 1;
 
+    vedio_change2_fou->setCurrentIndex(0);
 
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=72;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=74;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 4; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=75;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor2ContinueSlot_fou()
@@ -8480,6 +8570,44 @@ void MainWindow::vedio_btnSensor2ContinueSlot_fou()
     w_ContinueField_1_fou->show();
     w_ContinueField_1_fou->show_stat = 1;
 
+    vedio_change3_fou->setCurrentIndex(0);
+
+    for(int i = 0; i <= 13; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=73;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=76;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 15; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=77;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
+    for(int i = 0; i <= 3; i++)
+    {
+        send_mutex.lock();
+        send_arr[4]=0x31;
+        send_arr[5]=78;
+        send_arr[6]=i;
+        send_oneframe(3);
+        send_mutex.unlock();
+    }
 }
 
 void MainWindow::vedio_btnSensor1SwitchSlot_fif()
