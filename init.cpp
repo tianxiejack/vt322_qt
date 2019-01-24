@@ -4773,20 +4773,14 @@ void MainWindow::init_vedioCfg_fif(){
     gl3->addWidget(l13,0,6,1,1);
     gl3->addWidget(l14,0,7,1,1);
 
-
-        gl3->addWidget(fix_lEdt_fif,1,0,1,1);
-
-                 gl3->addWidget(l1d,1,1,1,1);
+    gl3->addWidget(fix_lEdt_fif,1,0,1,1);
+    gl3->addWidget(l1d,1,1,1,1);
     gl3->addWidget(fix_vertical_fif,1,2,1,1);
-                 gl3->addWidget(l1v,1,3,1,1);
-                 gl3->addWidget(l14,1,4,1,1);
-          gl3->addWidget(fix_sp_fif,1,5,1,1);
-         gl3->addWidget(fix_sp2_fif,1,6,1,1);
-
-
-
-
-                           g->setLayout(gl3);
+    gl3->addWidget(l1v,1,3,1,1);
+    gl3->addWidget(l14,1,4,1,1);
+    gl3->addWidget(fix_sp_fif,1,5,1,1);
+    gl3->addWidget(fix_sp2_fif,1,6,1,1);
+    g->setLayout(gl3);
 
     QVBoxLayout *v0=new QVBoxLayout;
     v0->addLayout(h11);
@@ -4798,13 +4792,15 @@ void MainWindow::init_vedioCfg_fif(){
     v0->addLayout(gl12);
     v0->addWidget(g);
     w_sersor_1_fif->setLayout(v0);
-   connect(vedio_change1_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fif(int)));
+
    connect(btn_vediosersor_fix_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
    connect(btn_vediosersor_fix_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
+
    connect(fixChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));
    connect(fixenable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));
    connect(fix_vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));
    connect(fix_vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));
+   connect(vedio_change1_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_fix_fif(int)));
    connect(fix_gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
    connect(fix_bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
    connect(fix_autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
@@ -4824,7 +4820,6 @@ void MainWindow::init_vedioCfg_fif(){
    connect(fix_sp2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
 
     /*可切换视场*/
-
     w_seitchField_1_fif->setWindowTitle("摄像机配置");
     btn_vediosersor_default_fif=new QPushButton;
     btn_vediosersor_update_fif=new QPushButton;
@@ -4870,7 +4865,6 @@ void MainWindow::init_vedioCfg_fif(){
     f3->addRow(vedio_s_fif[2],vedio_change2_fif);
     vediochoose_fif->setLayout(f3);
 
-    //connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
     gateshow_fif = new  QCheckBox();
     bullshow_fif = new  QCheckBox();
     gateshow_fif->setText("波门显示");
@@ -4915,7 +4909,6 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_fovclass_fif->addItem("可切换视场5");
     h2->addWidget(label7);
     h2->addWidget(vedio_fovclass_fif);
-    //
 
     QGridLayout *glc2=new QGridLayout;
    Change_set_azimuth_fif =new QPushButton;
@@ -5100,9 +5093,7 @@ void MainWindow::init_vedioCfg_fif(){
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(v1);
-
     v->addLayout(h1);
-
     v->addLayout(v2);
     v->addWidget(vediochoose_fif);
     v->addLayout(v3);
@@ -5117,10 +5108,9 @@ void MainWindow::init_vedioCfg_fif(){
     connect(enable_fif,SIGNAL(stateChanged(int)),this,SLOT(fixchanelname_Slot_fif(int)));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
     connect(vediohaveornot_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_vediohaveornot_Slot_fif(int)));//3、 是否有摄像机：如果勾选使能则此通道输入被使能；
     connect(vedio_dpi_fif,SIGNAL(currentIndexChanged(int)),this,SLOT(fix_vedio_dpi_Slot_fif(int)));//4、 摄像机分辨率帧率：选择此通道的输入的视频信号的分辨率和帧率；
+    connect(vedio_change2_fif,SIGNAL(activated(int)),this,SLOT(vedio_toSensor_switch(int)));
     connect(gateshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_gateshow_Slot_fif(int)));
     connect(bullshow_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_bullshow_Slot_fif(int)));
-    connect(gateshow_fif,SIGNAL(activated(int)),this,SLOT(fix_gateshow_Slot_fif()));
-    connect(bullshow_fif,SIGNAL(activated(int)),this,SLOT(fix_bullshow_Slot_fif()));
     connect(autogate_fif,SIGNAL(stateChanged(int)),this,SLOT(fix_autogate_Slot_fif(int)));
     connect(gate_sizex_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizex_Slot_fif()));
     connect(gate_sizey_fif,SIGNAL(returnPressed()),this,SLOT(fix_gate_sizey_Slot_fif()));
@@ -5135,26 +5125,28 @@ void MainWindow::init_vedioCfg_fif(){
     connect( vedio_fovclass_fif,SIGNAL(activated(int)),this,SLOT(vedio_fovclass_Slot_fif()));
 
     connect(vedio_s1_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
-    connect(Change_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
-    connect(vedio_spbx_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
-    connect(vedio_spby_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
     connect(vedio_s1_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
-    connect(Change_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
-    connect(vedio_spbx_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
-    connect(vedio_spby_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
     connect(vedio_s1_Fov2_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
-    connect(Change_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
-    connect(vedio_spbx_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
-    connect(vedio_spby_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
     connect(vedio_s1_Fov3_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
-    connect(Change_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
-    connect(vedio_spbx_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
-    connect(vedio_spby_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
     connect(vedio_s1_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(fix_lEdt_Slot_fif()));
-    connect(Change_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
-    connect(vedio_spbx_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
-    connect(vedio_spby_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
 
+    connect(Change_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(Change_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(Change_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(Change_vertical4_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+    connect(Change_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(fix_vertical_Slot_fif()));
+
+    connect(vedio_spbx_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spbx_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spbx_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spbx_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spbx_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+
+    connect(vedio_spby_switch1_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch2_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch3_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch4_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
+    connect(vedio_spby_switch5_fif,SIGNAL(returnPressed()),this,SLOT(fix_sp_Slot_fif()));
 
     /*连续视场*/
     w_ContinueField_1_fif->setWindowTitle("摄像机配置");
@@ -5239,8 +5231,8 @@ void MainWindow::init_vedioCfg_fif(){
     test_1_fif = new QLineEdit;
     v31->addWidget(label70);
     v31->addWidget(test_1_fif);
-//
-    QGridLayout *glct2=new QGridLayout;
+
+   QGridLayout *glct2=new QGridLayout;
    continue_set_azimuth_fif =new QPushButton;
    continue_set_pitch_fif =new QPushButton;
    continue_set_zoom_fif =new QPushButton;
@@ -5289,9 +5281,6 @@ void MainWindow::init_vedioCfg_fif(){
    glct2->addWidget(continue_search_pitch_fif,2,5,1,1);
    glct2->addWidget(continue_search_zoom_fif,3,5,1,1);
 
-   //
-
-
     QGroupBox *g3=new QGroupBox;
     g3->setTitle("视场靶心补偿表");
     QGridLayout *glc=new QGridLayout;
@@ -5316,7 +5305,6 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(l32,0,6,1,1);
     glc->addWidget(l33,0,7,1,1);
     glc->addWidget(l34,0,8,1,1);
-
 
     vedio_l1_continue_fif=new QLineEdit;
     vedio_l2_continue_fif=new QLineEdit;
@@ -5409,7 +5397,6 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(l1d36,6,3,1,1);
     glc->addWidget(l1d37,7,3,1,1);
 
-
     vedio_spbx_continue1_fif=new QSpinBox;
     vedio_spbx_continue2_fif=new QSpinBox;
     vedio_spbx_continue3_fif=new QSpinBox;
@@ -5433,7 +5420,6 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(vedio_spbx_continue5_fif,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6_fif,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7_fif,7,6,1,1);
-
 
     vedio_spby_continue1_fif=new QSpinBox;
     vedio_spby_continue2_fif=new QSpinBox;
@@ -5474,10 +5460,7 @@ void MainWindow::init_vedioCfg_fif(){
     //
 
     w_ContinueField_1_fif->setLayout(v10);
-
     connect(vedio_change3_fif,SIGNAL(activated(int)),this,SLOT(vedio_tosersor_continue_fif(int)));
-
-
     connect(btn_vediosersor_default_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_default_Slot_fif()));
     connect(btn_vediosersor_update_fif,SIGNAL(activated(int)),this,SLOT(btn_vediosersor_fix_update_Slot_fif()));
     connect(continueChanelNum_fif,SIGNAL(stateChanged(int)),this,SLOT(fixChanelNum_Slot_fif(int)));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
