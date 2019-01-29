@@ -2856,6 +2856,27 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         case 78:
             showblk78(output_array[2],value_i);
             break;
+        case 79:
+            showblk79(output_array[2],value_i);
+            break;
+        case 80:
+            showblk80(output_array[2],value_i);
+            break;
+        case 81:
+            showblk81(output_array[2],value_i);
+            break;
+        case 82:
+            showblk82(output_array[2],value_i);
+            break;
+        case 83:
+            showblk83(output_array[2],value_i);
+            break;
+        case 84:
+            showblk84(output_array[2],value_i);
+            break;
+        case 85:
+            showblk85(output_array[2],value_i);
+            break;
         default:
             break;
         }
@@ -3016,6 +3037,42 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                read_config(69);
                read_config(70);
                read_config(71);
+           }
+           if(w_sersor_1_fou->show_stat)
+           {
+                read_config(72);
+                read_config(73);
+           }
+           if(w_seitchField_1_fou->show_stat)
+           {
+               read_config(72);
+               read_config(74);
+               read_config(75);
+           }
+           if(w_ContinueField_1_fou->show_stat)
+           {
+               read_config(72);
+               read_config(76);
+               read_config(77);
+               read_config(78);
+           }
+           if(w_sersor_1_fif->show_stat)
+           {
+                read_config(79);
+                read_config(80);
+           }
+           if(w_seitchField_1_fif->show_stat)
+           {
+               read_config(79);
+               read_config(81);
+               read_config(82);
+           }
+           if(w_ContinueField_1_fif->show_stat)
+           {
+               read_config(79);
+               read_config(83);
+               read_config(84);
+               read_config(85);
            }
        }
     }
@@ -4994,6 +5051,413 @@ void MainWindow::showblk78(int field, float value)
             break;
         case 3:
             test_1_fou->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::showblk79(int field, float value)
+{
+    int valuei = (int)value;
+
+    if(5 == field)
+    {
+        if(0 == valuei)
+            showvedioCfg5();
+        else if(1 == valuei)
+            vedio_btnSensor1SwitchSlot_fif();
+        else if(2 == valuei)
+            vedio_btnSensor2ContinueSlot_fif();
+    }
+
+    if(vedio_current_shichang_fif == 0)
+    {
+        switch(field)
+        {
+            case 0:
+                fixChanelNum_fif->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                fixenable_fif->setChecked(valuei);
+                break;
+            case 3:
+                fix_vediohaveornot_fif->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    fix_vedio_dpi_fif->setCurrentIndex(0);
+                if(valuei == 1)
+                    fix_vedio_dpi_fif->setCurrentIndex(1);
+                if(valuei == 2)
+                    fix_vedio_dpi_fif->setCurrentIndex(2);
+                if(valuei == 3)
+                    fix_vedio_dpi_fif->setCurrentIndex(3);
+                if(valuei == 4)
+                    fix_vedio_dpi_fif->setCurrentIndex(4);
+                break;
+            case 6:
+                break;
+            case 7:
+                fix_gateshow_fif->setChecked(valuei);
+                break;
+            case 8:
+                fix_bullshow_fif->setChecked(valuei);
+                break;
+            case 9:
+                fix_autogate_fif->setChecked(valuei);
+                break;
+            case 10:
+                fix_gate_sizex_fif->setText(QString::number(value));
+                break;
+            case 11:
+                fix_gate_sizey_fif->setText(QString::number(value));
+                break;
+            case 12:
+                fix_gatelocationx_fif->setText(QString::number(value));
+                break;
+            case 13:
+                fix_gatelocationy_fif->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+    if(vedio_current_shichang_fif == 1)
+    {
+        switch(field)
+        {
+            case 0:
+                ChanelNum_fif->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                enable_fif->setChecked(valuei);
+                break;
+            case 3:
+                vediohaveornot_fif->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    vedio_dpi_fif->setCurrentIndex(0);
+                if(valuei == 1)
+                    vedio_dpi_fif->setCurrentIndex(1);
+                if(valuei == 2)
+                    vedio_dpi_fif->setCurrentIndex(2);
+                if(valuei == 3)
+                    vedio_dpi_fif->setCurrentIndex(3);
+                break;
+            case 6:
+                break;
+            case 7:
+                gateshow_fif->setChecked(valuei);
+                break;
+            case 8:
+                bullshow_fif->setChecked(valuei);
+                break;
+            case 9:
+                autogate_fif->setChecked(valuei);
+                break;
+            case 10:
+                gate_sizex_fif->setText(QString::number(value));
+                break;
+            case 11:
+                gate_sizey_fif->setText(QString::number(value));
+                break;
+            case 12:
+                gatelocationx_fif->setText(QString::number(value));
+                break;
+            case 13:
+                gatelocationy_fif->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+    if(vedio_current_shichang_fif == 2)
+    {
+        switch(field)
+        {
+            case 0:
+                continueChanelNum_fif->setChecked(valuei);
+                break;
+            case 1:
+                break;
+            case 2:
+                continueenable_fif->setChecked(valuei);
+                break;
+            case 3:
+                continue_vediohaveornot_fif->setChecked(valuei);
+                break;
+            case 4:
+                if(valuei == 0)
+                    continue_vedio_dpi_fif->setCurrentIndex(0);
+                if(valuei == 1)
+                    continue_vedio_dpi_fif->setCurrentIndex(1);
+                if(valuei == 2)
+                    continue_vedio_dpi_fif->setCurrentIndex(2);
+                if(valuei == 3)
+                    continue_vedio_dpi_fif->setCurrentIndex(3);
+                break;
+            case 6:
+                break;
+            case 7:
+                continue_gateshow_fif->setChecked(valuei);
+                break;
+            case 8:
+                continue_bullshow_fif->setChecked(valuei);
+                break;
+            case 9:
+                continue_autogate_fif->setChecked(valuei);
+                break;
+            case 10:
+                continue_gate_sizex_fif->setText(QString::number(value));
+                break;
+            case 11:
+                continue_gate_sizey_fif->setText(QString::number(value));
+                break;
+            case 12:
+                continue_gatelocationx_fif->setText(QString::number(value));
+                break;
+            case 13:
+                continue_gatelocationy_fif->setText(QString::number(value));
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void MainWindow::showblk80(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            fix_lEdt_fif->setText(QString::number(value));
+            break;
+        case 1:
+            fix_vertical_fif->setText(QString::number(value));
+            break;
+        case 2:
+            fix_sp_fif->setValue(value);
+            break;
+        case 3:
+            fix_sp2_fif->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk81(int field, float value)
+{
+    int valuei = (int)value;
+    switch(field)
+    {
+        case 0:
+            vedio_fovclass_fif->setCurrentIndex(valuei);
+            break;
+        case 1:
+            vedio_s1_Fov0_fif->setText(QString::number(value));
+            break;
+        case 2:
+            Change_vertical1_fif->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_switch1_fif->setValue(value);
+            break;
+        case 4:
+            vedio_spby_switch1_fif->setValue(value);
+            break;
+        case 5:
+            vedio_s1_Fov1_fif->setText(QString::number(value));
+            break;
+        case 6:
+            Change_vertical2_fif->setText(QString::number(value));
+            break;
+        case 7:
+            vedio_spbx_switch2_fif->setValue(value);
+            break;
+        case 8:
+            vedio_spby_switch2_fif->setValue(value);
+            break;
+        case 9:
+            vedio_s1_Fov2_fif->setText(QString::number(value));
+            break;
+        case 10:
+            Change_vertical3_fif->setText(QString::number(value));
+            break;
+        case 11:
+            vedio_spbx_switch3_fif->setValue(value);
+            break;
+        case 12:
+            vedio_spby_switch3_fif->setValue(value);
+            break;
+        case 13:
+            vedio_s1_Fov3_fif->setText(QString::number(value));
+            break;
+        case 14:
+            Change_vertical4_fif->setText(QString::number(value));
+            break;
+        case 15:
+            vedio_spbx_switch4_fif->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk82(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_spby_switch4_fif->setValue(value);
+            break;
+        case 1:
+            vedio_s1_Fov4_fif->setText(QString::number(value));
+            break;
+        case 2:
+            Change_vertical5_fif->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_switch5_fif->setValue(value);
+            break;
+        case 4:
+            vedio_spby_switch5_fif->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk83(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_l1_continue_fif->setText(QString::number(value));
+            break;
+        case 1:
+            vedio_continue_Fov0_fif->setText(QString::number(value));
+            break;
+        case 2:
+            continue_vertical1_fif->setText(QString::number(value));
+            break;
+        case 3:
+            vedio_spbx_continue1_fif->setValue(value);
+            break;
+        case 4:
+            vedio_spby_continue1_fif->setValue(value);
+            break;
+        case 5:
+            vedio_l2_continue_fif->setText(QString::number(value));
+            break;
+        case 6:
+            vedio_continue_Fov1_fif->setText(QString::number(value));
+            break;
+        case 7:
+            continue_vertical2_fif->setText(QString::number(value));
+            break;
+        case 8:
+            vedio_spbx_continue2_fif->setValue(value);
+            break;
+        case 9:
+            vedio_spby_continue2_fif->setValue(value);
+            break;
+        case 10:
+            vedio_l3_continue_fif->setText(QString::number(value));
+            break;
+        case 11:
+            vedio_continue_Fov2_fif->setText(QString::number(value));
+            break;
+        case 12:
+            continue_vertical3_fif->setText(QString::number(value));
+            break;
+        case 13:
+            vedio_spbx_continue3_fif->setValue(value);
+            break;
+        case 14:
+            vedio_spby_continue3_fif->setValue(value);
+            break;
+        case 15:
+            vedio_l4_continue_fif->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk84(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_continue_Fov3_fif->setText(QString::number(value));
+            break;
+        case 1:
+            continue_vertical4_fif->setText(QString::number(value));
+            break;
+        case 2:
+            vedio_spbx_continue4_fif->setValue(value);
+            break;
+        case 3:
+            vedio_spby_continue4_fif->setValue(value);
+            break;
+        case 4:
+            vedio_l5_continue_fif->setText(QString::number(value));
+            break;
+        case 5:
+            vedio_continue_Fov4_fif->setText(QString::number(value));
+            break;
+        case 6:
+            continue_vertical5_fif->setText(QString::number(value));
+            break;
+        case 7:
+            vedio_spbx_continue5_fif->setValue(value);
+            break;
+        case 8:
+            vedio_spby_continue5_fif->setValue(value);
+            break;
+        case 9:
+            vedio_l6_continue_fif->setText(QString::number(value));
+            break;
+        case 10:
+            vedio_continue_Fov5_fif->setText(QString::number(value));
+            break;
+        case 11:
+            continue_vertical6_fif->setText(QString::number(value));
+            break;
+        case 12:
+            vedio_spbx_continue6_fif->setValue(value);
+            break;
+        case 13:
+            vedio_spby_continue6_fif->setValue(value);
+            break;
+        case 14:
+            vedio_l7_continue_fif->setText(QString::number(value));
+            break;
+        case 15:
+            vedio_continue_Fov6_fif->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::showblk85(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            continue_vertical7_fif->setText(QString::number(value));
+            break;
+        case 1:
+            vedio_spbx_continue7_fif->setValue(value);
+            break;
+        case 2:
+            vedio_spby_continue7_fif->setValue(value);
+            break;
+        case 3:
+            test_1_fif->setText(QString::number(value));
             break;
         default:
             break;

@@ -3513,9 +3513,29 @@ void MainWindow::change_set_azimuth_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_set_azimuth_Slot_fif()
+{
+    unsigned short value=Change_ledt_set_azimuth_fif->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x57;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_set_azimuth_Slot_fou()
 {
     unsigned short value=continue_ledt_set_azimuth_fou->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x57;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_set_azimuth_Slot_fif()
+{
+    unsigned short value=continue_ledt_set_azimuth_fif->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
     memcpy(send_arr+5,&value,2);
@@ -3563,9 +3583,29 @@ void MainWindow::change_set_pitch_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_set_pitch_Slot_fif()
+{
+    unsigned short value=Change_ledt_set_pitch_fif->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x58;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_set_pitch_Slot_fou()
 {
     unsigned short value=continue_ledt_set_pitch_fou->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x58;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_set_pitch_Slot_fif()
+{
+    unsigned short value=continue_ledt_set_pitch_fif->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x58;
     memcpy(send_arr+5,&value,2);
@@ -3613,9 +3653,29 @@ void MainWindow::change_set_zoom_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_set_zoom_Slot_fif()
+{
+    unsigned short value=Change_ledt_set_zoom_fif->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x59;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_set_zoom_Slot_fou()
 {
     unsigned short value=continue_ledt_set_zoom_fou->text().toUShort();
+    send_mutex.lock();
+    send_arr[4] = 0x59;
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_set_zoom_Slot_fif()
+{
+    unsigned short value=continue_ledt_set_zoom_fif->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x59;
     memcpy(send_arr+5,&value,2);
@@ -4446,6 +4506,20 @@ void MainWindow::continue_ChanelNum_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_ChanelNum_Slot_fif()
+{
+    int i = continueChanelNum_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=0;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fixchanelname_Slot_fou()
 {
     int i = fixenable_fou->isChecked();
@@ -4488,6 +4562,20 @@ void MainWindow::continue_chanelname_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_chanelname_Slot_fif()
+{
+    int i = continueenable_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=2;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_vediohaveornot_Slot_fou()
 {
     int i = fix_vediohaveornot_fou->isChecked();
@@ -4524,6 +4612,20 @@ void MainWindow::continue_vediohaveornot_Slot_fou()
     send_mutex.lock();
     send_arr[4]=0x30;
     send_arr[5]=72;
+    send_arr[6]=3;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_vediohaveornot_Slot_fif()
+{
+    int i = continue_vediohaveornot_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
     send_arr[6]=3;
     memcpy(send_arr+7, &value, 4);
     send_oneframe(7);
@@ -4584,6 +4686,20 @@ void MainWindow::continue_gateshow_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_gateshow_Slot_fif()
+{
+    int i = continue_gateshow_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=7;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_bullshow_Slot_fou()
 {
     int i = fix_bullshow_fou->isChecked();
@@ -4626,6 +4742,20 @@ void MainWindow::continue_bullshow_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::continue_bullshow_Slot_fif()
+{
+    int i = continue_bullshow_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=8;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::fix_autogate_Slot_fou()
 {
     int i = fix_autogate_fou->isChecked();
@@ -4650,6 +4780,21 @@ void MainWindow::continue_autogate_Slot_fou()
     send_mutex.lock();
     send_arr[4]=0x30;
     send_arr[5]=72;
+    send_arr[6]=9;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_autogate_Slot_fif()
+{
+    int i = continue_autogate_fif->isChecked();
+    float value = i;
+
+    value = 1;
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
     send_arr[6]=9;
     memcpy(send_arr+7, &value, 4);
     send_oneframe(7);
@@ -4695,12 +4840,36 @@ void MainWindow::change_gate_sizex_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_gate_sizex_Slot_fif()
+{
+    float value=gate_sizex_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
+    send_arr[6] = 10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_gate_sizex_Slot_fou()
 {
     float value=continue_gate_sizex_fou->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 72;
+    send_arr[6] = 10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_gate_sizex_Slot_fif()
+{
+    float value=continue_gate_sizex_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
     send_arr[6] = 10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -4717,7 +4886,6 @@ void MainWindow::fix_gate_sizey_Slot_fou()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::change_gate_sizey_Slot_fou()
@@ -4732,12 +4900,36 @@ void MainWindow::change_gate_sizey_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_gate_sizey_Slot_fif()
+{
+    float value=gate_sizey_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_gate_sizey_Slot_fou()
 {
     float value=continue_gate_sizey_fou->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 72;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_gate_sizey_Slot_fif()
+{
+    float value=continue_gate_sizey_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
     send_arr[6] = 11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -4768,12 +4960,36 @@ void MainWindow::change_gatelocationx_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_gatelocationx_Slot_fif()
+{
+    float value=gatelocationx_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_gatelocationx_Slot_fou()
 {
     float value=continue_gatelocationx_fou->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 72;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_gatelocationx_Slot_fif()
+{
+    float value=continue_gatelocationx_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
     send_arr[6] = 12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -4804,12 +5020,36 @@ void MainWindow::change_gatelocationy_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::change_gatelocationy_Slot_fif()
+{
+    float value=gatelocationy_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::continue_gatelocationy_Slot_fou()
 {
     float value=continue_gatelocationy_fou->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] = 72;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::continue_gatelocationy_Slot_fif()
+{
+    float value=continue_gatelocationy_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 79;
     send_arr[6] = 13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -4942,6 +5182,33 @@ void MainWindow::btn_vediosersor_continue_default_Slot_fou()
     send_mutex.unlock();
 }
 
+void MainWindow::btn_vediosersor_continue_default_Slot_fif()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 79;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 83;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 84;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 85;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
 void MainWindow::vedio_fovclass_Slot_fou(int i)
 {
     float value = i;
@@ -5024,7 +5291,6 @@ void MainWindow::Change_vertical1_Slot_fou()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::Change_vertical2_Slot_fou()
@@ -5217,7 +5483,6 @@ void MainWindow::vedio_l1_continue_Slot_fou()
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::vedio_l2_continue_Slot_fou()
@@ -5631,168 +5896,162 @@ void MainWindow::vedio_spby_continue7_Slot_fou()
 
 void MainWindow::btn_vediosersor_fix_default_Slot_fif()
 {
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 79;
+    send_oneframe(2);
+    send_mutex.unlock();
 
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 80;
+    send_oneframe(2);
+    send_mutex.unlock();
 }
 
-void MainWindow::btn_vediosersor_fix_update_Slot_fif()
+void MainWindow::fixChanelNum_Slot_fif()
 {
+    int i = fixChanelNum_fif->isChecked();
+    float value = i;
 
-}
-//
-void MainWindow::fixChanelNum_Slot_fif(int i)
-{
-    if(i == Qt::Checked){
-
-        send_mutex.lock();
-        send_arr[4]=0x50;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x50;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=0;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::fixchanelname_Slot_fif()
 {
+    int i = fixenable_fif->isChecked();
+    float value = i;
 
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=2;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
-void MainWindow::fix_vediohaveornot_Slot_fif(int i)
+void MainWindow::fix_vediohaveornot_Slot_fif()
 {
-    if(i == Qt::Checked){
+    int i = fix_vediohaveornot_fif->isChecked();
+    float value = i;
 
-        send_mutex.lock();
-        send_arr[4]=0x52;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x52;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=3;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::fix_vedio_dpi_Slot_fif(int index)
 {
-    switch(index)
-    {
-        case 0:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-            break;
-        case 1:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-            break;
-        case 2:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x02;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-        case 3:
-
-        send_mutex.lock();
-        send_arr[4] = 0x06;
-        send_arr[5] = 0x03;
-        send_oneframe(2);
-        send_mutex.unlock();
-        break;
-         default:
-        break;
-    }
-
-
+    float value = index;
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=4;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
-void MainWindow::fix_gateshow_Slot_fif(int i)
+void MainWindow::fix_gateshow_Slot_fif()
 {
-    if(i == Qt::Checked){
+    int i = fix_gateshow_fif->isChecked();
+    float value = i;
 
-        send_mutex.lock();
-        send_arr[4]=0x55;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x55;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=7;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
-void MainWindow::fix_bullshow_Slot_fif(int i)
+void MainWindow::change_gateshow_Slot_fif()
 {
-    if(i == Qt::Checked){
+    int i = gateshow_fif->isChecked();
+    float value = i;
 
-        send_mutex.lock();
-        send_arr[4]=0x56;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x56;
-        send_arr[5]=0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=7;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
-void MainWindow::fix_autogate_Slot_fif(int i)
+void MainWindow::fix_bullshow_Slot_fif()
 {
-    if( i== Qt::Checked)
-    {
-        send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked)
-    {
-        send_mutex.lock();
-        send_arr[4] = 0x0d;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
+    int i = fix_bullshow_fif->isChecked();
+    float value = i;
 
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=8;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::change_bullshow_Slot_fif()
+{
+    int i = bullshow_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=8;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::fix_autogate_Slot_fif()
+{
+    int i = fix_autogate_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=9;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::change_autogate_Slot_fif()
+{
+    int i = autogate_fif->isChecked();
+    float value = i;
+
+    send_mutex.lock();
+    send_arr[4]=0x30;
+    send_arr[5]=79;
+    send_arr[6]=9;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::fix_gate_sizex_Slot_fif()
 {
-    float value=fix_gate_sizex->text().toFloat();
+    float value=fix_gate_sizex_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 79;
     send_arr[6] = 10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -5801,243 +6060,169 @@ void MainWindow::fix_gate_sizex_Slot_fif()
 
 void MainWindow::fix_gate_sizey_Slot_fif()
 {
-    float value=fix_gate_sizey->text().toFloat();
+    float value=fix_gate_sizey_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 79;
     send_arr[6] = 11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_gatelocationx_Slot_fif()
 {
-    float value=fix_gatelocationx->text().toFloat();
+    float value=fix_gatelocationx_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 79;
     send_arr[6] = 12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_gatelocationy_Slot_fif()
 {
-    float value=fix_gatelocationx->text().toFloat();
+    float value=fix_gatelocationy_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] = 0x23;
+    send_arr[5] = 79;
     send_arr[6] = 13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_azimuth_Slot_fif()
 {
-    int value=ledt_set_azimuth->text().toInt();
+    unsigned short value=ledt_set_azimuth_fif->text().toUShort();
     send_mutex.lock();
     send_arr[4] = 0x57;
-    memcpy(send_arr+5,&value,4);
-    send_oneframe(2);
+    memcpy(send_arr+5,&value,2);
+    send_oneframe(3);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_pitch_Slot_fif()
 {
-    int value=ledt_set_pitch->text().toInt();
+    int value=ledt_set_pitch_fif->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x58;
     memcpy(send_arr+5,&value,4);
     send_oneframe(2);
     send_mutex.unlock();
-
 }
 
 void MainWindow::set_zoom_Slot_fif()
 {
-    int value=ledt_set_zoom->text().toInt();
+    int value=ledt_set_zoom_fif->text().toInt();
     send_mutex.lock();
     send_arr[4] = 0x59;
     memcpy(send_arr+5,&value,4);
     send_oneframe(2);
     send_mutex.unlock();
-
-}
-
-void MainWindow::search_azimuth_Slot_fif()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x60;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
-    send_mutex.unlock();
-}
-
-void MainWindow::search_pitch_Slot_fif()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x61;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-}
-
-void MainWindow::search_zoom_Slot_fif()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x62;
-    send_arr[5] = 0x01;
-    send_oneframe(2);
-    send_mutex.unlock();
-
 }
 
 void MainWindow::fix_lEdt_Slot_fif()
 {
-    float value=fix_lEdt->text().toFloat();
+    float value=fix_lEdt_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =24;
-    send_arr[6] =2;
+    send_arr[5] =80;
+    send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::fix_vertical_Slot_fif()
 {
-    float value=fix_vertical->text().toFloat();
+    float value=fix_vertical_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =24;
-    send_arr[6] =3;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
-}
-
-void MainWindow::fix_sp_Slot_fif()
-{
-    float value=fix_sp->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] =24;
-    send_arr[6] =4;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
-}
-
-void MainWindow::fix_sp2_Slot_fif()
-{
-    float value=fix_sp->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] =24;
-    send_arr[6] =5;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
-}
-
-void MainWindow::btn_vediosersor_default_Slot_fif()
-{
-
-}
-
-void MainWindow::btn_vediosersor_update_Slot_fif()
-{
-
-}
-
-void MainWindow::vedio_fovclass_Slot_fif(int i)
-{
-    switch (i) {
-    case 0:
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 0x25;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x01;
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 1:
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 0x25;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x02;
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 2:
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 0x25;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x03;
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 3:
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 0x25;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x04;
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    case 4:
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 0x25;
-        send_arr[6] = 0x00;
-        send_arr[7] = 0x05;
-        send_oneframe(7);
-        send_mutex.unlock();
-        break;
-    default:
-        break;
-
-
-
-}
-
-}
-
-void MainWindow::vedio_s1_Fov0_Slot_fif()
-{
-    float value=vedio_s1_Fov0->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =80;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
+}
 
+void MainWindow::fix_sp_Slot_fif()
+{
+    float value=fix_sp_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =80;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::fix_sp2_Slot_fif()
+{
+    float value=fix_sp2_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =80;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::btn_vediosersor_default_Slot_fif()
+{
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 79;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 81;
+    send_oneframe(2);
+    send_mutex.unlock();
+
+    send_mutex.lock();
+    send_arr[4] = 0x09;
+    send_arr[5] = 82;
+    send_oneframe(2);
+    send_mutex.unlock();
+}
+
+void MainWindow::vedio_fovclass_Slot_fif(int i)
+{
+    float value = i;
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 81;
+    send_arr[6] = 0;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
+void MainWindow::vedio_s1_Fov0_Slot_fif()
+{
+    float value=vedio_s1_Fov0_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =81;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
 }
 
 void MainWindow::vedio_s1_Fov1_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_s1_Fov1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =5;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6046,11 +6231,11 @@ void MainWindow::vedio_s1_Fov1_Slot_fif()
 
 void MainWindow::vedio_s1_Fov2_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_s1_Fov2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
-    send_arr[6] =5;
+    send_arr[5] =81;
+    send_arr[6] =9;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6058,11 +6243,11 @@ void MainWindow::vedio_s1_Fov2_Slot_fif()
 
 void MainWindow::vedio_s1_Fov3_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_s1_Fov3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
-    send_arr[6] =5;
+    send_arr[5] =81;
+    send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6070,11 +6255,11 @@ void MainWindow::vedio_s1_Fov3_Slot_fif()
 
 void MainWindow::vedio_s1_Fov4_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_s1_Fov4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
-    send_arr[6] =5;
+    send_arr[5] =82;
+    send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6082,23 +6267,22 @@ void MainWindow::vedio_s1_Fov4_Slot_fif()
 
 void MainWindow::Change_vertical1_Slot_fif()
 {
-    float value=vedio_s1_Fov0->text().toFloat();
+    float value=Change_vertical1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::Change_vertical2_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=Change_vertical2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6107,10 +6291,10 @@ void MainWindow::Change_vertical2_Slot_fif()
 
 void MainWindow::Change_vertical3_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=Change_vertical3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6119,10 +6303,10 @@ void MainWindow::Change_vertical3_Slot_fif()
 
 void MainWindow::Change_vertical4_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=Change_vertical4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =14;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6131,11 +6315,11 @@ void MainWindow::Change_vertical4_Slot_fif()
 
 void MainWindow::Change_vertical5_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=Change_vertical5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
-    send_arr[6] =5;
+    send_arr[5] =82;
+    send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6143,10 +6327,10 @@ void MainWindow::Change_vertical5_Slot_fif()
 
 void MainWindow::vedio_spbx_switch1_Slot_fif()
 {
-    float value=vedio_s1_Fov0->text().toFloat();
+    float value=vedio_spbx_switch1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6155,10 +6339,10 @@ void MainWindow::vedio_spbx_switch1_Slot_fif()
 
 void MainWindow::vedio_spbx_switch2_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spbx_switch2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =7;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6167,10 +6351,10 @@ void MainWindow::vedio_spbx_switch2_Slot_fif()
 
 void MainWindow::vedio_spbx_switch3_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spbx_switch3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6179,10 +6363,10 @@ void MainWindow::vedio_spbx_switch3_Slot_fif()
 
 void MainWindow::vedio_spbx_switch4_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spbx_switch4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =15;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6191,10 +6375,10 @@ void MainWindow::vedio_spbx_switch4_Slot_fif()
 
 void MainWindow::vedio_spbx_switch5_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spbx_switch5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =26;
+    send_arr[5] =82;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6203,10 +6387,10 @@ void MainWindow::vedio_spbx_switch5_Slot_fif()
 
 void MainWindow::vedio_spby_switch1_Slot_fif()
 {
-    float value=vedio_s1_Fov0->text().toFloat();
+    float value=vedio_spby_switch1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6215,10 +6399,10 @@ void MainWindow::vedio_spby_switch1_Slot_fif()
 
 void MainWindow::vedio_spby_switch2_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spby_switch2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
+    send_arr[5] =81;
     send_arr[6] =8;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6227,11 +6411,11 @@ void MainWindow::vedio_spby_switch2_Slot_fif()
 
 void MainWindow::vedio_spby_switch3_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spby_switch3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =25;
-    send_arr[6] =13;
+    send_arr[5] =81;
+    send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6239,11 +6423,11 @@ void MainWindow::vedio_spby_switch3_Slot_fif()
 
 void MainWindow::vedio_spby_switch4_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spby_switch4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =26;
-    send_arr[6] =1;
+    send_arr[5] =82;
+    send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6251,10 +6435,10 @@ void MainWindow::vedio_spby_switch4_Slot_fif()
 
 void MainWindow::vedio_spby_switch5_Slot_fif()
 {
-    float value=vedio_s1_Fov1->text().toFloat();
+    float value=vedio_spby_switch5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =26;
+    send_arr[5] =82;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6263,92 +6447,34 @@ void MainWindow::vedio_spby_switch5_Slot_fif()
 
 void MainWindow::test_1_Slot_fif()
 {
-    int value=test_1->text().toInt();
-    if(value ==1){
+    float value = test_1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =85;
     send_arr[6] =3;
-    send_arr[7] =1;
+    memcpy(send_arr+7, &value, 4);
     send_oneframe(7);
     send_mutex.unlock();
-    }else if (value ==2) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =2;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==3) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =3;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==4) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =4;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }
-    else if (value ==5) {
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] =57;
-            send_arr[6] =3;
-            send_arr[7] =5;
-            send_oneframe(7);
-            send_mutex.unlock();
-
-        }else if (value ==6) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =6;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }else if (value ==7) {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] =57;
-        send_arr[6] =3;
-        send_arr[7] =7;
-        send_oneframe(7);
-        send_mutex.unlock();
-
-    }
 }
 
 void MainWindow::vedio_l1_continue_Slot_fif()
 {
-    float value=vedio_l1_continue->text().toFloat();
+    float value=vedio_l1_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
-
 }
 
 void MainWindow::vedio_l2_continue_Slot_fif()
 {
-    float value=vedio_l2_continue->text().toFloat();
+    float value=vedio_l2_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =5;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6357,10 +6483,10 @@ void MainWindow::vedio_l2_continue_Slot_fif()
 
 void MainWindow::vedio_l3_continue_Slot_fif()
 {
-    float value=vedio_l3_continue->text().toFloat();
+    float value=vedio_l3_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6369,11 +6495,11 @@ void MainWindow::vedio_l3_continue_Slot_fif()
 
 void MainWindow::vedio_l4_continue_Slot_fif()
 {
-    float value=vedio_l4_continue->text().toFloat();
+    float value=vedio_l4_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
-    send_arr[6] =10;
+    send_arr[5] =83;
+    send_arr[6] =15;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6381,10 +6507,10 @@ void MainWindow::vedio_l4_continue_Slot_fif()
 
 void MainWindow::vedio_l5_continue_Slot_fif()
 {
-    float value=vedio_l5_continue->text().toFloat();
+    float value=vedio_l5_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6393,10 +6519,10 @@ void MainWindow::vedio_l5_continue_Slot_fif()
 
 void MainWindow::vedio_l6_continue_Slot_fif()
 {
-    float value=vedio_l6_continue->text().toFloat();
+    float value=vedio_l6_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =9;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6405,10 +6531,10 @@ void MainWindow::vedio_l6_continue_Slot_fif()
 
 void MainWindow::vedio_l7_continue_Slot_fif()
 {
-    float value=vedio_l7_continue->text().toFloat();
+    float value=vedio_l7_continue_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =14;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6417,10 +6543,10 @@ void MainWindow::vedio_l7_continue_Slot_fif()
 
 void MainWindow::vedio_continue_Fov0_Slot_fif()
 {
-    float value=vedio_continue_Fov0->text().toFloat();
+    float value=vedio_continue_Fov0_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6429,10 +6555,10 @@ void MainWindow::vedio_continue_Fov0_Slot_fif()
 
 void MainWindow::vedio_continue_Fov1_Slot_fif()
 {
-    float value=vedio_continue_Fov1->text().toFloat();
+    float value=vedio_continue_Fov1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6441,10 +6567,10 @@ void MainWindow::vedio_continue_Fov1_Slot_fif()
 
 void MainWindow::vedio_continue_Fov2_Slot_fif()
 {
-    float value=vedio_continue_Fov2->text().toFloat();
+    float value=vedio_continue_Fov2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6453,10 +6579,10 @@ void MainWindow::vedio_continue_Fov2_Slot_fif()
 
 void MainWindow::vedio_continue_Fov3_Slot_fif()
 {
-    float value=vedio_continue_Fov3->text().toFloat();
+    float value=vedio_continue_Fov3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6465,10 +6591,10 @@ void MainWindow::vedio_continue_Fov3_Slot_fif()
 
 void MainWindow::vedio_continue_Fov4_Slot_fif()
 {
-    float value=vedio_continue_Fov4->text().toFloat();
+    float value=vedio_continue_Fov4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =5;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6477,10 +6603,10 @@ void MainWindow::vedio_continue_Fov4_Slot_fif()
 
 void MainWindow::vedio_continue_Fov5_Slot_fif()
 {
-    float value=vedio_continue_Fov5->text().toFloat();
+    float value=vedio_continue_Fov5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6489,22 +6615,10 @@ void MainWindow::vedio_continue_Fov5_Slot_fif()
 
 void MainWindow::vedio_continue_Fov6_Slot_fif()
 {
-    float value=vedio_continue_Fov6->text().toFloat();
+    float value=vedio_continue_Fov6_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
-    send_arr[6] =15;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-}
-
-void MainWindow::vedio_continue_Fov7_Slot_fif()
-{
-    float value=vedio_continue_Fov6->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =15;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6513,10 +6627,10 @@ void MainWindow::vedio_continue_Fov7_Slot_fif()
 
 void MainWindow::continue_vertical1_Slot_fif()
 {
-    float value=continue_vertical1->text().toFloat();
+    float value=continue_vertical1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6525,10 +6639,10 @@ void MainWindow::continue_vertical1_Slot_fif()
 
 void MainWindow::continue_vertical2_Slot_fif()
 {
-    float value=continue_vertical2->text().toFloat();
+    float value=continue_vertical2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =7;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6538,10 +6652,10 @@ void MainWindow::continue_vertical2_Slot_fif()
 
 void MainWindow::continue_vertical3_Slot_fif()
 {
-    float value=continue_vertical3->text().toFloat();
+    float value=continue_vertical3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6550,10 +6664,10 @@ void MainWindow::continue_vertical3_Slot_fif()
 
 void MainWindow::continue_vertical4_Slot_fif()
 {
-    float value=continue_vertical4->text().toFloat();
+    float value=continue_vertical4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6562,10 +6676,10 @@ void MainWindow::continue_vertical4_Slot_fif()
 
 void MainWindow::continue_vertical5_Slot_fif()
 {
-    float value=continue_vertical5->text().toFloat();
+    float value=continue_vertical5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =6;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6574,10 +6688,10 @@ void MainWindow::continue_vertical5_Slot_fif()
 
 void MainWindow::continue_vertical6_Slot_fif()
 {
-    float value=continue_vertical6->text().toFloat();
+    float value=continue_vertical6_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6586,10 +6700,10 @@ void MainWindow::continue_vertical6_Slot_fif()
 
 void MainWindow::continue_vertical7_Slot_fif()
 {
-    float value=continue_vertical7->text().toFloat();
+    float value=continue_vertical7_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =85;
     send_arr[6] =0;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6598,10 +6712,10 @@ void MainWindow::continue_vertical7_Slot_fif()
 
 void MainWindow::vedio_spbx_continue1_Slot_fif()
 {
-    float value=vedio_spbx_continue1->text().toFloat();
+    float value=vedio_spbx_continue1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6610,10 +6724,10 @@ void MainWindow::vedio_spbx_continue1_Slot_fif()
 
 void MainWindow::vedio_spbx_continue2_Slot_fif()
 {
-    float value=vedio_spbx_continue2->text().toFloat();
+    float value=vedio_spbx_continue2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =8;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6622,10 +6736,10 @@ void MainWindow::vedio_spbx_continue2_Slot_fif()
 
 void MainWindow::vedio_spbx_continue3_Slot_fif()
 {
-    float value=vedio_spbx_continue3->text().toFloat();
+    float value=vedio_spbx_continue3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6634,10 +6748,10 @@ void MainWindow::vedio_spbx_continue3_Slot_fif()
 
 void MainWindow::vedio_spbx_continue4_Slot_fif()
 {
-    float value=vedio_spbx_continue4->text().toFloat();
+    float value=vedio_spbx_continue4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6646,10 +6760,10 @@ void MainWindow::vedio_spbx_continue4_Slot_fif()
 
 void MainWindow::vedio_spbx_continue5_Slot_fif()
 {
-    float value=vedio_spbx_continue5->text().toFloat();
+    float value=vedio_spbx_continue5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =7;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6658,10 +6772,10 @@ void MainWindow::vedio_spbx_continue5_Slot_fif()
 
 void MainWindow::vedio_spbx_continue6_Slot_fif()
 {
-    float value=vedio_spbx_continue6->text().toFloat();
+    float value=vedio_spbx_continue6_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6670,10 +6784,10 @@ void MainWindow::vedio_spbx_continue6_Slot_fif()
 
 void MainWindow::vedio_spbx_continue7_Slot_fif()
 {
-    float value=vedio_spbx_continue7->text().toFloat();
+    float value=vedio_spbx_continue7_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =85;
     send_arr[6] =1;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6682,10 +6796,10 @@ void MainWindow::vedio_spbx_continue7_Slot_fif()
 
 void MainWindow::vedio_spby_continue1_Slot_fif()
 {
-    float value=vedio_spby_continue1->text().toFloat();
+    float value=vedio_spby_continue1_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =4;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6694,10 +6808,10 @@ void MainWindow::vedio_spby_continue1_Slot_fif()
 
 void MainWindow::vedio_spby_continue2_Slot_fif()
 {
-    float value=vedio_spby_continue2->text().toFloat();
+    float value=vedio_spby_continue2_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =9;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6706,10 +6820,10 @@ void MainWindow::vedio_spby_continue2_Slot_fif()
 
 void MainWindow::vedio_spby_continue3_Slot_fif()
 {
-    float value=vedio_spby_continue3->text().toFloat();
+    float value=vedio_spby_continue3_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =27;
+    send_arr[5] =83;
     send_arr[6] =14;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6718,10 +6832,10 @@ void MainWindow::vedio_spby_continue3_Slot_fif()
 
 void MainWindow::vedio_spby_continue4_Slot_fif()
 {
-    float value=vedio_spby_continue4->text().toFloat();
+    float value=vedio_spby_continue4_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =3;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6730,10 +6844,10 @@ void MainWindow::vedio_spby_continue4_Slot_fif()
 
 void MainWindow::vedio_spby_continue5_Slot_fif()
 {
-    float value=vedio_spby_continue5->text().toFloat();
+    float value=vedio_spby_continue5_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =8;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6742,10 +6856,10 @@ void MainWindow::vedio_spby_continue5_Slot_fif()
 
 void MainWindow::vedio_spby_continue6_Slot_fif()
 {
-    float value=vedio_spby_continue6->text().toFloat();
+    float value=vedio_spby_continue6_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
+    send_arr[5] =84;
     send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6754,10 +6868,10 @@ void MainWindow::vedio_spby_continue6_Slot_fif()
 
 void MainWindow::vedio_spby_continue7_Slot_fif()
 {
-    float value=vedio_spby_continue7->text().toFloat();
+    float value=vedio_spby_continue7_fif->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =57;
+    send_arr[5] =85;
     send_arr[6] =2;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
@@ -6765,7 +6879,6 @@ void MainWindow::vedio_spby_continue7_Slot_fif()
 }
 
 
-//
 void MainWindow::btn_utc1_default_Slot()
 {
     send_mutex.lock();
@@ -13646,7 +13759,7 @@ void MainWindow::vedio_toSensor_switch_fou(int i)
         send_arr[4] = 0x30;
         send_arr[5] = 72;
         send_arr[6] = 0x05;
-        send_arr[7] = 1;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
         showvedioCfg4();
@@ -13657,7 +13770,7 @@ void MainWindow::vedio_toSensor_switch_fou(int i)
         send_arr[4] = 0x30;
         send_arr[5] = 72;
         send_arr[6] = 0x05;
-        send_arr[7] = 3;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
         vedio_btnSensor2ContinueSlot_fou();
@@ -13674,7 +13787,7 @@ void MainWindow::vedio_tosersor_continue_fou(int i)
         send_arr[4] = 0x30;
         send_arr[5] = 72;
         send_arr[6] = 0x05;
-        send_arr[7] = 1;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
         showvedioCfg4();
@@ -13685,7 +13798,7 @@ void MainWindow::vedio_tosersor_continue_fou(int i)
         send_arr[4] = 0x30;
         send_arr[5] = 72;
         send_arr[6] = 0x05;
-        send_arr[7] = 2;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
         vedio_btnSensor1SwitchSlot_fou();
@@ -13694,92 +13807,88 @@ void MainWindow::vedio_tosersor_continue_fou(int i)
 
 void MainWindow::vedio_tosersor_fix_fif(int i)
 {
-    if(i==0)
+    float value = 0;
+    if(i==1)
     {
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 79;
-        send_arr[6] = 0x05;
-        send_arr[7] = 1;
-        send_oneframe(7);
-        send_mutex.unlock();
-    }
-    else if(i==1)
-    {
+        value = 1;
         w_sersor_1_fif->close();
-        vedio_btnSensor1SwitchSlot_fif();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 79;
         send_arr[6] = 0x05;
-        send_arr[7] = 2;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
+        vedio_btnSensor1SwitchSlot_fif();
     }
     else if(i==2)
     {
+        value = 2;
         w_sersor_1_fif->close();
-        vedio_btnSensor2ContinueSlot_fif();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 79;
         send_arr[6] = 0x05;
-        send_arr[7] = 3;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
+        vedio_btnSensor2ContinueSlot_fif();
     }
-
 }
 
 void MainWindow::vedio_toSensor_switch_fif(int i)
 {
+    float value = 0;
     if(i==1){
-        w_ContinueField_1_fif->close();
+        value = 0;
+        w_seitchField_1_fif->close();
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 79;
+        send_arr[6] = 0x05;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
+        send_mutex.unlock();
         showvedioCfg5();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 79;
-        send_arr[6] = 0x05;
-        send_arr[7] = 1;
-        send_oneframe(7);
-        send_mutex.unlock();
     }else if(i==2){
-        w_ContinueField_1_fif->close();
-        vedio_btnSensor1SwitchSlot_fif();
+        value = 2;
+        w_seitchField_1_fif->close();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 79;
         send_arr[6] = 0x05;
-        send_arr[7] = 3;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
+        vedio_btnSensor2ContinueSlot_fif();
     }
-
-
 }
 
 void MainWindow::vedio_tosersor_continue_fif(int i)
 {
+    float value = 0;
     if(i==1){
+        value = 0;
         w_ContinueField_1_fif->close();
+        send_mutex.lock();
+        send_arr[4] = 0x30;
+        send_arr[5] = 79;
+        send_arr[6] = 0x05;
+        memcpy(send_arr+7, &value, 4);
+        send_oneframe(7);
+        send_mutex.unlock();
         showvedioCfg5();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 79;
-        send_arr[6] = 0x05;
-        send_arr[7] = 1;
-        send_oneframe(7);
-        send_mutex.unlock();
     }else if(i==2){
+        value = 1;
         w_ContinueField_1_fif->close();
-        vedio_btnSensor1SwitchSlot_fif();
         send_mutex.lock();
         send_arr[4] = 0x30;
         send_arr[5] = 79;
         send_arr[6] = 0x05;
-        send_arr[7] = 2;
+        memcpy(send_arr+7, &value, 4);
         send_oneframe(7);
         send_mutex.unlock();
+        vedio_btnSensor1SwitchSlot_fif();
     }
 
 }
@@ -14603,6 +14712,49 @@ void MainWindow::mystepby(int spid)
         case switch5_spiny:
             vedio_spby_switch5_Slot();
             break;
+        case continue1_spinx:
+            vedio_spbx_continue1_Slot();
+            break;
+        case continue2_spinx:
+            vedio_spbx_continue2_Slot();
+            break;
+        case continue3_spinx:
+            vedio_spbx_continue3_Slot();
+            break;
+        case continue4_spinx:
+            vedio_spbx_continue4_Slot();
+            break;
+        case continue5_spinx:
+            vedio_spbx_continue5_Slot();
+            break;
+        case continue6_spinx:
+            vedio_spbx_continue6_Slot();
+            break;
+        case continue7_spinx:
+            vedio_spbx_continue7_Slot();
+            break;
+        case continue1_spiny:
+            vedio_spby_continue1_Slot();
+            break;
+        case continue2_spiny:
+            vedio_spby_continue2_Slot();
+            break;
+        case continue3_spiny:
+            vedio_spby_continue3_Slot();
+            break;
+        case continue4_spiny:
+            vedio_spby_continue4_Slot();
+            break;
+        case continue5_spiny:
+            vedio_spby_continue5_Slot();
+            break;
+        case continue6_spiny:
+            vedio_spby_continue6_Slot();
+            break;
+        case continue7_spiny:
+            vedio_spby_continue7_Slot();
+            break;
+
 
         case fix_spinx_sec:
             fix_sp_Slot_sec();
@@ -14761,7 +14913,165 @@ void MainWindow::mystepby(int spid)
         case continue7_spiny_thi:
             vedio_spby_continue7_Slot_thi();
             break;
-        default:
+
+        case fix_spinx_fou:
+            fix_sp_Slot_fou();
+            break;
+        case fix_spiny_fou:
+            fix_sp2_Slot_fou();
+            break;
+        case switch1_spinx_fou:
+            vedio_spbx_switch1_Slot_fou();
+            break;
+        case switch2_spinx_fou:
+            vedio_spbx_switch2_Slot_fou();
+            break;
+        case switch3_spinx_fou:
+            vedio_spbx_switch3_Slot_fou();
+            break;
+        case switch4_spinx_fou:
+            vedio_spbx_switch4_Slot_fou();
+            break;
+        case switch5_spinx_fou:
+            vedio_spbx_switch5_Slot_fou();
+            break;
+        case switch1_spiny_fou:
+            vedio_spby_switch1_Slot_fou();
+            break;
+        case switch2_spiny_fou:
+            vedio_spby_switch2_Slot_fou();
+            break;
+        case switch3_spiny_fou:
+            vedio_spby_switch3_Slot_fou();
+            break;
+        case switch4_spiny_fou:
+            vedio_spby_switch4_Slot_fou();
+            break;
+        case switch5_spiny_fou:
+            vedio_spby_switch5_Slot_fou();
+            break;
+        case continue1_spinx_fou:
+            vedio_spbx_continue1_Slot_fou();
+            break;
+        case continue2_spinx_fou:
+            vedio_spbx_continue2_Slot_fou();
+            break;
+        case continue3_spinx_fou:
+            vedio_spbx_continue3_Slot_fou();
+            break;
+        case continue4_spinx_fou:
+            vedio_spbx_continue4_Slot_fou();
+            break;
+        case continue5_spinx_fou:
+            vedio_spbx_continue5_Slot_fou();
+            break;
+        case continue6_spinx_fou:
+            vedio_spbx_continue6_Slot_fou();
+            break;
+        case continue7_spinx_fou:
+            vedio_spbx_continue7_Slot_fou();
+            break;
+        case continue1_spiny_fou:
+            vedio_spby_continue1_Slot_fou();
+            break;
+        case continue2_spiny_fou:
+            vedio_spby_continue2_Slot_fou();
+            break;
+        case continue3_spiny_fou:
+            vedio_spby_continue3_Slot_fou();
+            break;
+        case continue4_spiny_fou:
+            vedio_spby_continue4_Slot_fou();
+            break;
+        case continue5_spiny_fou:
+            vedio_spby_continue5_Slot_fou();
+            break;
+        case continue6_spiny_fou:
+            vedio_spby_continue6_Slot_fou();
+            break;
+        case continue7_spiny_fou:
+            vedio_spby_continue7_Slot_fou();
+            break;
+
+    case fix_spinx_fif:
+        fix_sp_Slot_fif();
+        break;
+    case fix_spiny_fif:
+        fix_sp2_Slot_fif();
+        break;
+    case switch1_spinx_fif:
+        vedio_spbx_switch1_Slot_fif();
+        break;
+    case switch2_spinx_fif:
+        vedio_spbx_switch2_Slot_fif();
+        break;
+    case switch3_spinx_fif:
+        vedio_spbx_switch3_Slot_fif();
+        break;
+    case switch4_spinx_fif:
+        vedio_spbx_switch4_Slot_fif();
+        break;
+    case switch5_spinx_fif:
+        vedio_spbx_switch5_Slot_fif();
+        break;
+    case switch1_spiny_fif:
+        vedio_spby_switch1_Slot_fif();
+        break;
+    case switch2_spiny_fif:
+        vedio_spby_switch2_Slot_fif();
+        break;
+    case switch3_spiny_fif:
+        vedio_spby_switch3_Slot_fif();
+        break;
+    case switch4_spiny_fif:
+        vedio_spby_switch4_Slot_fif();
+        break;
+    case switch5_spiny_fif:
+        vedio_spby_switch5_Slot_fif();
+        break;
+    case continue1_spinx_fif:
+        vedio_spbx_continue1_Slot_fif();
+        break;
+    case continue2_spinx_fif:
+        vedio_spbx_continue2_Slot_fif();
+        break;
+    case continue3_spinx_fif:
+        vedio_spbx_continue3_Slot_fif();
+        break;
+    case continue4_spinx_fif:
+        vedio_spbx_continue4_Slot_fif();
+        break;
+    case continue5_spinx_fif:
+        vedio_spbx_continue5_Slot_fif();
+        break;
+    case continue6_spinx_fif:
+        vedio_spbx_continue6_Slot_fif();
+        break;
+    case continue7_spinx_fif:
+        vedio_spbx_continue7_Slot_fif();
+        break;
+    case continue1_spiny_fif:
+        vedio_spby_continue1_Slot_fif();
+        break;
+    case continue2_spiny_fif:
+        vedio_spby_continue2_Slot_fif();
+        break;
+    case continue3_spiny_fif:
+        vedio_spby_continue3_Slot_fif();
+        break;
+    case continue4_spiny_fif:
+        vedio_spby_continue4_Slot_fif();
+        break;
+    case continue5_spiny_fif:
+        vedio_spby_continue5_Slot_fif();
+        break;
+    case continue6_spiny_fif:
+        vedio_spby_continue6_Slot_fif();
+        break;
+    case continue7_spiny_fif:
+        vedio_spby_continue7_Slot_fif();
+        break;
+    default:
             break;
     }
 }

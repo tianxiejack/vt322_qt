@@ -176,6 +176,13 @@ public:
     void showblk76(int field, float value);
     void showblk77(int field, float value);
     void showblk78(int field, float value);
+    void showblk79(int field, float value);
+    void showblk80(int field, float value);
+    void showblk81(int field, float value);
+    void showblk82(int field, float value);
+    void showblk83(int field, float value);
+    void showblk84(int field, float value);
+    void showblk85(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -1114,14 +1121,13 @@ private slots:
 
     //摄像机通道五
     void btn_vediosersor_fix_default_Slot_fif();
-    void btn_vediosersor_fix_update_Slot_fif();
-    void fixChanelNum_Slot_fif(int i);
+    void fixChanelNum_Slot_fif();
     void fixchanelname_Slot_fif();
-    void fix_vediohaveornot_Slot_fif(int i);
+    void fix_vediohaveornot_Slot_fif();
     void fix_vedio_dpi_Slot_fif(int index);
-    void fix_gateshow_Slot_fif(int i);
-    void fix_bullshow_Slot_fif(int i);
-    void fix_autogate_Slot_fif(int i);
+    void fix_gateshow_Slot_fif();
+    void fix_bullshow_Slot_fif();
+    void fix_autogate_Slot_fif();
     void fix_gate_sizex_Slot_fif();
     void fix_gate_sizey_Slot_fif();
     void fix_gatelocationx_Slot_fif();
@@ -1129,9 +1135,6 @@ private slots:
     void set_azimuth_Slot_fif();
     void set_pitch_Slot_fif();
     void set_zoom_Slot_fif();
-    void search_azimuth_Slot_fif();
-    void search_pitch_Slot_fif();
-    void search_zoom_Slot_fif();
     void fix_lEdt_Slot_fif();
     void fix_vertical_Slot_fif();
     void fix_sp_Slot_fif();
@@ -1140,7 +1143,16 @@ private slots:
 
     //可切换视场
     void btn_vediosersor_default_Slot_fif();
-    void btn_vediosersor_update_Slot_fif();
+    void change_gateshow_Slot_fif();
+    void change_bullshow_Slot_fif();
+    void change_autogate_Slot_fif();
+    void change_gate_sizex_Slot_fif();
+    void change_gate_sizey_Slot_fif();
+    void change_gatelocationx_Slot_fif();
+    void change_gatelocationy_Slot_fif();
+    void change_set_azimuth_Slot_fif();
+    void change_set_pitch_Slot_fif();
+    void change_set_zoom_Slot_fif();
     void vedio_fovclass_Slot_fif(int i);
     void vedio_s1_Fov0_Slot_fif();
     void vedio_s1_Fov1_Slot_fif();
@@ -1168,6 +1180,20 @@ private slots:
 
 
     //连续视场
+    void btn_vediosersor_continue_default_Slot_fif();
+    void continue_ChanelNum_Slot_fif();
+    void continue_chanelname_Slot_fif();
+    void continue_vediohaveornot_Slot_fif();
+    void continue_gateshow_Slot_fif();
+    void continue_bullshow_Slot_fif();
+    void continue_autogate_Slot_fif();
+    void continue_gate_sizex_Slot_fif();
+    void continue_gate_sizey_Slot_fif();
+    void continue_gatelocationx_Slot_fif();
+    void continue_gatelocationy_Slot_fif();
+    void continue_set_azimuth_Slot_fif();
+    void continue_set_pitch_Slot_fif();
+    void continue_set_zoom_Slot_fif();
     void test_1_Slot_fif();
     void vedio_l1_continue_Slot_fif();
     void vedio_l2_continue_Slot_fif();
@@ -1183,7 +1209,6 @@ private slots:
     void vedio_continue_Fov4_Slot_fif();
     void vedio_continue_Fov5_Slot_fif();
     void vedio_continue_Fov6_Slot_fif();
-    void vedio_continue_Fov7_Slot_fif();
     void continue_vertical1_Slot_fif();
     void continue_vertical2_Slot_fif();
     void continue_vertical3_Slot_fif();
@@ -1744,6 +1769,7 @@ private:
                    QComboBox *fix_vedio_dpi_fif;
                    QPushButton *set_azimuth_fif,*set_pitch_fif,*set_zoom_fif,*search_azimuth_fif,*search_pitch_fif,*search_zoom_fif;
                    QLineEdit  *ledt_set_azimuth_fif,*ledt_set_pitch_fif,*ledt_set_zoom_fif,*ledt_search_azimuth_fif,*ledt_search_pitch_fif,*ledt_search_zoom_fif;
+                   MyQSpinBox *fix_sp_fif,*fix_sp2_fif;
                    /*可切换视场*/
                    int vedio_current_shichang_fif;
                    MyWidget *w_sersor_1_fif,*w_seitchField_1_fif,*w_ContinueField_1_fif;
@@ -1753,8 +1779,7 @@ private:
                    QLineEdit *gate_sizex_fif,*gate_sizey_fif,*gatelocationx_fif,*gatelocationy_fif,*vedio_s1_Fov0_fif,*vedio_s1_Fov1_fif,*vedio_s1_Fov2_fif,*vedio_s1_Fov3_fif,*vedio_s1_Fov4_fif;
                    QGroupBox *vediochoose_fif;
                    QString vedio_s_fif[4]={"是否接有摄像头","摄像机分辨率帧率","视场模式选择","视场平均比例(y轴/x轴)"};
-                   QSpinBox *vedio_spbx_switch1_fif,*vedio_spbx_switch2_fif,*vedio_spbx_switch3_fif,*vedio_spbx_switch4_fif,*vedio_spbx_switch5_fif,*vedio_spby_switch1_fif,*vedio_spby_switch2_fif,*vedio_spby_switch3_fif,*vedio_spby_switch4_fif,*vedio_spby_switch5_fif;
-                   QSpinBox *fix_sp_fif,*fix_sp2_fif;
+                   MyQSpinBox *vedio_spbx_switch1_fif,*vedio_spbx_switch2_fif,*vedio_spbx_switch3_fif,*vedio_spbx_switch4_fif,*vedio_spbx_switch5_fif,*vedio_spby_switch1_fif,*vedio_spby_switch2_fif,*vedio_spby_switch3_fif,*vedio_spby_switch4_fif,*vedio_spby_switch5_fif;
                    QPushButton *Change_set_azimuth_fif,*Change_set_pitch_fif,*Change_set_zoom_fif,*Change_search_azimuth_fif,*Change_search_pitch_fif,*Change_search_zoom_fif;
                    QLineEdit  *Change_ledt_set_azimuth_fif,*Change_ledt_set_pitch_fif,*Change_ledt_set_zoom_fif,*Change_ledt_search_azimuth_fif,*Change_ledt_search_pitch_fif,*Change_ledt_search_zoom_fif,*Change_vertical1_fif,*Change_vertical2_fif,*Change_vertical3_fif,*Change_vertical4_fif,*Change_vertical5_fif;
                    /*连续视场*/
@@ -1763,12 +1788,12 @@ private:
                    QCheckBox *continueChanelNum_fif,*continueenable_fif,*continue_vediohaveornot_fif,*continue_gateshow_fif,*continue_bullshow_fif,*continue_autogate_fif;
                    QComboBox *continue_vedio_dpi_fif;
                    QGroupBox *continue_vediochoose_fif;
-                   QSpinBox *vedio_spbx_continue1_fif,*vedio_spbx_continue2_fif,*vedio_spbx_continue3_fif,*vedio_spbx_continue4_fif,*vedio_spbx_continue5_fif,*vedio_spbx_continue6_fif,*vedio_spbx_continue7_fif,*vedio_spby_continue1_fif,*vedio_spby_continue2_fif,*vedio_spby_continue3_fif,*vedio_spby_continue4_fif,*vedio_spby_continue5_fif,*vedio_spby_continue6_fif,*vedio_spby_continue7_fif;
+                   MyQSpinBox *vedio_spbx_continue1_fif,*vedio_spbx_continue2_fif,*vedio_spbx_continue3_fif,*vedio_spbx_continue4_fif,*vedio_spbx_continue5_fif,*vedio_spbx_continue6_fif,*vedio_spbx_continue7_fif,*vedio_spby_continue1_fif,*vedio_spby_continue2_fif,*vedio_spby_continue3_fif,*vedio_spby_continue4_fif,*vedio_spby_continue5_fif,*vedio_spby_continue6_fif,*vedio_spby_continue7_fif;
                    QLineEdit *vedio_l1_continue_fif,*vedio_l2_continue_fif,*vedio_l3_continue_fif,*vedio_l4_continue_fif,*vedio_l5_continue_fif,*vedio_l6_continue_fif,*vedio_l7_continue_fif;
                    QLineEdit *vedio_continue_Fov0_fif,*vedio_continue_Fov1_fif,*vedio_continue_Fov2_fif,*vedio_continue_Fov3_fif,*vedio_continue_Fov4_fif,*vedio_continue_Fov5_fif,*vedio_continue_Fov6_fif;
                    QPushButton *continue_set_azimuth_fif,*continue_set_pitch_fif,*continue_set_zoom_fif,*continue_search_azimuth_fif,*continue_search_pitch_fif,*continue_search_zoom_fif;
                    QLineEdit  *continue_ledt_set_azimuth_fif,*continue_ledt_set_pitch_fif,*continue_ledt_set_zoom_fif,*continue_ledt_search_azimuth_fif,*continue_ledt_search_pitch_fif,*continue_ledt_search_zoom_fif,*continue_vertical_fif;
-                    QLineEdit *continue_vertical1_fif,*continue_vertical2_fif,*continue_vertical3_fif,*continue_vertical4_fif,*continue_vertical5_fif,*continue_vertical6_fif,*continue_vertical7_fif;
+                   QLineEdit *continue_vertical1_fif,*continue_vertical2_fif,*continue_vertical3_fif,*continue_vertical4_fif,*continue_vertical5_fif,*continue_vertical6_fif,*continue_vertical7_fif;
     /*移动检测配置*/
     MyWidget *w_mtd;
     QPushButton *btn_mtd_default,*btn_mtd_update;
