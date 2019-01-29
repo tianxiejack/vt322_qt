@@ -231,6 +231,11 @@ public slots:
     void showjoscfg();
     void show_realtime_output();
 
+    void readfovmode1();
+    void readfovmode2();
+    void readfovmode3();
+    void readfovmode4();
+    void readfovmode5();
     /*系统配置槽函数*/
     void btnDownSlot();
     void btnUpSlot();

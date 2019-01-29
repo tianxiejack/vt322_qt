@@ -3373,6 +3373,16 @@ void MainWindow::upgrade_showtext(int i, int percent)
 void MainWindow::showblk23(int field, float value)
 {
     int valuei = (int)value;
+    if(5 == field)
+    {
+        if(0 == valuei)
+            showvedioCfg1();
+        else if(1 == valuei)
+            vedio_btnSensor1SwitchSlot();
+        else if(2 == valuei)
+            vedio_btnSensor2ContinueSlot();
+    }
+
     if(vedio_current_shichang == 0)
     {
         switch(field)
@@ -3399,9 +3409,6 @@ void MainWindow::showblk23(int field, float value)
                     fix_vedio_dpi->setCurrentIndex(3);
                 if(valuei == 5)
                     fix_vedio_dpi->setCurrentIndex(4);
-                break;
-            case 5:
-                //vedio_change1->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3457,9 +3464,6 @@ void MainWindow::showblk23(int field, float value)
                 if(valuei == 5)
                     vedio_dpi->setCurrentIndex(4);
                 break;
-            case 5:
-                //vedio_change2->setCurrentIndex(valuei);
-                break;
             case 6:
                 break;
             case 7:
@@ -3513,9 +3517,6 @@ void MainWindow::showblk23(int field, float value)
                     continue_vedio_dpi->setCurrentIndex(3);
                 if(valuei == 5)
                     continue_vedio_dpi->setCurrentIndex(4);
-                break;
-            case 5:
-                //vedio_change3->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3782,6 +3783,17 @@ void MainWindow::showblk57(int field, float value)
 void MainWindow::showblk58(int field, float value)
 {
     int valuei = (int)value;
+
+    if(5 == field)
+    {
+        if(0 == valuei)
+            showvedioCfg2();
+        else if(1 == valuei)
+            vedio_btnSensor1SwitchSlot_sec();
+        else if(2 == valuei)
+            vedio_btnSensor2ContinueSlot_sec();
+    }
+
     if(vedio_current_shichang_sec == 0)
     {
         switch(field)
@@ -3806,9 +3818,6 @@ void MainWindow::showblk58(int field, float value)
                     fix_vedio_dpi_sec->setCurrentIndex(2);
                 if(valuei == 3)
                     fix_vedio_dpi_sec->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change1_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -3862,9 +3871,6 @@ void MainWindow::showblk58(int field, float value)
                 if(valuei == 3)
                     vedio_dpi_sec->setCurrentIndex(3);
                 break;
-            case 5:
-                //vedio_change2_sec->setCurrentIndex(valuei);
-                break;
             case 6:
                 break;
             case 7:
@@ -3916,9 +3922,6 @@ void MainWindow::showblk58(int field, float value)
                     continue_vedio_dpi_sec->setCurrentIndex(2);
                 if(valuei == 3)
                     continue_vedio_dpi_sec->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change3_sec->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4185,6 +4188,17 @@ void MainWindow::showblk64(int field, float value)
 void MainWindow::showblk65(int field, float value)
 {
     int valuei = (int)value;
+
+    if(5 == field)
+    {
+        if(0 == valuei)
+            showvedioCfg3();
+        else if(1 == valuei)
+            vedio_btnSensor1SwitchSlot_thi();
+        else if(2 == valuei)
+            vedio_btnSensor2ContinueSlot_thi();
+    }
+
     if(vedio_current_shichang_thi == 0)
     {
         switch(field)
@@ -4209,9 +4223,6 @@ void MainWindow::showblk65(int field, float value)
                     fix_vedio_dpi_thi->setCurrentIndex(2);
                 if(valuei == 3)
                     fix_vedio_dpi_thi->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change1_thi->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4265,9 +4276,6 @@ void MainWindow::showblk65(int field, float value)
                 if(valuei == 3)
                     vedio_dpi_thi->setCurrentIndex(3);
                 break;
-            case 5:
-                //vedio_change2_thi->setCurrentIndex(valuei);
-                break;
             case 6:
                 break;
             case 7:
@@ -4319,9 +4327,6 @@ void MainWindow::showblk65(int field, float value)
                     continue_vedio_dpi_thi->setCurrentIndex(2);
                 if(valuei == 3)
                     continue_vedio_dpi_thi->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change3_thi->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4593,6 +4598,17 @@ void MainWindow::showblk71(int field, float value)
 void MainWindow::showblk72(int field, float value)
 {
     int valuei = (int)value;
+
+    if(5 == field)
+    {
+        if(0 == valuei)
+            showvedioCfg4();
+        else if(1 == valuei)
+            vedio_btnSensor1SwitchSlot_fou();
+        else if(2 == valuei)
+            vedio_btnSensor2ContinueSlot_fou();
+    }
+
     if(vedio_current_shichang_fou == 0)
     {
         switch(field)
@@ -4617,9 +4633,6 @@ void MainWindow::showblk72(int field, float value)
                     fix_vedio_dpi_fou->setCurrentIndex(2);
                 if(valuei == 3)
                     fix_vedio_dpi_fou->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change1_fou->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;
@@ -4673,9 +4686,6 @@ void MainWindow::showblk72(int field, float value)
                 if(valuei == 3)
                     vedio_dpi_fou->setCurrentIndex(3);
                 break;
-            case 5:
-                //vedio_change2_fou->setCurrentIndex(valuei);
-                break;
             case 6:
                 break;
             case 7:
@@ -4727,9 +4737,6 @@ void MainWindow::showblk72(int field, float value)
                     continue_vedio_dpi_fou->setCurrentIndex(2);
                 if(valuei == 3)
                     continue_vedio_dpi_fou->setCurrentIndex(3);
-                break;
-            case 5:
-                //vedio_change3_fou->setCurrentIndex(valuei);
                 break;
             case 6:
                 break;

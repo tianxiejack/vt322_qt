@@ -98,11 +98,11 @@ void MainWindow::init_menu()
     ui->menuBar->addMenu(menu[0]);
 
     connect(real_time_output,SIGNAL(triggered(bool)),this,SLOT(show_realtime_output()));
-    connect(avt_videoCfg1,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg1()));
-    connect(avt_videoCfg2,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg2()));
-    connect(avt_videoCfg3,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg3()));
-    connect(avt_videoCfg4,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg4()));
-    connect(avt_videoCfg5,SIGNAL(triggered(bool)),this,SLOT(showvedioCfg5()));
+    connect(avt_videoCfg1,SIGNAL(triggered(bool)),this,SLOT(readfovmode1()));
+    connect(avt_videoCfg2,SIGNAL(triggered(bool)),this,SLOT(readfovmode2()));
+    connect(avt_videoCfg3,SIGNAL(triggered(bool)),this,SLOT(readfovmode3()));
+    connect(avt_videoCfg4,SIGNAL(triggered(bool)),this,SLOT(readfovmode4()));
+    connect(avt_videoCfg5,SIGNAL(triggered(bool)),this,SLOT(readfovmode5()));
     connect(act_pidCfg1,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg1()));
     connect(act_pidCfg2,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
     connect(act_pidCfg3,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg3()));
@@ -7615,6 +7615,56 @@ void MainWindow::showPlat()
     w_plat->show_stat = 1;
 }
 
+void MainWindow::readfovmode1()
+{
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=23;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::readfovmode2()
+{
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=58;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::readfovmode3()
+{
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=65;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::readfovmode4()
+{
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=72;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
+void MainWindow::readfovmode5()
+{
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=79;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+}
+
 void MainWindow::showvedioCfg1()
 {   
     vedio_current_shichang = 0;
@@ -7625,12 +7675,15 @@ void MainWindow::showvedioCfg1()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=23;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=23;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 3; i++)
     {
@@ -7653,12 +7706,15 @@ void MainWindow::showvedioCfg2()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=58;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=58;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 3; i++)
     {
@@ -7681,12 +7737,15 @@ void MainWindow::showvedioCfg3()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=65;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=65;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 3; i++)
     {
@@ -7709,12 +7768,15 @@ void MainWindow::showvedioCfg4()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=72;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=72;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 3; i++)
     {
@@ -8266,12 +8328,15 @@ void MainWindow::vedio_btnSensor1SwitchSlot()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=23;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=23;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
 
     for(int i = 0; i <= 15; i++)
@@ -8305,12 +8370,15 @@ void MainWindow::vedio_btnSensor2ContinueSlot()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=23;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=23;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
 
     for(int i = 0; i <= 15; i++)
@@ -8354,12 +8422,15 @@ void MainWindow::vedio_btnSensor1SwitchSlot_sec()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=58;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=58;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
@@ -8391,12 +8462,15 @@ void MainWindow::vedio_btnSensor2ContinueSlot_sec()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=58;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=58;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
@@ -8437,12 +8511,15 @@ void MainWindow::vedio_btnSensor1SwitchSlot_thi()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=65;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=65;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
@@ -8474,12 +8551,15 @@ void MainWindow::vedio_btnSensor2ContinueSlot_thi()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=65;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=65;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
@@ -8520,12 +8600,15 @@ void MainWindow::vedio_btnSensor1SwitchSlot_fou()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=72;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=72;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
@@ -8557,12 +8640,15 @@ void MainWindow::vedio_btnSensor2ContinueSlot_fou()
 
     for(int i = 0; i <= 13; i++)
     {
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=73;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
+        if(i != 5)
+        {
+            send_mutex.lock();
+            send_arr[4]=0x31;
+            send_arr[5]=73;
+            send_arr[6]=i;
+            send_oneframe(3);
+            send_mutex.unlock();
+        }
     }
     for(int i = 0; i <= 15; i++)
     {
