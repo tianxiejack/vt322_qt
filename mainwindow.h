@@ -183,6 +183,16 @@ public:
     void showblk83(int field, float value);
     void showblk84(int field, float value);
     void showblk85(int field, float value);
+    void showblk111(int field, float value);
+    void showblk112(int field, float value);
+    void showblk113(int field, float value);
+    void showblk114(int field, float value);
+    void showblk115(int field, float value);
+    void showblk116(int field, float value);
+    void showblk117(int field, float value);
+    void showblk118(int field, float value);
+    void showblk119(int field, float value);
+    void showblk120(int field, float value);
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -745,6 +755,12 @@ private slots:
     void vedio_l5_continue_Slot();
     void vedio_l6_continue_Slot();
     void vedio_l7_continue_Slot();
+    void vedio_l8_continue_Slot();
+    void vedio_l9_continue_Slot();
+    void vedio_l10_continue_Slot();
+    void vedio_l11_continue_Slot();
+    void vedio_l12_continue_Slot();
+    void vedio_l13_continue_Slot();
     void vedio_continue_Fov0_Slot();
     void vedio_continue_Fov1_Slot();
     void vedio_continue_Fov2_Slot();
@@ -753,6 +769,11 @@ private slots:
     void vedio_continue_Fov5_Slot();
     void vedio_continue_Fov6_Slot();
     void vedio_continue_Fov7_Slot();
+    void vedio_continue_Fov8_Slot();
+    void vedio_continue_Fov9_Slot();
+    void vedio_continue_Fov10_Slot();
+    void vedio_continue_Fov11_Slot();
+    void vedio_continue_Fov12_Slot();
     void continue_vertical1_Slot();
     void continue_vertical2_Slot();
     void continue_vertical3_Slot();
@@ -760,6 +781,12 @@ private slots:
     void continue_vertical5_Slot();
     void continue_vertical6_Slot();
     void continue_vertical7_Slot();
+    void continue_vertical8_Slot();
+    void continue_vertical9_Slot();
+    void continue_vertical10_Slot();
+    void continue_vertical11_Slot();
+    void continue_vertical12_Slot();
+    void continue_vertical13_Slot();
     void vedio_spbx_continue1_Slot();
     void vedio_spbx_continue2_Slot();
     void vedio_spbx_continue3_Slot();
@@ -767,6 +794,12 @@ private slots:
     void vedio_spbx_continue5_Slot();
     void vedio_spbx_continue6_Slot();
     void vedio_spbx_continue7_Slot();
+    void vedio_spbx_continue8_Slot();
+    void vedio_spbx_continue9_Slot();
+    void vedio_spbx_continue10_Slot();
+    void vedio_spbx_continue11_Slot();
+    void vedio_spbx_continue12_Slot();
+    void vedio_spbx_continue13_Slot();
 
     void vedio_spby_continue1_Slot();
     void vedio_spby_continue2_Slot();
@@ -775,7 +808,12 @@ private slots:
     void vedio_spby_continue5_Slot();
     void vedio_spby_continue6_Slot();
     void vedio_spby_continue7_Slot();
-
+    void vedio_spby_continue8_Slot();
+    void vedio_spby_continue9_Slot();
+    void vedio_spby_continue10_Slot();
+    void vedio_spby_continue11_Slot();
+    void vedio_spby_continue12_Slot();
+    void vedio_spby_continue13_Slot();
 
 
     //摄像机通道二
@@ -862,6 +900,12 @@ private slots:
     void vedio_l5_continue_Slot_sec();
     void vedio_l6_continue_Slot_sec();
     void vedio_l7_continue_Slot_sec();
+    void vedio_l8_continue_Slot_sec();
+    void vedio_l9_continue_Slot_sec();
+    void vedio_l10_continue_Slot_sec();
+    void vedio_l11_continue_Slot_sec();
+    void vedio_l12_continue_Slot_sec();
+    void vedio_l13_continue_Slot_sec();
     void vedio_continue_Fov0_Slot_sec();
     void vedio_continue_Fov1_Slot_sec();
     void vedio_continue_Fov2_Slot_sec();
@@ -869,6 +913,12 @@ private slots:
     void vedio_continue_Fov4_Slot_sec();
     void vedio_continue_Fov5_Slot_sec();
     void vedio_continue_Fov6_Slot_sec();
+    void vedio_continue_Fov7_Slot_sec();
+    void vedio_continue_Fov8_Slot_sec();
+    void vedio_continue_Fov9_Slot_sec();
+    void vedio_continue_Fov10_Slot_sec();
+    void vedio_continue_Fov11_Slot_sec();
+    void vedio_continue_Fov12_Slot_sec();
     void continue_vertical1_Slot_sec();
     void continue_vertical2_Slot_sec();
     void continue_vertical3_Slot_sec();
@@ -876,6 +926,12 @@ private slots:
     void continue_vertical5_Slot_sec();
     void continue_vertical6_Slot_sec();
     void continue_vertical7_Slot_sec();
+    void continue_vertical8_Slot_sec();
+    void continue_vertical9_Slot_sec();
+    void continue_vertical10_Slot_sec();
+    void continue_vertical11_Slot_sec();
+    void continue_vertical12_Slot_sec();
+    void continue_vertical13_Slot_sec();
     void vedio_spbx_continue1_Slot_sec();
     void vedio_spbx_continue2_Slot_sec();
     void vedio_spbx_continue3_Slot_sec();
@@ -883,6 +939,12 @@ private slots:
     void vedio_spbx_continue5_Slot_sec();
     void vedio_spbx_continue6_Slot_sec();
     void vedio_spbx_continue7_Slot_sec();
+    void vedio_spbx_continue8_Slot_sec();
+    void vedio_spbx_continue9_Slot_sec();
+    void vedio_spbx_continue10_Slot_sec();
+    void vedio_spbx_continue11_Slot_sec();
+    void vedio_spbx_continue12_Slot_sec();
+    void vedio_spbx_continue13_Slot_sec();
 
     void vedio_spby_continue1_Slot_sec();
     void vedio_spby_continue2_Slot_sec();
@@ -891,6 +953,12 @@ private slots:
     void vedio_spby_continue5_Slot_sec();
     void vedio_spby_continue6_Slot_sec();
     void vedio_spby_continue7_Slot_sec();
+    void vedio_spby_continue8_Slot_sec();
+    void vedio_spby_continue9_Slot_sec();
+    void vedio_spby_continue10_Slot_sec();
+    void vedio_spby_continue11_Slot_sec();
+    void vedio_spby_continue12_Slot_sec();
+    void vedio_spby_continue13_Slot_sec();
 
 
     //摄像机通道三
@@ -975,6 +1043,12 @@ private slots:
     void vedio_l5_continue_Slot_thi();
     void vedio_l6_continue_Slot_thi();
     void vedio_l7_continue_Slot_thi();
+    void vedio_l8_continue_Slot_thi();
+    void vedio_l9_continue_Slot_thi();
+    void vedio_l10_continue_Slot_thi();
+    void vedio_l11_continue_Slot_thi();
+    void vedio_l12_continue_Slot_thi();
+    void vedio_l13_continue_Slot_thi();
     void vedio_continue_Fov0_Slot_thi();
     void vedio_continue_Fov1_Slot_thi();
     void vedio_continue_Fov2_Slot_thi();
@@ -982,6 +1056,12 @@ private slots:
     void vedio_continue_Fov4_Slot_thi();
     void vedio_continue_Fov5_Slot_thi();
     void vedio_continue_Fov6_Slot_thi();
+    void vedio_continue_Fov7_Slot_thi();
+    void vedio_continue_Fov8_Slot_thi();
+    void vedio_continue_Fov9_Slot_thi();
+    void vedio_continue_Fov10_Slot_thi();
+    void vedio_continue_Fov11_Slot_thi();
+    void vedio_continue_Fov12_Slot_thi();
     void continue_vertical1_Slot_thi();
     void continue_vertical2_Slot_thi();
     void continue_vertical3_Slot_thi();
@@ -989,6 +1069,12 @@ private slots:
     void continue_vertical5_Slot_thi();
     void continue_vertical6_Slot_thi();
     void continue_vertical7_Slot_thi();
+    void continue_vertical8_Slot_thi();
+    void continue_vertical9_Slot_thi();
+    void continue_vertical10_Slot_thi();
+    void continue_vertical11_Slot_thi();
+    void continue_vertical12_Slot_thi();
+    void continue_vertical13_Slot_thi();
     void vedio_spbx_continue1_Slot_thi();
     void vedio_spbx_continue2_Slot_thi();
     void vedio_spbx_continue3_Slot_thi();
@@ -996,6 +1082,12 @@ private slots:
     void vedio_spbx_continue5_Slot_thi();
     void vedio_spbx_continue6_Slot_thi();
     void vedio_spbx_continue7_Slot_thi();
+    void vedio_spbx_continue8_Slot_thi();
+    void vedio_spbx_continue9_Slot_thi();
+    void vedio_spbx_continue10_Slot_thi();
+    void vedio_spbx_continue11_Slot_thi();
+    void vedio_spbx_continue12_Slot_thi();
+    void vedio_spbx_continue13_Slot_thi();
 
     void vedio_spby_continue1_Slot_thi();
     void vedio_spby_continue2_Slot_thi();
@@ -1004,6 +1096,12 @@ private slots:
     void vedio_spby_continue5_Slot_thi();
     void vedio_spby_continue6_Slot_thi();
     void vedio_spby_continue7_Slot_thi();
+    void vedio_spby_continue8_Slot_thi();
+    void vedio_spby_continue9_Slot_thi();
+    void vedio_spby_continue10_Slot_thi();
+    void vedio_spby_continue11_Slot_thi();
+    void vedio_spby_continue12_Slot_thi();
+    void vedio_spby_continue13_Slot_thi();
 
 
     //摄像机通道四
@@ -1088,6 +1186,12 @@ private slots:
     void vedio_l5_continue_Slot_fou();
     void vedio_l6_continue_Slot_fou();
     void vedio_l7_continue_Slot_fou();
+    void vedio_l8_continue_Slot_fou();
+    void vedio_l9_continue_Slot_fou();
+    void vedio_l10_continue_Slot_fou();
+    void vedio_l11_continue_Slot_fou();
+    void vedio_l12_continue_Slot_fou();
+    void vedio_l13_continue_Slot_fou();
     void vedio_continue_Fov0_Slot_fou();
     void vedio_continue_Fov1_Slot_fou();
     void vedio_continue_Fov2_Slot_fou();
@@ -1095,6 +1199,12 @@ private slots:
     void vedio_continue_Fov4_Slot_fou();
     void vedio_continue_Fov5_Slot_fou();
     void vedio_continue_Fov6_Slot_fou();
+    void vedio_continue_Fov7_Slot_fou();
+    void vedio_continue_Fov8_Slot_fou();
+    void vedio_continue_Fov9_Slot_fou();
+    void vedio_continue_Fov10_Slot_fou();
+    void vedio_continue_Fov11_Slot_fou();
+    void vedio_continue_Fov12_Slot_fou();
     void continue_vertical1_Slot_fou();
     void continue_vertical2_Slot_fou();
     void continue_vertical3_Slot_fou();
@@ -1102,6 +1212,12 @@ private slots:
     void continue_vertical5_Slot_fou();
     void continue_vertical6_Slot_fou();
     void continue_vertical7_Slot_fou();
+    void continue_vertical8_Slot_fou();
+    void continue_vertical9_Slot_fou();
+    void continue_vertical10_Slot_fou();
+    void continue_vertical11_Slot_fou();
+    void continue_vertical12_Slot_fou();
+    void continue_vertical13_Slot_fou();
     void vedio_spbx_continue1_Slot_fou();
     void vedio_spbx_continue2_Slot_fou();
     void vedio_spbx_continue3_Slot_fou();
@@ -1109,6 +1225,12 @@ private slots:
     void vedio_spbx_continue5_Slot_fou();
     void vedio_spbx_continue6_Slot_fou();
     void vedio_spbx_continue7_Slot_fou();
+    void vedio_spbx_continue8_Slot_fou();
+    void vedio_spbx_continue9_Slot_fou();
+    void vedio_spbx_continue10_Slot_fou();
+    void vedio_spbx_continue11_Slot_fou();
+    void vedio_spbx_continue12_Slot_fou();
+    void vedio_spbx_continue13_Slot_fou();
 
     void vedio_spby_continue1_Slot_fou();
     void vedio_spby_continue2_Slot_fou();
@@ -1117,6 +1239,12 @@ private slots:
     void vedio_spby_continue5_Slot_fou();
     void vedio_spby_continue6_Slot_fou();
     void vedio_spby_continue7_Slot_fou();
+    void vedio_spby_continue8_Slot_fou();
+    void vedio_spby_continue9_Slot_fou();
+    void vedio_spby_continue10_Slot_fou();
+    void vedio_spby_continue11_Slot_fou();
+    void vedio_spby_continue12_Slot_fou();
+    void vedio_spby_continue13_Slot_fou();
 
 
     //摄像机通道五
@@ -1202,6 +1330,12 @@ private slots:
     void vedio_l5_continue_Slot_fif();
     void vedio_l6_continue_Slot_fif();
     void vedio_l7_continue_Slot_fif();
+    void vedio_l8_continue_Slot_fif();
+    void vedio_l9_continue_Slot_fif();
+    void vedio_l10_continue_Slot_fif();
+    void vedio_l11_continue_Slot_fif();
+    void vedio_l12_continue_Slot_fif();
+    void vedio_l13_continue_Slot_fif();
     void vedio_continue_Fov0_Slot_fif();
     void vedio_continue_Fov1_Slot_fif();
     void vedio_continue_Fov2_Slot_fif();
@@ -1209,6 +1343,12 @@ private slots:
     void vedio_continue_Fov4_Slot_fif();
     void vedio_continue_Fov5_Slot_fif();
     void vedio_continue_Fov6_Slot_fif();
+    void vedio_continue_Fov7_Slot_fif();
+    void vedio_continue_Fov8_Slot_fif();
+    void vedio_continue_Fov9_Slot_fif();
+    void vedio_continue_Fov10_Slot_fif();
+    void vedio_continue_Fov11_Slot_fif();
+    void vedio_continue_Fov12_Slot_fif();
     void continue_vertical1_Slot_fif();
     void continue_vertical2_Slot_fif();
     void continue_vertical3_Slot_fif();
@@ -1216,6 +1356,12 @@ private slots:
     void continue_vertical5_Slot_fif();
     void continue_vertical6_Slot_fif();
     void continue_vertical7_Slot_fif();
+    void continue_vertical8_Slot_fif();
+    void continue_vertical9_Slot_fif();
+    void continue_vertical10_Slot_fif();
+    void continue_vertical11_Slot_fif();
+    void continue_vertical12_Slot_fif();
+    void continue_vertical13_Slot_fif();
     void vedio_spbx_continue1_Slot_fif();
     void vedio_spbx_continue2_Slot_fif();
     void vedio_spbx_continue3_Slot_fif();
@@ -1223,6 +1369,12 @@ private slots:
     void vedio_spbx_continue5_Slot_fif();
     void vedio_spbx_continue6_Slot_fif();
     void vedio_spbx_continue7_Slot_fif();
+    void vedio_spbx_continue8_Slot_fif();
+    void vedio_spbx_continue9_Slot_fif();
+    void vedio_spbx_continue10_Slot_fif();
+    void vedio_spbx_continue11_Slot_fif();
+    void vedio_spbx_continue12_Slot_fif();
+    void vedio_spbx_continue13_Slot_fif();
 
     void vedio_spby_continue1_Slot_fif();
     void vedio_spby_continue2_Slot_fif();
@@ -1231,9 +1383,12 @@ private slots:
     void vedio_spby_continue5_Slot_fif();
     void vedio_spby_continue6_Slot_fif();
     void vedio_spby_continue7_Slot_fif();
-
-
-
+    void vedio_spby_continue8_Slot_fif();
+    void vedio_spby_continue9_Slot_fif();
+    void vedio_spby_continue10_Slot_fif();
+    void vedio_spby_continue11_Slot_fif();
+    void vedio_spby_continue12_Slot_fif();
+    void vedio_spby_continue13_Slot_fif();
 
 
     /*UTC1参数配置*/
@@ -1423,8 +1578,6 @@ private slots:
     void on_btn_down_pressed();
 
     void on_btn_down_released();
-
-    void on_comboBox_acqmode_currentIndexChanged(int index);
 
     void on_radioButton_workmode_clicked(bool checked);
 

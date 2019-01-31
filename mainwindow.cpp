@@ -1514,6 +1514,73 @@ void MainWindow::vedio_l7_continue_Slot()
     send_mutex.unlock();
 }
 
+void MainWindow::vedio_l8_continue_Slot()
+{
+    float value=vedio_l8_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l9_continue_Slot()
+{
+    float value=vedio_l9_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l10_continue_Slot()
+{
+    float value=vedio_l10_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l11_continue_Slot()
+{
+    float value=vedio_l11_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l12_continue_Slot()
+{
+    float value=vedio_l12_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l13_continue_Slot()
+{
+    float value=vedio_l13_continue->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::vedio_continue_Fov0_Slot()
 {
     float value=vedio_continue_Fov0->text().toFloat();
@@ -1600,11 +1667,66 @@ void MainWindow::vedio_continue_Fov6_Slot()
 
 void MainWindow::vedio_continue_Fov7_Slot()
 {
-    float value=vedio_continue_Fov6->text().toFloat();
+    float value=vedio_continue_Fov7->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
-    send_arr[5] =56;
-    send_arr[6] =15;
+    send_arr[5] =111;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov8_Slot()
+{
+    float value=vedio_continue_Fov8->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov9_Slot()
+{
+    float value=vedio_continue_Fov9->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov10_Slot()
+{
+    float value=vedio_continue_Fov10->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov11_Slot()
+{
+    float value=vedio_continue_Fov11->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov12_Slot()
+{
+    float value=vedio_continue_Fov12->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -1694,6 +1816,72 @@ void MainWindow::continue_vertical7_Slot()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::continue_vertical8_Slot()
+{
+    float value=continue_vertical8->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical9_Slot()
+{
+    float value=continue_vertical9->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical10_Slot()
+{
+    float value=continue_vertical10->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical11_Slot()
+{
+    float value=continue_vertical11->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical12_Slot()
+{
+    float value=continue_vertical12->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical13_Slot()
+{
+    float value=continue_vertical13->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spbx_continue1_Slot()
 {
@@ -1774,6 +1962,72 @@ void MainWindow::vedio_spbx_continue7_Slot()
     send_arr[4] = 0x30;
     send_arr[5] =57;
     send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue8_Slot()
+{
+    float value=vedio_spbx_continue8->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue9_Slot()
+{
+    float value=vedio_spbx_continue9->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue10_Slot()
+{
+    float value=vedio_spbx_continue10->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue11_Slot()
+{
+    float value=vedio_spbx_continue11->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue12_Slot()
+{
+    float value=vedio_spbx_continue12->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =57;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue13_Slot()
+{
+    float value=vedio_spbx_continue13->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =57;
+    send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -1862,6 +2116,73 @@ void MainWindow::vedio_spby_continue7_Slot()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_spby_continue8_Slot()
+{
+    float value=vedio_spby_continue8->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue9_Slot()
+{
+    float value=vedio_spby_continue9->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue10_Slot()
+{
+    float value=vedio_spby_continue10->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =111;
+    send_arr[6] =14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue11_Slot()
+{
+    float value=vedio_spby_continue11->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue12_Slot()
+{
+    float value=vedio_spby_continue12->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue13_Slot()
+{
+    float value=vedio_spby_continue13->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =112;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 //通道二
 void MainWindow::fixChanelNum_Slot_sec()
 {
@@ -2704,6 +3025,72 @@ void MainWindow::vedio_l7_continue_Slot_sec()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_l8_continue_Slot_sec()
+{
+    float value=vedio_l8_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l9_continue_Slot_sec()
+{
+    float value=vedio_l9_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l10_continue_Slot_sec()
+{
+    float value=vedio_l10_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l11_continue_Slot_sec()
+{
+    float value=vedio_l11_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l12_continue_Slot_sec()
+{
+    float value=vedio_l12_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l13_continue_Slot_sec()
+{
+    float value=vedio_l13_continue_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_continue_Fov0_Slot_sec()
 {
@@ -2784,6 +3171,72 @@ void MainWindow::vedio_continue_Fov6_Slot_sec()
     send_arr[4] = 0x30;
     send_arr[5] =63;
     send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov7_Slot_sec()
+{
+    float value=vedio_continue_Fov7_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov8_Slot_sec()
+{
+    float value=vedio_continue_Fov8_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov9_Slot_sec()
+{
+    float value=vedio_continue_Fov9_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov10_Slot_sec()
+{
+    float value=vedio_continue_Fov10_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov11_Slot_sec()
+{
+    float value=vedio_continue_Fov11_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov12_Slot_sec()
+{
+    float value=vedio_continue_Fov12_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -2873,6 +3326,72 @@ void MainWindow::continue_vertical7_Slot_sec()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::continue_vertical8_Slot_sec()
+{
+    float value=continue_vertical8_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical9_Slot_sec()
+{
+    float value=continue_vertical9_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical10_Slot_sec()
+{
+    float value=continue_vertical10_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical11_Slot_sec()
+{
+    float value=continue_vertical11_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical12_Slot_sec()
+{
+    float value=continue_vertical12_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical13_Slot_sec()
+{
+    float value=continue_vertical13_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spbx_continue1_Slot_sec()
 {
@@ -2953,6 +3472,72 @@ void MainWindow::vedio_spbx_continue7_Slot_sec()
     send_arr[4] = 0x30;
     send_arr[5] =64;
     send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue8_Slot_sec()
+{
+    float value=vedio_spbx_continue8_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue9_Slot_sec()
+{
+    float value=vedio_spbx_continue9_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue10_Slot_sec()
+{
+    float value=vedio_spbx_continue10_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue11_Slot_sec()
+{
+    float value=vedio_spbx_continue11_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue12_Slot_sec()
+{
+    float value=vedio_spbx_continue12_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue13_Slot_sec()
+{
+    float value=vedio_spbx_continue13_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =12;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -3041,6 +3626,73 @@ void MainWindow::vedio_spby_continue7_Slot_sec()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_spby_continue8_Slot_sec()
+{
+    float value=vedio_spby_continue8_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue9_Slot_sec()
+{
+    float value=vedio_spby_continue9_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue10_Slot_sec()
+{
+    float value=vedio_spby_continue10_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =113;
+    send_arr[6] =14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue11_Slot_sec()
+{
+    float value=vedio_spby_continue11_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue12_Slot_sec()
+{
+    float value=vedio_spby_continue12_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue13_Slot_sec()
+{
+    float value=vedio_spby_continue3_sec->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =114;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 void MainWindow::btn_vediosersor_fix_default_Slot_sec()
 {
     send_mutex.lock();
@@ -4111,6 +4763,72 @@ void MainWindow::vedio_l7_continue_Slot_thi()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_l8_continue_Slot_thi()
+{
+    float value=vedio_l8_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l9_continue_Slot_thi()
+{
+    float value=vedio_l9_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l10_continue_Slot_thi()
+{
+    float value=vedio_l10_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l11_continue_Slot_thi()
+{
+    float value=vedio_l11_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l12_continue_Slot_thi()
+{
+    float value=vedio_l12_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l13_continue_Slot_thi()
+{
+    float value=vedio_l13_continue_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_continue_Fov0_Slot_thi()
 {
@@ -4195,6 +4913,73 @@ void MainWindow::vedio_continue_Fov6_Slot_thi()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_continue_Fov7_Slot_thi()
+{
+    float value=vedio_continue_Fov7_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov8_Slot_thi()
+{
+    float value=vedio_continue_Fov8_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov9_Slot_thi()
+{
+    float value=vedio_continue_Fov9_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov10_Slot_thi()
+{
+    float value=vedio_continue_Fov10_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov11_Slot_thi()
+{
+    float value=vedio_continue_Fov11_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov12_Slot_thi()
+{
+    float value=vedio_continue_Fov12_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+
 
 void MainWindow::continue_vertical1_Slot_thi()
 {
@@ -4276,6 +5061,72 @@ void MainWindow::continue_vertical7_Slot_thi()
     send_arr[4] = 0x30;
     send_arr[5] =71;
     send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical8_Slot_thi()
+{
+    float value=continue_vertical8_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical9_Slot_thi()
+{
+    float value=continue_vertical9_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical10_Slot_thi()
+{
+    float value=continue_vertical10_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical11_Slot_thi()
+{
+    float value=continue_vertical11_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical12_Slot_thi()
+{
+    float value=continue_vertical12_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical13_Slot_thi()
+{
+    float value=continue_vertical13_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =11;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -4364,6 +5215,72 @@ void MainWindow::vedio_spbx_continue7_Slot_thi()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_spbx_continue8_Slot_thi()
+{
+    float value=vedio_spbx_continue8_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue9_Slot_thi()
+{
+    float value=vedio_spbx_continue9_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue10_Slot_thi()
+{
+    float value=vedio_spbx_continue10_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue11_Slot_thi()
+{
+    float value=vedio_spbx_continue11_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue12_Slot_thi()
+{
+    float value=vedio_spbx_continue12_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue13_Slot_thi()
+{
+    float value=vedio_spbx_continue13_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spby_continue1_Slot_thi()
 {
@@ -4444,6 +5361,72 @@ void MainWindow::vedio_spby_continue7_Slot_thi()
     send_arr[4] = 0x30;
     send_arr[5] =71;
     send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue8_Slot_thi()
+{
+    float value=vedio_spby_continue8_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue9_Slot_thi()
+{
+    float value=vedio_spby_continue9_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue10_Slot_thi()
+{
+    float value=vedio_spby_continue10_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =115;
+    send_arr[6] =14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue11_Slot_thi()
+{
+    float value=vedio_spby_continue11_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue12_Slot_thi()
+{
+    float value=vedio_spby_continue12_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue13_Slot_thi()
+{
+    float value=vedio_spby_continue13_thi->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =116;
+    send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -5556,6 +6539,72 @@ void MainWindow::vedio_l7_continue_Slot_fou()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_l8_continue_Slot_fou()
+{
+    float value=vedio_l8_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l9_continue_Slot_fou()
+{
+    float value=vedio_l9_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l10_continue_Slot_fou()
+{
+    float value=vedio_l10_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l11_continue_Slot_fou()
+{
+    float value=vedio_l11_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l12_continue_Slot_fou()
+{
+    float value=vedio_l12_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l13_continue_Slot_fou()
+{
+    float value=vedio_l13_continue_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_continue_Fov0_Slot_fou()
 {
@@ -5636,6 +6685,72 @@ void MainWindow::vedio_continue_Fov6_Slot_fou()
     send_arr[4] = 0x30;
     send_arr[5] =77;
     send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov7_Slot_fou()
+{
+    float value=vedio_continue_Fov7_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov8_Slot_fou()
+{
+    float value=vedio_continue_Fov8_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov9_Slot_fou()
+{
+    float value=vedio_continue_Fov9_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov10_Slot_fou()
+{
+    float value=vedio_continue_Fov10_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov11_Slot_fou()
+{
+    float value=vedio_continue_Fov11_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov12_Slot_fou()
+{
+    float value=vedio_continue_Fov12_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -5725,6 +6840,72 @@ void MainWindow::continue_vertical7_Slot_fou()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::continue_vertical8_Slot_fou()
+{
+    float value=continue_vertical8_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical9_Slot_fou()
+{
+    float value=continue_vertical9_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical10_Slot_fou()
+{
+    float value=continue_vertical10_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical11_Slot_fou()
+{
+    float value=continue_vertical11_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical12_Slot_fou()
+{
+    float value=continue_vertical12_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical13_Slot_fou()
+{
+    float value=continue_vertical13_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spbx_continue1_Slot_fou()
 {
@@ -5809,6 +6990,72 @@ void MainWindow::vedio_spbx_continue7_Slot_fou()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_spbx_continue8_Slot_fou()
+{
+    float value=vedio_spbx_continue8_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue9_Slot_fou()
+{
+    float value=vedio_spbx_continue9_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue10_Slot_fou()
+{
+    float value=vedio_spbx_continue10_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue11_Slot_fou()
+{
+    float value=vedio_spbx_continue11_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue12_Slot_fou()
+{
+    float value=vedio_spbx_continue12_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue13_Slot_fou()
+{
+    float value=vedio_spbx_continue13_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spby_continue1_Slot_fou()
 {
@@ -5889,6 +7136,72 @@ void MainWindow::vedio_spby_continue7_Slot_fou()
     send_arr[4] = 0x30;
     send_arr[5] =78;
     send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue8_Slot_fou()
+{
+    float value=vedio_spby_continue8_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue9_Slot_fou()
+{
+    float value=vedio_spby_continue9_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue10_Slot_fou()
+{
+    float value=vedio_spby_continue10_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =117;
+    send_arr[6] =14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue11_Slot_fou()
+{
+    float value=vedio_spby_continue11_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue12_Slot_fou()
+{
+    float value=vedio_spby_continue12_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue13_Slot_fou()
+{
+    float value=vedio_spby_continue13_fou->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =118;
+    send_arr[6] =13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6540,6 +7853,72 @@ void MainWindow::vedio_l7_continue_Slot_fif()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_l8_continue_Slot_fif()
+{
+    float value=vedio_l8_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l9_continue_Slot_fif()
+{
+    float value=vedio_l9_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l10_continue_Slot_fif()
+{
+    float value=vedio_l10_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =10;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l11_continue_Slot_fif()
+{
+    float value=vedio_l11_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l12_continue_Slot_fif()
+{
+    float value=vedio_l12_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =120;
+    send_arr[6] =4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_l13_continue_Slot_fif()
+{
+    float value=vedio_l13_continue_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =120;
+    send_arr[6] =9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_continue_Fov0_Slot_fif()
 {
@@ -6620,6 +7999,72 @@ void MainWindow::vedio_continue_Fov6_Slot_fif()
     send_arr[4] = 0x30;
     send_arr[5] =84;
     send_arr[6] =15;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov7_Slot_fif()
+{
+    float value=vedio_continue_Fov7_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov8_Slot_fif()
+{
+    float value=vedio_continue_Fov8_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov9_Slot_fif()
+{
+    float value=vedio_continue_Fov9_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =119;
+    send_arr[6] =11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov10_Slot_fif()
+{
+    float value=vedio_continue_Fov10_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =120;
+    send_arr[6] =0;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov11_Slot_fif()
+{
+    float value=vedio_continue_Fov11_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =120;
+    send_arr[6] =5;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_continue_Fov12_Slot_fif()
+{
+    float value=vedio_continue_Fov12_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] =120;
+    send_arr[6] =10;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -6709,6 +8154,72 @@ void MainWindow::continue_vertical7_Slot_fif()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::continue_vertical8_Slot_fif()
+{
+    float value=continue_vertical8_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical9_Slot_fif()
+{
+    float value=continue_vertical9_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical10_Slot_fif()
+{
+    float value=continue_vertical10_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical11_Slot_fif()
+{
+    float value=continue_vertical11_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 1;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical12_Slot_fif()
+{
+    float value=continue_vertical12_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 6;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::continue_vertical13_Slot_fif()
+{
+    float value=continue_vertical13_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 11;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spbx_continue1_Slot_fif()
 {
@@ -6793,6 +8304,72 @@ void MainWindow::vedio_spbx_continue7_Slot_fif()
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::vedio_spbx_continue8_Slot_fif()
+{
+    float value=vedio_spbx_continue8_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue9_Slot_fif()
+{
+    float value=vedio_spbx_continue9_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue10_Slot_fif()
+{
+    float value=vedio_spbx_continue10_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 13;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue11_Slot_fif()
+{
+    float value=vedio_spbx_continue11_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue12_Slot_fif()
+{
+    float value=vedio_spbx_continue12_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 7;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spbx_continue13_Slot_fif()
+{
+    float value=vedio_spbx_continue13_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 12;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::vedio_spby_continue1_Slot_fif()
 {
@@ -6873,6 +8450,72 @@ void MainWindow::vedio_spby_continue7_Slot_fif()
     send_arr[4] = 0x30;
     send_arr[5] =85;
     send_arr[6] =2;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue8_Slot_fif()
+{
+    float value=vedio_spby_continue8_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 4;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue9_Slot_fif()
+{
+    float value=vedio_spby_continue9_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 9;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue10_Slot_fif()
+{
+    float value=vedio_spby_continue10_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 119;
+    send_arr[6] = 14;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue11_Slot_fif()
+{
+    float value=vedio_spby_continue11_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 3;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue12_Slot_fif()
+{
+    float value=vedio_spby_continue12_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 8;
+    memcpy(send_arr+7,&value,4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
+void MainWindow::vedio_spby_continue13_Slot_fif()
+{
+    float value=vedio_spby_continue13_fif->text().toFloat();
+    send_mutex.lock();
+    send_arr[4] = 0x30;
+    send_arr[5] = 120;
+    send_arr[6] = 13;
     memcpy(send_arr+7,&value,4);
     send_oneframe(7);
     send_mutex.unlock();
@@ -14565,31 +16208,6 @@ void MainWindow::on_btn_down_released()
     time->stop();
 }
 
-void MainWindow::on_comboBox_acqmode_currentIndexChanged(int index)
-{
-    switch(index)
-    {
-        case 0:
-            send_mutex.lock();
-            send_arr[4] = 0x18;
-            send_arr[5] = 0x02;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 1:
-            send_mutex.lock();
-            send_arr[4] = 0x18;
-            send_arr[5] = 0x01;
-            send_oneframe(2);
-            send_mutex.unlock();
-            break;
-        case 2:
-            break;
-        default:
-            break;
-    }
-}
-
 void MainWindow::on_radioButton_workmode_clicked(bool checked)
 {
     if(checked ==true)
@@ -14733,6 +16351,24 @@ void MainWindow::mystepby(int spid)
         case continue7_spinx:
             vedio_spbx_continue7_Slot();
             break;
+        case continue8_spinx:
+            vedio_spbx_continue8_Slot();
+            break;
+        case continue9_spinx:
+            vedio_spbx_continue9_Slot();
+            break;
+        case continue10_spinx:
+            vedio_spbx_continue10_Slot();
+            break;
+        case continue11_spinx:
+            vedio_spbx_continue11_Slot();
+            break;
+        case continue12_spinx:
+            vedio_spbx_continue12_Slot();
+            break;
+        case continue13_spinx:
+            vedio_spbx_continue13_Slot();
+            break;
         case continue1_spiny:
             vedio_spby_continue1_Slot();
             break;
@@ -14753,6 +16389,24 @@ void MainWindow::mystepby(int spid)
             break;
         case continue7_spiny:
             vedio_spby_continue7_Slot();
+            break;
+        case continue8_spiny:
+            vedio_spby_continue8_Slot();
+            break;
+        case continue9_spiny:
+            vedio_spby_continue9_Slot();
+            break;
+        case continue10_spiny:
+            vedio_spby_continue10_Slot();
+            break;
+        case continue11_spiny:
+            vedio_spby_continue11_Slot();
+            break;
+        case continue12_spiny:
+            vedio_spby_continue12_Slot();
+            break;
+        case continue13_spiny:
+            vedio_spby_continue13_Slot();
             break;
 
 
@@ -14813,6 +16467,24 @@ void MainWindow::mystepby(int spid)
         case continue7_spinx_sec:
             vedio_spbx_continue7_Slot_sec();
             break;
+        case continue8_spinx_sec:
+            vedio_spbx_continue8_Slot_sec();
+            break;
+        case continue9_spinx_sec:
+            vedio_spbx_continue9_Slot_sec();
+            break;
+        case continue10_spinx_sec:
+            vedio_spbx_continue10_Slot_sec();
+            break;
+        case continue11_spinx_sec:
+            vedio_spbx_continue11_Slot_sec();
+            break;
+        case continue12_spinx_sec:
+            vedio_spbx_continue12_Slot_sec();
+            break;
+        case continue13_spinx_sec:
+            vedio_spbx_continue13_Slot_sec();
+            break;
         case continue1_spiny_sec:
             vedio_spby_continue1_Slot_sec();
             break;
@@ -14833,6 +16505,24 @@ void MainWindow::mystepby(int spid)
             break;
         case continue7_spiny_sec:
             vedio_spby_continue7_Slot_sec();
+            break;
+        case continue8_spiny_sec:
+            vedio_spby_continue8_Slot_sec();
+            break;
+        case continue9_spiny_sec:
+            vedio_spby_continue9_Slot_sec();
+            break;
+        case continue10_spiny_sec:
+            vedio_spby_continue10_Slot_sec();
+            break;
+        case continue11_spiny_sec:
+            vedio_spby_continue11_Slot_sec();
+            break;
+        case continue12_spiny_sec:
+            vedio_spby_continue12_Slot_sec();
+            break;
+        case continue13_spiny_sec:
+            vedio_spby_continue13_Slot_sec();
             break;
 
         case fix_spinx_thi:
@@ -14892,6 +16582,24 @@ void MainWindow::mystepby(int spid)
         case continue7_spinx_thi:
             vedio_spbx_continue7_Slot_thi();
             break;
+        case continue8_spinx_thi:
+            vedio_spbx_continue8_Slot_thi();
+            break;
+        case continue9_spinx_thi:
+            vedio_spbx_continue9_Slot_thi();
+            break;
+        case continue10_spinx_thi:
+            vedio_spbx_continue10_Slot_thi();
+            break;
+        case continue11_spinx_thi:
+            vedio_spbx_continue11_Slot_thi();
+            break;
+        case continue12_spinx_thi:
+            vedio_spbx_continue12_Slot_thi();
+            break;
+        case continue13_spinx_thi:
+            vedio_spbx_continue13_Slot_thi();
+            break;
         case continue1_spiny_thi:
             vedio_spby_continue1_Slot_thi();
             break;
@@ -14912,6 +16620,24 @@ void MainWindow::mystepby(int spid)
             break;
         case continue7_spiny_thi:
             vedio_spby_continue7_Slot_thi();
+            break;
+        case continue8_spiny_thi:
+            vedio_spby_continue8_Slot_thi();
+            break;
+        case continue9_spiny_thi:
+            vedio_spby_continue9_Slot_thi();
+            break;
+        case continue10_spiny_thi:
+            vedio_spby_continue10_Slot_thi();
+            break;
+        case continue11_spiny_thi:
+            vedio_spby_continue11_Slot_thi();
+            break;
+        case continue12_spiny_thi:
+            vedio_spby_continue12_Slot_thi();
+            break;
+        case continue13_spiny_thi:
+            vedio_spby_continue13_Slot_thi();
             break;
 
         case fix_spinx_fou:
@@ -14971,6 +16697,24 @@ void MainWindow::mystepby(int spid)
         case continue7_spinx_fou:
             vedio_spbx_continue7_Slot_fou();
             break;
+        case continue8_spinx_fou:
+            vedio_spbx_continue8_Slot_fou();
+            break;
+        case continue9_spinx_fou:
+            vedio_spbx_continue9_Slot_fou();
+            break;
+        case continue10_spinx_fou:
+            vedio_spbx_continue10_Slot_fou();
+            break;
+        case continue11_spinx_fou:
+            vedio_spbx_continue11_Slot_fou();
+            break;
+        case continue12_spinx_fou:
+            vedio_spbx_continue12_Slot_fou();
+            break;
+        case continue13_spinx_fou:
+            vedio_spbx_continue13_Slot_fou();
+            break;
         case continue1_spiny_fou:
             vedio_spby_continue1_Slot_fou();
             break;
@@ -14992,86 +16736,140 @@ void MainWindow::mystepby(int spid)
         case continue7_spiny_fou:
             vedio_spby_continue7_Slot_fou();
             break;
+        case continue8_spiny_fou:
+            vedio_spby_continue8_Slot_fou();
+            break;
+        case continue9_spiny_fou:
+            vedio_spby_continue9_Slot_fou();
+            break;
+        case continue10_spiny_fou:
+            vedio_spby_continue10_Slot_fou();
+            break;
+        case continue11_spiny_fou:
+            vedio_spby_continue11_Slot_fou();
+            break;
+        case continue12_spiny_fou:
+            vedio_spby_continue12_Slot_fou();
+            break;
+        case continue13_spiny_fou:
+            vedio_spby_continue13_Slot_fou();
+            break;
 
-    case fix_spinx_fif:
-        fix_sp_Slot_fif();
-        break;
-    case fix_spiny_fif:
-        fix_sp2_Slot_fif();
-        break;
-    case switch1_spinx_fif:
-        vedio_spbx_switch1_Slot_fif();
-        break;
-    case switch2_spinx_fif:
-        vedio_spbx_switch2_Slot_fif();
-        break;
-    case switch3_spinx_fif:
-        vedio_spbx_switch3_Slot_fif();
-        break;
-    case switch4_spinx_fif:
-        vedio_spbx_switch4_Slot_fif();
-        break;
-    case switch5_spinx_fif:
-        vedio_spbx_switch5_Slot_fif();
-        break;
-    case switch1_spiny_fif:
-        vedio_spby_switch1_Slot_fif();
-        break;
-    case switch2_spiny_fif:
-        vedio_spby_switch2_Slot_fif();
-        break;
-    case switch3_spiny_fif:
-        vedio_spby_switch3_Slot_fif();
-        break;
-    case switch4_spiny_fif:
-        vedio_spby_switch4_Slot_fif();
-        break;
-    case switch5_spiny_fif:
-        vedio_spby_switch5_Slot_fif();
-        break;
-    case continue1_spinx_fif:
-        vedio_spbx_continue1_Slot_fif();
-        break;
-    case continue2_spinx_fif:
-        vedio_spbx_continue2_Slot_fif();
-        break;
-    case continue3_spinx_fif:
-        vedio_spbx_continue3_Slot_fif();
-        break;
-    case continue4_spinx_fif:
-        vedio_spbx_continue4_Slot_fif();
-        break;
-    case continue5_spinx_fif:
-        vedio_spbx_continue5_Slot_fif();
-        break;
-    case continue6_spinx_fif:
-        vedio_spbx_continue6_Slot_fif();
-        break;
-    case continue7_spinx_fif:
-        vedio_spbx_continue7_Slot_fif();
-        break;
-    case continue1_spiny_fif:
-        vedio_spby_continue1_Slot_fif();
-        break;
-    case continue2_spiny_fif:
-        vedio_spby_continue2_Slot_fif();
-        break;
-    case continue3_spiny_fif:
-        vedio_spby_continue3_Slot_fif();
-        break;
-    case continue4_spiny_fif:
-        vedio_spby_continue4_Slot_fif();
-        break;
-    case continue5_spiny_fif:
-        vedio_spby_continue5_Slot_fif();
-        break;
-    case continue6_spiny_fif:
-        vedio_spby_continue6_Slot_fif();
-        break;
-    case continue7_spiny_fif:
-        vedio_spby_continue7_Slot_fif();
-        break;
-    default:
+        case fix_spinx_fif:
+            fix_sp_Slot_fif();
+            break;
+        case fix_spiny_fif:
+            fix_sp2_Slot_fif();
+            break;
+        case switch1_spinx_fif:
+            vedio_spbx_switch1_Slot_fif();
+            break;
+        case switch2_spinx_fif:
+            vedio_spbx_switch2_Slot_fif();
+            break;
+        case switch3_spinx_fif:
+            vedio_spbx_switch3_Slot_fif();
+            break;
+        case switch4_spinx_fif:
+            vedio_spbx_switch4_Slot_fif();
+            break;
+        case switch5_spinx_fif:
+            vedio_spbx_switch5_Slot_fif();
+            break;
+        case switch1_spiny_fif:
+            vedio_spby_switch1_Slot_fif();
+            break;
+        case switch2_spiny_fif:
+            vedio_spby_switch2_Slot_fif();
+            break;
+        case switch3_spiny_fif:
+            vedio_spby_switch3_Slot_fif();
+            break;
+        case switch4_spiny_fif:
+            vedio_spby_switch4_Slot_fif();
+            break;
+        case switch5_spiny_fif:
+            vedio_spby_switch5_Slot_fif();
+            break;
+        case continue1_spinx_fif:
+            vedio_spbx_continue1_Slot_fif();
+            break;
+        case continue2_spinx_fif:
+            vedio_spbx_continue2_Slot_fif();
+            break;
+        case continue3_spinx_fif:
+            vedio_spbx_continue3_Slot_fif();
+            break;
+        case continue4_spinx_fif:
+            vedio_spbx_continue4_Slot_fif();
+            break;
+        case continue5_spinx_fif:
+            vedio_spbx_continue5_Slot_fif();
+            break;
+        case continue6_spinx_fif:
+            vedio_spbx_continue6_Slot_fif();
+            break;
+        case continue7_spinx_fif:
+            vedio_spbx_continue7_Slot_fif();
+            break;
+        case continue8_spinx_fif:
+            vedio_spbx_continue8_Slot_fif();
+            break;
+        case continue9_spinx_fif:
+            vedio_spbx_continue9_Slot_fif();
+            break;
+        case continue10_spinx_fif:
+            vedio_spbx_continue10_Slot_fif();
+            break;
+        case continue11_spinx_fif:
+            vedio_spbx_continue11_Slot_fif();
+            break;
+        case continue12_spinx_fif:
+            vedio_spbx_continue12_Slot_fif();
+            break;
+        case continue13_spinx_fif:
+            vedio_spbx_continue13_Slot_fif();
+            break;
+        case continue1_spiny_fif:
+            vedio_spby_continue1_Slot_fif();
+            break;
+        case continue2_spiny_fif:
+            vedio_spby_continue2_Slot_fif();
+            break;
+        case continue3_spiny_fif:
+            vedio_spby_continue3_Slot_fif();
+            break;
+        case continue4_spiny_fif:
+            vedio_spby_continue4_Slot_fif();
+            break;
+        case continue5_spiny_fif:
+            vedio_spby_continue5_Slot_fif();
+            break;
+        case continue6_spiny_fif:
+            vedio_spby_continue6_Slot_fif();
+            break;
+        case continue7_spiny_fif:
+            vedio_spby_continue7_Slot_fif();
+            break;
+        case continue8_spiny_fif:
+            vedio_spby_continue8_Slot_fif();
+            break;
+        case continue9_spiny_fif:
+            vedio_spby_continue9_Slot_fif();
+            break;
+        case continue10_spiny_fif:
+            vedio_spby_continue10_Slot_fif();
+            break;
+        case continue11_spiny_fif:
+            vedio_spby_continue11_Slot_fif();
+            break;
+        case continue12_spiny_fif:
+            vedio_spby_continue12_Slot_fif();
+            break;
+        case continue13_spiny_fif:
+            vedio_spby_continue13_Slot_fif();
+            break;
+        default:
             break;
     }
 }
