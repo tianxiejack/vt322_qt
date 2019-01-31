@@ -1642,12 +1642,18 @@ private:
        QCheckBox *continueChanelNum,*continueenable,*continue_vediohaveornot,*continue_gateshow,*continue_bullshow,*continue_autogate;
        QComboBox *continue_vedio_dpi;
        QGroupBox *continue_vediochoose;
-       MyQSpinBox *vedio_spbx_continue1,*vedio_spbx_continue2,*vedio_spbx_continue3,*vedio_spbx_continue4,*vedio_spbx_continue5,*vedio_spbx_continue6,*vedio_spbx_continue7,*vedio_spby_continue1,*vedio_spby_continue2,*vedio_spby_continue3,*vedio_spby_continue4,*vedio_spby_continue5,*vedio_spby_continue6,*vedio_spby_continue7;
-       QLineEdit *vedio_l1_continue,*vedio_l2_continue,*vedio_l3_continue,*vedio_l4_continue,*vedio_l5_continue,*vedio_l6_continue,*vedio_l7_continue;
-       QLineEdit *vedio_continue_Fov0,*vedio_continue_Fov1,*vedio_continue_Fov2,*vedio_continue_Fov3,*vedio_continue_Fov4,*vedio_continue_Fov5,*vedio_continue_Fov6;
+       MyQSpinBox *vedio_spbx_continue1,*vedio_spbx_continue2,*vedio_spbx_continue3,*vedio_spbx_continue4,*vedio_spbx_continue5,*vedio_spbx_continue6,*vedio_spbx_continue7,
+                *vedio_spbx_continue8,*vedio_spbx_continue9,*vedio_spbx_continue10,*vedio_spbx_continue11,*vedio_spbx_continue12,*vedio_spbx_continue13,
+                *vedio_spby_continue1,*vedio_spby_continue2,*vedio_spby_continue3,*vedio_spby_continue4,*vedio_spby_continue5,*vedio_spby_continue6,*vedio_spby_continue7,
+                *vedio_spby_continue8,*vedio_spby_continue9,*vedio_spby_continue10,*vedio_spby_continue11,*vedio_spby_continue12,*vedio_spby_continue13;
+       QLineEdit *vedio_l1_continue,*vedio_l2_continue,*vedio_l3_continue,*vedio_l4_continue,*vedio_l5_continue,*vedio_l6_continue,*vedio_l7_continue,
+                *vedio_l8_continue,*vedio_l9_continue,*vedio_l10_continue,*vedio_l11_continue,*vedio_l12_continue,*vedio_l13_continue;
+       QLineEdit *vedio_continue_Fov0,*vedio_continue_Fov1,*vedio_continue_Fov2,*vedio_continue_Fov3,*vedio_continue_Fov4,*vedio_continue_Fov5,*vedio_continue_Fov6,
+                *vedio_continue_Fov7,*vedio_continue_Fov8,*vedio_continue_Fov9,*vedio_continue_Fov10,*vedio_continue_Fov11,*vedio_continue_Fov12;
        QPushButton *continue_set_azimuth,*continue_set_pitch,*continue_set_zoom,*continue_search_azimuth,*continue_search_pitch,*continue_search_zoom;
        QLineEdit  *continue_ledt_set_azimuth,*continue_ledt_set_pitch,*continue_ledt_set_zoom,*continue_ledt_search_azimuth,*continue_ledt_search_pitch,*continue_ledt_search_zoom,*continue_vertical;
-       QLineEdit *continue_vertical1,*continue_vertical2,*continue_vertical3,*continue_vertical4,*continue_vertical5,*continue_vertical6,*continue_vertical7;
+       QLineEdit *continue_vertical1,*continue_vertical2,*continue_vertical3,*continue_vertical4,*continue_vertical5,*continue_vertical6,*continue_vertical7,
+                *continue_vertical8,*continue_vertical9,*continue_vertical10,*continue_vertical11,*continue_vertical12,*continue_vertical13;
 
 
 
@@ -1680,14 +1686,18 @@ private:
           QCheckBox *continueChanelNum_sec,*continueenable_sec,*continue_vediohaveornot_sec,*continue_gateshow_sec,*continue_bullshow_sec,*continue_autogate_sec;
           QComboBox *continue_vedio_dpi_sec;
           QGroupBox *continue_vediochoose_sec;
-          MyQSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,*vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec;
-          QLineEdit *vedio_l1_continue_sec,*vedio_l2_continue_sec,*vedio_l3_continue_sec,*vedio_l4_continue_sec,*vedio_l5_continue_sec,*vedio_l6_continue_sec,*vedio_l7_continue_sec;
-          QLineEdit *vedio_continue_Fov0_sec,*vedio_continue_Fov1_sec,*vedio_continue_Fov2_sec,*vedio_continue_Fov3_sec,*vedio_continue_Fov4_sec,*vedio_continue_Fov5_sec,*vedio_continue_Fov6_sec;
+          MyQSpinBox *vedio_spbx_continue1_sec,*vedio_spbx_continue2_sec,*vedio_spbx_continue3_sec,*vedio_spbx_continue4_sec,*vedio_spbx_continue5_sec,*vedio_spbx_continue6_sec,*vedio_spbx_continue7_sec,
+                    *vedio_spbx_continue8_sec,*vedio_spbx_continue9_sec,*vedio_spbx_continue10_sec,*vedio_spbx_continue11_sec,*vedio_spbx_continue12_sec,*vedio_spbx_continue13_sec,
+                    *vedio_spby_continue1_sec,*vedio_spby_continue2_sec,*vedio_spby_continue3_sec,*vedio_spby_continue4_sec,*vedio_spby_continue5_sec,*vedio_spby_continue6_sec,*vedio_spby_continue7_sec,
+                    *vedio_spby_continue8_sec,*vedio_spby_continue9_sec,*vedio_spby_continue10_sec,*vedio_spby_continue11_sec,*vedio_spby_continue12_sec,*vedio_spby_continue13_sec;
+          QLineEdit *vedio_l1_continue_sec,*vedio_l2_continue_sec,*vedio_l3_continue_sec,*vedio_l4_continue_sec,*vedio_l5_continue_sec,*vedio_l6_continue_sec,*vedio_l7_continue_sec,
+                    *vedio_l8_continue_sec,*vedio_l9_continue_sec,*vedio_l10_continue_sec,*vedio_l11_continue_sec,*vedio_l12_continue_sec,*vedio_l13_continue_sec;
+          QLineEdit *vedio_continue_Fov0_sec,*vedio_continue_Fov1_sec,*vedio_continue_Fov2_sec,*vedio_continue_Fov3_sec,*vedio_continue_Fov4_sec,*vedio_continue_Fov5_sec,*vedio_continue_Fov6_sec,
+                    *vedio_continue_Fov7_sec,*vedio_continue_Fov8_sec,*vedio_continue_Fov9_sec,*vedio_continue_Fov10_sec,*vedio_continue_Fov11_sec,*vedio_continue_Fov12_sec;
           QPushButton *continue_set_azimuth_sec,*continue_set_pitch_sec,*continue_set_zoom_sec,*continue_search_azimuth_sec,*continue_search_pitch_sec,*continue_search_zoom_sec;
           QLineEdit  *continue_ledt_set_azimuth_sec,*continue_ledt_set_pitch_sec,*continue_ledt_set_zoom_sec,*continue_ledt_search_azimuth_sec,*continue_ledt_search_pitch_sec,*continue_ledt_search_zoom_sec,*continue_vertical_sec;
-          QLineEdit *continue_vertical1_sec,*continue_vertical2_sec,*continue_vertical3_sec,*continue_vertical4_sec,*continue_vertical5_sec,*continue_vertical6_sec,*continue_vertical7_sec;
-
-
+          QLineEdit *continue_vertical1_sec,*continue_vertical2_sec,*continue_vertical3_sec,*continue_vertical4_sec,*continue_vertical5_sec,*continue_vertical6_sec,*continue_vertical7_sec,
+                    *continue_vertical8_sec,*continue_vertical9_sec,*continue_vertical10_sec,*continue_vertical11_sec,*continue_vertical12_sec,*continue_vertical13_sec;
 
           /*摄像机配置通道3*/
              int vedio_current_shichang_thi;
@@ -1717,12 +1727,18 @@ private:
              QCheckBox *continueChanelNum_thi,*continueenable_thi,*continue_vediohaveornot_thi,*continue_gateshow_thi,*continue_bullshow_thi,*continue_autogate_thi;
              QComboBox *continue_vedio_dpi_thi;
              QGroupBox *continue_vediochoose_thi;
-             MyQSpinBox *vedio_spbx_continue1_thi,*vedio_spbx_continue2_thi,*vedio_spbx_continue3_thi,*vedio_spbx_continue4_thi,*vedio_spbx_continue5_thi,*vedio_spbx_continue6_thi,*vedio_spbx_continue7_thi,*vedio_spby_continue1_thi,*vedio_spby_continue2_thi,*vedio_spby_continue3_thi,*vedio_spby_continue4_thi,*vedio_spby_continue5_thi,*vedio_spby_continue6_thi,*vedio_spby_continue7_thi;
-             QLineEdit *vedio_l1_continue_thi,*vedio_l2_continue_thi,*vedio_l3_continue_thi,*vedio_l4_continue_thi,*vedio_l5_continue_thi,*vedio_l6_continue_thi,*vedio_l7_continue_thi;
-             QLineEdit *vedio_continue_Fov0_thi,*vedio_continue_Fov1_thi,*vedio_continue_Fov2_thi,*vedio_continue_Fov3_thi,*vedio_continue_Fov4_thi,*vedio_continue_Fov5_thi,*vedio_continue_Fov6_thi;
+             MyQSpinBox *vedio_spbx_continue1_thi,*vedio_spbx_continue2_thi,*vedio_spbx_continue3_thi,*vedio_spbx_continue4_thi,*vedio_spbx_continue5_thi,*vedio_spbx_continue6_thi,*vedio_spbx_continue7_thi,
+                        *vedio_spbx_continue8_thi,*vedio_spbx_continue9_thi,*vedio_spbx_continue10_thi,*vedio_spbx_continue11_thi,*vedio_spbx_continue12_thi,*vedio_spbx_continue13_thi,
+                        *vedio_spby_continue1_thi,*vedio_spby_continue2_thi,*vedio_spby_continue3_thi,*vedio_spby_continue4_thi,*vedio_spby_continue5_thi,*vedio_spby_continue6_thi,*vedio_spby_continue7_thi,
+                        *vedio_spby_continue8_thi,*vedio_spby_continue9_thi,*vedio_spby_continue10_thi,*vedio_spby_continue11_thi,*vedio_spby_continue12_thi,*vedio_spby_continue13_thi;
+             QLineEdit *vedio_l1_continue_thi,*vedio_l2_continue_thi,*vedio_l3_continue_thi,*vedio_l4_continue_thi,*vedio_l5_continue_thi,*vedio_l6_continue_thi,*vedio_l7_continue_thi,
+                        *vedio_l8_continue_thi,*vedio_l9_continue_thi,*vedio_l10_continue_thi,*vedio_l11_continue_thi,*vedio_l12_continue_thi,*vedio_l13_continue_thi;
+             QLineEdit *vedio_continue_Fov0_thi,*vedio_continue_Fov1_thi,*vedio_continue_Fov2_thi,*vedio_continue_Fov3_thi,*vedio_continue_Fov4_thi,*vedio_continue_Fov5_thi,*vedio_continue_Fov6_thi,
+                        *vedio_continue_Fov7_thi,*vedio_continue_Fov8_thi,*vedio_continue_Fov9_thi,*vedio_continue_Fov10_thi,*vedio_continue_Fov11_thi,*vedio_continue_Fov12_thi;
              QPushButton *continue_set_azimuth_thi,*continue_set_pitch_thi,*continue_set_zoom_thi,*continue_search_azimuth_thi,*continue_search_pitch_thi,*continue_search_zoom_thi;
              QLineEdit  *continue_ledt_set_azimuth_thi,*continue_ledt_set_pitch_thi,*continue_ledt_set_zoom_thi,*continue_ledt_search_azimuth_thi,*continue_ledt_search_pitch_thi,*continue_ledt_search_zoom_thi,*continue_vertical_thi;
-             QLineEdit *continue_vertical1_thi,*continue_vertical2_thi,*continue_vertical3_thi,*continue_vertical4_thi,*continue_vertical5_thi,*continue_vertical6_thi,*continue_vertical7_thi;
+             QLineEdit *continue_vertical1_thi,*continue_vertical2_thi,*continue_vertical3_thi,*continue_vertical4_thi,*continue_vertical5_thi,*continue_vertical6_thi,*continue_vertical7_thi,
+                        *continue_vertical8_thi,*continue_vertical9_thi,*continue_vertical10_thi,*continue_vertical11_thi,*continue_vertical12_thi,*continue_vertical13_thi;
 
 
              /*摄像机配置通道4*/
@@ -1753,12 +1769,18 @@ private:
                 QCheckBox *continueChanelNum_fou,*continueenable_fou,*continue_vediohaveornot_fou,*continue_gateshow_fou,*continue_bullshow_fou,*continue_autogate_fou;
                 QComboBox *continue_vedio_dpi_fou;
                 QGroupBox *continue_vediochoose_fou;
-                MyQSpinBox *vedio_spbx_continue1_fou,*vedio_spbx_continue2_fou,*vedio_spbx_continue3_fou,*vedio_spbx_continue4_fou,*vedio_spbx_continue5_fou,*vedio_spbx_continue6_fou,*vedio_spbx_continue7_fou,*vedio_spby_continue1_fou,*vedio_spby_continue2_fou,*vedio_spby_continue3_fou,*vedio_spby_continue4_fou,*vedio_spby_continue5_fou,*vedio_spby_continue6_fou,*vedio_spby_continue7_fou;
-                QLineEdit *vedio_l1_continue_fou,*vedio_l2_continue_fou,*vedio_l3_continue_fou,*vedio_l4_continue_fou,*vedio_l5_continue_fou,*vedio_l6_continue_fou,*vedio_l7_continue_fou;
-                QLineEdit *vedio_continue_Fov0_fou,*vedio_continue_Fov1_fou,*vedio_continue_Fov2_fou,*vedio_continue_Fov3_fou,*vedio_continue_Fov4_fou,*vedio_continue_Fov5_fou,*vedio_continue_Fov6_fou;
+                MyQSpinBox *vedio_spbx_continue1_fou,*vedio_spbx_continue2_fou,*vedio_spbx_continue3_fou,*vedio_spbx_continue4_fou,*vedio_spbx_continue5_fou,*vedio_spbx_continue6_fou,*vedio_spbx_continue7_fou,
+                            *vedio_spbx_continue8_fou,*vedio_spbx_continue9_fou,*vedio_spbx_continue10_fou,*vedio_spbx_continue11_fou,*vedio_spbx_continue12_fou,*vedio_spbx_continue13_fou,
+                            *vedio_spby_continue1_fou,*vedio_spby_continue2_fou,*vedio_spby_continue3_fou,*vedio_spby_continue4_fou,*vedio_spby_continue5_fou,*vedio_spby_continue6_fou,*vedio_spby_continue7_fou,
+                            *vedio_spby_continue8_fou,*vedio_spby_continue9_fou,*vedio_spby_continue10_fou,*vedio_spby_continue11_fou,*vedio_spby_continue12_fou,*vedio_spby_continue13_fou;
+                QLineEdit *vedio_l1_continue_fou,*vedio_l2_continue_fou,*vedio_l3_continue_fou,*vedio_l4_continue_fou,*vedio_l5_continue_fou,*vedio_l6_continue_fou,*vedio_l7_continue_fou,
+                            *vedio_l8_continue_fou,*vedio_l9_continue_fou,*vedio_l10_continue_fou,*vedio_l11_continue_fou,*vedio_l12_continue_fou,*vedio_l13_continue_fou;
+                QLineEdit *vedio_continue_Fov0_fou,*vedio_continue_Fov1_fou,*vedio_continue_Fov2_fou,*vedio_continue_Fov3_fou,*vedio_continue_Fov4_fou,*vedio_continue_Fov5_fou,*vedio_continue_Fov6_fou,
+                            *vedio_continue_Fov7_fou,*vedio_continue_Fov8_fou,*vedio_continue_Fov9_fou,*vedio_continue_Fov10_fou,*vedio_continue_Fov11_fou,*vedio_continue_Fov12_fou;
                 QPushButton *continue_set_azimuth_fou,*continue_set_pitch_fou,*continue_set_zoom_fou,*continue_search_azimuth_fou,*continue_search_pitch_fou,*continue_search_zoom_fou;
                 QLineEdit  *continue_ledt_set_azimuth_fou,*continue_ledt_set_pitch_fou,*continue_ledt_set_zoom_fou,*continue_ledt_search_azimuth_fou,*continue_ledt_search_pitch_fou,*continue_ledt_search_zoom_fou,*continue_vertical_fou;
-                QLineEdit *continue_vertical1_fou,*continue_vertical2_fou,*continue_vertical3_fou,*continue_vertical4_fou,*continue_vertical5_fou,*continue_vertical6_fou,*continue_vertical7_fou;
+                QLineEdit *continue_vertical1_fou,*continue_vertical2_fou,*continue_vertical3_fou,*continue_vertical4_fou,*continue_vertical5_fou,*continue_vertical6_fou,*continue_vertical7_fou,
+                            *continue_vertical8_fou,*continue_vertical9_fou,*continue_vertical10_fou,*continue_vertical11_fou,*continue_vertical12_fou,*continue_vertical13_fou;
 
                 /*摄像机配置通道5*/
                    /*固定视场*/
@@ -1788,12 +1810,18 @@ private:
                    QCheckBox *continueChanelNum_fif,*continueenable_fif,*continue_vediohaveornot_fif,*continue_gateshow_fif,*continue_bullshow_fif,*continue_autogate_fif;
                    QComboBox *continue_vedio_dpi_fif;
                    QGroupBox *continue_vediochoose_fif;
-                   MyQSpinBox *vedio_spbx_continue1_fif,*vedio_spbx_continue2_fif,*vedio_spbx_continue3_fif,*vedio_spbx_continue4_fif,*vedio_spbx_continue5_fif,*vedio_spbx_continue6_fif,*vedio_spbx_continue7_fif,*vedio_spby_continue1_fif,*vedio_spby_continue2_fif,*vedio_spby_continue3_fif,*vedio_spby_continue4_fif,*vedio_spby_continue5_fif,*vedio_spby_continue6_fif,*vedio_spby_continue7_fif;
-                   QLineEdit *vedio_l1_continue_fif,*vedio_l2_continue_fif,*vedio_l3_continue_fif,*vedio_l4_continue_fif,*vedio_l5_continue_fif,*vedio_l6_continue_fif,*vedio_l7_continue_fif;
-                   QLineEdit *vedio_continue_Fov0_fif,*vedio_continue_Fov1_fif,*vedio_continue_Fov2_fif,*vedio_continue_Fov3_fif,*vedio_continue_Fov4_fif,*vedio_continue_Fov5_fif,*vedio_continue_Fov6_fif;
+                   MyQSpinBox *vedio_spbx_continue1_fif,*vedio_spbx_continue2_fif,*vedio_spbx_continue3_fif,*vedio_spbx_continue4_fif,*vedio_spbx_continue5_fif,*vedio_spbx_continue6_fif,*vedio_spbx_continue7_fif,
+                            *vedio_spbx_continue8_fif,*vedio_spbx_continue9_fif,*vedio_spbx_continue10_fif,*vedio_spbx_continue11_fif,*vedio_spbx_continue12_fif,*vedio_spbx_continue13_fif,
+                            *vedio_spby_continue1_fif,*vedio_spby_continue2_fif,*vedio_spby_continue3_fif,*vedio_spby_continue4_fif,*vedio_spby_continue5_fif,*vedio_spby_continue6_fif,*vedio_spby_continue7_fif,
+                            *vedio_spby_continue8_fif,*vedio_spby_continue9_fif,*vedio_spby_continue10_fif,*vedio_spby_continue11_fif,*vedio_spby_continue12_fif,*vedio_spby_continue13_fif;
+                   QLineEdit *vedio_l1_continue_fif,*vedio_l2_continue_fif,*vedio_l3_continue_fif,*vedio_l4_continue_fif,*vedio_l5_continue_fif,*vedio_l6_continue_fif,*vedio_l7_continue_fif,
+                            *vedio_l8_continue_fif,*vedio_l9_continue_fif,*vedio_l10_continue_fif,*vedio_l11_continue_fif,*vedio_l12_continue_fif,*vedio_l13_continue_fif;
+                   QLineEdit *vedio_continue_Fov0_fif,*vedio_continue_Fov1_fif,*vedio_continue_Fov2_fif,*vedio_continue_Fov3_fif,*vedio_continue_Fov4_fif,*vedio_continue_Fov5_fif,*vedio_continue_Fov6_fif,
+                            *vedio_continue_Fov7_fif,*vedio_continue_Fov8_fif,*vedio_continue_Fov9_fif,*vedio_continue_Fov10_fif,*vedio_continue_Fov11_fif,*vedio_continue_Fov12_fif;
                    QPushButton *continue_set_azimuth_fif,*continue_set_pitch_fif,*continue_set_zoom_fif,*continue_search_azimuth_fif,*continue_search_pitch_fif,*continue_search_zoom_fif;
                    QLineEdit  *continue_ledt_set_azimuth_fif,*continue_ledt_set_pitch_fif,*continue_ledt_set_zoom_fif,*continue_ledt_search_azimuth_fif,*continue_ledt_search_pitch_fif,*continue_ledt_search_zoom_fif,*continue_vertical_fif;
-                   QLineEdit *continue_vertical1_fif,*continue_vertical2_fif,*continue_vertical3_fif,*continue_vertical4_fif,*continue_vertical5_fif,*continue_vertical6_fif,*continue_vertical7_fif;
+                   QLineEdit *continue_vertical1_fif,*continue_vertical2_fif,*continue_vertical3_fif,*continue_vertical4_fif,*continue_vertical5_fif,*continue_vertical6_fif,*continue_vertical7_fif,
+                   *continue_vertical8_fif,*continue_vertical9_fif,*continue_vertical10_fif,*continue_vertical11_fif,*continue_vertical12_fif,*continue_vertical13_fif;
     /*移动检测配置*/
     MyWidget *w_mtd;
     QPushButton *btn_mtd_default,*btn_mtd_update;

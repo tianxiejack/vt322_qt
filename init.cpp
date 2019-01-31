@@ -1523,6 +1523,12 @@ void MainWindow::init_vedioCfg()
     vedio_l5_continue=new QLineEdit;
     vedio_l6_continue=new QLineEdit;
     vedio_l7_continue=new QLineEdit;
+    vedio_l8_continue=new QLineEdit;
+    vedio_l9_continue=new QLineEdit;
+    vedio_l10_continue=new QLineEdit;
+    vedio_l11_continue=new QLineEdit;
+    vedio_l12_continue=new QLineEdit;
+    vedio_l13_continue=new QLineEdit;
     glc->addWidget(vedio_l1_continue,1,1,1,1);
     glc->addWidget(vedio_l2_continue,2,1,1,1);
     glc->addWidget(vedio_l3_continue,3,1,1,1);
@@ -1530,6 +1536,12 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(vedio_l5_continue,5,1,1,1);
     glc->addWidget(vedio_l6_continue,6,1,1,1);
     glc->addWidget(vedio_l7_continue,7,1,1,1);
+    glc->addWidget(vedio_l8_continue,8,1,1,1);
+    glc->addWidget(vedio_l9_continue,9,1,1,1);
+    glc->addWidget(vedio_l10_continue,10,1,1,1);
+    glc->addWidget(vedio_l11_continue,11,1,1,1);
+    glc->addWidget(vedio_l12_continue,12,1,1,1);
+    glc->addWidget(vedio_l13_continue,13,1,1,1);
 
     vedio_continue_Fov0 = new QLineEdit;
     vedio_continue_Fov1 = new QLineEdit;
@@ -1538,6 +1550,12 @@ void MainWindow::init_vedioCfg()
     vedio_continue_Fov4 = new QLineEdit;
     vedio_continue_Fov5 = new QLineEdit;
     vedio_continue_Fov6 = new QLineEdit;
+    vedio_continue_Fov7 = new QLineEdit;
+    vedio_continue_Fov8 = new QLineEdit;
+    vedio_continue_Fov9 = new QLineEdit;
+    vedio_continue_Fov10 = new QLineEdit;
+    vedio_continue_Fov11 = new QLineEdit;
+    vedio_continue_Fov12 = new QLineEdit;
     glc->addWidget(vedio_continue_Fov0,1,2,1,1);
     glc->addWidget(vedio_continue_Fov1,2,2,1,1);
     glc->addWidget(vedio_continue_Fov2,3,2,1,1);
@@ -1545,6 +1563,12 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(vedio_continue_Fov4,5,2,1,1);
     glc->addWidget(vedio_continue_Fov5,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6,7,2,1,1);
+    glc->addWidget(vedio_continue_Fov7,8,2,1,1);
+    glc->addWidget(vedio_continue_Fov8,9,2,1,1);
+    glc->addWidget(vedio_continue_Fov9,10,2,1,1);
+    glc->addWidget(vedio_continue_Fov10,11,2,1,1);
+    glc->addWidget(vedio_continue_Fov11,12,2,1,1);
+    glc->addWidget(vedio_continue_Fov12,13,2,1,1);
 
     continue_vertical1 = new QLineEdit;
     continue_vertical2 = new QLineEdit;
@@ -1553,6 +1577,12 @@ void MainWindow::init_vedioCfg()
     continue_vertical5 = new QLineEdit;
     continue_vertical6 = new QLineEdit;
     continue_vertical7 = new QLineEdit;
+    continue_vertical8 = new QLineEdit;
+    continue_vertical9 = new QLineEdit;
+    continue_vertical10 = new QLineEdit;
+    continue_vertical11 = new QLineEdit;
+    continue_vertical12 = new QLineEdit;
+    continue_vertical13 = new QLineEdit;
     glc->addWidget(continue_vertical1,1,4,1,1);
     glc->addWidget(continue_vertical2,2,4,1,1);
     glc->addWidget(continue_vertical3,3,4,1,1);
@@ -1560,6 +1590,12 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(continue_vertical5,5,4,1,1);
     glc->addWidget(continue_vertical6,6,4,1,1);
     glc->addWidget(continue_vertical7,7,4,1,1);
+    glc->addWidget(continue_vertical8,8,4,1,1);
+    glc->addWidget(continue_vertical9,9,4,1,1);
+    glc->addWidget(continue_vertical10,10,4,1,1);
+    glc->addWidget(continue_vertical11,11,4,1,1);
+    glc->addWidget(continue_vertical12,12,4,1,1);
+    glc->addWidget(continue_vertical13,13,4,1,1);
 
     QLabel* l1dv31=new QLabel;
     QLabel* l1dv32=new QLabel;
@@ -1615,6 +1651,12 @@ void MainWindow::init_vedioCfg()
     vedio_spbx_continue5=new MyQSpinBox;
     vedio_spbx_continue6=new MyQSpinBox;
     vedio_spbx_continue7=new MyQSpinBox;
+    vedio_spbx_continue8=new MyQSpinBox;
+    vedio_spbx_continue9=new MyQSpinBox;
+    vedio_spbx_continue10=new MyQSpinBox;
+    vedio_spbx_continue11=new MyQSpinBox;
+    vedio_spbx_continue12=new MyQSpinBox;
+    vedio_spbx_continue13=new MyQSpinBox;
 
     vedio_spbx_continue1->spid = continue1_spinx;
     vedio_spbx_continue2->spid = continue2_spinx;
@@ -1623,6 +1665,12 @@ void MainWindow::init_vedioCfg()
     vedio_spbx_continue5->spid = continue5_spinx;
     vedio_spbx_continue6->spid = continue6_spinx;
     vedio_spbx_continue7->spid = continue7_spinx;
+    vedio_spbx_continue8->spid = continue8_spinx;
+    vedio_spbx_continue9->spid = continue9_spinx;
+    vedio_spbx_continue10->spid = continue10_spinx;
+    vedio_spbx_continue11->spid = continue11_spinx;
+    vedio_spbx_continue12->spid = continue12_spinx;
+    vedio_spbx_continue13->spid = continue13_spinx;
 
     vedio_spbx_continue1->setRange(0,9999);
     vedio_spbx_continue2->setRange(0,9999);
@@ -1631,6 +1679,12 @@ void MainWindow::init_vedioCfg()
     vedio_spbx_continue5->setRange(0,9999);
     vedio_spbx_continue6->setRange(0,9999);
     vedio_spbx_continue7->setRange(0,9999);
+    vedio_spbx_continue8->setRange(0,9999);
+    vedio_spbx_continue9->setRange(0,9999);
+    vedio_spbx_continue10->setRange(0,9999);
+    vedio_spbx_continue11->setRange(0,9999);
+    vedio_spbx_continue12->setRange(0,9999);
+    vedio_spbx_continue13->setRange(0,9999);
 
     glc->addWidget(vedio_spbx_continue1,1,6,1,1);
     glc->addWidget(vedio_spbx_continue2,2,6,1,1);
@@ -1639,7 +1693,12 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(vedio_spbx_continue5,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7,7,6,1,1);
-
+    glc->addWidget(vedio_spbx_continue8,8,6,1,1);
+    glc->addWidget(vedio_spbx_continue9,9,6,1,1);
+    glc->addWidget(vedio_spbx_continue10,10,6,1,1);
+    glc->addWidget(vedio_spbx_continue11,11,6,1,1);
+    glc->addWidget(vedio_spbx_continue12,12,6,1,1);
+    glc->addWidget(vedio_spbx_continue13,13,6,1,1);
 
     vedio_spby_continue1=new MyQSpinBox;
     vedio_spby_continue2=new MyQSpinBox;
@@ -1648,6 +1707,12 @@ void MainWindow::init_vedioCfg()
     vedio_spby_continue5=new MyQSpinBox;
     vedio_spby_continue6=new MyQSpinBox;
     vedio_spby_continue7=new MyQSpinBox;
+    vedio_spby_continue8=new MyQSpinBox;
+    vedio_spby_continue9=new MyQSpinBox;
+    vedio_spby_continue10=new MyQSpinBox;
+    vedio_spby_continue11=new MyQSpinBox;
+    vedio_spby_continue12=new MyQSpinBox;
+    vedio_spby_continue13=new MyQSpinBox;
 
     vedio_spby_continue1->spid = continue1_spiny;
     vedio_spby_continue2->spid = continue2_spiny;
@@ -1656,6 +1721,12 @@ void MainWindow::init_vedioCfg()
     vedio_spby_continue5->spid = continue5_spiny;
     vedio_spby_continue6->spid = continue6_spiny;
     vedio_spby_continue7->spid = continue7_spiny;
+    vedio_spby_continue8->spid = continue8_spiny;
+    vedio_spby_continue9->spid = continue9_spiny;
+    vedio_spby_continue10->spid = continue10_spiny;
+    vedio_spby_continue11->spid = continue11_spiny;
+    vedio_spby_continue12->spid = continue12_spiny;
+    vedio_spby_continue13->spid = continue13_spiny;
 
     vedio_spby_continue1->setRange(0,9999);
     vedio_spby_continue2->setRange(0,9999);
@@ -1664,6 +1735,12 @@ void MainWindow::init_vedioCfg()
     vedio_spby_continue5->setRange(0,9999);
     vedio_spby_continue6->setRange(0,9999);
     vedio_spby_continue7->setRange(0,9999);
+    vedio_spby_continue8->setRange(0,9999);
+    vedio_spby_continue9->setRange(0,9999);
+    vedio_spby_continue10->setRange(0,9999);
+    vedio_spby_continue11->setRange(0,9999);
+    vedio_spby_continue12->setRange(0,9999);
+    vedio_spby_continue13->setRange(0,9999);
 
     glc->addWidget(vedio_spby_continue1,1,7,1,1);
     glc->addWidget(vedio_spby_continue2,2,7,1,1);
@@ -1672,6 +1749,12 @@ void MainWindow::init_vedioCfg()
     glc->addWidget(vedio_spby_continue5,5,7,1,1);
     glc->addWidget(vedio_spby_continue6,6,7,1,1);
     glc->addWidget(vedio_spby_continue7,7,7,1,1);
+    glc->addWidget(vedio_spby_continue8,8,7,1,1);
+    glc->addWidget(vedio_spby_continue9,9,7,1,1);
+    glc->addWidget(vedio_spby_continue10,10,7,1,1);
+    glc->addWidget(vedio_spby_continue11,11,7,1,1);
+    glc->addWidget(vedio_spby_continue12,12,7,1,1);
+    glc->addWidget(vedio_spby_continue13,13,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -1719,6 +1802,12 @@ void MainWindow::init_vedioCfg()
     connect(vedio_l5_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l5_continue_Slot()));
     connect(vedio_l6_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l6_continue_Slot()));
     connect(vedio_l7_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l7_continue_Slot()));
+    connect(vedio_l8_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l8_continue_Slot()));
+    connect(vedio_l9_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l9_continue_Slot()));
+    connect(vedio_l10_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l10_continue_Slot()));
+    connect(vedio_l11_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l11_continue_Slot()));
+    connect(vedio_l12_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l12_continue_Slot()));
+    connect(vedio_l13_continue,SIGNAL(returnPressed()),this,SLOT(vedio_l13_continue_Slot()));
 
     connect(vedio_continue_Fov0,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot()));
     connect(vedio_continue_Fov1,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot()));
@@ -1727,6 +1816,12 @@ void MainWindow::init_vedioCfg()
     connect(vedio_continue_Fov4,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot()));
     connect(vedio_continue_Fov5,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot()));
     connect(vedio_continue_Fov6,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot()));
+    connect(vedio_continue_Fov7,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov7_Slot()));
+    connect(vedio_continue_Fov8,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov8_Slot()));
+    connect(vedio_continue_Fov9,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov9_Slot()));
+    connect(vedio_continue_Fov10,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov10_Slot()));
+    connect(vedio_continue_Fov11,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov11_Slot()));
+    connect(vedio_continue_Fov12,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov12_Slot()));
 
     connect(continue_vertical1,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot()));
     connect(continue_vertical2,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot()));
@@ -1735,6 +1830,12 @@ void MainWindow::init_vedioCfg()
     connect(continue_vertical5,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot()));
     connect(continue_vertical6,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot()));
     connect(continue_vertical7,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot()));
+    connect(continue_vertical8,SIGNAL(returnPressed()),this,SLOT(continue_vertical8_Slot()));
+    connect(continue_vertical9,SIGNAL(returnPressed()),this,SLOT(continue_vertical9_Slot()));
+    connect(continue_vertical10,SIGNAL(returnPressed()),this,SLOT(continue_vertical10_Slot()));
+    connect(continue_vertical11,SIGNAL(returnPressed()),this,SLOT(continue_vertical11_Slot()));
+    connect(continue_vertical12,SIGNAL(returnPressed()),this,SLOT(continue_vertical12_Slot()));
+    connect(continue_vertical13,SIGNAL(returnPressed()),this,SLOT(continue_vertical13_Slot()));
 
     connect(vedio_spbx_continue1,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot()));
     connect(vedio_spbx_continue2,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot()));
@@ -1743,6 +1844,12 @@ void MainWindow::init_vedioCfg()
     connect(vedio_spbx_continue5,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot()));
     connect(vedio_spbx_continue6,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot()));
     connect(vedio_spbx_continue7,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot()));
+    connect(vedio_spbx_continue8,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue8_Slot()));
+    connect(vedio_spbx_continue9,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue9_Slot()));
+    connect(vedio_spbx_continue10,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue10_Slot()));
+    connect(vedio_spbx_continue11,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue11_Slot()));
+    connect(vedio_spbx_continue12,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue12_Slot()));
+    connect(vedio_spbx_continue13,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue13_Slot()));
 
     connect(vedio_spby_continue1,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot()));
     connect(vedio_spby_continue2,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot()));
@@ -1751,6 +1858,12 @@ void MainWindow::init_vedioCfg()
     connect(vedio_spby_continue5,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot()));
     connect(vedio_spby_continue6,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot()));
     connect(vedio_spby_continue7,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot()));
+    connect(vedio_spby_continue8,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue8_Slot()));
+    connect(vedio_spby_continue9,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue9_Slot()));
+    connect(vedio_spby_continue10,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue10_Slot()));
+    connect(vedio_spby_continue11,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue11_Slot()));
+    connect(vedio_spby_continue12,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue12_Slot()));
+    connect(vedio_spby_continue13,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue13_Slot()));
 }
 
 
@@ -2478,6 +2591,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_l5_continue_sec=new QLineEdit;
     vedio_l6_continue_sec=new QLineEdit;
     vedio_l7_continue_sec=new QLineEdit;
+    vedio_l8_continue_sec=new QLineEdit;
+    vedio_l9_continue_sec=new QLineEdit;
+    vedio_l10_continue_sec=new QLineEdit;
+    vedio_l11_continue_sec=new QLineEdit;
+    vedio_l12_continue_sec=new QLineEdit;
+    vedio_l13_continue_sec=new QLineEdit;
     glc->addWidget(vedio_l1_continue_sec,1,1,1,1);
     glc->addWidget(vedio_l2_continue_sec,2,1,1,1);
     glc->addWidget(vedio_l3_continue_sec,3,1,1,1);
@@ -2485,6 +2604,12 @@ void MainWindow::init_vedioCfg_sec(){
     glc->addWidget(vedio_l5_continue_sec,5,1,1,1);
     glc->addWidget(vedio_l6_continue_sec,6,1,1,1);
     glc->addWidget(vedio_l7_continue_sec,7,1,1,1);
+    glc->addWidget(vedio_l8_continue_sec,8,1,1,1);
+    glc->addWidget(vedio_l9_continue_sec,9,1,1,1);
+    glc->addWidget(vedio_l10_continue_sec,10,1,1,1);
+    glc->addWidget(vedio_l11_continue_sec,11,1,1,1);
+    glc->addWidget(vedio_l12_continue_sec,12,1,1,1);
+    glc->addWidget(vedio_l13_continue_sec,13,1,1,1);
 
     vedio_continue_Fov0_sec = new QLineEdit;
     vedio_continue_Fov1_sec = new QLineEdit;
@@ -2493,6 +2618,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_continue_Fov4_sec = new QLineEdit;
     vedio_continue_Fov5_sec = new QLineEdit;
     vedio_continue_Fov6_sec = new QLineEdit;
+    vedio_continue_Fov7_sec = new QLineEdit;
+    vedio_continue_Fov8_sec = new QLineEdit;
+    vedio_continue_Fov9_sec = new QLineEdit;
+    vedio_continue_Fov10_sec = new QLineEdit;
+    vedio_continue_Fov11_sec = new QLineEdit;
+    vedio_continue_Fov12_sec = new QLineEdit;
     glc->addWidget(vedio_continue_Fov0_sec,1,2,1,1);
     glc->addWidget(vedio_continue_Fov1_sec,2,2,1,1);
     glc->addWidget(vedio_continue_Fov2_sec,3,2,1,1);
@@ -2500,6 +2631,12 @@ void MainWindow::init_vedioCfg_sec(){
     glc->addWidget(vedio_continue_Fov4_sec,5,2,1,1);
     glc->addWidget(vedio_continue_Fov5_sec,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6_sec,7,2,1,1);
+    glc->addWidget(vedio_continue_Fov7_sec,8,2,1,1);
+    glc->addWidget(vedio_continue_Fov8_sec,9,2,1,1);
+    glc->addWidget(vedio_continue_Fov9_sec,10,2,1,1);
+    glc->addWidget(vedio_continue_Fov10_sec,11,2,1,1);
+    glc->addWidget(vedio_continue_Fov11_sec,12,2,1,1);
+    glc->addWidget(vedio_continue_Fov12_sec,13,2,1,1);
 
     continue_vertical1_sec = new QLineEdit;
     continue_vertical2_sec = new QLineEdit;
@@ -2508,6 +2645,12 @@ void MainWindow::init_vedioCfg_sec(){
     continue_vertical5_sec= new QLineEdit;
     continue_vertical6_sec = new QLineEdit;
     continue_vertical7_sec = new QLineEdit;
+    continue_vertical8_sec = new QLineEdit;
+    continue_vertical9_sec = new QLineEdit;
+    continue_vertical10_sec = new QLineEdit;
+    continue_vertical11_sec = new QLineEdit;
+    continue_vertical12_sec = new QLineEdit;
+    continue_vertical13_sec = new QLineEdit;
     glc->addWidget(continue_vertical1_sec,1,4,1,1);
     glc->addWidget(continue_vertical2_sec,2,4,1,1);
     glc->addWidget(continue_vertical3_sec,3,4,1,1);
@@ -2515,6 +2658,12 @@ void MainWindow::init_vedioCfg_sec(){
     glc->addWidget(continue_vertical5_sec,5,4,1,1);
     glc->addWidget(continue_vertical6_sec,6,4,1,1);
     glc->addWidget(continue_vertical7_sec,7,4,1,1);
+    glc->addWidget(continue_vertical8_sec,8,4,1,1);
+    glc->addWidget(continue_vertical9_sec,9,4,1,1);
+    glc->addWidget(continue_vertical10_sec,10,4,1,1);
+    glc->addWidget(continue_vertical11_sec,11,4,1,1);
+    glc->addWidget(continue_vertical12_sec,12,4,1,1);
+    glc->addWidget(continue_vertical13_sec,13,4,1,1);
 
     QLabel* l1dv31=new QLabel;
     QLabel* l1dv32=new QLabel;
@@ -2570,6 +2719,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spbx_continue5_sec=new MyQSpinBox;
     vedio_spbx_continue6_sec=new MyQSpinBox;
     vedio_spbx_continue7_sec=new MyQSpinBox;
+    vedio_spbx_continue8_sec=new MyQSpinBox;
+    vedio_spbx_continue9_sec=new MyQSpinBox;
+    vedio_spbx_continue10_sec=new MyQSpinBox;
+    vedio_spbx_continue11_sec=new MyQSpinBox;
+    vedio_spbx_continue12_sec=new MyQSpinBox;
+    vedio_spbx_continue13_sec=new MyQSpinBox;
 
     vedio_spbx_continue1_sec->spid = continue1_spinx_sec;
     vedio_spbx_continue2_sec->spid = continue2_spinx_sec;
@@ -2578,6 +2733,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spbx_continue5_sec->spid = continue5_spinx_sec;
     vedio_spbx_continue6_sec->spid = continue6_spinx_sec;
     vedio_spbx_continue7_sec->spid = continue7_spinx_sec;
+    vedio_spbx_continue8_sec->spid = continue8_spinx_sec;
+    vedio_spbx_continue9_sec->spid = continue9_spinx_sec;
+    vedio_spbx_continue10_sec->spid = continue10_spinx_sec;
+    vedio_spbx_continue11_sec->spid = continue11_spinx_sec;
+    vedio_spbx_continue12_sec->spid = continue12_spinx_sec;
+    vedio_spbx_continue13_sec->spid = continue13_spinx_sec;
 
     vedio_spbx_continue1_sec->setRange(0,9999);
     vedio_spbx_continue2_sec->setRange(0,9999);
@@ -2586,6 +2747,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spbx_continue5_sec->setRange(0,9999);
     vedio_spbx_continue6_sec->setRange(0,9999);
     vedio_spbx_continue7_sec->setRange(0,9999);
+    vedio_spbx_continue8_sec->setRange(0,9999);
+    vedio_spbx_continue9_sec->setRange(0,9999);
+    vedio_spbx_continue10_sec->setRange(0,9999);
+    vedio_spbx_continue11_sec->setRange(0,9999);
+    vedio_spbx_continue12_sec->setRange(0,9999);
+    vedio_spbx_continue13_sec->setRange(0,9999);
 
     glc->addWidget(vedio_spbx_continue1_sec,1,6,1,1);
     glc->addWidget(vedio_spbx_continue2_sec,2,6,1,1);
@@ -2594,6 +2761,12 @@ void MainWindow::init_vedioCfg_sec(){
     glc->addWidget(vedio_spbx_continue5_sec,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6_sec,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7_sec,7,6,1,1);
+    glc->addWidget(vedio_spbx_continue8_sec,8,6,1,1);
+    glc->addWidget(vedio_spbx_continue9_sec,9,6,1,1);
+    glc->addWidget(vedio_spbx_continue10_sec,10,6,1,1);
+    glc->addWidget(vedio_spbx_continue11_sec,11,6,1,1);
+    glc->addWidget(vedio_spbx_continue12_sec,12,6,1,1);
+    glc->addWidget(vedio_spbx_continue13_sec,13,6,1,1);
 
 
     vedio_spby_continue1_sec=new MyQSpinBox;
@@ -2603,6 +2776,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spby_continue5_sec=new MyQSpinBox;
     vedio_spby_continue6_sec=new MyQSpinBox;
     vedio_spby_continue7_sec=new MyQSpinBox;
+    vedio_spby_continue8_sec=new MyQSpinBox;
+    vedio_spby_continue9_sec=new MyQSpinBox;
+    vedio_spby_continue10_sec=new MyQSpinBox;
+    vedio_spby_continue11_sec=new MyQSpinBox;
+    vedio_spby_continue12_sec=new MyQSpinBox;
+    vedio_spby_continue13_sec=new MyQSpinBox;
 
     vedio_spby_continue1_sec->spid = continue1_spiny_sec;
     vedio_spby_continue2_sec->spid = continue2_spiny_sec;
@@ -2611,6 +2790,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spby_continue5_sec->spid = continue5_spiny_sec;
     vedio_spby_continue6_sec->spid = continue6_spiny_sec;
     vedio_spby_continue7_sec->spid = continue7_spiny_sec;
+    vedio_spby_continue8_sec->spid = continue8_spiny_sec;
+    vedio_spby_continue9_sec->spid = continue9_spiny_sec;
+    vedio_spby_continue10_sec->spid = continue10_spiny_sec;
+    vedio_spby_continue11_sec->spid = continue11_spiny_sec;
+    vedio_spby_continue12_sec->spid = continue12_spiny_sec;
+    vedio_spby_continue13_sec->spid = continue13_spiny_sec;
 
     vedio_spby_continue1_sec->setRange(0,9999);
     vedio_spby_continue2_sec->setRange(0,9999);
@@ -2619,6 +2804,12 @@ void MainWindow::init_vedioCfg_sec(){
     vedio_spby_continue5_sec->setRange(0,9999);
     vedio_spby_continue6_sec->setRange(0,9999);
     vedio_spby_continue7_sec->setRange(0,9999);
+    vedio_spby_continue8_sec->setRange(0,9999);
+    vedio_spby_continue9_sec->setRange(0,9999);
+    vedio_spby_continue10_sec->setRange(0,9999);
+    vedio_spby_continue11_sec->setRange(0,9999);
+    vedio_spby_continue12_sec->setRange(0,9999);
+    vedio_spby_continue13_sec->setRange(0,9999);
 
     glc->addWidget(vedio_spby_continue1_sec,1,7,1,1);
     glc->addWidget(vedio_spby_continue2_sec,2,7,1,1);
@@ -2627,6 +2818,12 @@ void MainWindow::init_vedioCfg_sec(){
     glc->addWidget(vedio_spby_continue5_sec,5,7,1,1);
     glc->addWidget(vedio_spby_continue6_sec,6,7,1,1);
     glc->addWidget(vedio_spby_continue7_sec,7,7,1,1);
+    glc->addWidget(vedio_spby_continue8_sec,8,7,1,1);
+    glc->addWidget(vedio_spby_continue9_sec,9,7,1,1);
+    glc->addWidget(vedio_spby_continue10_sec,10,7,1,1);
+    glc->addWidget(vedio_spby_continue11_sec,11,7,1,1);
+    glc->addWidget(vedio_spby_continue12_sec,12,7,1,1);
+    glc->addWidget(vedio_spby_continue13_sec,13,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -2673,6 +2870,12 @@ void MainWindow::init_vedioCfg_sec(){
     connect(vedio_l5_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l5_continue_Slot_sec()));
     connect(vedio_l6_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l6_continue_Slot_sec()));
     connect(vedio_l7_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l7_continue_Slot_sec()));
+    connect(vedio_l8_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l8_continue_Slot_sec()));
+    connect(vedio_l9_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l9_continue_Slot_sec()));
+    connect(vedio_l10_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l10_continue_Slot_sec()));
+    connect(vedio_l11_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l11_continue_Slot_sec()));
+    connect(vedio_l12_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l12_continue_Slot_sec()));
+    connect(vedio_l13_continue_sec,SIGNAL(returnPressed()),this,SLOT(vedio_l13_continue_Slot_sec()));
 
     connect(vedio_continue_Fov0_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_sec()));
     connect(vedio_continue_Fov1_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_sec()));
@@ -2681,6 +2884,12 @@ void MainWindow::init_vedioCfg_sec(){
     connect(vedio_continue_Fov4_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_sec()));
     connect(vedio_continue_Fov5_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_sec()));
     connect(vedio_continue_Fov6_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_sec()));
+    connect(vedio_continue_Fov7_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov7_Slot_sec()));
+    connect(vedio_continue_Fov8_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov8_Slot_sec()));
+    connect(vedio_continue_Fov9_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov9_Slot_sec()));
+    connect(vedio_continue_Fov10_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov10_Slot_sec()));
+    connect(vedio_continue_Fov11_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov11_Slot_sec()));
+    connect(vedio_continue_Fov12_sec,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov12_Slot_sec()));
     connect(continue_vertical1_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_sec()));
     connect(continue_vertical2_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_sec()));
     connect(continue_vertical3_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_sec()));
@@ -2688,6 +2897,12 @@ void MainWindow::init_vedioCfg_sec(){
     connect(continue_vertical5_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_sec()));
     connect(continue_vertical6_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_sec()));
     connect(continue_vertical7_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_sec()));
+    connect(continue_vertical8_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical8_Slot_sec()));
+    connect(continue_vertical9_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical9_Slot_sec()));
+    connect(continue_vertical10_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical10_Slot_sec()));
+    connect(continue_vertical11_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical11_Slot_sec()));
+    connect(continue_vertical12_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical12_Slot_sec()));
+    connect(continue_vertical13_sec,SIGNAL(returnPressed()),this,SLOT(continue_vertical13_Slot_sec()));
 
     connect(vedio_spbx_continue1_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot_sec()));
     connect(vedio_spbx_continue2_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot_sec()));
@@ -2696,6 +2911,12 @@ void MainWindow::init_vedioCfg_sec(){
     connect(vedio_spbx_continue5_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot_sec()));
     connect(vedio_spbx_continue6_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot_sec()));
     connect(vedio_spbx_continue7_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot_sec()));
+    connect(vedio_spbx_continue8_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue8_Slot_sec()));
+    connect(vedio_spbx_continue9_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue9_Slot_sec()));
+    connect(vedio_spbx_continue10_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue10_Slot_sec()));
+    connect(vedio_spbx_continue11_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue11_Slot_sec()));
+    connect(vedio_spbx_continue12_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue12_Slot_sec()));
+    connect(vedio_spbx_continue13_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue13_Slot_sec()));
 
     connect(vedio_spby_continue1_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot_sec()));
     connect(vedio_spby_continue2_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot_sec()));
@@ -2704,6 +2925,12 @@ void MainWindow::init_vedioCfg_sec(){
     connect(vedio_spby_continue5_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot_sec()));
     connect(vedio_spby_continue6_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot_sec()));
     connect(vedio_spby_continue7_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot_sec()));
+    connect(vedio_spby_continue8_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue8_Slot_sec()));
+    connect(vedio_spby_continue9_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue9_Slot_sec()));
+    connect(vedio_spby_continue10_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue10_Slot_sec()));
+    connect(vedio_spby_continue11_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue11_Slot_sec()));
+    connect(vedio_spby_continue12_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue12_Slot_sec()));
+    connect(vedio_spby_continue13_sec,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue13_Slot_sec()));
 }
 
 void MainWindow::init_vedioCfg_thi(){
@@ -3429,6 +3656,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_l5_continue_thi=new QLineEdit;
     vedio_l6_continue_thi=new QLineEdit;
     vedio_l7_continue_thi=new QLineEdit;
+    vedio_l8_continue_thi=new QLineEdit;
+    vedio_l9_continue_thi=new QLineEdit;
+    vedio_l10_continue_thi=new QLineEdit;
+    vedio_l11_continue_thi=new QLineEdit;
+    vedio_l12_continue_thi=new QLineEdit;
+    vedio_l13_continue_thi=new QLineEdit;
     glc->addWidget(vedio_l1_continue_thi,1,1,1,1);
     glc->addWidget(vedio_l2_continue_thi,2,1,1,1);
     glc->addWidget(vedio_l3_continue_thi,3,1,1,1);
@@ -3436,6 +3669,12 @@ void MainWindow::init_vedioCfg_thi(){
     glc->addWidget(vedio_l5_continue_thi,5,1,1,1);
     glc->addWidget(vedio_l6_continue_thi,6,1,1,1);
     glc->addWidget(vedio_l7_continue_thi,7,1,1,1);
+    glc->addWidget(vedio_l8_continue_thi,8,1,1,1);
+    glc->addWidget(vedio_l9_continue_thi,9,1,1,1);
+    glc->addWidget(vedio_l10_continue_thi,10,1,1,1);
+    glc->addWidget(vedio_l11_continue_thi,11,1,1,1);
+    glc->addWidget(vedio_l12_continue_thi,12,1,1,1);
+    glc->addWidget(vedio_l13_continue_thi,13,1,1,1);
 
     vedio_continue_Fov0_thi = new QLineEdit;
     vedio_continue_Fov1_thi = new QLineEdit;
@@ -3444,6 +3683,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_continue_Fov4_thi = new QLineEdit;
     vedio_continue_Fov5_thi = new QLineEdit;
     vedio_continue_Fov6_thi = new QLineEdit;
+    vedio_continue_Fov7_thi = new QLineEdit;
+    vedio_continue_Fov8_thi = new QLineEdit;
+    vedio_continue_Fov9_thi = new QLineEdit;
+    vedio_continue_Fov10_thi = new QLineEdit;
+    vedio_continue_Fov11_thi = new QLineEdit;
+    vedio_continue_Fov12_thi = new QLineEdit;
     glc->addWidget(vedio_continue_Fov0_thi,1,2,1,1);
     glc->addWidget(vedio_continue_Fov1_thi,2,2,1,1);
     glc->addWidget(vedio_continue_Fov2_thi,3,2,1,1);
@@ -3451,6 +3696,12 @@ void MainWindow::init_vedioCfg_thi(){
     glc->addWidget(vedio_continue_Fov4_thi,5,2,1,1);
     glc->addWidget(vedio_continue_Fov5_thi,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6_thi,7,2,1,1);
+    glc->addWidget(vedio_continue_Fov7_thi,8,2,1,1);
+    glc->addWidget(vedio_continue_Fov8_thi,9,2,1,1);
+    glc->addWidget(vedio_continue_Fov9_thi,10,2,1,1);
+    glc->addWidget(vedio_continue_Fov10_thi,11,2,1,1);
+    glc->addWidget(vedio_continue_Fov11_thi,12,2,1,1);
+    glc->addWidget(vedio_continue_Fov12_thi,13,2,1,1);
 
     continue_vertical1_thi = new QLineEdit;
     continue_vertical2_thi = new QLineEdit;
@@ -3459,6 +3710,12 @@ void MainWindow::init_vedioCfg_thi(){
     continue_vertical5_thi = new QLineEdit;
     continue_vertical6_thi = new QLineEdit;
     continue_vertical7_thi = new QLineEdit;
+    continue_vertical8_thi = new QLineEdit;
+    continue_vertical9_thi = new QLineEdit;
+    continue_vertical10_thi = new QLineEdit;
+    continue_vertical11_thi = new QLineEdit;
+    continue_vertical12_thi = new QLineEdit;
+    continue_vertical13_thi = new QLineEdit;
     glc->addWidget(continue_vertical1_thi,1,4,1,1);
     glc->addWidget(continue_vertical2_thi,2,4,1,1);
     glc->addWidget(continue_vertical3_thi,3,4,1,1);
@@ -3466,6 +3723,12 @@ void MainWindow::init_vedioCfg_thi(){
     glc->addWidget(continue_vertical5_thi,5,4,1,1);
     glc->addWidget(continue_vertical6_thi,6,4,1,1);
     glc->addWidget(continue_vertical7_thi,7,4,1,1);
+    glc->addWidget(continue_vertical8_thi,8,4,1,1);
+    glc->addWidget(continue_vertical9_thi,9,4,1,1);
+    glc->addWidget(continue_vertical10_thi,10,4,1,1);
+    glc->addWidget(continue_vertical11_thi,11,4,1,1);
+    glc->addWidget(continue_vertical12_thi,12,4,1,1);
+    glc->addWidget(continue_vertical13_thi,13,4,1,1);
 
     QLabel* l1dv31=new QLabel;
     QLabel* l1dv32=new QLabel;
@@ -3521,6 +3784,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spbx_continue5_thi=new MyQSpinBox;
     vedio_spbx_continue6_thi=new MyQSpinBox;
     vedio_spbx_continue7_thi=new MyQSpinBox;
+    vedio_spbx_continue8_thi=new MyQSpinBox;
+    vedio_spbx_continue9_thi=new MyQSpinBox;
+    vedio_spbx_continue10_thi=new MyQSpinBox;
+    vedio_spbx_continue11_thi=new MyQSpinBox;
+    vedio_spbx_continue12_thi=new MyQSpinBox;
+    vedio_spbx_continue13_thi=new MyQSpinBox;
 
     vedio_spbx_continue1_thi->spid = continue1_spinx_thi;
     vedio_spbx_continue2_thi->spid = continue2_spinx_thi;
@@ -3529,6 +3798,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spbx_continue5_thi->spid = continue5_spinx_thi;
     vedio_spbx_continue6_thi->spid = continue6_spinx_thi;
     vedio_spbx_continue7_thi->spid = continue7_spinx_thi;
+    vedio_spbx_continue8_thi->spid = continue8_spinx_thi;
+    vedio_spbx_continue9_thi->spid = continue9_spinx_thi;
+    vedio_spbx_continue10_thi->spid = continue10_spinx_thi;
+    vedio_spbx_continue11_thi->spid = continue11_spinx_thi;
+    vedio_spbx_continue12_thi->spid = continue12_spinx_thi;
+    vedio_spbx_continue13_thi->spid = continue13_spinx_thi;
 
     vedio_spbx_continue1_thi->setRange(0,9999);
     vedio_spbx_continue2_thi->setRange(0,9999);
@@ -3537,6 +3812,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spbx_continue5_thi->setRange(0,9999);
     vedio_spbx_continue6_thi->setRange(0,9999);
     vedio_spbx_continue7_thi->setRange(0,9999);
+    vedio_spbx_continue8_thi->setRange(0,9999);
+    vedio_spbx_continue9_thi->setRange(0,9999);
+    vedio_spbx_continue10_thi->setRange(0,9999);
+    vedio_spbx_continue11_thi->setRange(0,9999);
+    vedio_spbx_continue12_thi->setRange(0,9999);
+    vedio_spbx_continue13_thi->setRange(0,9999);
 
     glc->addWidget(vedio_spbx_continue1_thi,1,6,1,1);
     glc->addWidget(vedio_spbx_continue2_thi,2,6,1,1);
@@ -3545,6 +3826,12 @@ void MainWindow::init_vedioCfg_thi(){
     glc->addWidget(vedio_spbx_continue5_thi,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6_thi,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7_thi,7,6,1,1);
+    glc->addWidget(vedio_spbx_continue8_thi,8,6,1,1);
+    glc->addWidget(vedio_spbx_continue9_thi,9,6,1,1);
+    glc->addWidget(vedio_spbx_continue10_thi,10,6,1,1);
+    glc->addWidget(vedio_spbx_continue11_thi,11,6,1,1);
+    glc->addWidget(vedio_spbx_continue12_thi,12,6,1,1);
+    glc->addWidget(vedio_spbx_continue13_thi,13,6,1,1);
 
     vedio_spby_continue1_thi=new MyQSpinBox;
     vedio_spby_continue2_thi=new MyQSpinBox;
@@ -3553,6 +3840,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spby_continue5_thi=new MyQSpinBox;
     vedio_spby_continue6_thi=new MyQSpinBox;
     vedio_spby_continue7_thi=new MyQSpinBox;
+    vedio_spby_continue8_thi=new MyQSpinBox;
+    vedio_spby_continue9_thi=new MyQSpinBox;
+    vedio_spby_continue10_thi=new MyQSpinBox;
+    vedio_spby_continue11_thi=new MyQSpinBox;
+    vedio_spby_continue12_thi=new MyQSpinBox;
+    vedio_spby_continue13_thi=new MyQSpinBox;
 
     vedio_spby_continue1_thi->spid = continue1_spiny_thi;
     vedio_spby_continue2_thi->spid = continue2_spiny_thi;
@@ -3561,6 +3854,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spby_continue5_thi->spid = continue5_spiny_thi;
     vedio_spby_continue6_thi->spid = continue6_spiny_thi;
     vedio_spby_continue7_thi->spid = continue7_spiny_thi;
+    vedio_spby_continue8_thi->spid = continue8_spiny_thi;
+    vedio_spby_continue9_thi->spid = continue9_spiny_thi;
+    vedio_spby_continue10_thi->spid = continue10_spiny_thi;
+    vedio_spby_continue11_thi->spid = continue11_spiny_thi;
+    vedio_spby_continue12_thi->spid = continue12_spiny_thi;
+    vedio_spby_continue13_thi->spid = continue13_spiny_thi;
 
     vedio_spby_continue1_thi->setRange(0,9999);
     vedio_spby_continue2_thi->setRange(0,9999);
@@ -3569,6 +3868,12 @@ void MainWindow::init_vedioCfg_thi(){
     vedio_spby_continue5_thi->setRange(0,9999);
     vedio_spby_continue6_thi->setRange(0,9999);
     vedio_spby_continue7_thi->setRange(0,9999);
+    vedio_spby_continue8_thi->setRange(0,9999);
+    vedio_spby_continue9_thi->setRange(0,9999);
+    vedio_spby_continue10_thi->setRange(0,9999);
+    vedio_spby_continue11_thi->setRange(0,9999);
+    vedio_spby_continue12_thi->setRange(0,9999);
+    vedio_spby_continue13_thi->setRange(0,9999);
 
     glc->addWidget(vedio_spby_continue1_thi,1,7,1,1);
     glc->addWidget(vedio_spby_continue2_thi,2,7,1,1);
@@ -3577,6 +3882,12 @@ void MainWindow::init_vedioCfg_thi(){
     glc->addWidget(vedio_spby_continue5_thi,5,7,1,1);
     glc->addWidget(vedio_spby_continue6_thi,6,7,1,1);
     glc->addWidget(vedio_spby_continue7_thi,7,7,1,1);
+    glc->addWidget(vedio_spby_continue8_thi,8,7,1,1);
+    glc->addWidget(vedio_spby_continue9_thi,9,7,1,1);
+    glc->addWidget(vedio_spby_continue10_thi,10,7,1,1);
+    glc->addWidget(vedio_spby_continue11_thi,11,7,1,1);
+    glc->addWidget(vedio_spby_continue12_thi,12,7,1,1);
+    glc->addWidget(vedio_spby_continue13_thi,13,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -3622,6 +3933,12 @@ void MainWindow::init_vedioCfg_thi(){
     connect(vedio_l5_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l5_continue_Slot_thi()));
     connect(vedio_l6_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l6_continue_Slot_thi()));
     connect(vedio_l7_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l7_continue_Slot_thi()));
+    connect(vedio_l8_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l8_continue_Slot_thi()));
+    connect(vedio_l9_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l9_continue_Slot_thi()));
+    connect(vedio_l10_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l10_continue_Slot_thi()));
+    connect(vedio_l11_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l11_continue_Slot_thi()));
+    connect(vedio_l12_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l12_continue_Slot_thi()));
+    connect(vedio_l13_continue_thi,SIGNAL(returnPressed()),this,SLOT(vedio_l13_continue_Slot_thi()));
 
     connect(vedio_continue_Fov0_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_thi()));
     connect(vedio_continue_Fov1_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_thi()));
@@ -3630,6 +3947,14 @@ void MainWindow::init_vedioCfg_thi(){
     connect(vedio_continue_Fov4_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_thi()));
     connect(vedio_continue_Fov5_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_thi()));
     connect(vedio_continue_Fov6_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_thi()));
+    connect(vedio_continue_Fov7_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov7_Slot_thi()));
+    connect(vedio_continue_Fov8_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov8_Slot_thi()));
+    connect(vedio_continue_Fov9_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov9_Slot_thi()));
+    connect(vedio_continue_Fov10_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov10_Slot_thi()));
+    connect(vedio_continue_Fov11_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov11_Slot_thi()));
+    connect(vedio_continue_Fov12_thi,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov12_Slot_thi()));
+
+
     connect(continue_vertical1_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_thi()));
     connect(continue_vertical2_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_thi()));
     connect(continue_vertical3_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_thi()));
@@ -3637,6 +3962,12 @@ void MainWindow::init_vedioCfg_thi(){
     connect(continue_vertical5_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_thi()));
     connect(continue_vertical6_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_thi()));
     connect(continue_vertical7_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_thi()));
+    connect(continue_vertical8_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical8_Slot_thi()));
+    connect(continue_vertical9_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical9_Slot_thi()));
+    connect(continue_vertical10_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical10_Slot_thi()));
+    connect(continue_vertical11_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical11_Slot_thi()));
+    connect(continue_vertical12_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical12_Slot_thi()));
+    connect(continue_vertical13_thi,SIGNAL(returnPressed()),this,SLOT(continue_vertical13_Slot_thi()));
 
     connect(vedio_spbx_continue1_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot_thi()));
     connect(vedio_spbx_continue2_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot_thi()));
@@ -3645,6 +3976,12 @@ void MainWindow::init_vedioCfg_thi(){
     connect(vedio_spbx_continue5_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot_thi()));
     connect(vedio_spbx_continue6_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot_thi()));
     connect(vedio_spbx_continue7_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot_thi()));
+    connect(vedio_spbx_continue8_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue8_Slot_thi()));
+    connect(vedio_spbx_continue9_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue9_Slot_thi()));
+    connect(vedio_spbx_continue10_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue10_Slot_thi()));
+    connect(vedio_spbx_continue11_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue11_Slot_thi()));
+    connect(vedio_spbx_continue12_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue12_Slot_thi()));
+    connect(vedio_spbx_continue13_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue13_Slot_thi()));
 
     connect(vedio_spby_continue1_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot_thi()));
     connect(vedio_spby_continue2_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot_thi()));
@@ -3653,6 +3990,12 @@ void MainWindow::init_vedioCfg_thi(){
     connect(vedio_spby_continue5_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot_thi()));
     connect(vedio_spby_continue6_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot_thi()));
     connect(vedio_spby_continue7_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot_thi()));
+    connect(vedio_spby_continue8_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue8_Slot_thi()));
+    connect(vedio_spby_continue9_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue9_Slot_thi()));
+    connect(vedio_spby_continue10_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue10_Slot_thi()));
+    connect(vedio_spby_continue11_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue11_Slot_thi()));
+    connect(vedio_spby_continue12_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue12_Slot_thi()));
+    connect(vedio_spby_continue13_thi,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue13_Slot_thi()));
 }
 
 void MainWindow::init_vedioCfg_fou(){
@@ -4375,6 +4718,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_l5_continue_fou=new QLineEdit;
     vedio_l6_continue_fou=new QLineEdit;
     vedio_l7_continue_fou=new QLineEdit;
+    vedio_l8_continue_fou=new QLineEdit;
+    vedio_l9_continue_fou=new QLineEdit;
+    vedio_l10_continue_fou=new QLineEdit;
+    vedio_l11_continue_fou=new QLineEdit;
+    vedio_l12_continue_fou=new QLineEdit;
+    vedio_l13_continue_fou=new QLineEdit;
     glc->addWidget(vedio_l1_continue_fou,1,1,1,1);
     glc->addWidget(vedio_l2_continue_fou,2,1,1,1);
     glc->addWidget(vedio_l3_continue_fou,3,1,1,1);
@@ -4382,6 +4731,12 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(vedio_l5_continue_fou,5,1,1,1);
     glc->addWidget(vedio_l6_continue_fou,6,1,1,1);
     glc->addWidget(vedio_l7_continue_fou,7,1,1,1);
+    glc->addWidget(vedio_l8_continue_fou,8,1,1,1);
+    glc->addWidget(vedio_l9_continue_fou,9,1,1,1);
+    glc->addWidget(vedio_l10_continue_fou,10,1,1,1);
+    glc->addWidget(vedio_l11_continue_fou,11,1,1,1);
+    glc->addWidget(vedio_l12_continue_fou,12,1,1,1);
+    glc->addWidget(vedio_l13_continue_fou,13,1,1,1);
 
     vedio_continue_Fov0_fou = new QLineEdit;
     vedio_continue_Fov1_fou = new QLineEdit;
@@ -4390,6 +4745,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_continue_Fov4_fou = new QLineEdit;
     vedio_continue_Fov5_fou= new QLineEdit;
     vedio_continue_Fov6_fou = new QLineEdit;
+    vedio_continue_Fov7_fou = new QLineEdit;
+    vedio_continue_Fov8_fou = new QLineEdit;
+    vedio_continue_Fov9_fou = new QLineEdit;
+    vedio_continue_Fov10_fou = new QLineEdit;
+    vedio_continue_Fov11_fou = new QLineEdit;
+    vedio_continue_Fov12_fou = new QLineEdit;
     glc->addWidget(vedio_continue_Fov0_fou,1,2,1,1);
     glc->addWidget(vedio_continue_Fov1_fou,2,2,1,1);
     glc->addWidget(vedio_continue_Fov2_fou,3,2,1,1);
@@ -4397,6 +4758,12 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(vedio_continue_Fov4_fou,5,2,1,1);
     glc->addWidget(vedio_continue_Fov5_fou,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6_fou,7,2,1,1);
+    glc->addWidget(vedio_continue_Fov7_fou,8,2,1,1);
+    glc->addWidget(vedio_continue_Fov8_fou,9,2,1,1);
+    glc->addWidget(vedio_continue_Fov9_fou,10,2,1,1);
+    glc->addWidget(vedio_continue_Fov10_fou,11,2,1,1);
+    glc->addWidget(vedio_continue_Fov11_fou,12,2,1,1);
+    glc->addWidget(vedio_continue_Fov12_fou,13,2,1,1);
 
     continue_vertical1_fou = new QLineEdit;
     continue_vertical2_fou = new QLineEdit;
@@ -4405,6 +4772,12 @@ void MainWindow::init_vedioCfg_fou(){
     continue_vertical5_fou = new QLineEdit;
     continue_vertical6_fou = new QLineEdit;
     continue_vertical7_fou = new QLineEdit;
+    continue_vertical8_fou = new QLineEdit;
+    continue_vertical9_fou = new QLineEdit;
+    continue_vertical10_fou = new QLineEdit;
+    continue_vertical11_fou = new QLineEdit;
+    continue_vertical12_fou = new QLineEdit;
+    continue_vertical13_fou = new QLineEdit;
     glc->addWidget(continue_vertical1_fou,1,4,1,1);
     glc->addWidget(continue_vertical2_fou,2,4,1,1);
     glc->addWidget(continue_vertical3_fou,3,4,1,1);
@@ -4412,6 +4785,12 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(continue_vertical5_fou,5,4,1,1);
     glc->addWidget(continue_vertical6_fou,6,4,1,1);
     glc->addWidget(continue_vertical7_fou,7,4,1,1);
+    glc->addWidget(continue_vertical8_fou,8,4,1,1);
+    glc->addWidget(continue_vertical9_fou,9,4,1,1);
+    glc->addWidget(continue_vertical10_fou,10,4,1,1);
+    glc->addWidget(continue_vertical11_fou,11,4,1,1);
+    glc->addWidget(continue_vertical12_fou,12,4,1,1);
+    glc->addWidget(continue_vertical13_fou,13,4,1,1);
 
     QLabel* l1dv31=new QLabel;
     QLabel* l1dv32=new QLabel;
@@ -4467,6 +4846,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spbx_continue5_fou=new MyQSpinBox;
     vedio_spbx_continue6_fou=new MyQSpinBox;
     vedio_spbx_continue7_fou=new MyQSpinBox;
+    vedio_spbx_continue8_fou=new MyQSpinBox;
+    vedio_spbx_continue9_fou=new MyQSpinBox;
+    vedio_spbx_continue10_fou=new MyQSpinBox;
+    vedio_spbx_continue11_fou=new MyQSpinBox;
+    vedio_spbx_continue12_fou=new MyQSpinBox;
+    vedio_spbx_continue13_fou=new MyQSpinBox;
 
     vedio_spbx_continue1_fou->spid = continue1_spinx_fou;
     vedio_spbx_continue2_fou->spid = continue2_spinx_fou;
@@ -4475,6 +4860,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spbx_continue5_fou->spid = continue5_spinx_fou;
     vedio_spbx_continue6_fou->spid = continue6_spinx_fou;
     vedio_spbx_continue7_fou->spid = continue7_spinx_fou;
+    vedio_spbx_continue8_fou->spid = continue8_spinx_fou;
+    vedio_spbx_continue9_fou->spid = continue9_spinx_fou;
+    vedio_spbx_continue10_fou->spid = continue10_spinx_fou;
+    vedio_spbx_continue11_fou->spid = continue11_spinx_fou;
+    vedio_spbx_continue12_fou->spid = continue12_spinx_fou;
+    vedio_spbx_continue13_fou->spid = continue13_spinx_fou;
 
     vedio_spbx_continue1_fou->setRange(0,9999);
     vedio_spbx_continue2_fou->setRange(0,9999);
@@ -4483,6 +4874,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spbx_continue5_fou->setRange(0,9999);
     vedio_spbx_continue6_fou->setRange(0,9999);
     vedio_spbx_continue7_fou->setRange(0,9999);
+    vedio_spbx_continue8_fou->setRange(0,9999);
+    vedio_spbx_continue9_fou->setRange(0,9999);
+    vedio_spbx_continue10_fou->setRange(0,9999);
+    vedio_spbx_continue11_fou->setRange(0,9999);
+    vedio_spbx_continue12_fou->setRange(0,9999);
+    vedio_spbx_continue13_fou->setRange(0,9999);
 
     glc->addWidget(vedio_spbx_continue1_fou,1,6,1,1);
     glc->addWidget(vedio_spbx_continue2_fou,2,6,1,1);
@@ -4491,7 +4888,12 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(vedio_spbx_continue5_fou,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6_fou,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7_fou,7,6,1,1);
-
+    glc->addWidget(vedio_spbx_continue8_fou,8,6,1,1);
+    glc->addWidget(vedio_spbx_continue9_fou,9,6,1,1);
+    glc->addWidget(vedio_spbx_continue10_fou,10,6,1,1);
+    glc->addWidget(vedio_spbx_continue11_fou,11,6,1,1);
+    glc->addWidget(vedio_spbx_continue12_fou,12,6,1,1);
+    glc->addWidget(vedio_spbx_continue13_fou,13,6,1,1);
 
     vedio_spby_continue1_fou=new MyQSpinBox;
     vedio_spby_continue2_fou=new MyQSpinBox;
@@ -4500,6 +4902,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spby_continue5_fou=new MyQSpinBox;
     vedio_spby_continue6_fou=new MyQSpinBox;
     vedio_spby_continue7_fou=new MyQSpinBox;
+    vedio_spby_continue8_fou=new MyQSpinBox;
+    vedio_spby_continue9_fou=new MyQSpinBox;
+    vedio_spby_continue10_fou=new MyQSpinBox;
+    vedio_spby_continue11_fou=new MyQSpinBox;
+    vedio_spby_continue12_fou=new MyQSpinBox;
+    vedio_spby_continue13_fou=new MyQSpinBox;
 
     vedio_spby_continue1_fou->spid = continue1_spiny_fou;
     vedio_spby_continue2_fou->spid = continue2_spiny_fou;
@@ -4508,6 +4916,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spby_continue5_fou->spid = continue5_spiny_fou;
     vedio_spby_continue6_fou->spid = continue6_spiny_fou;
     vedio_spby_continue7_fou->spid = continue7_spiny_fou;
+    vedio_spby_continue8_fou->spid = continue8_spiny_fou;
+    vedio_spby_continue9_fou->spid = continue9_spiny_fou;
+    vedio_spby_continue10_fou->spid = continue10_spiny_fou;
+    vedio_spby_continue11_fou->spid = continue11_spiny_fou;
+    vedio_spby_continue12_fou->spid = continue12_spiny_fou;
+    vedio_spby_continue13_fou->spid = continue13_spiny_fou;
 
     vedio_spby_continue1_fou->setRange(0,9999);
     vedio_spby_continue2_fou->setRange(0,9999);
@@ -4516,6 +4930,12 @@ void MainWindow::init_vedioCfg_fou(){
     vedio_spby_continue5_fou->setRange(0,9999);
     vedio_spby_continue6_fou->setRange(0,9999);
     vedio_spby_continue7_fou->setRange(0,9999);
+    vedio_spby_continue8_fou->setRange(0,9999);
+    vedio_spby_continue9_fou->setRange(0,9999);
+    vedio_spby_continue10_fou->setRange(0,9999);
+    vedio_spby_continue11_fou->setRange(0,9999);
+    vedio_spby_continue12_fou->setRange(0,9999);
+    vedio_spby_continue13_fou->setRange(0,9999);
 
     glc->addWidget(vedio_spby_continue1_fou,1,7,1,1);
     glc->addWidget(vedio_spby_continue2_fou,2,7,1,1);
@@ -4524,6 +4944,12 @@ void MainWindow::init_vedioCfg_fou(){
     glc->addWidget(vedio_spby_continue5_fou,5,7,1,1);
     glc->addWidget(vedio_spby_continue6_fou,6,7,1,1);
     glc->addWidget(vedio_spby_continue7_fou,7,7,1,1);
+    glc->addWidget(vedio_spby_continue8_fou,8,7,1,1);
+    glc->addWidget(vedio_spby_continue9_fou,9,7,1,1);
+    glc->addWidget(vedio_spby_continue10_fou,10,7,1,1);
+    glc->addWidget(vedio_spby_continue11_fou,11,7,1,1);
+    glc->addWidget(vedio_spby_continue12_fou,12,7,1,1);
+    glc->addWidget(vedio_spby_continue13_fou,13,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -4571,6 +4997,12 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_l5_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l5_continue_Slot_fou()));
     connect(vedio_l6_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l6_continue_Slot_fou()));
     connect(vedio_l7_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l7_continue_Slot_fou()));
+    connect(vedio_l8_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l8_continue_Slot_fou()));
+    connect(vedio_l9_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l9_continue_Slot_fou()));
+    connect(vedio_l10_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l10_continue_Slot_fou()));
+    connect(vedio_l11_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l11_continue_Slot_fou()));
+    connect(vedio_l12_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l12_continue_Slot_fou()));
+    connect(vedio_l13_continue_fou,SIGNAL(returnPressed(int)),this,SLOT(vedio_l13_continue_Slot_fou()));
 
     connect(vedio_continue_Fov0_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fou()));
     connect(vedio_continue_Fov1_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fou()));
@@ -4579,6 +5011,13 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_continue_Fov4_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fou()));
     connect(vedio_continue_Fov5_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fou()));
     connect(vedio_continue_Fov6_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fou()));
+    connect(vedio_continue_Fov7_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov7_Slot_fou()));
+    connect(vedio_continue_Fov8_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov8_Slot_fou()));
+    connect(vedio_continue_Fov9_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov9_Slot_fou()));
+    connect(vedio_continue_Fov10_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov10_Slot_fou()));
+    connect(vedio_continue_Fov11_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov11_Slot_fou()));
+    connect(vedio_continue_Fov12_fou,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov12_Slot_fou()));
+
     connect(continue_vertical1_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fou()));
     connect(continue_vertical2_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fou()));
     connect(continue_vertical3_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fou()));
@@ -4586,6 +5025,12 @@ void MainWindow::init_vedioCfg_fou(){
     connect(continue_vertical5_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fou()));
     connect(continue_vertical6_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fou()));
     connect(continue_vertical7_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fou()));
+    connect(continue_vertical8_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical8_Slot_fou()));
+    connect(continue_vertical9_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical9_Slot_fou()));
+    connect(continue_vertical10_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical10_Slot_fou()));
+    connect(continue_vertical11_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical11_Slot_fou()));
+    connect(continue_vertical12_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical12_Slot_fou()));
+    connect(continue_vertical13_fou,SIGNAL(returnPressed()),this,SLOT(continue_vertical13_Slot_fou()));
 
     connect(vedio_spbx_continue1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot_fou()));
     connect(vedio_spbx_continue2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot_fou()));
@@ -4594,6 +5039,12 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_spbx_continue5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot_fou()));
     connect(vedio_spbx_continue6_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot_fou()));
     connect(vedio_spbx_continue7_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot_fou()));
+    connect(vedio_spbx_continue8_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue8_Slot_fou()));
+    connect(vedio_spbx_continue9_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue9_Slot_fou()));
+    connect(vedio_spbx_continue10_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue10_Slot_fou()));
+    connect(vedio_spbx_continue11_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue11_Slot_fou()));
+    connect(vedio_spbx_continue12_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue12_Slot_fou()));
+    connect(vedio_spbx_continue13_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue13_Slot_fou()));
 
     connect(vedio_spby_continue1_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot_fou()));
     connect(vedio_spby_continue2_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot_fou()));
@@ -4602,6 +5053,12 @@ void MainWindow::init_vedioCfg_fou(){
     connect(vedio_spby_continue5_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot_fou()));
     connect(vedio_spby_continue6_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot_fou()));
     connect(vedio_spby_continue7_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot_fou()));
+    connect(vedio_spby_continue8_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue8_Slot_fou()));
+    connect(vedio_spby_continue9_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue9_Slot_fou()));
+    connect(vedio_spby_continue10_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue10_Slot_fou()));
+    connect(vedio_spby_continue11_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue11_Slot_fou()));
+    connect(vedio_spby_continue12_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue12_Slot_fou()));
+    connect(vedio_spby_continue13_fou,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue13_Slot_fou()));
 }
 
 void MainWindow::init_vedioCfg_fif(){
@@ -5328,6 +5785,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_l5_continue_fif=new QLineEdit;
     vedio_l6_continue_fif=new QLineEdit;
     vedio_l7_continue_fif=new QLineEdit;
+    vedio_l8_continue_fif=new QLineEdit;
+    vedio_l9_continue_fif=new QLineEdit;
+    vedio_l10_continue_fif=new QLineEdit;
+    vedio_l11_continue_fif=new QLineEdit;
+    vedio_l12_continue_fif=new QLineEdit;
+    vedio_l13_continue_fif=new QLineEdit;
     glc->addWidget(vedio_l1_continue_fif,1,1,1,1);
     glc->addWidget(vedio_l2_continue_fif,2,1,1,1);
     glc->addWidget(vedio_l3_continue_fif,3,1,1,1);
@@ -5335,6 +5798,12 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(vedio_l5_continue_fif,5,1,1,1);
     glc->addWidget(vedio_l6_continue_fif,6,1,1,1);
     glc->addWidget(vedio_l7_continue_fif,7,1,1,1);
+    glc->addWidget(vedio_l8_continue_fif,8,1,1,1);
+    glc->addWidget(vedio_l9_continue_fif,9,1,1,1);
+    glc->addWidget(vedio_l10_continue_fif,10,1,1,1);
+    glc->addWidget(vedio_l11_continue_fif,11,1,1,1);
+    glc->addWidget(vedio_l12_continue_fif,12,1,1,1);
+    glc->addWidget(vedio_l13_continue_fif,13,1,1,1);
 
     vedio_continue_Fov0_fif = new QLineEdit;
     vedio_continue_Fov1_fif = new QLineEdit;
@@ -5343,6 +5812,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_continue_Fov4_fif = new QLineEdit;
     vedio_continue_Fov5_fif = new QLineEdit;
     vedio_continue_Fov6_fif = new QLineEdit;
+    vedio_continue_Fov7_fif = new QLineEdit;
+    vedio_continue_Fov8_fif = new QLineEdit;
+    vedio_continue_Fov9_fif = new QLineEdit;
+    vedio_continue_Fov10_fif = new QLineEdit;
+    vedio_continue_Fov11_fif = new QLineEdit;
+    vedio_continue_Fov12_fif = new QLineEdit;
     glc->addWidget(vedio_continue_Fov0_fif,1,2,1,1);
     glc->addWidget(vedio_continue_Fov1_fif,2,2,1,1);
     glc->addWidget(vedio_continue_Fov2_fif,3,2,1,1);
@@ -5350,6 +5825,12 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(vedio_continue_Fov4_fif,5,2,1,1);
     glc->addWidget(vedio_continue_Fov5_fif,6,2,1,1);
     glc->addWidget(vedio_continue_Fov6_fif,7,2,1,1);
+    glc->addWidget(vedio_continue_Fov7_fif,8,2,1,1);
+    glc->addWidget(vedio_continue_Fov8_fif,9,2,1,1);
+    glc->addWidget(vedio_continue_Fov9_fif,10,2,1,1);
+    glc->addWidget(vedio_continue_Fov10_fif,11,2,1,1);
+    glc->addWidget(vedio_continue_Fov11_fif,12,2,1,1);
+    glc->addWidget(vedio_continue_Fov12_fif,13,2,1,1);
 
     continue_vertical1_fif = new QLineEdit;
     continue_vertical2_fif = new QLineEdit;
@@ -5358,6 +5839,12 @@ void MainWindow::init_vedioCfg_fif(){
     continue_vertical5_fif = new QLineEdit;
     continue_vertical6_fif = new QLineEdit;
     continue_vertical7_fif = new QLineEdit;
+    continue_vertical8_fif = new QLineEdit;
+    continue_vertical9_fif = new QLineEdit;
+    continue_vertical10_fif = new QLineEdit;
+    continue_vertical11_fif = new QLineEdit;
+    continue_vertical12_fif = new QLineEdit;
+    continue_vertical13_fif = new QLineEdit;
     glc->addWidget(continue_vertical1_fif,1,4,1,1);
     glc->addWidget(continue_vertical2_fif,2,4,1,1);
     glc->addWidget(continue_vertical3_fif,3,4,1,1);
@@ -5365,6 +5852,12 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(continue_vertical5_fif,5,4,1,1);
     glc->addWidget(continue_vertical6_fif,6,4,1,1);
     glc->addWidget(continue_vertical7_fif,7,4,1,1);
+    glc->addWidget(continue_vertical8_fif,8,4,1,1);
+    glc->addWidget(continue_vertical9_fif,9,4,1,1);
+    glc->addWidget(continue_vertical10_fif,10,4,1,1);
+    glc->addWidget(continue_vertical11_fif,11,4,1,1);
+    glc->addWidget(continue_vertical12_fif,12,4,1,1);
+    glc->addWidget(continue_vertical13_fif,13,4,1,1);
 
     QLabel* l1dv31=new QLabel;
     QLabel* l1dv32=new QLabel;
@@ -5419,6 +5912,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spbx_continue5_fif=new MyQSpinBox;
     vedio_spbx_continue6_fif=new MyQSpinBox;
     vedio_spbx_continue7_fif=new MyQSpinBox;
+    vedio_spbx_continue8_fif=new MyQSpinBox;
+    vedio_spbx_continue9_fif=new MyQSpinBox;
+    vedio_spbx_continue10_fif=new MyQSpinBox;
+    vedio_spbx_continue11_fif=new MyQSpinBox;
+    vedio_spbx_continue12_fif=new MyQSpinBox;
+    vedio_spbx_continue13_fif=new MyQSpinBox;
 
     vedio_spbx_continue1_fif->spid = continue1_spinx_fif;
     vedio_spbx_continue2_fif->spid = continue2_spinx_fif;
@@ -5427,6 +5926,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spbx_continue5_fif->spid = continue5_spinx_fif;
     vedio_spbx_continue6_fif->spid = continue6_spinx_fif;
     vedio_spbx_continue7_fif->spid = continue7_spinx_fif;
+    vedio_spbx_continue8_fif->spid = continue8_spinx_fif;
+    vedio_spbx_continue9_fif->spid = continue9_spinx_fif;
+    vedio_spbx_continue10_fif->spid = continue10_spinx_fif;
+    vedio_spbx_continue11_fif->spid = continue11_spinx_fif;
+    vedio_spbx_continue12_fif->spid = continue12_spinx_fif;
+    vedio_spbx_continue13_fif->spid = continue13_spinx_fif;
 
     vedio_spbx_continue1_fif->setRange(0,9999);
     vedio_spbx_continue2_fif->setRange(0,9999);
@@ -5435,6 +5940,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spbx_continue5_fif->setRange(0,9999);
     vedio_spbx_continue6_fif->setRange(0,9999);
     vedio_spbx_continue7_fif->setRange(0,9999);
+    vedio_spbx_continue8_fif->setRange(0,9999);
+    vedio_spbx_continue9_fif->setRange(0,9999);
+    vedio_spbx_continue10_fif->setRange(0,9999);
+    vedio_spbx_continue11_fif->setRange(0,9999);
+    vedio_spbx_continue12_fif->setRange(0,9999);
+    vedio_spbx_continue13_fif->setRange(0,9999);
 
     glc->addWidget(vedio_spbx_continue1_fif,1,6,1,1);
     glc->addWidget(vedio_spbx_continue2_fif,2,6,1,1);
@@ -5443,6 +5954,12 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(vedio_spbx_continue5_fif,5,6,1,1);
     glc->addWidget(vedio_spbx_continue6_fif,6,6,1,1);
     glc->addWidget(vedio_spbx_continue7_fif,7,6,1,1);
+    glc->addWidget(vedio_spbx_continue8_fif,8,6,1,1);
+    glc->addWidget(vedio_spbx_continue9_fif,9,6,1,1);
+    glc->addWidget(vedio_spbx_continue10_fif,10,6,1,1);
+    glc->addWidget(vedio_spbx_continue11_fif,11,6,1,1);
+    glc->addWidget(vedio_spbx_continue12_fif,12,6,1,1);
+    glc->addWidget(vedio_spbx_continue13_fif,13,6,1,1);
 
     vedio_spby_continue1_fif=new MyQSpinBox;
     vedio_spby_continue2_fif=new MyQSpinBox;
@@ -5451,6 +5968,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spby_continue5_fif=new MyQSpinBox;
     vedio_spby_continue6_fif=new MyQSpinBox;
     vedio_spby_continue7_fif=new MyQSpinBox;
+    vedio_spby_continue8_fif=new MyQSpinBox;
+    vedio_spby_continue9_fif=new MyQSpinBox;
+    vedio_spby_continue10_fif=new MyQSpinBox;
+    vedio_spby_continue11_fif=new MyQSpinBox;
+    vedio_spby_continue12_fif=new MyQSpinBox;
+    vedio_spby_continue13_fif=new MyQSpinBox;
 
     vedio_spby_continue1_fif->spid = continue1_spiny_fif;
     vedio_spby_continue2_fif->spid = continue2_spiny_fif;
@@ -5459,6 +5982,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spby_continue5_fif->spid = continue5_spiny_fif;
     vedio_spby_continue6_fif->spid = continue6_spiny_fif;
     vedio_spby_continue7_fif->spid = continue7_spiny_fif;
+    vedio_spby_continue8_fif->spid = continue8_spiny_fif;
+    vedio_spby_continue9_fif->spid = continue9_spiny_fif;
+    vedio_spby_continue10_fif->spid = continue10_spiny_fif;
+    vedio_spby_continue11_fif->spid = continue11_spiny_fif;
+    vedio_spby_continue12_fif->spid = continue12_spiny_fif;
+    vedio_spby_continue13_fif->spid = continue13_spiny_fif;
 
     vedio_spby_continue1_fif->setRange(0,9999);
     vedio_spby_continue2_fif->setRange(0,9999);
@@ -5467,6 +5996,12 @@ void MainWindow::init_vedioCfg_fif(){
     vedio_spby_continue5_fif->setRange(0,9999);
     vedio_spby_continue6_fif->setRange(0,9999);
     vedio_spby_continue7_fif->setRange(0,9999);
+    vedio_spby_continue8_fif->setRange(0,9999);
+    vedio_spby_continue9_fif->setRange(0,9999);
+    vedio_spby_continue10_fif->setRange(0,9999);
+    vedio_spby_continue11_fif->setRange(0,9999);
+    vedio_spby_continue12_fif->setRange(0,9999);
+    vedio_spby_continue13_fif->setRange(0,9999);
 
     glc->addWidget(vedio_spby_continue1_fif,1,7,1,1);
     glc->addWidget(vedio_spby_continue2_fif,2,7,1,1);
@@ -5475,6 +6010,12 @@ void MainWindow::init_vedioCfg_fif(){
     glc->addWidget(vedio_spby_continue5_fif,5,7,1,1);
     glc->addWidget(vedio_spby_continue6_fif,6,7,1,1);
     glc->addWidget(vedio_spby_continue7_fif,7,7,1,1);
+    glc->addWidget(vedio_spby_continue8_fif,8,7,1,1);
+    glc->addWidget(vedio_spby_continue9_fif,9,7,1,1);
+    glc->addWidget(vedio_spby_continue10_fif,10,7,1,1);
+    glc->addWidget(vedio_spby_continue11_fif,11,7,1,1);
+    glc->addWidget(vedio_spby_continue12_fif,12,7,1,1);
+    glc->addWidget(vedio_spby_continue13_fif,13,7,1,1);
     g3->setLayout(glc);
 
     QVBoxLayout *v10=new QVBoxLayout;
@@ -5520,6 +6061,12 @@ void MainWindow::init_vedioCfg_fif(){
     connect(vedio_l5_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l5_continue_Slot_fif()));
     connect(vedio_l6_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l6_continue_Slot_fif()));
     connect(vedio_l7_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l7_continue_Slot_fif()));
+    connect(vedio_l8_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l8_continue_Slot_fif()));
+    connect(vedio_l9_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l9_continue_Slot_fif()));
+    connect(vedio_l10_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l10_continue_Slot_fif()));
+    connect(vedio_l11_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l11_continue_Slot_fif()));
+    connect(vedio_l12_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l12_continue_Slot_fif()));
+    connect(vedio_l13_continue_fif,SIGNAL(returnPressed()),this,SLOT(vedio_l13_continue_Slot_fif()));
 
     connect(vedio_continue_Fov0_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov0_Slot_fif()));
     connect(vedio_continue_Fov1_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov1_Slot_fif()));
@@ -5528,6 +6075,14 @@ void MainWindow::init_vedioCfg_fif(){
     connect(vedio_continue_Fov4_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov4_Slot_fif()));
     connect(vedio_continue_Fov5_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov5_Slot_fif()));
     connect(vedio_continue_Fov6_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov6_Slot_fif()));
+    connect(vedio_continue_Fov7_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov7_Slot_fif()));
+    connect(vedio_continue_Fov8_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov8_Slot_fif()));
+    connect(vedio_continue_Fov9_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov9_Slot_fif()));
+    connect(vedio_continue_Fov10_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov10_Slot_fif()));
+    connect(vedio_continue_Fov11_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov11_Slot_fif()));
+    connect(vedio_continue_Fov12_fif,SIGNAL(returnPressed()),this,SLOT(vedio_continue_Fov12_Slot_fif()));
+
+
     connect(continue_vertical1_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical1_Slot_fif()));
     connect(continue_vertical2_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical2_Slot_fif()));
     connect(continue_vertical3_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical3_Slot_fif()));
@@ -5535,6 +6090,12 @@ void MainWindow::init_vedioCfg_fif(){
     connect(continue_vertical5_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical5_Slot_fif()));
     connect(continue_vertical6_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical6_Slot_fif()));
     connect(continue_vertical7_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical7_Slot_fif()));
+    connect(continue_vertical8_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical8_Slot_fif()));
+    connect(continue_vertical9_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical9_Slot_fif()));
+    connect(continue_vertical10_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical10_Slot_fif()));
+    connect(continue_vertical11_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical11_Slot_fif()));
+    connect(continue_vertical12_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical12_Slot_fif()));
+    connect(continue_vertical13_fif,SIGNAL(returnPressed()),this,SLOT(continue_vertical13_Slot_fif()));
 
     connect(vedio_spbx_continue1_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue1_Slot_fif()));
     connect(vedio_spbx_continue2_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue2_Slot_fif()));
@@ -5543,6 +6104,12 @@ void MainWindow::init_vedioCfg_fif(){
     connect(vedio_spbx_continue5_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue5_Slot_fif()));
     connect(vedio_spbx_continue6_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue6_Slot_fif()));
     connect(vedio_spbx_continue7_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue7_Slot_fif()));
+    connect(vedio_spbx_continue8_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue8_Slot_fif()));
+    connect(vedio_spbx_continue9_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue9_Slot_fif()));
+    connect(vedio_spbx_continue10_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue10_Slot_fif()));
+    connect(vedio_spbx_continue11_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue11_Slot_fif()));
+    connect(vedio_spbx_continue12_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue12_Slot_fif()));
+    connect(vedio_spbx_continue13_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spbx_continue13_Slot_fif()));
 
     connect(vedio_spby_continue1_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue1_Slot_fif()));
     connect(vedio_spby_continue2_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue2_Slot_fif()));
@@ -5551,6 +6118,12 @@ void MainWindow::init_vedioCfg_fif(){
     connect(vedio_spby_continue5_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue5_Slot_fif()));
     connect(vedio_spby_continue6_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue6_Slot_fif()));
     connect(vedio_spby_continue7_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue7_Slot_fif()));
+    connect(vedio_spby_continue8_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue8_Slot_fif()));
+    connect(vedio_spby_continue9_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue9_Slot_fif()));
+    connect(vedio_spby_continue10_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue10_Slot_fif()));
+    connect(vedio_spby_continue11_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue11_Slot_fif()));
+    connect(vedio_spby_continue12_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue12_Slot_fif()));
+    connect(vedio_spby_continue13_fif,SIGNAL(editingFinished()),this,SLOT(vedio_spby_continue13_Slot_fif()));
 }
 
 
