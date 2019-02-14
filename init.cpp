@@ -25,31 +25,31 @@ void MainWindow::init_menu()
     videoCfg->addAction(avt_videoCfg4);
     videoCfg->addAction(avt_videoCfg5);
     menu[0]->addMenu(videoCfg);
-    QMenu* pidsysCfg=new QMenu("PID配置");
+    QAction* pidsysCfg=new QAction("PID配置");
         QAction* act_pidCfg1=new QAction("通道1");
         QAction* act_pidCfg2=new QAction("通道2");
         QAction* act_pidCfg3=new QAction("通道3");
         QAction* act_pidCfg4=new QAction("通道4");
         QAction* act_pidCfg5=new QAction("通道5");
-        pidsysCfg->addAction(act_pidCfg1);
-        pidsysCfg->addAction(act_pidCfg2);
-        pidsysCfg->addAction(act_pidCfg3);
-        pidsysCfg->addAction(act_pidCfg4);
-        pidsysCfg->addAction(act_pidCfg5);
-        menu[0]->addMenu(pidsysCfg);
+        //pidsysCfg->addAction(act_pidCfg1);
+        //pidsysCfg->addAction(act_pidCfg2);
+        //pidsysCfg->addAction(act_pidCfg3);
+        //pidsysCfg->addAction(act_pidCfg4);
+        //pidsysCfg->addAction(act_pidCfg5);
+        menu[0]->addAction(pidsysCfg);
 
-    QMenu* speedconv_sysCfg=new QMenu("转台配置");
+    QAction* speedconv_sysCfg=new QAction("转台配置");
         QAction* speedconv=new QAction("通道1",this);
         QAction* speedconv_sec=new QAction("通道2",this);
         QAction* speedconv_thi=new QAction("通道3",this);
         QAction* speedconv_fou=new QAction("通道4",this);
         QAction* speedconv_fif=new QAction("通道5",this);
-        speedconv_sysCfg->addAction(speedconv);
-        speedconv_sysCfg->addAction(speedconv_sec);
-        speedconv_sysCfg->addAction(speedconv_thi);
-        speedconv_sysCfg->addAction(speedconv_fou);
-        speedconv_sysCfg->addAction(speedconv_fif);
-        menu[0]->addMenu(speedconv_sysCfg);
+        //speedconv_sysCfg->addAction(speedconv);
+        //speedconv_sysCfg->addAction(speedconv_sec);
+        //speedconv_sysCfg->addAction(speedconv_thi);
+        //speedconv_sysCfg->addAction(speedconv_fou);
+        //speedconv_sysCfg->addAction(speedconv_fif);
+        menu[0]->addAction(speedconv_sysCfg);
 
 //    QAction* act_algCfg=new QAction("算法配置");
 //    menu[0]->addAction(act_algCfg);
@@ -105,11 +105,11 @@ void MainWindow::init_menu()
     connect(avt_videoCfg3,SIGNAL(triggered(bool)),this,SLOT(readfovmode3()));
     connect(avt_videoCfg4,SIGNAL(triggered(bool)),this,SLOT(readfovmode4()));
     connect(avt_videoCfg5,SIGNAL(triggered(bool)),this,SLOT(readfovmode5()));
-    connect(act_pidCfg1,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg1()));
-    connect(act_pidCfg2,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
-    connect(act_pidCfg3,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg3()));
-    connect(act_pidCfg4,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg4()));
-    connect(act_pidCfg5,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg5()));
+    //connect(act_pidCfg1,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg1()));
+    //connect(act_pidCfg2,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
+    //connect(act_pidCfg3,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg3()));
+    //connect(act_pidCfg4,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg4()));
+    //connect(act_pidCfg5,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg5()));
     connect(act_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showSysCfg()));
     connect(act_platCfg,SIGNAL(triggered(bool)),this,SLOT(showPlat()));
     connect(act_algCfg1,SIGNAL(triggered(bool)),this,SLOT(showAlg()));
@@ -121,12 +121,16 @@ void MainWindow::init_menu()
     connect(act_cap3,SIGNAL(triggered(bool)),this,SLOT(showCapture3()));
     connect(act_rstCfg,SIGNAL(triggered(bool)),this,SLOT(resetAction()));
     connect(dbg_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showdbgcfg()));
-    connect(speedconv,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg()));
-    connect(speedconv_sec,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_sec()));
-    connect(speedconv_thi,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_thi()));
-    connect(speedconv_fou,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fou()));
-    connect(speedconv_fif,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fif()));
+    //connect(speedconv,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg()));
+    //connect(speedconv_sec,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_sec()));
+    //connect(speedconv_thi,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_thi()));
+    //connect(speedconv_fou,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fou()));
+    //connect(speedconv_fif,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fif()));
     connect(act_algmtd,SIGNAL(triggered(bool)),this,SLOT(showmtdcfg()));
+    connect(pidsysCfg,SIGNAL(triggered(bool)),this,SLOT(showpidsysCfg2()));
+    connect(speedconv_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_sec()));
+
+
 }
 
 void MainWindow::init_sysCfg()
