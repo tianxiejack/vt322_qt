@@ -258,8 +258,10 @@ public slots:
     void btnUpSlot();
     void btnSaveSlot();
     void btnselectsw_clicked();
+    void btnselectimportconf_clicked();
     void btnUpdate();
     void btnFPGA_clicked();
+    void combox_output_resol(int index);
 
     /*摄像机槽函数*/
     void vedio_tosersor_fix(int i);
@@ -1394,6 +1396,7 @@ private slots:
     /*UTC1参数配置*/
     void btn_utc1_default_Slot();
     void btn_utc1_update_Slot();
+    void lEdt_utc1_ltrktime_Slot();
     void lEdt_utc1_l0_Slot();
     void lEdt_utc1_l1_Slot();
     void lEdt_utc1_l2_Slot();
@@ -1409,7 +1412,6 @@ private slots:
     void lEdt_utc1_l12_Slot();
     void lEdt_utc1_l13_Slot();
     void lEdt_utc1_l14_Slot();
-    void lEdt_utc1_l15_Slot();
 
     /*UTC2参数配置*/
     void btn_utc2_default_Slot();
@@ -1616,7 +1618,6 @@ private:
         QLineEdit *lineEdit;
         int sersor_count=0;
     /**/
-    QSerialPort * serialPort_command;
     QStackedLayout *btnStack;
     QByteArray sndData_02;
     int connect_flag = 0;
@@ -1644,13 +1645,14 @@ private:
     QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
+    QComboBox *box_outresol;
     //QComboBox *box1;
     QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
-    QString filePath_updatesw;
-    QLineEdit *editsw;
+    QString filePath_updatesw, filePath_impconf;
+    QLineEdit *editsw, *editimportconf;
     /*平台配置*/
     MyWidget *w_plat;
       QGroupBox *gbox_Jos,*gbox_plat;
@@ -1987,16 +1989,16 @@ private:
     QPushButton *btn_utc1_default,*btn_utc1_update,*btn_utc2_default,*btn_utc2_update,*btn_utc3_default,*btn_utc3_update;
     MyWidget *utc1,*utc2,*utc3;
     QGroupBox *gbox_utc1,*gbox_utc2,*gbox_utc3;
-    QLineEdit *utc1_l0,*utc1_l1,*utc1_l2,*utc1_l3,*utc1_l4,*utc1_l5,
+    QLineEdit *utc1_ltrktime,*utc1_l0,*utc1_l1,*utc1_l2,*utc1_l3,*utc1_l4,*utc1_l5,
               *utc1_l6,*utc1_l7,*utc1_l8,*utc1_l9,*utc1_l10,*utc1_l11,
-              *utc1_l12,*utc1_l13,*utc1_l14,*utc1_l15;
+              *utc1_l12,*utc1_l13,*utc1_l14;
     QLineEdit *utc2_l0,*utc2_l1,*utc2_l2,*utc2_l3,*utc2_l4,*utc2_l5,
               *utc2_l6,*utc2_l7,*utc2_l8,*utc2_l9,*utc2_l10,*utc2_l11,
               *utc2_l12,*utc2_l13,*utc2_l14,*utc2_l15;
     QLineEdit *utc3_l0,*utc3_l1,*utc3_l2,*utc3_l3,*utc3_l4,*utc3_l5,
               *utc3_l6,*utc3_l7,*utc3_l8,*utc3_l9,*utc3_l10,*utc3_l11,
               *utc3_l12,*utc3_l13,*utc3_l14,*utc3_l15;
-    QString utc_s1[16]={"丢失阈值","重捕获阈值","模板更新比例","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","algOsdRect Enable"};
+    QString utc_s1[16]={"惯性跟踪时间","丢失阈值","重捕获阈值","模板更新比例","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY"};
     QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 

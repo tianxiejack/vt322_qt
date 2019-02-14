@@ -37,6 +37,7 @@ extern  unsigned char output_array_6[1024];
 extern  unsigned char output_array_7[1024];
 extern  unsigned char output_array_8[1024];
 extern int data_length;
+extern QSerialPort * serialPort_command;
 
 QByteArray MainWindow::string2hex(QString str, bool &flag)
 {
@@ -714,7 +715,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                             utc1_l14->setText(QString::number(value_i));
                              break;
                         case 0x0f:
-                            utc1_l15->setText(QString::number(value_i));
+                            utc1_ltrktime->setText(QString::number(value_i));
                             break;
                     }
                 }
@@ -2161,99 +2162,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             }
             break;
 		case 51:
-            if(0x00 == output_array[2])
+            if(0x05 == output_array[2])
             {
-                switch((int)value_i)
-                {
-                    case 0:
-                        rdBtn_aisle1_1->setChecked(true);
-                        break;
-                    case 1:
-                        rdBtn_aisle1_2->setChecked(true);
-                        break;
-                    case 2:
-                        rdBtn_aisle1_3->setChecked(true);
-                        break;
-                    case 3:
-                        rdBtn_aisle1_4->setChecked(true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if(0x01 == output_array[2])
-            {
-                switch((int)value_i)
-                {
-                    case 0:
-                        rdBtn_aisle2_1->setChecked(true);
-                        break;
-                    case 1:
-                        rdBtn_aisle2_2->setChecked(true);
-                        break;
-                    case 2:
-                        rdBtn_aisle2_3->setChecked(true);
-                        break;
-                    case 3:
-                        rdBtn_aisle2_4->setChecked(true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if(0x02 == output_array[2])
-            {
-                switch((int)value_i)
-                {
-                    case 0:
-                        rdBtn_aisle3_1->setChecked(true);
-                        break;
-                    case 1:
-                        rdBtn_aisle3_2->setChecked(true);
-                        break;
-                    case 2:
-                        rdBtn_aisle3_3->setChecked(true);
-                        break;
-                    case 3:
-                        rdBtn_aisle3_4->setChecked(true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if(0x03 == output_array[2])
-            {
-                switch((int)value_i)
-                {
-                    case 0:
-                        rdBtn_aisle4_1->setChecked(true);
-                        break;
-                    case 1:
-                        rdBtn_aisle4_2->setChecked(true);
-                        break;
-                    case 2:
-                        rdBtn_aisle4_3->setChecked(true);
-                        break;
-                    case 3:
-                        rdBtn_aisle4_4->setChecked(true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if(0x04 == output_array[2])
-            {
-                switch((int)value_i)
-                {
-                    case 0:
-                        rdBtn_aisle5_1->setChecked(true);
-                        break;
-                    default:
-                        break;
-                }
+                int index = (int)value_i;
+                if(index >= 5)
+                    index--;
+                box_outresol->setCurrentIndex(index);
             }
             break;
-
         case 52:
             if (0x01 == output_array[2]) {
                 switch((int)value_i)

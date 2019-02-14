@@ -187,10 +187,18 @@ void RcvUSocketdata::exportfile(unsigned char *uoutput_array)
 }
 void RcvUSocketdata::importfileresp(unsigned char *uoutput_array)
 {
-    if(uoutput_array[1] == 0x01)
-        upgrade_show->append("导入成功");
+    if(uoutput_array[1] == 0x00)
+    {
+        emit socket2main_signal(0,uoutput_array[2]);
+    }
+    else if(uoutput_array[1] == 0x01)
+    {
+        emit socket2main_signal(1,uoutput_array[2]);
+    }
     else if(uoutput_array[1] == 0x02)
-        upgrade_show->append("导入失败");
+    {
+        emit socket2main_signal(2,uoutput_array[2]);
+    }
 }
 void RcvUSocketdata::upgraderesp(unsigned char *uoutput_array)
 {
@@ -224,13 +232,13 @@ void RcvUSocketdata::upgradefpgaresp(unsigned char *uoutput_array)
 }
 
 
-unsigned char pRxByte =0;
-unsigned char frame_flag =0;
-unsigned char crc_sum =0;
-int pkg_length = 0;
+unsigned char frame_flag_usocket =0;
+unsigned char crc_sum_usocket =0;
+int pkg_length_usocket = 0;
 
 void RcvUSocketdata::usocket_Read_Data()
 {
+    unsigned char pRxByte =0;
     while(usocket->bytesAvailable()>0)
     {
         QByteArray datagram;
@@ -241,54 +249,54 @@ void RcvUSocketdata::usocket_Read_Data()
         {
             pRxByte = datagram.at(cnt++);
             {
-                switch(frame_flag)//从网口读取一帧数据，并检查校验和。
+                switch(frame_flag_usocket)//从网口读取一帧数据，并检查校验和。
                 {
                     case 0:
                         if(pRxByte == 0xEB) {
-                            frame_flag = 1;
+                            frame_flag_usocket = 1;
                         }
                         else
                         {
-                            frame_flag = 0;
+                            frame_flag_usocket = 0;
                             usocket_output_cnt = 0;
-                            crc_sum = 0;
+                            crc_sum_usocket = 0;
                         }
 
                         break;
                     case 1:
                         if(pRxByte == 0x53){
-                            frame_flag = 2;
+                            frame_flag_usocket = 2;
                             usocket_output_cnt = 0;
-                            crc_sum ^= pRxByte;
+                            crc_sum_usocket ^= pRxByte;
                         }
                         else
                         {
-                            frame_flag = 0;
+                            frame_flag_usocket = 0;
                             usocket_output_cnt = 0;
-                            crc_sum = 0;
+                            crc_sum_usocket = 0;
                         }
                         break;
                     case 2:
-                        pkg_length = pRxByte;
-                        crc_sum ^= pRxByte;
-                        frame_flag = 3;
+                        pkg_length_usocket = pRxByte;
+                        crc_sum_usocket ^= pRxByte;
+                        frame_flag_usocket = 3;
                         break;
                     case 3:
-                        pkg_length = (pkg_length|(pRxByte<<8));
-                        crc_sum ^= pRxByte;
-                        frame_flag = 4;
+                        pkg_length_usocket = (pkg_length_usocket|(pRxByte<<8));
+                        crc_sum_usocket ^= pRxByte;
+                        frame_flag_usocket = 4;
                         break;
                     case 4:
                         if(usocket_output_cnt>(sizeof(uoutput_array)/sizeof(uoutput_array[0])-1))
                         {
-                            frame_flag = 0;
-                            crc_sum = 0;
+                            frame_flag_usocket = 0;
+                            crc_sum_usocket = 0;
                             usocket_output_cnt = 0;
                             break;
                         }
                         uoutput_array[usocket_output_cnt++] = pRxByte;
-                        if(usocket_output_cnt >= pkg_length+1){
-                            if(crc_sum == pRxByte )
+                        if(usocket_output_cnt >= pkg_length_usocket+1){
+                            if(crc_sum_usocket == pRxByte )
                             {
                                 if(uoutput_array[0]==0x33)
                                 {
@@ -306,23 +314,23 @@ void RcvUSocketdata::usocket_Read_Data()
                                     //qDebug("it is upgradefpga response");
                                     upgradefpgaresp(uoutput_array);
                                 }
-                                frame_flag = 0;
-                                crc_sum = 0;
+                                frame_flag_usocket = 0;
+                                crc_sum_usocket = 0;
                                 usocket_output_cnt = 0;
                                 break;
                             }
                             else{
-                                frame_flag = 0;
+                                frame_flag_usocket = 0;
                                 usocket_output_cnt = 0;
-                                crc_sum = 0;
+                                crc_sum_usocket = 0;
                                 break;
                             }
                         }
-                        crc_sum ^= pRxByte;
+                        crc_sum_usocket ^= pRxByte;
                         break;
                     default:
-                        frame_flag = 0;
-                        crc_sum = 0;
+                        frame_flag_usocket = 0;
+                        crc_sum_usocket = 0;
                         usocket_output_cnt = 0;
                         break;
                 }

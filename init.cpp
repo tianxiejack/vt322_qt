@@ -54,12 +54,18 @@ void MainWindow::init_menu()
 //    QAction* act_algCfg=new QAction("算法配置");
 //    menu[0]->addAction(act_algCfg);
     QMenu *utc=new QMenu("算法配置");
+    QMenu* act_algtrk=new QMenu("跟踪算法配置");
+    QAction* act_algmtd=new QAction("移动检测配置",this);
+    QAction* act_algscenetrk=new QAction("场景跟踪算法配置",this);
     QAction* act_algCfg1=new QAction("UTC1",this);
-    utc->addAction(act_algCfg1);
+    act_algtrk->addAction(act_algCfg1);
     QAction* act_algCfg2=new QAction("UTC2",this);
-    utc->addAction(act_algCfg2);
+    act_algtrk->addAction(act_algCfg2);
     QAction* act_algCfg3=new QAction("UTC3",this);
-    utc->addAction(act_algCfg3);
+    act_algtrk->addAction(act_algCfg3);
+    utc->addMenu(act_algtrk);
+    utc->addAction(act_algmtd);
+    utc->addAction(act_algscenetrk);
     menu[0]->addMenu(utc);
 
     QAction* act_othCfg=new QAction("字符叠加",this);
@@ -84,10 +90,6 @@ void MainWindow::init_menu()
 
      QAction* dbg_sysCfg=new QAction("捕获配置",this);
      //menu[0]->addAction(dbg_sysCfg);
-
-
-     QAction* mtd_sysCfg=new QAction("移动检测配置",this);
-     menu[0]->addAction(mtd_sysCfg);
 
      QAction* act_sysCfg=new QAction("系统配置",this);
      menu[0]->addAction(act_sysCfg);
@@ -124,7 +126,7 @@ void MainWindow::init_menu()
     connect(speedconv_thi,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_thi()));
     connect(speedconv_fou,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fou()));
     connect(speedconv_fif,SIGNAL(triggered(bool)),this,SLOT(showspeedconvcfg_fif()));
-    connect(mtd_sysCfg,SIGNAL(triggered(bool)),this,SLOT(showmtdcfg()));
+    connect(act_algmtd,SIGNAL(triggered(bool)),this,SLOT(showmtdcfg()));
 }
 
 void MainWindow::init_sysCfg()
@@ -163,6 +165,20 @@ void MainWindow::init_sysCfg()
     box1->addItem("4");
     box1->addItem("5");
     */
+
+    box_outresol = new QComboBox;
+    box_outresol->addItem("1920x1080@25Hz");
+    box_outresol->addItem("1920x1080@30Hz");
+    box_outresol->addItem("1280x720@50Hz");
+    box_outresol->addItem("1280x720@60Hz");
+    box_outresol->addItem("1920x1080@60Hz");
+    box_outresol->addItem("1280x1024@60Hz");
+    box_outresol->addItem("1024x768@60Hz");
+    box_outresol->addItem("1280x768@60Hz");
+    box_outresol->addItem("1920x1080@50Hz");
+
+
+
 	QPushButton *btn_choose=new QPushButton;
     btn_choose->setText("打开分辨率选择");
 
@@ -200,7 +216,7 @@ void MainWindow::init_sysCfg()
     QLineEdit *editfpga = new QLineEdit();
     QPushButton *btnselectfpga=new QPushButton();
     btnselectfpga->setText("选择文件");
-    QLineEdit *editimportconf = new QLineEdit();
+    editimportconf = new QLineEdit();
     QPushButton *btnselectimportconf=new QPushButton();
     btnselectimportconf->setText("选择文件");
 
@@ -226,15 +242,16 @@ void MainWindow::init_sysCfg()
 
     QFormLayout *pLayout = new QFormLayout;
     //pLayout->addRow(QStringLiteral("水平速度"), lineEdit);
-    pLayout->addRow("有效视频源：", hsensor);
+    //pLayout->addRow("有效视频源：", hsensor);
     //pLayout->addRow("相机通道选择", box1);
-    pLayout->addRow("各通道采集\n分辨率选择",btn_choose);
-    //pLayout->addRow("变焦速度等级", CBox);
     pLayout->addRow("保存当前配置", btnSave);
-    pLayout->addRow("软件升级",vlayout1);
-    //pLayout->addRow("FPGA升级", vlayout2);
-    //pLayout->addRow("导入配置文件", vlayout3);
+    pLayout->addRow("输出分辨率", box_outresol);
+    //pLayout->addRow("各通道采集\n分辨率选择",btn_choose);
+    //pLayout->addRow("变焦速度等级", CBox);
+    pLayout->addRow("导入配置文件", vlayout3);
     pLayout->addRow("导出配置文件", btnUp);
+    pLayout->addRow("在线升级",vlayout1);
+    //pLayout->addRow("FPGA升级", vlayout2);
     pLayout->addRow(upgrade_show);
 
     //connect(lineEdit,SIGNAL(returnPressed()),this,SLOT(lEdt_sysCfg_Slot()));
@@ -252,6 +269,8 @@ void MainWindow::init_sysCfg()
     connect(checkBox_channel4,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
     connect(checkBox_channel5,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
     connect(btnselectsw,SIGNAL(clicked(bool)),this,SLOT(btnselectsw_clicked()));
+    connect(btnselectimportconf,SIGNAL(clicked(bool)),this,SLOT(btnselectimportconf_clicked()));
+    connect(box_outresol,SIGNAL(activated(int)),this,SLOT(combox_output_resol(int)));
     w_config->setLayout(pLayout);
 }
 void MainWindow::init_platCfg()
@@ -7206,6 +7225,7 @@ void MainWindow::init_utcCfg()
     h1->addLayout(v1);
     h1->addWidget(label);
 
+    utc1_ltrktime=new QLineEdit;
     utc1_l0=new QLineEdit;
     utc1_l1=new QLineEdit;
     utc1_l2=new QLineEdit;
@@ -7221,24 +7241,23 @@ void MainWindow::init_utcCfg()
     utc1_l12=new QLineEdit;
     utc1_l13=new QLineEdit;
     utc1_l14=new QLineEdit;
-    utc1_l15=new QLineEdit;
     QFormLayout *f=new QFormLayout();
-    f->addRow(utc_s1[0],utc1_l0);
-    f->addRow(utc_s1[1],utc1_l1);
-    f->addRow(utc_s1[2],utc1_l2);
-    f->addRow(utc_s1[3],utc1_l3);
-    f->addRow(utc_s1[4],utc1_l4);
-    f->addRow(utc_s1[5],utc1_l5);
-    f->addRow(utc_s1[6],utc1_l6);
-    f->addRow(utc_s1[7],utc1_l7);
-    f->addRow(utc_s1[8],utc1_l8);
-    f->addRow(utc_s1[9],utc1_l9);
-    f->addRow(utc_s1[10],utc1_l10);
-    f->addRow(utc_s1[11],utc1_l11);
-    f->addRow(utc_s1[12],utc1_l12);
-    f->addRow(utc_s1[13],utc1_l13);
-    f->addRow(utc_s1[14],utc1_l14);
-    f->addRow(utc_s1[15],utc1_l15);
+    f->addRow(utc_s1[0],utc1_ltrktime);
+    f->addRow(utc_s1[1],utc1_l0);
+    f->addRow(utc_s1[2],utc1_l1);
+    f->addRow(utc_s1[3],utc1_l2);
+    f->addRow(utc_s1[4],utc1_l3);
+    f->addRow(utc_s1[5],utc1_l4);
+    f->addRow(utc_s1[6],utc1_l5);
+    f->addRow(utc_s1[7],utc1_l6);
+    f->addRow(utc_s1[8],utc1_l7);
+    f->addRow(utc_s1[9],utc1_l8);
+    f->addRow(utc_s1[10],utc1_l9);
+    f->addRow(utc_s1[11],utc1_l10);
+    f->addRow(utc_s1[12],utc1_l11);
+    f->addRow(utc_s1[13],utc1_l12);
+    f->addRow(utc_s1[14],utc1_l13);
+    f->addRow(utc_s1[15],utc1_l14);
 
     QVBoxLayout *v11=new QVBoxLayout;
     v11->addLayout(h1);
@@ -7246,6 +7265,7 @@ void MainWindow::init_utcCfg()
 
     connect(btn_utc1_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc1_default_Slot()));
     connect(btn_utc1_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc1_update_Slot()));
+    connect(utc1_ltrktime,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_ltrktime_Slot()));
     connect(utc1_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l0_Slot()));
     connect(utc1_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l1_Slot()));
     connect(utc1_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l2_Slot()));
@@ -7261,7 +7281,6 @@ void MainWindow::init_utcCfg()
     connect(utc1_l12,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l12_Slot()));
     connect(utc1_l13,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l13_Slot()));
     connect(utc1_l14,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l14_Slot()));
-    connect(utc1_l15,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l15_Slot()));
     utc1->setLayout(v11);
 
     utc2->setWindowTitle("UTC2参数配置");
@@ -8182,6 +8201,13 @@ void MainWindow::showJos()
 
 void MainWindow::showSysCfg()
 {
+    send_mutex.lock();
+    send_arr[4]=0x31;
+    send_arr[5]=51;
+    send_arr[6]=5;
+    send_oneframe(3);
+    send_mutex.unlock();
+
     w_config->show();
 }
 
