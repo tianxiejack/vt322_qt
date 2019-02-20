@@ -1673,7 +1673,7 @@ private:
           QPushButton *btn_pid_default,*btn_pid_update;
           QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
           QLineEdit *kx_lineEdt,*ky_lineEdt,*errx_lineEdt,*erry_lineEdt,*time_lineEdt,*x_ratio_control,*y_ratio_control;
-          QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数K","PIDy轴比例系数Kp","PIDy轴积分系数Ki","PIDy轴微分系数Kd","PIDy轴滤波系数K"};
           QString dbg_s1[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴进PID偏差","进PID时间"};
           int current_1 = 0;
           /*pid配置 通道2*/
@@ -1681,7 +1681,7 @@ private:
           QPushButton *btn_pid_default2,*btn_pid_update2;
           QLineEdit *kp1_pid2,*ki1_pid2,*kd1_pid2,*k12,*kp2_pid2,*ki2_pid2,*kd2_pid2,*k22;
           QLineEdit *kx_lineEdt2,*ky_lineEdt2,*errx_lineEdt2,*erry_lineEdt2,*time_lineEdt2,*x_ratio_control2,*y_ratio_control2;
-          QString pid_s2[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString pid_s2[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数K","PIDy轴比例系数Kp","PIDy轴积分系数Ki","PIDy轴微分系数Kd","PIDy轴滤波系数K"};
           QString dbg_s2[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴进PID偏差","进PID时间"};
 
           /*pid配置 通道3*/
@@ -1689,7 +1689,7 @@ private:
           QPushButton *btn_pid_default3,*btn_pid_update3;
           QLineEdit *kp1_pid3,*ki1_pid3,*kd1_pid3,*k13,*kp2_pid3,*ki2_pid3,*kd2_pid3,*k23;
           QLineEdit *kx_lineEdt3,*ky_lineEdt3,*errx_lineEdt3,*erry_lineEdt3,*time_lineEdt3,*x_ratio_control3,*y_ratio_control3;
-          QString pid_s3[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString pid_s3[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数K","PIDy轴比例系数Kp","PIDy轴积分系数Ki","PIDy轴微分系数Kd","PIDy轴滤波系数K"};
           QString dbg_s3[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴进PID偏差","进PID时间"};
 
           /*pid配置 通道4*/
@@ -1697,7 +1697,7 @@ private:
           QPushButton *btn_pid_default4,*btn_pid_update4;
           QLineEdit *kp1_pid4,*ki1_pid4,*kd1_pid4,*k14,*kp2_pid4,*ki2_pid4,*kd2_pid4,*k24;
           QLineEdit *kx_lineEdt4,*ky_lineEdt4,*errx_lineEdt4,*erry_lineEdt4,*time_lineEdt4,*x_ratio_control4,*y_ratio_control4;
-          QString pid_s4[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString pid_s4[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数K","PIDy轴比例系数Kp","PIDy轴积分系数Ki","PIDy轴微分系数Kd","PIDy轴滤波系数K"};
           QString dbg_s4[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴进PID偏差","进PID时间"};
 
           /*pid配置 通道5*/
@@ -1705,7 +1705,7 @@ private:
           QPushButton *btn_pid_default5,*btn_pid_update5;
           QLineEdit *kp1_pid5,*ki1_pid5,*kd1_pid5,*k15,*kp2_pid5,*ki2_pid5,*kd2_pid5,*k25;
           QLineEdit *kx_lineEdt5,*ky_lineEdt5,*errx_lineEdt5,*erry_lineEdt5,*time_lineEdt5,*x_ratio_control5,*y_ratio_control5;
-          QString pid_s5[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
+          QString pid_s5[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数K","PIDy轴比例系数Kp","PIDy轴积分系数Ki","PIDy轴微分系数Kd","PIDy轴滤波系数K"};
           QString dbg_s5[7]={"x轴比例调节系数","y轴比例调节系数","x轴比例调节限幅","y轴比例调节限幅","x轴进PID偏差","y轴进PID偏差","进PID时间"};
 
     /*捕获配置*/

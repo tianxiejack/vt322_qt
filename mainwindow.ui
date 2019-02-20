@@ -306,7 +306,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>目标捕获方式</string>
+      <string>目标选择方式</string>
      </property>
     </widget>
     <widget class="QRadioButton" name="radioButton_acqmode">
@@ -354,7 +354,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>移动目标检测</string>
+      <string>移动检测</string>
      </property>
     </widget>
    </widget>
@@ -390,7 +390,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>人工选择目标跟踪</string>
+      <string>常规跟踪</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -406,7 +406,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>自动跟踪</string>
+      <string>自动监视</string>
      </property>
     </widget>
     <widget class="QRadioButton" name="radioButton_3_workmode">
@@ -467,7 +467,7 @@
      <x>0</x>
      <y>0</y>
      <width>710</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

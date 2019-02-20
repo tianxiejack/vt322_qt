@@ -509,7 +509,7 @@ void MainWindow::init_pidCfg2()
     v1->addWidget(btn_pid_default2);
     v1->addWidget(btn_pid_update2);
     QLabel *label=new QLabel;
-    label->setText("通道2");
+    label->setText("PID配置");
     QHBoxLayout *h1=new QHBoxLayout;
     h1->addLayout(v1);
     h1->addWidget(label);
@@ -6409,7 +6409,7 @@ void MainWindow::init_speedconvCfg_sec()
     v1->addWidget(btn_speed_default);
     v1->addWidget(btn_speed_update);
     QLabel *label=new QLabel;
-    label->setText("通道2");
+    label->setText("转台配置");
     QHBoxLayout *h1=new QHBoxLayout;
     h1->addLayout(v1);
     h1->addWidget(label);
@@ -7634,7 +7634,7 @@ void MainWindow::init_OSDCfg()
     btn_keep1 = new QPushButton;
     btn_keep1->setText("保存");
     btn_osd1_default->setText("默认");
-    btn_osd1_update->setText("设置");
+    btn_osd1_update->setText("应用");
     QVBoxLayout *v1=new QVBoxLayout;
     v1->addWidget(btn_osd1_default);
     v1->addWidget(btn_keep1);
