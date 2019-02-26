@@ -1594,6 +1594,7 @@ private slots:
     void on_radioButton_3_acqmode_clicked(bool checked);
 
     void on_call_preset_bit_clicked();
+    void on_btnApertureMinus_2_clicked();
 
 
 private:
