@@ -8094,6 +8094,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 
     updatecircle_s(x, y);
     sendjoyevent(x, y);
+    sendjoyevent(x, y);
+    sendjoyevent(x, y);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
