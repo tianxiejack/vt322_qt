@@ -3038,6 +3038,27 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             Change_ledt_search_azimuth_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
             continue_ledt_search_azimuth_sec->setText(QString::number(value_int));
+
+        if(w_sersor_1_thi->show_stat)
+            ledt_search_azimuth_thi->setText(QString::number(value_int));
+        if(w_seitchField_1_thi->show_stat)
+            Change_ledt_search_azimuth_thi->setText(QString::number(value_int));
+        if(w_ContinueField_1_thi->show_stat)
+            continue_ledt_search_azimuth_thi->setText(QString::number(value_int));
+
+        if(w_sersor_1_fou->show_stat)
+            ledt_search_azimuth_fou->setText(QString::number(value_int));
+        if(w_seitchField_1_fou->show_stat)
+            Change_ledt_search_azimuth_fou->setText(QString::number(value_int));
+        if(w_ContinueField_1_fou->show_stat)
+            continue_ledt_search_azimuth_fou->setText(QString::number(value_int));
+
+        if(w_sersor_1_fif->show_stat)
+            ledt_search_azimuth_fif->setText(QString::number(value_int));
+        if(w_seitchField_1_fif->show_stat)
+            Change_ledt_search_azimuth_fif->setText(QString::number(value_int));
+        if(w_ContinueField_1_fif->show_stat)
+            continue_ledt_search_azimuth_fif->setText(QString::number(value_int));
     }
     else if(0x61 == i)
     {
@@ -3055,6 +3076,27 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             Change_ledt_search_pitch_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
             continue_ledt_search_pitch_sec->setText(QString::number(value_int));
+
+        if(w_sersor_1_thi->show_stat)
+            ledt_search_pitch_thi->setText(QString::number(value_int));
+        if(w_seitchField_1_thi->show_stat)
+            Change_ledt_search_pitch_thi->setText(QString::number(value_int));
+        if(w_ContinueField_1_thi->show_stat)
+            continue_ledt_search_pitch_thi->setText(QString::number(value_int));
+
+        if(w_sersor_1_fou->show_stat)
+            ledt_search_pitch_fou->setText(QString::number(value_int));
+        if(w_seitchField_1_fou->show_stat)
+            Change_ledt_search_pitch_fou->setText(QString::number(value_int));
+        if(w_ContinueField_1_fou->show_stat)
+            continue_ledt_search_pitch_fou->setText(QString::number(value_int));
+
+        if(w_sersor_1_fif->show_stat)
+            ledt_search_pitch_fif->setText(QString::number(value_int));
+        if(w_seitchField_1_fif->show_stat)
+            Change_ledt_search_pitch_fif->setText(QString::number(value_int));
+        if(w_ContinueField_1_fif->show_stat)
+            continue_ledt_search_pitch_fif->setText(QString::number(value_int));
     }
     else if(0x62 == i)
     {
@@ -3072,6 +3114,27 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             Change_ledt_search_zoom_sec->setText(QString::number(value_int));
         if(w_ContinueField_1_sec->show_stat)
             continue_ledt_search_zoom_sec->setText(QString::number(value_int));
+
+        if(w_sersor_1_thi->show_stat)
+            ledt_search_zoom_thi->setText(QString::number(value_int));
+        if(w_seitchField_1_thi->show_stat)
+            Change_ledt_search_zoom_thi->setText(QString::number(value_int));
+        if(w_ContinueField_1_thi->show_stat)
+            continue_ledt_search_zoom_thi->setText(QString::number(value_int));
+
+        if(w_sersor_1_fou->show_stat)
+            ledt_search_zoom_fou->setText(QString::number(value_int));
+        if(w_seitchField_1_fou->show_stat)
+            Change_ledt_search_zoom_fou->setText(QString::number(value_int));
+        if(w_ContinueField_1_fou->show_stat)
+            continue_ledt_search_zoom_fou->setText(QString::number(value_int));
+
+        if(w_sersor_1_fif->show_stat)
+            ledt_search_zoom_fif->setText(QString::number(value_int));
+        if(w_seitchField_1_fif->show_stat)
+            Change_ledt_search_zoom_fif->setText(QString::number(value_int));
+        if(w_ContinueField_1_fif->show_stat)
+            continue_ledt_search_zoom_fif->setText(QString::number(value_int));
     }
     memset(output_array,0,sizeof(output_array));
 }

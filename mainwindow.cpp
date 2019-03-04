@@ -3685,7 +3685,7 @@ void MainWindow::vedio_spby_continue12_Slot_sec()
 }
 void MainWindow::vedio_spby_continue13_Slot_sec()
 {
-    float value=vedio_spby_continue3_sec->text().toFloat();
+    float value=vedio_spby_continue13_sec->text().toFloat();
     send_mutex.lock();
     send_arr[4] = 0x30;
     send_arr[5] =114;
