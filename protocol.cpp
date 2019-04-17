@@ -126,6 +126,7 @@ void MainWindow::send_oneframe(int length)
 void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串口读到正确的一帧数据的时候执行此函数。
 {
     float value_i;
+    int value_inte;
     QString msg;
     QByteArray   ba;
     bool osd_judgment=(output_array[1] == 0x07) || (output_array[1] == 0x08)|| (output_array[1] == 0x09)||(output_array[1] == 0x0a)\
@@ -143,6 +144,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     }else{
         memcpy(&value_i,output_array+3,4);
     }
+    value_inte = value_i;
 
     if(0x05 == i)
     {
@@ -837,11 +839,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(0);
                     switch (output_array[2]){
                         case 0x00:
-                             if(value_i==0x00){
-                               checkBox->setChecked(true);
-                            }else{
-                               checkBox->setChecked(false);
-                             }
+                            if(value_inte==0x00)
+                              checkBox2->setChecked(true);
+                            else
+                              checkBox2->setChecked(false);
                             break;
                         case 0x01:
                              osd1_pos_x->setText(QString::number(value_i));
@@ -867,11 +868,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(1);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -897,11 +897,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(2);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -927,11 +926,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(3);
                     switch (output_array[2]){
                         case 0x00:
-                             if(value_i==0x00){
-                               checkBox->setChecked(true);
-                            }else{
-                               checkBox->setChecked(false);
-                             }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                             break;
                         case 0x01:
                              osd1_pos_x->setText(QString::number(value_i));
@@ -957,11 +955,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(4);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -987,11 +984,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(5);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1017,11 +1013,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(6);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1047,11 +1042,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(7);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1077,11 +1071,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(8);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1107,11 +1100,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(9);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1137,11 +1129,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(10);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1167,11 +1158,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(11);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1197,11 +1187,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(12);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1227,11 +1216,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(13);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1257,11 +1245,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(14);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1287,11 +1274,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(15);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1335,11 +1321,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(16);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1365,11 +1350,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(17);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1395,11 +1379,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(18);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1425,11 +1408,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(19);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1455,11 +1437,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(20);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1485,11 +1466,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(21);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1515,11 +1495,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(22);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1545,11 +1524,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(23);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1575,11 +1553,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(24);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1605,11 +1582,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(25);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1635,11 +1611,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(26);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1665,11 +1640,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(27);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1695,14 +1669,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(28);
                     switch (output_array[2]){
                     case 0x00:
-                        if(value_i==0x00)
-                        {
-                            checkBox->setChecked(true);
-                        }
-                         else
-                        {
-                           checkBox->setChecked(false);
-                        }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1728,11 +1698,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(29);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1758,11 +1727,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(30);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));
@@ -1788,11 +1756,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     c->setCurrentIndex(31);
                     switch (output_array[2]){
                     case 0x00:
-                         if(value_i==0x00){
-                           checkBox->setChecked(true);
-                        }else{
-                           checkBox->setChecked(false);
-                         }
+                        if(value_inte==0x00)
+                          checkBox2->setChecked(true);
+                        else
+                          checkBox2->setChecked(false);
                         break;
                     case 0x01:
                          osd1_pos_x->setText(QString::number(value_i));

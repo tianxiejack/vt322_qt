@@ -4531,7 +4531,7 @@ void MainWindow::init_vedioCfg_fou(){
     v->addLayout(v22);
     w_seitchField_1_fou->setLayout(v);
     connect(btn_vediosersor_default_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_default_Slot_fou()));
-    connect(btn_vediosersor_update,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
+    connect(btn_vediosersor_update_fou,SIGNAL(clicked(bool)),this,SLOT(btn_vediosersor_fix_update_Slot()));
 
     connect(ChanelNum_fou,SIGNAL(clicked(bool)),this,SLOT(change_ChanelNum_Slot_fou()));//1、 通道号：如果勾选使能，则HDMI输出是显示的视频的左上角显示通道号；
     connect(enable_fou,SIGNAL(clicked(bool)),this,SLOT(change_chanelname_Slot_fou()));//2、 通道名称：如果勾选使能，则HDMI输出是显示的视频的左上角显示填写的通道名称；
