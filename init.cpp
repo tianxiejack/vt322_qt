@@ -277,7 +277,7 @@ void MainWindow::init_sysCfg()
     connect(box_outresol,SIGNAL(activated(int)),this,SLOT(combox_output_resol(int)));
     w_config->setLayout(pLayout);
 }
-void MainWindow::init_platCfg()
+void MainWindow::init_josCfg()
 {
         w_plat=new MyWidget;
         w_plat->setWindowTitle("手柄配置");
@@ -297,118 +297,53 @@ void MainWindow::init_platCfg()
         gbox_Jos=new QGroupBox();
         gbox_Jos->setTitle("手柄");
 
-        josDead_lineEdt=new QLineEdit;
-        josPoint_lineEdt=new QLineEdit;
+        comb_jostype = new QComboBox;
+        comb_jostype->addItem("未接入手柄");
+        comb_jostype->addItem("海康手柄");
+        josDeadx_lineEdt=new QLineEdit;
+        josDeady_lineEdt=new QLineEdit;
         josInputG_x=new QLineEdit;
         josInputG_y=new QLineEdit;
-        josPoint_lineEdt2=new QLineEdit;
         josInputG_x2=new QLineEdit;
         josInputG_y2=new QLineEdit;
-    //    josOutputG_x=new QLineEdit;
-    //    josOutputG_y=new QLineEdit;
+        josPointx_lineEdt=new QLineEdit;
+        josPointy_lineEdt=new QLineEdit;
+        josPointx_lineEdt2=new QLineEdit;
+        josPointy_lineEdt2=new QLineEdit;
 
         QFormLayout *f1=new QFormLayout();
-        f1->addRow(jos_s[0],josDead_lineEdt);
-        f1->addRow(jos_s[1],josPoint_lineEdt);
-        f1->addRow(jos_s[2],josInputG_x);
-        f1->addRow(jos_s[3],josInputG_y);
-        f1->addRow(jos_s[4],josPoint_lineEdt2);
+        f1->addRow(jos_s[0],comb_jostype);
+        f1->addRow(jos_s[1],josDeadx_lineEdt);
+        f1->addRow(jos_s[2],josDeady_lineEdt);
+        f1->addRow(jos_s[3],josInputG_x);
+        f1->addRow(jos_s[4],josInputG_y);
         f1->addRow(jos_s[5],josInputG_x2);
         f1->addRow(jos_s[6],josInputG_y2);
-    //    f1->addRow(jos_s[4],josOutputG_x);
-    //    f1->addRow(jos_s[5],josOutputG_y);
+        f1->addRow(jos_s[7],josPointx_lineEdt);
+        f1->addRow(jos_s[8],josPointy_lineEdt);
+        f1->addRow(jos_s[9],josPointx_lineEdt2);
+        f1->addRow(jos_s[10],josPointy_lineEdt2);
+
         gbox_Jos->setLayout(f1);
-
-        gbox_PID=new QGroupBox();
-        gbox_PID->setTitle("PID");
-
-        kp1_pid=new QLineEdit;
-        ki1_pid=new QLineEdit;
-        kd1_pid=new QLineEdit;
-        k1=new QLineEdit;
-        kp2_pid=new QLineEdit;
-        ki2_pid=new QLineEdit;
-        kd2_pid=new QLineEdit;
-        k2=new QLineEdit;
-
-        QFormLayout *f2=new QFormLayout();
-        f2->addRow(pid_s[0],kp1_pid);
-        f2->addRow(pid_s[1],ki1_pid);
-        f2->addRow(pid_s[2],kd1_pid);
-        f2->addRow(pid_s[3],k1);
-        f2->addRow(pid_s[4],kp2_pid);
-        f2->addRow(pid_s[5],ki2_pid);
-        f2->addRow(pid_s[6],kd2_pid);
-        f2->addRow(pid_s[7],k2);
-        gbox_PID->setLayout(f2);
-
-        gbox_plat=new QGroupBox();
-        gbox_plat->setTitle("平台");
-
-        mx_plat=new QLineEdit;
-        my_plat=new QLineEdit;
-        deadx_plat=new QLineEdit;
-        deady_plat=new QLineEdit;
-        a_plat=new QLineEdit;
-    //    outMode=new QComboBox;
-    //    outMode->addItem(string_outMode[0]);
-    //    outMode->addItem(string_outMode[1]);
-    //    outMode->addItem(string_outMode[2]);
-    //    outMode->addItem(string_outMode[3]);
-    //    outMode->addItem(string_outMode[4]);
-    //    outMode->addItem(string_outMode[5]);
-    //    outMode->addItem(string_outMode[6]);
-    //    outMode->setCurrentIndex(2);
-
-        QFormLayout *f3=new QFormLayout();
-        f3->addRow(plat_s[2],mx_plat);
-        f3->addRow(plat_s[3],my_plat);
-        f3->addRow(plat_s[4],deadx_plat);
-        f3->addRow(plat_s[5],deady_plat);
-        f3->addRow(plat_s[6],a_plat);
-       // f3->addRow(plat_s[7],outMode);
-        gbox_plat->setLayout(f3);
-
 
         QVBoxLayout *v=new QVBoxLayout;
         v->addLayout(h1);
-
         v->addWidget(gbox_Jos);
-
-       //v->addWidget(gbox_PID);
-
-        //v->addWidget(gbox_plat);
-
         w_plat->setLayout(v);
 
         connect(btn_jos_default,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Default_Slot()));
-        connect(btn_jos_update,SIGNAL(clicked(bool)),this,SLOT(btn_Jos_Update_Slot()));
-        connect(josDead_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos1_Slot()));
-        connect(josPoint_lineEdt,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos2_Slot()));
-        connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos3_Slot()));
-        connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos4_Slot()));
-        connect(josPoint_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
-        connect(josInputG_x2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
-        connect(josInputG_y2,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos7_Slot()));
-    //    connect(josOutputG_x,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos5_Slot()));
-    //    connect(josOutputG_y,SIGNAL(returnPressed()),this,SLOT(lEdt_Jos6_Slot()));
-
-        connect(kp1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot()));
-        connect(ki1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot()));
-        connect(kd1_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot()));
-        connect(k1,SIGNAL(returnPressed()),this,SLOT(lEdt_PID4_Slot()));
-        connect(kp2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID5_Slot()));
-        connect(ki2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID6_Slot()));
-        connect(kd2_pid,SIGNAL(returnPressed()),this,SLOT(lEdt_PID7_Slot()));
-        connect(k2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID8_Slot()));
-
-        connect(mx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat3_Slot()));
-        connect(my_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat4_Slot()));
-        connect(deadx_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat5_Slot()));
-        connect(deady_plat,SIGNAL(returnPressed()),SLOT(lEdt_plat6_Slot()));
-        connect(a_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat7_Slot()));
-       // connect(outMode,SIGNAL(activated(int)),this,SLOT(outMode_Slot(int)));
-
+        connect(btn_jos_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
+        connect(comb_jostype,SIGNAL(activated(int)),this,SLOT(comb_jostype_Slot(int)));
+        connect(josDeadx_lineEdt,SIGNAL(returnPressed()),this,SLOT(josDeadx_Slot()));
+        connect(josDeady_lineEdt,SIGNAL(returnPressed()),this,SLOT(josDeady_Slot()));
+        connect(josInputG_x,SIGNAL(returnPressed()),this,SLOT(josInputG_x_Slot()));
+        connect(josInputG_y,SIGNAL(returnPressed()),this,SLOT(josInputG_y_Slot()));
+        connect(josInputG_x2,SIGNAL(returnPressed()),this,SLOT(josInputG_x_Slot2()));
+        connect(josInputG_y2,SIGNAL(returnPressed()),this,SLOT(josInputG_y_Slot2()));
+        connect(josPointx_lineEdt,SIGNAL(returnPressed()),this,SLOT(josPointx_Slot()));
+        connect(josPointy_lineEdt,SIGNAL(returnPressed()),this,SLOT(josPointy_Slot()));
+        connect(josPointx_lineEdt2,SIGNAL(returnPressed()),this,SLOT(josPointx_Slot2()));
+        connect(josPointy_lineEdt2,SIGNAL(returnPressed()),this,SLOT(josPointy_Slot2()));
 }
 
 void MainWindow::init_pidCfg()
@@ -7205,10 +7140,6 @@ void MainWindow::init_mtdCfg()
     connect(Alarm_delay,SIGNAL(returnPressed()),this,SLOT(lEdt_Alarm_delay_Slot()));
 
 }
-void MainWindow::init_josCfg()
-{
-
-}
 
 void MainWindow::init_utcCfg()
 {
@@ -7246,30 +7177,29 @@ void MainWindow::init_utcCfg()
     utc1_l13=new QLineEdit;
     utc1_l14=new QLineEdit;
     QFormLayout *f=new QFormLayout();
-    f->addRow(utc_s1[0],utc1_ltrktime);
-    f->addRow(utc_s1[1],utc1_l0);
-    f->addRow(utc_s1[2],utc1_l1);
-    f->addRow(utc_s1[3],utc1_l2);
-    f->addRow(utc_s1[4],utc1_l3);
-    f->addRow(utc_s1[5],utc1_l4);
-    f->addRow(utc_s1[6],utc1_l5);
-    f->addRow(utc_s1[7],utc1_l6);
-    f->addRow(utc_s1[8],utc1_l7);
-    f->addRow(utc_s1[9],utc1_l8);
-    f->addRow(utc_s1[10],utc1_l9);
-    f->addRow(utc_s1[11],utc1_l10);
-    f->addRow(utc_s1[12],utc1_l11);
-    f->addRow(utc_s1[13],utc1_l12);
-    f->addRow(utc_s1[14],utc1_l13);
-    f->addRow(utc_s1[15],utc1_l14);
+    f->addRow(utc_s1[0],utc1_l0);
+    f->addRow(utc_s1[1],utc1_l1);
+    f->addRow(utc_s1[2],utc1_l2);
+    f->addRow(utc_s1[3],utc1_l3);
+    f->addRow(utc_s1[4],utc1_l4);
+    f->addRow(utc_s1[5],utc1_l5);
+    f->addRow(utc_s1[6],utc1_l6);
+    f->addRow(utc_s1[7],utc1_l7);
+    f->addRow(utc_s1[8],utc1_l8);
+    f->addRow(utc_s1[9],utc1_l9);
+    f->addRow(utc_s1[10],utc1_l10);
+    f->addRow(utc_s1[11],utc1_l11);
+    f->addRow(utc_s1[12],utc1_l12);
+    f->addRow(utc_s1[13],utc1_l13);
+    f->addRow(utc_s1[14],utc1_l14);
+    f->addRow(utc_s1[15],utc1_ltrktime);
 
     QVBoxLayout *v11=new QVBoxLayout;
     v11->addLayout(h1);
     v11->addLayout(f);
 
     connect(btn_utc1_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc1_default_Slot()));
-    connect(btn_utc1_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc1_update_Slot()));
-    connect(utc1_ltrktime,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_ltrktime_Slot()));
+    connect(btn_utc1_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(utc1_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l0_Slot()));
     connect(utc1_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l1_Slot()));
     connect(utc1_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l2_Slot()));
@@ -7285,6 +7215,7 @@ void MainWindow::init_utcCfg()
     connect(utc1_l12,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l12_Slot()));
     connect(utc1_l13,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l13_Slot()));
     connect(utc1_l14,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_l14_Slot()));
+    connect(utc1_ltrktime,SIGNAL(returnPressed()),this,SLOT(lEdt_utc1_ltrktime_Slot()));
     utc1->setLayout(v11);
 
     utc2->setWindowTitle("UTC2参数配置");
@@ -7340,7 +7271,7 @@ void MainWindow::init_utcCfg()
     v22->addLayout(f2);
 
     connect(btn_utc2_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc2_default_Slot()));
-    connect(btn_utc2_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc2_update_Slot()));
+    connect(btn_utc2_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(utc2_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l0_Slot()));
     connect(utc2_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l1_Slot()));
     connect(utc2_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc2_l2_Slot()));
@@ -7412,7 +7343,7 @@ void MainWindow::init_utcCfg()
     v33->addLayout(f3);
 
     connect(btn_utc3_default,SIGNAL(clicked(bool)),this,SLOT(btn_utc3_default_Slot()));
-    connect(btn_utc3_update,SIGNAL(clicked(bool)),this,SLOT(btn_utc3_update_Slot()));
+    connect(btn_utc3_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(utc3_l0,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l0_Slot()));
     connect(utc3_l1,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l1_Slot()));
     connect(utc3_l2,SIGNAL(returnPressed()),this,SLOT(lEdt_utc3_l2_Slot()));
@@ -8238,32 +8169,7 @@ void MainWindow::showSysCfg()
 
 void MainWindow::showPlat()
 {
-    for(int i=1;i<8;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x01;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-
-
-    /*
-    for(int i=1;i<7;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x03;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }*/
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x03;
-    send_arr[6]=0x08;
-    send_oneframe(3);
-    send_mutex.unlock();
-
+    read_config(1);
 
     w_plat->show();
     w_plat->show_stat = 1;
@@ -8803,33 +8709,9 @@ void MainWindow:: showmtdcfg()
     w_mtd->show_stat = 1;
 }
 
-void MainWindow::showjoscfg()
-{
-    /*
-    for(int i=1;i<8;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x01;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-    w_jos->show();
-    w_jos->show_stat=1;
-    */
-}
-
 void MainWindow::showAlg()
 {
-
-    for(int i=0;i<16;i++){
-       send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x04;
-        send_arr[6]=i;
-        send_oneframe(3);
-       send_mutex.unlock();
-    }
+    read_config(4);
 
     utc1->show();
     utc1->show_stat = 1;
@@ -8837,34 +8719,18 @@ void MainWindow::showAlg()
 
 void MainWindow::showAlg2()
 {
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x05;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    read_config(5);
 
     utc2->show();
     utc2->show_stat = 1;
 }
 void MainWindow::showAlg3()
 {
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x06;
-        send_arr[6]=i;
-       send_oneframe(3);
-        send_mutex.unlock();
-    }
+    read_config(6);
 
     utc3->show();
     utc3->show_stat = 1;
 }
-
-
 
 void MainWindow::showCapture1()
 {

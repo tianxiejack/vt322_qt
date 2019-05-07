@@ -90,7 +90,7 @@ public:
     /*初始化的配置*/
     void init_menu();
     void init_sysCfg();
-    void init_platCfg();
+    void init_josCfg();
 
     void init_pidCfg();
     void init_pidCfg2();
@@ -109,7 +109,6 @@ public:
     void init_speedconvCfg_fou();
     void init_speedconvCfg_fif();
     void init_mtdCfg();
-    void init_josCfg();
     void init_utcCfg();
     void init_captureCfg();
     void init_OSDCfg();
@@ -246,7 +245,6 @@ public slots:
     void showspeedconvcfg_fou();
     void showspeedconvcfg_fif();
     void showmtdcfg();
-    void showjoscfg();
     void show_realtime_output();
 
     void readfovmode1();
@@ -340,35 +338,20 @@ private slots:
     void btn_aisle4_Slot();
     void btn_aisle5_Slot();
     void btn_resolution_clicked();
-    /*平台控制*/
-    void btn_Jos_Default_Slot();
-    void btn_Jos_Update_Slot();
-    void lEdt_Jos1_Slot();
-    void lEdt_Jos2_Slot();
-    void lEdt_Jos3_Slot();
-    void lEdt_Jos4_Slot();
-    void lEdt_Jos5_Slot();
-    void lEdt_Jos6_Slot();
-    void lEdt_Jos7_Slot();
-/*
-    void lEdt_PID1_Slot();
-    void lEdt_PID2_Slot();
-    void lEdt_PID3_Slot();
-    void lEdt_PID4_Slot();
-    void lEdt_PID5_Slot();
-    void lEdt_PID6_Slot();
-    void lEdt_PID7_Slot();
-    void lEdt_PID8_Slot();
-    */
 
-    void lEdt_plat1_Slot();
-    void lEdt_plat2_Slot();
-    void lEdt_plat3_Slot();
-    void lEdt_plat4_Slot();
-    void lEdt_plat5_Slot();
-    void lEdt_plat6_Slot();
-    void lEdt_plat7_Slot();
-    void outMode_Slot(int i);
+    /*手柄配置*/
+    void btn_Jos_Default_Slot();
+    void comb_jostype_Slot(int index);
+    void josDeadx_Slot();
+    void josDeady_Slot();
+    void josInputG_x_Slot();
+    void josInputG_y_Slot();
+    void josInputG_x_Slot2();
+    void josInputG_y_Slot2();
+    void josPointx_Slot();
+    void josPointy_Slot();
+    void josPointx_Slot2();
+    void josPointy_Slot2();
 
     /*PID1配置*/
        void lEdt_kx_Slot();
@@ -1396,7 +1379,6 @@ private slots:
 
     /*UTC1参数配置*/
     void btn_utc1_default_Slot();
-    void btn_utc1_update_Slot();
     void lEdt_utc1_ltrktime_Slot();
     void lEdt_utc1_l0_Slot();
     void lEdt_utc1_l1_Slot();
@@ -1416,7 +1398,6 @@ private slots:
 
     /*UTC2参数配置*/
     void btn_utc2_default_Slot();
-    void btn_utc2_update_Slot();
     void lEdt_utc2_l0_Slot();
     void lEdt_utc2_l1_Slot();
     void lEdt_utc2_l2_Slot();
@@ -1436,7 +1417,6 @@ private slots:
 
     /*UTC3参数配置*/
     void btn_utc3_default_Slot();
-    void btn_utc3_update_Slot();
     void lEdt_utc3_l0_Slot();
     void lEdt_utc3_l1_Slot();
     void lEdt_utc3_l2_Slot();
@@ -1603,6 +1583,10 @@ private slots:
 
     void outputtype_Slot(int index);
 
+    void setconfig(int blk, int field, float value);
+    void defaultconfig(int blk);
+    void saveconfig();
+
 private:
     Ui::MainWindow *ui;
     Jos j;
@@ -1653,27 +1637,22 @@ private:
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
     QComboBox *box_outresol;
-    //QComboBox *box1;
     QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
     QString filePath_updatesw, filePath_impconf;
     QLineEdit *editsw, *editimportconf;
-    /*平台配置*/
-    MyWidget *w_plat;
-      QGroupBox *gbox_Jos,*gbox_plat;
-      QLineEdit *josDead_lineEdt,*josPoint_lineEdt,*josInputG_x,*josInputG_y,*josPoint_lineEdt2,*josInputG_x2,*josInputG_y2,
-                *josOutputG_x,*josOutputG_y;
-      QComboBox *outMode;
-      //QLineEdit *kp1_pid,*ki1_pid,*kd1_pid,*k1,*kp2_pid,*ki2_pid,*kd2_pid,*k2;
-      QLineEdit *bleedx_plat,*bleedy_plat,*mx_plat,*my_plat,*deadx_plat,*deady_plat,*a_plat;
-       QString string_outMode[7]={"Zero","JoystickInput","ShapedAndGained","ShapedAndGainedAndIntegrated","DeterminedByPostion","ZeroInitFilter","DeterminedByIncomingPlatformData"};
-      QString jos_s[9]={"手柄死区","手柄拐点1","手柄x轴输入增益1","手柄y轴输入增益1","手柄拐点2","手柄x轴输入增益2","手柄y轴输入增益2","摇杆平台x输出增益","摇杆平台y轴输出增益"};
-     // QString pid_s[8]={"PIDx轴比例系数Kp","PIDx轴积分系数Ki","PIDx轴微分系数Kd","PIDx轴滤波系数k","PIDy比例系数Kp","PIDy积分系数Ki","PIDy微分系数Kd","PIDy轴滤波系数k"};
-      QString plat_s[8]={"x轴最大速度","y轴最大速度","x轴最大速度","y轴最大速度","x轴死区","y轴死区","惯性跟踪时间","平台输出模式"};
 
-      /*pid配置 通道1*/
+    /*手柄配置*/
+    MyWidget *w_plat;
+    QGroupBox *gbox_Jos;
+    QComboBox *comb_jostype;
+    QLineEdit *josDeadx_lineEdt,*josDeady_lineEdt,*josInputG_x,*josInputG_y,*josInputG_x2,*josInputG_y2,
+                *josPointx_lineEdt,*josPointy_lineEdt,*josPointx_lineEdt2,*josPointy_lineEdt2;
+    QString jos_s[11]={"手柄型号","手柄X死区","手柄Y死区","手柄x轴输入增益1","手柄y轴输入增益1","手柄x轴输入增益2","手柄y轴输入增益2","手柄拐点1X","手柄拐点1Y","手柄拐点2X","手柄拐点2Y"};
+
+    /*pid配置 通道1*/
           MyWidget *w_pid,*w_pid3,*w_pid4,*w_pid5;
           MyWidget *w_pid2;
           QGroupBox *gbox_PID,*regulator_pid;
@@ -2005,7 +1984,7 @@ private:
     QLineEdit *utc3_l0,*utc3_l1,*utc3_l2,*utc3_l3,*utc3_l4,*utc3_l5,
               *utc3_l6,*utc3_l7,*utc3_l8,*utc3_l9,*utc3_l10,*utc3_l11,
               *utc3_l12,*utc3_l13,*utc3_l14,*utc3_l15;
-    QString utc_s1[16]={"惯性跟踪时间","丢失阈值","重捕获阈值","模板更新比例","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY"};
+    QString utc_s1[16]={"occlution_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","惯性跟踪时间"};
     QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 
