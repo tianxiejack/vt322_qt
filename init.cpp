@@ -8008,50 +8008,40 @@ void MainWindow::init_realtime_output()
     w_realtime_output=new MyWidget;
     w_realtime_output->setWindowTitle(tr("实时输出"));
 
+    output_type = new QComboBox();
+    output_type->addItem("关闭输出");
+    output_type->addItem("输出像素偏差");
+    output_type->addItem("输出平台速度");
+
     rto_currstat = new QLineEdit;
     rto_currstat->setText("目标捕获");
     rto_trkerrorx = new QLineEdit;
     rto_trkerrory = new QLineEdit;
-    rto_speedneedx = new QLineEdit;
-    rto_speedneedy = new QLineEdit;
-    rto_speedclassx = new QLineEdit;
-    rto_speedclassy = new QLineEdit;
 
+    QLabel* output_type_l=new QLabel;
+    output_type_l->setText("选择输出类型");
     QLabel* rto_currstat_l=new QLabel;
-    rto_currstat_l->setText("当前状态");
-    QLabel* rto_trkerrorx_l=new QLabel;
-    rto_trkerrorx_l->setText("像素偏差X");
-    QLabel* rto_trkerrory_l=new QLabel;
-    rto_trkerrory_l->setText("像素偏差Y");
-    QLabel* rto_speedneedx_l=new QLabel;
-    rto_speedneedx_l->setText("速度需求X");
-    QLabel* rto_speedneedy_l=new QLabel;
-    rto_speedneedy_l->setText("速度需求Y");
-    QLabel* rto_speedclassx_l=new QLabel;
-    rto_speedclassx_l->setText("速度等级X");
-    QLabel* rto_speedclassy_l=new QLabel;
-    rto_speedclassy_l->setText("速度等级Y");
+    rto_currstat_l->setText("跟踪状态");
+    rto_trkerrorx_l=new QLabel;
+    rto_trkerrorx_l->setText("X方向像素偏差");
+    rto_trkerrory_l=new QLabel;
+    rto_trkerrory_l->setText("Y方向像素偏差");
 
     QGridLayout *grto=new QGridLayout;
-    grto->addWidget(rto_currstat_l, 0, 0, 1, 1);
-    grto->addWidget(rto_currstat, 0, 1, 1, 1);
+    grto->addWidget(output_type_l, 0, 0, 1, 1);
+    grto->addWidget(output_type, 0, 1, 1, 1);
 
-    grto->addWidget(rto_trkerrorx_l, 1, 0, 1, 1);
-    grto->addWidget(rto_trkerrorx, 1, 1, 1, 1);
-    grto->addWidget(rto_trkerrory_l, 1, 2, 1, 1);
-    grto->addWidget(rto_trkerrory, 1, 3, 1, 1);
+    grto->addWidget(rto_currstat_l, 1, 0, 1, 1);
+    grto->addWidget(rto_currstat, 1, 1, 1, 1);
 
-    grto->addWidget(rto_speedneedx_l, 2, 0, 1, 1);
-    grto->addWidget(rto_speedneedx, 2, 1, 1, 1);
-    grto->addWidget(rto_speedneedy_l, 2, 2, 1, 1);
-    grto->addWidget(rto_speedneedy, 2, 3, 1, 1);
-
-    grto->addWidget(rto_speedclassx_l, 3, 0, 1, 1);
-    grto->addWidget(rto_speedclassx, 3, 1, 1, 1);
-    grto->addWidget(rto_speedclassy_l, 3, 2, 1, 1);
-    grto->addWidget(rto_speedclassy, 3, 3, 1, 1);
+    grto->addWidget(rto_trkerrorx_l, 2, 0, 1, 1);
+    grto->addWidget(rto_trkerrorx, 2, 1, 1, 1);
+    grto->addWidget(rto_trkerrory_l, 2, 2, 1, 1);
+    grto->addWidget(rto_trkerrory, 2, 3, 1, 1);
 
     w_realtime_output->setLayout(grto);
+
+    connect(output_type,SIGNAL(activated(int)),this,SLOT(outputtype_Slot(int)));
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
@@ -8082,7 +8072,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     {
         mousePress = 1;
         updatecircle_s(x, y);
-        sendjoyevent(x, y);
+        if(ui->radioButton_acqmode->isChecked())
+            sendjoyevent(x, y);
+        else if(ui->radioButton_2_acqmode->isChecked())
+            sendposmove(x, y);
     }
 }
 
@@ -8093,9 +8086,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
     int y = POINTY;
 
     updatecircle_s(x, y);
-    sendjoyevent(x, y);
-    sendjoyevent(x, y);
-    sendjoyevent(x, y);
+    if(ui->radioButton_acqmode->isChecked())
+    {
+        sendjoyevent(x, y);
+        sendjoyevent(x, y);
+        sendjoyevent(x, y);
+    }
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
@@ -8106,7 +8102,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     if(mousePress && InJoys(x,y))
     {
         updatecircle_s(x, y);
-        sendjoyevent(x, y);
+        if(ui->radioButton_acqmode->isChecked())
+            sendjoyevent(x, y);
+        else if(ui->radioButton_2_acqmode->isChecked())
+            sendposmove(x, y);
     }
 }
 
@@ -8145,29 +8144,50 @@ void MainWindow::sendjoyevent(int x, int y)
 {
     static int old_x = 0;
     static int old_y = 0;
+
     signed short sx = (x - POINTX) * 32767 / CENTER_B;
     signed short sy = (y - POINTY) * 32767 / CENTER_B;
-    if(sx != old_x)
+    if((sx != old_x) || (sy != old_y))
     {
         send_mutex.lock();
-        send_arr[4] = 0x15;
-        send_arr[5] = 0x02;
-        send_arr[6] = 0x00;
-        memcpy(send_arr+7, &sx, 2);
+        send_arr[4] = 0x0f;
+        send_arr[5] = sx & 0xff;
+        send_arr[6] = (sx >> 8) & 0xff;
+        send_arr[7] = sy & 0xff;
+        send_arr[8] = (sy >> 8) & 0xff;
         send_oneframe(5);
         send_mutex.unlock();
         old_x = sx;
+        old_y = sy;
     }
-    if(sy != old_y)
+}
+
+void MainWindow::sendposmove(int x, int y)
+{
+    static int old_x = 0;
+    static int old_y = 0;
+
+    signed short sx = (x - POINTX) * 1920 / CENTER_B;
+    signed short sy = (y - POINTY) * 1080 / CENTER_B;
+    if((sx != old_x) || (sy != old_y))
     {
         send_mutex.lock();
-        send_arr[4] = 0x15;
-        send_arr[5] = 0x02;
-        send_arr[6] = 0x01;
-        memcpy(send_arr+7, &sy, 2);
-        send_oneframe(5);
+        send_arr[4] = 0x0a;
+        send_arr[5] = 0;
+        if(sx < 0)
+            send_arr[5] |= 1;
+        else if(sx > 0)
+            send_arr[5] |= (1 << 1);
+        if(sy < 0)
+            send_arr[5] |= (1 << 2);
+        else if(sy > 0)
+            send_arr[5] |= (1 << 3);
+        send_arr[6] = abs(sx) & 0xff;
+        send_arr[7] = (abs(sx) >> 8) & 0xff;
+        send_arr[8] = abs(sy) & 0xff;
+        send_arr[9] = (abs(sy) >> 8) & 0xff;
+        send_oneframe(6);
         send_mutex.unlock();
-        old_y = sy;
     }
 }
 
@@ -8190,13 +8210,12 @@ void MainWindow::timeoutSlot()
         break;
     }
     send_mutex.lock();
-    send_arr[4] = 0x0b;
-    send_arr[5] = 0x01;
-    send_arr[6] = value_x&0xff;
-    send_arr[7] =(value_x>>8)&0xff;
-    send_arr[8] = value_y&0xff;
-    send_arr[9] = (value_y>>8)&0xff;
-    send_oneframe(6);
+    send_arr[4] = 0x08;
+    send_arr[5] = value_x&0xff;
+    send_arr[6] =(value_x>>8)&0xff;
+    send_arr[7] = value_y&0xff;
+    send_arr[8] = (value_y>>8)&0xff;
+    send_oneframe(5);
     send_mutex.unlock();
 }
 
@@ -9514,4 +9533,13 @@ void MainWindow::btn_choose_Slot()
 
     w_choose->show();
     w_choose->show_stat = 1;
+}
+
+void MainWindow::outputtype_Slot(int index)
+{
+    send_mutex.lock();
+    send_arr[4]=0x43;
+    send_arr[5]=index;
+    send_oneframe(2);
+    send_mutex.unlock();
 }

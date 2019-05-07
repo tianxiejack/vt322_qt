@@ -85,6 +85,7 @@ public:
     void updatecircle_s(int x, int y);
     int InJoys(int x, int y);
     void sendjoyevent(int x, int y);
+    void sendposmove(int x, int y);
 
     /*初始化的配置*/
     void init_menu();
@@ -1531,9 +1532,6 @@ private slots:
     void btn_capture2_update_Slot();
     void btn_capture3_default_Slot();
     void btn_capture3_update_Slot();
-
-    void on_btn_ok_clicked();
-
     void on_btnViewPlus_released();
 
     void on_btnViewMinus_pressed();
@@ -1564,7 +1562,9 @@ private slots:
     void on_btn_left_2_clicked();
 
     void on_btn_right_2_clicked();
-
+    void on_btnSecTrack_open_clicked();
+    void on_btnSecTrack_close_clicked();
+    void on_btn_ok_clicked();
     void on_btn_up_pressed();
 
     void on_btn_up_released();
@@ -1593,9 +1593,15 @@ private slots:
 
     void on_radioButton_3_acqmode_clicked(bool checked);
 
+    void on_btnLastTarget_clicked();
+
+    void on_btnNextTarget_clicked();
+
     void on_call_preset_bit_clicked();
+
     void on_btnApertureMinus_2_clicked();
 
+    void outputtype_Slot(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -2039,7 +2045,9 @@ private:
 
     /*实时输出界面*/
     MyWidget *w_realtime_output;
-    QLineEdit *rto_currstat, *rto_trkerrorx, *rto_trkerrory, *rto_speedneedx, *rto_speedneedy, *rto_speedclassx, *rto_speedclassy;
+    QComboBox *output_type;
+    QLineEdit *rto_currstat, *rto_trkerrorx, *rto_trkerrory;
+    QLabel* rto_trkerrorx_l, *rto_trkerrory_l;
 };
 extern MainWindow *pthis;
 #endif // MAINWINDOW_H

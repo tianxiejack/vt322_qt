@@ -97,7 +97,7 @@ void MainWindow::send_oneframe(int length)
     send_arr[2] = length&0xff;
     send_arr[3] = (length>>8)&0xff;
     unsigned char sum=0;
-    for(int n = 1; n<len-1; n++) {
+    for(int n = 4; n<len-1; n++) {
         sum ^= send_arr[n];
      }
     send_arr[len-1] = sum;
@@ -146,9 +146,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     }
     value_inte = value_i;
 
-    if(0x05 == i)
+    if(0x43 == i)
     {
         int curstat = output_array[1];
+        int outputtype = output_array[2];
+        short errorx = (output_array_6[3] | (output_array_6[4]<<8));
+        short errory = (output_array_6[5] | (output_array_6[6]<<8));
+
         switch(curstat)
         {
             case 0x00:
@@ -163,27 +167,22 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             default:
                 break;
         }
-    }
-    else if(0x06 == i)
-    {
-        short errorx = (output_array_6[1] | (output_array_6[2]<<8));
-        short errory = (output_array_6[3] | (output_array_6[4]<<8));
+        switch(outputtype)
+        {
+            case 0x01:
+                rto_trkerrorx_l->setText("X方向像素偏差");
+                rto_trkerrory_l->setText("Y方向像素偏差");
+                break;
+            case 0x02:
+                rto_trkerrorx_l->setText("X方向速度需求");
+                rto_trkerrory_l->setText("Y方向速度需求");
+                break;
+            default:
+                break;
+        }
+
         rto_trkerrorx->setText(QString::number(errorx));
         rto_trkerrory->setText(QString::number(errory));
-    }
-    else if(0x07 == i)
-    {
-        short speedneedx = (output_array_7[1] | (output_array_7[2]<<8));
-        short speedneedy = (output_array_7[3] | (output_array_7[4]<<8));
-        rto_speedneedx->setText(QString::number(speedneedx));
-        rto_speedneedy->setText(QString::number(speedneedy));
-    }
-    else if(0x08 == i)
-    {
-        char speedclassx = output_array_8[1];
-        char speedclassy = output_array_8[2];
-        rto_speedclassx->setText(QString::number(speedclassx));
-        rto_speedclassy->setText(QString::number(speedclassy));
     }
     else if(0x31 == i){
         switch (output_array[1]) {
@@ -2989,83 +2988,91 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            }
        }
     }
-    else if(0x60 == i)
+    else if(0x41 == i)
     {
         unsigned short value_int = (output_array[1] | (output_array[2]<<8));
+        unsigned short value_int2 = (output_array[3] | (output_array[4]<<8));
         if(w_sersor_1->show_stat)
+        {
             ledt_search_azimuth->setText(QString::number(value_int));
+            ledt_search_pitch->setText(QString::number(value_int2));
+        }
         if(w_seitchField_1->show_stat)
+        {
             Change_ledt_search_azimuth->setText(QString::number(value_int));
+            Change_ledt_search_pitch->setText(QString::number(value_int2));
+        }
         if(w_ContinueField_1->show_stat)
+        {
             continue_ledt_search_azimuth->setText(QString::number(value_int));
+            continue_ledt_search_pitch->setText(QString::number(value_int2));
+        }
 
         if(w_sersor_1_sec->show_stat)
+        {
             ledt_search_azimuth_sec->setText(QString::number(value_int));
+            ledt_search_pitch_sec->setText(QString::number(value_int2));
+        }
         if(w_seitchField_1_sec->show_stat)
+        {
             Change_ledt_search_azimuth_sec->setText(QString::number(value_int));
+            Change_ledt_search_pitch_sec->setText(QString::number(value_int2));
+        }
         if(w_ContinueField_1_sec->show_stat)
+        {
             continue_ledt_search_azimuth_sec->setText(QString::number(value_int));
+            continue_ledt_search_pitch_sec->setText(QString::number(value_int2));
+        }
 
         if(w_sersor_1_thi->show_stat)
+        {
             ledt_search_azimuth_thi->setText(QString::number(value_int));
+            ledt_search_pitch_thi->setText(QString::number(value_int2));
+        }
         if(w_seitchField_1_thi->show_stat)
+        {
             Change_ledt_search_azimuth_thi->setText(QString::number(value_int));
+            Change_ledt_search_pitch_thi->setText(QString::number(value_int2));
+        }
         if(w_ContinueField_1_thi->show_stat)
+        {
             continue_ledt_search_azimuth_thi->setText(QString::number(value_int));
+            continue_ledt_search_pitch_thi->setText(QString::number(value_int2));
+        }
 
         if(w_sersor_1_fou->show_stat)
+        {
             ledt_search_azimuth_fou->setText(QString::number(value_int));
+            ledt_search_pitch_fou->setText(QString::number(value_int2));
+        }
         if(w_seitchField_1_fou->show_stat)
+        {
             Change_ledt_search_azimuth_fou->setText(QString::number(value_int));
+            Change_ledt_search_pitch_fou->setText(QString::number(value_int2));
+        }
         if(w_ContinueField_1_fou->show_stat)
+        {
             continue_ledt_search_azimuth_fou->setText(QString::number(value_int));
+            continue_ledt_search_pitch_fou->setText(QString::number(value_int2));
+        }
 
         if(w_sersor_1_fif->show_stat)
+        {
             ledt_search_azimuth_fif->setText(QString::number(value_int));
+            ledt_search_pitch_fif->setText(QString::number(value_int2));
+        }
         if(w_seitchField_1_fif->show_stat)
+        {
             Change_ledt_search_azimuth_fif->setText(QString::number(value_int));
+            Change_ledt_search_pitch_fif->setText(QString::number(value_int2));
+        }
         if(w_ContinueField_1_fif->show_stat)
+        {
             continue_ledt_search_azimuth_fif->setText(QString::number(value_int));
+            continue_ledt_search_pitch_fif->setText(QString::number(value_int2));
+        }
     }
-    else if(0x61 == i)
-    {
-        unsigned short value_int = (output_array[1] | (output_array[2]<<8));
-        if(w_sersor_1->show_stat)
-            ledt_search_pitch->setText(QString::number(value_int));
-        if(w_seitchField_1->show_stat)
-            Change_ledt_search_pitch->setText(QString::number(value_int));
-        if(w_ContinueField_1->show_stat)
-            continue_ledt_search_pitch->setText(QString::number(value_int));
-
-        if(w_sersor_1_sec->show_stat)
-            ledt_search_pitch_sec->setText(QString::number(value_int));
-        if(w_seitchField_1_sec->show_stat)
-            Change_ledt_search_pitch_sec->setText(QString::number(value_int));
-        if(w_ContinueField_1_sec->show_stat)
-            continue_ledt_search_pitch_sec->setText(QString::number(value_int));
-
-        if(w_sersor_1_thi->show_stat)
-            ledt_search_pitch_thi->setText(QString::number(value_int));
-        if(w_seitchField_1_thi->show_stat)
-            Change_ledt_search_pitch_thi->setText(QString::number(value_int));
-        if(w_ContinueField_1_thi->show_stat)
-            continue_ledt_search_pitch_thi->setText(QString::number(value_int));
-
-        if(w_sersor_1_fou->show_stat)
-            ledt_search_pitch_fou->setText(QString::number(value_int));
-        if(w_seitchField_1_fou->show_stat)
-            Change_ledt_search_pitch_fou->setText(QString::number(value_int));
-        if(w_ContinueField_1_fou->show_stat)
-            continue_ledt_search_pitch_fou->setText(QString::number(value_int));
-
-        if(w_sersor_1_fif->show_stat)
-            ledt_search_pitch_fif->setText(QString::number(value_int));
-        if(w_seitchField_1_fif->show_stat)
-            Change_ledt_search_pitch_fif->setText(QString::number(value_int));
-        if(w_ContinueField_1_fif->show_stat)
-            continue_ledt_search_pitch_fif->setText(QString::number(value_int));
-    }
-    else if(0x62 == i)
+    else if(0x42 == i)
     {
         unsigned short value_int = (output_array[1] | (output_array[2]<<8));
         if(w_sersor_1->show_stat)

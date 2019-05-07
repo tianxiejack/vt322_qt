@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>59</y>
+      <y>79</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -148,7 +148,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>120</y>
+      <y>140</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -161,7 +161,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>90</y>
+      <y>110</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -174,7 +174,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
+      <y>110</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -187,7 +187,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>90</y>
+      <y>110</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -200,7 +200,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>210</y>
+      <y>230</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -213,7 +213,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>179</y>
+      <y>199</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -226,7 +226,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>210</y>
+      <y>230</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -239,7 +239,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>240</y>
+      <y>260</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -265,7 +265,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>150</y>
+      <y>175</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -291,7 +291,7 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>280</y>
+      <y>300</y>
       <width>151</width>
       <height>101</height>
      </rect>
@@ -362,7 +362,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>280</y>
+      <y>300</y>
       <width>161</width>
       <height>101</height>
      </rect>
@@ -428,12 +428,64 @@
      <rect>
       <x>460</x>
       <y>310</y>
-      <width>101</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>调用预置位</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSecTrack_open">
+    <property name="geometry">
+     <rect>
+      <x>22</x>
+      <y>55</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开启</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSecTrack_close">
+    <property name="geometry">
+     <rect>
+      <x>67</x>
+      <y>55</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnNextTarget">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>365</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下一个</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLastTarget">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>365</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>上一个</string>
     </property>
    </widget>
    <zorder>btnCapture</zorder>
@@ -460,6 +512,10 @@
    <zorder>widget</zorder>
    <zorder>widget_2</zorder>
    <zorder>call_preset_bit</zorder>
+   <zorder>btnSecTrack_open</zorder>
+   <zorder>btnSecTrack_close</zorder>
+   <zorder>btnNextTarget</zorder>
+   <zorder>btnLastTarget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
