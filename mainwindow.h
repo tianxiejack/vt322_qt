@@ -1436,19 +1436,22 @@ private slots:
 
     /*OSD参数设置*/
     void btn_osd_default_Slot();
-    void btn_keep1_Slot();
-    void btn_osd_update_Slot();
     void CBox_osd_choose_Slot(int i);
-    void checkBox_Slot(int i);
-    void lEdt_osd_x_Slot();
-    void lEdt_osd_y_Slot();
-    void lEdt_osd_context_Slot();
+    void osd_posx_Slot();
+    void osd_posy_Slot();
+    void osd_context_Slot();
+    void CBox_datatype_Slot(int i);
+    void CBox_osdcolor_Slot(int i);
+    void CBox_transparency_Slot(int i);
     void CBox_osd_font_Slot(int i);
     void CBox_osd_font_size_Slot(int i);
-    //void CBox_View_Slot(int i);
-    void CBox_osd_color_Slot(int i);
-    void CBox_transparency_Slot();
-   // void lEdt_transparency_Slot();
+
+
+    void btn_osd_default2_Slot();
+    void CBox_cusosd_choose_Slot(int i);
+    void CBox_show_cusosd_Slot(int arg1);
+    void CBox_sysosd_choose_Slot(int i);
+    void CBox_show_sysosd_Slot(int arg1);
 
     /*捕获框设置*/
     void checkBox_cross_Slot();
@@ -1583,6 +1586,9 @@ private slots:
 
     void outputtype_Slot(int index);
 
+    void init_c_osd(QComboBox *c);
+    int get_osd_blk(QComboBox *c);
+
     void setconfig(int blk, int field, float value);
     void defaultconfig(int blk);
     void saveconfig();
@@ -1592,7 +1598,6 @@ private:
     Jos j;
     int value_x=960;
     int value_y=540;
-    int value_check=0;
     int value_search=0;
 
 
@@ -2000,13 +2005,19 @@ private:
     QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     QCheckBox *checkBox_cross;
     /*OSD*/
-    QComboBox *c,*CBox_color,*CBox_font,*CBox_font_size,*CBox_transparency;
-    QPushButton *btn_osd1_default,*btn_osd1_update,*btn_keep1;
+    QComboBox *c,*CBox_datatype,*CBox_color,*CBox_font,*CBox_font_size,*CBox_transparency;
+    QPushButton *btn_osd1_default,*btn_keep1;
     MyWidget *w_osd1;
-    QCheckBox *checkBox,*checkBox2;
-    QGroupBox *Custom;
-    QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_label,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color;
-    QString osd_s[14]={"用户自定义字符显示","显示","x位置","y位置","内容","颜色","透明度","字体大小"};
+    QGroupBox *Custom, *Osdctrl;
+    QLineEdit *osd1_pos_x,*osd1_pos_y,*osd1_lineEdit_context,*osd1_lineEdit_font,*osd1_lineEdit_color;
+    QString osd_s[9]={"显示","x位置","y位置","内容","图符类型","颜色","透明度","字体","字号大小"};
+
+    QPushButton *btn_osd2_default,*btn_keep2;
+    QComboBox *c_cusosd, *c_sysosd;
+    QCheckBox *checkBox2, *checkBox_sysosd;
+
+    quint32 cusosd_state = 0;
+    quint32 sysosd_state = 0;
 
     /*软件升级*/
     RcvUSocketdata  *thread_usocket;

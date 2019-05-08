@@ -8970,67 +8970,7 @@ void MainWindow::lEdt_utc3_l15_Slot()
 
 void MainWindow::btn_osd_default_Slot()
 {
-    int count = c->currentIndex();
-
-    if(count<16)
-        count=count+7;
-    else
-        count=count+13;
-
-    send_mutex.lock();
-    send_arr[4] =0x09;
-    send_arr[5] =count;
-    send_oneframe(2);
-    send_mutex.unlock();
-}
-
-void MainWindow::btn_keep1_Slot()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x34;
-    send_oneframe(1);
-    send_mutex.unlock();
-}
-
-void MainWindow::btn_osd_update_Slot()
-{
-    if(checkBox->isChecked()){
-
-
-    if(checkBox2->isChecked()){
-        value_check=0;
-    }else{
-        value_check=1;
-    }
-    int length=0;
-    QString msg=osd1_lineEdit_context->text();
-    QByteArray dd=msg.toUtf8();
-    length=dd.size()+9;
-    if(dd.size()>128){
-        QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
-    }else{
-        send_mutex.lock();
-        send_arr[4]=0x20;
-        send_arr[5]=c->currentIndex();
-        send_arr[6]=value_check;
-        send_arr[7]=osd1_pos_x->text().toInt()&0xff;
-        send_arr[8]=(osd1_pos_x->text().toInt()>>8)&0xff;
-        send_arr[9]=osd1_pos_y->text().toInt()&0xff;
-        send_arr[10]=(osd1_pos_y->text().toInt()>>8)&0xff;
-        send_arr[11]=CBox_color->currentIndex()+1;
-        send_arr[12]=CBox_transparency->currentIndex();
-        for(int i=0;i<dd.size();i++){
-           int addr1=dd[i] & 0x000000FF;
-           send_arr[13+i]=addr1;
-        }
-        send_oneframe(length);
-        send_mutex.unlock();
-    }
-    }
-    else
-    {
-        QMessageBox::warning(this,"警告","请点击用户自定义字符显示使能开关",QMessageBox::Ok);
-    }
+    defaultconfig(get_osd_blk(c));
 }
 
 void MainWindow::CBox_osd_choose_Slot(int i)
@@ -9038,63 +8978,140 @@ void MainWindow::CBox_osd_choose_Slot(int i)
     osd1_lineEdit_context->clear();
     osd1_pos_y->clear();
     osd1_pos_x->clear();
-    //osd1_lineEdit_transparency->clear();
- if(i<16){
-        for(int j=0;j<4;j++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=i+7;
-            send_arr[6]=j;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
-        for(int j=5;j<7;j++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=i+7;
-            send_arr[6]=j;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
-    }else{
-        for(int j=0;j<4;j++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=i+13;
-            send_arr[6]=j;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
-        for(int j=5;j<7;j++){
-            send_mutex.lock();
-            send_arr[4]=0x31;
-            send_arr[5]=i+13;
-            send_arr[6]=j;
-            send_oneframe(3);
-            send_mutex.unlock();
-        }
-    }
-
+    if(i<16)
+        read_config(i+7);
+    else
+        read_config(i+13);
 }
 
-void MainWindow::checkBox_Slot(int i)
+void MainWindow::osd_posx_Slot()
 {
-    if(i == Qt::Checked){
+    float value = osd1_pos_x->text().toFloat();
+    setconfig(get_osd_blk(c), 1, value);
+}
 
+void MainWindow::osd_posy_Slot()
+{
+    float value = osd1_pos_y->text().toFloat();
+    setconfig(get_osd_blk(c), 2, value);
+}
+
+void MainWindow::osd_context_Slot()
+{
+    int length=0;
+    QString msg=osd1_lineEdit_context->text();
+    QByteArray dd=msg.toUtf8();
+    length=dd.size()+3;
+
+    if(dd.size()>128)
+        QMessageBox::warning(this,"警告","输入内容过多",QMessageBox::Ok);
+    else
+    {
         send_mutex.lock();
-        send_arr[4]=0x48;
-        send_arr[5]=0x01;
-        send_oneframe(2);
-        send_mutex.unlock();
-    }
-    else if(i == Qt::Unchecked){
-        send_mutex.lock();
-        send_arr[4]=0x48;
-        send_arr[5]=0x00;
-        send_oneframe(2);
+        send_arr[4]=0x53;
+        send_arr[5]=c->currentIndex()+1;
+        send_arr[6]=0x01;
+        for(int i=0;i<dd.size();i++)
+        {
+            int addr1=dd[i] & 0x000000FF;
+            send_arr[7+i]=addr1;
+        }
+        send_oneframe(length);
         send_mutex.unlock();
     }
 }
+
+void MainWindow::CBox_datatype_Slot(int i)
+{
+    float value = 0;
+
+    if(0 == i)
+        value = 1;
+
+    setconfig(get_osd_blk(c), 3, value);
+}
+
+void MainWindow::CBox_osdcolor_Slot(int i)
+{
+    float value = 0;
+
+    value = i + 1;
+
+    setconfig(get_osd_blk(c), 6, value);
+}
+
+void MainWindow::CBox_transparency_Slot(int i)
+{
+    float value = 0;
+
+    value = i;
+
+    setconfig(get_osd_blk(c), 7, value);
+}
+
+void MainWindow::CBox_osd_font_Slot(int i)
+{
+    float value = 0;
+
+    value = i + 1;
+
+    setconfig(get_osd_blk(c), 8, value);
+}
+
+void MainWindow::CBox_osd_font_size_Slot(int i)
+{
+    float value = 0;
+
+    value = i + 1;
+
+    setconfig(get_osd_blk(c), 9, value);
+}
+
+void MainWindow::btn_osd_default2_Slot()
+{
+    defaultconfig(53);
+}
+
+void MainWindow::CBox_cusosd_choose_Slot(int i)
+{
+    read_config(53);
+}
+
+void MainWindow::CBox_show_cusosd_Slot(int arg1)
+{
+    int i = c_cusosd->currentIndex();
+    if(arg1 == Qt::Checked)
+    {
+        cusosd_state |= (1 << i);
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        cusosd_state &= ~(1 << i);
+    }
+    float value = cusosd_state;
+    setconfig(53, 2, value);
+}
+
+void MainWindow::CBox_sysosd_choose_Slot(int i)
+{
+    read_config(53);
+}
+
+void MainWindow::CBox_show_sysosd_Slot(int arg1)
+{
+    int i = c_sysosd->currentIndex();
+    if(arg1 == Qt::Checked)
+    {
+        sysosd_state |= (1 << i);
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        sysosd_state &= ~(1 << i);
+    }
+    float value = sysosd_state;
+    setconfig(53, 1, value);
+}
+
 void MainWindow::checkBox_cross_Slot()
 {
     float value = 0;
@@ -9390,43 +9407,7 @@ void MainWindow::btn_resolution_clicked()
     send_oneframe(6);
     send_mutex.unlock();
 }
-void MainWindow::lEdt_osd_x_Slot()
-{
 
-}
-
-void MainWindow::lEdt_osd_y_Slot()
-{
-
-}
-
-void MainWindow::lEdt_osd_context_Slot()
-{
-
-}
-
-void MainWindow::CBox_osd_font_Slot(int i)
-{
-    send_mutex.lock();
-    send_arr[4] = 0x21;
-    send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+1;
-    send_oneframe(3);
-    send_mutex.unlock();
-    //QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
-
-}
-
-void MainWindow::CBox_osd_font_size_Slot(int i)
-{
-    send_mutex.lock();
-    send_arr[4] = 0x21;
-    send_arr[5] =CBox_font->currentIndex()+1;
-    send_arr[6] =CBox_font_size->currentIndex()+1;
-    send_oneframe(3);
-    send_mutex.unlock();
-    //QMessageBox::information(this,"提示","重启板卡生效",QMessageBox::Ok,QMessageBox::Cancel);
-}
 /*
 void MainWindow::CBox_View_Slot(int i)
 {
@@ -9437,21 +9418,6 @@ void MainWindow::CBox_View_Slot(int i)
     send_mutex.unlock();
 }
 */
-void MainWindow::CBox_osd_color_Slot(int i)
-{
-
-}
-
-void MainWindow::CBox_transparency_Slot()
-{
-    send_mutex.lock();
-    send_arr[4] = 0x20;
-    send_arr[5] =CBox_font->currentIndex()+1;
-
-    send_oneframe(2);
-    send_mutex.unlock();
-
-}
 
 
 void MainWindow::lEdt_capture_0()

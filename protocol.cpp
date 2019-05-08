@@ -97,7 +97,7 @@ void MainWindow::send_oneframe(int length)
     send_arr[2] = length&0xff;
     send_arr[3] = (length>>8)&0xff;
     unsigned char sum=0;
-    for(int n = 4; n<len-1; n++) {
+    for(int n = 1; n<len-1; n++) {
         sum ^= send_arr[n];
      }
     send_arr[len-1] = sum;
@@ -106,6 +106,7 @@ void MainWindow::send_oneframe(int length)
     for(int m = 0; m< len; m++){
         str1 += QString("%1").arg(send_arr[m]&0xFF,2,16,QLatin1Char('0')).toUpper() + QString(" ");
     }
+
     bool checkf = true;
     sndData_02 = string2hex(str1,checkf);
     sendNum += sndData_02.length();
@@ -137,7 +138,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                       ||(output_array[1] == 0x21) || (output_array[1] == 0x22)|| (output_array[1] == 0x23)||(output_array[1] == 0x24)\
                       ||(output_array[1] == 0x25) || (output_array[1] == 0x26)|| (output_array[1] == 0x27)||(output_array[1] == 0x28)\
                       ||(output_array[1] == 0x29) || (output_array[1] == 0x2a)|| (output_array[1] == 0x2b)||(output_array[1] == 0x2c);
-    if(osd_judgment && (output_array[2]==0x03)){
+    if(osd_judgment && (output_array[2]==0x04)){
       QByteArray dd((char*)output_array+3, data_length-3);
       ba=dd;
 
@@ -184,7 +185,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         rto_trkerrorx->setText(QString::number(errorx));
         rto_trkerrory->setText(QString::number(errory));
     }
-    else if(0x31 == i){
+    else if(0x52 == i){
         switch (output_array[1]) {
             case 1:
                 if(w_plat->show_stat)
@@ -383,466 +384,70 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 break;
             case 7:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(0);
-                    switch (output_array[2]){
-                        case 0x00:
-                            if(value_inte==0x00)
-                              checkBox2->setChecked(true);
-                            else
-                              checkBox2->setChecked(false);
-                            break;
-                        case 0x01:
-                             osd1_pos_x->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                             osd1_pos_y->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                             osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                            break;
-                        case 0x05:
-                            CBox_color->setCurrentIndex(value_i-1);
-                            break;
-                        case 0x06:
-                           CBox_transparency->setCurrentIndex(value_i);
-                            break;
-                    }
-                }
-                break;
             case 8:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(1);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
             case 9:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(2);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
             case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
                 if(w_osd1->show_stat)
                 {
-                    c->setCurrentIndex(3);
-                    switch (output_array[2]){
-                        case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                            break;
-                        case 0x01:
+                    if(output_array[1] < 23)
+                        c->setCurrentIndex(output_array[1] - 7);
+                    else
+                        c->setCurrentIndex(output_array[1] - 13);
+                    switch(output_array[2])
+                    {
+                        case 1:
                              osd1_pos_x->setText(QString::number(value_i));
                             break;
-                        case 0x02:
+                        case 2:
                              osd1_pos_y->setText(QString::number(value_i));
                             break;
-                        case 0x03:
+                        case 3:
+                            if(0x01 == value_inte)
+                                CBox_datatype->setCurrentIndex(0);
+                            break;
+                        case 4:
                              osd1_lineEdit_context->setText(msg.fromUtf8(ba));
                             break;
-                        case 0x05:
-                            CBox_color->setCurrentIndex(value_i-1);
+                        case 6:
+                            CBox_color->setCurrentIndex(value_inte-1);
                             break;
-                        case 0x06:
-                           CBox_transparency->setCurrentIndex(value_i);
+                        case 7:
+                           CBox_transparency->setCurrentIndex(value_inte);
                             break;
-                    }
-                }
-                break;
-            case 11:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(4);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 12:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(5);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 13:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(6);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 14:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(7);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                      CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 15:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(8);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 16:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(9);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 17:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(10);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                      CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 18:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(11);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 19:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(12);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 20:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(13);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 21:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(14);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 22:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(15);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
+                        case 8:
+                            CBox_font->setCurrentIndex(value_inte-1);
+                            break;
+                        case 9:
+                           CBox_font_size->setCurrentIndex(value_inte - 1);
+                            break;
                     }
                 }
                 break;
@@ -862,470 +467,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 showblk27(output_array[2],value_i);
                 break;
             case 28:
-                break;
-            case 29:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(16);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 30:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(17);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 31:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(18);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 32:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(19);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 33:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(20);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                        CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 34:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(21);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 35:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(22);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 36:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(23);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 37:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(24);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 38:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(25);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 39:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(26);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 40:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(27);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 41:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(28);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                        osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 42:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(29);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 43:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(30);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
-                break;
-            case 44:
-                if(w_osd1->show_stat)
-                {
-                    c->setCurrentIndex(31);
-                    switch (output_array[2]){
-                    case 0x00:
-                        if(value_inte==0x00)
-                          checkBox2->setChecked(true);
-                        else
-                          checkBox2->setChecked(false);
-                        break;
-                    case 0x01:
-                         osd1_pos_x->setText(QString::number(value_i));
-                        break;
-                    case 0x02:
-                         osd1_pos_y->setText(QString::number(value_i));
-                        break;
-                    case 0x03:
-                         osd1_lineEdit_context->setText(msg.fromUtf8(ba));
-                        break;
-                    case 0x05:
-                        CBox_color->setCurrentIndex(value_i-1);
-                        break;
-                    case 0x06:
-                       CBox_transparency->setCurrentIndex(value_i);
-                        break;
-                    }
-                }
                 break;
             case 45:
                 if(w_capture1->show_stat)
@@ -1621,6 +762,24 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 else if(0x06 == output_array[2])
                 {
                     out_address->setText(QString::number(value_i));
+                }
+                break;
+            case 53:
+                if(w_osd1->show_stat)
+                {
+                    if(1 == output_array[2])
+                    {
+                        sysosd_state = value_i;
+                        int i = c_sysosd->currentIndex();
+                        checkBox_sysosd->setChecked(sysosd_state & (1 << i));
+
+                    }
+                    else if(2 == output_array[2])
+                    {
+                        cusosd_state = value_i;
+                        int i = c_cusosd->currentIndex();
+                        checkBox2->setChecked(cusosd_state & (1 << i));
+                    }
                 }
                 break;
             case 54:
@@ -3174,8 +2333,7 @@ void MainWindow::read_config(int block)
         case 42:
         case 43:
         case 44:
-            send_read_config(block,0,3);
-            send_read_config(block,5,6);
+            send_read_config(block,1,8);
             break;
         case 23:
             send_read_config(block,0,13);
@@ -3210,6 +2368,9 @@ void MainWindow::read_config(int block)
             break;
         case 52:
             send_read_config(block,1,6);
+            break;
+        case 53:
+            send_read_config(block,1,2);
             break;
         case 54:
             send_read_config(block,0,15);
@@ -5986,3 +5147,4 @@ void MainWindow::showblk120(int field, float value)
             break;
     }
 }
+

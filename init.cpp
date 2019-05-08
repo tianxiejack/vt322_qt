@@ -7547,25 +7547,23 @@ void MainWindow::init_captureCfg()
 
     w_capture3->setLayout(h33);
 }
+
 void MainWindow::init_OSDCfg()
 {
     w_osd1=new MyWidget;
+    w_osd1->setWindowTitle("字符叠加");
     c=new QComboBox;
-    checkBox=new QCheckBox;
-    checkBox2=new QCheckBox;
     osd1_pos_x=new QLineEdit;
     osd1_pos_y=new QLineEdit;
-    osd1_lineEdit_label=new QLineEdit;
     osd1_lineEdit_context=new QLineEdit;
+    CBox_datatype = new QComboBox;
     CBox_color=new QComboBox;
     CBox_transparency=new QComboBox;
 
     btn_osd1_default=new QPushButton;
-    btn_osd1_update=new QPushButton;
     btn_keep1 = new QPushButton;
     btn_keep1->setText("保存");
     btn_osd1_default->setText("默认");
-    btn_osd1_update->setText("应用");
     QVBoxLayout *v1=new QVBoxLayout;
     v1->addWidget(btn_osd1_default);
     v1->addWidget(btn_keep1);
@@ -7583,39 +7581,9 @@ void MainWindow::init_OSDCfg()
     CBox_font_size->addItem("中");
     CBox_font_size->addItem("大");
 
+    init_c_osd(c);
 
-    c->addItem("OSD1");
-    c->addItem("OSD2");
-    c->addItem("OSD3");
-    c->addItem("OSD4");
-    c->addItem("OSD5");
-    c->addItem("OSD6");
-    c->addItem("OSD7");
-    c->addItem("OSD8");
-    c->addItem("OSD9");
-    c->addItem("OSD10");
-    c->addItem("OSD11");
-    c->addItem("OSD12");
-    c->addItem("OSD13");
-    c->addItem("OSD14");
-    c->addItem("OSD15");
-    c->addItem("OSD16");
-    c->addItem("OSD17");
-    c->addItem("OSD18");
-    c->addItem("OSD19");
-    c->addItem("OSD20");
-    c->addItem("OSD21");
-    c->addItem("OSD22");
-    c->addItem("OSD23");
-    c->addItem("OSD24");
-    c->addItem("OSD25");
-    c->addItem("OSD26");
-    c->addItem("OSD27");
-    c->addItem("OSD28");
-    c->addItem("OSD29");
-    c->addItem("OSD30");
-    c->addItem("OSD31");
-    c->addItem("OSD32");
+    CBox_datatype->addItem("字符串");
 
     CBox_color->addItem("黑色");
     CBox_color->addItem("白色");
@@ -7623,9 +7591,6 @@ void MainWindow::init_OSDCfg()
     CBox_color->addItem("黄色");
     CBox_color->addItem("蓝色");
     CBox_color->addItem("绿色");
-    CBox_color->addItem("保存");
-    CBox_color->setCurrentIndex(1);
-
 
     CBox_transparency->addItem("0%");
     CBox_transparency->addItem("10%");
@@ -7639,62 +7604,79 @@ void MainWindow::init_OSDCfg()
     CBox_transparency->addItem("90%");
     CBox_transparency->addItem("100%");
 
-
-//    osd1_lineEdit_font=new QLineEdit;
-//    osd1_lineEdit_color=new QLineEdit;
-     QHBoxLayout *hf=new QHBoxLayout;
-
-    QFormLayout *f1=new QFormLayout();
-    f1->addRow(osd_s[0],checkBox);
-    hf->addLayout(f1);
-    hf->addWidget(btn_osd1_update);
-
-
-
-
-    Custom =new QGroupBox();
-    Custom->setTitle("用户自定义");
-
-
+    Custom =new QGroupBox("用户自定义图符");
+    Osdctrl = new QGroupBox("OSD显示控制");
 
     QFormLayout *f=new QFormLayout();
-    f->addRow(osd_s[1],checkBox2);
-    f->addRow(osd_s[2],osd1_pos_x);
-    f->addRow(osd_s[3],osd1_pos_y);
-    //f->addRow(osd_s[3],osd1_lineEdit_label);
-    f->addRow(osd_s[4],osd1_lineEdit_context);
-
+    f->addRow(osd_s[1],osd1_pos_x);
+    f->addRow(osd_s[2],osd1_pos_y);
+    f->addRow(osd_s[3],osd1_lineEdit_context);
+    f->addRow(osd_s[4],CBox_datatype);
     f->addRow(osd_s[5],CBox_color);
     f->addRow(osd_s[6],CBox_transparency);
-    f->addRow(osd_s[7],CBox_font_size);
-
-
-    //connect(c,SIGNAL(activated(int)),this,SLOT(toCBox(int)));
+    f->addRow(osd_s[7],CBox_font);
+    f->addRow(osd_s[8],CBox_font_size);
 
     QVBoxLayout *v=new QVBoxLayout;
-
-
     v->addLayout(h1);
-     v->addLayout(hf);
     v->addWidget(c);
     v->addLayout(f);
+    Custom->setLayout(v);
+//------------------------------
+    btn_osd2_default=new QPushButton("默认");
+    btn_keep2 = new QPushButton("保存");
+    QVBoxLayout *v1_ctrl=new QVBoxLayout;
+    v1_ctrl->addWidget(btn_osd2_default);
+    v1_ctrl->addWidget(btn_keep2);
+    QLabel *label_ctrl=new QLabel;
+    label_ctrl->setText("     ");
+    QHBoxLayout *h1_ctrl=new QHBoxLayout;
+    h1_ctrl->addLayout(v1_ctrl);
+    h1_ctrl->addWidget(label_ctrl);
 
+    c_cusosd = new QComboBox();
+    init_c_osd(c_cusosd);
+    c_sysosd = new QComboBox();
+    c_sysosd->addItem("靶心");
+    c_sysosd->addItem("波门");
+    c_sysosd->addItem("当前状态");
+    checkBox2=new QCheckBox;
+    checkBox_sysosd=new QCheckBox;
+    QFormLayout *f_ctrl=new QFormLayout();
+    f_ctrl->addRow(c_cusosd);
+    f_ctrl->addRow(osd_s[0],checkBox2);
+    f_ctrl->addRow(c_sysosd);
+    f_ctrl->addRow(osd_s[0],checkBox_sysosd);
+    QVBoxLayout *v_ctrl3 = new QVBoxLayout;
+    v_ctrl3->addLayout(h1_ctrl);
+    v_ctrl3->addLayout(f_ctrl);
+    Osdctrl->setLayout(v_ctrl3);
+
+    QVBoxLayout *v2 = new QVBoxLayout;
+    v2->addWidget(Custom);
+    v2->addWidget(Osdctrl);
 
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
-    connect(btn_keep1,SIGNAL(clicked(bool)),this,SLOT(btn_keep1_Slot()));
-    connect(btn_osd1_update,SIGNAL(clicked(bool)),this,SLOT(btn_osd_update_Slot()));
-
+    connect(btn_keep1,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
-    connect(CBox_font,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_Slot(int)));
-    connect(CBox_font_size,SIGNAL(currentIndexChanged(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
-    connect(checkBox,SIGNAL(stateChanged(int)),this,SLOT(checkBox_Slot(int)));
-    //connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_x_Slot()));
-   // connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_y_Slot()));
-   // connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(lEdt_osd_context_Slot()));
+    connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(osd_posx_Slot()));
+    connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(osd_posy_Slot()));
+    connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(osd_context_Slot()));
+    connect(CBox_datatype,SIGNAL(activated(int)),this,SLOT(CBox_datatype_Slot(int)));
+    connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osdcolor_Slot(int)));
+    connect(CBox_transparency,SIGNAL(activated(int)),this,SLOT(CBox_transparency_Slot(int)));
+    connect(CBox_font,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_Slot(int)));
+    connect(CBox_font_size,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
 
-   //connect(CBox_color,SIGNAL(activated(int)),this,SLOT(CBox_osd_color_Slot(int)));
-    //connect(osd1_lineEdit_transparency,SIGNAL(returnPressed()),this,SLOT(lEdt_)))
-    w_osd1->setLayout(v);
+
+    connect(btn_osd2_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default2_Slot()));
+    connect(btn_keep2,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
+    connect(c_cusosd,SIGNAL(activated(int)),this,SLOT(CBox_cusosd_choose_Slot(int)));
+    connect(checkBox2,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_cusosd_Slot(int)));
+    connect(c_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_sysosd_choose_Slot(int)));
+    connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
+
+    w_osd1->setLayout(v2);
 }
 
 void MainWindow::init_resl()
@@ -8786,50 +8768,9 @@ void MainWindow::showCapture3()
 }
 
 void MainWindow::showOther()
-{
-    w_osd1->setWindowTitle("字符叠加");
-   
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x00;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x01;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x02;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x03;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x05;
-    send_oneframe(3);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=0x07;
-    send_arr[6]=0x06;
-    send_oneframe(3);
-    send_mutex.unlock();
+{  
+    read_config(get_osd_blk(c));
+    read_config(53);
 
     w_osd1->show();
     w_osd1->show_stat = 1;
@@ -9408,4 +9349,51 @@ void MainWindow::outputtype_Slot(int index)
     send_arr[5]=index;
     send_oneframe(2);
     send_mutex.unlock();
+}
+
+void MainWindow::init_c_osd(QComboBox *c)
+{
+    c->addItem("OSD1");
+    c->addItem("OSD2");
+    c->addItem("OSD3");
+    c->addItem("OSD4");
+    c->addItem("OSD5");
+    c->addItem("OSD6");
+    c->addItem("OSD7");
+    c->addItem("OSD8");
+    c->addItem("OSD9");
+    c->addItem("OSD10");
+    c->addItem("OSD11");
+    c->addItem("OSD12");
+    c->addItem("OSD13");
+    c->addItem("OSD14");
+    c->addItem("OSD15");
+    c->addItem("OSD16");
+    c->addItem("OSD17");
+    c->addItem("OSD18");
+    c->addItem("OSD19");
+    c->addItem("OSD20");
+    c->addItem("OSD21");
+    c->addItem("OSD22");
+    c->addItem("OSD23");
+    c->addItem("OSD24");
+    c->addItem("OSD25");
+    c->addItem("OSD26");
+    c->addItem("OSD27");
+    c->addItem("OSD28");
+    c->addItem("OSD29");
+    c->addItem("OSD30");
+    c->addItem("OSD31");
+    c->addItem("OSD32");
+}
+
+int MainWindow::get_osd_blk(QComboBox *c)
+{
+    int i = c->currentIndex();
+    if(i < 16)
+        i += 7;
+    else
+        i += 13;
+
+    return i;
 }
