@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     init_pidCfg3();
     init_pidCfg4();
     init_pidCfg5();
+    init_inputCfg();
     init_vedioCfg();
     init_vedioCfg_sec();
     init_vedioCfg_thi();
@@ -389,8 +390,6 @@ void MainWindow::CBox_sysCfg_Slot(int i)
     */
 
 }
-
-
 
 void MainWindow::btn_vediosersor_fix_default_Slot()
 {
@@ -16638,6 +16637,1933 @@ void MainWindow::on_btnApertureMinus_2_clicked()
     send_arr[5] = 0x02;
     send_oneframe(2);
     send_mutex.unlock();
+}
+
+void MainWindow::btn_default_input_Slot()
+{
+    if(1 == cur_channel)
+    {
+        defaultconfig(23);
+        defaultconfig(24);
+        defaultconfig(25);
+        defaultconfig(26);
+        defaultconfig(27);
+        defaultconfig(28);
+    }
+    else if(2 == cur_channel)
+    {
+        defaultconfig(56);
+        defaultconfig(57);
+        defaultconfig(58);
+        defaultconfig(59);
+        defaultconfig(60);
+        defaultconfig(61);
+    }
+    else if(3 == cur_channel)
+    {
+        defaultconfig(62);
+        defaultconfig(63);
+        defaultconfig(64);
+        defaultconfig(65);
+        defaultconfig(66);
+        defaultconfig(67);
+    }
+    else if(4 == cur_channel)
+    {
+        defaultconfig(93);
+        defaultconfig(94);
+        defaultconfig(95);
+        defaultconfig(96);
+        defaultconfig(97);
+        defaultconfig(98);
+    }
+    else if(5 == cur_channel)
+    {
+        defaultconfig(101);
+        defaultconfig(102);
+        defaultconfig(103);
+        defaultconfig(104);
+        defaultconfig(105);
+        defaultconfig(106);
+    }
+}
+
+void MainWindow::input_osdid_Slot(int i)
+{
+    float value = i + 1;
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 1, value);
+            break;
+        case 2:
+            setconfig(56, 1, value);
+            break;
+        case 3:
+            setconfig(62, 1, value);
+            break;
+        case 4:
+            setconfig(93, 1, value);
+            break;
+        case 5:
+            setconfig(101, 1, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_chroma_Slot(int i)
+{
+    float value = i;
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 2, value);
+            break;
+        case 2:
+            setconfig(56, 2, value);
+            break;
+        case 3:
+            setconfig(62, 2, value);
+            break;
+        case 4:
+            setconfig(93, 2, value);
+            break;
+        case 5:
+            setconfig(101, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_vediohaveornot_Slot(int arg1)
+{
+    float value = 0;
+    if(arg1 == Qt::Checked)
+    {
+        value = 1;
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        value = 0;
+    }
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 3, value);
+            break;
+        case 2:
+            setconfig(56, 3, value);
+            break;
+        case 3:
+            setconfig(62, 3, value);
+            break;
+        case 4:
+            setconfig(93, 3, value);
+            break;
+        case 5:
+            setconfig(101, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_vedio_dpi_Slot(int i)
+{
+    float value = 0;
+    if(0 == i)
+        value = 0;
+    else if(1 == i)
+        value = 1;
+    else if(2 == i)
+        value = 5;
+    else if(3 == i)
+        value = 2;
+    else if(4 == i)
+        value = 3;
+    else if(5 == i)
+        value = 6;
+
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 4, value);
+            break;
+        case 2:
+            setconfig(56, 4, value);
+            break;
+        case 3:
+            setconfig(62, 4, value);
+            break;
+        case 4:
+            setconfig(93, 4, value);
+            break;
+        case 5:
+            setconfig(101, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_change_fovemode_Slot(int i)
+{
+    float value = i;
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 5, value);
+            break;
+        case 2:
+            setconfig(56, 5, value);
+            break;
+        case 3:
+            setconfig(62, 5, value);
+            break;
+        case 4:
+            setconfig(93, 5, value);
+            break;
+        case 5:
+            setconfig(101, 5, value);
+            break;
+        default:
+            break;
+    }
+
+    input_set_fov_display(i);
+}
+
+void MainWindow::input_set_fov_display(int i)
+{
+
+    for(int i = 0; i < 13; i++)
+    {
+       vedio_continue_Fov[i]->setEnabled(true);
+       input_l1dv[i]->setEnabled(true);
+       continue_verticall[i]->setEnabled(true);
+       input_l2dv[i]->setEnabled(true);
+       vedio_spbx_continue[i]->setEnabled(true);
+       vedio_spby_continue[i]->setEnabled(true);
+    }
+
+    if(0 == i)
+    {
+        for(int i = 1; i < 13; i++)
+        {
+            vedio_continue_Fov[i]->setEnabled(false);
+            input_l1dv[i]->setEnabled(false);
+            continue_verticall[i]->setEnabled(false);
+            input_l2dv[i]->setEnabled(false);
+            vedio_spbx_continue[i]->setEnabled(false);
+            vedio_spby_continue[i]->setEnabled(false);
+        }
+    }
+    else if(1 == i)
+    {
+        for(int i = 5; i < 13; i++)
+        {
+            vedio_continue_Fov[i]->setEnabled(false);
+            input_l1dv[i]->setEnabled(false);
+            continue_verticall[i]->setEnabled(false);
+            input_l2dv[i]->setEnabled(false);
+            vedio_spbx_continue[i]->setEnabled(false);
+            vedio_spby_continue[i]->setEnabled(false);
+        }
+    }
+}
+
+void MainWindow::input_max_fovclass_Slot()
+{
+    float value = input_max_fovclass->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 6, value);
+            break;
+        case 2:
+            setconfig(56, 6, value);
+            break;
+        case 3:
+            setconfig(62, 6, value);
+            break;
+        case 4:
+            setconfig(93, 6, value);
+            break;
+        case 5:
+            setconfig(101, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_boxsize_Slot(int i)
+{
+    float value = i;
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 7, value);
+            break;
+        case 2:
+            setconfig(56, 7, value);
+            break;
+        case 3:
+            setconfig(62, 7, value);
+            break;
+        case 4:
+            setconfig(93, 7, value);
+            break;
+        case 5:
+            setconfig(101, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_max_boxsize_Slot()
+{
+    float value = input_max_boxsize->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 8, value);
+            break;
+        case 2:
+            setconfig(56, 8, value);
+            break;
+        case 3:
+            setconfig(62, 8, value);
+            break;
+        case 4:
+            setconfig(93, 8, value);
+            break;
+        case 5:
+            setconfig(101, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_mtd_sensi_Slot()
+{
+    float value = input_mtd_sensi->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 9, value);
+            break;
+        case 2:
+            setconfig(56, 9, value);
+            break;
+        case 3:
+            setconfig(62, 9, value);
+            break;
+        case 4:
+            setconfig(93, 9, value);
+            break;
+        case 5:
+            setconfig(101, 9, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_mtd_rigionx_Slot()
+{
+    float value = input_mtd_rigionx->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 10, value);
+            break;
+        case 2:
+            setconfig(56, 10, value);
+            break;
+        case 3:
+            setconfig(62, 10, value);
+            break;
+        case 4:
+            setconfig(93, 10, value);
+            break;
+        case 5:
+            setconfig(101, 10, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_mtd_rigiony_Slot()
+{
+    float value = input_mtd_rigiony->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 11, value);
+            break;
+        case 2:
+            setconfig(56, 11, value);
+            break;
+        case 3:
+            setconfig(62, 11, value);
+            break;
+        case 4:
+            setconfig(93, 11, value);
+            break;
+        case 5:
+            setconfig(101, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_mtd_rigionw_Slot()
+{
+    float value = input_mtd_rigionw->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 12, value);
+            break;
+        case 2:
+            setconfig(56, 12, value);
+            break;
+        case 3:
+            setconfig(62, 12, value);
+            break;
+        case 4:
+            setconfig(93, 12, value);
+            break;
+        case 5:
+            setconfig(101, 12, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_mtd_rigionh_Slot()
+{
+    float value = input_mtd_rigionh->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 13, value);
+            break;
+        case 2:
+            setconfig(56, 13, value);
+            break;
+        case 3:
+            setconfig(62, 13, value);
+            break;
+        case 4:
+            setconfig(93, 13, value);
+            break;
+        case 5:
+            setconfig(101, 13, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::common_boxw_Slot()
+{
+    float value = common_boxw->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 14, value);
+            break;
+        case 2:
+            setconfig(56, 14, value);
+            break;
+        case 3:
+            setconfig(62, 14, value);
+            break;
+        case 4:
+            setconfig(93, 14, value);
+            break;
+        case 5:
+            setconfig(101, 14, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::common_boxh_Slot()
+{
+    float value = common_boxh->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(23, 15, value);
+            break;
+        case 2:
+            setconfig(56, 15, value);
+            break;
+        case 3:
+            setconfig(62, 15, value);
+            break;
+        case 4:
+            setconfig(93, 15, value);
+            break;
+        case 5:
+            setconfig(101, 15, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_cur_fovclass_Slot()
+{
+    float value = input_cur_fovclass->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 0, value);
+            break;
+        case 2:
+            setconfig(57, 0, value);
+            break;
+        case 3:
+            setconfig(63, 0, value);
+            break;
+        case 4:
+            setconfig(94, 0, value);
+            break;
+        case 5:
+            setconfig(102, 0, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_vedio_continue_Fov1_Slot()
+{
+    float value = vedio_continue_Fov[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 2, value);
+            break;
+        case 2:
+            setconfig(57, 2, value);
+            break;
+        case 3:
+            setconfig(63, 2, value);
+            break;
+        case 4:
+            setconfig(94, 2, value);
+            break;
+        case 5:
+            setconfig(102, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov2_Slot()
+{
+    float value = vedio_continue_Fov[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 4, value);
+            break;
+        case 2:
+            setconfig(57, 4, value);
+            break;
+        case 3:
+            setconfig(63, 4, value);
+            break;
+        case 4:
+            setconfig(94, 4, value);
+            break;
+        case 5:
+            setconfig(102, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov3_Slot()
+{
+    float value = vedio_continue_Fov[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 6, value);
+            break;
+        case 2:
+            setconfig(57, 6, value);
+            break;
+        case 3:
+            setconfig(63, 6, value);
+            break;
+        case 4:
+            setconfig(94, 6, value);
+            break;
+        case 5:
+            setconfig(102, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov4_Slot()
+{
+    float value = vedio_continue_Fov[3]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 8, value);
+            break;
+        case 2:
+            setconfig(57, 8, value);
+            break;
+        case 3:
+            setconfig(63, 8, value);
+            break;
+        case 4:
+            setconfig(94, 8, value);
+            break;
+        case 5:
+            setconfig(102, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov5_Slot()
+{
+    float value = vedio_continue_Fov[4]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 10, value);
+            break;
+        case 2:
+            setconfig(57, 10, value);
+            break;
+        case 3:
+            setconfig(63, 10, value);
+            break;
+        case 4:
+            setconfig(94, 10, value);
+            break;
+        case 5:
+            setconfig(102, 10, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov6_Slot()
+{
+    float value = vedio_continue_Fov[5]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 12, value);
+            break;
+        case 2:
+            setconfig(57, 12, value);
+            break;
+        case 3:
+            setconfig(63, 12, value);
+            break;
+        case 4:
+            setconfig(94, 12, value);
+            break;
+        case 5:
+            setconfig(102, 12, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov7_Slot()
+{
+    float value = vedio_continue_Fov[6]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 14, value);
+            break;
+        case 2:
+            setconfig(57, 14, value);
+            break;
+        case 3:
+            setconfig(63, 14, value);
+            break;
+        case 4:
+            setconfig(94, 14, value);
+            break;
+        case 5:
+            setconfig(102, 14, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov8_Slot()
+{
+    float value = vedio_continue_Fov[7]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 0, value);
+            break;
+        case 2:
+            setconfig(58, 0, value);
+            break;
+        case 3:
+            setconfig(64, 0, value);
+            break;
+        case 4:
+            setconfig(95, 0, value);
+            break;
+        case 5:
+            setconfig(103, 0, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov9_Slot()
+{
+    float value = vedio_continue_Fov[8]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 2, value);
+            break;
+        case 2:
+            setconfig(58, 2, value);
+            break;
+        case 3:
+            setconfig(64, 2, value);
+            break;
+        case 4:
+            setconfig(95, 2, value);
+            break;
+        case 5:
+            setconfig(103, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov10_Slot()
+{
+    float value = vedio_continue_Fov[9]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 4, value);
+            break;
+        case 2:
+            setconfig(58, 4, value);
+            break;
+        case 3:
+            setconfig(64, 4, value);
+            break;
+        case 4:
+            setconfig(95, 4, value);
+            break;
+        case 5:
+            setconfig(103, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov11_Slot()
+{
+    float value = vedio_continue_Fov[10]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 6, value);
+            break;
+        case 2:
+            setconfig(58, 6, value);
+            break;
+        case 3:
+            setconfig(64, 6, value);
+            break;
+        case 4:
+            setconfig(95, 6, value);
+            break;
+        case 5:
+            setconfig(103, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov12_Slot()
+{
+    float value = vedio_continue_Fov[11]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 8, value);
+            break;
+        case 2:
+            setconfig(58, 8, value);
+            break;
+        case 3:
+            setconfig(64, 8, value);
+            break;
+        case 4:
+            setconfig(95, 8, value);
+            break;
+        case 5:
+            setconfig(103, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue_Fov13_Slot()
+{
+    float value = vedio_continue_Fov[12]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 10, value);
+            break;
+        case 2:
+            setconfig(58, 10, value);
+            break;
+        case 3:
+            setconfig(64, 10, value);
+            break;
+        case 4:
+            setconfig(95, 10, value);
+            break;
+        case 5:
+            setconfig(103, 10, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_continue_verticall1_Slot()
+{
+    float value = continue_verticall[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 3, value);
+            break;
+        case 2:
+            setconfig(57, 3, value);
+            break;
+        case 3:
+            setconfig(63, 3, value);
+            break;
+        case 4:
+            setconfig(94, 3, value);
+            break;
+        case 5:
+            setconfig(102, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall2_Slot()
+{
+    float value = continue_verticall[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 5, value);
+            break;
+        case 2:
+            setconfig(57, 5, value);
+            break;
+        case 3:
+            setconfig(63, 5, value);
+            break;
+        case 4:
+            setconfig(94, 5, value);
+            break;
+        case 5:
+            setconfig(102, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall3_Slot()
+{
+    float value = continue_verticall[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 7, value);
+            break;
+        case 2:
+            setconfig(57, 7, value);
+            break;
+        case 3:
+            setconfig(63, 7, value);
+            break;
+        case 4:
+            setconfig(94, 7, value);
+            break;
+        case 5:
+            setconfig(102, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall4_Slot()
+{
+    float value = continue_verticall[3]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 9, value);
+            break;
+        case 2:
+            setconfig(57, 9, value);
+            break;
+        case 3:
+            setconfig(63, 9, value);
+            break;
+        case 4:
+            setconfig(94, 9, value);
+            break;
+        case 5:
+            setconfig(102, 9, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall5_Slot()
+{
+    float value = continue_verticall[4]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 11, value);
+            break;
+        case 2:
+            setconfig(57, 11, value);
+            break;
+        case 3:
+            setconfig(63, 11, value);
+            break;
+        case 4:
+            setconfig(94, 11, value);
+            break;
+        case 5:
+            setconfig(102, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall6_Slot()
+{
+    float value = continue_verticall[5]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 13, value);
+            break;
+        case 2:
+            setconfig(57, 13, value);
+            break;
+        case 3:
+            setconfig(63, 13, value);
+            break;
+        case 4:
+            setconfig(94, 13, value);
+            break;
+        case 5:
+            setconfig(102, 13, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall7_Slot()
+{
+    float value = continue_verticall[6]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(24, 15, value);
+            break;
+        case 2:
+            setconfig(57, 15, value);
+            break;
+        case 3:
+            setconfig(63, 15, value);
+            break;
+        case 4:
+            setconfig(94, 15, value);
+            break;
+        case 5:
+            setconfig(102, 15, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall8_Slot()
+{
+    float value = vedio_continue_Fov[7]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 1, value);
+            break;
+        case 2:
+            setconfig(58, 1, value);
+            break;
+        case 3:
+            setconfig(64, 1, value);
+            break;
+        case 4:
+            setconfig(95, 1, value);
+            break;
+        case 5:
+            setconfig(103, 1, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall9_Slot()
+{
+    float value = vedio_continue_Fov[8]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 3, value);
+            break;
+        case 2:
+            setconfig(58, 3, value);
+            break;
+        case 3:
+            setconfig(64, 3, value);
+            break;
+        case 4:
+            setconfig(95, 3, value);
+            break;
+        case 5:
+            setconfig(103, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall10_Slot()
+{
+    float value = vedio_continue_Fov[9]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 5, value);
+            break;
+        case 2:
+            setconfig(58, 5, value);
+            break;
+        case 3:
+            setconfig(64, 5, value);
+            break;
+        case 4:
+            setconfig(95, 5, value);
+            break;
+        case 5:
+            setconfig(103, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall11_Slot()
+{
+    float value = vedio_continue_Fov[10]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 7, value);
+            break;
+        case 2:
+            setconfig(58, 7, value);
+            break;
+        case 3:
+            setconfig(64, 7, value);
+            break;
+        case 4:
+            setconfig(95, 7, value);
+            break;
+        case 5:
+            setconfig(103, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall12_Slot()
+{
+    float value = vedio_continue_Fov[11]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 9, value);
+            break;
+        case 2:
+            setconfig(58, 9, value);
+            break;
+        case 3:
+            setconfig(64, 9, value);
+            break;
+        case 4:
+            setconfig(95, 9, value);
+            break;
+        case 5:
+            setconfig(103, 9, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_continue_verticall13_Slot()
+{
+    float value = vedio_continue_Fov[12]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(25, 11, value);
+            break;
+        case 2:
+            setconfig(58, 11, value);
+            break;
+        case 3:
+            setconfig(64, 11, value);
+            break;
+        case 4:
+            setconfig(95, 11, value);
+            break;
+        case 5:
+            setconfig(103, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_cur_boxsize_Slot()
+{
+    float value = input_cur_boxsize->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 0, value);
+            break;
+        case 2:
+            setconfig(59, 0, value);
+            break;
+        case 3:
+            setconfig(65, 0, value);
+            break;
+        case 4:
+            setconfig(96, 0, value);
+            break;
+        case 5:
+            setconfig(104, 0, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_boxw1_Slot()
+{
+    float value = input_boxw[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 1, value);
+            break;
+        case 2:
+            setconfig(59, 1, value);
+            break;
+        case 3:
+            setconfig(65, 1, value);
+            break;
+        case 4:
+            setconfig(96, 1, value);
+            break;
+        case 5:
+            setconfig(104, 1, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_boxw2_Slot()
+{
+    float value = input_boxw[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 3, value);
+            break;
+        case 2:
+            setconfig(59, 3, value);
+            break;
+        case 3:
+            setconfig(65, 3, value);
+            break;
+        case 4:
+            setconfig(96, 3, value);
+            break;
+        case 5:
+            setconfig(104, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_boxw3_Slot()
+{
+    float value = input_boxw[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 5, value);
+            break;
+        case 2:
+            setconfig(59, 5, value);
+            break;
+        case 3:
+            setconfig(65, 5, value);
+            break;
+        case 4:
+            setconfig(96, 5, value);
+            break;
+        case 5:
+            setconfig(104, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_boxh1_Slot()
+{
+    float value = input_boxh[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 2, value);
+            break;
+        case 2:
+            setconfig(59, 2, value);
+            break;
+        case 3:
+            setconfig(65, 2, value);
+            break;
+        case 4:
+            setconfig(96, 2, value);
+            break;
+        case 5:
+            setconfig(104, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_boxh2_Slot()
+{
+    float value = input_boxh[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 4, value);
+            break;
+        case 2:
+            setconfig(59, 4, value);
+            break;
+        case 3:
+            setconfig(65, 4, value);
+            break;
+        case 4:
+            setconfig(96, 4, value);
+            break;
+        case 5:
+            setconfig(104, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_boxh3_Slot()
+{
+    float value = input_boxh[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 6, value);
+            break;
+        case 2:
+            setconfig(59, 6, value);
+            break;
+        case 3:
+            setconfig(65, 6, value);
+            break;
+        case 4:
+            setconfig(96, 6, value);
+            break;
+        case 5:
+            setconfig(104, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_vedio_spbx_continue1_Slot()
+{
+    float value = vedio_spbx_continue[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 0, value);
+            break;
+        case 2:
+            setconfig(60, 0, value);
+            break;
+        case 3:
+            setconfig(66, 0, value);
+            break;
+        case 4:
+            setconfig(97, 0, value);
+            break;
+        case 5:
+            setconfig(105, 0, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue2_Slot()
+{
+    float value = vedio_spbx_continue[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 2, value);
+            break;
+        case 2:
+            setconfig(60, 2, value);
+            break;
+        case 3:
+            setconfig(66, 2, value);
+            break;
+        case 4:
+            setconfig(97, 2, value);
+            break;
+        case 5:
+            setconfig(105, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue3_Slot()
+{
+    float value = vedio_spbx_continue[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 4, value);
+            break;
+        case 2:
+            setconfig(60, 4, value);
+            break;
+        case 3:
+            setconfig(66, 4, value);
+            break;
+        case 4:
+            setconfig(97, 4, value);
+            break;
+        case 5:
+            setconfig(105, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue4_Slot()
+{
+    float value = vedio_spbx_continue[3]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 6, value);
+            break;
+        case 2:
+            setconfig(60, 6, value);
+            break;
+        case 3:
+            setconfig(66, 6, value);
+            break;
+        case 4:
+            setconfig(97, 6, value);
+            break;
+        case 5:
+            setconfig(105, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue5_Slot()
+{
+    float value = vedio_spbx_continue[4]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 8, value);
+            break;
+        case 2:
+            setconfig(60, 8, value);
+            break;
+        case 3:
+            setconfig(66, 8, value);
+            break;
+        case 4:
+            setconfig(97, 8, value);
+            break;
+        case 5:
+            setconfig(105, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue6_Slot()
+{
+    float value = vedio_spbx_continue[5]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 10, value);
+            break;
+        case 2:
+            setconfig(60, 10, value);
+            break;
+        case 3:
+            setconfig(66, 10, value);
+            break;
+        case 4:
+            setconfig(97, 10, value);
+            break;
+        case 5:
+            setconfig(105, 10, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue7_Slot()
+{
+    float value = vedio_spbx_continue[6]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 12, value);
+            break;
+        case 2:
+            setconfig(60, 12, value);
+            break;
+        case 3:
+            setconfig(66, 12, value);
+            break;
+        case 4:
+            setconfig(97, 12, value);
+            break;
+        case 5:
+            setconfig(105, 12, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue8_Slot()
+{
+    float value = vedio_spbx_continue[7]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 14, value);
+            break;
+        case 2:
+            setconfig(60, 14, value);
+            break;
+        case 3:
+            setconfig(66, 14, value);
+            break;
+        case 4:
+            setconfig(97, 14, value);
+            break;
+        case 5:
+            setconfig(105, 14, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue9_Slot()
+{
+    float value = vedio_spbx_continue[8]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 0, value);
+            break;
+        case 2:
+            setconfig(61, 0, value);
+            break;
+        case 3:
+            setconfig(67, 0, value);
+            break;
+        case 4:
+            setconfig(98, 0, value);
+            break;
+        case 5:
+            setconfig(106, 0, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue10_Slot()
+{
+    float value = vedio_spbx_continue[9]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 2, value);
+            break;
+        case 2:
+            setconfig(61, 2, value);
+            break;
+        case 3:
+            setconfig(67, 2, value);
+            break;
+        case 4:
+            setconfig(98, 2, value);
+            break;
+        case 5:
+            setconfig(106, 2, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue11_Slot()
+{
+    float value = vedio_spbx_continue[10]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 4, value);
+            break;
+        case 2:
+            setconfig(61, 4, value);
+            break;
+        case 3:
+            setconfig(67, 4, value);
+            break;
+        case 4:
+            setconfig(98, 4, value);
+            break;
+        case 5:
+            setconfig(106, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue12_Slot()
+{
+    float value = vedio_spbx_continue[11]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 6, value);
+            break;
+        case 2:
+            setconfig(61, 6, value);
+            break;
+        case 3:
+            setconfig(67, 6, value);
+            break;
+        case 4:
+            setconfig(98, 6, value);
+            break;
+        case 5:
+            setconfig(106, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spbx_continue13_Slot()
+{
+    float value = vedio_spbx_continue[12]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 8, value);
+            break;
+        case 2:
+            setconfig(61, 8, value);
+            break;
+        case 3:
+            setconfig(67, 8, value);
+            break;
+        case 4:
+            setconfig(98, 8, value);
+            break;
+        case 5:
+            setconfig(106, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue1_Slot()
+{
+    float value = vedio_spby_continue[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 1, value);
+            break;
+        case 2:
+            setconfig(60, 1, value);
+            break;
+        case 3:
+            setconfig(66, 1, value);
+            break;
+        case 4:
+            setconfig(97, 1, value);
+            break;
+        case 5:
+            setconfig(105, 1, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue2_Slot()
+{
+    float value = vedio_spby_continue[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 3, value);
+            break;
+        case 2:
+            setconfig(60, 3, value);
+            break;
+        case 3:
+            setconfig(66, 3, value);
+            break;
+        case 4:
+            setconfig(97, 3, value);
+            break;
+        case 5:
+            setconfig(105, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue3_Slot()
+{
+    float value = vedio_spby_continue[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 5, value);
+            break;
+        case 2:
+            setconfig(60, 5, value);
+            break;
+        case 3:
+            setconfig(66, 5, value);
+            break;
+        case 4:
+            setconfig(97, 5, value);
+            break;
+        case 5:
+            setconfig(105, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue4_Slot()
+{
+    float value = vedio_spby_continue[3]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 7, value);
+            break;
+        case 2:
+            setconfig(60, 7, value);
+            break;
+        case 3:
+            setconfig(66, 7, value);
+            break;
+        case 4:
+            setconfig(97, 7, value);
+            break;
+        case 5:
+            setconfig(105, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue5_Slot()
+{
+    float value = vedio_spby_continue[4]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 9, value);
+            break;
+        case 2:
+            setconfig(60, 9, value);
+            break;
+        case 3:
+            setconfig(66, 9, value);
+            break;
+        case 4:
+            setconfig(97, 9, value);
+            break;
+        case 5:
+            setconfig(105, 9, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue6_Slot()
+{
+    float value = vedio_spby_continue[5]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 11, value);
+            break;
+        case 2:
+            setconfig(60, 11, value);
+            break;
+        case 3:
+            setconfig(66, 11, value);
+            break;
+        case 4:
+            setconfig(97, 11, value);
+            break;
+        case 5:
+            setconfig(105, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue7_Slot()
+{
+    float value = vedio_spby_continue[6]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 13, value);
+            break;
+        case 2:
+            setconfig(60, 13, value);
+            break;
+        case 3:
+            setconfig(66, 13, value);
+            break;
+        case 4:
+            setconfig(97, 13, value);
+            break;
+        case 5:
+            setconfig(105, 13, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue8_Slot()
+{
+    float value = vedio_spby_continue[7]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(27, 15, value);
+            break;
+        case 2:
+            setconfig(60, 15, value);
+            break;
+        case 3:
+            setconfig(66, 15, value);
+            break;
+        case 4:
+            setconfig(97, 15, value);
+            break;
+        case 5:
+            setconfig(105, 15, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue9_Slot()
+{
+    float value = vedio_spby_continue[8]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 1, value);
+            break;
+        case 2:
+            setconfig(61, 1, value);
+            break;
+        case 3:
+            setconfig(67, 1, value);
+            break;
+        case 4:
+            setconfig(98, 1, value);
+            break;
+        case 5:
+            setconfig(106, 1, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue10_Slot()
+{
+    float value = vedio_spby_continue[9]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 3, value);
+            break;
+        case 2:
+            setconfig(61, 3, value);
+            break;
+        case 3:
+            setconfig(67, 3, value);
+            break;
+        case 4:
+            setconfig(98, 3, value);
+            break;
+        case 5:
+            setconfig(106, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue11_Slot()
+{
+    float value = vedio_spby_continue[10]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 5, value);
+            break;
+        case 2:
+            setconfig(61, 5, value);
+            break;
+        case 3:
+            setconfig(67, 5, value);
+            break;
+        case 4:
+            setconfig(98, 5, value);
+            break;
+        case 5:
+            setconfig(106, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue12_Slot()
+{
+    float value = vedio_spby_continue[11]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 7, value);
+            break;
+        case 2:
+            setconfig(61, 7, value);
+            break;
+        case 3:
+            setconfig(67, 7, value);
+            break;
+        case 4:
+            setconfig(98, 7, value);
+            break;
+        case 5:
+            setconfig(106, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_spby_continue13_Slot()
+{
+    float value = vedio_spby_continue[12]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(28, 9, value);
+            break;
+        case 2:
+            setconfig(61, 9, value);
+            break;
+        case 3:
+            setconfig(67, 9, value);
+            break;
+        case 4:
+            setconfig(98, 9, value);
+            break;
+        case 5:
+            setconfig(106, 9, value);
+            break;
+        default:
+            break;
+    }
 }
 
 void MainWindow::setconfig(int blk, int field, float value)

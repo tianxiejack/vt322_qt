@@ -97,6 +97,16 @@ public:
     void init_pidCfg3();
     void init_pidCfg4();
     void init_pidCfg5();
+
+    void init_inputCfg();
+    void init_c_osd(QComboBox *c);
+    int get_osd_blk(QComboBox *c);
+    void initform_video2();
+    void initform_video3();
+    void setform_video3(int fovmode);
+    void set_input_layout();
+    void show_w_input(int chid);
+
     void init_vedioCfg();
     void init_vedioCfg_sec();
     void init_vedioCfg_thi();
@@ -193,6 +203,13 @@ public:
     void showblk118(int field, float value);
     void showblk119(int field, float value);
     void showblk120(int field, float value);
+    void show_blk_input1(int field, float value);
+    void show_blk_input2(int field, float value);
+    void show_blk_input3(int field, float value);
+    void show_blk_input4(int field, float value);
+    void show_blk_input5(int field, float value);
+    void show_blk_input6(int field, float value);
+
 signals:
     void toNet(int port ,QString ip);
     void toSerial(QString port,qint32 baud,int check,int data,int stop);
@@ -651,6 +668,85 @@ private slots:
     void combox_stop_bit_type_Slot_fif(int index);
     void combox_parity_bit_type_Slot_fif(int index);
     void combox_flow_control_type_Slot_fif(int index);
+
+    //输入通道配置
+    void btn_default_input_Slot();
+    void input_osdid_Slot(int i);
+    void input_chroma_Slot(int i);
+    void input_vediohaveornot_Slot(int arg1);
+    void input_vedio_dpi_Slot(int i);
+    void input_change_fovemode_Slot(int i);
+    void input_set_fov_display(int i);
+    void input_max_fovclass_Slot();
+    void input_boxsize_Slot(int i);
+    void input_max_boxsize_Slot();
+    void input_mtd_sensi_Slot();
+    void input_mtd_rigionx_Slot();
+    void input_mtd_rigiony_Slot();
+    void input_mtd_rigionw_Slot();
+    void input_mtd_rigionh_Slot();
+    void common_boxw_Slot();
+    void common_boxh_Slot();
+    void input_cur_fovclass_Slot();
+    void input_vedio_continue_Fov1_Slot();
+    void input_vedio_continue_Fov2_Slot();
+    void input_vedio_continue_Fov3_Slot();
+    void input_vedio_continue_Fov4_Slot();
+    void input_vedio_continue_Fov5_Slot();
+    void input_vedio_continue_Fov6_Slot();
+    void input_vedio_continue_Fov7_Slot();
+    void input_vedio_continue_Fov8_Slot();
+    void input_vedio_continue_Fov9_Slot();
+    void input_vedio_continue_Fov10_Slot();
+    void input_vedio_continue_Fov11_Slot();
+    void input_vedio_continue_Fov12_Slot();
+    void input_vedio_continue_Fov13_Slot();
+    void input_continue_verticall1_Slot();
+    void input_continue_verticall2_Slot();
+    void input_continue_verticall3_Slot();
+    void input_continue_verticall4_Slot();
+    void input_continue_verticall5_Slot();
+    void input_continue_verticall6_Slot();
+    void input_continue_verticall7_Slot();
+    void input_continue_verticall8_Slot();
+    void input_continue_verticall9_Slot();
+    void input_continue_verticall10_Slot();
+    void input_continue_verticall11_Slot();
+    void input_continue_verticall12_Slot();
+    void input_continue_verticall13_Slot();
+    void input_cur_boxsize_Slot();
+    void input_boxw1_Slot();
+    void input_boxw2_Slot();
+    void input_boxw3_Slot();
+    void input_boxh1_Slot();
+    void input_boxh2_Slot();
+    void input_boxh3_Slot();
+    void input_vedio_spbx_continue1_Slot();
+    void input_vedio_spbx_continue2_Slot();
+    void input_vedio_spbx_continue3_Slot();
+    void input_vedio_spbx_continue4_Slot();
+    void input_vedio_spbx_continue5_Slot();
+    void input_vedio_spbx_continue6_Slot();
+    void input_vedio_spbx_continue7_Slot();
+    void input_vedio_spbx_continue8_Slot();
+    void input_vedio_spbx_continue9_Slot();
+    void input_vedio_spbx_continue10_Slot();
+    void input_vedio_spbx_continue11_Slot();
+    void input_vedio_spbx_continue12_Slot();
+    void input_vedio_spbx_continue13_Slot();
+    void input_vedio_spby_continue1_Slot();
+    void input_vedio_spby_continue2_Slot();
+    void input_vedio_spby_continue3_Slot();
+    void input_vedio_spby_continue4_Slot();
+    void input_vedio_spby_continue5_Slot();
+    void input_vedio_spby_continue6_Slot();
+    void input_vedio_spby_continue7_Slot();
+    void input_vedio_spby_continue8_Slot();
+    void input_vedio_spby_continue9_Slot();
+    void input_vedio_spby_continue10_Slot();
+    void input_vedio_spby_continue11_Slot();
+    void input_vedio_spby_continue12_Slot();
+    void input_vedio_spby_continue13_Slot();
 
 
     //摄像机通道一
@@ -1586,9 +1682,6 @@ private slots:
 
     void outputtype_Slot(int index);
 
-    void init_c_osd(QComboBox *c);
-    int get_osd_blk(QComboBox *c);
-
     void setconfig(int blk, int field, float value);
     void defaultconfig(int blk);
     void saveconfig();
@@ -1755,6 +1848,37 @@ private:
     QString speed_s_fif[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
     QString speed_q_fif[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
 
+    /*输入通道配置*/
+    MyWidget *w_input;
+    int cur_channel = 1;
+    QPushButton *btn_default_input,*btn_update_input;
+    QLabel *label_chid_input;
+    QCheckBox *input_vediohaveornot;
+    QComboBox *input_vedio_dpi,*input_fovmode;
+    QLineEdit *input_max_fovclass,*input_cur_fovclass,*input_max_boxsize,*input_cur_boxsize,*input_boxw[3],*input_boxh[3];
+    QComboBox *input_osdid,*input_chroma,*input_boxsize;
+    QLineEdit *input_mtd_sensi,*input_mtd_rigionx,*input_mtd_rigiony,*input_mtd_rigionw,*input_mtd_rigionh;
+    QLineEdit *common_boxw,*common_boxh;
+    QHBoxLayout form_video0;
+    QFormLayout form_video1;
+    QGridLayout form_video2;
+    QGridLayout form_video3;
+    QGridLayout *gl12;
+    QLabel *video_sboxsize[9];
+    QLineEdit *vedio_continue[13];
+    QLineEdit *vedio_continue_Fov[13];
+    QLineEdit *continue_verticall[13];
+    QLabel* input_l1dv[13];
+    QLabel* input_l2dv[13];
+    MyQSpinBox *vedio_spbx_continue[13];
+    MyQSpinBox *vedio_spby_continue[13];
+
+    QPushButton *set_azimuth,*set_pitch,*set_zoom,*search_azimuth,*search_pitch,*search_zoom;
+    QLineEdit  *ledt_set_azimuth,*ledt_set_pitch,*ledt_set_zoom,*ledt_search_azimuth,*ledt_search_pitch,*ledt_search_zoom;
+    QString vedio_s_input[10]={"通道名称的OSD块号","色度","是否接有摄像头","视频格式","视场模式选择","检测灵敏度","检测处理区域X","检测处理区域Y","检测处理区域W","检测处理区域H"};
+    QLabel*input_buchang[7];
+    QVBoxLayout *input_v0;
+
     /*相机配置*/
     void on_btn_right_clicked();
 
@@ -1769,8 +1893,7 @@ private:
        QCheckBox *fixChanelNum,*fixenable,*fix_vediohaveornot,*fix_gateshow,*fix_bullshow,*fix_autogate;
        QGroupBox *fix_vediochoose;
        QComboBox *fix_vedio_dpi;
-       QPushButton *set_azimuth,*set_pitch,*set_zoom,*search_azimuth,*search_pitch,*search_zoom;
-       QLineEdit  *ledt_set_azimuth,*ledt_set_pitch,*ledt_set_zoom,*ledt_search_azimuth,*ledt_search_pitch,*ledt_search_zoom;
+
        /*可切换视场*/    
        QPushButton *btn_vediosersor_default,*btn_vediosersor_update;
        QComboBox *vedio_dpi,*vedio_change1,*vedio_fovclass,*vedio_QGroupBox,*vedio_change2,*vedio_change3;

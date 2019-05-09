@@ -97,7 +97,7 @@ void MainWindow::send_oneframe(int length)
     send_arr[2] = length&0xff;
     send_arr[3] = (length>>8)&0xff;
     unsigned char sum=0;
-    for(int n = 1; n<len-1; n++) {
+    for(int n = 4; n<len-1; n++) {
         sum ^= send_arr[n];
      }
     send_arr[len-1] = sum;
@@ -452,211 +452,50 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 break;
             case 23:
-                showblk23(output_array[2],value_i);
+            case 56:
+            case 62:
+            case 93:
+            case 101:
+                show_blk_input1(output_array[2],value_i);
                 break;
             case 24:
-                showblk24(output_array[2],value_i);
+            case 57:
+            case 63:
+            case 94:
+            case 102:
+                show_blk_input2(output_array[2],value_i);
                 break;
             case 25:
-                showblk25(output_array[2],value_i);
+            case 58:
+            case 64:
+            case 95:
+            case 103:
+                show_blk_input3(output_array[2],value_i);
                 break;
             case 26:
-                showblk26(output_array[2],value_i);
+            case 59:
+            case 65:
+            case 96:
+            case 104:
+                show_blk_input4(output_array[2],value_i);
                 break;
             case 27:
-                showblk27(output_array[2],value_i);
+            case 60:
+            case 66:
+            case 97:
+            case 105:
+                show_blk_input5(output_array[2],value_i);
                 break;
             case 28:
+            case 61:
+            case 67:
+            case 98:
+            case 106:
+                show_blk_input6(output_array[2],value_i);
                 break;
-            case 45:
-                if(w_capture1->show_stat)
-                {
-                    switch(output_array[2]){
-                        case 0x00:
-                            cap_0_w->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            cap_1_w->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            cap_2_w->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            cap_3_w->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            cap_4_w->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            cap_5_w->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            cap_0_h->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            cap_1_h->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            cap_2_h->setText(QString::number(value_i));
-                            break;
-                        case 0x09:
-                            cap_3_h->setText(QString::number(value_i));
-                            break;
-                        case 0x0a:
-                            cap_4_h->setText(QString::number(value_i));
-                            break;
-                        case 0x0b:
-                            cap_5_h->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 46:
-                if(w_capture2->show_stat)
-                {
-                    switch(output_array[2]){
-                        case 0x00:
-                            bomen_0_w->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            bomen_1_w->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            bomen_2_w->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            bomen_3_w->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            bomen_4_w->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            bomen_0_h->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            bomen_1_h->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            bomen_2_h->setText(QString::number(value_i));
-                            break;
-                        case 0x09:
-                            bomen_3_h->setText(QString::number(value_i));
-                            break;
-                        case 0x0a:
-                            bomen_4_h->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 47:
-                if(w_capture3->show_stat)
-                {
-                    switch(output_array[2]){
-                        case 0x00:
-                            if(value_i==0x00)
-                            {
-                              checkBox_cross->setChecked(false);
-                            }
-                            else
-                            {
-                              checkBox_cross->setChecked(true);
-                            }
-                            break;
-                        case 0x01:
-                            drawLine_1->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            drawLine_2->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            drawLine_3->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            drawLine_4->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            drawLine_5->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-                //比例调节器通道1//
-            case 48:
-                if(w_pid->show_stat){
-                    if(output_array[2]==0x00){
-                        kx_lineEdt->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x01){
-                        ky_lineEdt->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x02){
-                        errx_lineEdt->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x03){
-                        erry_lineEdt->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x04){
-                        time_lineEdt->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x05){
-                        x_ratio_control->setText(QString::number(value_i));
-                    }else if(output_array[2]==0x06){
-                        y_ratio_control->setText(QString::number(value_i));
-                    }
-                }
-                break;
-            case 49:
-                if(w_speedconv->show_stat)
-                {
-                    if(0x00 == output_array[2]){
-                        speedx1_lineEdt->setText(QString::number(value_i));
-                    }else if(0x01 == output_array[2]){
-                        speedx2_lineEdt->setText(QString::number(value_i));
-                    }else if(0x02 == output_array[2]){
-                        speedx3_lineEdt->setText(QString::number(value_i));
-                    }else if(0x03 == output_array[2]){
-                        speedx4_lineEdt->setText(QString::number(value_i));
-                    }else if(0x04 == output_array[2]){
-                        speedx5_lineEdt->setText(QString::number(value_i));
-                    }else if(0x05 == output_array[2]){
-                        speedx6_lineEdt->setText(QString::number(value_i));
-                    }else if(0x06 == output_array[2]){
-                        speedx7_lineEdt->setText(QString::number(value_i));
-                    }else if(0x07 == output_array[2]){
-                        speedx8_lineEdt->setText(QString::number(value_i));
-                    }else if(0x08 == output_array[2]){
-                        speedx9_lineEdt->setText(QString::number(value_i));
-                    }else if(0x09 == output_array[2]){
-                        speedy1_lineEdt->setText(QString::number(value_i));
-                    }else if(10 == output_array[2]){
-                        speedy2_lineEdt->setText(QString::number(value_i));
-                    }else if(11 == output_array[2]){
-                        speedy3_lineEdt->setText(QString::number(value_i));
-                    }else if(12 == output_array[2]){
-                        speedy4_lineEdt->setText(QString::number(value_i));
-                    }else if(13 == output_array[2]){
-                        speedy5_lineEdt->setText(QString::number(value_i));
-                    }else if(14 == output_array[2]){
-                        speedy6_lineEdt->setText(QString::number(value_i));
-                    }else if(15 == output_array[2]){
-                        speedy7_lineEdt->setText(QString::number(value_i));
-                    }
-                }
-                break;
-            case 50:
-                if(w_speedconv->show_stat)
-                {
-                    if(0x00 == output_array[2])
-                    {
-                        speedy8_lineEdt->setText(QString::number(value_i));
-                    }
-                    else if(0x01 == output_array[2])
-                    {
-                        speedy9_lineEdt->setText(QString::number(value_i));
-                    } else if(0x02 == output_array[2])
-                    {
-                        speedx10_lineEdt->setText(QString::number(value_i));
-                    } else if(0x03 == output_array[2])
-                    {
-                        speedy10_lineEdt->setText(QString::number(value_i));
-                    }
-                }
-                break;
+
+
+
             case 51:
                 if(0x05 == output_array[2])
                 {
@@ -902,42 +741,8 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 break;
             case 55:
                 break;
-            case 56:
-                showblk56(output_array[2],value_i);
-                break;
-            case 57:
-                showblk57(output_array[2],value_i);
-                break;
-            case 58:
-                showblk58(output_array[2],value_i);
-                break;
-            case 59:
-                showblk59(output_array[2],value_i);
-                break;
-            case 60:
-                showblk60(output_array[2],value_i);
-                break;
-            case 61:
-                showblk61(output_array[2],value_i);
-                break;
-            case 62:
-                showblk62(output_array[2],value_i);
-                break;
-            case 63:
-                showblk63(output_array[2],value_i);
-                break;
-            case 64:
-                showblk64(output_array[2],value_i);
-                break;
-            case 65:
-                showblk65(output_array[2],value_i);
-                break;
-            case 66:
-                showblk66(output_array[2],value_i);
-                break;
-            case 67:
-                showblk67(output_array[2],value_i);
-                break;
+
+
             case 68:
                 showblk68(output_array[2],value_i);
                 break;
@@ -1051,183 +856,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
-            case 93:
-                if(w_pid3->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x01:
-                            kp1_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            ki1_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            kd1_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            k13->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            kp2_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            ki2_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            kd2_pid3->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            k23->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 94:
-                if(w_pid3->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x00:
-                            kx_lineEdt3->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            ky_lineEdt3->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            errx_lineEdt3->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            erry_lineEdt3->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            time_lineEdt3->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            x_ratio_control3->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            y_ratio_control3->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 95:
-                if(w_pid4->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x01:
-                            kp1_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            ki1_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            kd1_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            k14->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            kp2_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            ki2_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            kd2_pid4->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            k24->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 96:
-                if(w_pid4->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x00:
-                            kx_lineEdt4->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            ky_lineEdt4->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            errx_lineEdt4->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            erry_lineEdt4->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            time_lineEdt4->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            x_ratio_control4->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            y_ratio_control4->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 97:
-                if(w_pid5->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x01:
-                            kp1_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            ki1_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            kd1_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            k15->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            kp2_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            ki2_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            kd2_pid5->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            k25->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
-            case 98:
-                if(w_pid5->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x00:
-                            kx_lineEdt5->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            ky_lineEdt5->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            errx_lineEdt5->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            erry_lineEdt5->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            time_lineEdt5->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            x_ratio_control5->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            y_ratio_control5->setText(QString::number(value_i));
-                            break;
-                    }
-                }
-                break;
+
             case 99:
                 if(w_speedconv_sec->show_stat)
                {
@@ -1306,235 +935,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
-            case 101:
-                if(w_speedconv_thi->show_stat)
-               {
-                   if(0x00 == output_array[2]){
-                       speedx1_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x01 == output_array[2]){
-                       speedx2_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x02 == output_array[2]){
-                       speedx3_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x03 == output_array[2]){
-                       speedx4_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x04 == output_array[2]){
-                       speedx5_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x05 == output_array[2]){
-                       speedx6_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x06 == output_array[2]){
-                       speedx7_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x07 == output_array[2]){
-                       speedx8_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x08 == output_array[2]){
-                       speedx9_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(0x09 == output_array[2]){
-                       speedy1_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(10 == output_array[2]){
-                       speedy2_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(11 == output_array[2]){
-                       speedy3_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(12 == output_array[2]){
-                       speedy4_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(13 == output_array[2]){
-                       speedy5_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(14 == output_array[2]){
-                       speedy6_lineEdt_thi->setText(QString::number(value_i));
-                   }else if(15 == output_array[2]){
-                       speedy7_lineEdt_thi->setText(QString::number(value_i));
-                   }
-               }
-                break;
-            case 102:
-                if(w_speedconv_thi->show_stat)
-                {
-                    switch (output_array[2]){
-                        case 0x00:
-                            speedy8_lineEdt_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x01:
-                            speedy9_lineEdt_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x02:
-                            speedx10_lineEdt_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x03:
-                            speedy10_lineEdt_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x04:
-                            maxspeedx_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x05:
-                            maxspeedy_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x06:
-                            deadx_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x07:
-                            deady_thi->setText(QString::number(value_i));
-                            break;
-                        case 0x08:
-                            if((int)value_i == 1)
-                                output_d_type_thi->setCurrentIndex(0);
-                            else if((int)value_i == 2)
-                                output_d_type_thi->setCurrentIndex(1);
-                            else if((int)value_i == 3)
-                                output_d_type_thi->setCurrentIndex(2);
-                            break;
-                    }
-                }
-                break;
-            case 103:
-                if(w_speedconv_fou->show_stat)
-               {
-                   if(0x00 == output_array[2]){
-                       speedx1_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x01 == output_array[2]){
-                       speedx2_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x02 == output_array[2]){
-                       speedx3_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x03 == output_array[2]){
-                       speedx4_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x04 == output_array[2]){
-                       speedx5_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x05 == output_array[2]){
-                       speedx6_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x06 == output_array[2]){
-                       speedx7_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x07 == output_array[2]){
-                       speedx8_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x08 == output_array[2]){
-                       speedx9_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(0x09 == output_array[2]){
-                       speedy1_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(10 == output_array[2]){
-                       speedy2_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(11 == output_array[2]){
-                       speedy3_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(12 == output_array[2]){
-                       speedy4_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(13 == output_array[2]){
-                       speedy5_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(14 == output_array[2]){
-                       speedy6_lineEdt_fou->setText(QString::number(value_i));
-                   }else if(15 == output_array[2]){
-                       speedy7_lineEdt_fou->setText(QString::number(value_i));
-                   }
-               }
-                break;
-            case 104:
-                if(w_speedconv_fou->show_stat)
-                {
-                    switch (output_array[2]){
 
-                    case 0x00:
-                      speedy8_lineEdt_fou->setText(QString::number(value_i));
-                       break;
-                    case 0x01:
-                      speedy9_lineEdt_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x02:
-                      speedx10_lineEdt_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x03:
-                       speedy10_lineEdt_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x04:
-                       maxspeedx_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x05:
-                      maxspeedy_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x06:
-                       deadx_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x07:
-                       deady_fou->setText(QString::number(value_i));
-                       break;
-                   case 0x09:
-                   deadx_fou->setText(QString::number(value_i));
-                   break;
-                   case 13:
-                   deady_fou->setText(QString::number(value_i));
-                   break;
-                    }
-                }
-                break;
-            case 105:
-                if(w_speedconv_fif->show_stat)
-                {
-                    if(0x00 == output_array[2]){
-                        speedx1_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x01 == output_array[2]){
-                        speedx2_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x02 == output_array[2]){
-                        speedx3_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x03 == output_array[2]){
-                        speedx4_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x04 == output_array[2]){
-                        speedx5_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x05 == output_array[2]){
-                        speedx6_lineEdt_fou->setText(QString::number(value_i));
-                    }else if(0x06 == output_array[2]){
-                        speedx7_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x07 == output_array[2]){
-                        speedx8_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x08 == output_array[2]){
-                        speedx9_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(0x09 == output_array[2]){
-                        speedy1_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(10 == output_array[2]){
-                        speedy2_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(11 == output_array[2]){
-                        speedy3_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(12 == output_array[2]){
-                        speedy4_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(13 == output_array[2]){
-                        speedy5_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(14 == output_array[2]){
-                        speedy6_lineEdt_fif->setText(QString::number(value_i));
-                    }else if(15 == output_array[2]){
-                        speedy7_lineEdt_fif->setText(QString::number(value_i));
-                    }
-                }
-                break;
-            case 106:
-                if(w_speedconv_fif->show_stat)
-                {
-                    switch (output_array[2]){
-
-                    case 0x00:
-                      speedy8_lineEdt_fif->setText(QString::number(value_i));
-                       break;
-                    case 0x01:
-                      speedy9_lineEdt_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x02:
-                      speedx10_lineEdt_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x03:
-                       speedy10_lineEdt_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x04:
-                       maxspeedx_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x05:
-                      maxspeedy_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x06:
-                       deadx_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x07:
-                       deady_fif->setText(QString::number(value_i));
-                       break;
-                   case 0x09:
-                   deady_fif->setText(QString::number(value_i));
-                   break;
-                   case 13:
-                   deady_fif->setText(QString::number(value_i));
-                   break;
-                    }
-                }
-                break;
             case 107:
                 if(0x01 == output_array[2])
                 {
@@ -2336,38 +1737,49 @@ void MainWindow::read_config(int block)
             send_read_config(block,1,8);
             break;
         case 23:
-            send_read_config(block,0,13);
+        case 56:
+        case 62:
+        case 93:
+        case 101:
+            send_read_config(block,1,15);
             break;
         case 24:
-            send_read_config(block,0,3);
+        case 57:
+        case 63:
+        case 94:
+        case 102:
+            send_read_config(block,0,0);
+            send_read_config(block,2,15);
             break;
         case 25:
-            send_read_config(block,0,15);
+        case 58:
+        case 64:
+        case 95:
+        case 103:
+            send_read_config(block,0,11);
             break;
         case 26:
-            send_read_config(block,0,4);
+        case 59:
+        case 65:
+        case 96:
+        case 104:
+            send_read_config(block,0,6);
             break;
         case 27:
+        case 60:
+        case 66:
+        case 97:
+        case 105:
             send_read_config(block,0,15);
             break;
         case 28:
-            send_read_config(block,0,5);
+        case 61:
+        case 67:
+        case 98:
+        case 106:
+            send_read_config(block,0,9);
             break;
-        case 46:
-            send_read_config(block,0,4);
-            send_read_config(block,6,11);
-            break;
-        case 47:
-            send_read_config(block,0,0);
-            break;
-        case 49:
-            send_read_config(block,0,15);
-            break;
-        case 50:
-            send_read_config(block,0,3);
-            break;
-        case 52:
-            send_read_config(block,1,6);
+        case 51:
             break;
         case 53:
             send_read_config(block,1,2);
@@ -2375,137 +1787,13 @@ void MainWindow::read_config(int block)
         case 54:
             send_read_config(block,0,15);
         break;
-        case 56:
-            send_read_config(block,0,15);
-            break;
-        case 57:
-            send_read_config(block,0,3);
-            break;
-        case 58:
-            send_read_config(block,0,13);
-            break;
-        case 59:
-            send_read_config(block,0,3);
-            break;
-        case 60:
-            send_read_config(block,0,15);
-            break;
-        case 61:
-            send_read_config(block,0,4);
-            break;
-        case 62:
-            send_read_config(block,0,15);
-            break;
-        case 63:
-            send_read_config(block,0,15);
-            break;
-        case 64:
-            send_read_config(block,0,3);
-            break;
-        case 65:
-            send_read_config(block,0,13);
-            break;
-        case 66:
-            send_read_config(block,0,3);
-            break;
-        case 67:
-            send_read_config(block,0,15);
-            break;
-        case 68:
-            send_read_config(block,0,4);
-            break;
-        case 69:
-            send_read_config(block,0,15);
-            break;
-        case 70:
-            send_read_config(block,0,15);
-            break;
-        case 71:
-            send_read_config(block,0,3);
-            break;
-        case 72:
-            send_read_config(block,0,13);
-            break;
-        case 73:
-            send_read_config(block,0,3);
-            break;
-        case 74:
-            send_read_config(block,0,15);
-            break;
-        case 75:
-            send_read_config(block,0,4);
-            break;
-        case 76:
-            send_read_config(block,0,15);
-            break;
-        case 77:
-            send_read_config(block,0,15);
-            break;
-        case 78:
-            send_read_config(block,0,3);
-            break;
-        case 79:
-            send_read_config(block,0,13);
-            break;
-        case 80:
-            send_read_config(block,0,3);
-            break;
-        case 81:
-            send_read_config(block,0,15);
-            break;
-        case 82:
-            send_read_config(block,0,4);
-            break;
-        case 83:
-            send_read_config(block,0,15);
-            break;
-        case 84:
-            send_read_config(block,0,15);
-             break;
-        case 85:
-            send_read_config(block,0,3);
-            break;
-        case 86:
-            send_read_config(block,0,3);
-            break;
-        case 87:
-            send_read_config(90,0,3);
-            send_read_config(block,0,6);
-            break;
-        case 88:
-            send_read_config(90,0,3);
-            send_read_config(block,0,13);
-            break;
-        case 89:
-            send_read_config(block,0,4);
-            break;
-        case 90:
-            send_read_config(block,0,3);
-            break;
+
         case 91:
             send_read_config(block,1,8);
             break;
         case 92:
             send_read_config(block,0,6);
             break;
-        case 93:
-            send_read_config(block,1,8);
-            break;
-         case 94:
-            send_read_config(block,0,6);
-            break;
-         case 95:
-            send_read_config(block,1,8);
-            break;
-         case 96:
-            send_read_config(block,0,6);
-            break;
-         case 97:
-            send_read_config(block,1,8);
-             break;
-         case 98:
-            send_read_config(block,0,6);
-             break;
 
          case 99:
             send_read_config(block,0,15);
@@ -2513,36 +1801,11 @@ void MainWindow::read_config(int block)
          case 100:
             send_read_config(block,0,8);
             break;
-         case 101:
-            send_read_config(block,0,15);
-            break;
-         case 102:
-            send_read_config(block,0,8);
-            break;
-         case 103:
-            send_read_config(block,0,15);
-            break;
-        case 104:
-            send_read_config(block,0,8);
-            break;
-        case 105:
-            send_read_config(block,0,15);
-            break;
-        case 106:
-            send_read_config(block,0,8);
-            break;
+
         case 107:
             send_read_config(block,1,6);
             break;
-        case 108:
-            send_read_config(block,1,6);
-            break;
-        case 109:
-            send_read_config(block,1,6);
-            break;
-        case 110:
-            send_read_config(block,1,6);
-            break;
+
         default:
             break;
     }
@@ -5148,3 +4411,298 @@ void MainWindow::showblk120(int field, float value)
     }
 }
 
+void MainWindow::show_blk_input1(int field, float value)
+{
+    int value_inte = value;
+    switch(field)
+    {
+        case 1:
+            if((value_inte >= 1) && (value_inte <= 32))
+            input_osdid->setCurrentIndex(value_inte - 1);
+            break;
+        case 2:
+            if((0 == value_inte) || (1 == value_inte))
+                input_chroma->setCurrentIndex(value_inte);
+            break;
+        case 3:
+            if(value_inte)
+                input_vediohaveornot->setChecked(true);
+            else
+                input_vediohaveornot->setChecked(false);
+            break;
+        case 4:
+            if(0 == value_inte)
+                input_vedio_dpi->setCurrentIndex(0);
+            else if(1 == value_inte)
+                input_vedio_dpi->setCurrentIndex(1);
+            else if(5 == value_inte)
+                input_vedio_dpi->setCurrentIndex(2);
+            else if(2 == value_inte)
+                input_vedio_dpi->setCurrentIndex(3);
+            else if(3 == value_inte)
+                input_vedio_dpi->setCurrentIndex(4);
+            else if(6 == value_inte)
+                input_vedio_dpi->setCurrentIndex(5);
+            break;
+        case 5:
+            if((value_inte >= 0) && (value_inte <= 2))
+            {
+                input_fovmode->setCurrentIndex(value_inte);
+                input_set_fov_display(value_inte);
+            }
+            break;
+        case 6:
+            input_max_fovclass->setText(QString::number(value));
+            break;
+        case 7:
+            if((value_inte >= 0) && (value_inte <= 2))
+                input_boxsize->setCurrentIndex(value_inte);
+            break;
+        case 8:
+            input_max_boxsize->setText(QString::number(value));
+            break;
+        case 9:
+            input_mtd_sensi->setText(QString::number(value));
+            break;
+        case 10:
+            input_mtd_rigionx->setText(QString::number(value));
+            break;
+        case 11:
+            input_mtd_rigiony->setText(QString::number(value));
+            break;
+        case 12:
+            input_mtd_rigionw->setText(QString::number(value));
+            break;
+        case 13:
+            input_mtd_rigionh->setText(QString::number(value));
+            break;
+        case 14:
+            common_boxw->setText(QString::number(value));
+            break;
+        case 15:
+            common_boxh->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::show_blk_input2(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            input_cur_fovclass->setText(QString::number(value));
+            break;
+        case 2:
+            vedio_continue_Fov[0]->setText(QString::number(value));
+            break;
+        case 3:
+            continue_verticall[0]->setText(QString::number(value));
+            break;
+        case 4:
+            vedio_continue_Fov[1]->setText(QString::number(value));
+           break;
+        case 5:
+            continue_verticall[1]->setText(QString::number(value));
+            break;
+        case 6:
+            vedio_continue_Fov[2]->setText(QString::number(value));
+            break;
+        case 7:
+            continue_verticall[2]->setText(QString::number(value));
+           break;
+        case 8:
+            vedio_continue_Fov[3]->setText(QString::number(value));
+            break;
+        case 9:
+            continue_verticall[3]->setText(QString::number(value));
+            break;
+        case 10:
+            vedio_continue_Fov[4]->setText(QString::number(value));
+           break;
+        case 11:
+            continue_verticall[4]->setText(QString::number(value));
+            break;
+        case 12:
+            vedio_continue_Fov[5]->setText(QString::number(value));
+            break;
+        case 13:
+            continue_verticall[5]->setText(QString::number(value));
+           break;
+        case 14:
+            continue_verticall[6]->setText(QString::number(value));
+            break;
+        case 15:
+            continue_verticall[6]->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::show_blk_input3(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_continue_Fov[7]->setText(QString::number(value));
+            break;
+        case 1:
+            continue_verticall[7]->setText(QString::number(value));
+            break;
+        case 2:
+            vedio_continue_Fov[8]->setText(QString::number(value));
+            break;
+        case 3:
+            continue_verticall[8]->setText(QString::number(value));
+            break;
+        case 4:
+            vedio_continue_Fov[9]->setText(QString::number(value));
+           break;
+        case 5:
+            continue_verticall[9]->setText(QString::number(value));
+            break;
+        case 6:
+            vedio_continue_Fov[10]->setText(QString::number(value));
+            break;
+        case 7:
+            continue_verticall[10]->setText(QString::number(value));
+           break;
+        case 8:
+            vedio_continue_Fov[11]->setText(QString::number(value));
+            break;
+        case 9:
+            continue_verticall[11]->setText(QString::number(value));
+            break;
+        case 10:
+            vedio_continue_Fov[12]->setText(QString::number(value));
+           break;
+        case 11:
+            continue_verticall[12]->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::show_blk_input4(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            input_cur_boxsize->setText(QString::number(value));
+            break;
+        case 1:
+            input_boxw[0]->setText(QString::number(value));
+            break;
+        case 2:
+            input_boxh[0]->setText(QString::number(value));
+            break;
+        case 3:
+            input_boxw[1]->setText(QString::number(value));
+            break;
+        case 4:
+            input_boxh[1]->setText(QString::number(value));
+           break;
+        case 5:
+            input_boxw[2]->setText(QString::number(value));
+            break;
+        case 6:
+            input_boxh[2]->setText(QString::number(value));
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::show_blk_input5(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_spbx_continue[0]->setValue(value);
+            break;
+        case 1:
+            vedio_spby_continue[0]->setValue(value);
+            break;
+        case 2:
+            vedio_spbx_continue[1]->setValue(value);
+            break;
+        case 3:
+            vedio_spby_continue[1]->setValue(value);
+            break;
+        case 4:
+            vedio_spbx_continue[2]->setValue(value);
+           break;
+        case 5:
+            vedio_spby_continue[2]->setValue(value);
+            break;
+        case 6:
+            vedio_spbx_continue[3]->setValue(value);
+            break;
+        case 7:
+            vedio_spby_continue[3]->setValue(value);
+           break;
+        case 8:
+            vedio_spbx_continue[4]->setValue(value);
+            break;
+        case 9:
+            vedio_spby_continue[4]->setValue(value);
+            break;
+        case 10:
+            vedio_spbx_continue[5]->setValue(value);
+           break;
+        case 11:
+            vedio_spby_continue[5]->setValue(value);
+            break;
+        case 12:
+            vedio_spbx_continue[6]->setValue(value);
+           break;
+        case 13:
+            vedio_spby_continue[6]->setValue(value);
+            break;
+        case 14:
+            vedio_spbx_continue[7]->setValue(value);
+           break;
+        case 15:
+            vedio_spby_continue[7]->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::show_blk_input6(int field, float value)
+{
+    switch(field)
+    {
+        case 0:
+            vedio_spbx_continue[8]->setValue(value);
+            break;
+        case 1:
+            vedio_spby_continue[8]->setValue(value);
+            break;
+        case 2:
+            vedio_spbx_continue[9]->setValue(value);
+            break;
+        case 3:
+            vedio_spby_continue[9]->setValue(value);
+            break;
+        case 4:
+            vedio_spbx_continue[10]->setValue(value);
+           break;
+        case 5:
+            vedio_spby_continue[10]->setValue(value);
+            break;
+        case 6:
+            vedio_spbx_continue[11]->setValue(value);
+            break;
+        case 7:
+            vedio_spby_continue[11]->setValue(value);
+           break;
+        case 8:
+            vedio_spbx_continue[12]->setValue(value);
+            break;
+        case 9:
+            vedio_spby_continue[12]->setValue(value);
+            break;
+        default:
+            break;
+    }
+}
