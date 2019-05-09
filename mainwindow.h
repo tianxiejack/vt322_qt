@@ -543,6 +543,9 @@ private slots:
     void lEdt_speedy9_Slot_sec();
     void lEdt_speedy10_Slot_sec();
     void btn_Speed_Default_Slot_sec();
+    void combox_commway_Slot(int i);
+
+
     void btn_Speed_Update_Slot_sec();
 
     void lEdt_maxspeedx_Slot_sec();
@@ -557,6 +560,10 @@ private slots:
     void combox_stop_bit_type_Slot_sec(int index);
     void combox_parity_bit_type_Slot_sec(int index);
     void combox_flow_control_type_Slot_sec(int index);
+    void lEdt_netip_Slot();
+    void lEdt_netport_Slot();
+    void combox_platprotocol_Slot(int index);
+    void lEdt_platparam2_Slot();
 
      /*转台配置通道3*/
     void lEdt_speedx1_Slot_thi();
@@ -1818,11 +1825,12 @@ private:
     QGroupBox *gbox_speedx_sec,*gbox_speedy_sec;
     QLineEdit *speedx1_lineEdt_sec,*speedx2_lineEdt_sec,*speedx3_lineEdt_sec,*speedx4_lineEdt_sec,*speedx5_lineEdt_sec,*speedx6_lineEdt_sec,*speedx7_lineEdt_sec,*speedx8_lineEdt_sec,*speedx9_lineEdt_sec,*speedx10_lineEdt_sec;
     QLineEdit *speedy1_lineEdt_sec,*speedy2_lineEdt_sec,*speedy3_lineEdt_sec,*speedy4_lineEdt_sec,*speedy5_lineEdt_sec,*speedy6_lineEdt_sec,*speedy7_lineEdt_sec,*speedy8_lineEdt_sec,*speedy9_lineEdt_sec,*speedy10_lineEdt_sec;
-    QLineEdit *maxspeedx_sec,*maxspeedy_sec,*deadx_sec,*deady_sec,*out_address_sec;
+    QLineEdit *maxspeedx_sec,*maxspeedy_sec,*deadx_sec,*deady_sec,*netip,*netport,*out_address_sec,*platparam2;
     QComboBox *output_d_type_sec,*baud_rate_sec,* data_bit_sec,*stop_bit_sec,*parity_bit_sec,*flow_control_sec;
     QString speed_s_sec[10]={"等级1","等级2","等级3","等级4","等级5","等级6","等级7","等级8","等级9","等级10"};
-    QString speed_q_sec[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","输出偏差类型设置","地址","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
-
+    QString speed_q_sec[13]={"x轴最大速度","y轴最大速度","x方向死区","y方向死区","通讯接口","网络IP","波特率","数据位","停止位","校验位","流控制","平台x轴Bleed速率","平台y轴Bleed速率"};
+    QComboBox *commway;
+    QComboBox *platprotocol;
     /*转台配置通道三*/
     MyWidget *w_speedconv_thi;
     QGroupBox *gbox_speedx_thi,*gbox_speedy_thi;

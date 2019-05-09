@@ -6679,7 +6679,12 @@ void MainWindow::init_speedconvCfg_sec()
     output_d_type_sec->addItem("像素偏差");
     output_d_type_sec->addItem("Pid控制算法结果输出");
     output_d_type_sec->addItem("转台命令输出");
-    out_address_sec =new QLineEdit;
+
+    commway = new QComboBox;
+    commway->addItem("未接入");
+    commway->addItem("使能串口控制");
+    commway->addItem("使能网络控制");
+
     baud_rate_sec =new QComboBox;
     baud_rate_sec->addItem("2400");
     baud_rate_sec->addItem("4800");
@@ -6688,56 +6693,81 @@ void MainWindow::init_speedconvCfg_sec()
     baud_rate_sec->addItem("38400");
     baud_rate_sec->addItem("57600");
     baud_rate_sec->addItem("115200");
-    baud_rate_sec->setCurrentIndex(13);
     data_bit_sec =new QComboBox;
     data_bit_sec->addItem("5");
     data_bit_sec->addItem("6");
     data_bit_sec->addItem("7");
     data_bit_sec->addItem("8");
-    data_bit_sec->setCurrentIndex(3);
     stop_bit_sec =new QComboBox;
     stop_bit_sec->addItem("1");
     stop_bit_sec->addItem("1.5");
     stop_bit_sec->addItem("2");
-    stop_bit_sec->setCurrentIndex(1);
 
     parity_bit_sec =new QComboBox;
     parity_bit_sec->addItem("None");
     parity_bit_sec->addItem("Odd");
     parity_bit_sec->addItem("Even");
+    parity_bit_sec->addItem("Mark");
+    parity_bit_sec->addItem("Space");
 
     flow_control_sec=new QComboBox;
     flow_control_sec->addItem("Hardware");
     flow_control_sec->addItem("Software");
     flow_control_sec->addItem("None");
-    flow_control_sec->setCurrentIndex(2);
+    flow_control_sec->addItem("Custom");
+
+
+    netip = new QLineEdit;
+    netport = new QLineEdit;
+    platprotocol = new QComboBox;
+    platprotocol->addItem("Pelco-D");
+    platprotocol->addItem("Pelco-P");
+    out_address_sec =new QLineEdit;
+    platparam2 = new QLineEdit;
 
     QFormLayout *f3=new QFormLayout();
-    f3->addRow(speed_q_sec[0],maxspeedx_sec);
-    f3->addRow(speed_q_sec[1],maxspeedy_sec);
-    f3->addRow(speed_q_sec[2],deadx_sec);
-    f3->addRow(speed_q_sec[3],deady_sec);
-    f3->addRow(speed_q_sec[4],output_d_type_sec);
-    f3->addRow(speed_q_sec[5],out_address_sec);
+    //f3->addRow(speed_q_sec[0],maxspeedx_sec);
+    //f3->addRow(speed_q_sec[1],maxspeedy_sec);
+    //f3->addRow(speed_q_sec[2],deadx_sec);
+    //f3->addRow(speed_q_sec[3],deady_sec);
+    //f3->addRow(speed_q_sec[4],output_d_type_sec);
+    f3->addRow(speed_q_sec[4],commway);
     f3->addRow(speed_q_sec[6],baud_rate_sec);
     f3->addRow(speed_q_sec[7],data_bit_sec);
-    f3->addRow(speed_q_sec[8],stop_bit_sec);
     f3->addRow(speed_q_sec[9],parity_bit_sec);
+    f3->addRow(speed_q_sec[8],stop_bit_sec);
     f3->addRow(speed_q_sec[10],flow_control_sec);
-
-
-
+    f3->addRow(speed_q_sec[5],netip);
+    f3->addRow("网络端口",netport);
+    f3->addRow("云台控制协议类型",platprotocol);
+    f3->addRow("转台参数1",out_address_sec);
+    f3->addRow("转台参数2",platparam2);
 
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
-    v->addLayout(sensor_speed);
+    //v->addLayout(sensor_speed);
     v->addLayout(f3);
     //v->addWidget(gbox_speedy);
     w_speedconv_sec->setLayout(v);
 
     connect(btn_speed_default,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Default_Slot_sec()));
-    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(btn_Speed_Update_Slot_sec()));
+    connect(btn_speed_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
+    connect(commway,SIGNAL(activated(int)),this,SLOT(combox_commway_Slot(int)));
+    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_sec(int)));
+    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_sec(int)));
+    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_sec(int)));
+    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_sec(int)));
+    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_sec(int)));
+    connect(netip,SIGNAL(returnPressed()),this,SLOT(lEdt_netip_Slot()));
+    connect(netport,SIGNAL(returnPressed()),this,SLOT(lEdt_netport_Slot()));
+    connect(platprotocol,SIGNAL(activated(int)),this,SLOT(combox_platprotocol_Slot(int)));
+    connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_sec()));
+    connect(platparam2,SIGNAL(returnPressed()),this,SLOT(lEdt_platparam2_Slot()));
+
+
+
+
     connect(speedx1_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx1_Slot_sec()));
     connect(speedx2_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx2_Slot_sec()));
     connect(speedx3_lineEdt_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_speedx3_Slot_sec()));
@@ -6764,12 +6794,7 @@ void MainWindow::init_speedconvCfg_sec()
     connect(deadx_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deadx_Slot_sec()));
     connect(deady_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_deady_Slot_sec()));
     connect(output_d_type_sec,SIGNAL(activated(int)),this,SLOT(combox_output_d_type_Slot_sec(int)));
-    connect(out_address_sec,SIGNAL(returnPressed()),this,SLOT(lEdt_out_address_Slot_sec()));
-    connect(baud_rate_sec,SIGNAL(activated(int)),this,SLOT(combox_baud_rate_type_Slot_sec(int)));
-    connect(data_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_data_bit_type_Slot_sec(int)));
-    connect(stop_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_stop_bit_type_Slot_sec(int)));
-    connect(flow_control_sec,SIGNAL(activated(int)),this,SLOT(combox_flow_control_type_Slot_sec(int)));
-    connect(parity_bit_sec,SIGNAL(activated(int)),this,SLOT(combox_parity_bit_type_Slot_sec(int)));
+
 }
 
 void MainWindow::init_speedconvCfg_thi()
@@ -8793,31 +8818,7 @@ void MainWindow::showspeedconvcfg()
 
 void MainWindow::showspeedconvcfg_sec()
 {
-    for(int i=0;i<=15;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=99;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-    for(int i=0;i<=8;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=100;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-
-    for(int i=1;i<=6;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=107;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    read_config(107);
 
     w_speedconv_sec->show();
     w_speedconv_sec->show_stat = 1;

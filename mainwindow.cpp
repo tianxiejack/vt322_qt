@@ -10664,25 +10664,15 @@ void MainWindow::lEdt_speedy10_Slot_sec()
 
 void MainWindow::btn_Speed_Default_Slot_sec()
 {
-    send_mutex.lock();
-    send_arr[4] = 0x09;
-    send_arr[5] = 99;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4] = 0x09;
-    send_arr[5] = 100;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4] = 0x09;
-    send_arr[5] = 107;
-    send_oneframe(2);
-    send_mutex.unlock();
+    defaultconfig(107);
 }
 
+void MainWindow::combox_commway_Slot(int i)
+{
+    float value = i;
+    setconfig(107, 0, value);
+
+}
 void MainWindow::btn_Speed_Update_Slot_sec()
 {
     send_mutex.lock();
@@ -10746,13 +10736,13 @@ void MainWindow::lEdt_deady_Slot_sec()
 void MainWindow::lEdt_out_address_Slot_sec()
 {
     float value=out_address_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 107;
-    send_arr[6] = 6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(107, 9, value);
+}
+
+void MainWindow::lEdt_platparam2_Slot()
+{
+    float value=platparam2->text().toFloat();
+    setconfig(107, 10, value);
 }
 
 void MainWindow::combox_output_d_type_Slot_sec(int index)
@@ -10769,132 +10759,57 @@ void MainWindow::combox_output_d_type_Slot_sec(int index)
 
 void MainWindow::combox_baud_rate_type_Slot_sec(int index)
 {
-    float value;
+    float value = 9600;
     switch(index)
     {
         case 0:
             value = 2400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 1:
             value = 4800;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 2:
             value = 9600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 3:
             value = 19200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 4:
             value = 38400;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 5:
             value = 57600;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 6:
             value = 115200;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 1;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         default:
             break;
     }
+    setconfig(107, 1, value);
 }
 
 void MainWindow::combox_data_bit_type_Slot_sec(int index)
 {
-    float value;
+    float value = 8;
     switch (index)
     {
         case 0:
             value = 5;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 2;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 1:
             value = 6;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 2;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 2:
             value = 7;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 2;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 3:
             value = 8;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 2;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         default:
             break;
     }
+    setconfig(107, 2, value);
 }
 
 void MainWindow::combox_stop_bit_type_Slot_sec(int index)
@@ -10903,112 +10818,46 @@ void MainWindow::combox_stop_bit_type_Slot_sec(int index)
     switch (index) {
         case 0:
             value = 1;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 4;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 1:
             value = 1.5;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 4;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         case 2:
             value = 2;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 4;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
             break;
         default:
             break;
     }
+    setconfig(107, 4, value);
 }
 
 void MainWindow::combox_parity_bit_type_Slot_sec(int index)
 {
-    float value;
-    switch (index) {
-        case 0:
-            value = 0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 3;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-        case 1:
-            value = 1;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 3;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-        case 2:
-            value = 2;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 3;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-         default:
-            break;
-    }
+    float value = index;
+    setconfig(107, 3, value);
 }
 
 void MainWindow::combox_flow_control_type_Slot_sec(int index)
 {
     float value = index + 1;
-    switch (index) {
-        case 0:
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 5;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-        case 1:
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 5;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-        case 2:
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 107;
-            send_arr[6] = 5;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-        default:
-            break;
-    }
+    setconfig(107, 5, value);
+}
+
+void MainWindow::lEdt_netip_Slot()
+{
+    float value=netip->text().toFloat();
+    setconfig(107, 6, value);
+}
+void MainWindow::lEdt_netport_Slot()
+{
+    float value=netport->text().toFloat();
+    setconfig(107, 7, value);
+}
+
+void MainWindow::combox_platprotocol_Slot(int index)
+{
+    float value = index;
+    setconfig(107, 8, value);
 }
 
 void MainWindow::lEdt_speedx1_Slot_thi()
