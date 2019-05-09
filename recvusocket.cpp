@@ -298,22 +298,24 @@ void RcvUSocketdata::usocket_Read_Data()
                         if(usocket_output_cnt >= pkg_length_usocket+1){
                             if(crc_sum_usocket == pRxByte )
                             {
-                                if(uoutput_array[0]==0x33)
+                                if(uoutput_array[0]==0x56)
                                 {
                                     exportfile(uoutput_array);
                                 }
-                                else if(uoutput_array[0]==0x32)
+                                else if(uoutput_array[0]==0x55)
                                     importfileresp(uoutput_array);
-                                else if(uoutput_array[0]==0x35)
+                                else if(uoutput_array[0]==0x58)
                                 {
                                     //qDebug("it is upgradefw response");
                                     upgraderesp(uoutput_array);
                                 }
+                                /*
                                 else if(uoutput_array[0]==0x37)
                                 {
                                     //qDebug("it is upgradefpga response");
                                     upgradefpgaresp(uoutput_array);
                                 }
+                                */
                                 frame_flag_usocket = 0;
                                 crc_sum_usocket = 0;
                                 usocket_output_cnt = 0;

@@ -13945,7 +13945,7 @@ void MainWindow::btnDownSlot()
         {
             usocket_send_buf[0] = 0xEB;
             usocket_send_buf[1] = 0x53;
-            usocket_send_buf[4] = 0x32;
+            usocket_send_buf[4] = 0x55;
             usocket_send_buf[5] = filesize&0xff;
             usocket_send_buf[6] = (filesize>>8)&0xff;
             usocket_send_buf[7] = (filesize>>16)&0xff;
@@ -13996,7 +13996,7 @@ void MainWindow::btnDownSlot()
         {
             usocket_send_buf[0] = 0xEB;
             usocket_send_buf[1] = 0x53;
-            usocket_send_buf[4] = 0x32;
+            usocket_send_buf[4] = 0x55;
             usocket_send_buf[5] = filesize&0xff;
             usocket_send_buf[6] = (filesize>>8)&0xff;
             usocket_send_buf[7] = (filesize>>16)&0xff;
@@ -14070,7 +14070,7 @@ void MainWindow::btnUpSlot()
         usocket_send_buf[1] = 0x53;
         usocket_send_buf[2] = 0x01;
         usocket_send_buf[3] = 0x00;
-        usocket_send_buf[4] = 0x33;
+        usocket_send_buf[4] = 0x56;
         expfile.setFileName(filePath);
         for(int i = 1; i < 5; i++)
             sum ^= usocket_send_buf[i];
@@ -14183,7 +14183,7 @@ void MainWindow::btnUpdate()
         {
             usocket_send_buf[0] = 0xEB;
             usocket_send_buf[1] = 0x53;
-            usocket_send_buf[4] = 0x35;
+            usocket_send_buf[4] = 0x58;
             usocket_send_buf[5] = filesize&0xff;
             usocket_send_buf[6] = (filesize>>8)&0xff;
             usocket_send_buf[7] = (filesize>>16)&0xff;
@@ -14236,7 +14236,7 @@ void MainWindow::btnUpdate()
         {
             usocket_send_buf[0] = 0xEB;
             usocket_send_buf[1] = 0x53;
-            usocket_send_buf[4] = 0x35;
+            usocket_send_buf[4] = 0x58;
             usocket_send_buf[5] = filesize&0xff;
             usocket_send_buf[6] = (filesize>>8)&0xff;
             usocket_send_buf[7] = (filesize>>16)&0xff;
