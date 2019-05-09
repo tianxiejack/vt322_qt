@@ -278,6 +278,7 @@ public slots:
     void btnUpdate();
     void btnFPGA_clicked();
     void combox_output_resol(int index);
+    void combox_output_resol2(int index);
 
     /*摄像机槽函数*/
     void vedio_tosersor_fix(int i);
@@ -1734,7 +1735,7 @@ private:
     QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
-    QComboBox *box_outresol;
+    QComboBox *box_outresol,*box_outresol2;
     QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;

@@ -14555,13 +14555,18 @@ void MainWindow::combox_output_resol(int index)
     value = index;
     if(index >= 4)
         value = index + 1;
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 51;
-    send_arr[6] = 5;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+
+    setconfig(51, 4, value);
+}
+
+void MainWindow::combox_output_resol2(int index)
+{
+    float value;
+    value = index;
+    if(index >= 4)
+        value = index + 1;
+
+    setconfig(51, 5, value);
 }
 
 void MainWindow::btnUpdate()

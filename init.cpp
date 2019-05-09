@@ -181,6 +181,16 @@ void MainWindow::init_sysCfg()
     box_outresol->addItem("1280x768@60Hz");
     box_outresol->addItem("1920x1080@50Hz");
 
+    box_outresol2 = new QComboBox;
+    box_outresol2->addItem("1920x1080@25Hz");
+    box_outresol2->addItem("1920x1080@30Hz");
+    box_outresol2->addItem("1280x720@50Hz");
+    box_outresol2->addItem("1280x720@60Hz");
+    box_outresol2->addItem("1920x1080@60Hz");
+    box_outresol2->addItem("1280x1024@60Hz");
+    box_outresol2->addItem("1024x768@60Hz");
+    box_outresol2->addItem("1280x768@60Hz");
+    box_outresol2->addItem("1920x1080@50Hz");
 
 
 	QPushButton *btn_choose=new QPushButton;
@@ -249,7 +259,8 @@ void MainWindow::init_sysCfg()
     //pLayout->addRow("有效视频源：", hsensor);
     //pLayout->addRow("相机通道选择", box1);
     pLayout->addRow("保存当前配置", btnSave);
-    pLayout->addRow("输出分辨率", box_outresol);
+    pLayout->addRow("显示1输出分辨率", box_outresol);
+    pLayout->addRow("显示2输出分辨率", box_outresol2);
     //pLayout->addRow("各通道采集\n分辨率选择",btn_choose);
     //pLayout->addRow("变焦速度等级", CBox);
     pLayout->addRow("导入配置文件", vlayout3);
@@ -263,7 +274,7 @@ void MainWindow::init_sysCfg()
 	connect(btn_choose,SIGNAL(clicked(bool)),SLOT(btn_choose_Slot()));
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
     connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
-    connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(btnSaveSlot())); 
+    connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
     connect(btnFPGA,SIGNAL(clicked(bool)),this,SLOT(btnFPGA_clicked()));
     //connect(CBox,SIGNAL(activated(int)),this,SLOT(CBox_View_Slot(int)));
@@ -275,6 +286,7 @@ void MainWindow::init_sysCfg()
     connect(btnselectsw,SIGNAL(clicked(bool)),this,SLOT(btnselectsw_clicked()));
     connect(btnselectimportconf,SIGNAL(clicked(bool)),this,SLOT(btnselectimportconf_clicked()));
     connect(box_outresol,SIGNAL(activated(int)),this,SLOT(combox_output_resol(int)));
+    connect(box_outresol2,SIGNAL(activated(int)),this,SLOT(combox_output_resol2(int)));
     w_config->setLayout(pLayout);
 }
 void MainWindow::init_josCfg()
@@ -8392,14 +8404,8 @@ void MainWindow::showJos()
 
 void MainWindow::showSysCfg()
 {
-    send_mutex.lock();
-    send_arr[4]=0x31;
-    send_arr[5]=51;
-    send_arr[6]=5;
-    send_oneframe(3);
-    send_mutex.unlock();
-
     w_config->show();
+    read_config(51);
 }
 
 void MainWindow::showPlat()

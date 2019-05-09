@@ -497,12 +497,21 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 
 
             case 51:
-                if(0x05 == output_array[2])
+                if(0x04 == output_array[2])
                 {
                     int index = (int)value_i;
-                    if(index >= 5)
-                        index--;
-                    box_outresol->setCurrentIndex(index);
+                    if((index >= 0) && (index <= 3))
+                        box_outresol->setCurrentIndex(index);
+                    else if((index >= 5) && (index <= 9))
+                        box_outresol->setCurrentIndex(index - 1);
+                }
+                else if(0x05 == output_array[2])
+                {
+                    int index = (int)value_i;
+                    if((index >= 0) && (index <= 3))
+                        box_outresol2->setCurrentIndex(index);
+                    else if((index >= 5) && (index <= 9))
+                        box_outresol2->setCurrentIndex(index - 1);
                 }
                 break;
             case 52:
@@ -1780,6 +1789,7 @@ void MainWindow::read_config(int block)
             send_read_config(block,0,9);
             break;
         case 51:
+            send_read_config(block,4,5);
             break;
         case 53:
             send_read_config(block,1,2);
