@@ -514,104 +514,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         box_outresol2->setCurrentIndex(index - 1);
                 }
                 break;
-            case 52:
-                if(0x01 == output_array[2])
-                {
-                    switch((int)value_i)
-                    {
-                        case 2400:
-                            baud_rate->setCurrentIndex(0);
-                            break;
-                        case 4800:
-                            baud_rate->setCurrentIndex(1);
-                            break;
-                        case 9600:
-                            baud_rate->setCurrentIndex(2);
-                            break;
-                        case 19200:
-                            baud_rate->setCurrentIndex(3);
-                            break;
-                        case 38400:
-                            baud_rate->setCurrentIndex(4);
-                            break;
-                        case 57600:
-                            baud_rate->setCurrentIndex(5);
-                            break;
-                        case 115200:
-                            baud_rate->setCurrentIndex(6);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if(0x02 == output_array[2])
-                {
-                    switch((int)value_i)
-                    {
-                        case 5:
-                            data_bit->setCurrentIndex(0);
-                            break;
-                        case 6:
-                            data_bit->setCurrentIndex(1);
-                            break;
-                        case 7:
-                            data_bit->setCurrentIndex(2);
-                            break;
-                        case 8:
-                            data_bit->setCurrentIndex(3);
-                            break;
-                        default:
-                            break;
-                     }
-                }
-                else if (0x03 == output_array[2])
-                {
-                    switch((int)value_i)
-                    {
-                        case 0:
-                            parity_bit->setCurrentIndex(0);
-                            break;
-                        case 1:
-                            parity_bit->setCurrentIndex(1);
-                            break;
-                        case 2:
-                            parity_bit->setCurrentIndex(2);
-                            break;
-                        default:
-                            break;
-                     }
-                }
-                else if (0x04 == output_array[2])
-                {
-                    if(value_i < 1.5)
-                    {
-                        stop_bit->setCurrentIndex(0);
-                    }else if((value_i > 1) && (value_i < 2))
-                    {
-                        stop_bit->setCurrentIndex(1);
-                    }else if(value_i > 1.5)
-                    {
-                        stop_bit->setCurrentIndex(2);
-                    }
-                }
-                else if (0x05 == output_array[2])
-                {
-                    if((int)value_i==1)
-                    {
-                        flow_control->setCurrentIndex(0);
-                    }else if((int)value_i==2)
-                    {
-                        flow_control->setCurrentIndex(1);
-                    }else if((int)value_i==3)
-                    {
-                        flow_control->setCurrentIndex(2);
-                    }
-                }
-                else if(0x06 == output_array[2])
-                {
-                    out_address->setText(QString::number(value_i));
-                }
-                break;
+
             case 53:
                 if(w_osd1->show_stat)
                 {
@@ -673,57 +576,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 {
                     trktime->setText(QString::number(value_i));
                 }
-                else if(0x08 == output_array[2])
-                {
-                    switch((int)value_i)
-                    {
-                        case 1:
-                            output->setCurrentIndex(0);
-                            break;
-                        case 2:
-                            output->setCurrentIndex(1);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if(0x09 == output_array[2])
-                {
-                    switch((int)value_i)
-                    {
-                        case 1:
-                            polar->setCurrentIndex(0);
-                            break;
-                        case 2:
-                         polar->setCurrentIndex(1);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if(10 == output_array[2])
-                {
-                    rigion_Cen_x->setText(QString::number(value_i));
-                }
-                else if(11 == output_array[2])
-                {
-                    rigion_Cen_y->setText(QString::number(value_i));
-                }
-                else if(12 == output_array[2])
-                {
-                    rigion_Cen_w->setText(QString::number(value_i));
-                }
-                else if(13 == output_array[2])
-                {
-                    rigion_Cen_h->setText(QString::number(value_i));
-                }
                 else if(14 == output_array[2])
                 {
                     switch((int)value_i)
                     {
                         case 1:
-                        Priority_judgment->setCurrentIndex(0);
-                        break;
+                            Priority_judgment->setCurrentIndex(0);
+                            break;
                         case 2:
                             Priority_judgment->setCurrentIndex(1);
                             break;
@@ -743,15 +602,47 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                             break;
                      }
                 }
-                else if(15 == output_array[2])
-                {
-                    Alarm_delay->setText(QString::number(value_i));
-                }
                 break;
             case 55:
+                if(0 == output_array[2])
+                    presetx->setText(QString::number(value_i));
+                else if(1 == output_array[2])
+                    presety->setText(QString::number(value_i));
+                else if(2 == output_array[2])
+                    presetzoom->setText(QString::number(value_i));
+                else if(3 == output_array[2])
+                    presetid->setText(QString::number(value_i));
+                else if(4 == output_array[2])
+                {
+                    switch((int)value_i)
+                    {
+                        case 1:
+                            output->setCurrentIndex(0);
+                            break;
+                        case 2:
+                            output->setCurrentIndex(1);
+                            break;
+                        default:
+                            break;
+                     }
+                }
+                else if(5 == output_array[2])
+                {
+                    switch((int)value_i)
+                    {
+                        case 1:
+                            polar->setCurrentIndex(0);
+                            break;
+                        case 2:
+                            polar->setCurrentIndex(1);
+                            break;
+                        default:
+                            break;
+                     }
+                }
+                else if(6 == output_array[2])
+                    Alarm_delay->setText(QString::number(value_i));
                 break;
-
-
             case 68:
                 showblk68(output_array[2],value_i);
                 break;

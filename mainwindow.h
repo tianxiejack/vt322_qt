@@ -1581,7 +1581,7 @@ private slots:
     //移动检测配置
     void btn_mtd_Default_Slot();
     void btn_mtd_Update_Slot();
-    void zone_setting_Slot();
+    void zone_setting_Slot(int arg1);
     void lEdt_rigion_Slot();
     void lEdt_rigion_Cen_x_Slot();
     void lEdt_rigion_Cen_y_Slot();
@@ -1595,6 +1595,10 @@ private slots:
     void lEdt_dspeed_Slot();
     void lEdt_trktime_Slot();
     void combox_Priority_judgment_Slot(int index);
+    void lEdt_presetx_Slot();
+    void lEdt_presety_Slot();
+    void lEdt_presetzoom_Slot();
+    void lEdt_presetid_Slot();
     void combox_output_Slot(int index);
     void combox_polar_Slot(int index);
     void lEdt_Alarm_delay_Slot();
@@ -2097,8 +2101,10 @@ private:
     QPushButton *btn_mtd_default,*btn_mtd_update;
     QLineEdit *rigion_Cen_x,*rigion_Cen_y,*rigion_Cen_w,*rigion_Cen_h,*maxnum,*uspeed,*maxpix,*minpix,*sensitive,*dspeed,*trktime,*Alarm_delay;
     QComboBox *output,*polar,*Priority_judgment;
-    QString mtd_s[14]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间","优先级判断","开关量输出","开关量输出极性","报警延时时间","区域设置提示框"};
+    QString mtd_s[18]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间","优先级判断",
+                       "预置方位X","预置方位Y","预置位ZOOM","预置位ID","开关量输出","开关量输出极性","报警延时时间","区域设置提示框"};
     QCheckBox  *zone_setting;
+    QLineEdit *presetx,*presety,*presetzoom,*presetid;
 
     /*UTC*/
     QPushButton *btn_utc1_default,*btn_utc1_update,*btn_utc2_default,*btn_utc2_update,*btn_utc3_default,*btn_utc3_update;

@@ -7345,6 +7345,12 @@ void MainWindow::init_mtdCfg()
     Priority_judgment->addItem("亮度最小");
     Priority_judgment->addItem("面积最大");
     Priority_judgment->addItem("面积最小");
+
+    presetx = new QLineEdit;
+    presety = new QLineEdit;
+    presetzoom = new QLineEdit;
+    presetid = new QLineEdit;
+
     output = new QComboBox;
     output->addItem("使能");
     output->addItem("禁止");
@@ -7363,9 +7369,9 @@ void MainWindow::init_mtdCfg()
     sensor_Ad->addWidget(s);
 
     QFormLayout *f1=new QFormLayout();
-    f1->addRow(mtd_s[13],zone_setting);
-    f1->addRow(mtd_s[0],sensor_rigion_Cen_xy);
-    f1->addRow(mtd_s[1],sensor_rigion_Cen_wh);
+    f1->addRow(mtd_s[17],zone_setting);
+    //f1->addRow(mtd_s[0],sensor_rigion_Cen_xy);
+    //f1->addRow(mtd_s[1],sensor_rigion_Cen_wh);
     f1->addRow(mtd_s[2],maxnum);
     f1->addRow(mtd_s[3],uspeed);
     f1->addRow(mtd_s[4],maxpix);
@@ -7374,9 +7380,14 @@ void MainWindow::init_mtdCfg()
     f1->addRow(mtd_s[7],dspeed);
     f1->addRow(mtd_s[8],trktime);
     f1->addRow(mtd_s[9],Priority_judgment);
-    f1->addRow(mtd_s[10],output);
-    f1->addRow(mtd_s[11],polar);
-    f1->addRow(mtd_s[12],sensor_Ad);
+    f1->addRow(mtd_s[10],presetx);
+    f1->addRow(mtd_s[11],presety);
+    f1->addRow(mtd_s[12],presetzoom);
+    f1->addRow(mtd_s[13],presetid);
+
+    f1->addRow(mtd_s[14],output);
+    f1->addRow(mtd_s[15],polar);
+    f1->addRow(mtd_s[16],sensor_Ad);
 
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
@@ -7385,12 +7396,8 @@ void MainWindow::init_mtdCfg()
     w_mtd->resize(300,450);
 
     connect(btn_mtd_default,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Default_Slot()));
-    connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Update_Slot()));
-    connect(zone_setting,SIGNAL(stateChanged(int)),this,SLOT(zone_setting_Slot()));
-    connect(rigion_Cen_x,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_x_Slot()));
-    connect(rigion_Cen_y,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_y_Slot()));
-    connect(rigion_Cen_w,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_w_Slot()));
-    connect(rigion_Cen_h,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_h_Slot()));
+    connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
+    connect(zone_setting,SIGNAL(stateChanged(int)),this,SLOT(zone_setting_Slot(int)));
     connect(maxnum,SIGNAL(returnPressed()),this,SLOT(lEdt_maxnum_Slot()));
     connect(uspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_uspeed_Slot()));
     connect(maxpix,SIGNAL(returnPressed()),this,SLOT(lEdt_maxpix_Slot()));
@@ -7400,9 +7407,19 @@ void MainWindow::init_mtdCfg()
     connect(trktime,SIGNAL(returnPressed()),this,SLOT(lEdt_trktime_Slot()));
       // connect(output,SIGNAL(currentIndexChanged(int)),this,SLOT(combox_output_Slot(int index)));
     connect(Priority_judgment,SIGNAL(activated(int)),this,SLOT(combox_Priority_judgment_Slot(int)));
+    connect(presetx,SIGNAL(returnPressed()),this,SLOT(lEdt_presetx_Slot()));
+    connect(presety,SIGNAL(returnPressed()),this,SLOT(lEdt_presety_Slot()));
+    connect(presetzoom,SIGNAL(returnPressed()),this,SLOT(lEdt_presetzoom_Slot()));
+    connect(presetid,SIGNAL(returnPressed()),this,SLOT(lEdt_presetid_Slot()));
+
     connect(output,SIGNAL(activated(int)),this,SLOT(combox_output_Slot(int)));
     connect(polar,SIGNAL(activated(int)),this,SLOT(combox_polar_Slot(int)));
     connect(Alarm_delay,SIGNAL(returnPressed()),this,SLOT(lEdt_Alarm_delay_Slot()));
+
+    connect(rigion_Cen_x,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_x_Slot()));
+    connect(rigion_Cen_y,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_y_Slot()));
+    connect(rigion_Cen_w,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_w_Slot()));
+    connect(rigion_Cen_h,SIGNAL(returnPressed()),this,SLOT(lEdt_rigion_Cen_h_Slot()));
 
 }
 

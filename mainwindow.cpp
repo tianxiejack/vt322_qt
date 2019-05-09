@@ -9729,12 +9729,8 @@ void MainWindow::lEdt_bomen_11()
 
 void MainWindow::btn_mtd_Default_Slot()
 {
-        send_mutex.lock();
-        send_arr[4] = 0x09;
-        send_arr[5] = 54;
-        send_oneframe(2);
-        send_mutex.unlock();
-
+        defaultconfig(54);
+        defaultconfig(55);
 }
 
 void MainWindow::btn_mtd_Update_Slot()
@@ -9746,24 +9742,18 @@ void MainWindow::btn_mtd_Update_Slot()
 
 }
 
-void MainWindow::zone_setting_Slot()
+void MainWindow::zone_setting_Slot(int arg1)
 {
-    if(zone_setting->isChecked())
+    float value = 0;
+    if(arg1 == Qt::Checked)
     {
-        send_mutex.lock();
-        send_arr[4] = 0x47;
-        send_arr[5] = 0x01;
-        send_oneframe(2);
-        send_mutex.unlock(); 
+        value = 1;
     }
-    else
+    else if(arg1 == Qt::Unchecked)
     {
-        send_mutex.lock();
-        send_arr[4] = 0x47;
-        send_arr[5] = 0x00;
-        send_oneframe(2);
-        send_mutex.unlock();
+        value = 0;
     }
+    setconfig(54, 0, value);
 }
 
 void MainWindow::lEdt_rigion_Slot()
@@ -9835,251 +9825,88 @@ void MainWindow::lEdt_rigion_Cen_h_Slot()
 void MainWindow::lEdt_maxnum_Slot()
 {
     float value=maxnum->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 1;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    setconfig(54, 1, value);
 }
 
 void MainWindow::lEdt_uspeed_Slot()
 {
-        float value=uspeed->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 2;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    float value=uspeed->text().toFloat();
+    setconfig(54, 2, value);
 }
 
 void MainWindow::lEdt_maxpix_Slot()
 {
     float value=maxpix->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 3;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    setconfig(54, 3, value);
 }
 
 void MainWindow::lEdt_minpix_Slot()
 {
     float value=minpix->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 4;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    setconfig(54, 4, value);
 }
 
 void MainWindow::lEdt_sensitive_Slot()
 {
     float value=sensitive->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 5;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
+    setconfig(54, 5, value);
 }
 
 void MainWindow::lEdt_dspeed_Slot()
 {
     float value=dspeed->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 6;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    setconfig(54, 6, value);
 }
 
 void MainWindow::lEdt_trktime_Slot()
 {
     float value=trktime->text().toFloat();
-        send_mutex.lock();
-        send_arr[4] = 0x30;
-        send_arr[5] = 54;
-        send_arr[6] = 7;
-        memcpy(send_arr+7,&value,4);
-        send_oneframe(7);
-        send_mutex.unlock();
-
+    setconfig(54, 7, value);
 }
 
 void MainWindow::combox_Priority_judgment_Slot(int index)
 {
-    float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 1.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 2.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 2:
-            value = 3.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            case 3:
-            value = 4.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 4:
-            value = 5.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 5:
-            value = 6.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 14;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-            break;
-            default:
-                break;
-        }
+    float value = index + 1;
+    setconfig(54, 14, value);
+}
 
+void MainWindow::lEdt_presetx_Slot()
+{
+    float value=presetx->text().toFloat();
+    setconfig(55, 0, value);
+}
+void MainWindow::lEdt_presety_Slot()
+{
+    float value=presety->text().toFloat();
+    setconfig(55, 1, value);
+}
+void MainWindow::lEdt_presetzoom_Slot()
+{
+    float value=presetzoom->text().toFloat();
+    setconfig(55, 2, value);
+}
+void MainWindow::lEdt_presetid_Slot()
+{
+    float value=presetid->text().toFloat();
+    setconfig(55, 3, value);
 }
 
 void MainWindow::combox_output_Slot(int index)
 {
-    float value;
-        printf("index = %d\n", index);
-        switch(index)
-        {
-            case 0:
-            value = 1.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 8;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            case 1:
-            value = 2.0;
-            send_mutex.lock();
-            send_arr[4] = 0x30;
-            send_arr[5] = 54;
-            send_arr[6] = 8;
-            send_arr[7] = value;
-            memcpy(send_arr+7,&value,4);
-            send_oneframe(7);
-            send_mutex.unlock();
-                break;
-            default:
-                break;
-        }
-
+    float value = index + 1;
+    setconfig(55, 4, value);
 }
 
 void MainWindow::combox_polar_Slot(int index)
 {
-
-        float value;
-            printf("index = %d\n", index);
-            switch(index)
-            {
-                case 0:
-                value = 1.0;
-                send_mutex.lock();
-                send_arr[4] = 0x30;
-                send_arr[5] = 54;
-                send_arr[6] = 9;
-                send_arr[7] = value;
-                memcpy(send_arr+7,&value,4);
-                send_oneframe(7);
-                send_mutex.unlock();
-                    break;
-                case 1:
-                value = 2.0;
-                send_mutex.lock();
-                send_arr[4] = 0x30;
-                send_arr[5] = 54;
-                send_arr[6] = 9;
-                send_arr[7] = value;
-                memcpy(send_arr+7,&value,4);
-                send_oneframe(7);
-                send_mutex.unlock();
-                    break;
-                default:
-                    break;
-            }
-
+    float value = index + 1;
+    setconfig(55, 5, value);
 }
 
 void MainWindow::lEdt_Alarm_delay_Slot()
 {
     float value=Alarm_delay->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 54;
-    send_arr[6] = 15;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
+    setconfig(55, 6, value);
 }
 
 
