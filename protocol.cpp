@@ -643,60 +643,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 else if(6 == output_array[2])
                     Alarm_delay->setText(QString::number(value_i));
                 break;
-            case 68:
-                showblk68(output_array[2],value_i);
-                break;
-            case 69:
-                showblk69(output_array[2],value_i);
-                break;
-            case 70:
-                showblk70(output_array[2],value_i);
-                break;
-            case 71:
-                showblk71(output_array[2],value_i);
-                break;
-            case 72:
-                showblk72(output_array[2],value_i);
-                break;
-            case 73:
-                showblk73(output_array[2],value_i);
-                break;
-            case 74:
-                showblk74(output_array[2],value_i);
-                break;
-            case 75:
-                showblk75(output_array[2],value_i);
-                break;
-            case 76:
-                showblk76(output_array[2],value_i);
-                break;
-            case 77:
-                showblk77(output_array[2],value_i);
-                break;
-            case 78:
-                showblk78(output_array[2],value_i);
-                break;
-            case 79:
-                showblk79(output_array[2],value_i);
-                break;
-            case 80:
-                showblk80(output_array[2],value_i);
-                break;
-            case 81:
-                showblk81(output_array[2],value_i);
-                break;
-            case 82:
-                showblk82(output_array[2],value_i);
-                break;
-            case 83:
-                showblk83(output_array[2],value_i);
-                break;
-            case 84:
-                showblk84(output_array[2],value_i);
-                break;
-            case 85:
-                showblk85(output_array[2],value_i);
-                break;
+
             case 91:
                 if(w_pid2->show_stat)
                 {

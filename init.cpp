@@ -494,11 +494,12 @@ void MainWindow::init_pidCfg2()
     QFormLayout *f3=new QFormLayout();
     f3->addRow(dbg_s2[0],kx_lineEdt2);
     f3->addRow(dbg_s2[1],ky_lineEdt2);
-    f3->addRow(dbg_s2[2],x_ratio_control2);
-    f3->addRow(dbg_s2[3],y_ratio_control2);
     f3->addRow(dbg_s2[4],errx_lineEdt2);
     f3->addRow(dbg_s2[5],erry_lineEdt2);
     f3->addRow(dbg_s2[6],time_lineEdt2);
+    f3->addRow(dbg_s2[2],x_ratio_control2);
+    f3->addRow(dbg_s2[3],y_ratio_control2);
+
     regulator_pid2->setLayout(f3);
 
 
@@ -509,7 +510,7 @@ void MainWindow::init_pidCfg2()
     w_pid2->setLayout(v);
 
     connect(btn_pid_default2,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot2()));
-    connect(btn_pid_update2,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Updata_Slot2()));
+    connect(btn_pid_update2,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(kp1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID1_Slot2()));
     connect(ki1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID2_Slot2()));
     connect(kd1_pid2,SIGNAL(returnPressed()),this,SLOT(lEdt_PID3_Slot2()));
@@ -521,13 +522,13 @@ void MainWindow::init_pidCfg2()
 
    // connect(bleedx_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat1_Slot()));
    // connect(bleedy_plat,SIGNAL(returnPressed()),this,SLOT(lEdt_plat2_Slot()));
-    connect(x_ratio_control2,SIGNAL(returnPressed()),this,SLOT(x_ratio_control_Slot2()));
-    connect(y_ratio_control2,SIGNAL(returnPressed()),this,SLOT(y_ratio_control_Slot2()));
     connect(kx_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_kx_Slot2()));
     connect(ky_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_ky_Slot2()));
     connect(errx_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_errx_Slot2()));
     connect(erry_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_erry_Slot2()));
     connect(time_lineEdt2,SIGNAL(returnPressed()),this,SLOT(lEdt_time_Slot2()));
+    connect(x_ratio_control2,SIGNAL(returnPressed()),this,SLOT(x_ratio_control_Slot2()));
+    connect(y_ratio_control2,SIGNAL(returnPressed()),this,SLOT(y_ratio_control_Slot2()));
 }
 void MainWindow::init_pidCfg3()
 {
@@ -8652,22 +8653,8 @@ void MainWindow::showpidsysCfg1()
 
 void MainWindow::showpidsysCfg2()
 {
-    for(int i=1;i<=8;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=91;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-    for(int i=0;i<=6;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=92;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    read_config(91);
+    read_config(92);
 
     w_pid2->show();
     w_pid2->show_stat = 1;
@@ -8935,23 +8922,8 @@ void MainWindow::showspeedconvcfg_fif()
 
 void MainWindow:: showmtdcfg()
 {
-    for(int i=0;i<16;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x36;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
-
-    for(int i=0;i<=1;i++){
-        send_mutex.lock();
-        send_arr[4]=0x31;
-        send_arr[5]=0x37;
-        send_arr[6]=i;
-        send_oneframe(3);
-        send_mutex.unlock();
-    }
+    read_config(54);
+    read_config(55);
 
     w_mtd->show();
     w_mtd->show_stat = 1;

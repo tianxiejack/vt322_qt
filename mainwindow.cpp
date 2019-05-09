@@ -13335,197 +13335,97 @@ void MainWindow::btn_pid_Updata_Slot()
 void MainWindow::lEdt_kx_Slot2()
 {
     float value=kx_lineEdt2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x00;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 0, value);
 }
 
 void MainWindow::lEdt_ky_Slot2()
 {
     float value=ky_lineEdt2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x01;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 1, value);
 }
 
 void MainWindow::x_ratio_control_Slot2()
 {
     float value=x_ratio_control2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x05;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 5, value);
 }
 
 void MainWindow::y_ratio_control_Slot2()
 {
     float value=y_ratio_control2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x06;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 6, value);
 }
 
 void MainWindow::lEdt_errx_Slot2()
 {
     float value=errx_lineEdt2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x02;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 2, value);
 }
 
 void MainWindow::lEdt_erry_Slot2()
 {
     float value=erry_lineEdt2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x03;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 3, value);
 }
 
 void MainWindow::lEdt_time_Slot2()
 {
     float value=time_lineEdt2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 92;
-    send_arr[6] = 0x04;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(92, 4, value);
 }
 
 void MainWindow::lEdt_PID1_Slot2()
 {
     float value=kp1_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x01;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 1, value);
 }
 
 void MainWindow::lEdt_PID2_Slot2()
 {
     float value=ki1_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x02;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 2, value);
 }
 
 void MainWindow::lEdt_PID3_Slot2()
 {
     float value=kd1_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x03;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 3, value);
 }
 
 void MainWindow::lEdt_PID4_Slot2()
 {
     float value=k12->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x04;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 4, value);
 }
 
 void MainWindow::lEdt_PID5_Slot2()
 {
     float value=kp2_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x05;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 5, value);
 }
 
 void MainWindow::lEdt_PID6_Slot2()
 {
     float value=ki2_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x06;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 6, value);
 }
 
 void MainWindow::lEdt_PID7_Slot2()
 {
     float value=kd2_pid2->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x07;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 7, value);
 }
 
 void MainWindow::lEdt_PID8_Slot2()
 {
     float value=k22->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 91;
-    send_arr[6] = 0x08;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    setconfig(91, 8, value);
 }
 
 void MainWindow::btn_pid_Default_Slot2()
 {
-    send_mutex.lock();
-    send_arr[4] = 0x09;
-    send_arr[5] = 92;
-    send_oneframe(2);
-    send_mutex.unlock();
-
-    send_mutex.lock();
-    send_arr[4] = 0x09;
-    send_arr[5] = 91;
-    send_oneframe(2);
-    send_mutex.unlock();
-
+    defaultconfig(91);
+    defaultconfig(92);
 }
 
 void MainWindow::btn_pid_Updata_Slot2()
