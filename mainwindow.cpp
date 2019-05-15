@@ -8980,7 +8980,7 @@ void MainWindow::CBox_osd_choose_Slot(int i)
     if(i<16)
         read_config(i+7);
     else
-        read_config(i+13);
+        read_config(i+14);
 }
 
 void MainWindow::osd_posx_Slot()
@@ -9036,7 +9036,7 @@ void MainWindow::CBox_osdcolor_Slot(int i)
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 6, value);
+    setconfig(get_osd_blk(c), 5, value);
 }
 
 void MainWindow::CBox_transparency_Slot(int i)
@@ -9045,7 +9045,7 @@ void MainWindow::CBox_transparency_Slot(int i)
 
     value = i;
 
-    setconfig(get_osd_blk(c), 7, value);
+    setconfig(get_osd_blk(c), 6, value);
 }
 
 void MainWindow::CBox_osd_font_Slot(int i)
@@ -9054,7 +9054,7 @@ void MainWindow::CBox_osd_font_Slot(int i)
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 8, value);
+    setconfig(get_osd_blk(c), 7, value);
 }
 
 void MainWindow::CBox_osd_font_size_Slot(int i)
@@ -9063,17 +9063,17 @@ void MainWindow::CBox_osd_font_size_Slot(int i)
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 9, value);
+    setconfig(get_osd_blk(c), 8, value);
 }
 
 void MainWindow::btn_osd_default2_Slot()
 {
-    defaultconfig(53);
+    defaultconfig(52);
 }
 
 void MainWindow::CBox_cusosd_choose_Slot(int i)
 {
-    read_config(53);
+    read_config(52);
 }
 
 void MainWindow::CBox_show_cusosd_Slot(int arg1)
@@ -9088,12 +9088,12 @@ void MainWindow::CBox_show_cusosd_Slot(int arg1)
         cusosd_state &= ~(1 << i);
     }
     float value = cusosd_state;
-    setconfig(53, 2, value);
+    setconfig(52, 2, value);
 }
 
 void MainWindow::CBox_sysosd_choose_Slot(int i)
 {
-    read_config(53);
+    read_config(52);
 }
 
 void MainWindow::CBox_show_sysosd_Slot(int arg1)
@@ -9108,7 +9108,7 @@ void MainWindow::CBox_show_sysosd_Slot(int arg1)
         sysosd_state &= ~(1 << i);
     }
     float value = sysosd_state;
-    setconfig(53, 1, value);
+    setconfig(52, 1, value);
 }
 
 void MainWindow::checkBox_cross_Slot()
@@ -9867,7 +9867,7 @@ void MainWindow::lEdt_trktime_Slot()
 void MainWindow::combox_Priority_judgment_Slot(int index)
 {
     float value = index + 1;
-    setconfig(54, 14, value);
+    setconfig(54, 8, value);
 }
 
 void MainWindow::lEdt_presetx_Slot()
@@ -10027,7 +10027,7 @@ void MainWindow::resetAction()
     reply=QMessageBox::information(this,"提示","是否恢复出厂设置",QMessageBox::Ok,QMessageBox::Cancel);
     if(reply==QMessageBox::Ok){
         send_mutex.lock();
-        send_arr[4] = 0x09;
+        send_arr[4] = 0x54;
         send_arr[5] = 0x00;
         send_oneframe(2);
         send_mutex.unlock();
@@ -10664,13 +10664,13 @@ void MainWindow::lEdt_speedy10_Slot_sec()
 
 void MainWindow::btn_Speed_Default_Slot_sec()
 {
-    defaultconfig(107);
+    defaultconfig(2);
 }
 
 void MainWindow::combox_commway_Slot(int i)
 {
     float value = i;
-    setconfig(107, 0, value);
+    setconfig(2, 0, value);
 
 }
 void MainWindow::btn_Speed_Update_Slot_sec()
@@ -10736,13 +10736,13 @@ void MainWindow::lEdt_deady_Slot_sec()
 void MainWindow::lEdt_out_address_Slot_sec()
 {
     float value=out_address_sec->text().toFloat();
-    setconfig(107, 9, value);
+    setconfig(2, 9, value);
 }
 
 void MainWindow::lEdt_platparam2_Slot()
 {
     float value=platparam2->text().toFloat();
-    setconfig(107, 10, value);
+    setconfig(2, 10, value);
 }
 
 void MainWindow::combox_output_d_type_Slot_sec(int index)
@@ -10786,7 +10786,7 @@ void MainWindow::combox_baud_rate_type_Slot_sec(int index)
         default:
             break;
     }
-    setconfig(107, 1, value);
+    setconfig(2, 1, value);
 }
 
 void MainWindow::combox_data_bit_type_Slot_sec(int index)
@@ -10809,7 +10809,7 @@ void MainWindow::combox_data_bit_type_Slot_sec(int index)
         default:
             break;
     }
-    setconfig(107, 2, value);
+    setconfig(2, 2, value);
 }
 
 void MainWindow::combox_stop_bit_type_Slot_sec(int index)
@@ -10828,36 +10828,36 @@ void MainWindow::combox_stop_bit_type_Slot_sec(int index)
         default:
             break;
     }
-    setconfig(107, 4, value);
+    setconfig(2, 4, value);
 }
 
 void MainWindow::combox_parity_bit_type_Slot_sec(int index)
 {
     float value = index;
-    setconfig(107, 3, value);
+    setconfig(2, 3, value);
 }
 
 void MainWindow::combox_flow_control_type_Slot_sec(int index)
 {
     float value = index + 1;
-    setconfig(107, 5, value);
+    setconfig(2, 5, value);
 }
 
 void MainWindow::lEdt_netip_Slot()
 {
     float value=netip->text().toFloat();
-    setconfig(107, 6, value);
+    setconfig(2, 6, value);
 }
 void MainWindow::lEdt_netport_Slot()
 {
     float value=netport->text().toFloat();
-    setconfig(107, 7, value);
+    setconfig(2, 7, value);
 }
 
 void MainWindow::combox_platprotocol_Slot(int index)
 {
     float value = index;
-    setconfig(107, 8, value);
+    setconfig(2, 8, value);
 }
 
 void MainWindow::lEdt_speedx1_Slot_thi()
@@ -13184,102 +13184,101 @@ void MainWindow::btn_pid_Updata_Slot()
 void MainWindow::lEdt_kx_Slot2()
 {
     float value=kx_lineEdt2->text().toFloat();
-    setconfig(92, 0, value);
+    setconfig(102, 0, value);
 }
 
 void MainWindow::lEdt_ky_Slot2()
 {
     float value=ky_lineEdt2->text().toFloat();
-    setconfig(92, 1, value);
+    setconfig(102, 1, value);
 }
 
 void MainWindow::x_ratio_control_Slot2()
 {
     float value=x_ratio_control2->text().toFloat();
-    setconfig(92, 5, value);
+    setconfig(102, 5, value);
 }
 
 void MainWindow::y_ratio_control_Slot2()
 {
     float value=y_ratio_control2->text().toFloat();
-    setconfig(92, 6, value);
+    setconfig(102, 6, value);
 }
 
 void MainWindow::lEdt_errx_Slot2()
 {
     float value=errx_lineEdt2->text().toFloat();
-    setconfig(92, 2, value);
+    setconfig(102, 2, value);
 }
 
 void MainWindow::lEdt_erry_Slot2()
 {
     float value=erry_lineEdt2->text().toFloat();
-    setconfig(92, 3, value);
+    setconfig(102, 3, value);
 }
 
 void MainWindow::lEdt_time_Slot2()
 {
     float value=time_lineEdt2->text().toFloat();
-    setconfig(92, 4, value);
+    setconfig(102, 4, value);
 }
 
 void MainWindow::lEdt_PID1_Slot2()
 {
     float value=kp1_pid2->text().toFloat();
-    setconfig(91, 1, value);
+    setconfig(101, 1, value);
 }
 
 void MainWindow::lEdt_PID2_Slot2()
 {
     float value=ki1_pid2->text().toFloat();
-    setconfig(91, 2, value);
+    setconfig(101, 2, value);
 }
 
 void MainWindow::lEdt_PID3_Slot2()
 {
     float value=kd1_pid2->text().toFloat();
-    setconfig(91, 3, value);
+    setconfig(101, 3, value);
 }
 
 void MainWindow::lEdt_PID4_Slot2()
 {
     float value=k12->text().toFloat();
-    setconfig(91, 4, value);
+    setconfig(101, 4, value);
 }
 
 void MainWindow::lEdt_PID5_Slot2()
 {
     float value=kp2_pid2->text().toFloat();
-    setconfig(91, 5, value);
+    setconfig(101, 5, value);
 }
 
 void MainWindow::lEdt_PID6_Slot2()
 {
     float value=ki2_pid2->text().toFloat();
-    setconfig(91, 6, value);
+    setconfig(101, 6, value);
 }
 
 void MainWindow::lEdt_PID7_Slot2()
 {
     float value=kd2_pid2->text().toFloat();
-    setconfig(91, 7, value);
+    setconfig(101, 7, value);
 }
 
 void MainWindow::lEdt_PID8_Slot2()
 {
     float value=k22->text().toFloat();
-    setconfig(91, 8, value);
+    setconfig(101, 8, value);
 }
 
 void MainWindow::btn_pid_Default_Slot2()
 {
-    defaultconfig(91);
-    defaultconfig(92);
+    defaultconfig(101);
+    defaultconfig(102);
 }
 
 void MainWindow::btn_pid_Updata_Slot2()
 {
-
     send_mutex.lock();
     send_arr[4] = 0x34;
     send_oneframe(1);
@@ -16230,6 +16229,7 @@ void MainWindow::btn_default_input_Slot()
         defaultconfig(26);
         defaultconfig(27);
         defaultconfig(28);
+        defaultconfig(29);
     }
     else if(2 == cur_channel)
     {
@@ -16239,33 +16239,37 @@ void MainWindow::btn_default_input_Slot()
         defaultconfig(59);
         defaultconfig(60);
         defaultconfig(61);
+        defaultconfig(62);
     }
     else if(3 == cur_channel)
     {
-        defaultconfig(62);
         defaultconfig(63);
         defaultconfig(64);
         defaultconfig(65);
         defaultconfig(66);
         defaultconfig(67);
+        defaultconfig(68);
+        defaultconfig(69);
     }
     else if(4 == cur_channel)
     {
-        defaultconfig(93);
-        defaultconfig(94);
-        defaultconfig(95);
-        defaultconfig(96);
-        defaultconfig(97);
-        defaultconfig(98);
+        defaultconfig(70);
+        defaultconfig(71);
+        defaultconfig(72);
+        defaultconfig(73);
+        defaultconfig(74);
+        defaultconfig(75);
+        defaultconfig(76);
     }
     else if(5 == cur_channel)
     {
-        defaultconfig(101);
-        defaultconfig(102);
-        defaultconfig(103);
-        defaultconfig(104);
-        defaultconfig(105);
-        defaultconfig(106);
+        defaultconfig(77);
+        defaultconfig(78);
+        defaultconfig(79);
+        defaultconfig(80);
+        defaultconfig(81);
+        defaultconfig(82);
+        defaultconfig(83);
     }
 }
 
@@ -16281,13 +16285,13 @@ void MainWindow::input_osdid_Slot(int i)
             setconfig(56, 1, value);
             break;
         case 3:
-            setconfig(62, 1, value);
+            setconfig(63, 1, value);
             break;
         case 4:
-            setconfig(93, 1, value);
+            setconfig(70, 1, value);
             break;
         case 5:
-            setconfig(101, 1, value);
+            setconfig(77, 1, value);
             break;
         default:
             break;
@@ -16306,13 +16310,13 @@ void MainWindow::input_chroma_Slot(int i)
             setconfig(56, 2, value);
             break;
         case 3:
-            setconfig(62, 2, value);
+            setconfig(63, 2, value);
             break;
         case 4:
-            setconfig(93, 2, value);
+            setconfig(70, 2, value);
             break;
         case 5:
-            setconfig(101, 2, value);
+            setconfig(77, 2, value);
             break;
         default:
             break;
@@ -16339,13 +16343,13 @@ void MainWindow::input_vediohaveornot_Slot(int arg1)
             setconfig(56, 3, value);
             break;
         case 3:
-            setconfig(62, 3, value);
+            setconfig(63, 3, value);
             break;
         case 4:
-            setconfig(93, 3, value);
+            setconfig(70, 3, value);
             break;
         case 5:
-            setconfig(101, 3, value);
+            setconfig(77, 3, value);
             break;
         default:
             break;
@@ -16377,13 +16381,13 @@ void MainWindow::input_vedio_dpi_Slot(int i)
             setconfig(56, 4, value);
             break;
         case 3:
-            setconfig(62, 4, value);
+            setconfig(63, 4, value);
             break;
         case 4:
-            setconfig(93, 4, value);
+            setconfig(70, 4, value);
             break;
         case 5:
-            setconfig(101, 4, value);
+            setconfig(77, 4, value);
             break;
         default:
             break;
@@ -16402,13 +16406,13 @@ void MainWindow::input_change_fovemode_Slot(int i)
             setconfig(56, 5, value);
             break;
         case 3:
-            setconfig(62, 5, value);
+            setconfig(63, 5, value);
             break;
         case 4:
-            setconfig(93, 5, value);
+            setconfig(70, 5, value);
             break;
         case 5:
-            setconfig(101, 5, value);
+            setconfig(77, 5, value);
             break;
         default:
             break;
@@ -16422,6 +16426,7 @@ void MainWindow::input_set_fov_display(int i)
 
     for(int i = 0; i < 13; i++)
     {
+       vedio_continue[i]->setEnabled(true);
        vedio_continue_Fov[i]->setEnabled(true);
        input_l1dv[i]->setEnabled(true);
        continue_verticall[i]->setEnabled(true);
@@ -16432,6 +16437,8 @@ void MainWindow::input_set_fov_display(int i)
 
     if(0 == i)
     {
+        for(int i = 0; i < 13; i++)
+            vedio_continue[i]->setEnabled(false);
         for(int i = 1; i < 13; i++)
         {
             vedio_continue_Fov[i]->setEnabled(false);
@@ -16444,6 +16451,8 @@ void MainWindow::input_set_fov_display(int i)
     }
     else if(1 == i)
     {
+        for(int i = 0; i < 13; i++)
+            vedio_continue[i]->setEnabled(false);
         for(int i = 5; i < 13; i++)
         {
             vedio_continue_Fov[i]->setEnabled(false);
@@ -16468,13 +16477,13 @@ void MainWindow::input_max_fovclass_Slot()
             setconfig(56, 6, value);
             break;
         case 3:
-            setconfig(62, 6, value);
+            setconfig(63, 6, value);
             break;
         case 4:
-            setconfig(93, 6, value);
+            setconfig(70, 6, value);
             break;
         case 5:
-            setconfig(101, 6, value);
+            setconfig(77, 6, value);
             break;
         default:
             break;
@@ -16493,13 +16502,13 @@ void MainWindow::input_boxsize_Slot(int i)
             setconfig(56, 7, value);
             break;
         case 3:
-            setconfig(62, 7, value);
+            setconfig(63, 7, value);
             break;
         case 4:
-            setconfig(93, 7, value);
+            setconfig(70, 7, value);
             break;
         case 5:
-            setconfig(101, 7, value);
+            setconfig(77, 7, value);
             break;
         default:
             break;
@@ -16518,13 +16527,13 @@ void MainWindow::input_max_boxsize_Slot()
             setconfig(56, 8, value);
             break;
         case 3:
-            setconfig(62, 8, value);
+            setconfig(63, 8, value);
             break;
         case 4:
-            setconfig(93, 8, value);
+            setconfig(70, 8, value);
             break;
         case 5:
-            setconfig(101, 8, value);
+            setconfig(77, 8, value);
             break;
         default:
             break;
@@ -16543,13 +16552,13 @@ void MainWindow::input_mtd_sensi_Slot()
             setconfig(56, 9, value);
             break;
         case 3:
-            setconfig(62, 9, value);
+            setconfig(63, 9, value);
             break;
         case 4:
-            setconfig(93, 9, value);
+            setconfig(70, 9, value);
             break;
         case 5:
-            setconfig(101, 9, value);
+            setconfig(77, 9, value);
             break;
         default:
             break;
@@ -16568,13 +16577,13 @@ void MainWindow::input_mtd_rigionx_Slot()
             setconfig(56, 10, value);
             break;
         case 3:
-            setconfig(62, 10, value);
+            setconfig(63, 10, value);
             break;
         case 4:
-            setconfig(93, 10, value);
+            setconfig(70, 10, value);
             break;
         case 5:
-            setconfig(101, 10, value);
+            setconfig(77, 10, value);
             break;
         default:
             break;
@@ -16592,13 +16601,13 @@ void MainWindow::input_mtd_rigiony_Slot()
             setconfig(56, 11, value);
             break;
         case 3:
-            setconfig(62, 11, value);
+            setconfig(63, 11, value);
             break;
         case 4:
-            setconfig(93, 11, value);
+            setconfig(70, 11, value);
             break;
         case 5:
-            setconfig(101, 11, value);
+            setconfig(77, 11, value);
             break;
         default:
             break;
@@ -16616,13 +16625,13 @@ void MainWindow::input_mtd_rigionw_Slot()
             setconfig(56, 12, value);
             break;
         case 3:
-            setconfig(62, 12, value);
+            setconfig(63, 12, value);
             break;
         case 4:
-            setconfig(93, 12, value);
+            setconfig(70, 12, value);
             break;
         case 5:
-            setconfig(101, 12, value);
+            setconfig(77, 12, value);
             break;
         default:
             break;
@@ -16640,13 +16649,13 @@ void MainWindow::input_mtd_rigionh_Slot()
             setconfig(56, 13, value);
             break;
         case 3:
-            setconfig(62, 13, value);
+            setconfig(63, 13, value);
             break;
         case 4:
-            setconfig(93, 13, value);
+            setconfig(70, 13, value);
             break;
         case 5:
-            setconfig(101, 13, value);
+            setconfig(77, 13, value);
             break;
         default:
             break;
@@ -16658,19 +16667,19 @@ void MainWindow::common_boxw_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 14, value);
+            setconfig(29, 2, value);
             break;
         case 2:
-            setconfig(56, 14, value);
+            setconfig(62, 2, value);
             break;
         case 3:
-            setconfig(62, 14, value);
+            setconfig(69, 2, value);
             break;
         case 4:
-            setconfig(93, 14, value);
+            setconfig(76, 2, value);
             break;
         case 5:
-            setconfig(101, 14, value);
+            setconfig(83, 2, value);
             break;
         default:
             break;
@@ -16682,19 +16691,19 @@ void MainWindow::common_boxh_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 15, value);
+            setconfig(29, 3, value);
             break;
         case 2:
-            setconfig(56, 15, value);
+            setconfig(62, 3, value);
             break;
         case 3:
-            setconfig(62, 15, value);
+            setconfig(69, 3, value);
             break;
         case 4:
-            setconfig(93, 15, value);
+            setconfig(76, 3, value);
             break;
         case 5:
-            setconfig(101, 15, value);
+            setconfig(83, 3, value);
             break;
         default:
             break;
@@ -16713,13 +16722,13 @@ void MainWindow::input_cur_fovclass_Slot()
             setconfig(57, 0, value);
             break;
         case 3:
-            setconfig(63, 0, value);
+            setconfig(64, 0, value);
             break;
         case 4:
-            setconfig(94, 0, value);
+            setconfig(71, 0, value);
             break;
         case 5:
-            setconfig(102, 0, value);
+            setconfig(78, 0, value);
             break;
         default:
             break;
@@ -16738,13 +16747,13 @@ void MainWindow::input_vedio_continue_Fov1_Slot()
             setconfig(57, 2, value);
             break;
         case 3:
-            setconfig(63, 2, value);
+            setconfig(64, 2, value);
             break;
         case 4:
-            setconfig(94, 2, value);
+            setconfig(71, 2, value);
             break;
         case 5:
-            setconfig(102, 2, value);
+            setconfig(78, 2, value);
             break;
         default:
             break;
@@ -16762,13 +16771,13 @@ void MainWindow::input_vedio_continue_Fov2_Slot()
             setconfig(57, 4, value);
             break;
         case 3:
-            setconfig(63, 4, value);
+            setconfig(64, 4, value);
             break;
         case 4:
-            setconfig(94, 4, value);
+            setconfig(71, 4, value);
             break;
         case 5:
-            setconfig(102, 4, value);
+            setconfig(78, 4, value);
             break;
         default:
             break;
@@ -16786,13 +16795,13 @@ void MainWindow::input_vedio_continue_Fov3_Slot()
             setconfig(57, 6, value);
             break;
         case 3:
-            setconfig(63, 6, value);
+            setconfig(64, 6, value);
             break;
         case 4:
-            setconfig(94, 6, value);
+            setconfig(71, 6, value);
             break;
         case 5:
-            setconfig(102, 6, value);
+            setconfig(78, 6, value);
             break;
         default:
             break;
@@ -16810,13 +16819,13 @@ void MainWindow::input_vedio_continue_Fov4_Slot()
             setconfig(57, 8, value);
             break;
         case 3:
-            setconfig(63, 8, value);
+            setconfig(64, 8, value);
             break;
         case 4:
-            setconfig(94, 8, value);
+            setconfig(71, 8, value);
             break;
         case 5:
-            setconfig(102, 8, value);
+            setconfig(78, 8, value);
             break;
         default:
             break;
@@ -16834,13 +16843,13 @@ void MainWindow::input_vedio_continue_Fov5_Slot()
             setconfig(57, 10, value);
             break;
         case 3:
-            setconfig(63, 10, value);
+            setconfig(64, 10, value);
             break;
         case 4:
-            setconfig(94, 10, value);
+            setconfig(71, 10, value);
             break;
         case 5:
-            setconfig(102, 10, value);
+            setconfig(78, 10, value);
             break;
         default:
             break;
@@ -16858,13 +16867,13 @@ void MainWindow::input_vedio_continue_Fov6_Slot()
             setconfig(57, 12, value);
             break;
         case 3:
-            setconfig(63, 12, value);
+            setconfig(64, 12, value);
             break;
         case 4:
-            setconfig(94, 12, value);
+            setconfig(71, 12, value);
             break;
         case 5:
-            setconfig(102, 12, value);
+            setconfig(78, 12, value);
             break;
         default:
             break;
@@ -16882,13 +16891,13 @@ void MainWindow::input_vedio_continue_Fov7_Slot()
             setconfig(57, 14, value);
             break;
         case 3:
-            setconfig(63, 14, value);
+            setconfig(64, 14, value);
             break;
         case 4:
-            setconfig(94, 14, value);
+            setconfig(71, 14, value);
             break;
         case 5:
-            setconfig(102, 14, value);
+            setconfig(78, 14, value);
             break;
         default:
             break;
@@ -16906,13 +16915,13 @@ void MainWindow::input_vedio_continue_Fov8_Slot()
             setconfig(58, 0, value);
             break;
         case 3:
-            setconfig(64, 0, value);
+            setconfig(65, 0, value);
             break;
         case 4:
-            setconfig(95, 0, value);
+            setconfig(72, 0, value);
             break;
         case 5:
-            setconfig(103, 0, value);
+            setconfig(79, 0, value);
             break;
         default:
             break;
@@ -16930,13 +16939,13 @@ void MainWindow::input_vedio_continue_Fov9_Slot()
             setconfig(58, 2, value);
             break;
         case 3:
-            setconfig(64, 2, value);
+            setconfig(65, 2, value);
             break;
         case 4:
-            setconfig(95, 2, value);
+            setconfig(72, 2, value);
             break;
         case 5:
-            setconfig(103, 2, value);
+            setconfig(78, 2, value);
             break;
         default:
             break;
@@ -16954,13 +16963,13 @@ void MainWindow::input_vedio_continue_Fov10_Slot()
             setconfig(58, 4, value);
             break;
         case 3:
-            setconfig(64, 4, value);
+            setconfig(65, 4, value);
             break;
         case 4:
-            setconfig(95, 4, value);
+            setconfig(72, 4, value);
             break;
         case 5:
-            setconfig(103, 4, value);
+            setconfig(79, 4, value);
             break;
         default:
             break;
@@ -16978,13 +16987,13 @@ void MainWindow::input_vedio_continue_Fov11_Slot()
             setconfig(58, 6, value);
             break;
         case 3:
-            setconfig(64, 6, value);
+            setconfig(65, 6, value);
             break;
         case 4:
-            setconfig(95, 6, value);
+            setconfig(72, 6, value);
             break;
         case 5:
-            setconfig(103, 6, value);
+            setconfig(79, 6, value);
             break;
         default:
             break;
@@ -17002,13 +17011,13 @@ void MainWindow::input_vedio_continue_Fov12_Slot()
             setconfig(58, 8, value);
             break;
         case 3:
-            setconfig(64, 8, value);
+            setconfig(65, 8, value);
             break;
         case 4:
-            setconfig(95, 8, value);
+            setconfig(72, 8, value);
             break;
         case 5:
-            setconfig(103, 8, value);
+            setconfig(79, 8, value);
             break;
         default:
             break;
@@ -17026,13 +17035,13 @@ void MainWindow::input_vedio_continue_Fov13_Slot()
             setconfig(58, 10, value);
             break;
         case 3:
-            setconfig(64, 10, value);
+            setconfig(65, 10, value);
             break;
         case 4:
-            setconfig(95, 10, value);
+            setconfig(72, 10, value);
             break;
         case 5:
-            setconfig(103, 10, value);
+            setconfig(79, 10, value);
             break;
         default:
             break;
@@ -17051,13 +17060,13 @@ void MainWindow::input_continue_verticall1_Slot()
             setconfig(57, 3, value);
             break;
         case 3:
-            setconfig(63, 3, value);
+            setconfig(64, 3, value);
             break;
         case 4:
-            setconfig(94, 3, value);
+            setconfig(71, 3, value);
             break;
         case 5:
-            setconfig(102, 3, value);
+            setconfig(78, 3, value);
             break;
         default:
             break;
@@ -17075,13 +17084,13 @@ void MainWindow::input_continue_verticall2_Slot()
             setconfig(57, 5, value);
             break;
         case 3:
-            setconfig(63, 5, value);
+            setconfig(64, 5, value);
             break;
         case 4:
-            setconfig(94, 5, value);
+            setconfig(71, 5, value);
             break;
         case 5:
-            setconfig(102, 5, value);
+            setconfig(78, 5, value);
             break;
         default:
             break;
@@ -17099,13 +17108,13 @@ void MainWindow::input_continue_verticall3_Slot()
             setconfig(57, 7, value);
             break;
         case 3:
-            setconfig(63, 7, value);
+            setconfig(64, 7, value);
             break;
         case 4:
-            setconfig(94, 7, value);
+            setconfig(71, 7, value);
             break;
         case 5:
-            setconfig(102, 7, value);
+            setconfig(78, 7, value);
             break;
         default:
             break;
@@ -17123,13 +17132,13 @@ void MainWindow::input_continue_verticall4_Slot()
             setconfig(57, 9, value);
             break;
         case 3:
-            setconfig(63, 9, value);
+            setconfig(64, 9, value);
             break;
         case 4:
-            setconfig(94, 9, value);
+            setconfig(71, 9, value);
             break;
         case 5:
-            setconfig(102, 9, value);
+            setconfig(78, 9, value);
             break;
         default:
             break;
@@ -17147,13 +17156,13 @@ void MainWindow::input_continue_verticall5_Slot()
             setconfig(57, 11, value);
             break;
         case 3:
-            setconfig(63, 11, value);
+            setconfig(64, 11, value);
             break;
         case 4:
-            setconfig(94, 11, value);
+            setconfig(71, 11, value);
             break;
         case 5:
-            setconfig(102, 11, value);
+            setconfig(78, 11, value);
             break;
         default:
             break;
@@ -17171,13 +17180,13 @@ void MainWindow::input_continue_verticall6_Slot()
             setconfig(57, 13, value);
             break;
         case 3:
-            setconfig(63, 13, value);
+            setconfig(64, 13, value);
             break;
         case 4:
-            setconfig(94, 13, value);
+            setconfig(71, 13, value);
             break;
         case 5:
-            setconfig(102, 13, value);
+            setconfig(78, 13, value);
             break;
         default:
             break;
@@ -17195,13 +17204,13 @@ void MainWindow::input_continue_verticall7_Slot()
             setconfig(57, 15, value);
             break;
         case 3:
-            setconfig(63, 15, value);
+            setconfig(64, 15, value);
             break;
         case 4:
-            setconfig(94, 15, value);
+            setconfig(71, 15, value);
             break;
         case 5:
-            setconfig(102, 15, value);
+            setconfig(78, 15, value);
             break;
         default:
             break;
@@ -17219,13 +17228,13 @@ void MainWindow::input_continue_verticall8_Slot()
             setconfig(58, 1, value);
             break;
         case 3:
-            setconfig(64, 1, value);
+            setconfig(65, 1, value);
             break;
         case 4:
-            setconfig(95, 1, value);
+            setconfig(72, 1, value);
             break;
         case 5:
-            setconfig(103, 1, value);
+            setconfig(79, 1, value);
             break;
         default:
             break;
@@ -17243,13 +17252,13 @@ void MainWindow::input_continue_verticall9_Slot()
             setconfig(58, 3, value);
             break;
         case 3:
-            setconfig(64, 3, value);
+            setconfig(65, 3, value);
             break;
         case 4:
-            setconfig(95, 3, value);
+            setconfig(72, 3, value);
             break;
         case 5:
-            setconfig(103, 3, value);
+            setconfig(79, 3, value);
             break;
         default:
             break;
@@ -17267,13 +17276,13 @@ void MainWindow::input_continue_verticall10_Slot()
             setconfig(58, 5, value);
             break;
         case 3:
-            setconfig(64, 5, value);
+            setconfig(65, 5, value);
             break;
         case 4:
-            setconfig(95, 5, value);
+            setconfig(72, 5, value);
             break;
         case 5:
-            setconfig(103, 5, value);
+            setconfig(79, 5, value);
             break;
         default:
             break;
@@ -17291,13 +17300,13 @@ void MainWindow::input_continue_verticall11_Slot()
             setconfig(58, 7, value);
             break;
         case 3:
-            setconfig(64, 7, value);
+            setconfig(65, 7, value);
             break;
         case 4:
-            setconfig(95, 7, value);
+            setconfig(72, 7, value);
             break;
         case 5:
-            setconfig(103, 7, value);
+            setconfig(79, 7, value);
             break;
         default:
             break;
@@ -17315,13 +17324,13 @@ void MainWindow::input_continue_verticall12_Slot()
             setconfig(58, 9, value);
             break;
         case 3:
-            setconfig(64, 9, value);
+            setconfig(65, 9, value);
             break;
         case 4:
-            setconfig(95, 9, value);
+            setconfig(72, 9, value);
             break;
         case 5:
-            setconfig(103, 9, value);
+            setconfig(79, 9, value);
             break;
         default:
             break;
@@ -17339,13 +17348,326 @@ void MainWindow::input_continue_verticall13_Slot()
             setconfig(58, 11, value);
             break;
         case 3:
-            setconfig(64, 11, value);
+            setconfig(65, 11, value);
             break;
         case 4:
-            setconfig(95, 11, value);
+            setconfig(72, 11, value);
             break;
         case 5:
-            setconfig(103, 11, value);
+            setconfig(79, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::input_vedio_continue1_Slot()
+{
+    float value = vedio_continue[0]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 3, value);
+            break;
+        case 2:
+            setconfig(59, 3, value);
+            break;
+        case 3:
+            setconfig(66, 3, value);
+            break;
+        case 4:
+            setconfig(73, 3, value);
+            break;
+        case 5:
+            setconfig(80, 3, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue2_Slot()
+{
+    float value = vedio_continue[1]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 4, value);
+            break;
+        case 2:
+            setconfig(59, 4, value);
+            break;
+        case 3:
+            setconfig(66, 4, value);
+            break;
+        case 4:
+            setconfig(73, 4, value);
+            break;
+        case 5:
+            setconfig(80, 4, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue3_Slot()
+{
+    float value = vedio_continue[2]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 5, value);
+            break;
+        case 2:
+            setconfig(59, 5, value);
+            break;
+        case 3:
+            setconfig(66, 5, value);
+            break;
+        case 4:
+            setconfig(73, 5, value);
+            break;
+        case 5:
+            setconfig(80, 5, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue4_Slot()
+{
+    float value = vedio_continue[3]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 6, value);
+            break;
+        case 2:
+            setconfig(59, 6, value);
+            break;
+        case 3:
+            setconfig(66, 6, value);
+            break;
+        case 4:
+            setconfig(73, 6, value);
+            break;
+        case 5:
+            setconfig(80, 6, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue5_Slot()
+{
+    float value = vedio_continue[4]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 7, value);
+            break;
+        case 2:
+            setconfig(59, 7, value);
+            break;
+        case 3:
+            setconfig(66, 7, value);
+            break;
+        case 4:
+            setconfig(73, 7, value);
+            break;
+        case 5:
+            setconfig(80, 7, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue6_Slot()
+{
+    float value = vedio_continue[5]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 8, value);
+            break;
+        case 2:
+            setconfig(59, 8, value);
+            break;
+        case 3:
+            setconfig(66, 8, value);
+            break;
+        case 4:
+            setconfig(73, 8, value);
+            break;
+        case 5:
+            setconfig(80, 8, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue7_Slot()
+{
+    float value = vedio_continue[6]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 9, value);
+            break;
+        case 2:
+            setconfig(59, 9, value);
+            break;
+        case 3:
+            setconfig(66, 9, value);
+            break;
+        case 4:
+            setconfig(73, 9, value);
+            break;
+        case 5:
+            setconfig(80, 9, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue8_Slot()
+{
+    float value = vedio_continue[7]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 10, value);
+            break;
+        case 2:
+            setconfig(59, 10, value);
+            break;
+        case 3:
+            setconfig(66, 10, value);
+            break;
+        case 4:
+            setconfig(73, 10, value);
+            break;
+        case 5:
+            setconfig(80, 10, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue9_Slot()
+{
+    float value = vedio_continue[8]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 11, value);
+            break;
+        case 2:
+            setconfig(59, 11, value);
+            break;
+        case 3:
+            setconfig(66, 11, value);
+            break;
+        case 4:
+            setconfig(73, 11, value);
+            break;
+        case 5:
+            setconfig(80, 11, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue10_Slot()
+{
+    float value = vedio_continue[9]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 12, value);
+            break;
+        case 2:
+            setconfig(59, 12, value);
+            break;
+        case 3:
+            setconfig(66, 12, value);
+            break;
+        case 4:
+            setconfig(73, 12, value);
+            break;
+        case 5:
+            setconfig(80, 12, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue11_Slot()
+{
+    float value = vedio_continue[10]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 13, value);
+            break;
+        case 2:
+            setconfig(59, 13, value);
+            break;
+        case 3:
+            setconfig(66, 13, value);
+            break;
+        case 4:
+            setconfig(73, 13, value);
+            break;
+        case 5:
+            setconfig(80, 13, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue12_Slot()
+{
+    float value = vedio_continue[11]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 14, value);
+            break;
+        case 2:
+            setconfig(59, 14, value);
+            break;
+        case 3:
+            setconfig(66, 14, value);
+            break;
+        case 4:
+            setconfig(73, 14, value);
+            break;
+        case 5:
+            setconfig(80, 14, value);
+            break;
+        default:
+            break;
+    }
+}
+void MainWindow::input_vedio_continue13_Slot()
+{
+    float value = vedio_continue[12]->text().toFloat();
+    switch(cur_channel)
+    {
+        case 1:
+            setconfig(26, 15, value);
+            break;
+        case 2:
+            setconfig(59, 15, value);
+            break;
+        case 3:
+            setconfig(66, 15, value);
+            break;
+        case 4:
+            setconfig(73, 15, value);
+            break;
+        case 5:
+            setconfig(80, 15, value);
             break;
         default:
             break;
@@ -17358,19 +17680,19 @@ void MainWindow::input_cur_boxsize_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 0, value);
+            setconfig(29, 0, value);
             break;
         case 2:
-            setconfig(59, 0, value);
+            setconfig(62, 0, value);
             break;
         case 3:
-            setconfig(65, 0, value);
+            setconfig(69, 0, value);
             break;
         case 4:
-            setconfig(96, 0, value);
+            setconfig(76, 0, value);
             break;
         case 5:
-            setconfig(104, 0, value);
+            setconfig(83, 0, value);
             break;
         default:
             break;
@@ -17383,19 +17705,19 @@ void MainWindow::input_boxw1_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 1, value);
+            setconfig(29, 4, value);
             break;
         case 2:
-            setconfig(59, 1, value);
+            setconfig(62, 4, value);
             break;
         case 3:
-            setconfig(65, 1, value);
+            setconfig(69, 4, value);
             break;
         case 4:
-            setconfig(96, 1, value);
+            setconfig(76, 4, value);
             break;
         case 5:
-            setconfig(104, 1, value);
+            setconfig(83, 4, value);
             break;
         default:
             break;
@@ -17407,19 +17729,19 @@ void MainWindow::input_boxw2_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 3, value);
+            setconfig(29, 6, value);
             break;
         case 2:
-            setconfig(59, 3, value);
+            setconfig(62, 6, value);
             break;
         case 3:
-            setconfig(65, 3, value);
+            setconfig(69, 6, value);
             break;
         case 4:
-            setconfig(96, 3, value);
+            setconfig(76, 6, value);
             break;
         case 5:
-            setconfig(104, 3, value);
+            setconfig(83, 6, value);
             break;
         default:
             break;
@@ -17431,19 +17753,19 @@ void MainWindow::input_boxw3_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 5, value);
+            setconfig(29, 8, value);
             break;
         case 2:
-            setconfig(59, 5, value);
+            setconfig(62, 8, value);
             break;
         case 3:
-            setconfig(65, 5, value);
+            setconfig(69, 8, value);
             break;
         case 4:
-            setconfig(96, 5, value);
+            setconfig(76, 8, value);
             break;
         case 5:
-            setconfig(104, 5, value);
+            setconfig(83, 8, value);
             break;
         default:
             break;
@@ -17455,19 +17777,19 @@ void MainWindow::input_boxh1_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 2, value);
+            setconfig(29, 5, value);
             break;
         case 2:
-            setconfig(59, 2, value);
+            setconfig(62, 5, value);
             break;
         case 3:
-            setconfig(65, 2, value);
+            setconfig(69, 5, value);
             break;
         case 4:
-            setconfig(96, 2, value);
+            setconfig(76, 5, value);
             break;
         case 5:
-            setconfig(104, 2, value);
+            setconfig(83, 5, value);
             break;
         default:
             break;
@@ -17479,19 +17801,19 @@ void MainWindow::input_boxh2_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 4, value);
+            setconfig(29, 7, value);
             break;
         case 2:
-            setconfig(59, 4, value);
+            setconfig(62, 7, value);
             break;
         case 3:
-            setconfig(65, 4, value);
+            setconfig(69, 7, value);
             break;
         case 4:
-            setconfig(96, 4, value);
+            setconfig(76, 7, value);
             break;
         case 5:
-            setconfig(104, 4, value);
+            setconfig(83, 7, value);
             break;
         default:
             break;
@@ -17503,19 +17825,19 @@ void MainWindow::input_boxh3_Slot()
     switch(cur_channel)
     {
         case 1:
-            setconfig(26, 6, value);
+            setconfig(29, 9, value);
             break;
         case 2:
-            setconfig(59, 6, value);
+            setconfig(62, 9, value);
             break;
         case 3:
-            setconfig(65, 6, value);
+            setconfig(69, 9, value);
             break;
         case 4:
-            setconfig(96, 6, value);
+            setconfig(76, 9, value);
             break;
         case 5:
-            setconfig(104, 6, value);
+            setconfig(83, 9, value);
             break;
         default:
             break;
@@ -17534,13 +17856,13 @@ void MainWindow::input_vedio_spbx_continue1_Slot()
             setconfig(60, 0, value);
             break;
         case 3:
-            setconfig(66, 0, value);
+            setconfig(67, 0, value);
             break;
         case 4:
-            setconfig(97, 0, value);
+            setconfig(74, 0, value);
             break;
         case 5:
-            setconfig(105, 0, value);
+            setconfig(81, 0, value);
             break;
         default:
             break;
@@ -17558,13 +17880,13 @@ void MainWindow::input_vedio_spbx_continue2_Slot()
             setconfig(60, 2, value);
             break;
         case 3:
-            setconfig(66, 2, value);
+            setconfig(67, 2, value);
             break;
         case 4:
-            setconfig(97, 2, value);
+            setconfig(74, 2, value);
             break;
         case 5:
-            setconfig(105, 2, value);
+            setconfig(81, 2, value);
             break;
         default:
             break;
@@ -17582,13 +17904,13 @@ void MainWindow::input_vedio_spbx_continue3_Slot()
             setconfig(60, 4, value);
             break;
         case 3:
-            setconfig(66, 4, value);
+            setconfig(67, 4, value);
             break;
         case 4:
-            setconfig(97, 4, value);
+            setconfig(74, 4, value);
             break;
         case 5:
-            setconfig(105, 4, value);
+            setconfig(81, 4, value);
             break;
         default:
             break;
@@ -17606,13 +17928,13 @@ void MainWindow::input_vedio_spbx_continue4_Slot()
             setconfig(60, 6, value);
             break;
         case 3:
-            setconfig(66, 6, value);
+            setconfig(67, 6, value);
             break;
         case 4:
-            setconfig(97, 6, value);
+            setconfig(74, 6, value);
             break;
         case 5:
-            setconfig(105, 6, value);
+            setconfig(81, 6, value);
             break;
         default:
             break;
@@ -17630,13 +17952,13 @@ void MainWindow::input_vedio_spbx_continue5_Slot()
             setconfig(60, 8, value);
             break;
         case 3:
-            setconfig(66, 8, value);
+            setconfig(67, 8, value);
             break;
         case 4:
-            setconfig(97, 8, value);
+            setconfig(74, 8, value);
             break;
         case 5:
-            setconfig(105, 8, value);
+            setconfig(81, 8, value);
             break;
         default:
             break;
@@ -17654,13 +17976,13 @@ void MainWindow::input_vedio_spbx_continue6_Slot()
             setconfig(60, 10, value);
             break;
         case 3:
-            setconfig(66, 10, value);
+            setconfig(67, 10, value);
             break;
         case 4:
-            setconfig(97, 10, value);
+            setconfig(74, 10, value);
             break;
         case 5:
-            setconfig(105, 10, value);
+            setconfig(81, 10, value);
             break;
         default:
             break;
@@ -17678,13 +18000,13 @@ void MainWindow::input_vedio_spbx_continue7_Slot()
             setconfig(60, 12, value);
             break;
         case 3:
-            setconfig(66, 12, value);
+            setconfig(67, 12, value);
             break;
         case 4:
-            setconfig(97, 12, value);
+            setconfig(74, 12, value);
             break;
         case 5:
-            setconfig(105, 12, value);
+            setconfig(81, 12, value);
             break;
         default:
             break;
@@ -17702,13 +18024,13 @@ void MainWindow::input_vedio_spbx_continue8_Slot()
             setconfig(60, 14, value);
             break;
         case 3:
-            setconfig(66, 14, value);
+            setconfig(67, 14, value);
             break;
         case 4:
-            setconfig(97, 14, value);
+            setconfig(74, 14, value);
             break;
         case 5:
-            setconfig(105, 14, value);
+            setconfig(81, 14, value);
             break;
         default:
             break;
@@ -17726,13 +18048,13 @@ void MainWindow::input_vedio_spbx_continue9_Slot()
             setconfig(61, 0, value);
             break;
         case 3:
-            setconfig(67, 0, value);
+            setconfig(68, 0, value);
             break;
         case 4:
-            setconfig(98, 0, value);
+            setconfig(75, 0, value);
             break;
         case 5:
-            setconfig(106, 0, value);
+            setconfig(82, 0, value);
             break;
         default:
             break;
@@ -17750,13 +18072,13 @@ void MainWindow::input_vedio_spbx_continue10_Slot()
             setconfig(61, 2, value);
             break;
         case 3:
-            setconfig(67, 2, value);
+            setconfig(68, 2, value);
             break;
         case 4:
-            setconfig(98, 2, value);
+            setconfig(75, 2, value);
             break;
         case 5:
-            setconfig(106, 2, value);
+            setconfig(82, 2, value);
             break;
         default:
             break;
@@ -17774,13 +18096,13 @@ void MainWindow::input_vedio_spbx_continue11_Slot()
             setconfig(61, 4, value);
             break;
         case 3:
-            setconfig(67, 4, value);
+            setconfig(68, 4, value);
             break;
         case 4:
-            setconfig(98, 4, value);
+            setconfig(75, 4, value);
             break;
         case 5:
-            setconfig(106, 4, value);
+            setconfig(82, 4, value);
             break;
         default:
             break;
@@ -17798,13 +18120,13 @@ void MainWindow::input_vedio_spbx_continue12_Slot()
             setconfig(61, 6, value);
             break;
         case 3:
-            setconfig(67, 6, value);
+            setconfig(68, 6, value);
             break;
         case 4:
-            setconfig(98, 6, value);
+            setconfig(75, 6, value);
             break;
         case 5:
-            setconfig(106, 6, value);
+            setconfig(82, 6, value);
             break;
         default:
             break;
@@ -17822,13 +18144,13 @@ void MainWindow::input_vedio_spbx_continue13_Slot()
             setconfig(61, 8, value);
             break;
         case 3:
-            setconfig(67, 8, value);
+            setconfig(68, 8, value);
             break;
         case 4:
-            setconfig(98, 8, value);
+            setconfig(75, 8, value);
             break;
         case 5:
-            setconfig(106, 8, value);
+            setconfig(82, 8, value);
             break;
         default:
             break;
@@ -17846,13 +18168,13 @@ void MainWindow::input_vedio_spby_continue1_Slot()
             setconfig(60, 1, value);
             break;
         case 3:
-            setconfig(66, 1, value);
+            setconfig(67, 1, value);
             break;
         case 4:
-            setconfig(97, 1, value);
+            setconfig(74, 1, value);
             break;
         case 5:
-            setconfig(105, 1, value);
+            setconfig(81, 1, value);
             break;
         default:
             break;
@@ -17870,13 +18192,13 @@ void MainWindow::input_vedio_spby_continue2_Slot()
             setconfig(60, 3, value);
             break;
         case 3:
-            setconfig(66, 3, value);
+            setconfig(67, 3, value);
             break;
         case 4:
-            setconfig(97, 3, value);
+            setconfig(74, 3, value);
             break;
         case 5:
-            setconfig(105, 3, value);
+            setconfig(81, 3, value);
             break;
         default:
             break;
@@ -17894,13 +18216,13 @@ void MainWindow::input_vedio_spby_continue3_Slot()
             setconfig(60, 5, value);
             break;
         case 3:
-            setconfig(66, 5, value);
+            setconfig(67, 5, value);
             break;
         case 4:
-            setconfig(97, 5, value);
+            setconfig(74, 5, value);
             break;
         case 5:
-            setconfig(105, 5, value);
+            setconfig(81, 5, value);
             break;
         default:
             break;
@@ -17918,13 +18240,13 @@ void MainWindow::input_vedio_spby_continue4_Slot()
             setconfig(60, 7, value);
             break;
         case 3:
-            setconfig(66, 7, value);
+            setconfig(67, 7, value);
             break;
         case 4:
-            setconfig(97, 7, value);
+            setconfig(74, 7, value);
             break;
         case 5:
-            setconfig(105, 7, value);
+            setconfig(81, 7, value);
             break;
         default:
             break;
@@ -17942,13 +18264,13 @@ void MainWindow::input_vedio_spby_continue5_Slot()
             setconfig(60, 9, value);
             break;
         case 3:
-            setconfig(66, 9, value);
+            setconfig(67, 9, value);
             break;
         case 4:
-            setconfig(97, 9, value);
+            setconfig(74, 9, value);
             break;
         case 5:
-            setconfig(105, 9, value);
+            setconfig(81, 9, value);
             break;
         default:
             break;
@@ -17966,13 +18288,13 @@ void MainWindow::input_vedio_spby_continue6_Slot()
             setconfig(60, 11, value);
             break;
         case 3:
-            setconfig(66, 11, value);
+            setconfig(67, 11, value);
             break;
         case 4:
-            setconfig(97, 11, value);
+            setconfig(74, 11, value);
             break;
         case 5:
-            setconfig(105, 11, value);
+            setconfig(81, 11, value);
             break;
         default:
             break;
@@ -17990,13 +18312,13 @@ void MainWindow::input_vedio_spby_continue7_Slot()
             setconfig(60, 13, value);
             break;
         case 3:
-            setconfig(66, 13, value);
+            setconfig(67, 13, value);
             break;
         case 4:
-            setconfig(97, 13, value);
+            setconfig(74, 13, value);
             break;
         case 5:
-            setconfig(105, 13, value);
+            setconfig(81, 13, value);
             break;
         default:
             break;
@@ -18014,13 +18336,13 @@ void MainWindow::input_vedio_spby_continue8_Slot()
             setconfig(60, 15, value);
             break;
         case 3:
-            setconfig(66, 15, value);
+            setconfig(67, 15, value);
             break;
         case 4:
-            setconfig(97, 15, value);
+            setconfig(74, 15, value);
             break;
         case 5:
-            setconfig(105, 15, value);
+            setconfig(81, 15, value);
             break;
         default:
             break;
@@ -18038,13 +18360,13 @@ void MainWindow::input_vedio_spby_continue9_Slot()
             setconfig(61, 1, value);
             break;
         case 3:
-            setconfig(67, 1, value);
+            setconfig(68, 1, value);
             break;
         case 4:
-            setconfig(98, 1, value);
+            setconfig(75, 1, value);
             break;
         case 5:
-            setconfig(106, 1, value);
+            setconfig(82, 1, value);
             break;
         default:
             break;
@@ -18062,13 +18384,13 @@ void MainWindow::input_vedio_spby_continue10_Slot()
             setconfig(61, 3, value);
             break;
         case 3:
-            setconfig(67, 3, value);
+            setconfig(68, 3, value);
             break;
         case 4:
-            setconfig(98, 3, value);
+            setconfig(75, 3, value);
             break;
         case 5:
-            setconfig(106, 3, value);
+            setconfig(82, 3, value);
             break;
         default:
             break;
@@ -18086,13 +18408,13 @@ void MainWindow::input_vedio_spby_continue11_Slot()
             setconfig(61, 5, value);
             break;
         case 3:
-            setconfig(67, 5, value);
+            setconfig(68, 5, value);
             break;
         case 4:
-            setconfig(98, 5, value);
+            setconfig(75, 5, value);
             break;
         case 5:
-            setconfig(106, 5, value);
+            setconfig(82, 5, value);
             break;
         default:
             break;
@@ -18110,13 +18432,13 @@ void MainWindow::input_vedio_spby_continue12_Slot()
             setconfig(61, 7, value);
             break;
         case 3:
-            setconfig(67, 7, value);
+            setconfig(68, 7, value);
             break;
         case 4:
-            setconfig(98, 7, value);
+            setconfig(75, 7, value);
             break;
         case 5:
-            setconfig(106, 7, value);
+            setconfig(82, 7, value);
             break;
         default:
             break;
@@ -18134,13 +18456,13 @@ void MainWindow::input_vedio_spby_continue13_Slot()
             setconfig(61, 9, value);
             break;
         case 3:
-            setconfig(67, 9, value);
+            setconfig(68, 9, value);
             break;
         case 4:
-            setconfig(98, 9, value);
+            setconfig(75, 9, value);
             break;
         case 5:
-            setconfig(106, 9, value);
+            setconfig(82, 9, value);
             break;
         default:
             break;

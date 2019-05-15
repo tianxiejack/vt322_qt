@@ -133,6 +133,7 @@ public:
 
     /*线程*/
     void output_to_label(int i);
+    void setrecvbytes(QByteArray datagram);
     void socket_parse_bytearray();
     void usocket_parse_bytearray();
     //void socket_Read_Data();
@@ -209,6 +210,7 @@ public:
     void show_blk_input4(int field, float value);
     void show_blk_input5(int field, float value);
     void show_blk_input6(int field, float value);
+    void show_blk_input7(int field, float value);
 
 signals:
     void toNet(int port ,QString ip);
@@ -722,6 +724,19 @@ private slots:
     void input_continue_verticall11_Slot();
     void input_continue_verticall12_Slot();
     void input_continue_verticall13_Slot();
+    void input_vedio_continue1_Slot();
+    void input_vedio_continue2_Slot();
+    void input_vedio_continue3_Slot();
+    void input_vedio_continue4_Slot();
+    void input_vedio_continue5_Slot();
+    void input_vedio_continue6_Slot();
+    void input_vedio_continue7_Slot();
+    void input_vedio_continue8_Slot();
+    void input_vedio_continue9_Slot();
+    void input_vedio_continue10_Slot();
+    void input_vedio_continue11_Slot();
+    void input_vedio_continue12_Slot();
+    void input_vedio_continue13_Slot();
     void input_cur_boxsize_Slot();
     void input_boxw1_Slot();
     void input_boxw2_Slot();

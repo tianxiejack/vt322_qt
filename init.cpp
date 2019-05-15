@@ -989,6 +989,20 @@ void MainWindow::init_inputCfg()
     connect(vedio_continue_Fov[12],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue_Fov13_Slot()));
     connect(continue_verticall[12],SIGNAL(returnPressed()),this,SLOT(input_continue_verticall13_Slot()));
 
+    connect(vedio_continue[0],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue1_Slot()));
+    connect(vedio_continue[1],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue2_Slot()));
+    connect(vedio_continue[2],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue3_Slot()));
+    connect(vedio_continue[3],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue4_Slot()));
+    connect(vedio_continue[4],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue5_Slot()));
+    connect(vedio_continue[5],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue6_Slot()));
+    connect(vedio_continue[6],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue7_Slot()));
+    connect(vedio_continue[7],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue8_Slot()));
+    connect(vedio_continue[8],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue9_Slot()));
+    connect(vedio_continue[9],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue10_Slot()));
+    connect(vedio_continue[10],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue11_Slot()));
+    connect(vedio_continue[11],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue12_Slot()));
+    connect(vedio_continue[12],SIGNAL(returnPressed()),this,SLOT(input_vedio_continue13_Slot()));
+
     connect(input_cur_boxsize,SIGNAL(returnPressed()),this,SLOT(input_cur_boxsize_Slot()));
     connect(input_boxw[0],SIGNAL(returnPressed()),this,SLOT(input_boxw1_Slot()));
     connect(input_boxh[0],SIGNAL(returnPressed()),this,SLOT(input_boxh1_Slot()));
@@ -1031,8 +1045,6 @@ void MainWindow::init_inputCfg()
     connect(search_azimuth,SIGNAL(clicked(bool)),this,SLOT(search_azimuth_Slot()));
     connect(search_pitch ,SIGNAL(clicked(bool)),this,SLOT(search_pitch_Slot()));
     connect(search_zoom,SIGNAL(clicked(bool)),this,SLOT(search_zoom_Slot()));
-
-
 }
 
 
@@ -8395,14 +8407,20 @@ void MainWindow::sendposmove(int x, int y)
         send_mutex.lock();
         send_arr[4] = 0x0a;
         send_arr[5] = 0;
-        if(sx < 0)
-            send_arr[5] |= 1;
-        else if(sx > 0)
-            send_arr[5] |= (1 << 1);
-        if(sy < 0)
-            send_arr[5] |= (1 << 2);
-        else if(sy > 0)
-            send_arr[5] |= (1 << 3);
+        if(sx != old_x)
+        {
+            if(sx < 0)
+                send_arr[5] |= 1;
+            else if(sx > 0)
+                send_arr[5] |= (1 << 1);
+        }
+        if(sy != old_y)
+        {
+            if(sy < 0)
+                send_arr[5] |= (1 << 2);
+            else if(sy > 0)
+                send_arr[5] |= (1 << 3);
+        }
         send_arr[6] = abs(sx) & 0xff;
         send_arr[7] = (abs(sx) >> 8) & 0xff;
         send_arr[8] = abs(sy) & 0xff;
@@ -8410,6 +8428,8 @@ void MainWindow::sendposmove(int x, int y)
         send_oneframe(6);
         send_mutex.unlock();
     }
+    old_x = sx;
+    old_y = sy;
 }
 
 void MainWindow::timeoutSlot()
@@ -8463,7 +8483,7 @@ void MainWindow::readfovmode1()
 {
     label_chid_input->setText("通道1");
     show_w_input(1);
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < 7; i++)
         read_config(23+i);
 }
 
@@ -8471,7 +8491,7 @@ void MainWindow::readfovmode2()
 {
     label_chid_input->setText("通道2");
     show_w_input(2);
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < 7; i++)
         read_config(56+i);
 }
 
@@ -8479,24 +8499,24 @@ void MainWindow::readfovmode3()
 {
     label_chid_input->setText("通道3");
     show_w_input(3);
-    for(int i = 0; i < 6; i++)
-        read_config(62+i);
+    for(int i = 0; i < 7; i++)
+        read_config(63+i);
 }
 
 void MainWindow::readfovmode4()
 {
     label_chid_input->setText("通道4");
     show_w_input(4);
-    for(int i = 0; i < 6; i++)
-        read_config(93+i);
+    for(int i = 0; i < 7; i++)
+        read_config(70+i);
 }
 
 void MainWindow::readfovmode5()
 {
     label_chid_input->setText("通道5");
     show_w_input(5);
-    for(int i = 0; i < 6; i++)
-        read_config(101+i);
+    for(int i = 0; i < 7; i++)
+        read_config(77+i);
 }
 
 void MainWindow::showvedioCfg1()
@@ -8678,8 +8698,8 @@ void MainWindow::showpidsysCfg1()
 
 void MainWindow::showpidsysCfg2()
 {
-    read_config(91);
-    read_config(92);
+    read_config(101);
+    read_config(102);
 
     w_pid2->show();
     w_pid2->show_stat = 1;
@@ -8818,7 +8838,7 @@ void MainWindow::showspeedconvcfg()
 
 void MainWindow::showspeedconvcfg_sec()
 {
-    read_config(107);
+    read_config(2);
 
     w_speedconv_sec->show();
     w_speedconv_sec->show_stat = 1;
@@ -9009,7 +9029,7 @@ void MainWindow::showCapture3()
 void MainWindow::showOther()
 {  
     read_config(get_osd_blk(c));
-    read_config(53);
+    read_config(52);
 
     w_osd1->show();
     w_osd1->show_stat = 1;
@@ -9632,7 +9652,7 @@ int MainWindow::get_osd_blk(QComboBox *c)
     if(i < 16)
         i += 7;
     else
-        i += 13;
+        i += 14;
 
     return i;
 }
@@ -9705,7 +9725,7 @@ void MainWindow::setform_video3(int fovmode)
     else
     {
         maxnum = 13;
-        //form_video3.addWidget(input_buchang[0],0,1,1,1);
+        form_video3.addWidget(input_buchang[0],0,1,1,1);
         form_video3.addWidget(input_buchang[1],0,2,1,1);
         form_video3.addWidget(input_buchang[2],0,4,1,1);
         form_video3.addWidget(input_buchang[3],0,6,1,1);
@@ -9714,7 +9734,7 @@ void MainWindow::setform_video3(int fovmode)
 
         for(int i = 0; i < maxnum; i++)
         {
-           //form_video3.addWidget(vedio_continue[i],i+1,1,1,1);
+           form_video3.addWidget(vedio_continue[i],i+1,1,1,1);
            form_video3.addWidget(vedio_continue_Fov[i],i+1,2,1,1);
            form_video3.addWidget(input_l1dv[i],i+1,3,1,1);
            form_video3.addWidget(continue_verticall[i],i+1,4,1,1);
@@ -9734,6 +9754,7 @@ void MainWindow::set_input_layout()
     input_v0->addLayout(&form_video2);
     input_v0->addLayout(&form_video3);
     w_input->setLayout(input_v0);
+    //w_input->setLayout(vfinal);
 }
 
 void MainWindow::show_w_input(int chid)

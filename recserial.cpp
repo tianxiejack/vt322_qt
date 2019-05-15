@@ -54,6 +54,7 @@ void recSerial::serial_Read_Data()
         int cnt = 0;
         datagram.resize(serialPort_command->bytesAvailable());
         int len = serialPort_command->read(datagram.data(),datagram.size());
+        pthis->setrecvbytes(datagram);
         while(cnt<len)
         {
             pRxByte = datagram.at(cnt++);
@@ -74,7 +75,7 @@ void recSerial::serial_Read_Data()
                     if(pRxByte == 0x53){
                         frame_flag = 2;
                         output_cnt = 0;
-                        crc_sum ^= pRxByte;
+                        //crc_sum ^= pRxByte;
                     }
                     else
                     {
@@ -85,13 +86,13 @@ void recSerial::serial_Read_Data()
                     break;
                 case 2:
                     pkg_length = pRxByte;
-                    crc_sum ^= pRxByte;
+                    //crc_sum ^= pRxByte;
                     frame_flag = 3;
                     break;
                 case 3:
                     pkg_length = (pkg_length|(pRxByte<<8));
                     frame_flag = 4;
-                    crc_sum ^= pRxByte;
+                    //crc_sum ^= pRxByte;
                     break;
                 case 4:
                     if(output_cnt>(sizeof(output_array)/sizeof(output_array[0])-1))

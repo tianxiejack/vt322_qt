@@ -167,6 +167,7 @@ void RcvSocketdata::socket_Read_Data()
         int cnt = 0;
         datagram.resize(socket->bytesAvailable());
         int len = socket->read(datagram.data(),datagram.size());
+        pthis->setrecvbytes(datagram);
         while(cnt<len)
         {
             socket_pRxByte = datagram.at(cnt++);
@@ -189,7 +190,7 @@ void RcvSocketdata::socket_Read_Data()
                         if(socket_pRxByte == 0x53){
                             socket_frame_flag = 2;
                             socket_output_cnt = 0;
-                            socket_crc_sum ^= socket_pRxByte;
+                            //socket_crc_sum ^= socket_pRxByte;
                         }
                         else
                         {
@@ -200,13 +201,13 @@ void RcvSocketdata::socket_Read_Data()
                         break;
                     case 2:
                         socket_pkg_length = socket_pRxByte;
-                        socket_crc_sum ^= socket_pRxByte;
+                        //socket_crc_sum ^= socket_pRxByte;
                         socket_frame_flag = 3;
                         break;
                     case 3:
                         socket_pkg_length = (socket_pkg_length|(socket_pRxByte<<8));
                         data_length=socket_pkg_length;
-                        socket_crc_sum ^= socket_pRxByte;
+                        //socket_crc_sum ^= socket_pRxByte;
                         socket_frame_flag = 4;
                         break;
                     case 4:

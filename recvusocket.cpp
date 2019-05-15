@@ -267,7 +267,7 @@ void RcvUSocketdata::usocket_Read_Data()
                         if(pRxByte == 0x53){
                             frame_flag_usocket = 2;
                             usocket_output_cnt = 0;
-                            crc_sum_usocket ^= pRxByte;
+                            //crc_sum_usocket ^= pRxByte;
                         }
                         else
                         {
@@ -278,12 +278,12 @@ void RcvUSocketdata::usocket_Read_Data()
                         break;
                     case 2:
                         pkg_length_usocket = pRxByte;
-                        crc_sum_usocket ^= pRxByte;
+                        //crc_sum_usocket ^= pRxByte;
                         frame_flag_usocket = 3;
                         break;
                     case 3:
                         pkg_length_usocket = (pkg_length_usocket|(pRxByte<<8));
-                        crc_sum_usocket ^= pRxByte;
+                        //crc_sum_usocket ^= pRxByte;
                         frame_flag_usocket = 4;
                         break;
                     case 4:
