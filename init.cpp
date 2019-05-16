@@ -7414,7 +7414,7 @@ void MainWindow::init_mtdCfg()
     f1->addRow(mtd_s[3],uspeed);
     f1->addRow(mtd_s[4],maxpix);
     f1->addRow(mtd_s[5],minpix);
-    f1->addRow(mtd_s[6],sensitive);
+    //f1->addRow(mtd_s[6],sensitive);
     f1->addRow(mtd_s[7],dspeed);
     f1->addRow(mtd_s[8],trktime);
     f1->addRow(mtd_s[9],Priority_judgment);

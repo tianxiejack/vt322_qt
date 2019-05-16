@@ -730,7 +730,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(5 == output_array[2])
                 {
-                    sensitive->setText(QString::number(value_i));
+                    //sensitive->setText(QString::number(value_i));
                 }
                 else if(6 == output_array[2])
                 {
@@ -1196,7 +1196,7 @@ void MainWindow::read_config(int block)
     switch(block)
     {
         case 1:
-            send_read_config(block,1,6);
+            send_read_config(block,0,6);
             send_read_config(block,9,12);
             break;
         case 2:
@@ -1302,7 +1302,8 @@ void MainWindow::read_config(int block)
             send_read_config(block,1,2);
             break;
         case 54:
-            send_read_config(block,0,8);
+            send_read_config(block,0,4);
+            send_read_config(block,6,8);
             break;
         case 55:
             send_read_config(block,0,6);
