@@ -17218,7 +17218,7 @@ void MainWindow::input_continue_verticall7_Slot()
 }
 void MainWindow::input_continue_verticall8_Slot()
 {
-    float value = vedio_continue_Fov[7]->text().toFloat();
+    float value = continue_verticall[7]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
@@ -17242,7 +17242,7 @@ void MainWindow::input_continue_verticall8_Slot()
 }
 void MainWindow::input_continue_verticall9_Slot()
 {
-    float value = vedio_continue_Fov[8]->text().toFloat();
+    float value = continue_verticall[8]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
@@ -17266,7 +17266,7 @@ void MainWindow::input_continue_verticall9_Slot()
 }
 void MainWindow::input_continue_verticall10_Slot()
 {
-    float value = vedio_continue_Fov[9]->text().toFloat();
+    float value = continue_verticall[9]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
@@ -17290,7 +17290,7 @@ void MainWindow::input_continue_verticall10_Slot()
 }
 void MainWindow::input_continue_verticall11_Slot()
 {
-    float value = vedio_continue_Fov[10]->text().toFloat();
+    float value = continue_verticall[10]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
@@ -17314,7 +17314,7 @@ void MainWindow::input_continue_verticall11_Slot()
 }
 void MainWindow::input_continue_verticall12_Slot()
 {
-    float value = vedio_continue_Fov[11]->text().toFloat();
+    float value = continue_verticall[11]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
@@ -17338,7 +17338,7 @@ void MainWindow::input_continue_verticall12_Slot()
 }
 void MainWindow::input_continue_verticall13_Slot()
 {
-    float value = vedio_continue_Fov[12]->text().toFloat();
+    float value = continue_verticall[12]->text().toFloat();
     switch(cur_channel)
     {
         case 1:
