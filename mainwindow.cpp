@@ -8983,6 +8983,20 @@ void MainWindow::CBox_osd_choose_Slot(int i)
         read_config(i+14);
 }
 
+void MainWindow::CBox_show_osd_Slot(int arg1)
+{
+    float value;
+    if(arg1 == Qt::Checked)
+    {
+        value = 1;
+    }
+    else if(arg1 == Qt::Unchecked)
+    {
+        value = 0;
+    }
+    setconfig(get_osd_blk(c), 0, value);
+}
+
 void MainWindow::osd_posx_Slot()
 {
     float value = osd1_pos_x->text().toFloat();

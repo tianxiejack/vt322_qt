@@ -580,6 +580,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         c->setCurrentIndex(output_array[1] - 14);
                     switch(output_array[2])
                     {
+                        case 0:
+                            checkBox_osdshow->setChecked(value_inte);
+                            break;
                         case 1:
                              osd1_pos_x->setText(QString::number(value_i));
                             break;
@@ -689,12 +692,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         checkBox_sysosd->setChecked(sysosd_state & (1 << i));
 
                     }
+                    /*
                     else if(2 == output_array[2])
                     {
                         cusosd_state = value_i;
                         int i = c_cusosd->currentIndex();
                         checkBox2->setChecked(cusosd_state & (1 << i));
                     }
+                    */
                 }
                 break;
             case 54:
@@ -1243,7 +1248,7 @@ void MainWindow::read_config(int block)
         case 43:
         case 44:
         case 45:
-            send_read_config(block,1,8);
+            send_read_config(block,0,8);
             break;
         case 23:
         case 56:
@@ -1299,7 +1304,7 @@ void MainWindow::read_config(int block)
             send_read_config(block,4,5);
             break;
         case 52:
-            send_read_config(block,1,2);
+            send_read_config(block,1,1);
             break;
         case 54:
             send_read_config(block,0,4);

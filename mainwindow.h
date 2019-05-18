@@ -1556,6 +1556,7 @@ private slots:
     /*OSD参数设置*/
     void btn_osd_default_Slot();
     void CBox_osd_choose_Slot(int i);
+    void CBox_show_osd_Slot(int arg1);
     void osd_posx_Slot();
     void osd_posy_Slot();
     void osd_context_Slot();
@@ -2158,6 +2159,7 @@ private:
     QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     QCheckBox *checkBox_cross;
     /*OSD*/
+    QCheckBox *checkBox_osdshow;
     QComboBox *c,*CBox_datatype,*CBox_color,*CBox_font,*CBox_font_size,*CBox_transparency;
     QPushButton *btn_osd1_default,*btn_keep1;
     MyWidget *w_osd1;

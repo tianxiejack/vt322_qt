@@ -7872,6 +7872,7 @@ void MainWindow::init_OSDCfg()
 {
     w_osd1=new MyWidget;
     w_osd1->setWindowTitle("字符叠加");
+    checkBox_osdshow = new QCheckBox;
     c=new QComboBox;
     osd1_pos_x=new QLineEdit;
     osd1_pos_y=new QLineEdit;
@@ -7928,6 +7929,7 @@ void MainWindow::init_OSDCfg()
     Osdctrl = new QGroupBox("OSD显示控制");
 
     QFormLayout *f=new QFormLayout();
+    f->addRow(osd_s[0],checkBox_osdshow);
     f->addRow(osd_s[1],osd1_pos_x);
     f->addRow(osd_s[2],osd1_pos_y);
     f->addRow(osd_s[3],osd1_lineEdit_context);
@@ -7963,8 +7965,8 @@ void MainWindow::init_OSDCfg()
     checkBox2=new QCheckBox;
     checkBox_sysosd=new QCheckBox;
     QFormLayout *f_ctrl=new QFormLayout();
-    f_ctrl->addRow(c_cusosd);
-    f_ctrl->addRow(osd_s[0],checkBox2);
+    //f_ctrl->addRow(c_cusosd);
+    //f_ctrl->addRow(osd_s[0],checkBox2);
     f_ctrl->addRow(c_sysosd);
     f_ctrl->addRow(osd_s[0],checkBox_sysosd);
     QVBoxLayout *v_ctrl3 = new QVBoxLayout;
@@ -7979,6 +7981,7 @@ void MainWindow::init_OSDCfg()
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
     connect(btn_keep1,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
+    connect(checkBox_osdshow,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_osd_Slot(int)));
     connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(osd_posx_Slot()));
     connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(osd_posy_Slot()));
     connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(osd_context_Slot()));
@@ -7987,7 +7990,6 @@ void MainWindow::init_OSDCfg()
     connect(CBox_transparency,SIGNAL(activated(int)),this,SLOT(CBox_transparency_Slot(int)));
     connect(CBox_font,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_Slot(int)));
     connect(CBox_font_size,SIGNAL(activated(int)),this,SLOT(CBox_osd_font_size_Slot(int)));
-
 
     connect(btn_osd2_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default2_Slot()));
     connect(btn_keep2,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
