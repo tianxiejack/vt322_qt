@@ -7994,7 +7994,7 @@ void MainWindow::init_OSDCfg()
     connect(c_cusosd,SIGNAL(activated(int)),this,SLOT(CBox_cusosd_choose_Slot(int)));
     connect(checkBox2,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_cusosd_Slot(int)));
     connect(c_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_sysosd_choose_Slot(int)));
-    connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
+    connect(checkBox_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
 
     w_osd1->setLayout(v2);
 }

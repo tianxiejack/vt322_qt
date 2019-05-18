@@ -140,14 +140,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     int value_inte;
     QString msg;
     QByteArray   ba;
-    bool osd_judgment=(output_array[1] == 0x07) || (output_array[1] == 0x08)|| (output_array[1] == 0x09)||(output_array[1] == 0x0a)\
-                      ||(output_array[1] == 0x0b) || (output_array[1] == 0x0c)|| (output_array[1] == 0x0d)||(output_array[1] == 0x0e)\
-                      ||(output_array[1] == 0x0f) || (output_array[1] == 0x10)|| (output_array[1] == 0x11)||(output_array[1] == 0x12)\
-                      ||(output_array[1] == 0x13) || (output_array[1] == 0x14)|| (output_array[1] == 0x15)||(output_array[1] == 0x16)\
-                      ||(output_array[1] == 0x1D) || (output_array[1] == 0x1e)|| (output_array[1] == 0x1f)||(output_array[1] == 0x20)\
-                      ||(output_array[1] == 0x21) || (output_array[1] == 0x22)|| (output_array[1] == 0x23)||(output_array[1] == 0x24)\
-                      ||(output_array[1] == 0x25) || (output_array[1] == 0x26)|| (output_array[1] == 0x27)||(output_array[1] == 0x28)\
-                      ||(output_array[1] == 0x29) || (output_array[1] == 0x2a)|| (output_array[1] == 0x2b)||(output_array[1] == 0x2c);
+    bool osd_judgment=(output_array[1] == 7) || (output_array[1] == 8)|| (output_array[1] == 9)||(output_array[1] == 10)\
+                      ||(output_array[1] == 11) || (output_array[1] == 12)|| (output_array[1] == 13)||(output_array[1] == 14)\
+                      ||(output_array[1] == 15) || (output_array[1] == 16)|| (output_array[1] == 17)||(output_array[1] == 18)\
+                      ||(output_array[1] == 19) || (output_array[1] == 20)|| (output_array[1] == 21)||(output_array[1] == 22)\
+                      ||(output_array[1] == 30) || (output_array[1] == 31)|| (output_array[1] == 32)||(output_array[1] == 33)\
+                      ||(output_array[1] == 34) || (output_array[1] == 35)|| (output_array[1] == 36)||(output_array[1] == 37)\
+                      ||(output_array[1] == 38) || (output_array[1] == 39)|| (output_array[1] == 40)||(output_array[1] == 41)\
+                      ||(output_array[1] == 42) || (output_array[1] == 43)|| (output_array[1] == 44)||(output_array[1] == 45);
     if(osd_judgment && (output_array[2]==0x04)){
       QByteArray dd((char*)output_array+3, data_length-3);
       ba=dd;

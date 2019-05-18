@@ -13,6 +13,7 @@ extern volatile unsigned char rcv_buf[5000];
 extern volatile unsigned int BufWrite ;
 extern volatile unsigned int BufRead ;
 extern volatile unsigned char BufRcvStatus;
+extern int data_length;
 extern QSerialPort * serialPort_command;
 
 unsigned char Get_One_Char(unsigned char* pRxByte)
@@ -91,6 +92,7 @@ void recSerial::serial_Read_Data()
                     break;
                 case 3:
                     pkg_length = (pkg_length|(pRxByte<<8));
+                    data_length=pkg_length;
                     frame_flag = 4;
                     //crc_sum ^= pRxByte;
                     break;
