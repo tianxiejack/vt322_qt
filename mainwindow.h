@@ -2143,7 +2143,7 @@ private:
     QLineEdit *utc3_l0,*utc3_l1,*utc3_l2,*utc3_l3,*utc3_l4,*utc3_l5,
               *utc3_l6,*utc3_l7,*utc3_l8,*utc3_l9,*utc3_l10,*utc3_l11,
               *utc3_l12,*utc3_l13,*utc3_l14,*utc3_l15;
-    QString utc_s1[16]={"occlution_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","惯性跟踪时间"};
+    QString utc_s1[16]={"occlution_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","惯性跟踪时间(单位：毫秒)"};
     QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 
