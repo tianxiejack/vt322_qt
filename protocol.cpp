@@ -876,7 +876,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 break;
         }
     }
-    else if(0x0d == i)
+    else if(0x54 == i)
     {
        if(output_array[1] != 0xff)
            read_config(output_array[1]);
@@ -885,8 +885,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            if(w_plat->show_stat)
            {
                 read_config(1);
-                read_config(2);
-                read_config(3);
+           }
+           if(w_speedconv_sec->show_stat)
+           {
+               read_config(2);
            }
            if(utc1->show_stat)
            {
@@ -902,173 +904,40 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
            }
            if(w_osd1->show_stat)
            {
-                int count = c->currentIndex();
-                if(count < 16)
-                    count += 7;
-                else
-                    count += 13;
-                read_config(count);
-           }
-           if(w_capture2->show_stat)
-           {
-                read_config(46);
-           }
-           if(w_capture3->show_stat)
-           {
-                read_config(47);
-           }
-           if(w_speedconv->show_stat)
-           {
-                read_config(49);
-                read_config(50);
+                read_config(get_osd_blk(c));
                 read_config(52);
-                read_config(3);
+           }
+           if(w_input->show_stat)
+           {
+                int startblock = -1;
+                if(1 == cur_channel)
+                    startblock = 23;
+                else if(2 == startblock)
+                    startblock = 56;
+                else if(3 == startblock)
+                    startblock = 63;
+                else if(4 == startblock)
+                    startblock = 70;
+                else if(5 == startblock)
+                    startblock = 77;
+
+                if(startblock > 0)
+                {
+                    for(int i = startblock; i < startblock + 7; i++)
+                        read_config(i);
+                }
+
            }
            if(w_mtd->show_stat)
            {
                read_config(54);
-           }
-           if(w_speedconv_sec->show_stat)
-           {
-               read_config(99);
-               read_config(100);
-               read_config(107);
-           }
-           if(w_speedconv_thi->show_stat)
-           {
-               read_config(101);
-               read_config(102);
-               read_config(108);
-           }
-           if(w_speedconv_fou->show_stat)
-           {
-               read_config(103);
-               read_config(104);
-               read_config(109);
-           }
-           if(w_speedconv_fif->show_stat)
-           {
-               read_config(105);
-               read_config(106);
-               read_config(110);
-
-           }
-           if(w_pid->show_stat)
-           {
-                read_config(2);
-                read_config(48);
+               read_config(55);
            }
            if(w_pid2->show_stat)
            {
-               read_config(91);
-               read_config(92);
-           }
-           if(w_pid3->show_stat)
-           {
-               read_config(93);
-               read_config(94);
-
-           }
-           if(w_pid4->show_stat)
-           {
-               read_config(95);
-               read_config(96);
-           }
-           if(w_pid5->show_stat)
-           {
-               read_config(97);
-               read_config(98);
-           }
-           if(w_sersor_1->show_stat)
-           {
-                read_config(23);
-                read_config(24);
-           }
-           if(w_seitchField_1->show_stat)
-           {
-               read_config(23);
-               read_config(25);
-               read_config(26);
-           }
-           if(w_ContinueField_1->show_stat)
-           {
-                read_config(23);
-                read_config(27);
-                read_config(56);
-                read_config(57);
-           }
-           if(w_sersor_1_sec->show_stat)
-           {
-                read_config(58);
-                read_config(59);
-           }
-           if(w_seitchField_1_sec->show_stat)
-           {
-               read_config(58);
-               read_config(60);
-               read_config(61);
-           }
-           if(w_ContinueField_1_sec->show_stat)
-           {
-               read_config(58);
-               read_config(62);
-               read_config(63);
-               read_config(64);
-           }
-           if(w_sersor_1_thi->show_stat)
-           {
-                read_config(65);
-                read_config(66);
-           }
-           if(w_seitchField_1_thi->show_stat)
-           {
-               read_config(65);
-               read_config(67);
-               read_config(68);
-           }
-           if(w_ContinueField_1_thi->show_stat)
-           {
-               read_config(65);
-               read_config(69);
-               read_config(70);
-               read_config(71);
-           }
-           if(w_sersor_1_fou->show_stat)
-           {
-                read_config(72);
-                read_config(73);
-           }
-           if(w_seitchField_1_fou->show_stat)
-           {
-               read_config(72);
-               read_config(74);
-               read_config(75);
-           }
-           if(w_ContinueField_1_fou->show_stat)
-           {
-               read_config(72);
-               read_config(76);
-               read_config(77);
-               read_config(78);
-           }
-           if(w_sersor_1_fif->show_stat)
-           {
-                read_config(79);
-                read_config(80);
-           }
-           if(w_seitchField_1_fif->show_stat)
-           {
-               read_config(79);
-               read_config(81);
-               read_config(82);
-           }
-           if(w_ContinueField_1_fif->show_stat)
-           {
-               read_config(79);
-               read_config(83);
-               read_config(84);
-               read_config(85);
-           }
+               read_config(101);
+               read_config(102);
+           }      
        }
     }
     else if(0x41 == i)

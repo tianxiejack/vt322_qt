@@ -15681,82 +15681,82 @@ void MainWindow::mystepby(int spid)
             vedio_spby_switch5_Slot();
             break;
         case continue1_spinx:
-            vedio_spbx_continue1_Slot();
+            input_vedio_spbx_continue1_Slot();
             break;
         case continue2_spinx:
-            vedio_spbx_continue2_Slot();
+            input_vedio_spbx_continue2_Slot();
             break;
         case continue3_spinx:
-            vedio_spbx_continue3_Slot();
+            input_vedio_spbx_continue3_Slot();
             break;
         case continue4_spinx:
-            vedio_spbx_continue4_Slot();
+            input_vedio_spbx_continue4_Slot();
             break;
         case continue5_spinx:
-            vedio_spbx_continue5_Slot();
+            input_vedio_spbx_continue5_Slot();
             break;
         case continue6_spinx:
-            vedio_spbx_continue6_Slot();
+            input_vedio_spbx_continue6_Slot();
             break;
         case continue7_spinx:
-            vedio_spbx_continue7_Slot();
+            input_vedio_spbx_continue7_Slot();
             break;
         case continue8_spinx:
-            vedio_spbx_continue8_Slot();
+            input_vedio_spbx_continue8_Slot();
             break;
         case continue9_spinx:
-            vedio_spbx_continue9_Slot();
+            input_vedio_spbx_continue9_Slot();
             break;
         case continue10_spinx:
-            vedio_spbx_continue10_Slot();
+            input_vedio_spbx_continue10_Slot();
             break;
         case continue11_spinx:
-            vedio_spbx_continue11_Slot();
+            input_vedio_spbx_continue11_Slot();
             break;
         case continue12_spinx:
-            vedio_spbx_continue12_Slot();
+            input_vedio_spbx_continue12_Slot();
             break;
         case continue13_spinx:
-            vedio_spbx_continue13_Slot();
+            input_vedio_spbx_continue13_Slot();
             break;
         case continue1_spiny:
-            vedio_spby_continue1_Slot();
+            input_vedio_spby_continue1_Slot();
             break;
         case continue2_spiny:
-            vedio_spby_continue2_Slot();
+            input_vedio_spby_continue2_Slot();
             break;
         case continue3_spiny:
-            vedio_spby_continue3_Slot();
+            input_vedio_spby_continue3_Slot();
             break;
         case continue4_spiny:
-            vedio_spby_continue4_Slot();
+            input_vedio_spby_continue4_Slot();
             break;
         case continue5_spiny:
-            vedio_spby_continue5_Slot();
+            input_vedio_spby_continue5_Slot();
             break;
         case continue6_spiny:
-            vedio_spby_continue6_Slot();
+            input_vedio_spby_continue6_Slot();
             break;
         case continue7_spiny:
-            vedio_spby_continue7_Slot();
+            input_vedio_spby_continue7_Slot();
             break;
         case continue8_spiny:
-            vedio_spby_continue8_Slot();
+            input_vedio_spby_continue8_Slot();
             break;
         case continue9_spiny:
-            vedio_spby_continue9_Slot();
+            input_vedio_spby_continue9_Slot();
             break;
         case continue10_spiny:
-            vedio_spby_continue10_Slot();
+            input_vedio_spby_continue10_Slot();
             break;
         case continue11_spiny:
-            vedio_spby_continue11_Slot();
+            input_vedio_spby_continue11_Slot();
             break;
         case continue12_spiny:
-            vedio_spby_continue12_Slot();
+            input_vedio_spby_continue12_Slot();
             break;
         case continue13_spiny:
-            vedio_spby_continue13_Slot();
+            input_vedio_spby_continue13_Slot();
             break;
 
 
