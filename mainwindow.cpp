@@ -13991,7 +13991,7 @@ void MainWindow::btnDownSlot()
               usocket_send_buf[10] = len&0xff;
               usocket_send_buf[11] = (len>>8)&0xff;
               memcpy(usocket_send_buf+12,buf, len);
-              for(int m = 1; m<12+len;m++)
+              for(int m = 4; m<12+len;m++)
                   checksum ^= usocket_send_buf[m];
               usocket_send_buf[12+len] = checksum;
               serialPort_command->write((char *)usocket_send_buf,len+13);
@@ -14051,7 +14051,7 @@ void MainWindow::btnDownSlot()
               usocket_send_buf[10] = len&0xff;
               usocket_send_buf[11] = (len>>8)&0xff;
               memcpy(usocket_send_buf+12,buf, len);
-              for(int m = 1; m<12+len;m++)
+              for(int m = 4; m<12+len;m++)
                   checksum ^= usocket_send_buf[m];
               usocket_send_buf[12+len] = checksum;
 
@@ -14085,7 +14085,7 @@ void MainWindow::btnUpSlot()
         usocket_send_buf[3] = 0x00;
         usocket_send_buf[4] = 0x56;
         expfile.setFileName(filePath);
-        for(int i = 1; i < 5; i++)
+        for(int i = 4; i < 5; i++)
             sum ^= usocket_send_buf[i];
         usocket_send_buf[5] = sum;
         //QString ip = upgrade_ip->text();
@@ -14229,7 +14229,7 @@ void MainWindow::btnUpdate()
               usocket_send_buf[10] = len&0xff;
               usocket_send_buf[11] = (len>>8)&0xff;
               memcpy(usocket_send_buf+12,buf, len);
-              for(int m = 1; m<12+len;m++)
+              for(int m = 4; m<12+len;m++)
                   checksum ^= usocket_send_buf[m];
               usocket_send_buf[12+len] = checksum;
               serialPort_command->write((char *)usocket_send_buf,len+13);
@@ -14294,7 +14294,7 @@ void MainWindow::btnUpdate()
               usocket_send_buf[10] = len&0xff;
               usocket_send_buf[11] = (len>>8)&0xff;
               memcpy(usocket_send_buf+12,buf, len);
-              for(int m = 1; m<12+len;m++)
+              for(int m = 4; m<12+len;m++)
                   checksum ^= usocket_send_buf[m];
               usocket_send_buf[12+len] = checksum;
 
