@@ -204,13 +204,13 @@ public:
     void showblk118(int field, float value);
     void showblk119(int field, float value);
     void showblk120(int field, float value);
-    void show_blk_input1(int field, float value);
-    void show_blk_input2(int field, float value);
+    void show_blk_input1(int field, float value, int value_inte);
+    void show_blk_input2(int field, float value, int value_inte);
     void show_blk_input3(int field, float value);
     void show_blk_input4(int field, float value);
     void show_blk_input5(int field, float value);
     void show_blk_input6(int field, float value);
-    void show_blk_input7(int field, float value);
+    void show_blk_input7(int field, float value, int value_inte);
 
 signals:
     void toNet(int port ,QString ip);
@@ -1711,8 +1711,11 @@ private slots:
     void outputtype_Slot(int index);
 
     void setconfig(int blk, int field, float value);
+    void setconfig_int(int blk, int field, int value);
     void defaultconfig(int blk);
     void saveconfig();
+    unsigned int stringip2int(QString str);
+    QString intip2string(unsigned int value);
 
 private:
     Ui::MainWindow *ui;

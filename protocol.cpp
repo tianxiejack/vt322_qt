@@ -154,8 +154,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 
     }else{
         memcpy(&value_i,output_array+3,4);
+        memcpy(&value_inte,output_array+3,4);
     }
-    value_inte = value_i;
+
 
     if(0x43 == i)
     {
@@ -231,7 +232,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 2:
                 if(0 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 0:
                             commway->setCurrentIndex(0);
@@ -248,7 +249,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(1 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 2400:
                             baud_rate_sec->setCurrentIndex(0);
@@ -278,7 +279,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(2 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 5:
                             data_bit_sec->setCurrentIndex(0);
@@ -298,7 +299,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(3 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 0:
                             parity_bit_sec->setCurrentIndex(0);
@@ -334,45 +335,47 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(5 == output_array[2])
                 {
-                    if((int)value_i==1)
+                    if(value_inte==1)
                     {
                         flow_control_sec->setCurrentIndex(0);
-                    }else if((int)value_i==2)
+                    }else if(value_inte==2)
                     {
                         flow_control_sec->setCurrentIndex(1);
-                    }else if((int)value_i==3)
+                    }else if(value_inte==3)
                     {
                         flow_control_sec->setCurrentIndex(2);
-                    }else if((int)value_i==4)
+                    }else if(value_inte==4)
                     {
                         flow_control_sec->setCurrentIndex(3);
                     }
                 }
                 else if(6 == output_array[2])
                 {
-                    netip->setText(QString::number(value_i));
+                    unsigned int value_uinte = value_inte;//= (unsigned int)value_inte;
+                    QString str = intip2string(value_uinte);
+                    netip->setText(str);
                 }
                 else if(7 == output_array[2])
                 {
-                    netport->setText(QString::number(value_i));
+                    netport->setText(QString::number(value_inte));
                 }
                 else if(8 == output_array[2])
                 {
-                    if((int)value_i==0)
+                    if(value_inte==0)
                     {
                         platprotocol->setCurrentIndex(0);
-                    }else if((int)value_i==1)
+                    }else if(value_inte==1)
                     {
                         platprotocol->setCurrentIndex(1);
                     }
                 }
                 else if(9 == output_array[2])
                 {
-                    out_address_sec->setText(QString::number(value_i));
+                    out_address_sec->setText(QString::number(value_inte));
                 }
                 else if(10 == output_array[2])
                 {
-                    platparam2->setText(QString::number(value_i));
+                    platparam2->setText(QString::number(value_inte));
                 }
                 break;
             case 4:
@@ -584,10 +587,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                             checkBox_osdshow->setChecked(value_inte);
                             break;
                         case 1:
-                             osd1_pos_x->setText(QString::number(value_i));
+                             osd1_pos_x->setText(QString::number(value_inte));
                             break;
                         case 2:
-                             osd1_pos_y->setText(QString::number(value_i));
+                             osd1_pos_y->setText(QString::number(value_inte));
                             break;
                         case 3:
                             if(0x01 == value_inte)
@@ -616,14 +619,14 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 63:
             case 70:
             case 77:
-                show_blk_input1(output_array[2],value_i);
+                show_blk_input1(output_array[2],value_i,value_inte);
                 break;
             case 24:
             case 57:
             case 64:
             case 71:
             case 78:
-                show_blk_input2(output_array[2],value_i);
+                show_blk_input2(output_array[2],value_i,value_inte);
                 break;
             case 25:
             case 58:
@@ -658,7 +661,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 69:
             case 76:
             case 83:
-                show_blk_input7(output_array[2],value_i);
+                show_blk_input7(output_array[2],value_i, value_inte);
                 break;
 
 
@@ -666,7 +669,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 51:
                 if(0x04 == output_array[2])
                 {
-                    int index = (int)value_i;
+                    int index = value_inte;
                     if((index >= 0) && (index <= 3))
                         box_outresol->setCurrentIndex(index);
                     else if((index >= 5) && (index <= 9))
@@ -674,7 +677,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(0x05 == output_array[2])
                 {
-                    int index = (int)value_i;
+                    int index = value_inte;
                     if((index >= 0) && (index <= 3))
                         box_outresol2->setCurrentIndex(index);
                     else if((index >= 5) && (index <= 9))
@@ -687,7 +690,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 {
                     if(1 == output_array[2])
                     {
-                        sysosd_state = value_i;
+                        sysosd_state = value_inte;
                         int i = c_sysosd->currentIndex();
                         checkBox_sysosd->setChecked(sysosd_state & (1 << i));
 
@@ -695,7 +698,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     /*
                     else if(2 == output_array[2])
                     {
-                        cusosd_state = value_i;
+                        cusosd_state = value_inte;
                         int i = c_cusosd->currentIndex();
                         checkBox2->setChecked(cusosd_state & (1 << i));
                     }
@@ -705,7 +708,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
             case 54:
                 if(0 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                      case 0:
                         zone_setting->setChecked(false);
@@ -719,35 +722,35 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(1 == output_array[2])
                 {
-                    maxnum->setText(QString::number(value_i));
+                    maxnum->setText(QString::number(value_inte));
                 }
                 else if(2 == output_array[2])
                 {
-                       uspeed->setText(QString::number(value_i));
+                       uspeed->setText(QString::number(value_inte));
                 }
                 else if(3 == output_array[2])
                 {
-                    maxpix->setText(QString::number(value_i));
+                    maxpix->setText(QString::number(value_inte));
                 }
                 else if(4 == output_array[2])
                 {
-                    minpix->setText(QString::number(value_i));
+                    minpix->setText(QString::number(value_inte));
                 }
                 else if(5 == output_array[2])
                 {
-                    //sensitive->setText(QString::number(value_i));
+                    //sensitive->setText(QString::number(value_inte));
                 }
                 else if(6 == output_array[2])
                 {
-                    dspeed->setText(QString::number(value_i));
+                    dspeed->setText(QString::number(value_inte));
                 }
                 else if(7 == output_array[2])
                 {
-                    trktime->setText(QString::number(value_i));
+                    trktime->setText(QString::number(value_inte));
                 }
                 else if(8 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 1:
                             Priority_judgment->setCurrentIndex(0);
@@ -774,16 +777,16 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 break;
             case 55:
                 if(0 == output_array[2])
-                    presetx->setText(QString::number(value_i));
+                    presetx->setText(QString::number(value_inte));
                 else if(1 == output_array[2])
-                    presety->setText(QString::number(value_i));
+                    presety->setText(QString::number(value_inte));
                 else if(2 == output_array[2])
-                    presetzoom->setText(QString::number(value_i));
+                    presetzoom->setText(QString::number(value_inte));
                 else if(3 == output_array[2])
-                    presetid->setText(QString::number(value_i));
+                    presetid->setText(QString::number(value_inte));
                 else if(4 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 1:
                             output->setCurrentIndex(0);
@@ -797,7 +800,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 }
                 else if(5 == output_array[2])
                 {
-                    switch((int)value_i)
+                    switch(value_inte)
                     {
                         case 1:
                             polar->setCurrentIndex(0);
@@ -810,7 +813,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                      }
                 }
                 else if(6 == output_array[2])
-                    Alarm_delay->setText(QString::number(value_i));
+                    Alarm_delay->setText(QString::number(value_inte));
                 break;
 
             case 101:
@@ -844,6 +847,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
+ /*
             case 102:
                 if(w_pid2->show_stat)
                 {
@@ -872,6 +876,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }
                 }
                 break;
+*/
             default:
                 break;
         }
@@ -3793,9 +3798,8 @@ void MainWindow::showblk120(int field, float value)
     }
 }
 
-void MainWindow::show_blk_input1(int field, float value)
+void MainWindow::show_blk_input1(int field, float value, int value_inte)
 {
-    int value_inte = value;
     switch(field)
     {
         case 1:
@@ -3841,33 +3845,33 @@ void MainWindow::show_blk_input1(int field, float value)
                 input_boxsize->setCurrentIndex(value_inte);
             break;
         case 8:
-            input_max_boxsize->setText(QString::number(value));
+            input_max_boxsize->setText(QString::number(value_inte));
             break;
         case 9:
-            input_mtd_sensi->setText(QString::number(value));
+            input_mtd_sensi->setText(QString::number(value_inte));
             break;
         case 10:
-            input_mtd_rigionx->setText(QString::number(value));
+            input_mtd_rigionx->setText(QString::number(value_inte));
             break;
         case 11:
-            input_mtd_rigiony->setText(QString::number(value));
+            input_mtd_rigiony->setText(QString::number(value_inte));
             break;
         case 12:
-            input_mtd_rigionw->setText(QString::number(value));
+            input_mtd_rigionw->setText(QString::number(value_inte));
             break;
         case 13:
-            input_mtd_rigionh->setText(QString::number(value));
+            input_mtd_rigionh->setText(QString::number(value_inte));
             break;
         default:
             break;
     }
 }
-void MainWindow::show_blk_input2(int field, float value)
+void MainWindow::show_blk_input2(int field, float value, int value_inte)
 {
     switch(field)
     {
         case 0:
-            input_cur_fovclass->setText(QString::number(value));
+            input_cur_fovclass->setText(QString::number(value_inte));
             break;
         case 2:
             vedio_continue_Fov[0]->setText(QString::number(value));
@@ -4100,36 +4104,36 @@ void MainWindow::show_blk_input6(int field, float value)
             break;
     }
 }
-void MainWindow::show_blk_input7(int field, float value)
+void MainWindow::show_blk_input7(int field, float value, int value_inte)
 {
     switch(field)
     {
         case 0:
-            input_cur_boxsize->setText(QString::number(value));
+            input_cur_boxsize->setText(QString::number(value_inte));
             break;
         case 2:
-            common_boxw->setText(QString::number(value));
+            common_boxw->setText(QString::number(value_inte));
             break;
         case 3:
-            common_boxh->setText(QString::number(value));
+            common_boxh->setText(QString::number(value_inte));
             break;
         case 4:
-            input_boxw[0]->setText(QString::number(value));
+            input_boxw[0]->setText(QString::number(value_inte));
             break;
         case 5:
-            input_boxh[0]->setText(QString::number(value));
+            input_boxh[0]->setText(QString::number(value_inte));
             break;
         case 6:
-            input_boxw[1]->setText(QString::number(value));
+            input_boxw[1]->setText(QString::number(value_inte));
             break;
         case 7:
-            input_boxh[1]->setText(QString::number(value));
+            input_boxh[1]->setText(QString::number(value_inte));
            break;
         case 8:
-            input_boxw[2]->setText(QString::number(value));
+            input_boxw[2]->setText(QString::number(value_inte));
             break;
         case 9:
-            input_boxh[2]->setText(QString::number(value));
+            input_boxh[2]->setText(QString::number(value_inte));
             break;
         default:
             break;

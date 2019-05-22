@@ -38,7 +38,7 @@ void MainWindow::init_menu()
         //pidsysCfg->addAction(act_pidCfg5);
         menu[0]->addAction(pidsysCfg);
 
-    QAction* speedconv_sysCfg=new QAction("转台配置");
+        QAction* speedconv_sysCfg=new QAction("转台配置");
         QAction* speedconv=new QAction("通道1",this);
         QAction* speedconv_sec=new QAction("通道2",this);
         QAction* speedconv_thi=new QAction("通道3",this);
@@ -94,7 +94,7 @@ void MainWindow::init_menu()
      QAction* act_sysCfg=new QAction("系统配置",this);
      menu[0]->addAction(act_sysCfg);
 
-    QAction* act_rstCfg=new QAction("恢复默认",this);
+    QAction* act_rstCfg=new QAction("恢复出厂",this);
     menu[0]->addAction(act_rstCfg);
 
     ui->menuBar->addMenu(menu[0]);
@@ -506,7 +506,7 @@ void MainWindow::init_pidCfg2()
     QVBoxLayout *v=new QVBoxLayout;
     v->addLayout(h1);
     v->addWidget(gbox_PID2);
-    v->addWidget(regulator_pid2);
+    //v->addWidget(regulator_pid2);
     w_pid2->setLayout(v);
 
     connect(btn_pid_default2,SIGNAL(clicked(bool)),this,SLOT(btn_pid_Default_Slot2()));
@@ -6730,6 +6730,7 @@ void MainWindow::init_speedconvCfg_sec()
 
 
     netip = new QLineEdit;
+    netip->setInputMask("000.000.000.000");
     netport = new QLineEdit;
     platprotocol = new QComboBox;
     platprotocol->addItem("Pelco-D");
@@ -7959,9 +7960,9 @@ void MainWindow::init_OSDCfg()
     c_cusosd = new QComboBox();
     init_c_osd(c_cusosd);
     c_sysosd = new QComboBox();
-    c_sysosd->addItem("靶心");
+    c_sysosd->addItem("十字");
     c_sysosd->addItem("波门");
-    c_sysosd->addItem("当前状态");
+    c_sysosd->addItem("运行状态");
     checkBox2=new QCheckBox;
     checkBox_sysosd=new QCheckBox;
     QFormLayout *f_ctrl=new QFormLayout();
@@ -8701,7 +8702,7 @@ void MainWindow::showpidsysCfg1()
 void MainWindow::showpidsysCfg2()
 {
     read_config(101);
-    read_config(102);
+    //read_config(102);
 
     w_pid2->show();
     w_pid2->show_stat = 1;

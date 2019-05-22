@@ -8985,7 +8985,7 @@ void MainWindow::CBox_osd_choose_Slot(int i)
 
 void MainWindow::CBox_show_osd_Slot(int arg1)
 {
-    float value;
+    int value;
     if(arg1 == Qt::Checked)
     {
         value = 1;
@@ -8994,19 +8994,19 @@ void MainWindow::CBox_show_osd_Slot(int arg1)
     {
         value = 0;
     }
-    setconfig(get_osd_blk(c), 0, value);
+    setconfig_int(get_osd_blk(c), 0, value);
 }
 
 void MainWindow::osd_posx_Slot()
 {
-    float value = osd1_pos_x->text().toFloat();
-    setconfig(get_osd_blk(c), 1, value);
+    int value = osd1_pos_x->text().toInt();
+    setconfig_int(get_osd_blk(c), 1, value);
 }
 
 void MainWindow::osd_posy_Slot()
 {
-    float value = osd1_pos_y->text().toFloat();
-    setconfig(get_osd_blk(c), 2, value);
+    int value = osd1_pos_y->text().toInt();
+    setconfig_int(get_osd_blk(c), 2, value);
 }
 
 void MainWindow::osd_context_Slot()
@@ -9036,48 +9036,48 @@ void MainWindow::osd_context_Slot()
 
 void MainWindow::CBox_datatype_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
 
     if(0 == i)
         value = 1;
 
-    setconfig(get_osd_blk(c), 3, value);
+    setconfig_int(get_osd_blk(c), 3, value);
 }
 
 void MainWindow::CBox_osdcolor_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 5, value);
+    setconfig_int(get_osd_blk(c), 5, value);
 }
 
 void MainWindow::CBox_transparency_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
 
     value = i;
 
-    setconfig(get_osd_blk(c), 6, value);
+    setconfig_int(get_osd_blk(c), 6, value);
 }
 
 void MainWindow::CBox_osd_font_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 7, value);
+    setconfig_int(get_osd_blk(c), 7, value);
 }
 
 void MainWindow::CBox_osd_font_size_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
 
     value = i + 1;
 
-    setconfig(get_osd_blk(c), 8, value);
+    setconfig_int(get_osd_blk(c), 8, value);
 }
 
 void MainWindow::btn_osd_default2_Slot()
@@ -9121,8 +9121,8 @@ void MainWindow::CBox_show_sysosd_Slot(int arg1)
     {
         sysosd_state &= ~(1 << i);
     }
-    float value = sysosd_state;
-    setconfig(52, 1, value);
+    int value = sysosd_state;
+    setconfig_int(52, 1, value);
 }
 
 void MainWindow::checkBox_cross_Slot()
@@ -9758,7 +9758,7 @@ void MainWindow::btn_mtd_Update_Slot()
 
 void MainWindow::zone_setting_Slot(int arg1)
 {
-    float value = 0;
+    int value = 0;
     if(arg1 == Qt::Checked)
     {
         value = 1;
@@ -9767,7 +9767,7 @@ void MainWindow::zone_setting_Slot(int arg1)
     {
         value = 0;
     }
-    setconfig(54, 0, value);
+    setconfig_int(54, 0, value);
 }
 
 void MainWindow::lEdt_rigion_Slot()
@@ -9838,89 +9838,89 @@ void MainWindow::lEdt_rigion_Cen_h_Slot()
 
 void MainWindow::lEdt_maxnum_Slot()
 {
-    float value=maxnum->text().toFloat();
-    setconfig(54, 1, value);
+    int value=maxnum->text().toInt();
+    setconfig_int(54, 1, value);
 }
 
 void MainWindow::lEdt_uspeed_Slot()
 {
-    float value=uspeed->text().toFloat();
-    setconfig(54, 2, value);
+    int value=uspeed->text().toInt();
+    setconfig_int(54, 2, value);
 }
 
 void MainWindow::lEdt_maxpix_Slot()
 {
-    float value=maxpix->text().toFloat();
-    setconfig(54, 3, value);
+    int value=maxpix->text().toInt();
+    setconfig_int(54, 3, value);
 }
 
 void MainWindow::lEdt_minpix_Slot()
 {
-    float value=minpix->text().toFloat();
-    setconfig(54, 4, value);
+    int value=minpix->text().toInt();
+    setconfig_int(54, 4, value);
 }
 
 void MainWindow::lEdt_sensitive_Slot()
 {
-    float value=sensitive->text().toFloat();
-    setconfig(54, 5, value);
+    int value=sensitive->text().toInt();
+    setconfig_int(54, 5, value);
 }
 
 void MainWindow::lEdt_dspeed_Slot()
 {
-    float value=dspeed->text().toFloat();
-    setconfig(54, 6, value);
+    int value=dspeed->text().toInt();
+    setconfig_int(54, 6, value);
 }
 
 void MainWindow::lEdt_trktime_Slot()
 {
-    float value=trktime->text().toFloat();
-    setconfig(54, 7, value);
+    int value=trktime->text().toInt();
+    setconfig_int(54, 7, value);
 }
 
 void MainWindow::combox_Priority_judgment_Slot(int index)
 {
-    float value = index + 1;
-    setconfig(54, 8, value);
+    int value = index + 1;
+    setconfig_int(54, 8, value);
 }
 
 void MainWindow::lEdt_presetx_Slot()
 {
-    float value=presetx->text().toFloat();
-    setconfig(55, 0, value);
+    int value=presetx->text().toInt();
+    setconfig_int(55, 0, value);
 }
 void MainWindow::lEdt_presety_Slot()
 {
-    float value=presety->text().toFloat();
-    setconfig(55, 1, value);
+    int value=presety->text().toInt();
+    setconfig_int(55, 1, value);
 }
 void MainWindow::lEdt_presetzoom_Slot()
 {
-    float value=presetzoom->text().toFloat();
-    setconfig(55, 2, value);
+    int value=presetzoom->text().toInt();
+    setconfig_int(55, 2, value);
 }
 void MainWindow::lEdt_presetid_Slot()
 {
-    float value=presetid->text().toFloat();
-    setconfig(55, 3, value);
+    int value=presetid->text().toInt();
+    setconfig_int(55, 3, value);
 }
 
 void MainWindow::combox_output_Slot(int index)
 {
-    float value = index + 1;
-    setconfig(55, 4, value);
+    int value = index + 1;
+    setconfig_int(55, 4, value);
 }
 
 void MainWindow::combox_polar_Slot(int index)
 {
-    float value = index + 1;
-    setconfig(55, 5, value);
+    int value = index + 1;
+    setconfig_int(55, 5, value);
 }
 
 void MainWindow::lEdt_Alarm_delay_Slot()
 {
-    float value=Alarm_delay->text().toFloat();
-    setconfig(55, 6, value);
+    int value=Alarm_delay->text().toInt();
+    setconfig_int(55, 6, value);
 }
 
 
@@ -10859,8 +10859,8 @@ void MainWindow::combox_flow_control_type_Slot_sec(int index)
 
 void MainWindow::lEdt_netip_Slot()
 {
-    float value=netip->text().toFloat();
-    setconfig(2, 6, value);
+    unsigned int value = stringip2int(netip->text());
+    setconfig_int(2, 6, value);
 }
 void MainWindow::lEdt_netport_Slot()
 {
@@ -13197,14 +13197,14 @@ void MainWindow::btn_pid_Updata_Slot()
 
 void MainWindow::lEdt_kx_Slot2()
 {
-    float value=kx_lineEdt2->text().toFloat();
-    setconfig(102, 0, value);
+    int value=kx_lineEdt2->text().toInt();
+    setconfig_int(102, 0, value);
 }
 
 void MainWindow::lEdt_ky_Slot2()
 {
-    float value=ky_lineEdt2->text().toFloat();
-    setconfig(102, 1, value);
+    int value=ky_lineEdt2->text().toInt();
+    setconfig_int(102, 1, value);
 }
 
 void MainWindow::x_ratio_control_Slot2()
@@ -13233,8 +13233,8 @@ void MainWindow::lEdt_erry_Slot2()
 
 void MainWindow::lEdt_time_Slot2()
 {
-    float value=time_lineEdt2->text().toFloat();
-    setconfig(102, 4, value);
+    int value=time_lineEdt2->text().toInt();
+    setconfig_int(102, 4, value);
 }
 
 void MainWindow::lEdt_PID1_Slot2()
@@ -14140,22 +14140,22 @@ void MainWindow::btnselectimportconf_clicked()
 
 void MainWindow::combox_output_resol(int index)
 {
-    float value;
+    int value;
     value = index;
     if(index >= 4)
         value = index + 1;
 
-    setconfig(51, 4, value);
+    setconfig_int(51, 4, value);
 }
 
 void MainWindow::combox_output_resol2(int index)
 {
-    float value;
+    int value;
     value = index;
     if(index >= 4)
         value = index + 1;
 
-    setconfig(51, 5, value);
+    setconfig_int(51, 5, value);
 }
 
 void MainWindow::btnUpdate()
@@ -16289,23 +16289,23 @@ void MainWindow::btn_default_input_Slot()
 
 void MainWindow::input_osdid_Slot(int i)
 {
-    float value = i + 1;
+    int value = i + 1;
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 1, value);
+            setconfig_int(23, 1, value);
             break;
         case 2:
-            setconfig(56, 1, value);
+            setconfig_int(56, 1, value);
             break;
         case 3:
-            setconfig(63, 1, value);
+            setconfig_int(63, 1, value);
             break;
         case 4:
-            setconfig(70, 1, value);
+            setconfig_int(70, 1, value);
             break;
         case 5:
-            setconfig(77, 1, value);
+            setconfig_int(77, 1, value);
             break;
         default:
             break;
@@ -16314,23 +16314,23 @@ void MainWindow::input_osdid_Slot(int i)
 
 void MainWindow::input_chroma_Slot(int i)
 {
-    float value = i;
+    int value = i;
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 2, value);
+            setconfig_int(23, 2, value);
             break;
         case 2:
-            setconfig(56, 2, value);
+            setconfig_int(56, 2, value);
             break;
         case 3:
-            setconfig(63, 2, value);
+            setconfig_int(63, 2, value);
             break;
         case 4:
-            setconfig(70, 2, value);
+            setconfig_int(70, 2, value);
             break;
         case 5:
-            setconfig(77, 2, value);
+            setconfig_int(77, 2, value);
             break;
         default:
             break;
@@ -16339,7 +16339,7 @@ void MainWindow::input_chroma_Slot(int i)
 
 void MainWindow::input_vediohaveornot_Slot(int arg1)
 {
-    float value = 0;
+    int value = 0;
     if(arg1 == Qt::Checked)
     {
         value = 1;
@@ -16351,19 +16351,19 @@ void MainWindow::input_vediohaveornot_Slot(int arg1)
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 3, value);
+            setconfig_int(23, 3, value);
             break;
         case 2:
-            setconfig(56, 3, value);
+            setconfig_int(56, 3, value);
             break;
         case 3:
-            setconfig(63, 3, value);
+            setconfig_int(63, 3, value);
             break;
         case 4:
-            setconfig(70, 3, value);
+            setconfig_int(70, 3, value);
             break;
         case 5:
-            setconfig(77, 3, value);
+            setconfig_int(77, 3, value);
             break;
         default:
             break;
@@ -16372,7 +16372,7 @@ void MainWindow::input_vediohaveornot_Slot(int arg1)
 
 void MainWindow::input_vedio_dpi_Slot(int i)
 {
-    float value = 0;
+    int value = 0;
     if(0 == i)
         value = 0;
     else if(1 == i)
@@ -16389,19 +16389,19 @@ void MainWindow::input_vedio_dpi_Slot(int i)
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 4, value);
+            setconfig_int(23, 4, value);
             break;
         case 2:
-            setconfig(56, 4, value);
+            setconfig_int(56, 4, value);
             break;
         case 3:
-            setconfig(63, 4, value);
+            setconfig_int(63, 4, value);
             break;
         case 4:
-            setconfig(70, 4, value);
+            setconfig_int(70, 4, value);
             break;
         case 5:
-            setconfig(77, 4, value);
+            setconfig_int(77, 4, value);
             break;
         default:
             break;
@@ -16410,23 +16410,23 @@ void MainWindow::input_vedio_dpi_Slot(int i)
 
 void MainWindow::input_change_fovemode_Slot(int i)
 {
-    float value = i;
+    int value = i;
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 5, value);
+            setconfig_int(23, 5, value);
             break;
         case 2:
-            setconfig(56, 5, value);
+            setconfig_int(56, 5, value);
             break;
         case 3:
-            setconfig(63, 5, value);
+            setconfig_int(63, 5, value);
             break;
         case 4:
-            setconfig(70, 5, value);
+            setconfig_int(70, 5, value);
             break;
         case 5:
-            setconfig(77, 5, value);
+            setconfig_int(77, 5, value);
             break;
         default:
             break;
@@ -16481,23 +16481,23 @@ void MainWindow::input_set_fov_display(int i)
 
 void MainWindow::input_max_fovclass_Slot()
 {
-    float value = input_max_fovclass->text().toFloat();
+    int value = input_max_fovclass->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 6, value);
+            setconfig_int(23, 6, value);
             break;
         case 2:
-            setconfig(56, 6, value);
+            setconfig_int(56, 6, value);
             break;
         case 3:
-            setconfig(63, 6, value);
+            setconfig_int(63, 6, value);
             break;
         case 4:
-            setconfig(70, 6, value);
+            setconfig_int(70, 6, value);
             break;
         case 5:
-            setconfig(77, 6, value);
+            setconfig_int(77, 6, value);
             break;
         default:
             break;
@@ -16506,23 +16506,23 @@ void MainWindow::input_max_fovclass_Slot()
 
 void MainWindow::input_boxsize_Slot(int i)
 {
-    float value = i;
+    int value = i;
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 7, value);
+            setconfig_int(23, 7, value);
             break;
         case 2:
-            setconfig(56, 7, value);
+            setconfig_int(56, 7, value);
             break;
         case 3:
-            setconfig(63, 7, value);
+            setconfig_int(63, 7, value);
             break;
         case 4:
-            setconfig(70, 7, value);
+            setconfig_int(70, 7, value);
             break;
         case 5:
-            setconfig(77, 7, value);
+            setconfig_int(77, 7, value);
             break;
         default:
             break;
@@ -16531,23 +16531,23 @@ void MainWindow::input_boxsize_Slot(int i)
 
 void MainWindow::input_max_boxsize_Slot()
 {
-    float value = input_max_boxsize->text().toFloat();
+    int value = input_max_boxsize->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 8, value);
+            setconfig_int(23, 8, value);
             break;
         case 2:
-            setconfig(56, 8, value);
+            setconfig_int(56, 8, value);
             break;
         case 3:
-            setconfig(63, 8, value);
+            setconfig_int(63, 8, value);
             break;
         case 4:
-            setconfig(70, 8, value);
+            setconfig_int(70, 8, value);
             break;
         case 5:
-            setconfig(77, 8, value);
+            setconfig_int(77, 8, value);
             break;
         default:
             break;
@@ -16556,23 +16556,23 @@ void MainWindow::input_max_boxsize_Slot()
 
 void MainWindow::input_mtd_sensi_Slot()
 {
-    float value = input_mtd_sensi->text().toFloat();
+    int value = input_mtd_sensi->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 9, value);
+            setconfig_int(23, 9, value);
             break;
         case 2:
-            setconfig(56, 9, value);
+            setconfig_int(56, 9, value);
             break;
         case 3:
-            setconfig(63, 9, value);
+            setconfig_int(63, 9, value);
             break;
         case 4:
-            setconfig(70, 9, value);
+            setconfig_int(70, 9, value);
             break;
         case 5:
-            setconfig(77, 9, value);
+            setconfig_int(77, 9, value);
             break;
         default:
             break;
@@ -16581,23 +16581,23 @@ void MainWindow::input_mtd_sensi_Slot()
 
 void MainWindow::input_mtd_rigionx_Slot()
 {
-    float value = input_mtd_rigionx->text().toFloat();
+    int value = input_mtd_rigionx->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 10, value);
+            setconfig_int(23, 10, value);
             break;
         case 2:
-            setconfig(56, 10, value);
+            setconfig_int(56, 10, value);
             break;
         case 3:
-            setconfig(63, 10, value);
+            setconfig_int(63, 10, value);
             break;
         case 4:
-            setconfig(70, 10, value);
+            setconfig_int(70, 10, value);
             break;
         case 5:
-            setconfig(77, 10, value);
+            setconfig_int(77, 10, value);
             break;
         default:
             break;
@@ -16605,23 +16605,23 @@ void MainWindow::input_mtd_rigionx_Slot()
 }
 void MainWindow::input_mtd_rigiony_Slot()
 {
-    float value = input_mtd_rigiony->text().toFloat();
+    int value = input_mtd_rigiony->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 11, value);
+            setconfig_int(23, 11, value);
             break;
         case 2:
-            setconfig(56, 11, value);
+            setconfig_int(56, 11, value);
             break;
         case 3:
-            setconfig(63, 11, value);
+            setconfig_int(63, 11, value);
             break;
         case 4:
-            setconfig(70, 11, value);
+            setconfig_int(70, 11, value);
             break;
         case 5:
-            setconfig(77, 11, value);
+            setconfig_int(77, 11, value);
             break;
         default:
             break;
@@ -16629,23 +16629,23 @@ void MainWindow::input_mtd_rigiony_Slot()
 }
 void MainWindow::input_mtd_rigionw_Slot()
 {
-    float value = input_mtd_rigionw->text().toFloat();
+    int value = input_mtd_rigionw->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 12, value);
+            setconfig_int(23, 12, value);
             break;
         case 2:
-            setconfig(56, 12, value);
+            setconfig_int(56, 12, value);
             break;
         case 3:
-            setconfig(63, 12, value);
+            setconfig_int(63, 12, value);
             break;
         case 4:
-            setconfig(70, 12, value);
+            setconfig_int(70, 12, value);
             break;
         case 5:
-            setconfig(77, 12, value);
+            setconfig_int(77, 12, value);
             break;
         default:
             break;
@@ -16653,23 +16653,23 @@ void MainWindow::input_mtd_rigionw_Slot()
 }
 void MainWindow::input_mtd_rigionh_Slot()
 {
-    float value = input_mtd_rigionh->text().toFloat();
+    int value = input_mtd_rigionh->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(23, 13, value);
+            setconfig_int(23, 13, value);
             break;
         case 2:
-            setconfig(56, 13, value);
+            setconfig_int(56, 13, value);
             break;
         case 3:
-            setconfig(63, 13, value);
+            setconfig_int(63, 13, value);
             break;
         case 4:
-            setconfig(70, 13, value);
+            setconfig_int(70, 13, value);
             break;
         case 5:
-            setconfig(77, 13, value);
+            setconfig_int(77, 13, value);
             break;
         default:
             break;
@@ -16677,23 +16677,23 @@ void MainWindow::input_mtd_rigionh_Slot()
 }
 void MainWindow::common_boxw_Slot()
 {
-    float value = common_boxw->text().toFloat();
+    int value = common_boxw->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 2, value);
+            setconfig_int(29, 2, value);
             break;
         case 2:
-            setconfig(62, 2, value);
+            setconfig_int(62, 2, value);
             break;
         case 3:
-            setconfig(69, 2, value);
+            setconfig_int(69, 2, value);
             break;
         case 4:
-            setconfig(76, 2, value);
+            setconfig_int(76, 2, value);
             break;
         case 5:
-            setconfig(83, 2, value);
+            setconfig_int(83, 2, value);
             break;
         default:
             break;
@@ -16701,23 +16701,23 @@ void MainWindow::common_boxw_Slot()
 }
 void MainWindow::common_boxh_Slot()
 {
-    float value = common_boxh->text().toFloat();
+    int value = common_boxh->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 3, value);
+            setconfig_int(29, 3, value);
             break;
         case 2:
-            setconfig(62, 3, value);
+            setconfig_int(62, 3, value);
             break;
         case 3:
-            setconfig(69, 3, value);
+            setconfig_int(69, 3, value);
             break;
         case 4:
-            setconfig(76, 3, value);
+            setconfig_int(76, 3, value);
             break;
         case 5:
-            setconfig(83, 3, value);
+            setconfig_int(83, 3, value);
             break;
         default:
             break;
@@ -16726,23 +16726,23 @@ void MainWindow::common_boxh_Slot()
 
 void MainWindow::input_cur_fovclass_Slot()
 {
-    float value = input_cur_fovclass->text().toFloat();
+    int value = input_cur_fovclass->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(24, 0, value);
+            setconfig_int(24, 0, value);
             break;
         case 2:
-            setconfig(57, 0, value);
+            setconfig_int(57, 0, value);
             break;
         case 3:
-            setconfig(64, 0, value);
+            setconfig_int(64, 0, value);
             break;
         case 4:
-            setconfig(71, 0, value);
+            setconfig_int(71, 0, value);
             break;
         case 5:
-            setconfig(78, 0, value);
+            setconfig_int(78, 0, value);
             break;
         default:
             break;
@@ -17690,23 +17690,23 @@ void MainWindow::input_vedio_continue13_Slot()
 
 void MainWindow::input_cur_boxsize_Slot()
 {
-    float value = input_cur_boxsize->text().toFloat();
+    int value = input_cur_boxsize->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 0, value);
+            setconfig_int(29, 0, value);
             break;
         case 2:
-            setconfig(62, 0, value);
+            setconfig_int(62, 0, value);
             break;
         case 3:
-            setconfig(69, 0, value);
+            setconfig_int(69, 0, value);
             break;
         case 4:
-            setconfig(76, 0, value);
+            setconfig_int(76, 0, value);
             break;
         case 5:
-            setconfig(83, 0, value);
+            setconfig_int(83, 0, value);
             break;
         default:
             break;
@@ -17715,23 +17715,23 @@ void MainWindow::input_cur_boxsize_Slot()
 
 void MainWindow::input_boxw1_Slot()
 {
-    float value = input_boxw[0]->text().toFloat();
+    int value = input_boxw[0]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 4, value);
+            setconfig_int(29, 4, value);
             break;
         case 2:
-            setconfig(62, 4, value);
+            setconfig_int(62, 4, value);
             break;
         case 3:
-            setconfig(69, 4, value);
+            setconfig_int(69, 4, value);
             break;
         case 4:
-            setconfig(76, 4, value);
+            setconfig_int(76, 4, value);
             break;
         case 5:
-            setconfig(83, 4, value);
+            setconfig_int(83, 4, value);
             break;
         default:
             break;
@@ -17739,23 +17739,23 @@ void MainWindow::input_boxw1_Slot()
 }
 void MainWindow::input_boxw2_Slot()
 {
-    float value = input_boxw[1]->text().toFloat();
+    int value = input_boxw[1]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 6, value);
+            setconfig_int(29, 6, value);
             break;
         case 2:
-            setconfig(62, 6, value);
+            setconfig_int(62, 6, value);
             break;
         case 3:
-            setconfig(69, 6, value);
+            setconfig_int(69, 6, value);
             break;
         case 4:
-            setconfig(76, 6, value);
+            setconfig_int(76, 6, value);
             break;
         case 5:
-            setconfig(83, 6, value);
+            setconfig_int(83, 6, value);
             break;
         default:
             break;
@@ -17763,23 +17763,23 @@ void MainWindow::input_boxw2_Slot()
 }
 void MainWindow::input_boxw3_Slot()
 {
-    float value = input_boxw[2]->text().toFloat();
+    int value = input_boxw[2]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 8, value);
+            setconfig_int(29, 8, value);
             break;
         case 2:
-            setconfig(62, 8, value);
+            setconfig_int(62, 8, value);
             break;
         case 3:
-            setconfig(69, 8, value);
+            setconfig_int(69, 8, value);
             break;
         case 4:
-            setconfig(76, 8, value);
+            setconfig_int(76, 8, value);
             break;
         case 5:
-            setconfig(83, 8, value);
+            setconfig_int(83, 8, value);
             break;
         default:
             break;
@@ -17787,23 +17787,23 @@ void MainWindow::input_boxw3_Slot()
 }
 void MainWindow::input_boxh1_Slot()
 {
-    float value = input_boxh[0]->text().toFloat();
+    int value = input_boxh[0]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 5, value);
+            setconfig_int(29, 5, value);
             break;
         case 2:
-            setconfig(62, 5, value);
+            setconfig_int(62, 5, value);
             break;
         case 3:
-            setconfig(69, 5, value);
+            setconfig_int(69, 5, value);
             break;
         case 4:
-            setconfig(76, 5, value);
+            setconfig_int(76, 5, value);
             break;
         case 5:
-            setconfig(83, 5, value);
+            setconfig_int(83, 5, value);
             break;
         default:
             break;
@@ -17811,23 +17811,23 @@ void MainWindow::input_boxh1_Slot()
 }
 void MainWindow::input_boxh2_Slot()
 {
-    float value = input_boxh[1]->text().toFloat();
+    int value = input_boxh[1]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 7, value);
+            setconfig_int(29, 7, value);
             break;
         case 2:
-            setconfig(62, 7, value);
+            setconfig_int(62, 7, value);
             break;
         case 3:
-            setconfig(69, 7, value);
+            setconfig_int(69, 7, value);
             break;
         case 4:
-            setconfig(76, 7, value);
+            setconfig_int(76, 7, value);
             break;
         case 5:
-            setconfig(83, 7, value);
+            setconfig_int(83, 7, value);
             break;
         default:
             break;
@@ -17835,23 +17835,23 @@ void MainWindow::input_boxh2_Slot()
 }
 void MainWindow::input_boxh3_Slot()
 {
-    float value = input_boxh[2]->text().toFloat();
+    int value = input_boxh[2]->text().toInt();
     switch(cur_channel)
     {
         case 1:
-            setconfig(29, 9, value);
+            setconfig_int(29, 9, value);
             break;
         case 2:
-            setconfig(62, 9, value);
+            setconfig_int(62, 9, value);
             break;
         case 3:
-            setconfig(69, 9, value);
+            setconfig_int(69, 9, value);
             break;
         case 4:
-            setconfig(76, 9, value);
+            setconfig_int(76, 9, value);
             break;
         case 5:
-            setconfig(83, 9, value);
+            setconfig_int(83, 9, value);
             break;
         default:
             break;
@@ -18493,6 +18493,16 @@ void MainWindow::setconfig(int blk, int field, float value)
     send_oneframe(7);
     send_mutex.unlock();
 }
+void MainWindow::setconfig_int(int blk, int field, int value)
+{
+    send_mutex.lock();
+    send_arr[4]=0x51;
+    send_arr[5]=blk;
+    send_arr[6]=field;
+    memcpy(send_arr+7, &value, 4);
+    send_oneframe(7);
+    send_mutex.unlock();
+}
 
 void MainWindow::defaultconfig(int blk)
 {
@@ -18509,4 +18519,38 @@ void MainWindow::saveconfig()
     send_arr[4] = 0x57;
     send_oneframe(1);
     send_mutex.unlock();
+}
+
+unsigned int MainWindow::stringip2int(QString str)
+{
+    unsigned int value = 0;
+    int c0, c1, c2, c3;
+
+    QStringList list = str.split(".");
+    c0 = QString(list.at(0)).toInt();
+    c1 = list.at(1).toInt();
+    c2 = list.at(2).toInt();
+    c3 = list.at(3).toInt();
+
+    value |= ((c0 & 0xff) << 24);
+    value |= ((c1 & 0xff)<< 16);
+    value |= ((c2 & 0xff) << 8);
+    value |= (c3 & 0xff);
+
+    qDebug()<<"send ipvalue="<<value;
+    return value;
+}
+
+QString MainWindow::intip2string(unsigned int value)
+{
+    unsigned int uvalue = value;
+    qDebug()<<"recv ipvalue="<<uvalue;
+    int value0, value1, value2, value3;
+    value0 = (uvalue >> 24) & 0xff;
+    value1 = (uvalue >> 16) & 0xff;
+    value2 = (uvalue >> 8) & 0xff;
+    value3 = uvalue & 0xff;
+    QString str = QString("%1.%2.%3.%4").arg(value0).arg(value1).arg(value2).arg(value3);
+
+    return str;
 }
