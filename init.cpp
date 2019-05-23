@@ -810,7 +810,7 @@ void MainWindow::init_inputCfg()
     input_chroma->addItem("彩色");
     input_chroma->addItem("黑白");
 
-    input_vediohaveornot = new  QCheckBox();
+    input_vediohaveornot = new  QRadioButton();
 
     input_vedio_dpi = new QComboBox;
     input_vedio_dpi->addItem("1080P@25HZ");
@@ -947,7 +947,7 @@ void MainWindow::init_inputCfg()
     connect(btn_update_input,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(input_osdid,SIGNAL(activated(int)),this,SLOT(input_osdid_Slot(int)));
     connect(input_chroma,SIGNAL(activated(int)),this,SLOT(input_chroma_Slot(int)));
-    connect(input_vediohaveornot,SIGNAL(stateChanged(int)),this,SLOT(input_vediohaveornot_Slot(int)));
+    connect(input_vediohaveornot,SIGNAL(clicked(bool)),this,SLOT(input_vediohaveornot_Slot()));
     connect(input_vedio_dpi,SIGNAL(activated(int)),this,SLOT(input_vedio_dpi_Slot(int)));
     connect(input_fovmode,SIGNAL(activated(int)),this,SLOT(input_change_fovemode_Slot(int)));
     connect(input_max_fovclass,SIGNAL(returnPressed()),this,SLOT(input_max_fovclass_Slot()));
@@ -7343,10 +7343,7 @@ void MainWindow::init_mtdCfg()
     h1->addLayout(v1);
     h1->addWidget(label);
 
-    zone_setting =new  QCheckBox;
-
-
-
+    zone_setting =new  QRadioButton;
 
     QLabel *l=new  QLabel;
     l->setText(",");
@@ -7436,7 +7433,7 @@ void MainWindow::init_mtdCfg()
 
     connect(btn_mtd_default,SIGNAL(clicked(bool)),this,SLOT(btn_mtd_Default_Slot()));
     connect(btn_mtd_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
-    connect(zone_setting,SIGNAL(stateChanged(int)),this,SLOT(zone_setting_Slot(int)));
+    connect(zone_setting,SIGNAL(clicked(bool)),this,SLOT(zone_setting_Slot()));
     connect(maxnum,SIGNAL(returnPressed()),this,SLOT(lEdt_maxnum_Slot()));
     connect(uspeed,SIGNAL(returnPressed()),this,SLOT(lEdt_uspeed_Slot()));
     connect(maxpix,SIGNAL(returnPressed()),this,SLOT(lEdt_maxpix_Slot()));
@@ -7873,7 +7870,7 @@ void MainWindow::init_OSDCfg()
 {
     w_osd1=new MyWidget;
     w_osd1->setWindowTitle("字符叠加");
-    checkBox_osdshow = new QCheckBox;
+    checkBox_osdshow = new QRadioButton;
     c=new QComboBox;
     osd1_pos_x=new QLineEdit;
     osd1_pos_y=new QLineEdit;
@@ -7964,7 +7961,7 @@ void MainWindow::init_OSDCfg()
     c_sysosd->addItem("波门");
     c_sysosd->addItem("运行状态");
     checkBox2=new QCheckBox;
-    checkBox_sysosd=new QCheckBox;
+    checkBox_sysosd=new QRadioButton;
     QFormLayout *f_ctrl=new QFormLayout();
     //f_ctrl->addRow(c_cusosd);
     //f_ctrl->addRow(osd_s[0],checkBox2);
@@ -7982,7 +7979,7 @@ void MainWindow::init_OSDCfg()
     connect(btn_osd1_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default_Slot()));
     connect(btn_keep1,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(c,SIGNAL(activated(int)),this,SLOT(CBox_osd_choose_Slot(int)));
-    connect(checkBox_osdshow,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_osd_Slot(int)));
+    connect(checkBox_osdshow,SIGNAL(clicked(bool)),this,SLOT(CBox_show_osd_Slot()));
     connect(osd1_pos_x,SIGNAL(returnPressed()),this,SLOT(osd_posx_Slot()));
     connect(osd1_pos_y,SIGNAL(returnPressed()),this,SLOT(osd_posy_Slot()));
     connect(osd1_lineEdit_context,SIGNAL(returnPressed()),this,SLOT(osd_context_Slot()));
@@ -7997,7 +7994,8 @@ void MainWindow::init_OSDCfg()
     connect(c_cusosd,SIGNAL(activated(int)),this,SLOT(CBox_cusosd_choose_Slot(int)));
     connect(checkBox2,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_cusosd_Slot(int)));
     connect(c_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_sysosd_choose_Slot(int)));
-    connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
+    //connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
+    connect(checkBox_sysosd,SIGNAL(clicked(bool)),this,SLOT(CBox_show_sysosd_Slot()));
 
     w_osd1->setLayout(v2);
 }

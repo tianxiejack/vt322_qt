@@ -683,7 +683,7 @@ private slots:
     void btn_default_input_Slot();
     void input_osdid_Slot(int i);
     void input_chroma_Slot(int i);
-    void input_vediohaveornot_Slot(int arg1);
+    void input_vediohaveornot_Slot();
     void input_vedio_dpi_Slot(int i);
     void input_change_fovemode_Slot(int i);
     void input_set_fov_display(int i);
@@ -1556,7 +1556,7 @@ private slots:
     /*OSD参数设置*/
     void btn_osd_default_Slot();
     void CBox_osd_choose_Slot(int i);
-    void CBox_show_osd_Slot(int arg1);
+    void CBox_show_osd_Slot();
     void osd_posx_Slot();
     void osd_posy_Slot();
     void osd_context_Slot();
@@ -1571,7 +1571,7 @@ private slots:
     void CBox_cusosd_choose_Slot(int i);
     void CBox_show_cusosd_Slot(int arg1);
     void CBox_sysosd_choose_Slot(int i);
-    void CBox_show_sysosd_Slot(int arg1);
+    void CBox_show_sysosd_Slot();
 
     /*捕获框设置*/
     void checkBox_cross_Slot();
@@ -1604,7 +1604,7 @@ private slots:
     //移动检测配置
     void btn_mtd_Default_Slot();
     void btn_mtd_Update_Slot();
-    void zone_setting_Slot(int arg1);
+    void zone_setting_Slot();
     void lEdt_rigion_Slot();
     void lEdt_rigion_Cen_x_Slot();
     void lEdt_rigion_Cen_y_Slot();
@@ -1885,7 +1885,7 @@ private:
     int cur_channel = 1;
     QPushButton *btn_default_input,*btn_update_input;
     QLabel *label_chid_input;
-    QCheckBox *input_vediohaveornot;
+    QRadioButton *input_vediohaveornot;
     QComboBox *input_vedio_dpi,*input_fovmode;
     QLineEdit *input_max_fovclass,*input_cur_fovclass,*input_max_boxsize,*input_cur_boxsize,*input_boxw[3],*input_boxh[3];
     QComboBox *input_osdid,*input_chroma,*input_boxsize;
@@ -2130,7 +2130,7 @@ private:
     QComboBox *output,*polar,*Priority_judgment;
     QString mtd_s[18]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间(单位：毫秒)","优先级判断",
                        "预置方位X","预置方位Y","预置位ZOOM","预置位ID","开关量输出","开关量输出极性","报警延时时间","区域设置提示框"};
-    QCheckBox  *zone_setting;
+    QRadioButton  *zone_setting;
     QLineEdit *presetx,*presety,*presetzoom,*presetid;
 
     /*UTC*/
@@ -2162,7 +2162,7 @@ private:
     QString string_drawLine[6]={"画线显示否","画线的颜色","十字宽","十字高","画中画十字宽","画中画十字高"};
     QCheckBox *checkBox_cross;
     /*OSD*/
-    QCheckBox *checkBox_osdshow;
+    QRadioButton *checkBox_osdshow;
     QComboBox *c,*CBox_datatype,*CBox_color,*CBox_font,*CBox_font_size,*CBox_transparency;
     QPushButton *btn_osd1_default,*btn_keep1;
     MyWidget *w_osd1;
@@ -2172,7 +2172,8 @@ private:
 
     QPushButton *btn_osd2_default,*btn_keep2;
     QComboBox *c_cusosd, *c_sysosd;
-    QCheckBox *checkBox2, *checkBox_sysosd;
+    QCheckBox *checkBox2;
+    QRadioButton *checkBox_sysosd;
 
     quint32 cusosd_state = 0;
     quint32 sysosd_state = 0;

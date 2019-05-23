@@ -8983,14 +8983,14 @@ void MainWindow::CBox_osd_choose_Slot(int i)
         read_config(i+14);
 }
 
-void MainWindow::CBox_show_osd_Slot(int arg1)
+void MainWindow::CBox_show_osd_Slot()
 {
     int value;
-    if(arg1 == Qt::Checked)
+    if(checkBox_osdshow->isChecked())
     {
         value = 1;
     }
-    else if(arg1 == Qt::Unchecked)
+    else
     {
         value = 0;
     }
@@ -9110,14 +9110,14 @@ void MainWindow::CBox_sysosd_choose_Slot(int i)
     read_config(52);
 }
 
-void MainWindow::CBox_show_sysosd_Slot(int arg1)
+void MainWindow::CBox_show_sysosd_Slot()
 {
     int i = c_sysosd->currentIndex();
-    if(arg1 == Qt::Checked)
+    if(checkBox_sysosd->isChecked())
     {
         sysosd_state |= (1 << i);
     }
-    else if(arg1 == Qt::Unchecked)
+    else
     {
         sysosd_state &= ~(1 << i);
     }
@@ -9756,14 +9756,14 @@ void MainWindow::btn_mtd_Update_Slot()
 
 }
 
-void MainWindow::zone_setting_Slot(int arg1)
+void MainWindow::zone_setting_Slot()
 {
     int value = 0;
-    if(arg1 == Qt::Checked)
+    if(zone_setting->isChecked())
     {
         value = 1;
     }
-    else if(arg1 == Qt::Unchecked)
+    else
     {
         value = 0;
     }
@@ -16337,14 +16337,14 @@ void MainWindow::input_chroma_Slot(int i)
     }
 }
 
-void MainWindow::input_vediohaveornot_Slot(int arg1)
+void MainWindow::input_vediohaveornot_Slot()
 {
     int value = 0;
-    if(arg1 == Qt::Checked)
+    if(input_vediohaveornot->isChecked())
     {
         value = 1;
     }
-    else if(arg1 == Qt::Unchecked)
+    else
     {
         value = 0;
     }
