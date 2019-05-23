@@ -196,7 +196,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         rto_trkerrorx->setText(QString::number(errorx));
         rto_trkerrory->setText(QString::number(errory));
     }
-    else if(0x52 == i){
+    else if((0x52 == i) || (0x51 == i)){
         switch (output_array[1]) {
             case 1:
                 if(w_plat->show_stat)
