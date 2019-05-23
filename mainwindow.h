@@ -2128,7 +2128,7 @@ private:
     QPushButton *btn_mtd_default,*btn_mtd_update;
     QLineEdit *rigion_Cen_x,*rigion_Cen_y,*rigion_Cen_w,*rigion_Cen_h,*maxnum,*uspeed,*maxpix,*minpix,*sensitive,*dspeed,*trktime,*Alarm_delay;
     QComboBox *output,*polar,*Priority_judgment;
-    QString mtd_s[18]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间(单位：毫秒)","优先级判断",
+    QString mtd_s[18]={"检测区域中心坐标","检测区域宽高","最多检测个数","模板更新速度","目标面积最大值","目标面积最小值","灵敏度阈值","检测速度","最大跟踪时间(秒)","优先级判断",
                        "预置方位X","预置方位Y","预置位ZOOM","预置位ID","开关量输出","开关量输出极性","报警延时时间","区域设置提示框"};
     QRadioButton  *zone_setting;
     QLineEdit *presetx,*presety,*presetzoom,*presetid;
@@ -2146,7 +2146,7 @@ private:
     QLineEdit *utc3_l0,*utc3_l1,*utc3_l2,*utc3_l3,*utc3_l4,*utc3_l5,
               *utc3_l6,*utc3_l7,*utc3_l8,*utc3_l9,*utc3_l10,*utc3_l11,
               *utc3_l12,*utc3_l13,*utc3_l14,*utc3_l15;
-    QString utc_s1[16]={"occlution_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","惯性跟踪时间"};
+    QString utc_s1[16]={"occlution_thred","retry_acq_thred","up_factor","res_distance","res_area","gapframe","enhEnable","cliplimit","dictEnable","moveX","moveY","moveX2","moveY2","segPixelX","segPixelY","惯性跟踪时间(毫秒)"};
     QString utc_s2[16]={"ScalerLarge","ScalerMid","ScalerSmall","Scatter","ratio","FilterEnable","BigSecEnable","SalientThred","ScalerEnable","DynamicRatioEnable","acqSize.width","acqSize.height","TrkAim 4:3 Enable","SceneMVEnable","BackTrackEnable","bAveTrkPos"};
     QString utc_s3[16]={"fTau","buildFrms","LostFrmThred","histMvThred","detectFrms","stillFrms","stillThred","bKalmanFilter","xMVThred","yMVThred","xStillThred","yStillThred","slopeThred","kalmanHistThred","kalmanCoefQ","kalmanCoefR"};
 

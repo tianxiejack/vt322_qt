@@ -157,8 +157,23 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
         memcpy(&value_inte,output_array+3,4);
     }
 
-
-    if(0x43 == i)
+    if((0x41 == i) || (0x10 == i))
+    {
+        unsigned short value_int = (output_array[1] | (output_array[2]<<8));
+        unsigned short value_int2 = (output_array[3] | (output_array[4]<<8));
+        if(w_input->show_stat)
+        {
+            ledt_search_azimuth->setText(QString::number(value_int));
+            ledt_search_pitch->setText(QString::number(value_int2));
+        }
+    }
+    else if((0x42 == i) || (0x12 == i))
+    {
+        unsigned short value_int = (output_array[1] | (output_array[2]<<8));
+        if(w_input->show_stat)
+            ledt_search_zoom->setText(QString::number(value_int));
+    }
+    else if(0x43 == i)
     {
         int curstat = output_array[1];
         int outputtype = output_array[2];
@@ -944,128 +959,6 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                read_config(102);
            }      
        }
-    }
-    else if(0x41 == i)
-    {
-        unsigned short value_int = (output_array[1] | (output_array[2]<<8));
-        unsigned short value_int2 = (output_array[3] | (output_array[4]<<8));
-        if(w_sersor_1->show_stat)
-        {
-            ledt_search_azimuth->setText(QString::number(value_int));
-            ledt_search_pitch->setText(QString::number(value_int2));
-        }
-        if(w_seitchField_1->show_stat)
-        {
-            Change_ledt_search_azimuth->setText(QString::number(value_int));
-            Change_ledt_search_pitch->setText(QString::number(value_int2));
-        }
-        if(w_ContinueField_1->show_stat)
-        {
-            continue_ledt_search_azimuth->setText(QString::number(value_int));
-            continue_ledt_search_pitch->setText(QString::number(value_int2));
-        }
-
-        if(w_sersor_1_sec->show_stat)
-        {
-            ledt_search_azimuth_sec->setText(QString::number(value_int));
-            ledt_search_pitch_sec->setText(QString::number(value_int2));
-        }
-        if(w_seitchField_1_sec->show_stat)
-        {
-            Change_ledt_search_azimuth_sec->setText(QString::number(value_int));
-            Change_ledt_search_pitch_sec->setText(QString::number(value_int2));
-        }
-        if(w_ContinueField_1_sec->show_stat)
-        {
-            continue_ledt_search_azimuth_sec->setText(QString::number(value_int));
-            continue_ledt_search_pitch_sec->setText(QString::number(value_int2));
-        }
-
-        if(w_sersor_1_thi->show_stat)
-        {
-            ledt_search_azimuth_thi->setText(QString::number(value_int));
-            ledt_search_pitch_thi->setText(QString::number(value_int2));
-        }
-        if(w_seitchField_1_thi->show_stat)
-        {
-            Change_ledt_search_azimuth_thi->setText(QString::number(value_int));
-            Change_ledt_search_pitch_thi->setText(QString::number(value_int2));
-        }
-        if(w_ContinueField_1_thi->show_stat)
-        {
-            continue_ledt_search_azimuth_thi->setText(QString::number(value_int));
-            continue_ledt_search_pitch_thi->setText(QString::number(value_int2));
-        }
-
-        if(w_sersor_1_fou->show_stat)
-        {
-            ledt_search_azimuth_fou->setText(QString::number(value_int));
-            ledt_search_pitch_fou->setText(QString::number(value_int2));
-        }
-        if(w_seitchField_1_fou->show_stat)
-        {
-            Change_ledt_search_azimuth_fou->setText(QString::number(value_int));
-            Change_ledt_search_pitch_fou->setText(QString::number(value_int2));
-        }
-        if(w_ContinueField_1_fou->show_stat)
-        {
-            continue_ledt_search_azimuth_fou->setText(QString::number(value_int));
-            continue_ledt_search_pitch_fou->setText(QString::number(value_int2));
-        }
-
-        if(w_sersor_1_fif->show_stat)
-        {
-            ledt_search_azimuth_fif->setText(QString::number(value_int));
-            ledt_search_pitch_fif->setText(QString::number(value_int2));
-        }
-        if(w_seitchField_1_fif->show_stat)
-        {
-            Change_ledt_search_azimuth_fif->setText(QString::number(value_int));
-            Change_ledt_search_pitch_fif->setText(QString::number(value_int2));
-        }
-        if(w_ContinueField_1_fif->show_stat)
-        {
-            continue_ledt_search_azimuth_fif->setText(QString::number(value_int));
-            continue_ledt_search_pitch_fif->setText(QString::number(value_int2));
-        }
-    }
-    else if(0x42 == i)
-    {
-        unsigned short value_int = (output_array[1] | (output_array[2]<<8));
-        if(w_sersor_1->show_stat)
-            ledt_search_zoom->setText(QString::number(value_int));
-        if(w_seitchField_1->show_stat)
-            Change_ledt_search_zoom->setText(QString::number(value_int));
-        if(w_ContinueField_1->show_stat)
-            continue_ledt_search_zoom->setText(QString::number(value_int));
-
-        if(w_sersor_1_sec->show_stat)
-            ledt_search_zoom_sec->setText(QString::number(value_int));
-        if(w_seitchField_1_sec->show_stat)
-            Change_ledt_search_zoom_sec->setText(QString::number(value_int));
-        if(w_ContinueField_1_sec->show_stat)
-            continue_ledt_search_zoom_sec->setText(QString::number(value_int));
-
-        if(w_sersor_1_thi->show_stat)
-            ledt_search_zoom_thi->setText(QString::number(value_int));
-        if(w_seitchField_1_thi->show_stat)
-            Change_ledt_search_zoom_thi->setText(QString::number(value_int));
-        if(w_ContinueField_1_thi->show_stat)
-            continue_ledt_search_zoom_thi->setText(QString::number(value_int));
-
-        if(w_sersor_1_fou->show_stat)
-            ledt_search_zoom_fou->setText(QString::number(value_int));
-        if(w_seitchField_1_fou->show_stat)
-            Change_ledt_search_zoom_fou->setText(QString::number(value_int));
-        if(w_ContinueField_1_fou->show_stat)
-            continue_ledt_search_zoom_fou->setText(QString::number(value_int));
-
-        if(w_sersor_1_fif->show_stat)
-            ledt_search_zoom_fif->setText(QString::number(value_int));
-        if(w_seitchField_1_fif->show_stat)
-            Change_ledt_search_zoom_fif->setText(QString::number(value_int));
-        if(w_ContinueField_1_fif->show_stat)
-            continue_ledt_search_zoom_fif->setText(QString::number(value_int));
     }
     memset(output_array,0,sizeof(output_array));
 }
