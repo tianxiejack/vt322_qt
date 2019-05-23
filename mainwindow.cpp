@@ -10683,8 +10683,8 @@ void MainWindow::btn_Speed_Default_Slot_sec()
 
 void MainWindow::combox_commway_Slot(int i)
 {
-    float value = i;
-    setconfig(2, 0, value);
+    int value = i;
+    setconfig_int(2, 0, value);
 
 }
 void MainWindow::btn_Speed_Update_Slot_sec()
@@ -10749,14 +10749,14 @@ void MainWindow::lEdt_deady_Slot_sec()
 
 void MainWindow::lEdt_out_address_Slot_sec()
 {
-    float value=out_address_sec->text().toFloat();
-    setconfig(2, 9, value);
+    int value=out_address_sec->text().toInt();
+    setconfig_int(2, 9, value);
 }
 
 void MainWindow::lEdt_platparam2_Slot()
 {
-    float value=platparam2->text().toFloat();
-    setconfig(2, 10, value);
+    int value=platparam2->text().toInt();
+    setconfig_int(2, 10, value);
 }
 
 void MainWindow::combox_output_d_type_Slot_sec(int index)
@@ -10773,7 +10773,7 @@ void MainWindow::combox_output_d_type_Slot_sec(int index)
 
 void MainWindow::combox_baud_rate_type_Slot_sec(int index)
 {
-    float value = 9600;
+    int value = 9600;
     switch(index)
     {
         case 0:
@@ -10800,12 +10800,12 @@ void MainWindow::combox_baud_rate_type_Slot_sec(int index)
         default:
             break;
     }
-    setconfig(2, 1, value);
+    setconfig_int(2, 1, value);
 }
 
 void MainWindow::combox_data_bit_type_Slot_sec(int index)
 {
-    float value = 8;
+    int value = 8;
     switch (index)
     {
         case 0:
@@ -10823,7 +10823,7 @@ void MainWindow::combox_data_bit_type_Slot_sec(int index)
         default:
             break;
     }
-    setconfig(2, 2, value);
+    setconfig_int(2, 2, value);
 }
 
 void MainWindow::combox_stop_bit_type_Slot_sec(int index)
@@ -10847,14 +10847,14 @@ void MainWindow::combox_stop_bit_type_Slot_sec(int index)
 
 void MainWindow::combox_parity_bit_type_Slot_sec(int index)
 {
-    float value = index;
-    setconfig(2, 3, value);
+    int value = index;
+    setconfig_int(2, 3, value);
 }
 
 void MainWindow::combox_flow_control_type_Slot_sec(int index)
 {
-    float value = index + 1;
-    setconfig(2, 5, value);
+    int value = index + 1;
+    setconfig_int(2, 5, value);
 }
 
 void MainWindow::lEdt_netip_Slot()
@@ -10864,14 +10864,14 @@ void MainWindow::lEdt_netip_Slot()
 }
 void MainWindow::lEdt_netport_Slot()
 {
-    float value=netport->text().toFloat();
-    setconfig(2, 7, value);
+    int value=netport->text().toInt();
+    setconfig_int(2, 7, value);
 }
 
 void MainWindow::combox_platprotocol_Slot(int index)
 {
-    float value = index;
-    setconfig(2, 8, value);
+    int value = index;
+    setconfig_int(2, 8, value);
 }
 
 void MainWindow::lEdt_speedx1_Slot_thi()

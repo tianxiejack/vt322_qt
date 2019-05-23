@@ -3838,7 +3838,7 @@ void MainWindow::show_blk_input1(int field, float value, int value_inte)
             }
             break;
         case 6:
-            input_max_fovclass->setText(QString::number(value));
+            input_max_fovclass->setText(QString::number(value_inte));
             break;
         case 7:
             if((value_inte >= 0) && (value_inte <= 2))

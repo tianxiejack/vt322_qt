@@ -7620,7 +7620,7 @@ void MainWindow::init_utcCfg()
     v3->addWidget(btn_utc3_default);
     v3->addWidget(btn_utc3_update);
     QLabel *label3=new QLabel;
-    label3->setText("UTC1参数设置");
+    label3->setText("UTC3参数设置");
     QHBoxLayout *h3=new QHBoxLayout;
     h3->addLayout(v3);
     h3->addWidget(label3);
@@ -7997,7 +7997,7 @@ void MainWindow::init_OSDCfg()
     connect(c_cusosd,SIGNAL(activated(int)),this,SLOT(CBox_cusosd_choose_Slot(int)));
     connect(checkBox2,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_cusosd_Slot(int)));
     connect(c_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_sysosd_choose_Slot(int)));
-    connect(checkBox_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
+    connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
 
     w_osd1->setLayout(v2);
 }
