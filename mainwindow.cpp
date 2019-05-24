@@ -9090,19 +9090,15 @@ void MainWindow::CBox_cusosd_choose_Slot(int i)
     read_config(52);
 }
 
-void MainWindow::CBox_show_cusosd_Slot(int arg1)
+void MainWindow::cusgroupClicked(int index)
 {
-    int i = c_cusosd->currentIndex();
-    if(arg1 == Qt::Checked)
-    {
-        cusosd_state |= (1 << i);
-    }
-    else if(arg1 == Qt::Unchecked)
-    {
-        cusosd_state &= ~(1 << i);
-    }
-    float value = cusosd_state;
-    setconfig(52, 2, value);
+    int value;
+    if(0 == index)
+        value = 1;
+    else if(1 == index)
+        value = 0;
+
+    setconfig_int(52, 2, value);
 }
 
 void MainWindow::CBox_sysosd_choose_Slot(int i)

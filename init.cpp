@@ -7960,11 +7960,19 @@ void MainWindow::init_OSDCfg()
     c_sysosd->addItem("十字");
     c_sysosd->addItem("波门");
     c_sysosd->addItem("运行状态");
-    checkBox2=new QCheckBox;
+    cusgroup = new QButtonGroup;
+    cusosd_open = new QRadioButton("开");
+    cusosd_close = new QRadioButton("关");
+    cusgroup->addButton(cusosd_open, 0);
+    cusgroup->addButton(cusosd_close, 1);
+    QHBoxLayout *bl = new QHBoxLayout;
+    bl->addWidget(cusosd_open);
+    bl->addWidget(cusosd_close);
     checkBox_sysosd=new QRadioButton;
     QFormLayout *f_ctrl=new QFormLayout();
     //f_ctrl->addRow(c_cusosd);
     //f_ctrl->addRow(osd_s[0],checkBox2);
+    f_ctrl->addRow("用户自定义字符总开关",bl);
     f_ctrl->addRow(c_sysosd);
     f_ctrl->addRow(osd_s[0],checkBox_sysosd);
     QVBoxLayout *v_ctrl3 = new QVBoxLayout;
@@ -7992,9 +8000,8 @@ void MainWindow::init_OSDCfg()
     connect(btn_osd2_default,SIGNAL(clicked(bool)),this,SLOT(btn_osd_default2_Slot()));
     connect(btn_keep2,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(c_cusosd,SIGNAL(activated(int)),this,SLOT(CBox_cusosd_choose_Slot(int)));
-    connect(checkBox2,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_cusosd_Slot(int)));
+    connect(cusgroup, SIGNAL(buttonClicked(int)), this, SLOT(cusgroupClicked(int)));
     connect(c_sysosd,SIGNAL(activated(int)),this,SLOT(CBox_sysosd_choose_Slot(int)));
-    //connect(checkBox_sysosd,SIGNAL(stateChanged(int)),this,SLOT(CBox_show_sysosd_Slot(int)));
     connect(checkBox_sysosd,SIGNAL(clicked(bool)),this,SLOT(CBox_show_sysosd_Slot()));
 
     w_osd1->setLayout(v2);

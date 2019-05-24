@@ -710,14 +710,15 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         checkBox_sysosd->setChecked(sysosd_state & (1 << i));
 
                     }
-                    /*
+
                     else if(2 == output_array[2])
                     {
-                        cusosd_state = value_inte;
-                        int i = c_cusosd->currentIndex();
-                        checkBox2->setChecked(cusosd_state & (1 << i));
+                        if(value_inte)
+                            cusosd_open->setChecked(true);
+                        else
+                            cusosd_close->setChecked(true);
                     }
-                    */
+
                 }
                 break;
             case 54:
@@ -1071,7 +1072,7 @@ void MainWindow::read_config(int block)
             send_read_config(block,4,5);
             break;
         case 52:
-            send_read_config(block,1,1);
+            send_read_config(block,1,2);
             break;
         case 54:
             send_read_config(block,0,4);

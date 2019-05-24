@@ -1569,7 +1569,7 @@ private slots:
 
     void btn_osd_default2_Slot();
     void CBox_cusosd_choose_Slot(int i);
-    void CBox_show_cusosd_Slot(int arg1);
+    void cusgroupClicked(int index);
     void CBox_sysosd_choose_Slot(int i);
     void CBox_show_sysosd_Slot();
 
@@ -2172,7 +2172,9 @@ private:
 
     QPushButton *btn_osd2_default,*btn_keep2;
     QComboBox *c_cusosd, *c_sysosd;
-    QCheckBox *checkBox2;
+    QRadioButton *cusosd_open, *cusosd_close;
+    QButtonGroup *cusgroup;
+
     QRadioButton *checkBox_sysosd;
 
     quint32 cusosd_state = 0;
