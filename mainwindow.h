@@ -221,7 +221,8 @@ signals:
 
 
 public slots:
-
+    int checktablex(signed short value);
+    int checktabley(signed short value);
     /*定时器函数*/
     void timeoutSlot();
    	void socketTimeoutSlot();

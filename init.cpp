@@ -8429,10 +8429,16 @@ void MainWindow::sendposmove(int x, int y)
             else if(sy > 0)
                 send_arr[5] |= (1 << 3);
         }
-        send_arr[6] = abs(sx) & 0xff;
-        send_arr[7] = (abs(sx) >> 8) & 0xff;
-        send_arr[8] = abs(sy) & 0xff;
-        send_arr[9] = (abs(sy) >> 8) & 0xff;
+
+        int stepx = 2;
+        int stepy = 2;
+        stepx = checktablex(sx);
+        stepy = checktabley(sy);
+
+        send_arr[6] = abs(stepx) & 0xff;
+        send_arr[7] = (abs(stepx) >> 8) & 0xff;
+        send_arr[8] = abs(stepy) & 0xff;
+        send_arr[9] = (abs(stepy) >> 8) & 0xff;
         send_oneframe(6);
         send_mutex.unlock();
     }
@@ -8440,6 +8446,18 @@ void MainWindow::sendposmove(int x, int y)
     old_y = sy;
 }
 
+int MainWindow::checktablex(signed short value)
+{
+    int step_result;
+    step_result = abs(value) * 10 / 1920;
+    return step_result;
+}
+int MainWindow::checktabley(signed short value)
+{
+    int step_result;
+    step_result = abs(value) * 10 / 1080;
+    return step_result;
+}
 void MainWindow::timeoutSlot()
 {
     switch( value_search){
