@@ -1907,7 +1907,7 @@ private:
 
     QPushButton *set_azimuth,*set_pitch,*set_zoom,*search_azimuth,*search_pitch,*search_zoom;
     QLineEdit  *ledt_set_azimuth,*ledt_set_pitch,*ledt_set_zoom,*ledt_search_azimuth,*ledt_search_pitch,*ledt_search_zoom;
-    QString vedio_s_input[10]={"通道名称的OSD块号","色度","是否接有摄像头","视频格式","视场模式选择","检测灵敏度","检测处理区域X","检测处理区域Y","检测处理区域W","检测处理区域H"};
+    QString vedio_s_input[10]={"通道名称的OSD ID","色度","是否接有摄像头","视频格式","视场模式选择","检测灵敏度","检测处理区域X","检测处理区域Y","检测处理区域W","检测处理区域H"};
     QLabel*input_buchang[7];
     QVBoxLayout *input_v0;
 

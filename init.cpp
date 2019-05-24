@@ -830,7 +830,7 @@ void MainWindow::init_inputCfg()
     input_mtd_rigionw = new QLineEdit;
     input_mtd_rigionh = new QLineEdit;
 
-    form_video1.addRow(vedio_s_input[0],input_osdid);
+    //form_video1.addRow(vedio_s_input[0],input_osdid);
     form_video1.addRow(vedio_s_input[1],input_chroma);
     form_video1.addRow(vedio_s_input[2],input_vediohaveornot);
     form_video1.addRow(vedio_s_input[3],input_vedio_dpi);
