@@ -177,8 +177,11 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     {
         int curstat = output_array[1];
         int outputtype = output_array[2];
-        short errorx = (output_array_6[3] | (output_array_6[4]<<8));
-        short errory = (output_array_6[5] | (output_array_6[6]<<8));
+        float errorx, errory;
+        memcpy(&errorx, output_array + 3, 4);
+        memcpy(&errory, output_array + 7, 4);
+        //short errorx = (output_array_6[3] | (output_array_6[4]<<8));
+        //short errory = (output_array_6[5] | (output_array_6[6]<<8));
 
         switch(curstat)
         {
@@ -190,6 +193,9 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                 break;
             case 0x02:
                 rto_currstat->setText("惯性跟踪");
+                break;
+            case 0x03:
+                rto_currstat->setText("目标丢失");
                 break;
             default:
                 break;
