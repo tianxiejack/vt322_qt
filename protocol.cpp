@@ -3703,8 +3703,8 @@ void MainWindow::show_blk_input1(int field, float value, int value_inte)
     switch(field)
     {
         case 1:
-            if((value_inte >= 1) && (value_inte <= 32))
-            input_osdid->setCurrentIndex(value_inte - 1);
+            if((value_inte >= 0) && (value_inte <= 31))
+            input_osdid->setCurrentIndex(value_inte);
             break;
         case 2:
             if((0 == value_inte) || (1 == value_inte))

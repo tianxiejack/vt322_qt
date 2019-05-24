@@ -16285,7 +16285,7 @@ void MainWindow::btn_default_input_Slot()
 
 void MainWindow::input_osdid_Slot(int i)
 {
-    int value = i + 1;
+    int value = i;
     switch(cur_channel)
     {
         case 1:
