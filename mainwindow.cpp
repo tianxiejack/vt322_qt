@@ -15421,8 +15421,8 @@ void MainWindow::on_btn_right_2_clicked()
 
 void MainWindow::on_btnSecTrack_open_clicked()
 {
-    value_x=960;
-    value_y=540;
+    //value_x=960;
+    //value_y=540;
     send_mutex.lock();
     send_arr[4] = 0x07;
     send_arr[5] = 0x01;
@@ -15452,6 +15452,8 @@ void MainWindow::on_btn_ok_clicked()
 
 void MainWindow::on_btn_up_pressed()
 {
+    on_btnSecTrack_open_clicked();
+
     value_search=0;
     value_y-=5;
     send_mutex.lock();
@@ -15472,6 +15474,8 @@ void MainWindow::on_btn_up_released()
 
 void MainWindow::on_btn_right_pressed()
 {
+    on_btnSecTrack_open_clicked();
+
     value_search=1;
     value_x+=5;
     send_mutex.lock();
@@ -15492,6 +15496,8 @@ void MainWindow::on_btn_right_released()
 
 void MainWindow::on_btn_left_pressed()
 {
+    on_btnSecTrack_open_clicked();
+
     value_search=2;
     value_x-=5;
     send_mutex.lock();
@@ -15512,6 +15518,8 @@ void MainWindow::on_btn_left_released()
 
 void MainWindow::on_btn_down_pressed()
 {
+    on_btnSecTrack_open_clicked();
+
     value_search=3;
     value_y+=5;
     send_mutex.lock();

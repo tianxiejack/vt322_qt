@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>79</y>
+      <y>59</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -148,7 +148,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>140</y>
+      <y>120</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -161,7 +161,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>110</y>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -174,7 +174,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>110</y>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -187,7 +187,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>110</y>
+      <y>90</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -436,32 +436,6 @@
      <string>调用预置位</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSecTrack_open">
-    <property name="geometry">
-     <rect>
-      <x>22</x>
-      <y>55</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>开启</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnSecTrack_close">
-    <property name="geometry">
-     <rect>
-      <x>67</x>
-      <y>55</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>关闭</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnNextTarget">
     <property name="geometry">
      <rect>
@@ -512,8 +486,6 @@
    <zorder>widget</zorder>
    <zorder>widget_2</zorder>
    <zorder>call_preset_bit</zorder>
-   <zorder>btnSecTrack_open</zorder>
-   <zorder>btnSecTrack_close</zorder>
    <zorder>btnNextTarget</zorder>
    <zorder>btnLastTarget</zorder>
   </widget>
