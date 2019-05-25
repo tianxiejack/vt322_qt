@@ -8313,10 +8313,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     {
         mousePress = 1;
         updatecircle_s(x, y);
-        if(ui->radioButton_acqmode->isChecked())
+        //if(ui->radioButton_acqmode->isChecked())
             sendjoyevent(x, y);
-        else if(ui->radioButton_2_acqmode->isChecked())
-            sendposmove(x, y);
+        //else if(ui->radioButton_2_acqmode->isChecked())
+            //sendposmove(x, y);
     }
 }
 
@@ -8327,7 +8327,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
     int y = POINTY;
 
     updatecircle_s(x, y);
-    if(ui->radioButton_acqmode->isChecked())
+    //if(ui->radioButton_acqmode->isChecked())
     {
         sendjoyevent(x, y);
         sendjoyevent(x, y);
@@ -8343,10 +8343,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     if(mousePress && InJoys(x,y))
     {
         updatecircle_s(x, y);
-        if(ui->radioButton_acqmode->isChecked())
+        //if(ui->radioButton_acqmode->isChecked())
             sendjoyevent(x, y);
-        else if(ui->radioButton_2_acqmode->isChecked())
-            sendposmove(x, y);
+        //else if(ui->radioButton_2_acqmode->isChecked())
+            //sendposmove(x, y);
     }
 }
 
