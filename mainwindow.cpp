@@ -16471,7 +16471,12 @@ void MainWindow::input_set_fov_display(int i)
     {
         for(int i = 0; i < 13; i++)
             vedio_continue[i]->setEnabled(false);
-        for(int i = 5; i < 13; i++)
+
+        int switchnum = input_max_fovclass->text().toInt();
+        if((switchnum < 1) || (switchnum > 5))
+            switchnum = 5;
+
+        for(int i = switchnum; i < 13; i++)
         {
             vedio_continue_Fov[i]->setEnabled(false);
             input_l1dv[i]->setEnabled(false);
@@ -16480,6 +16485,28 @@ void MainWindow::input_set_fov_display(int i)
             vedio_spbx_continue[i]->setEnabled(false);
             vedio_spby_continue[i]->setEnabled(false);
         }
+
+    }
+}
+
+void MainWindow::input_set_boxsize_display()
+{
+
+    for(int i = 0; i < 3; i++)
+    {
+       input_boxw[i]->setEnabled(true);
+       input_boxh[i]->setEnabled(true);
+    }
+
+
+    int num = input_max_boxsize->text().toInt();
+    if((num < 1) || (num > 3))
+        num = 3;
+
+    for(int i = num; i < 3; i++)
+    {
+        input_boxw[i]->setEnabled(false);
+        input_boxh[i]->setEnabled(false);
     }
 }
 
@@ -16506,6 +16533,8 @@ void MainWindow::input_max_fovclass_Slot()
         default:
             break;
     }
+    if(input_fovmode->currentIndex() == 1)
+        input_set_fov_display(1);
 }
 
 void MainWindow::input_boxsize_Slot(int i)
@@ -16556,6 +16585,7 @@ void MainWindow::input_max_boxsize_Slot()
         default:
             break;
     }
+    input_set_boxsize_display();
 }
 
 void MainWindow::input_mtd_sensi_Slot()

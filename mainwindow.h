@@ -689,6 +689,7 @@ private slots:
     void input_vedio_dpi_Slot(int i);
     void input_change_fovemode_Slot(int i);
     void input_set_fov_display(int i);
+    void input_set_boxsize_display();
     void input_max_fovclass_Slot();
     void input_boxsize_Slot(int i);
     void input_max_boxsize_Slot();

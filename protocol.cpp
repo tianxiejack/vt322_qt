@@ -1029,7 +1029,9 @@ void MainWindow::read_config(int block)
         case 63:
         case 70:
         case 77:
-            send_read_config(block,1,13);
+            send_read_config(block,6,6);
+            send_read_config(block,1,5);
+            send_read_config(block,7,13);
             break;
         case 24:
         case 57:
@@ -3746,6 +3748,7 @@ void MainWindow::show_blk_input1(int field, float value, int value_inte)
             break;
         case 8:
             input_max_boxsize->setText(QString::number(value_inte));
+            input_set_boxsize_display();
             break;
         case 9:
             input_mtd_sensi->setText(QString::number(value_inte));
