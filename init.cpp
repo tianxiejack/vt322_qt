@@ -8326,6 +8326,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
     int x = POINTX;
     int y = POINTY;
 
+    if(ui->radioButton_2_acqmode->isChecked())
+        return;
+
     updatecircle_s(x, y);
     //if(ui->radioButton_acqmode->isChecked())
     {
@@ -8348,6 +8351,18 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         //else if(ui->radioButton_2_acqmode->isChecked())
             //sendposmove(x, y);
     }
+}
+
+void MainWindow::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    int x = POINTX;
+    int y = POINTY;
+
+    updatecircle_s(x, y);
+
+    sendjoyevent(x, y);
+    sendjoyevent(x, y);
+    sendjoyevent(x, y);
 }
 
 void MainWindow::updatecircle_s(int x, int y)

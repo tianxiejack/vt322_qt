@@ -82,6 +82,7 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent (QMouseEvent * event);
     void mouseMoveEvent(QMouseEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
     void updatecircle_s(int x, int y);
     int InJoys(int x, int y);
     void sendjoyevent(int x, int y);
