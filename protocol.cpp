@@ -911,7 +911,7 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
     }
     else if(0x54 == i)
     {
-       if(output_array[1] != 0xff)
+       if(output_array[1] != 0)
            read_config(output_array[1]);
        else
        {
