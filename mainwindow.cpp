@@ -14107,13 +14107,9 @@ void MainWindow::btnUpSlot()
     }
 
 }
-
-void MainWindow::btnSaveSlot()
+void MainWindow::btn_sys_Default_Slot()
 {
-    send_mutex.lock();
-    send_arr[4] = 0x34;
-    send_oneframe(1);
-    send_mutex.unlock();
+    defaultconfig(51);
 }
 
 void MainWindow::btnselectsw_clicked()
@@ -14132,6 +14128,12 @@ void MainWindow::btnselectimportconf_clicked()
     {
         editimportconf->setText(filePath_impconf);
     }
+}
+
+void MainWindow::combox_default_capchid(int index)
+{
+    int value = index;
+    setconfig_int(51, 2, value);
 }
 
 void MainWindow::combox_output_resol(int index)

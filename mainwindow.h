@@ -276,11 +276,12 @@ public slots:
     /*系统配置槽函数*/
     void btnDownSlot();
     void btnUpSlot();
-    void btnSaveSlot();
+    void btn_sys_Default_Slot();
     void btnselectsw_clicked();
     void btnselectimportconf_clicked();
     void btnUpdate();
     void btnFPGA_clicked();
+    void combox_default_capchid(int index);
     void combox_output_resol(int index);
     void combox_output_resol2(int index);
 
@@ -1768,13 +1769,14 @@ private:
     QPushButton *btn_serial_NO,*btn_serial_OK,*btn_net_OK,*btn_net_NO;
     QLineEdit *lineEdit_port,*lineEdit_ip;
     QCheckBox *checkBox_channel1,*checkBox_channel2,*checkBox_channel3,*checkBox_channel4,*checkBox_channel5;
-    QComboBox *box_outresol,*box_outresol2;
+    QComboBox *box_outresol,*box_outresol2, *box_defaultcapchid;
     QButtonGroup *BG1,*BG2,*BG3,*BG4,*BG5;
     QButtonGroup *BO1,*BO2,*BO3,*BO4,*BO5;
     QRadioButton *rdBtn_aisle1_1,*rdBtn_aisle1_2,*rdBtn_aisle1_3,*rdBtn_aisle1_4,*rdBtn_aisle2_1,*rdBtn_aisle2_2,*rdBtn_aisle2_3,*rdBtn_aisle2_4,*rdBtn_aisle3_1,*rdBtn_aisle3_2,*rdBtn_aisle3_3,*rdBtn_aisle3_4,*rdBtn_aisle4_1,*rdBtn_aisle4_2,*rdBtn_aisle4_3,*rdBtn_aisle4_4,*rdBtn_aisle5_1;
     QRadioButton *rdBtn_out1_1,*rdBtn_out1_2,*rdBtn_out2_1,*rdBtn_out2_2,*rdBtn_out3_1,*rdBtn_out3_2,*rdBtn_out4_1,*rdBtn_out4_2,*rdBtn_out5_1;
     QString filePath_updatesw, filePath_impconf;
     QLineEdit *editsw, *editimportconf;
+    QGroupBox *gbox_Sys;
 
     /*手柄配置*/
     MyWidget *w_plat;

@@ -139,6 +139,20 @@ void MainWindow::init_sysCfg()
     w_config_serial=new QWidget;
     w_config_net=new QWidget;
     w_config->setWindowTitle(tr("系统配置"));
+
+    QPushButton* btn_sys_default=new QPushButton;
+    QPushButton* btn_sys_update=new QPushButton;
+    btn_sys_default->setText("默认");
+    btn_sys_update->setText("保存");
+    QVBoxLayout *v1=new QVBoxLayout;
+    v1->addWidget(btn_sys_default);
+    v1->addWidget(btn_sys_update);
+    QLabel *label=new QLabel;
+    label->setText("系统配置");
+    QHBoxLayout *h1=new QHBoxLayout;
+    h1->addLayout(v1);
+    h1->addWidget(label);
+
     checkBox_channel1=new QCheckBox;
     checkBox_channel2=new QCheckBox;
     checkBox_channel3=new QCheckBox;
@@ -170,6 +184,13 @@ void MainWindow::init_sysCfg()
     box1->addItem("5");
     */
 
+    box_defaultcapchid = new QComboBox;
+    box_defaultcapchid->addItem("通道1");
+    box_defaultcapchid->addItem("通道2");
+    box_defaultcapchid->addItem("通道3");
+    box_defaultcapchid->addItem("通道4");
+    box_defaultcapchid->addItem("通道5");
+
     box_outresol = new QComboBox;
     box_outresol->addItem("1920x1080@25Hz");
     box_outresol->addItem("1920x1080@30Hz");
@@ -200,9 +221,6 @@ void MainWindow::init_sysCfg()
     btnDown->setText("导入");
     QPushButton *btnUp=new QPushButton;
     btnUp->setText("导出");
-
-    QPushButton *btnSave=new QPushButton;
-    btnSave->setText("保存");
 
     QGroupBox *groupBox_upgrade = new QGroupBox();
     groupBox_upgrade->setTitle("文件传输");
@@ -254,17 +272,25 @@ void MainWindow::init_sysCfg()
     vlayout3->addLayout(hlayout3);
     vlayout3->addWidget(btnDown);
 
+    QFormLayout *pLayout1 = new QFormLayout;
     QFormLayout *pLayout = new QFormLayout;
     //pLayout->addRow(QStringLiteral("水平速度"), lineEdit);
     //pLayout->addRow("有效视频源：", hsensor);
     //pLayout->addRow("相机通道选择", box1);
-    pLayout->addRow("保存当前配置", btnSave);
-    pLayout->addRow("显示1输出分辨率", box_outresol);
-    pLayout->addRow("显示2输出分辨率", box_outresol2);
+    //pLayout->addRow("保存当前配置", btnSave);
+    pLayout1->addRow("上电默认通道", box_defaultcapchid);
+    pLayout1->addRow("显示1输出分辨率", box_outresol);
+    pLayout1->addRow("显示2输出分辨率", box_outresol2);
+    QVBoxLayout *vlayout = new QVBoxLayout;
+    vlayout->addLayout(h1);
+    vlayout->addLayout(pLayout1);
+    gbox_Sys = new QGroupBox;
+    gbox_Sys->setLayout(vlayout);
     //pLayout->addRow("各通道采集\n分辨率选择",btn_choose);
     //pLayout->addRow("变焦速度等级", CBox);
-    pLayout->addRow("导入配置文件", vlayout3);
+    pLayout->addRow(gbox_Sys);
     pLayout->addRow("导出配置文件", btnUp);
+    pLayout->addRow("导入配置文件", vlayout3);
     pLayout->addRow("在线升级",vlayout1);
     //pLayout->addRow("FPGA升级", vlayout2);
     pLayout->addRow(upgrade_show);
@@ -274,7 +300,8 @@ void MainWindow::init_sysCfg()
 	connect(btn_choose,SIGNAL(clicked(bool)),SLOT(btn_choose_Slot()));
     connect(btnDown,SIGNAL(clicked(bool)),this,SLOT(btnDownSlot()));
     connect(btnUp,SIGNAL(clicked(bool)),this,SLOT(btnUpSlot()));
-    connect(btnSave,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
+    connect(btn_sys_default,SIGNAL(clicked(bool)),this,SLOT(btn_sys_Default_Slot()));
+    connect(btn_sys_update,SIGNAL(clicked(bool)),this,SLOT(saveconfig()));
     connect(btnUpdate,SIGNAL(clicked(bool)),this,SLOT(btnUpdate()));
     connect(btnFPGA,SIGNAL(clicked(bool)),this,SLOT(btnFPGA_clicked()));
     //connect(CBox,SIGNAL(activated(int)),this,SLOT(CBox_View_Slot(int)));
@@ -285,6 +312,7 @@ void MainWindow::init_sysCfg()
     connect(checkBox_channel5,SIGNAL(stateChanged(int)),this,SLOT(checkBox_channel_Slot(int)));
     connect(btnselectsw,SIGNAL(clicked(bool)),this,SLOT(btnselectsw_clicked()));
     connect(btnselectimportconf,SIGNAL(clicked(bool)),this,SLOT(btnselectimportconf_clicked()));
+    connect(box_defaultcapchid,SIGNAL(activated(int)),this,SLOT(combox_default_capchid(int)));
     connect(box_outresol,SIGNAL(activated(int)),this,SLOT(combox_output_resol(int)));
     connect(box_outresol2,SIGNAL(activated(int)),this,SLOT(combox_output_resol2(int)));
     w_config->setLayout(pLayout);

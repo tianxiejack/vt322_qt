@@ -688,7 +688,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 
 
             case 51:
-                if(0x04 == output_array[2])
+                if(0x02 == output_array[2])
+                {
+                    int index = value_inte;
+                    if((index >= 0) && (index <= 4))
+                        box_defaultcapchid->setCurrentIndex(index);
+                }
+                else if(0x04 == output_array[2])
                 {
                     int index = value_inte;
                     if((index >= 0) && (index <= 3))
@@ -1077,6 +1083,7 @@ void MainWindow::read_config(int block)
             send_read_config(block,2,9);
             break;
         case 51:
+            send_read_config(block,2,2);
             send_read_config(block,4,5);
             break;
         case 52:
