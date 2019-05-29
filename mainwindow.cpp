@@ -12586,8 +12586,8 @@ void MainWindow::combox_flow_control_type_Slot_fif(int index)
 
 void MainWindow::comb_jostype_Slot(int index)
 {
-    float value = index;
-    setconfig(1, 0, value);
+    int value = index;
+    setconfig_int(1, 0, value);
 }
 
 void MainWindow::josDeadx_Slot()
