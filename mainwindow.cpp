@@ -10693,53 +10693,27 @@ void MainWindow::btn_Speed_Update_Slot_sec()
 
 void MainWindow::lEdt_maxspeedx_Slot_sec()
 {
-    float value=maxspeedx_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 4;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    int value=maxspeedx_sec->text().toInt();
+    //setconfig_int(x, x, value);
 
 }
 
 void MainWindow::lEdt_maxspeedy_Slot_sec()
 {
-    float value=maxspeedy_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 5;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
+    int value=maxspeedy_sec->text().toInt();
+    //setconfig_int(x, x, value);
 }
 
 void MainWindow::lEdt_deadx_Slot_sec()
 {
-    float value=deadx_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 6;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
-
+    int value=deadx_sec->text().toInt();
+    //setconfig_int(x, x, value);
 }
 
 void MainWindow::lEdt_deady_Slot_sec()
 {
-    float value=deady_sec->text().toFloat();
-    send_mutex.lock();
-    send_arr[4] = 0x30;
-    send_arr[5] = 100;
-    send_arr[6] = 7;
-    memcpy(send_arr+7,&value,4);
-    send_oneframe(7);
-    send_mutex.unlock();
+    int value=deady_sec->text().toInt();
+    //setconfig_int(x, x, value);
 
 }
 

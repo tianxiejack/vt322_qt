@@ -858,16 +858,32 @@ void MainWindow::init_inputCfg()
     input_mtd_rigionw = new QLineEdit;
     input_mtd_rigionh = new QLineEdit;
 
+    vedio_s_input[0] = new QLabel("通道名称的OSD ID");
+    vedio_s_input[1] = new QLabel("色度");
+    vedio_s_input[2] = new QLabel("是否接有摄像头");
+    vedio_s_input[3] = new QLabel("视频格式");
+    vedio_s_input[4] = new QLabel("视场模式选择");
+    vedio_s_input[5] = new QLabel("检测灵敏度");
+    vedio_s_input[6] = new QLabel("检测处理区域X,Y");
+    vedio_s_input[7] = new QLabel("检测处理区域W,H");
+
     //form_video1.addRow(vedio_s_input[0],input_osdid);
-    form_video1.addRow(vedio_s_input[1],input_chroma);
-    form_video1.addRow(vedio_s_input[2],input_vediohaveornot);
-    form_video1.addRow(vedio_s_input[3],input_vedio_dpi);
-    form_video1.addRow(vedio_s_input[4],input_fovmode);
-    form_video1.addRow(vedio_s_input[5],input_mtd_sensi);
-    form_video1.addRow(vedio_s_input[6],input_mtd_rigionx);
-    form_video1.addRow(vedio_s_input[7],input_mtd_rigiony);
-    form_video1.addRow(vedio_s_input[8],input_mtd_rigionw);
-    form_video1.addRow(vedio_s_input[9],input_mtd_rigionh);
+    form_video1.addWidget(vedio_s_input[1], 0, 0);
+    form_video1.addWidget(input_chroma, 0, 1);
+    form_video1.addWidget(vedio_s_input[2], 1, 0);
+    form_video1.addWidget(input_vediohaveornot, 1, 1);
+    form_video1.addWidget(vedio_s_input[3], 2, 0);
+    form_video1.addWidget(input_vedio_dpi, 2, 1);
+    form_video1.addWidget(vedio_s_input[4], 3, 0);
+    form_video1.addWidget(input_fovmode, 3, 1);
+    form_video1.addWidget(vedio_s_input[5], 4, 0);
+    form_video1.addWidget(input_mtd_sensi, 4, 1);
+    form_video1.addWidget(vedio_s_input[6], 5, 0);
+    form_video1.addWidget(input_mtd_rigionx, 5, 1);
+    form_video1.addWidget(input_mtd_rigiony, 5, 2);
+    form_video1.addWidget(vedio_s_input[7], 6, 0);
+    form_video1.addWidget(input_mtd_rigionw, 6, 1);
+    form_video1.addWidget(input_mtd_rigionh, 6, 2);
 
 
     set_azimuth =new QPushButton;
@@ -9736,19 +9752,22 @@ void MainWindow::initform_video2()
     form_video2.addWidget(input_max_boxsize,1,1);
     form_video2.addWidget(video_sboxsize[2],2,0);
     form_video2.addWidget(input_cur_boxsize,2,1);
-    form_video2.addWidget(video_sboxsize[3],3,0);
-    form_video2.addWidget(input_max_fovclass,3,1);
-    form_video2.addWidget(video_sboxsize[4],4,0);
-    form_video2.addWidget(input_cur_fovclass,4,1);
-    form_video2.addWidget(video_sboxsize[5],5,0);
-    form_video2.addWidget(common_boxw,5,1);
-    form_video2.addWidget(common_boxh,5,2);
+
+    form_video2.addWidget(video_sboxsize[5],3,0);
+    form_video2.addWidget(common_boxw,3,1);
+    form_video2.addWidget(common_boxh,3,2);
     for(int i = 1; i <= max; i++)
     {
-        form_video2.addWidget(video_sboxsize[i+5],i+5,0);
-        form_video2.addWidget(input_boxw[i-1],i+5,1);
-        form_video2.addWidget(input_boxh[i-1],i+5,2);
+        form_video2.addWidget(video_sboxsize[i+5],i+3,0);
+        form_video2.addWidget(input_boxw[i-1],i+3,1);
+        form_video2.addWidget(input_boxh[i-1],i+3,2);
     }
+
+    form_video2.addWidget(video_sboxsize[3],7,0);
+    form_video2.addWidget(input_max_fovclass,7,1);
+    form_video2.addWidget(video_sboxsize[4],8,0);
+    form_video2.addWidget(input_cur_fovclass,8,1);
+
 }
 
 void MainWindow::initform_video3()
@@ -9817,13 +9836,24 @@ void MainWindow::setform_video3(int fovmode)
 
 void MainWindow::set_input_layout()
 {
+    QVBoxLayout *vdown = new QVBoxLayout;
+    QHBoxLayout *vfinal = new QHBoxLayout;
+
     input_v0->addLayout(&form_video0);
     input_v0->addLayout(&form_video1);
-    input_v0->addLayout(gl12);
     input_v0->addLayout(&form_video2);
-    input_v0->addLayout(&form_video3);
-    w_input->setLayout(input_v0);
-    //w_input->setLayout(vfinal);
+    //input_v0->addLayout(&gl12);
+    //input_v0->addLayout(&form_video3);
+
+    vdown->addLayout(gl12);
+    vdown->addLayout(&form_video3);
+    QLabel *label= new QLabel("   ");
+    vfinal->addLayout(input_v0);
+    vfinal->addWidget(label);
+    vfinal->addLayout(vdown);
+
+    w_input->setLayout(vfinal);
+    //w_input->setLayout(input_v0);
 }
 
 void MainWindow::show_w_input(int chid)
