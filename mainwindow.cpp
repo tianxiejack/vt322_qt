@@ -10799,6 +10799,7 @@ void MainWindow::combox_data_bit_type_Slot_sec(int index)
 void MainWindow::combox_stop_bit_type_Slot_sec(int index)
 {
     float value;
+    /*
     switch (index) {
         case 0:
             value = 1;
@@ -10812,12 +10813,39 @@ void MainWindow::combox_stop_bit_type_Slot_sec(int index)
         default:
             break;
     }
+    */
+    switch (index) {
+        case 0:
+            value = 1;
+            break;
+        case 1:
+            value = 2;
+            break;
+        default:
+            break;
+    }
     setconfig(2, 4, value);
 }
 
 void MainWindow::combox_parity_bit_type_Slot_sec(int index)
 {
-    int value = index;
+    int value = 0;
+    switch (index) {
+        case 0:
+            value = 0;
+            break;
+        case 1:
+            value = 1;
+            break;
+        case 2:
+            value = 2;
+            break;
+        case 3:
+            value = 4;
+            break;
+        default:
+            break;
+    }
     setconfig_int(2, 3, value);
 }
 

@@ -6756,21 +6756,21 @@ void MainWindow::init_speedconvCfg_sec()
     data_bit_sec->addItem("8");
     stop_bit_sec =new QComboBox;
     stop_bit_sec->addItem("1");
-    stop_bit_sec->addItem("1.5");
+    //stop_bit_sec->addItem("1.5");
     stop_bit_sec->addItem("2");
 
     parity_bit_sec =new QComboBox;
     parity_bit_sec->addItem("None");
     parity_bit_sec->addItem("Odd");
     parity_bit_sec->addItem("Even");
-    parity_bit_sec->addItem("Mark");
+    //parity_bit_sec->addItem("Mark");
     parity_bit_sec->addItem("Space");
 
     flow_control_sec=new QComboBox;
     flow_control_sec->addItem("Hardware");
     flow_control_sec->addItem("Software");
     flow_control_sec->addItem("None");
-    flow_control_sec->addItem("Custom");
+    //flow_control_sec->addItem("Custom");
 
 
     netip = new QLineEdit;

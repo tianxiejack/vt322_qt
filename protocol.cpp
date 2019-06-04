@@ -331,11 +331,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                         case 2:
                             parity_bit_sec->setCurrentIndex(2);
                             break;
+                            /*
                         case 3:
                             parity_bit_sec->setCurrentIndex(3);
                             break;
+                            */
                         case 4:
-                            parity_bit_sec->setCurrentIndex(4);
+                            parity_bit_sec->setCurrentIndex(3);
                             break;
                         default:
                             break;
@@ -346,13 +348,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     if(value_i < 1.5)
                     {
                         stop_bit_sec->setCurrentIndex(0);
-                    }else if((value_i > 1) && (value_i < 2))
+                    }else //if((value_i > 1) && (value_i < 2))
                     {
                         stop_bit_sec->setCurrentIndex(1);
-                    }else if(value_i > 1.5)
+                    }/*else if(value_i > 1.5)
                     {
                         stop_bit_sec->setCurrentIndex(2);
-                    }
+                    }*/
                 }
                 else if(5 == output_array[2])
                 {
@@ -365,10 +367,10 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     }else if(value_inte==3)
                     {
                         flow_control_sec->setCurrentIndex(2);
-                    }else if(value_inte==4)
+                    }/*else if(value_inte==4)
                     {
                         flow_control_sec->setCurrentIndex(3);
-                    }
+                    }*/
                 }
                 else if(6 == output_array[2])
                 {
