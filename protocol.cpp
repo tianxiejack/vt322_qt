@@ -690,13 +690,13 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
 
 
             case 51:
-                if(0x02 == output_array[2])
+                if(2 == output_array[2])
                 {
                     int index = value_inte;
                     if((index >= 0) && (index <= 4))
                         box_defaultcapchid->setCurrentIndex(index);
                 }
-                else if(0x04 == output_array[2])
+                else if(4 == output_array[2])
                 {
                     int index = value_inte;
                     if((index >= 0) && (index <= 3))
@@ -704,13 +704,37 @@ void MainWindow::output_to_label(int i)//解析下位机的反馈信息,从串�
                     else if((index >= 5) && (index <= 9))
                         box_outresol->setCurrentIndex(index - 1);
                 }
-                else if(0x05 == output_array[2])
+                else if(5 == output_array[2])
                 {
                     int index = value_inte;
                     if((index >= 0) && (index <= 3))
                         box_outresol2->setCurrentIndex(index);
                     else if((index >= 5) && (index <= 9))
                         box_outresol2->setCurrentIndex(index - 1);
+                }
+                else if(6 == output_array[2])
+                {
+                    if(value_inte)
+                        compress_enable->setChecked(true);
+                    else
+                        compress_enable->setChecked(false);
+                    break;
+                }
+                else if(7 == output_array[2])
+                {
+                    int index = value_inte;
+                    if(index == 1)
+                        box_outresol2->setCurrentIndex(0);
+                }
+                else if(8 == output_array[2])
+                {
+                    unsigned int value_uinte = value_inte;//= (unsigned int)value_inte;
+                    QString str = intip2string(value_uinte);
+                    compress_ip->setText(str);
+                }
+                else if(9 == output_array[2])
+                {
+                    compress_port->setText(QString::number(value_inte));
                 }
                 break;
 
@@ -1086,7 +1110,7 @@ void MainWindow::read_config(int block)
             break;
         case 51:
             send_read_config(block,2,2);
-            send_read_config(block,4,5);
+            send_read_config(block,4,9);
             break;
         case 52:
             send_read_config(block,1,2);

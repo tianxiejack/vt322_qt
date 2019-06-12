@@ -213,6 +213,18 @@ void MainWindow::init_sysCfg()
     box_outresol2->addItem("1280x768@60Hz");
     box_outresol2->addItem("1920x1080@50Hz");
 
+    compress_enable = new QRadioButton;
+    compress_protocol = new QComboBox;
+    compress_ip = new QLineEdit;
+    compress_port = new QLineEdit;
+    compress_port_label = new QLabel("(11000~12000)");
+
+    compress_ip->setInputMask("000.000.000.000");
+    compress_protocol->addItem("H265");
+    QHBoxLayout * compress_layout = new QHBoxLayout;
+    compress_layout->addWidget(compress_port);
+    compress_layout->addWidget(compress_port_label);
+
 
 	QPushButton *btn_choose=new QPushButton;
     btn_choose->setText("打开分辨率选择");
@@ -281,6 +293,10 @@ void MainWindow::init_sysCfg()
     pLayout1->addRow("上电默认通道", box_defaultcapchid);
     pLayout1->addRow("显示1输出分辨率", box_outresol);
     pLayout1->addRow("显示2输出分辨率", box_outresol2);
+    pLayout1->addRow("压缩网络输出使能", compress_enable);
+    pLayout1->addRow("压缩标准", compress_protocol);
+    pLayout1->addRow("对端IP", compress_ip);
+    pLayout1->addRow("对端端口", compress_layout);
     QVBoxLayout *vlayout = new QVBoxLayout;
     vlayout->addLayout(h1);
     vlayout->addLayout(pLayout1);
@@ -315,6 +331,10 @@ void MainWindow::init_sysCfg()
     connect(box_defaultcapchid,SIGNAL(activated(int)),this,SLOT(combox_default_capchid(int)));
     connect(box_outresol,SIGNAL(activated(int)),this,SLOT(combox_output_resol(int)));
     connect(box_outresol2,SIGNAL(activated(int)),this,SLOT(combox_output_resol2(int)));
+    connect(compress_enable,SIGNAL(clicked(bool)),this,SLOT(compress_enable_Slot()));
+    connect(compress_protocol,SIGNAL(activated(int)),this,SLOT(compress_protocol_Slot(int)));
+    connect(compress_ip,SIGNAL(returnPressed()),this,SLOT(lEdt_compress_ip_Slot()));
+    connect(compress_port,SIGNAL(returnPressed()),this,SLOT(lEdt_compress_port_Slot()));
     w_config->setLayout(pLayout);
 }
 void MainWindow::init_josCfg()

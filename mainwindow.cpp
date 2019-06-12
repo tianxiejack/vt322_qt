@@ -14158,6 +14158,55 @@ void MainWindow::combox_output_resol2(int index)
     setconfig_int(51, 5, value);
 }
 
+void MainWindow::compress_enable_Slot()
+{
+    int value = 0;
+    if(compress_enable->isChecked())
+    {
+        value = 1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    setconfig_int(51, 6, value);
+
+}
+
+void MainWindow::compress_protocol_Slot(int index)
+{
+    int value = 0;
+    if(index == 0)
+        value = 1;
+
+    setconfig_int(51, 7, value);
+
+}
+
+void MainWindow::lEdt_compress_ip_Slot()
+{
+    unsigned int value = stringip2int(compress_ip->text());
+    setconfig_int(51, 8, value);
+}
+void MainWindow::lEdt_compress_port_Slot()
+{
+    int value=compress_port->text().toInt();
+    if(value < 11000)
+    {
+        value = 11000;
+        compress_port->setText("11000");
+
+    }
+    if(value > 12000)
+    {
+        value = 12000;
+        compress_port->setText("12000");
+    }
+
+    setconfig_int(51, 9, value);
+}
+
 void MainWindow::btnUpdate()
 {
     //QString filePath = QFileDialog::getOpenFileName(this,"open","../");

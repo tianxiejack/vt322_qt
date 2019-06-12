@@ -284,6 +284,10 @@ public slots:
     void combox_default_capchid(int index);
     void combox_output_resol(int index);
     void combox_output_resol2(int index);
+    void compress_enable_Slot();
+    void compress_protocol_Slot(int index);
+    void lEdt_compress_ip_Slot();
+    void lEdt_compress_port_Slot();
 
     /*摄像机槽函数*/
     void vedio_tosersor_fix(int i);
@@ -1777,6 +1781,10 @@ private:
     QString filePath_updatesw, filePath_impconf;
     QLineEdit *editsw, *editimportconf;
     QGroupBox *gbox_Sys;
+    QRadioButton *compress_enable;
+    QComboBox *compress_protocol;
+    QLineEdit *compress_ip, *compress_port;
+    QLabel *compress_port_label;
 
     /*手柄配置*/
     MyWidget *w_plat;
